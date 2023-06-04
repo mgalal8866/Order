@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Config;
 */
 
 Route::get('/', function (Request $request) {
-    $array = ['app1.order.com'=>'order1','app2.order.com'=>'order2'];
+    $array = ['app.order-bay.com'=>'order1','app2.order.com'=>'order2'];
     $host  = $request->getHost();
     $keys  = array_keys($array);
     if(in_array($host,$keys)){
@@ -28,6 +28,6 @@ Route::get('/', function (Request $request) {
 
         return $host;
     }
-   
+
     return view('welcome');
 });
