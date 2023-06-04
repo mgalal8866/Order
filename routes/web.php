@@ -1,6 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Config;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $array = ['app1.order.com'=>'order1','app2.order.com'=>'order2'];
+    $host  = $request->getHost();
+    $keys  = array_keys($array);
+    if(in_array($host,$keys)){
+        $db = $array[$host];
+        DB::purge('mysql');
+        Config::set('database.connections.mysql.database' ,$db);
+        DB::reconnect('mysql');
+
+        return $host;
+    }
+   
     return view('welcome');
 });
