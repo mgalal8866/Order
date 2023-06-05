@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 
 
@@ -16,18 +17,18 @@ use Illuminate\Support\Facades\Config;
 |
 */
 
-Route::get('/', function (Request $request) {
-    $array = ['app.order-bay.com'=>'order1','app2.order.com'=>'order2','order-bay.com'=>'order3'];
-    $host  = $request->getHost();
-    $keys  = array_keys($array);
-    if(in_array($host,$keys)){
-        $db = $array[$host];
-        DB::purge('mysql');
-        Config::set('database.connections.mysql.database' ,$db);
-        DB::reconnect('mysql');
+    Route::get('/', function (Request $request) {
+        $array = ['app.order-bay.com'=>'order1','app2.order.com'=>'order2','order-bay.com'=>'order3'];
+        $host  = $request->getHost();
+        $keys  = array_keys($array);
+        if(in_array($host,$keys)){
+            $db = $array[$host];
+            DB::purge('mysql');
+            Config::set('database.connections.mysql.database' ,$db);
+            DB::reconnect('mysql');
 
-        return $host;
-    }
+            return $host;
+        }
 
     return view('welcome');
 });
