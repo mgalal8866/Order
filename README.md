@@ -17,3 +17,5 @@
 
 - **opcodesio/log-viewer**
 
+- **tymon/jwt-auth**
+
