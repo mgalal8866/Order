@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-   
+
     public function getusers()
     {
         $user = User::all();
