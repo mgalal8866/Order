@@ -17,6 +17,7 @@ use App\Models\User;
 |
 */
 
-    Route::get('/', function (Request $request) {  
-    return User::all();
+    Route::get('/', function (Request $request) {
+          return '222';
+          return User::all();
     });
