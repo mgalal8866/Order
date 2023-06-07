@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\User;
 use Illuminate\Support\Str;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
@@ -14,7 +15,10 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-
+    public function register(Request $request)
+    {
+        dd($request->all());
+    }
     public function getusers()
     {
         $user = User::all();
@@ -23,7 +27,7 @@ class UserController extends Controller
 
     public function login()
     {
-        $credentials = request(['name', 'password']);
+        $credentials = request(['phone', 'password']);
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }

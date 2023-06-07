@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use App\Models\Tenant;
+use App\service\TenantService;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+class TenantMiddleware
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
+    {
+        $host  = $request->getHost();
+        $tenant = Tenant::where('domin',$host)->first();
+        if($tenant == null ||  $tenant->database == null){
+            abort(404);
+        };
+        TenantService::switchToTanent($tenant);    
+        return $next($request);
+    }
+}
