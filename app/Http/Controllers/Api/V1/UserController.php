@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-
+public function LoginOtp()
+{
+    # code...
+}
     public function register(Request $request)
     {
         dd($request->all());

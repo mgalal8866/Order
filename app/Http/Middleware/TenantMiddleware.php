@@ -16,12 +16,14 @@ class TenantMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $host  = $request->getHost();
-        $tenant = Tenant::where('domin',$host)->first();
-        if($tenant == null ||  $tenant->database == null){
-            abort(404);
-        };
-        TenantService::switchToTanent($tenant);    
+        if(env('tenant') != false){
+            $host  = $request->getHost();
+            $tenant = Tenant::where('domin',$host)->first();
+            if($tenant == null ||  $tenant->database == null){
+                abort(404);
+            };
+            TenantService::switchToTanent($tenant);
+        }
         return $next($request);
     }
 }
