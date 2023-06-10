@@ -21,10 +21,9 @@ class TenantService{
         Config::set('database.connections.tenant.database' , $tenant->database);
         DB::reconnect('tenant');
         DB::setDefaultconnection('tenant');
-        Self::$tenant = $tenant;
-        Self::$domain = $tenant->domain;
-        Self::$database = $tenant->database;    
-
+        Self::$tenant   = $tenant;
+        Self::$domain   = $tenant->domain;
+        Self::$database = $tenant->database;
     }
 
     public static function switchToDefault(){
