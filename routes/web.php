@@ -16,6 +16,9 @@ use App\Models\User;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/', function (Request $request) {
+return '.....';
+});
 Route::get('/sql', function (Request $request) {
     // http://order.com/sql?ip=DESKTOP-F8KF0NT\SQLEXPRESS&port=&database=DBOrder&username=mgalal&password=123456
     DB::purge('mysql');

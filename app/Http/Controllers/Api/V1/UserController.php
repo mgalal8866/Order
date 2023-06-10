@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterUser;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,9 +19,16 @@ public function LoginOtp()
 {
     # code...
 }
-    public function register(Request $request)
+    public function register(RegisterUser $request)
     {
-        dd($request->all());
+        dd($request->name);
+        dd($request->phone);
+        dd($request->city);
+        dd($request->lat);
+        dd($request->long);
+        dd($request->address);
+        dd($request->categoy);
+        dd($request->cash);
     }
     public function getusers()
     {
