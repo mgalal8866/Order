@@ -21,8 +21,8 @@ public function LoginOtp()
 }
     public function register(RegisterUser $request)
     {
-        dd($request->array());
-        User::create([$request->array()]);
+      
+        User::create($request->validated());
         dd($request->client_name,$request->client_fhoneWhats,$request->client_fhoneLeter,$request->region_id,$request->long_mab,$request->lat_mab,$request->client_state,$request->CategoryAPP);
     }
     public function getusers()

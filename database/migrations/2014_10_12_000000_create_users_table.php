@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('client_fhoneWhats')->unique();
+            $table->uuid('id');
+            $table->string('client_fhonewhats')->unique()->nullable();
             $table->string('source_id')->nullable();
             $table->string('client_name')->nullable();
             $table->decimal('client_Balanc',8,2)->default(0);
@@ -30,6 +30,7 @@ return new class extends Migration
             $table->boolean('Client_Active')->default(1);
             $table->integer('Client_code')->nullable();
             $table->integer('CategoryAPP')->nullable();
+            $table->integer('source_type')->nullable();
             $table->string('last_active')->nullable();
             $table->timestamp('last_seen')->nullable();
             $table->rememberToken();

@@ -23,7 +23,7 @@ class RegisterUser extends FormRequest
     public function rules(): array
     {
         return [
-            'client_fhoneWhats' => 'required|unique:users',
+            'client_fhonewhats' => 'required|unique:users',
             'client_name'       => 'required|string|max:50',
             'client_fhoneLeter' => 'required',
             'region_id'         => 'required',
