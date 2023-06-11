@@ -23,13 +23,14 @@ class RegisterUser extends FormRequest
     public function rules(): array
     {
         return [
-            'phone'     => 'required|unique:users',
-            'name'      => 'required|string|max:50',
-            'categoy'   => 'required',
-            'lat'       => 'required',
-            'long'      => 'required',
-            'address'   => 'required',
-            'cash'      => 'required',
+            'client_fhoneWhats' => 'required|unique:users',
+            'client_name'       => 'required|string|max:50',
+            'client_fhoneLeter' => 'required',
+            'region_id'         => 'required',
+            'lat_mab'           => 'required',
+            'long_mab'          => 'required',
+            'client_state'      => 'required',
+            'CategoryAPP'       => 'required',
 
         ];
 
@@ -63,8 +64,8 @@ class RegisterUser extends FormRequest
 
     {
 
-        // throw new HttpResponseException(response()->json($validator->errors(), 422));
-        throw new HttpResponseException(Resp($validator->errors(),'', 422));
+        throw new HttpResponseException(response()->json($validator->errors(), 422));
+        // throw new HttpResponseException(Resp($validator->errors(),'', 422));
 
     }
 }

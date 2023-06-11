@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUser;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class UserController extends Controller
 {
@@ -21,14 +21,9 @@ public function LoginOtp()
 }
     public function register(RegisterUser $request)
     {
-        dd($request->name);
-        dd($request->phone);
-        dd($request->city);
-        dd($request->lat);
-        dd($request->long);
-        dd($request->address);
-        dd($request->categoy);
-        dd($request->cash);
+        dd($request->array());
+        User::create([$request->array()]);
+        dd($request->client_name,$request->client_fhoneWhats,$request->client_fhoneLeter,$request->region_id,$request->long_mab,$request->lat_mab,$request->client_state,$request->CategoryAPP);
     }
     public function getusers()
     {
