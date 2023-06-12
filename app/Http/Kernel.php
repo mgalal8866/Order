@@ -72,5 +72,7 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'tenant'=> \App\Http\Middleware\TenantMiddleware::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class, //WE ADDED THIS!
+
     ];
 }

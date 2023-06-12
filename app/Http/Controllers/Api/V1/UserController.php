@@ -11,30 +11,22 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUser;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class UserController extends Controller
 {
-public function LoginOtp()
-{
-    # code...
-}
     public function register(RegisterUser $request)
     {
-      
-        User::create($request->validated());
-        dd($request->client_name,$request->client_fhoneWhats,$request->client_fhoneLeter,$request->region_id,$request->long_mab,$request->lat_mab,$request->client_state,$request->CategoryAPP);
+        $user = User::create($request->validated());
+        if (! $token = auth()->login($user)) {
+            return response()->json(['error' => 'Unauthorized'], 401);
+        }
+        return $this->respondWithToken($token);
     }
-    public function getusers()
+    public function login(Request $request)
     {
-        $user = User::all();
-        return $user ;
-    }
+        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
 
-    public function login()
-    {
-        $credentials = request(['phone', 'password']);
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth()->login($user)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
         return $this->respondWithToken($token);

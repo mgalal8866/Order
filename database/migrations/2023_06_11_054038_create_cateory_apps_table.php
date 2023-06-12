@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cateory__apps', function (Blueprint $table) {
-            $table->increments('id');
-            $table->uuid('uuid');
+        Schema::create('cateory_apps', function (Blueprint $table) {
+            $table->uuid('id');
             $table->string('sync_id')->nullable();
             $table->string('name');
             $table->string('image')->nullable();
