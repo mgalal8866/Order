@@ -25,7 +25,8 @@ class RegisterUser extends FormRequest
         return [
             'client_fhonewhats' => 'required|unique:users',
             'client_name'       => 'required|string|max:50',
-            'client_fhoneLeter' => 'required',
+            'client_fhoneLeter' => '',
+            'client_code' => '',
             'region_id'         => 'required',
             'lat_mab'           => 'required',
             'long_mab'          => 'required',
@@ -57,7 +58,14 @@ class RegisterUser extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'Name to be unique'
+            'client_name.required'      => 'الاسم مطلوب',
+            'client_fhonewhats.unique'  => 'رقم الهاتف مسجل مسبقا',
+            'client_fhoneLeter.required'=> '',
+            'region_id.required'        => 'المحافظة مطلوبة',
+            'lat_mab.required'          => 'required',
+            'long_mab.required'         => 'required',
+            'client_state.required'     => 'required',
+            'CategoryAPP.required'      => 'required',
         ];
     }
     public function failedValidation(Validator $validator)

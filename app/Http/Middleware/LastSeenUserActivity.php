@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
-
+use Tymon\JWTAuth\Facades\JWTAuth;
 class LastSeenUserActivity
 {
     /**
@@ -19,7 +19,10 @@ class LastSeenUserActivity
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth('api')->check()) {
+
+        
+        if (auth()->check()) {
+            dd(Auth::user()->id);
             $expireTime = Carbon::now()->addMinute(1); // keep online for 1 min
             Cache::put('is_online'.Auth::user()->id, true, $expireTime);
 

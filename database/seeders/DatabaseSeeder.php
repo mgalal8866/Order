@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        ApiToken::create(['name'=>'Dev Demon','token'=>'sadfjiow328n4']);
+        ApiToken::create(['name'=>'APP','token'=>'poOLz4qcSBdmbS9X']);
+        ApiToken::create(['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb']);
     }
 }

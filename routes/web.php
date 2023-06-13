@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Models\User;
+use Illuminate\Support\Str;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +19,7 @@ use App\Models\User;
 |
 */
 Route::get('/', function (Request $request) {
-return '.....';
+return  Str::random(18);
 });
 Route::get('/sql', function (Request $request) {
     // http://order.com/sql?ip=DESKTOP-F8KF0NT\SQLEXPRESS&port=&database=DBOrder&username=mgalal&password=123456

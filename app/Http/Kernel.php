@@ -44,7 +44,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\LastSeenUserActivity::class,
+
         ],
     ];
 
@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class, //WE ADDED THIS!
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'ApiVersion' => \App\Http\Middleware\ApiVersion::class,
         'ApiCheckKey' => \App\Http\Middleware\ApiCheckKey::class,
@@ -72,7 +73,7 @@ class Kernel extends HttpKernel
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'tenant'=> \App\Http\Middleware\TenantMiddleware::class,
-        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class, //WE ADDED THIS!
+        'last_seen'=> \App\Http\Middleware\LastSeenUserActivity::class,
 
     ];
 }

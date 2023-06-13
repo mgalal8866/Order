@@ -13,6 +13,7 @@ class JwtMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
+        dd('ss');
         try {
             $user = JWTAuth::parseToken()->authenticate();
          } catch (Exception $e) {
