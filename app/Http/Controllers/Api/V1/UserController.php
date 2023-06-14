@@ -10,56 +10,46 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUser;
 use App\Http\Resources\UserResource;
+use App\Repositoryinterface\UserRepositoryinterface;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    private $userRepositry;
+    public function __construct(UserRepositoryinterface $userRepositry)
+    {
+        $this->userRepositry = $userRepositry;
+    }
     public function register(RegisterUser $request)
     {
-        $user = User::create($request->validated());
-        if (! $token = auth()->login($user)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-        $user->token = $token;
-        $data =   new UserResource($user) ;
-           return Resp($data,'Success',200,true);
-        // return $this->respondWithToken($token, $user );
+        $data = $this->userRepositry->register($request);
+        if (!is_array($data)) return Resp($data, 'Error', 200, true);
+        $data =   new UserResource($this->userRepositry->register($request->validated()));
+        return Resp($data, 'Success', 200, true);
     }
     public function login(Request $request)
     {
-        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
-        if($user == null){
-            return Resp('','User Not found',201);
-        }
-        if (! $token = auth()->login($user)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
-            $user->token = $token;
-
-            $data =   new UserResource($user) ;
-            return Resp($data,'Success',200,true);
-        // return $this->respondWithToken($token, $user );
+        $data = $this->userRepositry->login($request);
+        if (!is_array($data)) return Resp($data, 'Error', 200, true);
+        $data =  new UserResource($this->userRepositry->login($request));
+        return Resp($data, 'Success', 200, true);
     }
-
     public function logout()
     {
-        auth()->logout();
-        return response()->json(['message' => 'Successfully logged out']);
+        return $this->userRepositry->logout();
     }
 
-
-    protected function respondWithToken($token,$user=null)
+    protected function respondWithToken($token, $user = null)
     {
         return response()->json([
-            'data' => $user??'',
+            'data' => $user ?? '',
             'access_token' => $token,
             'token_type' => 'bearer',
             // 'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 
-
-     public function refresh()
+    public function refresh()
     {
         // return $this->respondWithToken(auth()->refresh());
     }

@@ -5,15 +5,17 @@ namespace App\Http\Controllers\Api\V1;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CategoyAppResource;
-use App\Models\CateoryApp;
+use App\Repositoryinterface\CateoryAppRepositoryinterface;
 
 class CateoryAppController extends Controller
 {
-
-
-    function getcategoryapp()
+    private $categoryapp;
+    public function __construct(CateoryAppRepositoryinterface $categoryapp)
     {
-        $CApp = CateoryApp::get();
-        return  CategoyAppResource::collection($CApp) ;
+        $this->categoryapp = $categoryapp;
+    }
+    function getcategoryapp()
+    {   $data = $this->categoryapp->getcategoryapp();
+        return  CategoyAppResource::collection($data) ;
     }
 }

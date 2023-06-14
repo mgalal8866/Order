@@ -172,7 +172,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
-
+        App\Providers\RepositoryServiceProvider::class
     ])->toArray(),
 
     /*
@@ -187,7 +187,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
