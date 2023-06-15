@@ -20,6 +20,6 @@ Route::middleware(['jwt.verify'])->group(function () {
 
 
 Route::prefix('sync')->group(function () {
-    Route::get('/client' ,       [SyncController::class,'client']);
+    Route::post('/client' ,       [SyncController::class,'client']);
     Route::get('/category_app' , [SyncController::class,'categoryapp']);
 });
