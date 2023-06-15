@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('cateory_apps', function (Blueprint $table) {
             $table->uuid('id');
+            $table->uuid('parent_id')->nullable();
             $table->string('sync_id')->nullable();
             $table->string('name');
             $table->string('image')->nullable();
