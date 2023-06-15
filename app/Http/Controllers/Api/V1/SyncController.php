@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class SyncController extends Controller
 {
     function client(Request $request) {
-            return 'success';
+            return $request->all();
     }
     function categoryapp(Request $request) {
 
