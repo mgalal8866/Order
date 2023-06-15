@@ -21,6 +21,9 @@ use Illuminate\Support\Str;
 Route::get('/', function (Request $request) {
 return  Str::random(18);
 });
+Route::get('/lay', function (Request $request) {
+    return  view('layouts.app');
+    });
 Route::get('/sql', function (Request $request) {
     // http://order.com/sql?ip=DESKTOP-F8KF0NT\SQLEXPRESS&port=&database=DBOrder&username=mgalal&password=123456
     // http://order.com/sql?ip=156.218.39.121&port=1433&database=DBOrder&username=mgalal&password=123456
