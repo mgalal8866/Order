@@ -15,8 +15,11 @@ class CategoyAppResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
+            'id'          => $this->id,
             'name'        => $this->name,
             'image'       => $this->image,
+            'note'        => $this->note,
+            'active'      => $this->cat_active,
         ];
     }
 }
