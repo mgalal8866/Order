@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUser;
 use App\Http\Resources\UserResource;
+use App\Models\CateoryApp;
 use App\Repositoryinterface\UserRepositoryinterface;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,14 +25,14 @@ class UserController extends Controller
     {
         $data = $this->userRepositry->register($request);
         if (!is_array($data)) return Resp($data, 'Error', 200, true);
-        $data =   new UserResource($this->userRepositry->register($request->validated()));
+        $data =   new UserResource($this->userRepositry->register($request->validated()),$this->category_app());
         return Resp($data, 'Success', 200, true);
     }
     public function login(Request $request)
     {
         $data = $this->userRepositry->login($request);
         if (!is_array($data)) return Resp($data, 'Error', 200, true);
-        $data =  new UserResource($this->userRepositry->login($request));
+        $data =  new UserResource($this->userRepositry->login($request),$this->category_app());
         return Resp($data, 'Success', 200, true);
     }
     public function logout()
@@ -51,6 +52,11 @@ class UserController extends Controller
 
     public function refresh()
     {
+        // return $this->respondWithToken(auth()->refresh());
+    }
+     public function category_app()
+    {
+       return CateoryApp::find(1)->first();
         // return $this->respondWithToken(auth()->refresh());
     }
 }

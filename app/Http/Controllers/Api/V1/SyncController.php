@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1;
-
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+
 
 class SyncController extends Controller
 {
