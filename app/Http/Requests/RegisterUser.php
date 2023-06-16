@@ -72,7 +72,7 @@ class RegisterUser extends FormRequest
 
     {
 
-        throw new HttpResponseException(response()->json($validator->errors(), 422));
+        throw new HttpResponseException(Resp($validator->errors(), 'Error', 200, false));
         // throw new HttpResponseException(Resp($validator->errors(),'', 422));
 
     }

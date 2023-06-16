@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\setting;
 
+use App\Models\CateoryApp;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterUser;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use App\Models\CateoryApp;
-use App\Repositoryinterface\UserRepositoryinterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Collection;
+use App\Repositoryinterface\UserRepositoryinterface;
 
 class UserController extends Controller
 {
@@ -23,17 +25,14 @@ class UserController extends Controller
     }
     public function register(RegisterUser $request)
     {
-        $data = $this->userRepositry->register($request);
-        if (!is_array($data)) return Resp($data, 'Error', 200, true);
-        $data =   new UserResource($this->userRepositry->register($request->validated()),$this->category_app());
+
+        $data = new UserResource($this->userRepositry->register($request->validated()));
         return Resp($data, 'Success', 200, true);
     }
+
     public function login(Request $request)
     {
-        $data = $this->userRepositry->login($request);
-        if (!is_array($data)) return Resp($data, 'Error', 200, true);
-        $data =  new UserResource($this->userRepositry->login($request),$this->category_app());
-        return Resp($data, 'Success', 200, true);
+        return   $this->userRepositry->login($request);
     }
     public function logout()
     {
@@ -56,7 +55,9 @@ class UserController extends Controller
     }
      public function category_app()
     {
-       return CateoryApp::find(1)->first();
+        $dd =setting::find(1);
+        // dd(  $dd->toArray());
+       return  $dd->toArray();
         // return $this->respondWithToken(auth()->refresh());
     }
 }

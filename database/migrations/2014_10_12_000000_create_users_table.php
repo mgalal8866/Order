@@ -27,9 +27,9 @@ return new class extends Migration
             $table->decimal('client_Credit_Limit',8,2)->default(0);//الحد الائتمانى
             $table->string('default_Sael')->default(1);//نوع التعامل كاش وتقسيط
             $table->text('client_note')->nullable();
-            $table->boolean('Client_Active')->default(1);
-            $table->integer('Client_code')->nullable();
-            $table->integer('CategoryAPP')->nullable();
+            $table->boolean('client_Active')->default(1);
+            $table->string('client_code')->nullable();
+            $table->integer('categoryAPP')->nullable();
             $table->integer('source_type')->nullable();
             $table->string('last_active')->nullable();
             $table->timestamp('last_seen')->nullable();
