@@ -3,8 +3,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
-
-
+use App\Http\Resources\RegionResource;
 use App\Models\region;
 use Illuminate\Http\Request;
 
@@ -15,8 +14,8 @@ class RegionController extends Controller
      */
     public function getregionbycity($id)
     {
-        dd($id);
-        return Resp(region::where('city_id',$id)->get(),'success',200,true);
+
+        return Resp(RegionResource::collection(region::where('city_id',$id)->get()),'success',200,true);
     }
 
 }

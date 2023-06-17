@@ -12,7 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sup_categories', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('sup_name');
+            $table->string('image');
+            $table->string('sup_note');
+            $table->integer('parent_id');
+            $table->boolean('sup_active');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

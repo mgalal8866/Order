@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $this->call([
+            create_city::class
+        ]);
         ApiToken::create(['name'=>'APP','token'=>'poOLz4qcSBdmbS9X']);
         ApiToken::create(['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb']);
     }

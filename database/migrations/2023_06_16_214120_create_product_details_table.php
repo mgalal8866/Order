@@ -12,7 +12,24 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('product_details', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->primary('id');
+            $table->integer('source_id');
+            $table->integer('product_id');
+            $table->integer('product_lvl');
+            $table->integer('productd_unit_id')->nullable();
+            $table->string('productd_barcode')->nullable();
+            $table->integer('productd_size')->nullable();
+            $table->decimal('productd_bay',8,2)->nullable();//سعر الشراء
+            $table->decimal('productd_Sele1',8,2)->nullable();//سعر البيع العادى
+            $table->decimal('productd_Sele2',8,2)->nullable();//سعر العرض
+            $table->uuid('productd_fast_Sele')->nullable();//
+            $table->uuid('productd_UnitType')->nullable();
+            $table->string('productd_image')->nullable();
+            $table->boolean('isoffer')->default(0)->nullable();;
+            $table->boolean('productd_online')->nullable();;
+            $table->decimal('maxqty',8,2)->nullable();// اقصى كميه للطلب
+            $table->string('EndOferDate');//تاريخ انهاء العرض
             $table->timestamps();
         });
     }

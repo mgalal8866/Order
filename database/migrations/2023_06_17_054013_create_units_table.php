@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cateory_apps', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id')->nullable();
-            $table->string('sync_id')->nullable();
-            $table->string('name');
-            $table->string('image')->nullable();
-            $table->string('note')->nullable();
-            $table->boolean('cat_active')->default(1);
+            $table->string('unit_name')->nullable();
+            $table->text('unit_note')->nullable();
+            $table->boolean('unit_active')->default(1);
+            $table->integer('user_id')->default(1)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cateory__apps');
+        Schema::dropIfExists('units');
     }
 };

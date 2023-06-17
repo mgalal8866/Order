@@ -6,7 +6,9 @@ use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CitiesController;
 use App\Http\Controllers\Api\V1\RegionController;
 use App\Http\Controllers\Api\V1\CateoryAppController;
-
+use App\Http\Controllers\Api\V1\ProductHeaderController;
+use App\Http\Controllers\UnitController;
+use App\Models\ProductHeader;
 
 Route::post('/login' ,   [UserController::class,'login'])->name('login');
 Route::post('/register', [UserController::class,'register'])->name('register');
@@ -14,9 +16,17 @@ Route::post('/register', [UserController::class,'register'])->name('register');
 Route::get('/get_category_app', [CateoryAppController::class,'getcategoryapp']);
 
 Route::get('/getcity', [CitiesController::class,'getcity']);
-Route::get('/getregion{id?}', [RegionController::class,'getregionbycity']);
+Route::get('/getregion/{id}', [RegionController::class,'getregionbycity']);
 
 Route::middleware(['jwt.verify'])->group(function () {
+    Route::prefix('product')->group(function () {
+        Route::get('/getproductbycat',[ProductHeaderController::class,'getproductbycat']);
+    });
+
+    Route::prefix('unit')->group(function () {
+        Route::get('getunit',[UnitController::class,'getproductbycat']);
+    });
+
     Route::get('/logout' ,    [UserController::class,'logout'])->name('logout');
 });
 
