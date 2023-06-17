@@ -27,7 +27,7 @@ return new class extends Migration
             $table->boolean('isoffer')->default(0)->nullable();;
             $table->boolean('productd_online')->nullable();;
             $table->decimal('maxqty',8,2)->nullable();// اقصى كميه للطلب
-            $table->string('EndOferDate');//تاريخ انهاء العرض
+            $table->timestamp('EndOferDate');//تاريخ انهاء العرض
             $table->timestamps();
         });
     }
