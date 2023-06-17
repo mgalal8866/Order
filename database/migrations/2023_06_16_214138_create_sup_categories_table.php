@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('sup_categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('sup_name');
-            $table->string('image');
-            $table->string('sup_note');
-            $table->integer('parent_id');
-            $table->boolean('sup_active');
-            $table->integer('user_id');
+            $table->integer('parent_id')->nullable();
+            $table->string('sup_name')->nullable();
+            $table->string('image')->nullable();
+            $table->string('sup_note')->nullable();
+            $table->boolean('sup_active')->default(1);
+            $table->integer('user_id')->default(1)->nullable();
             $table->timestamps();
         });
     }

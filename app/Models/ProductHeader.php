@@ -9,5 +9,13 @@ class ProductHeader extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function category()
+    {
+        return $this->belongsto(SupCategory::class);
+    }
+    public function productdetails()
+    {
+        return $this->hasMany(productdetails::class,'product_id');
+    }
 
 }

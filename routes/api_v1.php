@@ -20,11 +20,11 @@ Route::get('/getregion/{id}', [RegionController::class,'getregionbycity']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     Route::prefix('product')->group(function () {
-        Route::get('/getproductbycat',[ProductHeaderController::class,'getproductbycat']);
+        Route::get('/getproductbycat/{id?}',[ProductHeaderController::class,'getproductbycat']);
     });
 
     Route::prefix('unit')->group(function () {
-        Route::get('getunit',[UnitController::class,'getproductbycat']);
+        Route::get('getunit',[UnitController::class,'getunit']);
     });
 
     Route::get('/logout' ,    [UserController::class,'logout'])->name('logout');

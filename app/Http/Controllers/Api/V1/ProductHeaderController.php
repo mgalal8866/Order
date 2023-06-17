@@ -14,7 +14,7 @@ class ProductHeaderController extends Controller
 
     public function getproductbycat($id=null)
     {
-        
+    
       return  $this->productRepositry->getprobycat($id);
     }
 

@@ -9,16 +9,27 @@ use Illuminate\Database\Eloquent\Builder;
 
 class CateoryApp extends Model
 {
-    use HasFactory,UUID;
+    use HasFactory, UUID;
     protected $guarded = [];
+    public function scopeParent($query)
+    {
+        return $query->whereNull('parent_id');
+    }
 
-    static function boot(){
+    public function childrens()
+    {
+        return $this->hasMany(self::class, 'parent_id');
+    }
+
+    public function _parent()
+    {
+        return $this->belongsTo(self::class, 'parent_id');
+    }
+    static function boot()
+    {
         parent::boot();
         static::addGlobalScope('cat_active', function (Builder $builder) {
             $builder->where('cat_active', true); // or 1 if you are using tinyint
         });
     }
-
-
-
 }
