@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
-            create_city::class,
+            CreateCitySeeder::class,
+            CategoryAppSeeder::class,
             settingSeeder::class,
             ApiKeySeeder::class
         ]);

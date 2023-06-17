@@ -9,7 +9,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class create_city extends Seeder
+class CreateCitySeeder extends Seeder
 {
     /**
      * Run the database seeds.
