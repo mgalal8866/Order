@@ -27,20 +27,19 @@ class DBUserRepository implements UserRepositoryinterface
     public function register($request)
     {
         $user = User::create($request);
-        if (!$token = auth()->login($user)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
-        }
+            if (!$token = auth()->login($user)) {
+                return Resp(null,'Unauthorized', 404, false) ;
+            }
         $user->token = $token;
-        $user->setting = $this->settings();
+        $user->setting = $this->settings()??[];
         return $user;
 
     }
     public function settings()
     {
         $dd =setting::find(1);
-        // dd(  $dd->toArray());
        return  $dd->toArray();
-        // return $this->respondWithToken(auth()->refresh());
+
     }
     public function logout()
     {
