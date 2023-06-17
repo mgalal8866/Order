@@ -19,6 +19,7 @@ class CategoryAppSeeder extends Seeder
     {
         $category = [
             [ 'name' => 'سوبر ماركت', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
+            [ 'parent_id'=>1,'name' => 'البان', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
             [ 'name' => 'ادوات كهربائية', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
         ];
         foreach($category as $cat){
