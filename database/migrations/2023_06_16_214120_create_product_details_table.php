@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('product_details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->primary('id');
             $table->integer('source_id');
             $table->integer('product_id');
             $table->integer('product_lvl');
