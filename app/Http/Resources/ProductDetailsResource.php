@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -10,6 +11,7 @@ class ProductDetailsResource extends JsonResource
 
     public function toArray(Request $request): array
     {
+
         $units = $this->units($this->product_id)->get();
         return [
             "product_id" => $this->id,
@@ -23,7 +25,9 @@ class ProductDetailsResource extends JsonResource
              "productd_Sele2" => $this->productd_Sele2,
              "isoffer"        => $this->isoffer,
              "maxqty"         => $this->maxqty,
-             "EndOferDate"    => $this->EndOferDate,
+            //  "EndOferDate"    =>  $this->EndOferDate!=null?Carbon::createFromFormat('m/d/Y ', $this->create_at)->diffForHumans(date('m/d/Y')):''
+             "EndOferDate"    =>  $this->EndOferDate
+
 
         ];
     }
