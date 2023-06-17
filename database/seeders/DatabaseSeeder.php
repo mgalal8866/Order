@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             create_city::class,
-            settingSeeder::class
+            settingSeeder::class,
+            ApiKeySeeder::class
         ]);
     }
 }
