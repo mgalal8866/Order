@@ -12,7 +12,7 @@ class setting extends Model
     protected $guarded = [];
     public function getLogoShopAttribute($val)
     {
-        $path = public_path('assets/images/' . $val);
+        $path = public_path('asset/images/' . $val);
         if (File::exists($path)) {
             return ($val !== null) ? asset('asset/images/' . $val) : asset('asset/images/noimage.jpg');
         } else {
