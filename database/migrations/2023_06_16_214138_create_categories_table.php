@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sup_categories', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('parent_id')->nullable();
-            $table->string('sup_name')->nullable();
+            $table->string('category_name')->nullable();
             $table->string('image')->nullable();
-            $table->string('sup_note')->nullable();
-            $table->boolean('sup_active')->default(1);
+            $table->string('category_note')->nullable();
+            $table->boolean('category_active')->default(1);
             $table->integer('user_id')->default(1)->nullable();
             $table->timestamps();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sup_categories');
+        Schema::dropIfExists('categories');
     }
 };

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SupCategory extends Model
+class Category extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -26,7 +26,7 @@ class SupCategory extends Model
     }
     public function category()
     {
-        return $this->hasMany(ProductHeader::class,'product_sup_id');
+        return $this->hasMany(ProductHeader::class,'product_category');
     }
     public function getImageAttribute($val)
     {

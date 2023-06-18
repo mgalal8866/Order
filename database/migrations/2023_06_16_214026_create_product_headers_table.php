@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('product_headers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('product_name')->nullable();//اسم المنتج
-            $table->integer('product_sup_id')->nullable();//التصنيف
+            $table->integer('product_category')->nullable();//التصنيف
             $table->boolean('product_acteve')->default(1)->nullable();//مفعل او لا
             $table->boolean('product_isscale')->default(0)->nullable();
             $table->boolean('product_online')->default(1)->nullable();

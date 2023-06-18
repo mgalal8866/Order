@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Repository\DBCategoryRepository;
 use App\Repository\DBCateoryAppRepository;
 use App\Repository\DBProductRepository;
 use App\Repository\DBSettingRepository;
@@ -22,7 +23,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryinterface::class,DBUserRepository::class);
         $this->app->bind(CateoryAppRepositoryinterface::class,DBCateoryAppRepository::class);
-        $this->app->bind(CategoryRepositoryinterface::class,DBCateoryAppRepository::class);
+        $this->app->bind(CategoryRepositoryinterface::class,DBCategoryRepository::class);
         $this->app->bind(ProductRepositoryinterface::class,DBProductRepository::class);
         $this->app->bind(SettingRepositoryinterface::class,DBSettingRepository::class);
     }

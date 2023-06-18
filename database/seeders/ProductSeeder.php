@@ -16,11 +16,11 @@ class ProductSeeder extends Seeder
     {
         $products = [[
             'product_name'        => 'بسكوت شعمدان',
-            'product_sup_id'      => 10,
+            'product_category'      => 10,
             'product_limit'       => 1,
         ], [
             'product_name'        => ' بيبسي',
-            'product_sup_id'      => 8,
+            'product_category'      => 8,
             'product_limit'       => 2,
         ]];
         $productsD = [[

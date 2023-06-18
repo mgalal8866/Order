@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\SyncController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -23,6 +24,7 @@ Route::middleware(['jwt.verify'])->group(function () {
         Route::get('/getproductbycat/{id?}',[ProductHeaderController::class,'getproductbycat']);
     });
 
+    Route::get('getcategory',[CategoryController::class,'getcategory']);
     Route::prefix('unit')->group(function () {
         Route::get('getunit',[UnitController::class,'getunit']);
     });
