@@ -19,7 +19,14 @@ use Illuminate\Support\Str;
 |
 */
 Route::get('/', function (Request $request) {
-return  Str::random(18);
+    $users = User::on('sqlsrv')->get();//الديسك توب
+    foreach ($users as $user) {
+         User::on('mysql')->updateOrCreate(
+            ['id' => $user->Client_id],
+            ['client_name' => $user->Client_name]
+        );
+    }
+return Str::random(18);
 });
 Route::get('/lay', function (Request $request) {
     return  view('layouts.app');
