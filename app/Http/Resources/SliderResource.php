@@ -5,14 +5,15 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class RegionResource extends JsonResource
+class SliderResource extends JsonResource
 {
 
     public function toArray(Request $request): array
     {
         return [
             'id'    =>$this->id,
-            'name'  =>$this->region_name_ar
+            'name'  =>$this->name,
+            'image' =>$this->image
         ];
     }
 }
