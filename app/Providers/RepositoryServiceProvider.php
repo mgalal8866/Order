@@ -6,11 +6,13 @@ use App\Repository\DBCategoryRepository;
 use App\Repository\DBCateoryAppRepository;
 use App\Repository\DBProductRepository;
 use App\Repository\DBSettingRepository;
+use App\Repository\DBSliderRepository;
 use App\Repository\DBUserRepository;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 use App\Repositoryinterface\CateoryAppRepositoryinterface;
 use App\Repositoryinterface\ProductRepositoryinterface;
 use App\Repositoryinterface\SettingRepositoryinterface;
+use App\Repositoryinterface\SliderRepositoryinterface;
 use App\Repositoryinterface\UserRepositoryinterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,6 +28,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryinterface::class,DBCategoryRepository::class);
         $this->app->bind(ProductRepositoryinterface::class,DBProductRepository::class);
         $this->app->bind(SettingRepositoryinterface::class,DBSettingRepository::class);
+        $this->app->bind(SliderRepositoryinterface::class,DBSliderRepository::class);
     }
     public function boot(): void
     {

@@ -16,10 +16,10 @@ class CategoyAppResource extends JsonResource
     {
         return[
             'id'          => $this->id,
-            'name'        => $this->name,
-            'image'       => $this->image,
-            'note'        => $this->note,
-            'active'      => $this->cat_active,
+            'name'        => $this->name??'',
+            'image'       => $this->image??'',
+            'note'        => $this->note??'',
+            'active'      => $this->cat_active??'',
         ];
     }
 }
