@@ -19,7 +19,7 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp(null,'Unauthorized', 404, false) ;
         }
         $user->token = $token;
-        $user->setting = $this->settings()??[];
+        $user->setting = $this->settings();
 
         $data =  new UserResource($user);
         return Resp($data, 'Success', 200, true);;
@@ -31,7 +31,7 @@ class DBUserRepository implements UserRepositoryinterface
                 return Resp(null,'Unauthorized', 404, false) ;
             }
         $user->token = $token;
-        $user->setting = $this->settings()??[];
+        $user->setting = $this->settings();
         return $user;
 
     }
