@@ -20,7 +20,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
         $user->token = $token;
         $user->setting = $this->settings();
-
+        // dd($user);
         $data =  new UserResource($user);
         return Resp($data, 'Success', 200, true);;
     }
