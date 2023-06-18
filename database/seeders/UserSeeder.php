@@ -14,6 +14,7 @@ class UserSeeder extends Seeder
             'client_name'        =>'Mohamed',
             'client_Balanc'      =>0,
             'client_points'      =>0,
+            'client_fhonewhats'  =>'01024346011',
             'client_EntiteNumber'=>'01024346011',
             'region_id'          =>'3',
             'categoryAPP'        =>'1'
