@@ -12,10 +12,10 @@ class ProductDetails extends Model
     use HasFactory;
     protected $guarded = [];
     protected $casts =
-        [
-            'productd_Sele1' => 'float',
-            'productd_Sele2' => 'float',
-        ];
+    [
+        'productd_Sele1' => 'float',
+        'productd_Sele2' => 'float',
+    ];
     public function unit()
     {
         return $this->belongsto(unit::class, 'productd_unit_id');
@@ -36,9 +36,9 @@ class ProductDetails extends Model
     public function getIsofferAttribute($val)
     {
         if (($val == 1) && (Carbon::now()->diffInDays($this->getAttributes()['EndOferDate'], false) > 0)) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         };
     }
     public function getEndOferDateAttribute($val)
