@@ -15,7 +15,7 @@ class slider extends Model
     }
     public function getImageAttribute($val)
     {
-        $path = public_path('assets/images/sliders/' . $val);
+        $path = public_path('asset/images/sliders/' . $val);
         if (File::exists($path)) {
             return ($val !== null) ? asset('asset/images/sliders/' . $val) : asset('asset/images/noimage.jpg');
         } else {
