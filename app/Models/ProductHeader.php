@@ -18,4 +18,5 @@ class ProductHeader extends Model
         return $this->hasMany(productdetails::class,'product_id');
     }
 
+
 }
