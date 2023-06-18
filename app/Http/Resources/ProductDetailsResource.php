@@ -18,7 +18,7 @@ class ProductDetailsResource extends JsonResource
             "productd_id"    => $this->id,
             "productd_name"  => $this->productheader->product_name,
             "product_isscale"=> $this->productheader->product_isscale,
-            "productd_barcode"=> $this->productd_barcod,
+            "productd_barcode"=> $this->productd_barcode,
             "productd_image" => $this->productd_image,
             "productd_unit"  => $this->productd_UnitType == 2 ?
                 $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name),
