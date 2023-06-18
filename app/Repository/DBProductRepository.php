@@ -15,7 +15,7 @@ class DBProductRepository implements ProductRepositoryinterface
     {
 
        return   Resp(new ProductCollectionResource(ProductDetails::WhereHas('productheader',function($q)use ($id){
-        if($id != null) $q->where('product_sup_id',$id);
+        if($id != null) $q->where('product_category',$id);
        })->with('productheader')->with('unit')->paginate(10)),'success',200,true)->getData(true);
     }
 }
