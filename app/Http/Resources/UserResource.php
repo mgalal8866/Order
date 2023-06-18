@@ -25,7 +25,7 @@ class UserResource extends JsonResource
                 'lat_mab'           =>$this->lat_mab,
                 'long_mab'          =>$this->long_mab,
                 'client_state'      =>$this->client_state,
-                'categoryAPP'       =>$this->CategoryAPP,
+                'categoryAPP'       =>$this->categoryAPP,
                 'access_token'      =>$this->token,
                 'token_type'        =>'bearer',
                 'Setting'           =>[
