@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('product_sup_id')->nullable();//التصنيف
             $table->boolean('product_acteve')->default(1)->nullable();//مفعل او لا
             $table->boolean('product_isscale')->default(0)->nullable();
-            $table->boolean('product_online')->default(0)->nullable();
+            $table->boolean('product_online')->default(1)->nullable();
             $table->boolean('product_tax')->default(0)->nullable();//ألضريبة
             $table->integer('product_limit')->nullable();//حد الطلب
-            $table->integer('user_id')->default(0)->nullable();//حد الطلب
+            $table->integer('user_id')->default(1)->nullable();//حد الطلب
             $table->integer('product_limit_day')->nullable();//تنبيه قبل انتهاء الصلاحية
             $table->text('product_note')->nullable();
             $table->timestamps();

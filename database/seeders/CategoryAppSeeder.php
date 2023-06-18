@@ -18,9 +18,8 @@ class CategoryAppSeeder extends Seeder
     public function run(): void
     {
         $category = [
-            [ 'name' => 'سوبر ماركت', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
-            [ 'parent_id'=>1,'name' => 'البان', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
-            [ 'name' => 'ادوات كهربائية', 'image' => 'img.png', 'note' => 'note', 'cat_active' =>1],
+            [ 'name' => 'سوبر ماركت' , 'cat_active' =>1],
+            [ 'name' => 'كشك'        , 'cat_active' =>1],
         ];
         foreach($category as $cat){
             CateoryApp::create($cat);

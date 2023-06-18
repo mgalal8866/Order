@@ -17,10 +17,14 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call([
+            settingSeeder::class,
+            ApiKeySeeder::class,
             CreateCitySeeder::class,
             CategoryAppSeeder::class,
-            settingSeeder::class,
-            ApiKeySeeder::class
+            CategoryProductSeeder::class,
+            UnitsSeeder::class,
+            UserSeeder::class,
+            ProductSeeder::class,
         ]);
     }
 }

@@ -15,7 +15,12 @@ class ApiKeySeeder extends Seeder
      */
     public function run(): void
     {
-        ApiToken::create(['name'=>'APP','token'=>'poOLz4qcSBdmbS9X']);
-        ApiToken::create(['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb']);
+        $keys = [
+            ['name'=>'APP','token'=>'poOLz4qcSBdmbS9X'],
+            ['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb']
+        ];
+        foreach($keys as $key){
+            ApiToken::create($key);
+        }
     }
 }

@@ -21,11 +21,11 @@ return new class extends Migration
             $table->decimal('productd_bay',8,2)->nullable();//سعر الشراء
             $table->decimal('productd_Sele1',8,2)->nullable();//سعر البيع العادى
             $table->decimal('productd_Sele2',8,2)->nullable();//سعر العرض
-            $table->uuid('productd_fast_Sele')->nullable();//
+            $table->integer('productd_fast_Sele')->nullable();//
             $table->integer('productd_UnitType')->nullable();
             $table->string('productd_image')->nullable();
             $table->boolean('isoffer')->default(0)->nullable();;
-            $table->boolean('productd_online')->nullable();;
+            $table->boolean('productd_online')->default(1)->nullable();;
             $table->decimal('maxqty',8,2)->nullable();// اقصى كميه للطلب
             $table->timestamp('EndOferDate');//تاريخ انهاء العرض
             $table->timestamps();
