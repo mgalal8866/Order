@@ -8,6 +8,7 @@ use App\Http\Controllers\Api\V1\CitiesController;
 use App\Http\Controllers\Api\V1\RegionController;
 use App\Http\Controllers\Api\V1\CateoryAppController;
 use App\Http\Controllers\Api\V1\ProductHeaderController;
+use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\UnitController;
 use App\Models\ProductHeader;
 
@@ -15,6 +16,7 @@ Route::post('/login' ,   [UserController::class,'login'])->name('login');
 Route::post('/register', [UserController::class,'register'])->name('register');
 
 Route::get('/get_category_app', [CateoryAppController::class,'getcategoryapp']);
+Route::get('/getslider', [SliderController::class,'getslider']);
 
 Route::get('/getcity', [CitiesController::class,'getcity']);
 Route::get('/getregion/{id}', [RegionController::class,'getregionbycity']);
