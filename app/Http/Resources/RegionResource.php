@@ -12,7 +12,7 @@ class RegionResource extends JsonResource
     {
         return [
             'id'    =>$this->id,
-            'name'  =>$this->region_name_ar
+            'name'  =>$this->region_name_ar??''
         ];
     }
 }
