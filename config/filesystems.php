@@ -43,7 +43,18 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
-
+        'product' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/products'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
+        'sliders' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/sliders'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -9,3 +9,8 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
         return response()->json(['data' => $data  , 'msg' => $msg , 'status' => $status , 'statusval' => $statusval],$status) ;
     }
 }
+  function uploadimages($folder,$image){
+    $image->store('/',$folder);
+    $filename = $image->hashName();
+    return  $filename;
+}

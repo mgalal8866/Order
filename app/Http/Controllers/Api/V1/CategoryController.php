@@ -14,7 +14,7 @@ class CategoryController extends Controller
     }
 
    public function getcategory()  {
-   
+
     return $this->categoryRepositry->getcategory();
     }
 

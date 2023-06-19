@@ -24,6 +24,14 @@ class ProductDetails extends Model
     {
         return $this->belongsto(ProductHeader::class, 'product_id');
     }
+    public function wishlist()
+    {
+        return $this->hasMany(Wishlist::class,'product_id');
+    }
+    public function stock()
+    {
+        return $this->hasMany(Stock::class,'product_id');
+    }
     public function getProductdImageAttribute($val)
     {
         $path = public_path('asset/images/products/' . $val);
