@@ -19,11 +19,17 @@ class DBSliderRepository implements SliderRepositoryinterface
             $request->image = uploadimages('sliders', $request->image);
 
         }
-        return   slider::create([
+       $s = slider::create([
             'name'  => $request->name,
             'image' => $request->image,
             'active'=> $request->active
         ]);
+      
+        if($s){
+            return $s;
+        }else{
+            return ['Error'=> 'Cant Save'];
+        }
 
     }
 }
