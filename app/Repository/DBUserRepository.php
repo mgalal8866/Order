@@ -35,6 +35,11 @@ class DBUserRepository implements UserRepositoryinterface
         return $user;
 
     }
+    public function getusers()
+    {
+        return  User::paginate(10);
+    }
+
     public function settings()
     {
         $dd =setting::find(1);
