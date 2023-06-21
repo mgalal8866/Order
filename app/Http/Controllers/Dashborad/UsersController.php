@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\dashborad;
-
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositoryinterface\UserRepositoryinterface;
 
@@ -13,10 +11,8 @@ class UsersController extends Controller
     {
         $this->userRepositry = $userRepositry;
     }
-
     public function getuser(){
       $users =   $this->userRepositry->getusers();
-
       return view('te',compact('users'));
     }
 }
