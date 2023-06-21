@@ -1,29 +1,22 @@
 <div>
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Project</th>
-                    <th>Client</th>
-                    <th>Users</th>
-                    <th>Status</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+    <x-table.table-responsive>
+        <x-slot name="thead">
+            <x-table.th>{{__('name')}}</x-table.th>
+            <x-table.th>{{__('phone')}}</x-table.th>
+            <x-table.th>{{__('status')}}</x-table.th>
+            <x-table.th>Actions</x-table.th>
+        </x-slot>
+        <x-table.tbody>
             @foreach ($users as $user )
-            <tr>
-                <td>
-                    <span class="fw-bold">{{ $user->client_name}}</span>
-                </td>
-                <td>{{ $user->client_fhonewhats}}</td>
-                <td>
-
-                </td>
-                <td><span class="badge rounded-pill badge-light-primary me-1">Active {{$user->client_Active}}</span></td>
-                <td>
+            <x-table.tr>
+                <x-table.td> <span class="fw-bold">{{ $user->client_name}}</span></x-table.td>
+                <x-table.td>{{ $user->client_fhonewhats}}</x-table.td>
+                <x-table.td><span class="badge rounded-pill badge-light-primary me-1">Active
+                        {{$user->client_Active}}</span></x-table.td>
+                <x-table.td>
                     <div class="dropdown">
-                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
+                            data-bs-toggle="dropdown">
                             <i data-feather="more-vertical"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
@@ -37,12 +30,11 @@
                             </a>
                         </div>
                     </div>
-                </td>
-            </tr>
-
+                </x-table.td>
+            </x-table.tr>
             @endforeach
+        </x-table.tbody>
 
-            </tbody>
-        </table>
-    </div>
+
+    </x-table.table-responsive>
 </div>

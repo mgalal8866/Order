@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\SliderResource;
 use App\Repositoryinterface\SliderRepositoryinterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SliderController extends Controller
 {
@@ -21,7 +22,7 @@ class SliderController extends Controller
     }
     public function addslider(Request $request)
     {
-
-        return Resp(new SliderResource($this->sliderRepository->add_slider($request)), 'Success', 200, true);
+        Log::error($request->all());
+        // return Resp(new SliderResource($this->sliderRepository->add_slider($request)), 'Success', 200, true);
     }
 }

@@ -21,6 +21,8 @@ class UserResource extends JsonResource
                 'client_code'       =>$this->client_code??'',
                 'client_fhonewhats' =>$this->client_fhonewhats??'',
                 'client_fhoneLeter' =>$this->client_fhoneLeter??'',
+                'client_balanc'     =>$this->client_Balanc??'',
+                'client_points'     =>$this->client_points??'',
                 'region_id'         =>$this->region_id??'',
                 'lat_mab'           =>$this->lat_mab??'',
                 'long_mab'          =>$this->long_mab??'',

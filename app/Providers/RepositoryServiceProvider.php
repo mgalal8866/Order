@@ -10,6 +10,7 @@ use Illuminate\Support\ServiceProvider;
 use App\Repository\DBCategoryRepository;
 use App\Repository\DBWishlistRepository;
 use App\Repository\DBCateoryAppRepository;
+use App\Repository\DBCouponRepository;
 use App\Repositoryinterface\UserRepositoryinterface;
 use App\Repositoryinterface\SliderRepositoryinterface;
 use App\Repositoryinterface\ProductRepositoryinterface;
@@ -17,6 +18,7 @@ use App\Repositoryinterface\SettingRepositoryinterface;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 use App\Repositoryinterface\WishlistRepositoryinterface;
 use App\Repositoryinterface\CateoryAppRepositoryinterface;
+use App\Repositoryinterface\CouponRepositoryinterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SettingRepositoryinterface::class,DBSettingRepository::class);
         $this->app->bind(SliderRepositoryinterface::class,DBSliderRepository::class);
         $this->app->bind(WishlistRepositoryinterface::class,DBWishlistRepository::class);
+        $this->app->bind(CouponRepositoryinterface::class,DBCouponRepository::class);
+        
     }
     public function boot(): void
     {

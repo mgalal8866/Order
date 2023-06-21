@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V1\CateoryAppController;
 use App\Http\Controllers\Api\V1\ProductHeaderController;
 use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\WishlistController;
+use App\Http\Controllers\Api\V1\CouponController;
 use App\Http\Controllers\UnitController;
 use App\Models\ProductHeader;
 
@@ -43,6 +44,14 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('wishlist', [WishlistController::class, 'getwishlist']);
     Route::get('delete/wishlist/{id?}', [WishlistController::class, 'deletewishlist']);
     #################   End Wishlist   #############
+
+    #################   Start Cart #############
+    Route::post('add/cart', [WishlistController::class, 'getwishlist']);
+    #################   End Cart   #############
+    #################   Start Coupon #############
+    Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
+    #################   End Coupon   #############
+
 
     #################   start  category product #############
     Route::get('getcategory', [CategoryController::class, 'getcategory']);

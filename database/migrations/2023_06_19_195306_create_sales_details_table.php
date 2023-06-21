@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('sales_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('sale_header_id')->nullable();
-            $table->integer('product_id')->nullable();
-            $table->decimal('buyprice',8,2)->nullable();
-            $table->decimal('sellprice',8,2)->nullable();
-            $table->float('quantity')->nullable();
-            $table->decimal('subtotal',8,2)->nullable();
-            $table->decimal('discount',8,2)->nullable();
-            $table->decimal('grandtotal',8,2)->nullable();
-            $table->decimal('profit',8,2)->nullable();
+            $table->integer('sale_header_id')->nullable();//اى دى الفاتوره
+            $table->integer('product_id')->nullable();//اى دى منتج
+            $table->decimal('buyprice',8,2)->nullable();//سعر شراء
+            $table->decimal('sellprice',8,2)->nullable();//سعر بيع
+            $table->float('quantity')->nullable();//كمية
+            $table->decimal('subtotal',8,2)->nullable();//اجمالى كميه فى السعر
+            $table->decimal('discount',8,2)->nullable();//الخصم
+            $table->decimal('grandtotal',8,2)->nullable();//الاجمالى بعد الخصم
+            $table->decimal('profit',8,2)->nullable();// الربح = سعر الشرا- سعر البيع * الكمية - الخصم
             $table->timestamps();
         });
     }

@@ -13,36 +13,37 @@ return new class extends Migration
     {
         Schema::create('sales_headers', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('invoicenumber')->nullable();
-            $table->integer('invoicetype')->nullable();
-            $table->timestamp('invoicedate')->nullable();
-            $table->integer('client_id')->nullable();
-            $table->decimal('lastbalance',8,2)->nullable();
-            $table->decimal('finalbalance',8,2)->nullable();
-            $table->integer('user_id')->nullable();
-            $table->integer('store_id')->nullable();
-            $table->integer('safe_id')->nullable();
-            $table->integer('status')->nullable();
-            $table->integer('employ_id')->nullable();
-            $table->boolean('dis_point_active')->nullable();
-            $table->text('paytayp')->nullable();
-            $table->decimal('subtotal')->nullable();
-            $table->decimal('totaldiscount',8,2)->nullable();
-            $table->decimal('discount_g',8,2)->nullable();
-            $table->decimal('discount_f',8,2)->nullable();
-            $table->decimal('total_add_amount',8,2)->nullable();
-            $table->decimal('add_amount_g',8,2)->nullable();
-            $table->decimal('add_amount_f',8,2)->nullable();
-            $table->decimal('discount_product',8,2)->nullable();
-            $table->decimal('discount_sales',8,2)->nullable();
-            $table->decimal('discount_point',8,2)->nullable();
-            $table->decimal('grandtotal',8,2)->nullable();
-            $table->decimal('paid',8,2)->nullable();
-            $table->decimal('remaining',8,2)->nullable();
-            $table->decimal('total_profit',8,2)->nullable();
-            $table->text('note')->nullable();
-            $table->decimal('deliverycost',8,2)->nullable();
-            $table->boolean('satus_delivery')->nullable();
+            $table->integer('invoicenumber')->nullable(); //رقم ال id السيفر
+            $table->integer('coupon_id')->nullable(); //
+            $table->boolean('invoicetype')->default(0)->nullable();// نوع الفاتورة مرتجع او عادى
+            $table->timestamp('invoicedate')->nullable();// الوقت و التاريخ
+            $table->integer('client_id')->nullable();//id العميل
+            $table->decimal('lastbalance',8,2)->nullable();// الرصيد قبل العملية
+            $table->decimal('finalbalance',8,2)->nullable();// الرصيد بعد الفاتورة
+            $table->integer('user_id')->nullable();// المستخدم id
+            $table->integer('store_id')->default(1)->nullable();// idالمخزن
+            $table->integer('safe_id')->default(1)->nullable();//id الخزنة
+            $table->string('status')->default('دليفرى')->nullable();//اسم نوع الفاتورة
+            $table->integer('employ_id')->default(1)->nullable();// id الموظف  = 1
+            $table->boolean('dis_point_active')->default(0)->nullable();//fals
+            $table->string('paytayp')->default('كاش')->nullable();// استرنج  كاش
+            $table->decimal('subtotal')->nullable();//اجمالى الفاتورة قبل الخصومات
+            $table->decimal('totaldiscount',8,2)->nullable();//اجمالى الخصومات
+            $table->decimal('discount_g',8,2)->nullable();//اجمالى خصوامات بالجنية
+            $table->decimal('discount_f',8,2)->nullable();//اجمالى خصومات  مئوى
+            $table->decimal('total_add_amount',8,2)->nullable();//اجمالى الاضافات
+            $table->decimal('add_amount_g',8,2)->nullable();//اجمالى اضافات بالجنية
+            $table->decimal('add_amount_f',8,2)->nullable();//اجمالى اضافات مئوى
+            $table->decimal('discount_product',8,2)->nullable();//اجمالى خصومات الاصناف
+            $table->decimal('discount_sales',8,2)->nullable();//اجمالى خصومات على الفاتورة
+            $table->decimal('discount_point',8,2)->nullable();//اجمالى خصومات النقاط
+            $table->decimal('grandtotal',8,2)->nullable();//الاجمالى النهائى
+            $table->decimal('paid',8,2)->nullable();//المدفوع
+            $table->decimal('remaining',8,2)->nullable();//المتبقى
+            $table->decimal('total_profit',8,2)->nullable();//  اجمالى ارباح الاصناف = اجمالى الارباح
+            $table->text('note')->nullable();//ملاحظات
+            $table->decimal('deliverycost',8,2)->nullable();//قيمة التوصيل
+            $table->boolean('satus_delivery')->default(1)->nullable();//لو الفاتورة غير متممة  الافتراضى  true
             $table->timestamps();
         });
     }

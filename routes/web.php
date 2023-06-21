@@ -46,6 +46,6 @@ Route::get('/sql', function (Request $request) {
     DB::setDefaultconnection('sqlsrv');
     return User::all();
 });
-Route::prefix('dashborad')->group(function () {
-    Route::get('users', [UsersController::class,'getuser']);
+Route::prefix('admin/dashborad')->group(function () {
+    Route::get('users', [UsersController::class,'getuser'])->name('viewusers');
 });
