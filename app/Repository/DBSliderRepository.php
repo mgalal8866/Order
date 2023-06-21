@@ -22,6 +22,7 @@ class DBSliderRepository implements SliderRepositoryinterface
             $image = str_replace('data:image/jpg;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $imageName = Str::random(10).'.'.'jpg';
+            $request->image =$imageName ;
             File::put(public_path(). '/asset/images/sliders/' . $imageName, base64_decode($image));
             // $request->image = uploadimages('sliders', base64_decode($image));
         }
