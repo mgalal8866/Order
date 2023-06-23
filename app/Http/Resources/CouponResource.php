@@ -21,7 +21,7 @@ class CouponResource extends JsonResource
             'name'          => $this->name,
             'value'         => $this->value,
             'min_invoce'    => $this->min_invoce,
-            'type'          => $this->type == 0 ?  'F' : 'P'
+            'type'          => boolval($this->type)
 
         ];
     }

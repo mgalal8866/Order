@@ -20,8 +20,8 @@ return new class extends Migration
             $table->boolean('type')->default(0)->nullable();// 0 = LE  - 1 = %
             $table->decimal('min_invoce',8,2)->default(0)->nullable();//اقل مبلغ للاستخدام للفاتروه
             $table->integer('used')->default(0)->nullable();//عدد مرات الاستخدام مره 2  3
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');//  انتهاء الكوبون
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();//  انتهاء الكوبون
             $table->timestamps();
         });
     }
