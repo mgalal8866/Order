@@ -15,6 +15,10 @@ class WishlistController extends Controller
     {
         $this->wishlistRepositry = $wishlistRepositry;
     }
+    public function addwishlist($id){
+
+        return Resp(WishlistResource::collection($this->wishlistRepositry->addwishlist($id)), 'success', 200, true);
+    }
     public function getwishlist()
     {
         return Resp(WishlistResource::collection($this->wishlistRepositry->getwishlist()), 'success', 200, true);

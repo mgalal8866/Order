@@ -11,7 +11,8 @@ use App\Http\Controllers\Api\V1\ProductHeaderController;
 use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CouponController;
-use App\Http\Controllers\UnitController;
+use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\UnitController;
 use App\Models\ProductHeader;
 
 ################# Start Login & Register #############
@@ -42,11 +43,14 @@ Route::middleware(['jwt.verify'])->group(function () {
 
     #################   Start Wishlist #############
     Route::get('wishlist', [WishlistController::class, 'getwishlist']);
+    Route::get('addwishlist/{id?}', [WishlistController::class, 'addwishlist']);
     Route::get('delete/wishlist/{id?}', [WishlistController::class, 'deletewishlist']);
     #################   End Wishlist   #############
 
     #################   Start Cart #############
-    Route::post('add/cart', [WishlistController::class, 'getwishlist']);
+    Route::get('getcart', [CartController::class, 'getcart']);
+    Route::get('add/cart/{proudct_id?}/{qty?}', [CartController::class, 'addtocart']);
+    Route::get('delete/cart/{cart_id?}', [CartController::class, 'deletefromcart']);
     #################   End Cart   #############
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
