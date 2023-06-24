@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Models\Cart;
+use App\Models\deferred;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\CartRepositoryinterface;
+use Carbon\Carbon;
 
 class DBCartRepository implements CartRepositoryinterface
 {
@@ -14,13 +16,15 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function addtocart($product_id, $qty)
     {
-        $w =   Cart::where('product_id', $product_id)->where('user_id', Auth::user()->id)->first();
+        $w =   Cart::updateOrCreate(['product_id'=> $product_id ,'user_id'=> Auth::user()->id],['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+
         if ($w) {
             return $this->getcart();
         }
-        $c =  Cart::create(['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
-        if ($c)
-            return $this->getcart();
+
+        // $c =  Cart::create(['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+        // if ($c)
+        //     return $this->getcart();
     }
     public function deletecart($cart_id)
     {
@@ -29,8 +33,16 @@ class DBCartRepository implements CartRepositoryinterface
 
         if ($w->delete()) {
             return   $this->getcart();
-        }else{
+        } else {
             return   $this->getcart();
         };
+    }
+    public function applydeferred() {
+        $deferred = deferred::where('user_id', Auth::user()->id)->first();
+        if($deferred)
+             return 'الطلب قيد المراجعة';
+        $deferred = deferred::create(['user_id' => Auth::user()->id ]);
+            if($deferred)
+                return 'تم تقديم الطلب بنجاح  ';
     }
 }

@@ -26,4 +26,8 @@ class CartController extends Controller
     {
         return Resp(CartResource::collection($this->cartRepositry->addtocart($product_id, $qty)), 'success', 200, true);
     }
+    public function applydeferred()
+    {
+        return Resp('',$this->cartRepositry->applydeferred(),200,true);
+    }
 }

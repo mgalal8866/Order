@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repository\DBCartRepository;
+use App\Repository\DBInvoRepository;
 use App\Repository\DBUserRepository;
 use App\Repository\DBCouponRepository;
 use App\Repository\DBSliderRepository;
@@ -13,6 +14,7 @@ use App\Repository\DBCategoryRepository;
 use App\Repository\DBWishlistRepository;
 use App\Repository\DBCateoryAppRepository;
 use App\Repositoryinterface\CartRepositoryinterface;
+use App\Repositoryinterface\InvoRepositoryinterface;
 use App\Repositoryinterface\UserRepositoryinterface;
 use App\Repositoryinterface\CouponRepositoryinterface;
 use App\Repositoryinterface\SliderRepositoryinterface;
@@ -38,6 +40,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(WishlistRepositoryinterface::class,DBWishlistRepository::class);
         $this->app->bind(CouponRepositoryinterface::class,DBCouponRepository::class);
         $this->app->bind(CartRepositoryinterface::class,DBCartRepository::class);
+        $this->app->bind(InvoRepositoryinterface::class,DBInvoRepository::class);
 
     }
     public function boot(): void

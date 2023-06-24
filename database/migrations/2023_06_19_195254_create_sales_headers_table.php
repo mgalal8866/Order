@@ -44,6 +44,7 @@ return new class extends Migration
             $table->text('note')->nullable();//ملاحظات
             $table->decimal('deliverycost',8,2)->nullable();//قيمة التوصيل
             $table->boolean('satus_delivery')->default(1)->nullable();//لو الفاتورة غير متممة  الافتراضى  true
+            $table->boolean('sales_online')->default(1)->nullable();//لو الفاتورة غير متممة  الافتراضى  true
             $table->timestamps();
         });
     }

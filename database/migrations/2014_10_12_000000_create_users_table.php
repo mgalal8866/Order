@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('long_mab')->nullable();
             $table->string('client_state')->nullable();//عنوان
             $table->decimal('client_Credit_Limit',8,2)->default(0);//الحد الائتمانى
-            $table->string('default_Sael')->default(1);//نوع التعامل كاش وتقسيط
+            $table->string('default_Sael')->default('كاش');//نوع التعامل كاش وتقسيط
             $table->text('client_note')->nullable();
             $table->boolean('client_Active')->default(1);
             $table->string('client_code')->nullable();

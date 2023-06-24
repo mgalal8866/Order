@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CouponController;
 use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\SalesDetailsController;
 use App\Http\Controllers\Api\V1\UnitController;
 use App\Models\ProductHeader;
 
@@ -51,7 +52,11 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('getcart', [CartController::class, 'getcart']);
     Route::get('add/cart/{proudct_id?}/{qty?}', [CartController::class, 'addtocart']);
     Route::get('delete/cart/{cart_id?}', [CartController::class, 'deletefromcart']);
+    Route::get('apply/deferred', [CartController::class, 'applydeferred']);
     #################   End Cart   #############
+    #################   Start Orderplase #############
+    Route::post('order/plase', [SalesDetailsController::class, 'orderplase']);
+    #################   End Orderplase   #############
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
     #################   End Coupon   #############

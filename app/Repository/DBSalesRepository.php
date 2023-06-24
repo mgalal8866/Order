@@ -14,6 +14,10 @@ class DBSalesRepository implements SalesRepositoryinterface
     public function add_seles($requset)
     {
         $header = SalesHeader::Create([
+                'paytayp'       => $requset->paytype,
+                'totaldiscount' => $requset->totaldiscount,
+                'discount_g'    => $requset->totaldiscount,
+                'discount_g'    => $requset->totaldiscount,
 
         ]);
 
