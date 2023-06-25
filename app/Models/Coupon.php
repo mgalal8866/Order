@@ -29,7 +29,7 @@ class Coupon extends Model
 
         if ($this->getAttribute('used') != 0) {
             $saleheader = SalesHeader::select('user_id', 'coupon_id')->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
-            return $query->Where('used', '>', $saleheader);
+             $query->Where('used', '>', $saleheader);
         }
         return $query;
 
