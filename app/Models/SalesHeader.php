@@ -19,6 +19,10 @@ class SalesHeader extends Model
     {
         return $this->belongsto(Coupon::class, 'coupon_id');
     }
+    public function comment()
+    {
+        return $this->belongsto(comment::class, 'comment_id');
+    }
     public function scopeStatus($query, $v)
     {
         return $query->where('satus_delivery', $v);

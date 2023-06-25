@@ -9,4 +9,8 @@ class comment extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function salesheader()
+    {
+        return $this->hasMany(salesheader::class, 'comment_id');
+    }
 }

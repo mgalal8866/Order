@@ -15,6 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('invoicenumber')->nullable(); //رقم ال id السيفر
             $table->integer('coupon_id')->nullable(); //
+            $table->integer('comment_id')->nullable(); //
             $table->boolean('invoicetype')->default(0)->nullable();// نوع الفاتورة مرتجع او عادى
             $table->timestamp('invoicedate')->nullable();// الوقت و التاريخ
             $table->integer('client_id')->nullable();//id العميل
