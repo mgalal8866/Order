@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CouponController;
 use App\Http\Controllers\Api\V1\CartController;
-use App\Http\Controllers\Api\V1\SalesDetailsController;
+use App\Http\Controllers\Api\V1\InvoiceController;
 use App\Http\Controllers\Api\V1\UnitController;
 use App\Models\ProductHeader;
 
@@ -37,10 +37,8 @@ Route::get('/getregion/{id}', [RegionController::class, 'getregionbycity']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
-    Route::prefix('product')->group(function () {
-        Route::get('/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
-        Route::get('/offers', [ProductHeaderController::class, 'getoffers']);
-    });
+        Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
+        Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
     #################   End product   #############
 
     #################   Start Wishlist #############
@@ -56,10 +54,14 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('apply/deferred', [CartController::class, 'applydeferred']);
     #################   End Cart   #############
     #################   Start Orderplase #############
-    Route::post('order/plase', [SalesDetailsController::class, 'orderplase']);
+    Route::post('order/plase', [InvoiceController::class, 'orderplase']);
+    Route::get('order/getcloseinvo', [InvoiceController::class, 'getcloseinvo']);
+    Route::get('order/getopeninvo', [InvoiceController::class, 'getopeninvo']);
+    Route::get('order/invoice/details/{id?}', [InvoiceController::class, 'getinvoicedetails']);
     #################   End Orderplase   #############
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
+    Route::get('getcoupon', [CouponController::class, 'getall']);
     #################   End Coupon   #############
 
 

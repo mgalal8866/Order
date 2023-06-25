@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sales_details', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('sale_header_id')->nullable();//اى دى الفاتوره
-            $table->integer('product_id')->nullable();//اى دى منتج
+            $table->integer('product_details_id')->nullable();//اى دى منتج
             $table->decimal('buyprice',8,2)->nullable();//سعر شراء
             $table->decimal('sellprice',8,2)->nullable();//سعر بيع
             $table->float('quantity')->nullable();//كمية

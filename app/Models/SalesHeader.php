@@ -11,16 +11,16 @@ class SalesHeader extends Model
     protected $guarded = [];
 
 
-    // public function salesdetail()
-    // {
-    //     return $this->hasMany(SalesDetails::class,'sale_header_id');
-    // }
     public function salesdetails()
     {
-        return $this->hasMany(SalesDetails::class,'sale_header_id');
+        return $this->hasMany(SalesDetails::class, 'sale_header_id');
     }
     public function coupon()
     {
-        return $this->belongsto(Coupon::class,'coupon_id');
+        return $this->belongsto(Coupon::class, 'coupon_id');
+    }
+    public function scopeStatus($query, $v)
+    {
+        return $query->where('satus_delivery', $v);
     }
 }

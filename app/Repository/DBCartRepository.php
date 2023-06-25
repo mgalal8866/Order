@@ -34,7 +34,7 @@ class DBCartRepository implements CartRepositoryinterface
 
         $w =   Cart::where('id', $cart_id)->where('user_id', Auth::user()->id)->first();
 
-        if ($w->delete()) {
+        if ($w->delete() != null) {
             return   $this->getcart();
         } else {
             return   $this->getcart();

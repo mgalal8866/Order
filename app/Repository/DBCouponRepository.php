@@ -14,4 +14,10 @@ class DBCouponRepository implements CouponRepositoryinterface
         $coupon = Coupon::DateValid()->where('code', $code)->first();
         return $coupon->Checkused()->first();
     }
+    public function getall()
+    {
+        // $coupon  =
+        return  Coupon::DateValid()->Checkused()->get();
+
+    }
 }

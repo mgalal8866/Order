@@ -28,6 +28,10 @@ class ProductDetails extends Model
     {
         return $this->hasMany(Wishlist::class,'product_id');
     }
+    public function salesdetails()
+    {
+        return $this->hasMany(SalesDetails::class,'product_details_id');
+    }
     public function cart()
     {
         return $this->hasMany(Cart::class,'product_id');

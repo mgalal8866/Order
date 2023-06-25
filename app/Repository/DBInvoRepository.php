@@ -12,9 +12,15 @@ use Carbon\Carbon;
 
 class DBInvoRepository implements InvoRepositoryinterface
 {
-    public function getinvo()
+    public function getopeninvo()
     {
-        return  SalesDetails::where('user_id', Auth::user()->id)->with('productdetails')->get();
+        return  SalesHeader::status(1)->where('user_id', Auth::user()->id)->paginate(10);
+        // return  SalesDetails::where('user_id', Auth::user()->id)->with('productdetails')->get();
+    }
+    public function getcloseinvo()
+    {
+        return  SalesHeader::status(0)->where('user_id', Auth::user()->id)->paginate(10);
+        // return  SalesDetails::where('user_id', Auth::user()->id)->with('productdetails')->get();
     }
     public function placeorder($request)
     {
@@ -43,5 +49,9 @@ class DBInvoRepository implements InvoRepositoryinterface
             }
         }
         return $head->with('salesdetails')->get();
+    }
+    public function getinvoicedetails($id)
+    {
+        return SalesDetails::whereSaleHeaderId($id)->with('productdetails')->get();
     }
 }

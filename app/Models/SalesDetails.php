@@ -11,13 +11,13 @@ class SalesDetails extends Model
     protected $guarded = [];
 
 
-    public function product_details()
+    public function productdetails()
     {
-        return $this->belongsto(product_details::class, 'productd_id');
+        return $this->belongsto(ProductDetails::class, 'product_details_id');
     }
     public function sale_header()
     {
         return $this->belongsto(SalesHeader::class,'sale_header_id');
     }
-    
+
 }

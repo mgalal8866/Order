@@ -26,4 +26,10 @@ class CouponController extends Controller
             return Resp('','Not Valid' ,200,false);
         }
     }
+    public function getall()
+    {
+
+        return Resp( $this->couponRepositry->getall(),'success' ,200,true);;
+
+    }
 }
