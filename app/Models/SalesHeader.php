@@ -19,4 +19,8 @@ class SalesHeader extends Model
     {
         return $this->hasMany(SalesDetails::class,'sale_header_id');
     }
+    public function coupon()
+    {
+        return $this->belongsto(Coupon::class,'coupon_id');
+    }
 }

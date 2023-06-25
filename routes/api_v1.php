@@ -39,6 +39,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
     Route::prefix('product')->group(function () {
         Route::get('/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
+        Route::get('/offers', [ProductHeaderController::class, 'getoffers']);
     });
     #################   End product   #############
 

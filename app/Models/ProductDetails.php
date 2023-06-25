@@ -50,6 +50,7 @@ class ProductDetails extends Model
         if (($val == 1) && (Carbon::now()->diffInDays($this->getAttributes()['EndOferDate'], false) > 0)) {
             return true;
         } else {
+            $this->update(['isoffer'=>0,'EndOferDate'=>null]);
             return false;
         };
     }
@@ -62,9 +63,19 @@ class ProductDetails extends Model
             }
         };
     }
-
     public function scopeUnits($query, $product_id)
     {
         return $query->where('product_id', $product_id)->select('productd_unit_id', 'productd_size')->with('unit');
+    }
+    public function scopeGetcategory($query, $id)
+    {
+        return $query->WhereHas('productheader',function($q)use ($id){
+                if($id != null) $q->where('product_category',$id);
+            })->with('productheader')->with('unit')->with('stock')->with('wishlist');
+    }
+    public function scopeGetoffers($query)
+    {
+        $today = Carbon::now()->toDateString();
+        return $query->where('isoffer','1')->where('EndOferDate' ,'>=' , $today )->with('productheader')->with('unit')->with('stock')->with('wishlist');
     }
 }

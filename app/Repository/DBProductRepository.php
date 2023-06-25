@@ -11,15 +11,18 @@ class DBProductRepository implements ProductRepositoryinterface
 {
     public function getprobycat($id)
     {
-        // \DB::enableQueryLog(); // Enable query log
-        // $dd = ProductDetails::select('id')->WhereHas('productheader',function($q)use ($id){
-        //     if($id != null) $q->where('product_category',$id);
-        //    })->with('productheader')->with('unit')->with('stock')->with('wishlist')->paginate(10);
-        // \DB::enableQueryLog(); // Enable query log
 
-          return Resp(new ProductCollectionResource(ProductDetails::WhereHas('productheader',function($q)use ($id){
-            if($id != null) $q->where('product_category',$id);
-        })->with('productheader')->with('unit')->with('stock')->with('wishlist')->paginate(10)),'success',200,true)->getData(true);
+        // \DB::enableQueryLog(); // Enable query log
+        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->paginate(10)),'success',200,true)->getData(true);
         // dd(\DB::getQueryLog()); // Show results of log
+
+
+    }
+    public function getoffers()
+    {
+        // \DB::enableQueryLog(); // Enable query log
+        return Resp(new ProductCollectionResource(ProductDetails::Getoffers()->paginate(10)),'success',200,true)->getData(true);
+
+        // \DB::getQueryLog(); // Show results of log
     }
 }

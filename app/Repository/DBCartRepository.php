@@ -17,6 +17,9 @@ class DBCartRepository implements CartRepositoryinterface
     public function addtocart($product_id, $qty)
     {
         $w =   Cart::updateOrCreate(['product_id'=> $product_id ,'user_id'=> Auth::user()->id],['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+        if($qty == 0){
+           $this->deletecart( $w->id);
+        }
 
         if ($w) {
             return $this->getcart();
