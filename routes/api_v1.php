@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CouponController;
 use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\CommentController;
 use App\Http\Controllers\Api\V1\InvoiceController;
 use App\Http\Controllers\Api\V1\UnitController;
 use App\Models\ProductHeader;
@@ -58,6 +59,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('order/getcloseinvo', [InvoiceController::class, 'getcloseinvo']);
     Route::get('order/getopeninvo', [InvoiceController::class, 'getopeninvo']);
     Route::get('order/invoice/details/{id?}', [InvoiceController::class, 'getinvoicedetails']);
+    Route::post('order/comment', [CommentController::class, 'addcomment']);
     #################   End Orderplase   #############
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
@@ -75,6 +77,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     });
     #################   End  category product   #############
 
+    Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
     Route::get('/logout',    [UserController::class, 'logout'])->name('logout');
 });
 

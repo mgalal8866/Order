@@ -7,6 +7,7 @@ use App\Repository\DBInvoRepository;
 use App\Repository\DBUserRepository;
 use App\Repository\DBCouponRepository;
 use App\Repository\DBSliderRepository;
+use App\Repository\DBCommentRepository;
 use App\Repository\DBProductRepository;
 use App\Repository\DBSettingRepository;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ use App\Repositoryinterface\InvoRepositoryinterface;
 use App\Repositoryinterface\UserRepositoryinterface;
 use App\Repositoryinterface\CouponRepositoryinterface;
 use App\Repositoryinterface\SliderRepositoryinterface;
+use App\Repositoryinterface\CommentRepositoryinterface;
 use App\Repositoryinterface\ProductRepositoryinterface;
 use App\Repositoryinterface\SettingRepositoryinterface;
 use App\Repositoryinterface\CategoryRepositoryinterface;
@@ -41,6 +43,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CouponRepositoryinterface::class,DBCouponRepository::class);
         $this->app->bind(CartRepositoryinterface::class,DBCartRepository::class);
         $this->app->bind(InvoRepositoryinterface::class,DBInvoRepository::class);
+        $this->app->bind(CommentRepositoryinterface::class,DBCommentRepository::class);
 
     }
     public function boot(): void

@@ -49,6 +49,8 @@ class SalesResource extends JsonResource
                 'deliverycost'   => $this->deliverycost??'',
                 'satus_delivery' => $this->satus_delivery??'',
                 'created_at'     => $this->created_at??'',
+                'comment'        => $this->comment->comment??'',
+                'rating'        => $this->comment->evalution??'',
         ];
     }
 }

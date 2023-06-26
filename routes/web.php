@@ -21,13 +21,13 @@ use App\Http\Controllers\dashborad\UsersController;
 */
 
 Route::get('/', function (Request $request) {
-    $users = User::on('sqlsrv')->get(); //الديسك توب
-    foreach ($users as $user) {
-        User::on('mysql')->updateOrCreate(
-            ['id' => $user->Client_id],
-            ['client_name' => $user->Client_name]
-        );
-    }
+    // $users = User::on('sqlsrv')->get(); //الديسك توب
+    // foreach ($users as $user) {
+    //     User::on('mysql')->updateOrCreate(
+    //         ['id' => $user->Client_id],
+    //         ['client_name' => $user->Client_name]
+    //     );
+    // }
     return Str::random(18);
 });
 Route::get('/lay', function (Request $request) {

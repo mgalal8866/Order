@@ -4,16 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
 use App\Models\setting;
-
-use App\Models\CateoryApp;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
 use App\Http\Requests\RegisterUser;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\Collection;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class UserController extends Controller
@@ -25,7 +19,6 @@ class UserController extends Controller
     }
     public function register(RegisterUser $request)
     {
-
         $data = new UserResource($this->userRepositry->register($request->validated()));
         return Resp($data, 'Success', 200, true);
     }
@@ -33,6 +26,10 @@ class UserController extends Controller
     public function login(Request $request)
     {
         return   $this->userRepositry->login($request);
+    }
+    public function edit(Request $request)
+    {
+        return   $this->userRepositry->edit($request->all());
     }
     public function logout()
     {
@@ -53,11 +50,11 @@ class UserController extends Controller
     {
         // return $this->respondWithToken(auth()->refresh());
     }
-     public function category_app()
+    public function category_app()
     {
-        $dd =setting::find(1);
+        $dd = setting::find(1);
         // dd(  $dd->toArray());
-       return  $dd->toArray();
+        return  $dd->toArray();
         // return $this->respondWithToken(auth()->refresh());
     }
 }
