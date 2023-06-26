@@ -11,19 +11,16 @@ class ProductHeaderController extends Controller
     {
         $this->productRepositry = $productRepositry;
     }
-
     public function getproductbycat($id=null)
     {
-
       return  $this->productRepositry->getprobycat($id);
     }
-
     public function getoffers()
     {
-
       return  $this->productRepositry->getoffers();
     }
-
-
-
+    public function searchproduct($search)
+    {
+      return  $this->productRepositry->searchproduct($search);
+    }
  }
