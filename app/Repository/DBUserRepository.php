@@ -19,7 +19,7 @@ class DBUserRepository implements UserRepositoryinterface
         if ($user == null) {
             return Resp(null, 'User Not found', 404, false);
         }
-        if (!$token = auth()->login($user)) {
+        if (!$token = auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
         $user->token = $token;
@@ -34,7 +34,7 @@ class DBUserRepository implements UserRepositoryinterface
         try {
 
 
-            $user =  User::find(Auth::user()->id);
+            $user =  User::find(Auth::user('api')->id);
             $user->client_name       = $request['client_name'];
             $user->client_fhoneLeter = $request['client_fhoneLeter'];
             $user->region_id         = $request['region_id'];

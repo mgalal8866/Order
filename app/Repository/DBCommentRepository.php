@@ -16,7 +16,7 @@ class DBCommentRepository implements CommentRepositoryinterface
     {
         DB::beginTransaction();
         try {
-          $comment = comment::create(['comment'=>$request->comment,'evalution'=>$request->evalution,'user_id'=>  Auth::user()->id]);
+          $comment = comment::create(['comment'=>$request->comment,'evalution'=>$request->evalution,'user_id'=>  Auth::user('api')->id]);
           SalesHeader::where('id',$request->invo_id,)->update(['comment_id'=>  $comment->id]);
            DB::commit();
            return true;

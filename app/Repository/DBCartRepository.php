@@ -12,11 +12,11 @@ class DBCartRepository implements CartRepositoryinterface
 {
     public function getcart()
     {
-        return  Cart::where('user_id', Auth::user()->id)->with('productdetails')->get();
+        return  Cart::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function addtocart($product_id, $qty)
     {
-        $w =   Cart::updateOrCreate(['product_id'=> $product_id ,'user_id'=> Auth::user()->id],['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+        $w =   Cart::updateOrCreate(['product_id'=> $product_id ,'user_id'=> Auth::user('api')->id],['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
         if($qty == 0){
            $this->deletecart( $w->id);
         }
@@ -25,14 +25,14 @@ class DBCartRepository implements CartRepositoryinterface
             return $this->getcart();
         }
 
-        // $c =  Cart::create(['user_id' => Auth::user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+        // $c =  Cart::create(['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
         // if ($c)
         //     return $this->getcart();
     }
     public function deletecart($cart_id)
     {
 
-        $w =   Cart::where('id', $cart_id)->where('user_id', Auth::user()->id)->first();
+        $w =   Cart::where('id', $cart_id)->where('user_id', Auth::user('api')->id)->first();
 
         if ($w->delete() != null) {
             return   $this->getcart();
@@ -41,10 +41,10 @@ class DBCartRepository implements CartRepositoryinterface
         };
     }
     public function applydeferred() {
-        $deferred = deferred::where('user_id', Auth::user()->id)->first();
+        $deferred = deferred::where('user_id', Auth::user('api')->id)->first();
         if($deferred)
              return 'الطلب قيد المراجعة';
-        $deferred = deferred::create(['user_id' => Auth::user()->id ]);
+        $deferred = deferred::create(['user_id' => Auth::user('api')->id ]);
             if($deferred)
                 return 'تم تقديم الطلب بنجاح  ';
     }

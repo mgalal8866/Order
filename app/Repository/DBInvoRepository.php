@@ -14,13 +14,13 @@ class DBInvoRepository implements InvoRepositoryinterface
 {
     public function getopeninvo()
     {
-        return  SalesHeader::status(1)->where('user_id', Auth::user()->id)->paginate(10);
-        // return  SalesDetails::where('user_id', Auth::user()->id)->with('productdetails')->get();
+        return  SalesHeader::status(1)->where('user_id', Auth::user('api')->id)->paginate(10);
+        // return  SalesDetails::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function getcloseinvo()
     {
-        return  SalesHeader::status(0)->where('user_id', Auth::user()->id)->paginate(10);
-        // return  SalesDetails::where('user_id', Auth::user()->id)->with('productdetails')->get();
+        return  SalesHeader::status(0)->where('user_id', Auth::user('api')->id)->paginate(10);
+        // return  SalesDetails::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function placeorder($request)
     {
