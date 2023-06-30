@@ -50,22 +50,42 @@
     <div class="shadow-bottom"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="active nav-item"><a class="d-flex align-items-center" href="index.html"><i
-                        data-feather="home"></i><span class="menu-title text-truncate">Home</span></a>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('dashboard')}}"><i
+                        data-feather="home"></i><span class="menu-title text-truncate">{{__('tran.dashboard')}}</span></a>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('viewusers')}}"><i
+
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('products')}}"><i
+                        data-feather="home"></i><span class="menu-title text-truncate">{{__('tran.products')}}</span></a>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('units')}}"><i
+                        data-feather="home"></i><span class="menu-title text-truncate">{{__('tran.unit')}}</span></a>
+            </li>
+            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href=""><i
                         data-feather="home"></i><span class="menu-title text-truncate">{{__('users')}}</span></a>
-            </li>
+            </li> --}}
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
-                        class="menu-title text-truncate">Page Layouts</span><span
-                        class="badge badge-light-danger rounded-pill ms-auto me-1">2</span></a>
+                        class="menu-title text-truncate">{{__('tran.users')}}</span>
+                        {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}
+                    </a>
                 <ul class="menu-content">
-                    <li><a class="d-flex align-items-center" href="layout-collapsed-menu.html"><i
-                                data-feather="circle"></i><span class="menu-item text-truncate">Collapsed
-                                Menu</span></a>
+                    <li><a class="d-flex align-items-center" href="{{route('viewusers')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate">Manger User</span></a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href=""><i
+                                data-feather="circle"></i><span class="menu-item text-truncate">Role & Permion User</span></a>
                     </li>
                 </ul>
             </li>
+            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
+                        class="menu-title text-truncate">{{__('tran.products')}}</span>
+                        <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span>
+                    </a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{route('viewusers')}}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate">Manger Product</span></a>
+                    </li>
+                </ul>
+            </li> --}}
         </ul>
     </div>
 </div>

@@ -14,5 +14,10 @@
         "pusher-js": "^8.2.0",
         "sass": "^1.56.1",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@vitejs/plugin-vue": "^4.2.3",
+        "vue": "^3.2.36",
+        "vue-loader": "^17.0.1"
     }
 }

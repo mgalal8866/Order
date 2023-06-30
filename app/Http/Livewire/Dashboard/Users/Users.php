@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Users;
+namespace App\Http\Livewire\Dashboard\Users;
 
 use App\Repositoryinterface\UserRepositoryinterface;
 use Livewire\Component;
 
-class Index extends Component
+class Users extends Component
 {
     protected UserRepositoryinterface $usersRepository;
 
@@ -18,6 +18,6 @@ class Index extends Component
     {
         $users = $this->usersRepository->getusers();
 
-        return view('livewire.users.index',compact('users'));
+        return view('livewire.dashboard.users.index',compact('users'));
     }
 }

@@ -1,4 +1,6 @@
 import './bootstrap';
+import {createApp} from 'vue';
+import App from './App.vue';
 const message_el = document.getElementById('messages');
 const username_input = document.getElementById('username');
 const message_input = document.getElementById('message_input');
@@ -26,10 +28,14 @@ message_from.addEventListener('submit', function(e) {
             message: message_input.value,
         }
     }
+    message_input.value = "";
     axios(options);
 });
 window.Echo.channel('chat')
     .listen('.message', (e) => {
         message_el.innerHTML += '<div class="message"><strong>' + e.user + ':</strong> ' + e.message + '</div>';
-        message_input.value = "";
-    })
+
+    });
+
+
+createApp(App).mount("#app");

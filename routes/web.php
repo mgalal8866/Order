@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\MessageController;
-use App\Http\Controllers\dashborad\UsersController;
+use App\Http\Livewire\Dashboard\Product\ViewProduct;
+use App\Http\Livewire\Dashboard\Units\Units;
+use App\Http\Livewire\Dashboard\Users\Users;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,10 @@ use App\Http\Controllers\dashborad\UsersController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/vue', function () {
+    return view('Vue.app');
+})
+->name('application');
 Auth::routes();
 Route::get('messages', [MessageController::class],'fetchMessages');
 Route::post('messages', [MessageController::class],'sendMessage');
@@ -59,6 +65,9 @@ Route::get('/sql', function (Request $request) {
     return User::all();
 });
 Route::prefix('admin/dashborad')->group(function () {
-    Route::get('users', [UsersController::class,'getuser'])->name('viewusers');
+    Route::get('/', ViewProduct::class)->name('dashboard');
+    Route::get('users', Users::class)->name('viewusers');
+    Route::get('products', ViewProduct::class)->name('products');
+    Route::get('units', Units::class)->name('units');
 });
 
