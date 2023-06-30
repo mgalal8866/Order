@@ -12,7 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('receiver_id')->nullable();
+            $table->integer('sender_id')->nullable();
+            $table->text('message')->nullable();
+            $table->boolean('seen')->default(0);
+            $table->string('channel')->nullable();
             $table->timestamps();
         });
     }

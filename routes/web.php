@@ -32,22 +32,21 @@ Route::get('messages', [MessageController::class],'fetchMessages');
 Route::post('messages', [MessageController::class],'sendMessage');
 Route::get('/', [MessageController::class,'index']);
 Route::post('send-message',  function (Request $request) {
-// dd($request->input('username'), $request->input('message'));
     event(new MessageSent($request->username,$request->message));
     return ['success' => true];
 });
 
-// Route::get('/', function (Request $request) {
-//     // $users = User::on('sqlsrv')->get(); //الديسك توب
-//     // foreach ($users as $user) {
-//     //     User::on('mysql')->updateOrCreate(
-//     //         ['id' => $user->Client_id],
-//     //         ['client_name' => $user->Client_name]
-//     //     );
-//     // }
-//     return view('chat');
-//     return Str::random(18);
-// });
+Route::get('/sss', function (Request $request) {
+    $users = User::on('mysql')->get(); //الديسك توب
+    foreach ($users as $user) {
+        User::on('localmysql')->updateOrCreate(
+            ['id' => $user->id],
+            $user->toarray()
+        );
+    }
+    // return view('chat');
+    return Str::random(18);
+});
 Route::get('/lay', function (Request $request) {
     return  view('layouts.app');
 });
@@ -64,6 +63,10 @@ Route::get('/sql', function (Request $request) {
     DB::setDefaultconnection('sqlsrv');
     return User::all();
 });
+
+
+
+
 Route::prefix('admin/dashborad')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     Route::get('users', Users::class)->name('viewusers');
