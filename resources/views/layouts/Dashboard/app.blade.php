@@ -62,10 +62,11 @@
                 <!-- Kick start -->
 
                 <!--/ Kick start -->
-                @if (isset($slot))
 
-                {{ $slot }}
-                @endif
+                @isset($slot)
+                    {{ $slot }}
+                @endisset
+
 
                 <!-- Page layout -->
 
