@@ -18,6 +18,6 @@ class Users extends Component
     {
         $users = $this->usersRepository->getusers();
 
-        return view('livewire.dashboard.users.index',compact('users'));
+        return view('livewire.Dashboard.users.index',compact('users'));
     }
 }
