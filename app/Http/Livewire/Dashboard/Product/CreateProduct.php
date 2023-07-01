@@ -45,6 +45,6 @@ class CreateProduct extends Component
     }
     public function render()
     {
-        return view('livewire.dashboard.product.create-product');
+        return view('livewire.Dashboard.product.create-product');
     }
 }

@@ -8,6 +8,6 @@ class Units extends Component
 {
     public function render()
     {
-        return view('livewire.dashboard.units.units');
+        return view('livewire.Dashboard.units.units');
     }
 }
