@@ -1,7 +1,7 @@
 <div>
 
     <div  class="row" id="basic-table">
-            @livewire('Dashboard.product.create-product')
+            @livewire('dashboard.product.create-product')
                     <div class="col-12">
                         <div class="card outline-success">
                             <div class="card-header">
