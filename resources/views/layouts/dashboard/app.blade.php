@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
-@include('layouts.Dashboard.head')
+@include('layouts.dashboard.head')
 
 <!-- END: Head-->
 
@@ -11,11 +11,11 @@
     data-menu="vertical-menu-modern" data-col="">
 
     <!-- BEGIN: Header-->
-    @include('layouts.Dashboard.nav')
+    @include('layouts.dashboard.nav')
     <!-- END: Header-->
 
     <!-- BEGIN: Main Menu-->
-    @include('layouts.Dashboard.menu')
+    @include('layouts.dashboard.menu')
     <!-- END: Main Menu-->
 
     <!-- BEGIN: Content-->
@@ -80,10 +80,10 @@
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
     <!-- BEGIN: Footer-->
-    @include('layouts.Dashboard.footer')
+    @include('layouts.dashboard.footer')
     <!-- END: Footer-->
 
-    @include('layouts.Dashboard.script')
+    @include('layouts.dashboard.script')
 </body>
 <!-- END: Body-->
 
