@@ -23,7 +23,7 @@ class ViewProduct extends Component
     public function render(): View
     {
         $products = ProductDetails::latest()->paginate(4);
-        return view('livewire.Dashboard.product.view-product',['products' => $products]);
+        return view('livewire.dashboard.product.view-product',['products' => $products]);
         // return view('livewire.product.view-product',['products' => $products])->layout('layouts.dashboard.app');
     }
 }
