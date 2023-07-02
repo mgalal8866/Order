@@ -29,7 +29,7 @@
                     <div class="col-12 col-md-6">
                         <div class="demo-inline-spacing">
                             <div class="d-flex flex-column">
-                                <label class="form-check-label mb-50" for="customSwitch4">{{ __('tran.state') }}</label>
+                                <label class="form-check-label mb-50" for="state">{{ __('tran.state') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model.defer='state'
                                         id="state" {{ $state == 1 ? 'checked' : '' }} />
@@ -41,7 +41,7 @@
                             </div>
                             <div class="d-flex flex-column">
                                 <label class="form-check-label mb-50"
-                                    for="customSwitch4">{{ __('tran.online') }}</label>
+                                    for="online">{{ __('tran.online') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model='online' id="online"
                                         {{ $online == 1 ? 'checked' : '' }} />
@@ -54,7 +54,7 @@
 
                             <div class="d-flex flex-column">
                                 <label class="form-check-label mb-50"
-                                    for="customSwitch4">{{ __('tran.scales') }}</label>
+                                    for="scales">{{ __('tran.scales') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model.defer='scales'
                                         id="scales" {{ ($statescales == 1) ? 'checked' : '' }} />
