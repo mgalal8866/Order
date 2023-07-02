@@ -188,7 +188,7 @@
         </div>
         <div class="col-12 text-center mt-2 pt-50">
 
-            <button type="submit" onClick="callMe()" class="btn btn-primary me-1">Save</button>
+            <button type="submit" class="btn btn-primary me-1">Save</button>
             <a  class="btn btn-outline-secondary"   href="{{route('products')}}">
                 Cancel
             </a>
