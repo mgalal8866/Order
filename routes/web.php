@@ -75,7 +75,7 @@ Route::prefix('admin/dashborad')->group(function () {
     Route::get('chat', Chat::class)->name('chat');
     Route::get('users', Users::class)->name('viewusers');
     Route::get('products', ViewProduct::class)->name('products');
-    Route::get('product/{id}', EditProduct::class)->name('product');
+    Route::get('product/edit/{id}', EditProduct::class)->name('product');
     Route::get('units', Units::class)->name('units');
 });
 

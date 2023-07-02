@@ -188,9 +188,9 @@
         <div class="col-12 text-center mt-2 pt-50">
 
             <button type="submit" onClick="callMe()" class="btn btn-primary me-1">Save</button>
-            <button type="reset" class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">
+            <a  class="btn btn-outline-secondary"   href="{{route('products')}}">
                 Cancel
-            </button>
+            </a>
         </div>
     </form>
 </div>
