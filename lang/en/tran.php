@@ -37,6 +37,7 @@ return [
 'products'          => 'Products',
 'users'          => 'Users',
 'product'          => 'Product',
+'product'          => 'Product',
 'unit'          => 'Unit'
 
 

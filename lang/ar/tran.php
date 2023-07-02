@@ -56,6 +56,7 @@ return [
 'mainsub'         => 'رئيسي/فرعى',
 'datacategory'    => 'بيانات القسم',
 'categorysub'    => 'القسم فرعى',
+'categorys'    => 'الاقسام',
 'limit_order'     => 'حد الطلب'
 
 
