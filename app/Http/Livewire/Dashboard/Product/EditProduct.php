@@ -69,9 +69,9 @@ class EditProduct extends Component
          'product_category'     => $this->selectcategory,
          'product_name'         => $this->name,
          'product_isscale'      => $this->scales,
-         'product_online'       => $this->online,
-         'product_limit'        => $this->limit,
-         'product_acteve'       => $this->state
+         'product_online'       => $this->online == true?1:0,
+         'product_limit'        => $this->limit == true?1:0,
+         'product_acteve'       => $this->state == true?1:0
         ]);
 
         foreach ($this->detailslist as $index => $item) {
@@ -85,8 +85,8 @@ class EditProduct extends Component
             'productd_Sele2'        => $item['offer'],
             'EndOferDate'           => $item['dateexp'],
             'maxqty'                => $item['limitmax'],
-            'productd_online'       => $item['online'],
-            'productd_fast_Sele'    => $item['addtosales'],
+            'productd_online'       => $item['online'] == true?1:0,
+            'productd_fast_Sele'    => $item['addtosales'] == true?1:0,
         ]);
         }
     }
