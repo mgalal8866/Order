@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h4 class="card-title">البيانات الاساسية</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="modelname">{{ __('tran.name') }}</label>
