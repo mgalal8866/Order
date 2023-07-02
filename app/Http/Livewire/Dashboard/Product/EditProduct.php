@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class EditProduct extends Component
 {
-    public $detailslist = [],$idheader, $categorys, $selectcategory, $units, $name, $limit, $online = 1, $state = 1, $scales = 1, $barcode, $qtyalert, $subunit, $mainunit, $description, $price, $perunit;
+    public $detailslist = [],$idheader, $categorys, $selectcategory, $units, $name, $limit, $online, $state, $scales;
     public function mount($id)
     {
         $this->idheader = $id;
