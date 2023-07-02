@@ -51,6 +51,7 @@
                                     </label>
                                 </div>
                             </div>
+                            {{ $scales}}
                             <div class="d-flex flex-column">
                                 <label class="form-check-label mb-50"
                                     for="customSwitch4">{{ __('tran.scales') }}</label>
