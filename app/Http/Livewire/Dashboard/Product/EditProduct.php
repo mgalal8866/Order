@@ -16,7 +16,7 @@ class EditProduct extends Component
         $this->idheader = $id;
         $this->units = unit::get();
         $this->categorys = Category::get();
-        $product = ProductHeader::find($id);
+        $product = ProductHeader::with('productdetails')->find($id);
         $this->selectcategory = $product->product_category??'';
         $this->name           = $product->product_name??'';
         $this->scales         = $product->product_isscale??'';
@@ -24,21 +24,23 @@ class EditProduct extends Component
         $this->limit          = $product->product_limit??'';
         $this->state          = $product->product_acteve??'';
         // $this->limit          = $product->product_note;
-        foreach ($product->productdetails as $index => $item) {
-            $this->detailslist[$index]['id']         = $item->id;
-            $this->detailslist[$index]['image']      = $item->productd_image;
-            $this->detailslist[$index]['unit']       = $item->productd_unit_id ?? '';
-            $this->detailslist[$index]['unitqty']    = $item->productd_size ?? '';
-            $this->detailslist[$index]['code']       = $item->productd_barcode;
-            $this->detailslist[$index]['price_pay']  = $item->productd_bay;
-            $this->detailslist[$index]['price_salse']= $item->productd_Sele1;
-            $this->detailslist[$index]['offer']      = $item->productd_Sele2;
-            $this->detailslist[$index]['dateexp']    = $item->EndOferDate;
-            $this->detailslist[$index]['limitmax']   = $item->maxqty;
-            $this->detailslist[$index]['online']     = $item->productd_online;
-            $this->detailslist[$index]['addtosales'] = $item->productd_fast_Sele;
+        $list = $product->productdetails ?? [] ;
+        foreach (  $list  as  $item) {
+            $this->detailslist [] = [
+            'id'         => $item->id,
+            'image'      => $item->productd_image,
+            'unit'       => $item->productd_unit_id ?? '',
+            'unitqty'    => $item->productd_size ?? '',
+            'code'       => $item->productd_barcode,
+            'price_pay'  => $item->productd_bay,
+            'price_salse'=> $item->productd_Sele1,
+            'offer'      => $item->productd_Sele2,
+            'dateexp'    => $item->EndOferDate,
+            'limitmax'   => $item->maxqty,
+            'online'     => $item->productd_online,
+            'addtosales' => $item->productd_fast_Sele,
+            ];
         }
-
 
         // $this->detailslist= [[
         //     'image'=>'',
