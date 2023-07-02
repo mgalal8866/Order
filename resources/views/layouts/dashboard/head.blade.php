@@ -10,8 +10,8 @@
         content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Order-bay</title>
-    <link rel="apple-touch-icon" href="{{asset('asset/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('asset/images/ico/favicon.ico')}}">
+    {{-- <link rel="apple-touch-icon" href="{{asset('asset/images/ico/apple-icon-120.png')}}"> --}}
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('asset/images/ico/favicon.ico')}}"> --}}
     {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet"> --}}
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
@@ -21,8 +21,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('asset/vendors/css/vendors.min.css')}}"> --}}
     <link rel="stylesheet" type="text/css" href="{{asset('asset/vendors/css/vendors-rtl.min.css')}}">
     <!-- END: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href={{URL::asset('asset/vendors/css/extensions/sweetalert2.min.css')}}>
-    <link rel="stylesheet" type="text/css" href={{URL::asset('asset/vendors/css/extensions/toastr.min.css')}}>
+    <link rel="stylesheet" type="text/css" href={{asset('asset/vendors/css/extensions/sweetalert2.min.css')}}>
+    <link rel="stylesheet" type="text/css" href={{asset('asset/vendors/css/extensions/toastr.min.css')}}>
     <!-- BEGIN: Theme CSS-->
     {{--
     <link rel="stylesheet" type="text/css" href="{{asset('asset/css/bootstrap.min.css')}}">
