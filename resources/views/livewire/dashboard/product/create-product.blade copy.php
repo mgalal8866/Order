@@ -10,7 +10,7 @@
                     <div class="text-center mb-2">
                         <h1 class="mb-1">{{__('tran.newproduct')}}</h1>
                     </div>
-                    <form id="newproductForm" class="row gy-1 pt-75" wire:submit.prevent="saveproduct">
+                    {{-- <form id="newproductForm" class="row gy-1 pt-75" wire:submit.prevent="saveproduct">
                         <div class="col-12 col-md-6">
                             <label class="form-label" for="modelname">{{__('tran.name')}}</label>
                             <input type="text" wire:model.defer='name' id="modelname" name="modelname" class="form-control"   required />
@@ -48,10 +48,10 @@
                                 <option value="3">اداوت مكتبية</option>
                             </select>
                         </div>
-                        {{-- <div class="col-12 col-md-6">
+                        <div class="col-12 col-md-6">
                             <label class="form-label" for="modelemail">{{__('tran.description')}}</label>
                             <input type="email" wire:model.defer='description' id="modeldescription" name="modeldescription" class="form-control" required />
-                        </div> --}}
+                        </div>
                         <div class="col-12">
                             <div id="full-container">
                                 <div class="editor">
@@ -67,7 +67,7 @@
                                 Cancel
                             </button>
                         </div>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>

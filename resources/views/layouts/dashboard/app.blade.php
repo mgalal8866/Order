@@ -62,7 +62,7 @@
                 <!-- Kick start -->
 
                 <!--/ Kick start -->
-
+                @yield('content')
                 @isset($slot)
                     {{ $slot }}
                 @endisset

@@ -14,7 +14,10 @@ class Category extends Model
     {
         return $query->whereNull('parent_id');
     }
-
+    public function productheader()
+    {
+        return $this->belongsto(ProductHeader::class, 'product_category');
+    }
     public function childrens()
     {
         return $this->hasMany(self::class, 'parent_id');

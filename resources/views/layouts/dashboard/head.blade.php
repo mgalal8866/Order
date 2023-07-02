@@ -40,7 +40,7 @@
 
     <!-- BEGIN: Page CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
-    {{--
+   {{--
     <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/core/menu/menu-types/horizontal-menu.css')}}">
     --}}
 
@@ -49,6 +49,8 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-chat.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-chat-list.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/custom-rtl.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}">
     {{--

@@ -11,7 +11,7 @@ class ProductHeader extends Model
     protected $guarded = [];
     public function category()
     {
-        return $this->belongsto(SupCategory::class);
+        return $this->belongsto(Category::class,'product_category');
     }
     public function productdetails()
     {
