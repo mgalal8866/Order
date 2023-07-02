@@ -10,7 +10,7 @@ use Livewire\Component;
 
 class EditProduct extends Component
 {
-    public $detailslist = [],$idheader, $categorys, $selectcategory, $units, $name, $limit, $online, $state, $scales;
+    public $detailslist = [],$idheader,$statescales,$categorys, $selectcategory, $units, $name, $limit, $online, $state, $scales;
     public function mount($id)
     {
         $this->idheader = $id;
@@ -20,6 +20,7 @@ class EditProduct extends Component
         $this->selectcategory = $product->product_category??'';
         $this->name           = $product->product_name??'';
         $this->scales         = $product->product_isscale??'';
+        $this->statescales    = $product->product_isscale??'';
         $this->online         = $product->product_online??'';
         $this->limit          = $product->product_limit??'';
         $this->state          = $product->product_acteve??'';

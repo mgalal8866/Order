@@ -51,13 +51,13 @@
                                     </label>
                                 </div>
                             </div>
-                            {{ $scales}}
+
                             <div class="d-flex flex-column">
                                 <label class="form-check-label mb-50"
                                     for="customSwitch4">{{ __('tran.scales') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model.defer='scales'
-                                        id="scales" {{ $scales == 1 ? 'checked' : '' }} />
+                                        id="scales" {{ ($statescales == 1) ? 'checked' : '' }} />
                                     <label class="form-check-label" for="scales">
                                         <span class="switch-icon-left"><i data-feather="check"></i></span>
                                         <span class="switch-icon-right"><i data-feather="x"></i></span>
