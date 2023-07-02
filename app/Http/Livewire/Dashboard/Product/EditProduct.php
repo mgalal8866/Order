@@ -19,9 +19,9 @@ class EditProduct extends Component
         $product = ProductHeader::with('productdetails')->find($id);
         $this->selectcategory = $product->product_category??'';
         $this->name           = $product->product_name??'';
-        $this->scales         = $product->product_isscale??'';
-        $this->statescales    = $product->product_isscale??'';
-        $this->online         = $product->product_online??'';
+        $this->scales         = $product->product_isscale==1?true:false;
+        $this->statescales    = $product->product_isscale==1?true:false;
+        $this->online         = $product->product_online==1?true:false;
         $this->limit          = $product->product_limit??'';
         $this->state          = $product->product_acteve??'';
         // $this->limit          = $product->product_note;
