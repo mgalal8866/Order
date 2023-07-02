@@ -22,7 +22,7 @@ class EditProduct extends Component
         $this->scales         = $product->product_isscale==1?true:false;
         $this->statescales    = $product->product_isscale==1?true:false;
         $this->online         = $product->product_online==1?true:false;
-        $this->limit          = $product->product_limit==1?true:false;
+        $this->limit          = $product->product_limit;
         $this->state          = $product->product_acteve==1?true:false;
         // $this->limit          = $product->product_note;
         $list = $product->productdetails ?? [] ;
