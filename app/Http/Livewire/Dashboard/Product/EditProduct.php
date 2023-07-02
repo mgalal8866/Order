@@ -90,6 +90,10 @@ class EditProduct extends Component
             'productd_fast_Sele'    => $item['addtosales'] == true?1:0,
         ]);
         }
+        $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
+        return redirect()->to('admin/dashborad/products');
+
+
     }
     public function render()
     {

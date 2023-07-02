@@ -195,7 +195,23 @@
         </div>
     </form>
 </div>
+
 @push('jslive')
+    <script>
+        window.addEventListener('swal', event => {
+
+            Swal.fire({
+                title: event.detail.message,
+                icon: 'success',
+                customClass: {
+                    confirmButton: 'btn btn-success'
+                },
+                buttonsStyling: false
+            });
+        })
+    </script>
+@endpush
+{{-- @push('jslive') --}}
     {{-- <script>
         var fullEditor = new Quill('#full-container .editor', {
             bounds: '#full-container .editor',
@@ -277,4 +293,4 @@
                 }
         })
     </script> --}}
-@endpush
+{{-- @endpush --}}

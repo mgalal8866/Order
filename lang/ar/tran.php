@@ -2,7 +2,7 @@
 
 return [
 'dashboard'       => 'Dashboard',
-'name'            => 'المنتج',
+'name'            => 'الاسم',
 'code'            => 'الكود',
 'edit'           => 'تعديل',
 'address'         => 'Address',
@@ -24,8 +24,8 @@ return [
 'newproduct'      => 'New Product',
 'pos'             => 'POS',
 'barcode'         => 'باركود',
-'subunit'         => 'Sub Unit',
-'mainunit'        => 'Main Unit',
+'note'            => 'ملاحظات',
+'dataunit'        => 'بيانات الوحدة',
 'description'     => 'Description',
 'price'           => 'Price',
 'perunit'         => 'Per Unit',
@@ -46,12 +46,16 @@ return [
 'online'          => ' البيع اونلاين',
 'scales'          => ' ميزان',
 'unit1'           => 'الوحدة الاساسية',
+'units'           => 'الوحدات',
 'unit2'           => 'الوحدة الوسطي',
 'unit3'           => 'الوحدة الكبرى',
 'dateexp'         => 'تاريخ نهاية العرض',
 'limitmax'        => 'اقصى عدد للفاتورة ',
 'addtosales'      => ' اضافه الصنف فى اختصار المبيعات',
 'action'          => 'العمليات',
+'mainsub'         => 'رئيسي/فرعى',
+'datacategory'    => 'بيانات القسم',
+'categorysub'    => 'القسم فرعى',
 'limit_order'     => 'حد الطلب'
 
 

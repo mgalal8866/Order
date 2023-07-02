@@ -9,9 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\MessageController;
+use App\Http\Livewire\Dashboard\Category\EditCategory;
+use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Chat;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
+use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 
@@ -74,8 +77,11 @@ Route::prefix('admin/dashborad')->group(function () {
     // Route::get('product', CreateProduct::class)->name('product');
     Route::get('chat', Chat::class)->name('chat');
     Route::get('users', Users::class)->name('viewusers');
+    Route::get('categorys', ViewCategory::class)->name('categorys');
+    Route::get('category/edit/{id}', EditCategory::class)->name('category');
     Route::get('products', ViewProduct::class)->name('products');
     Route::get('product/edit/{id}', EditProduct::class)->name('product');
+    Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
 });
 
