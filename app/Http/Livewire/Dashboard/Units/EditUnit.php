@@ -14,7 +14,7 @@ class EditUnit extends Component
         $unit = unit::find($id);
         $this->name = $unit->unit_name;
         $this->note = $unit->unit_note;
-        $this->state =  $unit->unit_active;
+        $this->state =  $unit->unit_active==1?true:false;
     }
     public function saveunit()
     {

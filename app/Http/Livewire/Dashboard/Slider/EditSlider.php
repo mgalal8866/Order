@@ -17,14 +17,14 @@ class EditSlider extends Component
         $this->slider = $slider;
         $this->name   = $slider->name;
         $this->image  = $slider->image;
-        $this->state  = $slider->active;
+        $this->state  = $slider->active==1?true:false;
     }
     public function saveslider()
     {
         $this->slider->update([
             'name'  => $this->name,
             'image' => $this->imagenew != null ? uploadimages('sliders', $this->imagenew) : $this->slider->orginalimage,
-            'active'=> $this->state==1?true:false,
+            'active'=> $this->state,
         ]);
         $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
 
