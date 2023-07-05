@@ -30,13 +30,17 @@ class EditCategory extends Component
 
         $category->update([
        'category_name'   =>$this->name,
-       'image'           =>$this->imagenew != null ? uploadimages('category',$this->imagenew) :dd($this->orginalimage),
+       'image'           =>$this->imagenew != null ? uploadimages('category',$this->imagenew) :$this->orginalimage,
        'category_active' =>$this->state,
        'category_note'   =>$this->note,
        'parent_id'       =>$this->categoryparent
 
         ]);
+        // session()->flash('swal',['message'=>'تم التعديل بنجاح' ]);
         $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
+        $this->emitTo('swal',['message'=>'تم التعديل بنجاح' ]);
+
+        return redirect()->route('categorys');
 
 
     }
