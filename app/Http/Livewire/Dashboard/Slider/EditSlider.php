@@ -24,7 +24,7 @@ class EditSlider extends Component
         $this->slider->update([
             'name'  => $this->name,
             'image' => $this->imagenew != null ? uploadimages('sliders', $this->imagenew) : $this->slider->orginalimage,
-            'active'=> $this->state,
+            'active'=> $this->state==1?true:false,
         ]);
         $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
 

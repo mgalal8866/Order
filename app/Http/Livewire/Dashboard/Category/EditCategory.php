@@ -17,7 +17,7 @@ class EditCategory extends Component
         $category = Category::find($id);
         $this->maincat = ($category->childrens->count() > 0);
         $this->name      =  $category->category_name;
-        $this->state     =  $category->category_active;
+        $this->state     =  $category->category_active==1?true:false;
         $this->image     =  $category->image;
         $this->orginalimage     =  $category->orginalimage;
         $this->note      =  $category->category_note;
@@ -37,7 +37,7 @@ class EditCategory extends Component
 
         ]);
         $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
-        
+
 
     }
     public function render()

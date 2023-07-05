@@ -39,7 +39,7 @@
                                     <td><span
                                             class="badge rounded-pill badge-glow bg-{{ $product->isoffer == 0 ? 'danger' : 'success' }}">{{ $product->isoffer == 0 ? 'غير متاح' : $product?->productd_Sele2 }}</span>
                                     </td>
-                                    <td><a class="btn btn-flat-warning waves-effect" href="{{route('product', $product->productheader->id)}}"   >{{__('tran.edit')}}</a></td>
+                                    <td><a class="btn btn-flat-warning waves-effect" href="{{route('product', $product?->productheader?->id)}}"   >{{__('tran.edit')}}</a></td>
                                     {{-- <td>{!!  $product->description !!} </td> --}}
                                    {{-- <td>
                                         <div class="dropdown">
