@@ -22,7 +22,7 @@ class ProductDetails extends Model
     }
     public function productheader()
     {
-        return $this->belongsto(ProductHeader::class, 'product_id');
+        return $this->belongsto(ProductHeader::class, 'product_header_id');
     }
     public function wishlist()
     {
@@ -46,7 +46,7 @@ class ProductDetails extends Model
     }
     public function getProductdImageAttribute($val)
     {
-       
+
         $path = public_path('asset/images/products/' . $val);
         if (File::exists($path)) {
             return ($val !== null) ? asset('asset/images/products/' . $val) : asset('asset/images/noimage.jpg');
