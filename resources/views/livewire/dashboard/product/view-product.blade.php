@@ -32,7 +32,7 @@
                                        </td>
                                     <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_size ?? 'N/A' }}</td>
-                                    <td>{{ $product->productheader->category->category_name }}</td>
+                                    <td>{{ $product->productheader->category->category_name??'N/A' }}</td>
                                     <td>{{ $product->productd_barcode ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_bay ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_Sele1 ?? 'N/A' }}</td>
