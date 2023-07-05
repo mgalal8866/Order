@@ -26,7 +26,7 @@
                             @forelse ($products  as $product)
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">{{ $product->productheader->product_name }}</span>
+                                        <span class="fw-bold">{{ $product->productheader->product_name??'N/A' }}</span>
                                     </td>
                                     <td> <img src=" {{ $product->productd_image ?? 'N/A' }}" class="me-75" height="20" width="20" alt="Angular" />
                                        </td>
