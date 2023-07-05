@@ -4,7 +4,6 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.product') }}</h4>
-
                 </div>
                 <div class="table-responsive">
                     <table class="table">
@@ -19,29 +18,32 @@
                                 <th>{{ __('tran.price_bay') }}</th>
                                 <th>{{ __('tran.price1') }}</th>
                                 <th>{{ __('tran.offer') }}</th>
-                                <th>{{__('tran.action')}}</th>
+                                <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
                         <tbody>
                             @forelse ($products  as $product)
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">{{ $product->productheader->product_name??'N/A' }}</span>
+                                        <span class="fw-bold">{{ $product->productheader->product_name ?? 'N/A' }}</span>
                                     </td>
-                                    <td> <img src=" {{ $product->productd_image ?? 'N/A' }}" class="me-75" height="40" width="40" />
-                                       </td>
+                                    <td> <img src=" {{ $product->productd_image }}" class="me-75" height="40"
+                                            width="40" />
+                                    </td>
                                     <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_size ?? 'N/A' }}</td>
-                                    <td>{{ $product->productheader->category->category_name??'N/A' }}</td>
+                                    <td>{{ $product->productheader->category->category_name ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_barcode ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_bay ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_Sele1 ?? 'N/A' }}</td>
                                     <td><span
                                             class="badge rounded-pill badge-glow bg-{{ $product->isoffer == 0 ? 'danger' : 'success' }}">{{ $product->isoffer == 0 ? 'غير متاح' : $product?->productd_Sele2 }}</span>
                                     </td>
-                                    <td><a class="btn btn-flat-warning waves-effect" href="{{route('product', $product?->productheader?->id)}}"   >{{__('tran.edit')}}</a></td>
+                                    <td><a class="btn btn-flat-warning waves-effect"
+                                            href="{{ route('product', $product->productheader->id) }}">{{ __('tran.edit') }}</a>
+                                    </td>
                                     {{-- <td>{!!  $product->description !!} </td> --}}
-                                   {{-- <td>
+                                    {{-- <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
                                                 data-bs-toggle="dropdown">
