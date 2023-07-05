@@ -72,9 +72,9 @@
                 <h4 class="card-title">البيانات الفرعية</h4>
             </div>
             <div class="card-body" wire:ignore.self>
-                <ul class="nav nav-tab justify-content-center" dir="rtl" role="tablist">
+                <ul class="nav nav-tabs justify-content-center" dir="rtl" role="tablist">
                     @foreach ($detailslist as $index => $details)
-                        <li class="nav-item">
+                        <li class="nav-item" wire:ignore>
                             <a class="nav-link  {{ $index == 0 ? 'active' : '' }}" id="unit{{ $index + 1 }}-tab"
                                 data-bs-toggle="tab" href="#unit{{ $index + 1 }}" aria-controls="home"
                                 role="tab" aria-selected="true"><i data-feather="tool"></i>
