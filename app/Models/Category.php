@@ -39,7 +39,7 @@ class Category extends Model
     {
         $path = public_path('asset/images/category/' . $val);
         if (File::exists($path)) {
-            return ($val !== null) ? asset('asset/images/category/' . $val) : asset('assets/images/noimage.jpg');
+            return ($val !== null) ? asset('asset/images/category/' . $val) : asset('asset/images/noimage.jpg');
         } else {
             return asset('asset/images/noimage.jpg');
         }
