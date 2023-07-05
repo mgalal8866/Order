@@ -55,8 +55,11 @@ return [
 'action'          => 'العمليات',
 'mainsub'         => 'رئيسي/فرعى',
 'datacategory'    => 'بيانات القسم',
-'categorysub'    => 'القسم فرعى',
-'categorys'    => 'الاقسام',
+'categorysub'     => 'القسم فرعى',
+'categorys'       => 'الاقسام',
+'image'           => 'الصورة',
+'slider'          => 'سلايدر',
+'dataslider'      => 'بيانات سلايدر',
 'limit_order'     => 'حد الطلب'
 
 

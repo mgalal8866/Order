@@ -9,7 +9,7 @@
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="modelname">{{ __('tran.name') }}</label>
                         <input type="text" wire:model.defer='name' id="modelname" name="modelname"
-                            class="form-control"  />
+                            class="form-control" />
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="modelpricing">{{ __('tran.category') }}</label>
@@ -23,8 +23,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="modeltext">{{ __('tran.limit_order') }}</label>
-                        <input type="text" wire:model.defer='limit' id="modeldescription" class="form-control"
-                             />
+                        <input type="text" wire:model.defer='limit' id="modeldescription" class="form-control" />
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="demo-inline-spacing">
@@ -40,8 +39,7 @@
                                 </div>
                             </div>
                             <div class="d-flex flex-column">
-                                <label class="form-check-label mb-50"
-                                    for="online">{{ __('tran.online') }}</label>
+                                <label class="form-check-label mb-50" for="online">{{ __('tran.online') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model='online' id="online"
                                         {{ $online == 1 ? 'checked' : '' }} />
@@ -53,11 +51,10 @@
                             </div>
 
                             <div class="d-flex flex-column">
-                                <label class="form-check-label mb-50"
-                                    for="scales">{{ __('tran.scales') }}</label>
+                                <label class="form-check-label mb-50" for="scales">{{ __('tran.scales') }}</label>
                                 <div class="form-check form-switch form-check-success">
                                     <input type="checkbox" class="form-check-input" wire:model.defer='scales'
-                                        id="scales" {{ ($statescales == 1) ? 'checked' : '' }} />
+                                        id="scales" {{ $statescales == 1 ? 'checked' : '' }} />
                                     <label class="form-check-label" for="scales">
                                         <span class="switch-icon-left"><i data-feather="check"></i></span>
                                         <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -91,6 +88,11 @@
                             aria-labelledby="unit{{ $index + 1 }}-tab" role="tabpanel">
                             <div class="row">
                                 <div class="col-12 col-md-6">
+                                    <div class="d-flex">
+                                        <x-imageupload wire:model.defer="detailslist.{{$index}}.imagenew"  :imagenew="$detailslist[$index]['imagenew']" :imageold="$detailslist[$index]['image']" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.unit">{{ __('tran.unit') }}</label>
                                     <select id="modelcategory" name="modelcategory" class="form-select"
@@ -107,46 +109,47 @@
                                             for="{{ $index }}.unitqty">{{ __('tran.unit' . $index + 1) }}</label>
                                         <input type="text"
                                             wire:model.defer='detailslist.{{ $index }}.unitqty'
-                                            id="{{ $index }}.unitqty" class="form-control"  />
+                                            id="{{ $index }}.unitqty" class="form-control" />
                                     </div>
                                 @endif
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.code">{{ __('tran.code') }}</label>
                                     <input type="text" wire:model.defer='detailslist.{{ $index }}.code'
-                                        id="{{ $index }}.code" class="form-control"  />
+                                        id="{{ $index }}.code" class="form-control" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.price_pay">{{ __('tran.price_bay') }}</label>
                                     <input type="text"
                                         wire:model.defer='detailslist.{{ $index }}.price_pay'
-                                        id="{{ $index }}.price_pay" class="form-control"  />
+                                        id="{{ $index }}.price_pay" class="form-control" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.price_salse">{{ __('tran.price1') }}</label>
                                     <input type="text"
                                         wire:model.defer='detailslist.{{ $index }}.price_salse'
-                                        id="{{ $index }}.price_salse" class="form-control"  />
+                                        id="{{ $index }}.price_salse" class="form-control" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.offer">{{ __('tran.price2') }}</label>
                                     <input type="text" wire:model.defer='detailslist.{{ $index }}.offer'
-                                        id="{{ $index }}.offer" class="form-control"  />
+                                        id="{{ $index }}.offer" class="form-control" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.dateexp">{{ __('tran.dateexp') }}</label>
                                     <input type="text" wire:model.defer='detailslist.{{ $index }}.dateexp'
-                                        id="{{ $index }}.dateexp" class="form-control"   placeholder ="yyyy/m/d" />
+                                        id="{{ $index }}.dateexp" class="form-control"
+                                        placeholder="yyyy/m/d" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="form-label"
                                         for="{{ $index }}.limitmax">{{ __('tran.limitmax') }}</label>
                                     <input type="text" wire:model.defer='detailslist.{{ $index }}.limitmax'
-                                        id="{{ $index }}.limitmax" class="form-control"  />
+                                        id="{{ $index }}.limitmax" class="form-control" />
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <div class="demo-inline-spacing">
@@ -189,7 +192,7 @@
         <div class="col-12 text-center mt-2 pt-50">
 
             <button type="submit" class="btn btn-primary me-1">Save</button>
-            <a  class="btn btn-outline-secondary"   href="{{route('products')}}">
+            <a class="btn btn-outline-secondary" href="{{ route('products') }}">
                 Cancel
             </a>
         </div>
@@ -212,7 +215,7 @@
     </script>
 @endpush
 {{-- @push('jslive') --}}
-    {{-- <script>
+{{-- <script>
         var fullEditor = new Quill('#full-container .editor', {
             bounds: '#full-container .editor',
             modules: {

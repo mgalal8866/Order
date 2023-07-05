@@ -14,6 +14,8 @@ use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Chat;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
+use App\Http\Livewire\Dashboard\Slider\EditSlider;
+use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
@@ -81,6 +83,8 @@ Route::prefix('admin/dashborad')->group(function () {
     Route::get('category/edit/{id}', EditCategory::class)->name('category');
     Route::get('products', ViewProduct::class)->name('products');
     Route::get('product/edit/{id}', EditProduct::class)->name('product');
+    Route::get('sliders', ViewSlider::class)->name('sliders');
+    Route::get('slider/edit/{id}', EditSlider::class)->name('slider');
     Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
 });

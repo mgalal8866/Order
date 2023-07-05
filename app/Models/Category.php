@@ -37,9 +37,9 @@ class Category extends Model
     }
     public function getImageAttribute($val)
     {
-        $path = public_path('assets/images/category/' . $val);
+        $path = public_path('asset/images/category/' . $val);
         if (File::exists($path)) {
-            return ($val !== null) ? asset('assets/images/category/' . $val) : asset('assets/images/noimage.jpg');
+            return ($val !== null) ? asset('asset/images/category/' . $val) : asset('assets/images/noimage.jpg');
         } else {
             return asset('asset/images/noimage.jpg');
         }

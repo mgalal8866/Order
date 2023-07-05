@@ -40,8 +40,13 @@ class ProductDetails extends Model
     {
         return $this->hasMany(Stock::class,'product_id');
     }
+    public function getOrginalimageAttribute()
+    {
+            return $this->getAttributes()['productd_image'];
+    }
     public function getProductdImageAttribute($val)
     {
+       
         $path = public_path('asset/images/products/' . $val);
         if (File::exists($path)) {
             return ($val !== null) ? asset('asset/images/products/' . $val) : asset('asset/images/noimage.jpg');
@@ -82,4 +87,5 @@ class ProductDetails extends Model
         $today = Carbon::now()->toDateString();
         return $query->where('isoffer','1')->where('EndOferDate' ,'>=' , $today )->with('productheader')->with('unit')->with('stock')->with('wishlist');
     }
+
 }

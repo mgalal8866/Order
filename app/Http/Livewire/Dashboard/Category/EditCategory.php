@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Dashboard\Category;
 
 use App\Models\Category;
 use Livewire\Component;
-
+use Livewire\WithFileUploads;
 class EditCategory extends Component
 {
-    public $orginalimage,$categorys,$idcategory, $units, $name, $image, $state, $note, $categoryparent,$maincat;
+
+    use WithFileUploads;
+    public $imagenew,$orginalimage,$categorys,$idcategory, $units, $name, $image, $state, $note, $categoryparent,$maincat;
     public function mount($id)
     {
         $this->categorys = Category::get();
@@ -23,17 +25,20 @@ class EditCategory extends Component
     }
     public function savecategory()
     {
-
+        // dd($this->imagenew);
         $category = Category::find($this->idcategory);
+
         $category->update([
        'category_name'   =>$this->name,
+       'image'           =>$this->imagenew != null ? uploadimages('category',$this->imagenew) :dd($this->orginalimage),
        'category_active' =>$this->state,
-       'image'           =>$this->orginalimage,
        'category_note'   =>$this->note,
        'parent_id'       =>$this->categoryparent
 
         ]);
-       
+        $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
+        
+
     }
     public function render()
     {

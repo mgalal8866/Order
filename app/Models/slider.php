@@ -13,6 +13,10 @@ class slider extends Model
     {
         return $query->where('active', $val);
     }
+    public function getOrginalimageAttribute()
+    {
+            return $this->getAttributes()['image'];
+    }
     public function getImageAttribute($val)
     {
         $path = public_path('asset/images/sliders/' . $val);

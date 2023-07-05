@@ -53,6 +53,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/pages/app-chat-list.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/custom-rtl.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/cust.css')}}">
     {{--
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}"> --}}
     <!-- END: Custom CSS-->

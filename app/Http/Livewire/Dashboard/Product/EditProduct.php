@@ -7,9 +7,11 @@ use App\Models\ProductDetails;
 use App\Models\ProductHeader;
 use App\Models\unit;
 use Livewire\Component;
-
+use Livewire\FileUploadConfiguration;
+use Livewire\WithFileUploads;
 class EditProduct extends Component
 {
+    use WithFileUploads;
     public $detailslist = [],$idheader,$statescales,$categorys, $selectcategory, $units, $name, $limit, $online, $state, $scales;
     public function mount($id)
     {
@@ -29,6 +31,8 @@ class EditProduct extends Component
         foreach (  $list  as  $item) {
             $this->detailslist [] = [
             'id'         => $item->id,
+            'imagenew'   => null,
+            'orginalimage'=> $item->orginalimage,
             'image'      => $item->productd_image,
             'unit'       => $item->productd_unit_id ?? '',
             'unitqty'    => $item->productd_size ?? '',
@@ -65,6 +69,7 @@ class EditProduct extends Component
     }
     public function saveproduct()
     {
+
         $product = ProductHeader::find($this->idheader);
         $product->update([
          'product_category'     => $this->selectcategory,
@@ -76,8 +81,9 @@ class EditProduct extends Component
         ]);
 
         foreach ($this->detailslist as $index => $item) {
+
             ProductDetails::where('id',  $item['id'])->update([
-            'productd_image'        => $item['image'],
+            'productd_image'        => $item['imagenew'] != null? uploadimages('product',$item['imagenew']):$item['orginalimage'],
             'productd_unit_id'      => $item['unit']   ,
             'productd_size'         => $item['unitqty']  ,
             'productd_barcode'      => $item['code'],

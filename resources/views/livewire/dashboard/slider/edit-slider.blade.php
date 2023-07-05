@@ -1,33 +1,17 @@
 <div>
-    <form id="newproductForm" wire:submit.prevent="savecategory">
+    <form id="newproductForm" wire:submit.prevent="saveslider">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">{{__('tran.datacategory')}}</h4>
+                <h4 class="card-title">{{__('tran.dataslider')}}</h4>
             </div>
             <div class="card-body" wire:ignore.self>
                 <div class="row gy-1 pt-75">
+                    <div class="col-4 col-md-4  ">
                     <x-imageupload  wire:model.defer='imagenew' :imagenew="$imagenew" :imageold="$image"/>
+                </div>
                     <div class="col-12 col-md-6">
                         <label class="form-label" for="name">{{ __('tran.name') }}</label>
                         <input type="text" wire:model.defer='name' id="name" name="name"
-                            class="form-control" />
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label"
-                            for="categoryparent">{{ __('tran.categorysub') }}
-                        <span class="text-danger">{{$maincat == true ? ' * القسم رئيسي ويحتوى على اقسام فرعيه لايمكن تحويله لقسم فرعى':''}}</span>
-                        </label>
-                        <select id="categoryparent" name="categoryparent" class="form-select"
-                            wire:model.defer='categoryparent' {{$maincat == true ? 'disabled':''}}>
-                            <option value="null">{{ __('tran.default') }}</option>
-                            @foreach ($categorys as $category)
-                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <label class="form-label" for="note">{{ __('tran.note') }}</label>
-                        <input type="text" wire:model.defer='note' id="note" name="note"
                             class="form-control" />
                     </div>
                     <div class="col-12 col-md-6">
@@ -49,7 +33,7 @@
             <div class="card-footer">
                 <div class="col-12 text-center mt-2 pt-50">
                     <button type="submit" class="btn btn-success me-1">Save</button>
-                    <a class="btn btn-outline-secondary" href="{{ route('categorys') }}">
+                    <a class="btn btn-outline-secondary" href="{{ route('sliders') }}">
                         Cancel
                     </a>
                 </div>

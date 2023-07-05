@@ -4,13 +4,14 @@
             <div class="card outline-success">
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.product') }}</h4>
-                     
+
                 </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
                                 <th>{{ __('tran.name') }}</th>
+                                <th>{{ __('tran.image') }}</th>
                                 <th>{{ __('tran.unit') }}</th>
                                 <th>{{ __('tran.num_unit') }}</th>
                                 <th>{{ __('tran.category') }}</th>
@@ -27,6 +28,8 @@
                                     <td>
                                         <span class="fw-bold">{{ $product->productheader->product_name }}</span>
                                     </td>
+                                    <td> <img src=" {{ $product->productd_image ?? 'N/A' }}" class="me-75" height="20" width="20" alt="Angular" />
+                                       </td>
                                     <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_size ?? 'N/A' }}</td>
                                     <td>{{ $product->productheader->category->category_name }}</td>

@@ -63,6 +63,9 @@
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('units')}}"><i
                         data-feather="home"></i><span class="menu-title text-truncate">{{__('tran.unit')}}</span></a>
             </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{route('sliders')}}"><i
+                        data-feather="home"></i><span class="menu-title text-truncate">{{__('tran.slider')}}</span></a>
+            </li>
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href=""><i
                         data-feather="home"></i><span class="menu-title text-truncate">{{__('users')}}</span></a>
             </li> --}}
