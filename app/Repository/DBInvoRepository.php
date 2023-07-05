@@ -38,7 +38,7 @@ class DBInvoRepository implements InvoRepositoryinterface
         if ($head) {
             foreach ($request->invo as $in) {
                 $head->salesdetails()->create([
-                    'product_id'    => $in['product_id'],
+                    'product_details_id'    => $in['product_id'],
                     'buyprice'      => $in['buyprice'],
                     'sellprice'     => $in['sellprice'],
                     'quantity'      => $in['quantity'],
