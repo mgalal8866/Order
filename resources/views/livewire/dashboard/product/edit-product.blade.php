@@ -71,7 +71,7 @@
             <div class="card-header">
                 <h4 class="card-title">البيانات الفرعية</h4>
             </div>
-            <div class="card-body" wire:ignore>
+            <div class="card-body" wire:ignore.self>
                 <ul class="nav nav-tab justify-content-center" dir="rtl" role="tablist">
                     @foreach ($detailslist as $index => $details)
                         <li class="nav-item">
