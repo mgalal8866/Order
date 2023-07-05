@@ -28,7 +28,7 @@
                                     <td>
                                         <span class="fw-bold">{{ $product->productheader->product_name??'N/A' }}</span>
                                     </td>
-                                    <td> <img src=" {{ $product->productd_image ?? 'N/A' }}" class="me-75" height="20" width="20" alt="Angular" />
+                                    <td> <img src=" {{ $product->productd_image ?? 'N/A' }}" class="me-75" height="40" width="40" />
                                        </td>
                                     <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
                                     <td>{{ $product->productd_size ?? 'N/A' }}</td>
