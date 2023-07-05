@@ -71,8 +71,8 @@
             <div class="card-header">
                 <h4 class="card-title">البيانات الفرعية</h4>
             </div>
-            <div class="card-body" >
-                <ul class="nav nav-tab > justify-content-center" dir="rtl" role="tablist">
+            <div class="card-body" wire:ignore>
+                <ul class="nav nav-tab "> justify-content-center" dir="rtl" role="tablist">
                     @foreach ($detailslist as $index => $details)
                         <li class="nav-item">
                             <a class="nav-link  {{ $index == 0 ? 'active' : '' }}" id="unit{{ $index + 1 }}-tab"
