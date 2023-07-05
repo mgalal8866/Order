@@ -10,7 +10,7 @@ class DBCategoryRepository implements CategoryRepositoryinterface
 {
     public function getcategory(){
 
-       return  Resp(CategorProductResource::collection(Category::get()),'success',200,true);
+       return  Resp(CategorProductResource::collection(Category::Active(1)->get()),'success',200,true);
     }
 
 }

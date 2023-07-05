@@ -31,6 +31,10 @@ class Category extends Model
     {
             return $this->getAttributes()['image'];
     }
+     public function ScopeActive($query,$val)
+    {
+            return $query->where('category_active',$val);
+    }
     public function getImageAttribute($val)
     {
         $path = public_path('assets/images/category/' . $val);
