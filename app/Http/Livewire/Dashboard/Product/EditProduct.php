@@ -19,11 +19,11 @@ class EditProduct extends Component
         $product = ProductHeader::with('productdetails')->find($id);
         $this->selectcategory = $product->product_category??'';
         $this->name           = $product->product_name??'';
-        $this->scales         = $product->product_isscale??'';
-        $this->statescales    = $product->product_isscale??'';
-        $this->online         = $product->product_online??'';
-        $this->limit          = $product->product_limit??'';
-        $this->state          = $product->product_acteve??'';
+        $this->scales         = $product->product_isscale==1?true:false;
+        $this->statescales    = $product->product_isscale==1?true:false;
+        $this->online         = $product->product_online==1?true:false;
+        $this->limit          = $product->product_limit;
+        $this->state          = $product->product_acteve==1?true:false;
         // $this->limit          = $product->product_note;
         $list = $product->productdetails ?? [] ;
         foreach (  $list  as  $item) {
@@ -38,8 +38,8 @@ class EditProduct extends Component
             'offer'      => $item->productd_Sele2,
             'dateexp'    => $item->EndOferDate,
             'limitmax'   => $item->maxqty,
-            'online'     => $item->productd_online,
-            'addtosales' => $item->productd_fast_Sele,
+            'online'     => $item->productd_online==1?true:false,
+            'addtosales' => $item->productd_fast_Sele==1?true:false,
             ];
         }
 
@@ -90,6 +90,10 @@ class EditProduct extends Component
             'productd_fast_Sele'    => $item['addtosales'] == true?1:0,
         ]);
         }
+        $this->dispatchBrowserEvent('swal',['message'=>'تم التعديل بنجاح' ]);
+        return redirect()->to('admin/dashborad/products');
+
+
     }
     public function render()
     {

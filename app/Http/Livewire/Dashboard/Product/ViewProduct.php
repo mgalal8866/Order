@@ -20,7 +20,7 @@ class ViewProduct extends Component
         $this->dispatchBrowserEvent('swal',['message'=>'DEMO  version   ' ]);
     }
 
-    public function render(): View
+    public function render()
     {
         $products = ProductDetails::latest()->paginate(4);
         return view('livewire.dashboard.product.view-product',['products' => $products]);

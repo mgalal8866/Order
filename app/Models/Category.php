@@ -27,9 +27,9 @@ class Category extends Model
     {
         return $this->belongsTo(self::class, 'parent_id');
     }
-    public function category()
+    public function getOrginalimageAttribute($val)
     {
-        return $this->hasMany(ProductHeader::class,'product_category');
+            return $this->getAttributes()['image'];
     }
     public function getImageAttribute($val)
     {
@@ -40,4 +40,5 @@ class Category extends Model
             return asset('asset/images/noimage.jpg');
         }
     }
+
 }
