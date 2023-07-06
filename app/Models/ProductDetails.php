@@ -74,7 +74,7 @@ class ProductDetails extends Model
     }
     public function scopeUnits($query, $product_id)
     {
-        return $query->where('product_id', $product_id)->select('productd_unit_id', 'productd_size')->with('unit');
+        return $query->where('product_header_id', $product_id)->select('productd_unit_id', 'productd_size')->with('unit');
     }
     public function scopeGetcategory($query, $id)
     {

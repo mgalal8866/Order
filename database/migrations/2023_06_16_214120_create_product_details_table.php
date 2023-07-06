@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('product_details', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('source_id')->nullable();
-            $table->integer('product_id');
+            $table->integer('product_header_id');
             $table->integer('productd_unit_id')->nullable();
             $table->string('productd_barcode')->nullable();
             $table->integer('productd_size')->nullable();

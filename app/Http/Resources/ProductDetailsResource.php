@@ -15,7 +15,8 @@ class ProductDetailsResource extends JsonResource
 
         $units = $this->units($this->product_id)->get();
         return [
-            "productd_id"       =>$this->id,
+            "product_id"        =>$this->id,
+            "product_header_id" =>$this->product_header_id,
             "productd_name"     =>$this->productheader->product_name??'',
             "productd_stock"    =>$this->stock->sum('quantity') != null ?'متوفر':'غير متوفر',
             "productd_wishlist" =>$this->wishlist->count()?true:false,
