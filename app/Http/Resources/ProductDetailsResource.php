@@ -13,10 +13,10 @@ class ProductDetailsResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $units = $this->units($this->product_id)->get();
+        $units = $this->units($this->product_header_id)->get();
+
         return [
             "product_id"        =>$this->id,
-            "product_header_id" =>$this->product_header_id,
             "productd_name"     =>$this->productheader->product_name??'',
             "productd_stock"    =>$this->stock->sum('quantity') != null ?'متوفر':'غير متوفر',
             "productd_wishlist" =>$this->wishlist->count()?true:false,
