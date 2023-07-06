@@ -21,9 +21,9 @@ class CouponController extends Controller
 
         $c =  $this->couponRepositry->checkcoupon($code);
         if ($c) {
-            return Resp(new CouponResource($c),'Valid' ,200,true);
+            return Resp(new CouponResource($c),'كوبون صالح' ,200,true);
         }else{
-            return Resp('','Not Valid' ,200,false);
+            return Resp('','الكوبون غير صالح' ,200,false);
         }
     }
     public function getall()

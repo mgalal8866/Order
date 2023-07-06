@@ -67,6 +67,8 @@ return [
 'invodate'        => 'تاريخ الفاتورة ',
 'invototal'       => 'اجمالى الفاتورة ',
 'invodesc'        => 'خصم الفاتورة ',
+'namecustom'      => 'اسم العميل',
+'phonecustom'     => 'تليفون العميل',
 'invoicenumber'   => 'رقم الفاتورة',
 'invostate'       => 'حاله الفاتورة',
 'invopaytayp'     => 'الدفع',
