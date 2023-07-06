@@ -58,6 +58,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}"> --}}
     <!-- END: Custom CSS-->
     @livewireStyles
+    @stack('csslive')
     <style>
         .navigation .navigation-header ,.navigation ,.header-navbar,body {
             font-family: 'Cairo', 'sans-serif' !important;

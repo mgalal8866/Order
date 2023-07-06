@@ -82,6 +82,19 @@
                     </li>
                 </ul>
             </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
+                class="menu-title text-truncate">{{__('tran.invoice')}}</span>
+                {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}
+            </a>
+        <ul class="menu-content">
+            <li><a class="d-flex align-items-center" href="{{route('invoices_open')}}"><i
+                        data-feather="circle"></i><span class="menu-item text-truncate">{{__('tran.invoiceopen')}}</span></a>
+            </li>
+            <li><a class="d-flex align-items-center" href="{{route('invoices_close')}}"><i
+                        data-feather="circle"></i><span class="menu-item text-truncate">{{__('tran.invoiceclose')}}</span></a>
+            </li>
+        </ul>
+    </li>
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{__('tran.products')}}</span>
                         <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span>

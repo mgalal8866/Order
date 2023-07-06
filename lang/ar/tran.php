@@ -60,6 +60,16 @@ return [
 'image'           => 'الصورة',
 'slider'          => 'سلايدر',
 'dataslider'      => 'بيانات سلايدر',
+'invoice'         => 'الفواتير ',
+'invoiceclose'    => 'الفواتير المغلقه',
+'invodetails'     => 'تفاصيل الفاتورة',
+'invoiceopen'     => 'الفواتير الحالية',
+'invodate'        => 'تاريخ الفاتورة ',
+'invototal'       => 'اجمالى الفاتورة ',
+'invodesc'        => 'خصم الفاتورة ',
+'invoicenumber'   => 'رقم الفاتورة',
+'invostate'       => 'حاله الفاتورة',
+'invopaytayp'     => 'الدفع',
 'limit_order'     => 'حد الطلب'
 
 
