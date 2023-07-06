@@ -13,7 +13,7 @@ class WishlistResource extends JsonResource
     public function toArray(Request $request): array
     {
 
-        $units = $this->productdetails->units($this->productdetails->product_id)->get();
+        $units = $this->productdetails->units($this->productdetails->product_header_id)->get();
         return [
             "wishlist_id"    => $this->id,
             "productd_id"    => $this->productdetails->id,
