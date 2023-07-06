@@ -5,6 +5,7 @@ interface InvoRepositoryinterface{
     public function placeorder($request);
     public function getopeninvo();
     public function getcloseinvo();
-    public function getinvoicedetails($id);
+    public function getinvoicedetailsclose($id);
+    public function getinvoicedetailsopen($id);
 }
 

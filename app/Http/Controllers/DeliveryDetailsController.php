@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\deferred;
+use App\Models\DeliveryDetails;
 use Illuminate\Http\Request;
 
-class DeferredController extends Controller
+class DeliveryDetailsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class DeferredController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(deferred $deferred)
+    public function show(DeliveryDetails $deliveryDetails)
     {
         //
     }
@@ -42,7 +42,7 @@ class DeferredController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(deferred $deferred)
+    public function edit(DeliveryDetails $deliveryDetails)
     {
         //
     }
@@ -50,7 +50,7 @@ class DeferredController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, deferred $deferred)
+    public function update(Request $request, DeliveryDetails $deliveryDetails)
     {
         //
     }
@@ -58,7 +58,7 @@ class DeferredController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(deferred $deferred)
+    public function destroy(DeliveryDetails $deliveryDetails)
     {
         //
     }

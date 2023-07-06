@@ -28,6 +28,12 @@ class CartController extends Controller
     }
     public function applydeferred()
     {
-        return Resp('',$this->cartRepositry->applydeferred(),200,true);
+
+        if($this->cartRepositry->applydeferred() != '1')
+        {
+            return Resp('',$this->cartRepositry->applydeferred(),200,true);
+        }else{
+            return Resp(true,'الاجل مفعل',200,true);
+        }
     }
 }

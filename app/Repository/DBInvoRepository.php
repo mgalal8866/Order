@@ -4,6 +4,8 @@ namespace App\Repository;
 
 use App\Models\Cart;
 use App\Models\deferred;
+use App\Models\DeliveryDetails;
+use App\Models\DeliveryHeader;
 use App\Models\SalesDetails;
 use App\Models\SalesHeader;
 use Illuminate\Support\Facades\Auth;
@@ -14,7 +16,7 @@ class DBInvoRepository implements InvoRepositoryinterface
 {
     public function getopeninvo()
     {
-        return  SalesHeader::status(1)->where('user_id', Auth::user('api')->id)->paginate(10);
+        return  DeliveryHeader::status(1)->where('user_id', Auth::user('api')->id)->paginate(10);
         // return  SalesDetails::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function getcloseinvo()
@@ -25,11 +27,12 @@ class DBInvoRepository implements InvoRepositoryinterface
     public function placeorder($request)
     {
 
-        $head = SalesHeader::create([
+        $head = DeliveryHeader::create([
             'paytayp'           => $request->paytype,
             'totaldiscount'     => $request->totaldiscount,
             'discount_product'  => $request->discount_product,
             'subtotal'          => $request->subtotal,
+            'client_id'         => Auth::user('api')->id,
             'deliverycost'      => $request->deliverycost,
             'grandtotal'        => $request->grandtotal,
             'note'              => $request->note
@@ -50,8 +53,12 @@ class DBInvoRepository implements InvoRepositoryinterface
         }
         return $head->with('salesdetails')->get();
     }
-    public function getinvoicedetails($id)
+    public function getinvoicedetailsclose($id)
     {
         return SalesDetails::whereSaleHeaderId($id)->with('productdetails')->get();
+    }
+    public function getinvoicedetailsopen($id)
+    {
+        return DeliveryDetails::whereSaleHeaderId($id)->with('productdetails')->get();
     }
 }

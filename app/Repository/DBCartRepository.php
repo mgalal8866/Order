@@ -16,36 +16,34 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function addtocart($product_id, $qty)
     {
-        $w =   Cart::updateOrCreate(['product_id'=> $product_id ,'user_id'=> Auth::user('api')->id],['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
-        if($qty == 0){
-           $this->deletecart( $w->id);
+        $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::user('api')->id], ['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
+        if ($qty == 0) {
+            $this->deletecart($w->id);
         }
-
         if ($w) {
             return $this->getcart();
         }
-
         // $c =  Cart::create(['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
         // if ($c)
         //     return $this->getcart();
     }
     public function deletecart($cart_id)
     {
-
         $w =   Cart::where('id', $cart_id)->where('user_id', Auth::user('api')->id)->first();
-
         if ($w->delete() != null) {
             return   $this->getcart();
         } else {
             return   $this->getcart();
         };
     }
-    public function applydeferred() {
+    public function applydeferred()
+    {
         $deferred = deferred::where('user_id', Auth::user('api')->id)->first();
-        if($deferred)
-             return 'الطلب قيد المراجعة';
-        $deferred = deferred::create(['user_id' => Auth::user('api')->id ]);
-            if($deferred)
-                return 'تم تقديم الطلب بنجاح  ';
+        if ($deferred?->statu == 0 && $deferred != null) {
+            return 'الطلب قيد المراجعة';
+        } elseif ($deferred?->statu == 1 && $deferred != null) {
+            return '1';
+        }
+        $deferred1 = deferred::create(['user_id' => Auth::user('api')->id]);
     }
 }

@@ -16,7 +16,6 @@
                                 <th>{{ __('tran.invototal') }}</th>
                                 <th>{{ __('tran.invodesc') }}</th>
                                 <th>{{ __('tran.invopaytayp') }}</th>
-                                <th>{{ __('tran.invostate') }}</th>
                                 <th>{{ __('tran.action') }}</th>
                             </tr>
                         </thead>
@@ -24,10 +23,10 @@
                             @forelse ($invoices  as $invo)
                                 <tr>
                                     <td>
-                                        <span class="fw-bold">{{ $invo->invoicenumber ?? 'N/A' }}</span>
+                                        <span class="fw-bold">{{ $invo->user->client_name ?? 'N/A' }}</span>
                                     </td>
                                     <td>
-                                        <span class="fw-bold">{{ $invo->invoicenumber ?? 'N/A' }}</span>
+                                        <span class="fw-bold">{{ $invo->user->client_fhonewhats ?? 'N/A' }}</span>
                                     </td>
                                     <td>
                                         <span class="fw-bold">{{ $invo->invoicenumber ?? 'N/A' }}</span>
@@ -44,17 +43,13 @@
                                     <td>
                                         {{ $invo->paytayp    ?? 'N/A' }}
                                     </td>
-
-                                    <td><span
-                                            class="badge rounded-pill badge-glow bg-{{ $invo->satus_delivery == 1 ? 'danger' : 'success' }}">{{ $invo->satus_delivery == 1 ? 'غير متممة' : 'متممة'}}</span>
-                                    </td>
                                     <td><a class="btn btn-flat-warning waves-effect"
                                             href="{{ route('invodetails', $invo->id) }}">{{ __('tran.invodetails') }}</a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
+                                    <td colspan="8" class="alert alert-danger text-center"> No Data Here</td>
                                 </tr>
                             @endforelse
 

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SalesHeader extends Model
+class DeliveryHeader extends Model
 {
     use HasFactory;
     protected $guarded = [];
@@ -13,7 +13,7 @@ class SalesHeader extends Model
 
     public function salesdetails()
     {
-        return $this->hasMany(SalesDetails::class, 'sale_header_id');
+        return $this->hasMany(DeliveryDetails::class, 'sale_header_id');
     }
     public function coupon()
     {
