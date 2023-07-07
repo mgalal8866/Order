@@ -156,7 +156,7 @@ trait AuthenticatesUsers
      */
     public function username()
     {
-        return 'client_fhonewhats';
+        return 'username';
     }
 
     /**

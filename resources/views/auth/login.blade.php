@@ -19,10 +19,10 @@
                     <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="mb-1">
-                            <label for="login-email" class="form-label">{{__('tran.username')}}</label>
-                            <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" placeholder="john@example.com" aria-describedby="email" tabindex="1" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                            <label for="login-username" class="form-label">{{__('tran.username')}}</label>
+                            <input type="text" class="form-control  @error('username') is-invalid @enderror" id="username" name="username" placeholder="john@example.com" aria-describedby="username" tabindex="1" value="{{ old('username') }}" required autocomplete="username" autofocus />
 
-                            @error('email')
+                            @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

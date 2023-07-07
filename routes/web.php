@@ -23,6 +23,8 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
+use App\Models\UserAdmin;
+use Illuminate\Support\Facades\Hash;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,9 +59,12 @@ use App\Http\Livewire\Dashboard\Users\Users;
 //     // return view('chat');
 //     return Str::random(18);
 // });
-// Route::get('/lay', function (Request $request) {
-//     return  view('layouts.app');
-// });
+Route::get('/lay', function (Request $request) {
+  UserAdmin::create([
+    'username'=>'admin',
+    'password'=> Hash::make('123456')
+  ]);
+});
 // Route::get('/sql', function (Request $request) {
 //     DB::purge('mysql');
 //     DB::purge('tenant');

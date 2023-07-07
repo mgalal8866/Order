@@ -68,6 +68,7 @@ class Authenticate implements AuthenticatesRequests
      */
     protected function authenticate($request, array $guards)
     {
+        
         if (empty($guards)) {
             $guards = [null];
         }
