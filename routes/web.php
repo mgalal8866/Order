@@ -83,7 +83,7 @@ Route::get('/lay', function (Request $request) {
 
 
 Auth::routes();
-Route::prefix('admin/dashborad')->group(function () {
+Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');
     Route::get('chat', Chat::class)->name('chat');
