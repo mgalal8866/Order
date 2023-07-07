@@ -17,6 +17,10 @@ class ProductHeader extends Model
     {
         return $this->hasMany(ProductDetails::class,'product_header_id');
     }
+    public function scopeOnline($query)
+    {
+        return $query->where('product_online', 1);
+    }
 
 
 }

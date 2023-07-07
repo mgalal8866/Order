@@ -76,6 +76,10 @@ class ProductDetails extends Model
     {
         return $query->where('product_header_id', $product_id)->select('productd_unit_id', 'productd_size')->with('unit');
     }
+    public function scopeOnline($query)
+    {
+        return $query->where('productd_online', 1);
+    }
     public function scopeGetcategory($query, $id)
     {
         return $query->WhereHas('productheader',function($q)use ($id){

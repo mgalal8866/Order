@@ -40,6 +40,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
         Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
         Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
+        Route::get('product/search/{search}', [ProductHeaderController::class, 'searchproduct']);
     #################   End product   #############
 
     #################   Start Wishlist #############
@@ -56,10 +57,10 @@ Route::middleware(['jwt.verify'])->group(function () {
     #################   End Cart   #############
     #################   Start Orderplase #############
     Route::post('order/plase', [InvoiceController::class, 'orderplase']);
+    Route::post('order/comment', [CommentController::class, 'addcomment']);
     Route::get('order/getcloseinvo', [InvoiceController::class, 'getcloseinvo']);
     Route::get('order/getopeninvo', [InvoiceController::class, 'getopeninvo']);
     Route::get('order/invoice/details/{id?}', [InvoiceController::class, 'getinvoicedetails']);
-    Route::post('order/comment', [CommentController::class, 'addcomment']);
     #################   End Orderplase   #############
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
