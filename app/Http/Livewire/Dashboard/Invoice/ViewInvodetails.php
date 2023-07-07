@@ -15,12 +15,12 @@ class ViewInvodetails extends Component
     }
     public function render()
     {
-        $invodetails = SalesHeader::whereId($this->sale_header_id)->with('salesdetails',function($q){
+        $invo = SalesHeader::whereId($this->sale_header_id)->with('salesdetails',function($q){
             return  $q->with('productdetails',function($qq){
                   return  $qq->with('productheader');
             });
           })->first();
           $setting = setting::first();
-        return view('livewire.dashboard.invoice.view-invodetails',['invodetails'=> $invodetails,'setting'=>$setting]);
+        return view('livewire.dashboard.invoice.view-invodetails',['invo'=> $invo,'setting'=>$setting]);
     }
 }
