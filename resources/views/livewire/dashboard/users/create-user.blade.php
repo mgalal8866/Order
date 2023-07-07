@@ -1,4 +1,5 @@
 <div>
+    <livewire:user.create-user>
     <div class="card outline-success">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.users') }}</h4>

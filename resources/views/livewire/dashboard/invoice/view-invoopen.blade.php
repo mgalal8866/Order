@@ -44,7 +44,7 @@
                                         {{ $invo->paytayp    ?? 'N/A' }}
                                     </td>
                                     <td><a class="btn btn-flat-warning waves-effect"
-                                            href="{{ route('invodetails', $invo->id) }}">{{ __('tran.invodetails') }}</a>
+                                            href="{{ route('invodetails-open', [$invo->id]) }}">{{ __('tran.invodetails') }}</a>
                                     </td>
                                 </tr>
                             @empty

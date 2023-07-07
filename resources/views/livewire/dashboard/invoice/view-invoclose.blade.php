@@ -46,12 +46,12 @@
 
 
                                     <td><a class="btn btn-flat-warning waves-effect"
-                                            href="{{ route('invodetails', $invo->id) }}">{{ __('tran.invodetails') }}</a>
+                                            href="{{ route('invodetails-close', $invo->id) }}">{{ __('tran.invodetails') }}</a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
+                                    <td colspan="8" class="alert alert-danger text-center"> No Data Here</td>
                                 </tr>
                             @endforelse
 
