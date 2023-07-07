@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('emp_id')->nullable();
             $table->string('user_type')->default(1)->nullable();
             $table->string('note')->nullable();
+            $table->string('remember_token')->nullable();
             $table->boolean('active')->default(1)->nullable();
             $table->timestamps();
         });
