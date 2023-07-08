@@ -23,6 +23,14 @@ class DeliveryHeader extends Model
     {
         return $this->belongsto(User::class, 'client_id');
     }
+    public function employee()
+    {
+        return $this->belongsto(employee::class,'employ_id');
+    }
+    public function useradmin()
+    {
+        return $this->belongsto(useradmin::class,'user_id');
+    }
     public function comment()
     {
         return $this->belongsto(comment::class, 'comment_id');

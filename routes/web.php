@@ -81,6 +81,9 @@ Route::get('/lay', function (Request $request) {
 
 
 
+Route::get('/', function(){
+    return view('layouts.front-end.layout');
+})->name('home');
 
 Auth::routes();
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {

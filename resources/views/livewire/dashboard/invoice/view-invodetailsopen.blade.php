@@ -24,13 +24,17 @@
                                     <span class="invoice-number"># {{$invo->invoicenumber}}</span>
                                 </h4>
                                 <div class="invoice-date-wrapper">
-                                    <p class="invoice-date-title">{{__('tran.invodate')}}:</p>
+                                <p class="invoice-date-title">{{__('tran.invodate')}}:</p>
                                     <p class="invoice-date">{{$invo->invoicedate}}</p>
                                 </div>
-                                {{-- <div class="invoice-date-wrapper">
-                                    <p class="invoice-date-title">Due Date:</p>
-                                    <p class="invoice-date">29/08/2020</p>
-                                </div> --}}
+                                <div class="invoice-date-wrapper">
+                                <p class="invoice-date-title">{{__('tran.derivername')}}:</p>
+                                    <p class="invoice-date">{{$invo->employee->name}}</p>
+                                </div>
+                                <div class="invoice-date-wrapper">
+                                <p class="invoice-date-title">{{__('tran.username')}}:</p>
+                                    <p class="invoice-date">{{$invo->useradmin->employee->name}}</p>
+                                </div>
                             </div>
                         </div>
                         <!-- Header ends -->
@@ -44,7 +48,7 @@
                             <div class="col-xl-8 p-0">
                                 <h6 class="mb-2"> {{__('tran.customerdata')}} :</h6>
                                 <h6 class="mb-25">{{$invo->user->client_name}}</h6>
-                                <p class="card-text mb-25">{{$invo->user->client_state}}</p>
+                                <p class="card-text mb-25">{{$invo->user->region->city->name .' , '. $invo->user->region->name .' , '. $invo->user->client_state}}</p>
                                 <p class="card-text mb-25">{{$invo->user->client_fhonewhats}}</p>
                             </div>
                             <div class="col-xl-4 p-0 mt-xl-0 mt-2">
@@ -74,6 +78,7 @@
                                     <th class="py-1">{{__('tran.product')}}</th>
                                     <th class="py-1">{{__('tran.price')}}</th>
                                     <th class="py-1">{{__('tran.qty')}}</th>
+                                    <th class="py-1">{{__('tran.subtotal')}}</th>
                                     <th class="py-1">{{__('tran.discount')}}</th>
                                     <th class="py-1">{{__('tran.total')}}</th>
                                 </tr>
@@ -90,6 +95,9 @@
                                     </td>
                                     <td class="py-1">
                                         <span class="fw-bold">{{$invod->quantity}}</span>
+                                    </td>
+                                    <td class="py-1">
+                                        <span class="fw-bold">{{$invod->subtotal}}</span>
                                     </td>
                                     <td class="py-1">
                                         <span class="fw-bold">{{$invod->discount}}</span>
@@ -114,22 +122,39 @@
                             <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                                 <div class="invoice-total-wrapper">
                                     <div class="invoice-total-item">
-                                        <p class="invoice-total-title">{{__('tran.total')}}:</p>
-                                        <p class="invoice-total-amount">{{$invo->salesdetails->sum('sellprice')}}</p>
+                                        <p class="invoice-total-title">{{__('tran.subtotal')}}:</p>
+                                        <p class="invoice-total-amount">{{$invo->subtotal}}</p>
                                     </div>
                                     <div class="invoice-total-item">
-                                        <p class="invoice-total-title">{{__('tran.discount')}} : </p>
+                                        <p class="invoice-total-title">{{__('tran.totaldiscount')}} : </p>
                                         <p class="invoice-total-amount">{{$invo->salesdetails->sum('discount')}}</p>
+                                    </div>
+                                    <div class="invoice-total-item">
+                                        <p class="invoice-total-title">{{__('tran.total_add_amount')}} : </p>
+                                        <p class="invoice-total-amount">{{$invo->total_add_amount}}</p>
+                                    </div>
+                                    <div class="invoice-total-item">
+                                        <p class="invoice-total-title">{{__('tran.deliverycost')}}:</p>
+                                        <p class="invoice-total-amount">{{$invo->deliverycost}}</p>
+                                    </div>
+                                    <hr class="my-50" />
+                                    <div class="invoice-total-item">
+                                        <p class="invoice-total-title">{{__('tran.invototal')}}:</p>
+                                        <p class="invoice-total-amount">{{$invo->grandtotal}}</p>
+                                    </div>
+                                    <div class="invoice-total-item">
+                                        <p class="invoice-total-title">{{__('tran.paymentval')}}:</p>
+                                        <p class="invoice-total-amount">{{$invo->paid}}</p>
+                                    </div>
+                                    <div class="invoice-total-item">
+                                        <p class="invoice-total-title">{{__('tran.remaining')}}:</p>
+                                        <p class="invoice-total-amount">{{$invo->remaining}}</p>
                                     </div>
                                     {{-- <div class="invoice-total-item">
                                         <p class="invoice-total-title">Tax:</p>
                                         <p class="invoice-total-amount">21%</p>
                                     </div> --}}
-                                    <hr class="my-50" />
-                                    <div class="invoice-total-item">
-                                        <p class="invoice-total-title">{{__('tran.invototal')}}:</p>
-                                        <p class="invoice-total-amount">{{$invo->salesdetails->sum('grandtotal')}}</p>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -137,9 +162,8 @@
                     <!-- Invoice Description ends -->
 
                     <hr class="invoice-spacing" />
-
                     <!-- Invoice Note starts -->
-                    <div class="card-body invoice-padding pt-0">
+                    {{-- <div class="card-body invoice-padding pt-0">
                         <div class="row">
                             <div class="col-12">
                                 <span class="fw-bold">Note:</span>
@@ -148,7 +172,7 @@
                                     projects. Thank You!</span>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Invoice Note ends -->
                 </div>
             </div>

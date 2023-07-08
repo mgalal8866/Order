@@ -13,7 +13,7 @@ class region extends Model
     use SoftDeletes;
     Public function getNameAttribute()
     {
-        $region_name = 'region_name_'.config('err_message.config.lang_for_felid');
+        $region_name = 'region_name_ar';
         return $this->$region_name;
     }
     public function city()
@@ -22,7 +22,7 @@ class region extends Model
     }
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class,'region_id');
     }
 
     public function scopeMain($query,$id){

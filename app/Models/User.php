@@ -62,6 +62,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsto(SalesHeader::class, 'client_id');
     }
+    public function region()
+    {
+        return $this->belongsto(region::class, 'region_id');
+    }
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *

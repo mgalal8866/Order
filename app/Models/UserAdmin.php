@@ -11,5 +11,12 @@ class UserAdmin  extends Authenticatable
     use  HasRoles ;
     use HasFactory;
     protected $guarded = [];
-
+    public function deliveryheader()
+    {
+        return $this->hasMany(DeliveryHeader::class,'user_id');
+    }
+    public function employee()
+    {
+        return $this->belongsto(employee::class,'emp_id');
+    }
 }

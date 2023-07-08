@@ -13,6 +13,7 @@ class ProductHeader extends Model
     {
         return $this->belongsto(Category::class,'product_category');
     }
+  
     public function productdetails()
     {
         return $this->hasMany(ProductDetails::class,'product_header_id');

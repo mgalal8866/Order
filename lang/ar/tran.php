@@ -77,6 +77,14 @@ return [
 'paymentdetails'  => 'تفاصيل الدفع',
 'username'        => 'اسم المستخدم ',
 'password'        => ' الباسورد',
+'subtotal'        => 'الاجمالى الفرعى',
+'deliverycost'    => 'قيمة التوصيل',
+'paymentval'      => 'المدفوع',
+'remaining'      => 'المتبقى',
+'totaldiscount'      => 'اجمالى الخصم',
+'total_add_amount'      => 'اجمالى الاضافات',
+'derivername'      => 'اسم الدليفرى',
+'username'      => 'اسم المستخدم',
 'limit_order'     => 'حد الطلب'
 
 
