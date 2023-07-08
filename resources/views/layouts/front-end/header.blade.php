@@ -11,7 +11,7 @@
                             </span>
                         </button>
                         <a href="index.html" class="web-logo nav-logo">
-                            <img src="{{asset('asset/images/logo.png')}}"  class="img-fluid blur-up lazyload" alt="">
+                            <img src="{{$setting->logo_shop}}"  class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         <div class="middle-box">

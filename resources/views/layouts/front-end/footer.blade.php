@@ -54,7 +54,7 @@
                     <div class="footer-logo">
                         <div class="theme-logo">
                             <a href="index.html">
-                                <img src="{{asset('front/assets/images/logo/1.png')}}" class="blur-up lazyload" alt="">
+                                <img src="{{$setting->logo_shop}}"  width="50" class="blur-up lazyload" alt="">
                             </a>
                         </div>
 
@@ -65,7 +65,7 @@
                             <ul class="address">
                                 <li>
                                     <i data-feather="home"></i>
-                                    <a href="javascript:void(0)">1418 Riverwood Drive, CA 96052, US</a>
+                                    <a href="javascript:void(0)">{{$setting->address_shop}}</a>
                                 </li>
                                 <li>
                                     <i data-feather="mail"></i>
@@ -172,7 +172,7 @@
                                     <i data-feather="phone"></i>
                                     <div class="contact-number">
                                         <h6 class="text-content">Hotline 24/7 :</h6>
-                                        <h5>+91 888 104 2340</h5>
+                                        <h5>{{$setting->phone_shop}}</h5>
                                     </div>
                                 </div>
                             </li>

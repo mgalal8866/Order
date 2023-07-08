@@ -29,7 +29,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function deletecart($cart_id)
     {
-        $w =   Cart::where('id', $cart_id)->where('user_id', Auth::user('api')->id)->first();
+        $w =   Cart::where('product_id', $cart_id)->where('user_id', Auth::user('api')->id)->first();
         if ($w->delete() != null) {
             return   $this->getcart();
         } else {
