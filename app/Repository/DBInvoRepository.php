@@ -11,6 +11,7 @@ use App\Models\SalesHeader;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\InvoRepositoryinterface;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class DBInvoRepository implements InvoRepositoryinterface
 {
@@ -26,7 +27,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function placeorder($request)
     {
-
+     Log::error($request);
         $head = DeliveryHeader::create([
             'paytayp'           => $request->paytype,
             'totaldiscount'     => $request->totaldiscount,
