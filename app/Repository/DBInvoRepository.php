@@ -27,8 +27,9 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function placeorder($request)
     {
-      
-        Log::alert($request);
+        Log::info('Place Order',$request);
+        Log::info('Place Order',['data'=>$request]);
+
         $head = DeliveryHeader::create([
             'paytayp'           => $request['data']['paytype'],
             'total_profit'      => $request['data']['total_profit']??0,
