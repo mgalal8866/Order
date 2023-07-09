@@ -30,14 +30,14 @@ class DBInvoRepository implements InvoRepositoryinterface
      Log::error($request['data']['paytype']);
         $head = DeliveryHeader::create([
             'paytayp'           => $request['data']['paytype'],
-            'total_profit'      => $request->total_profit??0,
-            'coupon_id'         => $request->coupon_id??null,
-            'discount_product'  => $request->discount_product??0,
-            'subtotal'          => $request->subtotal??0,
+            'total_profit'      => $request['data']['total_profit']??0,
+            'coupon_id'         => $request['data']['coupon_id']??null,
+            'discount_product'  => $request['data']['discount_product']??0,
+            'subtotal'          => $request['data']['subtotal']??0,
             'client_id'         => Auth::user('api')->id,
-            'grandtotal'        => $request->grandtotal??0,
-            'totaldiscount'     => $request->totaldiscount??0,
-            'note'              => $request->note
+            'grandtotal'        => $request['data']['grandtotal']??0,
+            'totaldiscount'     => $request['data']['totaldiscount']??0,
+            'note'              => $request['data']['note']
         ]);
 
         if ($head) {
