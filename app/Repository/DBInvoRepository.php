@@ -39,7 +39,7 @@ class DBInvoRepository implements InvoRepositoryinterface
             'remaining'         => $request['data']['grandtotal']??0,
             'totaldiscount'     => $request['data']['totaldiscount']??0,
             'discount_g'        => $request['data']['totaldiscount']??0,
-            'note'              => $request['data']['note']??null
+            'note'              => $request['data']['note']??'لايوجد ملاحظات'
         ]);
 
         if ($head) {
