@@ -17,7 +17,7 @@ class WishlistController extends Controller
         $this->wishlistRepositry = $wishlistRepositry;
     }
     public function addwishlist($id){
-
+        Log::info('ADD wishlist',['Product_id'=>$id]);
         return Resp(WishlistResource::collection($this->wishlistRepositry->addwishlist($id)), 'success', 200, true);
     }
     public function getwishlist()
