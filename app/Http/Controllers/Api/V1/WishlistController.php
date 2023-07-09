@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\WishlistResource;
 use App\Repositoryinterface\WishlistRepositoryinterface;
+use Illuminate\Support\Facades\Log;
 
 class WishlistController extends Controller
 {
@@ -25,6 +26,7 @@ class WishlistController extends Controller
     }
     public function deletewishlist($id)
     {
+        Log::info('Delecte wishlist',[$id]);
         return Resp(WishlistResource::collection($this->wishlistRepositry->delete($id)), 'success', 200, true);
     }
 }
