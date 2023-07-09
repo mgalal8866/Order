@@ -2,6 +2,7 @@
 <html class="loading" lang="en" data-textdirection="ltr">
 <!-- BEGIN: Head-->
 @include('layouts.dashboard.head')
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!-- END: Head-->
 
@@ -20,6 +21,9 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
+        <button onclick="startFCM()"
+        class="btn btn-danger btn-flat">Allow notification
+    </button>
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
@@ -84,6 +88,60 @@
     <!-- END: Footer-->
 
     @include('layouts.dashboard.script')
+    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+<script>
+    var firebaseConfig = {
+        apiKey: "AIzaSyASFQiDiY62XTCm7KE9Xx5K03wippJBWqo",
+        authDomain: "order-48bfc.firebaseapp.com",
+        projectId: "order-48bfc",
+        storageBucket: "order-48bfc.appspot.com",
+        messagingSenderId: "324270172795",
+        appId: "1:324270172795:web:d2f7354ffcee3d9fc810de",
+        measurementId: "G-4DX5NRLD86",
+        databaseURL: 'https://project-id.firebaseio.com',
+    };
+    firebase.initializeApp(firebaseConfig);
+    const messaging = firebase.messaging();
+
+
+        messaging
+            .requestPermission()
+            .then(function () {
+                return messaging.getToken()
+            })
+            .then(function (response) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    url: '{{ route("store.token") }}',
+                    type: 'POST',
+                    data: {
+                        token: response
+                    },
+                    dataType: 'JSON',
+                    success: function (response) {
+                        // alert('Token stored.');
+                    },
+                    error: function (error) {
+                        alert(error.messaging);
+                    },
+                });
+            }).catch(function (error) {
+                alert(error);
+            });
+
+    messaging.onMessage(function (payload) {
+        const title = payload.notification.title;
+        const options = {
+            body: payload.notification.body,
+            icon: payload.notification.icon,
+        };
+        new Notification(title, options);
+    });
+</script>
 </body>
 <!-- END: Body-->
 

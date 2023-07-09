@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('fsm')->nullable();
             $table->string('client_fhonewhats')->unique()->nullable();
             $table->string('password')->nullable();
             $table->string('source_id')->nullable();

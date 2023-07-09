@@ -25,6 +25,7 @@ use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Models\UserAdmin;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,12 +60,20 @@ use Illuminate\Support\Facades\Hash;
 //     // return view('chat');
 //     return Str::random(18);
 // });
-Route::get('/lay', function (Request $request) {
-  UserAdmin::create([
-    'username'=>'admin',
-    'password'=> Hash::make('123456')
-  ]);
+
+Route::get('/send-fsm', function (Request $request) {
+$d = Auth::user()->fsm;
+Log::alert( notificationFCM('Hello','Okay',[$d]));
 });
+Route::post('/store-token', function (Request $request) {
+//   UserAdmin::create([
+//     'username'=>'admin',
+//     'password'=> Hash::make('123456')
+//   ]);
+
+Auth::user()->update(['fsm'=>$request->token]);
+        return response()->json(['Token successfully stored.']);
+})->name('store.token');
 // Route::get('/sql', function (Request $request) {
 //     DB::purge('mysql');
 //     DB::purge('tenant');
