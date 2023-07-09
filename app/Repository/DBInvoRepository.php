@@ -41,7 +41,6 @@ class DBInvoRepository implements InvoRepositoryinterface
             'discount_g'        => $request['data']['discount_g']??0,
             'note'              => $request['data']['note']??'لايوجد ملاحظات'
         ]);
-
         if ($head) {
             foreach ($request->invo as $in) {
                 $head->salesdetails()->create([
@@ -54,8 +53,10 @@ class DBInvoRepository implements InvoRepositoryinterface
                     'grandtotal'    => $in['grandtotal']??0,
                     'profit'        => $in['profit']??0
                 ]);
+
             }
         }
+        Cart::where('user_id', Auth::user('api')->id)->delete();
         return $head->with('salesdetails')->get();
     }
     public function getinvoicedetailsclose($id)
