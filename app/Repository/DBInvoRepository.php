@@ -53,7 +53,6 @@ class DBInvoRepository implements InvoRepositoryinterface
                     'grandtotal'    => $in['grandtotal']??0,
                     'profit'        => $in['profit']??0
                 ]);
-
             }
         }
         Cart::where('user_id', Auth::user('api')->id)->delete();

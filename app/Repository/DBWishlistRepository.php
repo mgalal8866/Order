@@ -6,6 +6,7 @@ namespace App\Repository;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\WishlistRepositoryinterface;
+use Illuminate\Support\Facades\Log;
 
 class DBWishlistRepository implements WishlistRepositoryinterface
 {
@@ -26,8 +27,10 @@ class DBWishlistRepository implements WishlistRepositoryinterface
     }
     public function delete($id)
     {
+        Log::alert($id);
         $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::user('api')->id)->first();
-        if ($w->delete()) {
+        $done = $w->delete();
+        if ($done) {
             return   $this->getwishlist();
         };
     }
