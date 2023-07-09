@@ -26,6 +26,7 @@ class WishlistController extends Controller
     }
     public function deletewishlist($id)
     {
+        Log::info($id);
         Log::info('Delecte wishlist',[$id]);
         return Resp(WishlistResource::collection($this->wishlistRepositry->delete($id)), 'success', 200, true);
     }
