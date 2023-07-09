@@ -16,6 +16,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
+use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
@@ -103,6 +104,7 @@ Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('categorys', ViewCategory::class)->name('categorys');
     Route::get('category/edit/{id}', EditCategory::class)->name('category');
     Route::get('products', ViewProduct::class)->name('products');
+    Route::get('notifiction', ViewNotification::class)->name('notifiction');
     Route::get('product/edit/{id}', EditProduct::class)->name('product');
     Route::get('invoices/open', ViewInvoopen::class)->name('invoices_open');
     Route::get('invoices/close', ViewInvoclose::class)->name('invoices_close');

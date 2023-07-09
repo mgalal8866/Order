@@ -81,10 +81,16 @@ return [
 'deliverycost'    => 'قيمة التوصيل',
 'paymentval'      => 'المدفوع',
 'remaining'      => 'المتبقى',
-'totaldiscount'      => 'اجمالى الخصم',
-'total_add_amount'      => 'اجمالى الاضافات',
-'derivername'      => 'اسم الدليفرى',
-'username'      => 'اسم المستخدم',
+'totaldiscount'   => 'اجمالى الخصم',
+'total_add_amount'=> 'اجمالى الاضافات',
+'derivername'     => 'اسم الدليفرى',
+'username'        => 'اسم المستخدم',
+'notifiction'     => 'الاشعارات',
+'customers'       => 'العملاء',
+'body'            => 'الرسالة',
+'title'           => 'العنوان',
+'send'            => 'ارسال',
+'sendall'         => 'ارسال للجميع',
 'limit_order'     => 'حد الطلب'
 
 

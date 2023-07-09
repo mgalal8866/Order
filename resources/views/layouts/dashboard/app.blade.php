@@ -21,9 +21,7 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-        <button onclick="startFCM()"
-        class="btn btn-danger btn-flat">Allow notification
-    </button>
+       
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
