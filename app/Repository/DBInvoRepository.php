@@ -27,15 +27,16 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function placeorder($request)
     {
-     Log::error($request);
+    //  Log::error($request);
         $head = DeliveryHeader::create([
             'paytayp'           => $request->paytype,
-            'totaldiscount'     => $request->totaldiscount,
-            'discount_product'  => $request->discount_product,
-            'subtotal'          => $request->subtotal,
+            'total_profit'      => $request->total_profit??0,
+            'coupon_id'         => $request->coupon_id??null,
+            'discount_product'  => $request->discount_product??0,
+            'subtotal'          => $request->subtotal??0,
             'client_id'         => Auth::user('api')->id,
-            'deliverycost'      => $request->deliverycost,
-            'grandtotal'        => $request->grandtotal,
+            'grandtotal'        => $request->grandtotal??0,
+            'totaldiscount'     => $request->totaldiscount??0,
             'note'              => $request->note
         ]);
 
@@ -43,12 +44,13 @@ class DBInvoRepository implements InvoRepositoryinterface
             foreach ($request->invo as $in) {
                 $head->salesdetails()->create([
                     'product_details_id'    => $in['product_id'],
-                    'buyprice'      => $in['buyprice'],
-                    'sellprice'     => $in['sellprice'],
-                    'quantity'      => $in['quantity'],
-                    'discount'      => $in['discount'],
-                    'grandtotal'    => $in['grandtotal'],
-                    'profit'        => $in['profit']
+                    'buyprice'      => $in['buyprice']??0,
+                    'sellprice'     => $in['sellprice']??0,
+                    'subtotal'      => $in['subtotal']??0,
+                    'quantity'      => $in['quantity']??0,
+                    'discount'      => $in['discount']??0,
+                    'grandtotal'    => $in['grandtotal']??0,
+                    'profit'        => $in['profit']??0
                 ]);
             }
         }
