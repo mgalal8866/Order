@@ -27,7 +27,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function placeorder($request)
     {
-     Log::error($request['data']['paytype']);
+     Log::error($request['data']);
         $head = DeliveryHeader::create([
             'paytayp'           => $request['data']['paytype'],
             'total_profit'      => $request['data']['total_profit']??0,
@@ -36,7 +36,9 @@ class DBInvoRepository implements InvoRepositoryinterface
             'subtotal'          => $request['data']['subtotal']??0,
             'client_id'         => Auth::user('api')->id,
             'grandtotal'        => $request['data']['grandtotal']??0,
+            'remaining'         => $request['data']['grandtotal']??0,
             'totaldiscount'     => $request['data']['totaldiscount']??0,
+            'discount_g'        => $request['data']['totaldiscount']??0,
             'note'              => $request['data']['note']
         ]);
 
