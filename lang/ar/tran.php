@@ -91,6 +91,9 @@ return [
 'title'           => 'العنوان',
 'send'            => 'ارسال',
 'sendall'         => 'ارسال للجميع',
+'addcart'         => 'اضافة للعربة',
+'yousave'         => 'وفرت',
+'removecart'      => 'حذف',
 'limit_order'     => 'حد الطلب'
 
 

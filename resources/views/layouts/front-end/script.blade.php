@@ -36,3 +36,4 @@
 
 <!-- script js -->
 <script src="{{asset('front/assets/js/script.js')}}"></script>
+@livewireScripts()

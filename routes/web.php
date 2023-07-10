@@ -24,6 +24,8 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
+use App\Http\Livewire\Front\Cart;
+use App\Http\Livewire\Front\Wishlist;
 use App\Models\UserAdmin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -94,6 +96,9 @@ Auth::user()->update(['fsm'=>$request->token]);
 Route::get('/', function(){
     return view('layouts.front-end.layout');
 })->name('home');
+Route::get('/cart', Cart::class)->name('cart');
+Route::get('/wishlist', Wishlist::class)->name('wishlist');
+Route::get('/cart', Cart::class)->name('cart');
 
 Auth::routes();
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {

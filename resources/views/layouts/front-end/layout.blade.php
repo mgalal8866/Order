@@ -29,7 +29,10 @@
     <!-- Home Section End -->
 
     <!-- product section start -->
-    <section class="section-b-space">
+        @isset($slot)
+            {{ $slot }}
+        @endisset
+    {{-- <section class="section-b-space">
         <div class="container-fluid-lg">
             <div class="row">
                 <div class="col-xxl-3 col-lg-4 d-none d-lg-block">
@@ -257,7 +260,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- product section end -->
 
 

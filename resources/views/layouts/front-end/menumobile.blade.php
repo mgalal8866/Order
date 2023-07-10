@@ -1,7 +1,7 @@
 <div class="mobile-menu d-md-none d-block mobile-cart">
     <ul>
         <li class="active">
-            <a href="index.html">
+            <a href="/">
                 <i class="iconly-Home icli"></i>
                 <span>Home</span>
             </a>
@@ -22,14 +22,14 @@
         </li>
 
         <li>
-            <a href="wishlist.html" class="notifi-wishlist">
+            <a href="{{route('wishlist')}}" class="notifi-wishlist">
                 <i class="iconly-Heart icli"></i>
                 <span>My Wish</span>
             </a>
         </li>
 
         <li>
-            <a href="cart.html">
+            <a href="{{route('cart')}}">
                 <i class="iconly-Bag-2 icli fly-cate"></i>
                 <span>Cart</span>
             </a>
