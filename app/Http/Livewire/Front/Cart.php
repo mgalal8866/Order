@@ -38,6 +38,10 @@ class Cart extends Component
     public function removefromcart($index){
         unset($this->cartlist[$index] );
     }
+    public function removecoupon(){
+        $this->coupondisc =0;
+        $this->reset('coupon');
+    }
     public function render()
     {
         return view('livewire.front.cart')->layout('layouts.front-end.layout');

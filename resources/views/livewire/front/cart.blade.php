@@ -120,8 +120,12 @@
                                 <h6 class="text-content mb-2">Coupon Apply</h6>
                                 <div class="mb-3 coupon-box input-group">
                                     <input type="text" wire:model="coupon" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Enter Coupon Code Here..."  {{$coupondisc > 0 ?'disabled':''}}>
-                                    <button class="btn-apply" wire:click.prevent="usecoupon()" {{$coupondisc > 0 ?'disabled':''}}>Apply</button>
+                                        placeholder="ادخل الكوبون"  {{$coupondisc > 0 ?'disabled':''}}>
+                                        @if ($coupondisc > 0 )
+                                        <button class="btn-apply" wire:click.prevent="removecoupon()"  >X</button>
+                                        @else
+                                        <button class="btn-apply" wire:click.prevent="usecoupon()" {{$coupondisc > 0 ?'disabled':''}}>Apply</button>
+                                        @endif
                                 </div>
                             </div>
                             <ul>
