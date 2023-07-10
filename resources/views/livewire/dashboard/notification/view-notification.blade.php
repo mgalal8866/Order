@@ -1,6 +1,6 @@
 @push('csslive')
-    <link rel="stylesheet" type="text/css"
-        href="http://utoservice.moph.go.th/cv19-mophic/theme/app-assets/vendors/css/forms/select/select2.min.css">
+<link rel="stylesheet" type="text/css" href={{asset('asset/vendors/css/forms/select/select2.min.css')}}>
+
 @endpush
 <div>
     <form id="notifi" wire:submit.prevent="sendnotificion">
@@ -374,6 +374,20 @@
                                         </span></span></span></div>
                         </div>
                     @endif
+                    <div   class="col-12 col-md-6 ">
+                        <label class="form-label" for="first-name-icon">{{__('tran.customer')}}</label>
+                        <div wire:ignore class=" d-flex " style="flex-warp:nwrap !important">
+                            <span class="input-group-text"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span>
+                            <select class="select2 form-select" id="select2" >
+                                <option value="">Walk-In Customer</option>
+                                @foreach($customers as $customer)
+                                    <option value="{{ $customer->uuid }}">{{ $customer->name }}</option>
+                                @endforeach
+                            </select>
+                            <button class="btn btn-outline-primary waves-effect" data-bs-target="#newcustomer"  data-bs-toggle="modal" id="button-addon2" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></button>
+                        </div>
+
+                    </div>
                     <div class="col-12 col-md-6">
                         <x-label for="title" label="{{ __('tran.title') }}" />
                         <input type="text" wire:model.defer='title' id="title" class="form-control" />
@@ -399,7 +413,51 @@
     </form>
 </div>
 @push('jslive')
-    <script src="http://utoservice.moph.go.th/cv19-mophic/theme/app-assets/vendors/js/forms/select/select2.full.min.js">
-    </script>
-    <script src="http://utoservice.moph.go.th/cv19-mophic/theme/app-assets/js/scripts/forms/form-select2.js"></script>
+<script>
+    window.addEventListener('swal', event=> {
+
+      Swal.fire({
+        title: event.detail.message,
+        icon: 'info',
+        customClass: {
+          confirmButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        });
+    })
+
+  var select = $('.select2');
+    $(document).on('click', '.add-new-customer', function () {
+        select.select2('close');
+    });
+
+  select.on('select2:open', function () {
+      if (!$(document).find('.add-new-customer').length) {
+        $(document)
+          .find('.select2-results__options')
+          .before(
+            '<div class="add-new-customer btn btn-flat-success cursor-pointer rounded-0 text-start mb-50 p-50 w-100" data-bs-toggle="modal" data-bs-target="#newcustomer">' +
+              feather.icons['plus'].toSvg({ class: 'font-medium-1 me-50' }) +
+              '<span class="align-middle">Add New Customer</span></div>'
+          );
+      }
+    });
+  select.each(function() {
+        var $this = $(this)
+        $this.wrap('<div style="width: 100%;" class="position-relative"></div>');
+        // $this.wrap('<div class="position-relative"></div>');
+        $this.select2({
+            // the following code is used to disable x-scrollbar when click in select input and
+            // take 100% width in responsive also
+            dropdownAutoWidth: true,
+            width: '100%',
+            dropdownParent: $this.parent()
+        });
+        $('#select2').on('change', function (e) {
+                var data = $('#select2').select2("val");
+            @this.set('selected', data);
+        });
+    });
+</script>
+<script src={{asset('asset/vendors/js/forms/select/select2.full.min.js')}}></script>
 @endpush

@@ -12,6 +12,7 @@ class Cart extends Component
     public $cartlist=[],$subtotal,$coupondisc = 0.00,$totalfinal,$coupon;
 
     public function mount(){
+
         $this->cartlist = ProductDetails::whereHas('cart',function ($q) {
             // return   $q->where('user_id',1);
         })->with('unit')->with('cart')->with('unit')->with('productheader')->get()->toarray();
@@ -24,6 +25,8 @@ class Cart extends Component
         }
     }
     public function pluse($index){
+        $this->dispatchBrowserEvent('notifi',['message'=> __('tran.sucesscustomrt') ]);
+        
         if($this->cartlist[$index]['cart'][0]['qty'] >= 1){
             $this->cartlist[$index]['cart'][0]['qty'] = $this->cartlist[$index]['cart'][0]['qty']+1;
             ModelsCart::where('product_id',$this->cartlist[$index]['id'])->select('qty')->update(['qty'=> $this->cartlist[$index]['cart'][0]['qty']]);
