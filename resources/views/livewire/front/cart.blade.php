@@ -1,5 +1,5 @@
 <div>
-    <x-Breadcrumb name="Cart" />
+    <x-breadcrumb name="Cart" />
     <section class="cart-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row g-sm-5 g-3">

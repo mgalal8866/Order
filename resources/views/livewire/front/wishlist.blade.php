@@ -1,5 +1,5 @@
 <div>
-    <x-Breadcrumb name="Wishlist" />
+    <x-breadcrumb name="Wishlist" />
     <section class="wishlist-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row g-sm-3 g-2">
