@@ -9,6 +9,10 @@ use App\Models\ProductDetails;
 class Headercart extends Component
 {
     public  $cartlist = [],$count;
+    public function removefromcart($id){
+
+        Cart::where('product_id',$id)->delete();
+    }
     public function render()
     {
         $c = Cart::with(['productdetails' => function($q) {
