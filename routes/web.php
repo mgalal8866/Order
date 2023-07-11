@@ -67,17 +67,17 @@ use Illuminate\Support\Facades\Log;
 // });
 
 Route::get('/send-fsm', function (Request $request) {
-$d = Auth::user()->fsm;
-Log::alert( notificationFCM('Hello','Okay',[$d]));
+    $d = Auth::user()->fsm;
+    Log::alert(notificationFCM('Hello', 'Okay', [$d]));
 });
 Route::post('/store-token', function (Request $request) {
-//   UserAdmin::create([
-//     'username'=>'admin',
-//     'password'=> Hash::make('123456')
-//   ]);
+    //   UserAdmin::create([
+    //     'username'=>'admin',
+    //     'password'=> Hash::make('123456')
+    //   ]);
 
-Auth::user()->update(['fsm'=>$request->token]);
-        return response()->json(['Token successfully stored.']);
+    Auth::user()->update(['fsm' => $request->token]);
+    return response()->json(['Token successfully stored.']);
 })->name('store.token');
 // Route::get('/sql', function (Request $request) {
 //     DB::purge('mysql');
@@ -95,28 +95,27 @@ Auth::user()->update(['fsm'=>$request->token]);
 
 
 
-Route::get('/moveToseleheader', function(){
+Route::get('/moveToseleheader', function () {
     DeliveryHeader::query()
-    ->where('id','=', 1)
-    ->each(function ($oldRecord) {
-      $newRecord = $oldRecord->replicate();
-      $newRecord->setTable('sales_headers');
-      $newRecord->save();
-      $oldRecord->delete();
-    });
-      DeliveryDetails::query()
-      ->where('sale_header_id','=', 1)
-      ->each(function ($oldRecord) {
-        $newRecord = $oldRecord->replicate();
-        $newRecord->setTable('sales_details');
-        $newRecord->save();
-        $oldRecord->delete();
-    });
-
+        ->where('id', '=', 1)
+        ->each(function ($oldRecord) {
+            $newRecord = $oldRecord->replicate();
+            $newRecord->setTable('sales_headers');
+            $newRecord->save();
+            $oldRecord->delete();
+        });
+    DeliveryDetails::query()
+        ->where('sale_header_id', '=', 1)
+        ->each(function ($oldRecord) {
+            $newRecord = $oldRecord->replicate();
+            $newRecord->setTable('sales_details');
+            $newRecord->save();
+            $oldRecord->delete();
+        });
 });
 
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('layouts.front-end.layout');
 })->name('home');
 
@@ -125,7 +124,7 @@ Route::get('/wishlist', Wishlist::class)->name('wishlist');
 Route::get('/cart', Cart::class)->name('cart');
 
 Route::prefix('admin/dashborad')->group(function () {
-Auth::routes();
+    Auth::routes();
 });
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
@@ -146,4 +145,3 @@ Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
 });
-

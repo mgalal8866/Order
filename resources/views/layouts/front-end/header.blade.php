@@ -372,7 +372,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="wishlist.html">Wishlist</a>
+                                                                href="{{route('wishlist')}}">Wishlist</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -443,7 +443,7 @@
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <a href="wishlist.html" class="btn p-0 position-relative header-wishlist">
+                                    <a href="{{route('wishlist')}}" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
@@ -504,9 +504,9 @@
                                             </div>
 
                                             <div class="button-group">
-                                                <a href="cart.html" class="btn btn-sm cart-button">View Cart</a>
+                                                <a href="{{route('cart')}}" class="btn btn-sm cart-button">{{__('front.viewcart')}}</a>
                                                 <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                text-white">Checkout</a>
+                                                text-white">{{__('front.checkout')}}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -526,15 +526,15 @@
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
                                                 <i></i>
-                                                <a href="login.html">Log In</a>
+                                                <a href="/">{{__('front.login')}}</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="sign-up.html">Register</a>
+                                                <a href="/">{{__('front.register')}}</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="forgot.html">Forgot Password</a>
+                                                <a href="/">{{__('front.forgotpass')}}</a>
                                             </li>
                                         </ul>
                                     </div>
