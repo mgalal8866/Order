@@ -48,6 +48,7 @@ class SalesResource extends JsonResource
                 'note'           => $this->note??'',
                 'deliverycost'   => $this->deliverycost??'',
                 'satus_delivery' => $this->satus_delivery??'',
+                'type_order'     => $this->type_order??'',
                 'created_at'     => $this->created_at??'',
                 'comment'        => $this->comment->comment??'',
                 'rating'        => $this->comment->evalution??'',
