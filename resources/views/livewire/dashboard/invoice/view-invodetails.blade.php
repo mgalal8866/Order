@@ -44,7 +44,7 @@
                             <div class="col-xl-8 p-0">
                                 <h6 class="mb-2"> {{__('tran.customerdata')}} :</h6>
                                 <h6 class="mb-25">{{$invo->user->client_name}}</h6>
-                                <p class="card-text mb-25">{{$invo->user->region->city->name $invo->user->client_state}}</p>
+                                <p class="card-text mb-25">{{$invo->user->region->city->name . ','. $invo->user->client_state}}</p>
                                 <p class="card-text mb-25">{{$invo->user->client_fhonewhats}}</p>
                             </div>
                             <div class="col-xl-4 p-0 mt-xl-0 mt-2">
