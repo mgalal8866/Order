@@ -13,12 +13,16 @@ class DBCouponRepository implements CouponRepositoryinterface
 {
     public function checkcoupon($code)
     {
-        $coupon = Coupon::DateValid()->where('code', $code)->first();
+        $coupon = Coupon::where('code', $code)->DateValid()->first();
+
         if ($coupon != null)
-            if ($coupon->used != 0) {
+            if ($coupon->used > 0) {
                 $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $coupon->id)->count();
                 $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $coupon->id)->count();
                 return $coupon->Where('used', '>', ($saleheader + $deliveryheader))->first();
+            }else{
+
+                return $coupon;
             }
         return false;
     }

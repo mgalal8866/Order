@@ -18,7 +18,8 @@ class Coupon extends Model
     public function scopeDateValid($query)
     {
         $today = Carbon::now()->toDateString();
-        return $query->whereDate('start_date', '<=', $today)->whereDate('end_date', '>=', $today);
+
+        return $query->where('start_date', '<=', $today)->where('end_date', '>=', $today);
     }
     public function salesheader()
     {
