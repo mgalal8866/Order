@@ -16,7 +16,7 @@ class WishlistResource extends JsonResource
         $units = $this->productdetails->units($this->productdetails->product_header_id)->get();
         return [
             "wishlist_id"    => $this->id,
-            "productd_id"    => $this->productdetails->id,
+            "product_id"     => $this->productdetails->id,
             "productd_name"  => $this->productdetails->productheader->product_name??'',
             "product_isscale"=> $this->productdetails->productheader->product_isscale,
             "productd_barcode"=> $this->productdetails->productd_barcode??'',
