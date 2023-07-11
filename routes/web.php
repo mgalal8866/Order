@@ -119,11 +119,14 @@ Route::get('/moveToseleheader', function(){
 Route::get('/', function(){
     return view('layouts.front-end.layout');
 })->name('home');
+
 Route::get('/cart', Cart::class)->name('cart');
 Route::get('/wishlist', Wishlist::class)->name('wishlist');
 Route::get('/cart', Cart::class)->name('cart');
 
+Route::prefix('admin/dashborad')->group(function () {
 Auth::routes();
+});
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');

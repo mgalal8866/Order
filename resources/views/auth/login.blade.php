@@ -9,7 +9,7 @@
             <div class="card mb-0">
                 <div class="card-body">
                     <a href="index.html" class="brand-logo">
-                       <img src="{{asset('asset/images/logo.png')}}" width="10%"/>
+                        <img src="{{ asset('asset/images/logo.png') }}" width="10%" />
                         <h2 class="brand-text text-primary ms-1">الشروق</h2>
                     </a>
 
@@ -19,8 +19,10 @@
                     <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="mb-1">
-                            <label for="login-username" class="form-label">{{__('tran.username')}}</label>
-                            <input type="text" class="form-control  @error('username') is-invalid @enderror" id="username" name="username" placeholder="john@example.com" aria-describedby="username" tabindex="1" value="{{ old('username') }}" required autocomplete="username" autofocus />
+                            <label for="login-username" class="form-label">{{ __('tran.username') }}</label>
+                            <input type="text" class="form-control  @error('username') is-invalid @enderror"
+                                id="username" name="username" placeholder="admin" aria-describedby="username"
+                                tabindex="1" value="{{ old('username') }}" required autocomplete="username" autofocus />
 
                             @error('username')
                                 <span class="invalid-feedback" role="alert">
@@ -32,15 +34,19 @@
                         <div class="mb-1">
                             <div class="d-flex justify-content-between">
 
-                                <label class="form-label" for="login-password">{{__('tran.password')}}</label>
-                                @if (Route::has('password.request'))
+                                <label class="form-label" for="login-password">{{ __('tran.password') }}</label>
+                                {{-- @if (Route::has('password.request'))
                                 <a href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
-                            @endif
+                            @endif --}}
                             </div>
                             <div class="input-group input-group-merge form-password-toggle">
-                                <input type="password" class="form-control form-control-merge  @error('password') is-invalid @enderror" id="password" name="password" tabindex="2" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required autocomplete="password"/>
+                                <input type="password"
+                                    class="form-control form-control-merge  @error('password') is-invalid @enderror"
+                                    id="password" name="password" tabindex="2"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="password" required autocomplete="password" />
                                 <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -51,19 +57,20 @@
                         </div>
                         <div class="mb-1">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" tabindex="3" {{ old('remember') ? 'checked' : '' }} />
-                                <label class="form-check-label" for="remember-me"> Remember Me </label>
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember"
+                                    tabindex="3" {{ old('remember') ? 'checked' : '' }} />
+                                <label class="form-check-label" for="remember-me">{{__('tran.rememberme')}}</label>
                             </div>
                         </div>
-                        <button class="btn btn-primary w-100" tabindex="4">Sign in</button>
+                        <button class="btn btn-primary w-100" tabindex="4">{{ __('tran.signin') }}</button>
                     </form>
 
-                    <p class="text-center mt-2">
+                    {{-- <p class="text-center mt-2">
                         <span>New on our platform?</span>
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
-                    </p>
+                    </p> --}}
 
                     {{-- <div class="divider my-2">
                         <div class="divider-text">or</div>
