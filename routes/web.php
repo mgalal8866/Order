@@ -26,6 +26,8 @@ use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Front\Cart;
 use App\Http\Livewire\Front\Wishlist;
+use App\Models\DeliveryDetails;
+use App\Models\DeliveryHeader;
 use App\Models\UserAdmin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -91,6 +93,27 @@ Auth::user()->update(['fsm'=>$request->token]);
 //     return User::all();
 // });
 
+
+
+Route::get('/moveToseleheader', function(){
+    DeliveryHeader::query()
+    ->where('id','=', 1)
+    ->each(function ($oldRecord) {
+      $newRecord = $oldRecord->replicate();
+      $newRecord->setTable('sales_headers');
+      $newRecord->save();
+      $oldRecord->delete();
+    });
+      DeliveryDetails::query()
+      ->where('sale_header_id','=', 1)
+      ->each(function ($oldRecord) {
+        $newRecord = $oldRecord->replicate();
+        $newRecord->setTable('sales_details');
+        $newRecord->save();
+        $oldRecord->delete();
+    });
+
+});
 
 
 Route::get('/', function(){

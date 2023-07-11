@@ -27,9 +27,11 @@ class Coupon extends Model
     public function scopeCheckused($query)
     {
 
-        if ($this->getAttribute('used') != 0) {
-            $saleheader = SalesHeader::select('user_id', 'coupon_id')->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
-             $query->Where('used', '>', $saleheader);
+       if ($this->getAttribute('used') != 0) {
+            $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
+            $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
+
+            $query->Where('used', '>', ($saleheader+$deliveryheader));
         }
         return $query;
 
