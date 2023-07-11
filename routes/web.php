@@ -24,7 +24,7 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
-use App\Http\Livewire\Front\Cart;
+use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Wishlist;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;

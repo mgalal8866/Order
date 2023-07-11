@@ -11,7 +11,7 @@
                             </span>
                         </button>
                         <a href="index.html" class="web-logo nav-logo">
-                            <img src="{{$setting->logo_shop}}"  class="img-fluid blur-up lazyload" alt="">
+                            <img src="{{ $setting->logo_shop }}" class="img-fluid blur-up lazyload" alt="elshrouk">
                         </a>
 
                         <div class="middle-box">
@@ -34,23 +34,20 @@
                                                             <a class="dropdown-item" href="index.html">Kartshop</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="index-2.html">Sweetshop</a>
+                                                            <a class="dropdown-item" href="index-2.html">Sweetshop</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" href="index-3.html">Organic</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="index-4.html">Supershop</a>
+                                                            <a class="dropdown-item" href="index-4.html">Supershop</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" href="index-5.html">Classic
                                                                 shop</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="index-6.html">Furniture</a>
+                                                            <a class="dropdown-item" href="index-6.html">Furniture</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" href="index-7.html">Search
@@ -85,8 +82,8 @@
                                                                 Banner</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="shop-left-sidebar.html">Shop Left
+                                                            <a class="dropdown-item" href="shop-left-sidebar.html">Shop
+                                                                Left
                                                                 Sidebar</a>
                                                         </li>
                                                         <li>
@@ -94,13 +91,12 @@
                                                                 List</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="shop-right-sidebar.html">Shop
+                                                            <a class="dropdown-item" href="shop-right-sidebar.html">Shop
                                                                 Right Sidebar</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="shop-top-filter.html">Shop Top
+                                                            <a class="dropdown-item" href="shop-top-filter.html">Shop
+                                                                Top
                                                                 Filter</a>
                                                         </li>
                                                     </ul>
@@ -112,13 +108,11 @@
 
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="product-4-image.html">Product
+                                                            <a class="dropdown-item" href="product-4-image.html">Product
                                                                 4 Image</a>
                                                         </li>
                                                         <li class="sub-dropdown-hover">
-                                                            <a href="javascript:void(0)"
-                                                                class="dropdown-item">Product
+                                                            <a href="javascript:void(0)" class="dropdown-item">Product
                                                                 Thumbnail</a>
                                                             <ul class="sub-menu">
                                                                 <li>
@@ -138,18 +132,15 @@
                                                             </ul>
                                                         </li>
                                                         <li>
-                                                            <a href="product-bundle.html"
-                                                                class="dropdown-item">Product
+                                                            <a href="product-bundle.html" class="dropdown-item">Product
                                                                 Bundle</a>
                                                         </li>
                                                         <li>
-                                                            <a href="product-slider.html"
-                                                                class="dropdown-item">Product
+                                                            <a href="product-slider.html" class="dropdown-item">Product
                                                                 Slider</a>
                                                         </li>
                                                         <li>
-                                                            <a href="product-sticky.html"
-                                                                class="dropdown-item">Product
+                                                            <a href="product-sticky.html" class="dropdown-item">Product
                                                                 Sticky</a>
                                                         </li>
                                                     </ul>
@@ -302,8 +293,7 @@
                                                             </ul>
                                                         </li>
                                                         <li class="sub-dropdown-hover">
-                                                            <a class="dropdown-item"
-                                                                href="javascript:void(0)">Invoice
+                                                            <a class="dropdown-item" href="javascript:void(0)">Invoice
                                                                 Template <span class="new-text"><i
                                                                         class="fa-solid fa-bolt-lightning"></i></span></a>
                                                             <ul class="sub-menu">
@@ -338,8 +328,7 @@
                                                                 href="contact-us.html">Contact</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="checkout.html">Checkout</a>
+                                                            <a class="dropdown-item" href="checkout.html">Checkout</a>
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" href="coming-soon.html">Coming
@@ -356,8 +345,7 @@
                                                                 Success</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="order-tracking.html">Order
+                                                            <a class="dropdown-item" href="order-tracking.html">Order
                                                                 Tracking</a>
                                                         </li>
                                                         <li>
@@ -372,7 +360,7 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item"
-                                                                href="{{route('wishlist')}}">Wishlist</a>
+                                                                href="{{ route('wishlist') }}">Wishlist</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -382,8 +370,8 @@
                                                         data-bs-toggle="dropdown">Seller</a>
                                                     <ul class="dropdown-menu">
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="seller-become.html">Become a
+                                                            <a class="dropdown-item" href="seller-become.html">Become
+                                                                a
                                                                 Seller</a>
                                                         </li>
                                                         <li>
@@ -392,8 +380,7 @@
                                                                 Dashboard</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="seller-detail.html">Seller
+                                                            <a class="dropdown-item" href="seller-detail.html">Seller
                                                                 Detail</a>
                                                         </li>
                                                         <li>
@@ -406,8 +393,8 @@
                                                                 Grid</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="seller-grid-2.html">Seller Grid
+                                                            <a class="dropdown-item" href="seller-grid-2.html">Seller
+                                                                Grid
                                                                 2</a>
                                                         </li>
                                                     </ul>
@@ -443,73 +430,14 @@
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <a href="{{route('wishlist')}}" class="btn p-0 position-relative header-wishlist">
+                                    <a href="{{ route('wishlist') }}"
+                                        class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <div class="onhover-dropdown header-badge">
-                                        <button type="button" class="btn p-0 position-relative header-wishlist">
-                                            <i data-feather="shopping-cart"></i>
-                                            <span class="position-absolute top-0 start-100 translate-middle badge">2
-                                                <span class="visually-hidden">unread messages</span>
-                                            </span>
-                                        </button>
 
-                                        <div class="onhover-div">
-                                            <ul class="cart-list">
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="{{asset('front/assets/images/vegetable/product/1.png')}}"
-                                                                class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Fantasy Crunchy Choco Chip Cookies</h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $80.58</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-
-                                                <li class="product-box-contain">
-                                                    <div class="drop-cart">
-                                                        <a href="product-left-thumbnail.html" class="drop-image">
-                                                            <img src="{{asset('front/assets/images/vegetable/product/2.png')}}"
-                                                                class="blur-up lazyload" alt="">
-                                                        </a>
-
-                                                        <div class="drop-contain">
-                                                            <a href="product-left-thumbnail.html">
-                                                                <h5>Peanut Butter Bite Premium Butter Cookies 600 g
-                                                                </h5>
-                                                            </a>
-                                                            <h6><span>1 x</span> $25.68</h6>
-                                                            <button class="close-button close_button">
-                                                                <i class="fa-solid fa-xmark"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
-
-                                            <div class="price-box">
-                                                <h5>Total :</h5>
-                                                <h4 class="theme-color fw-bold">$106.58</h4>
-                                            </div>
-
-                                            <div class="button-group">
-                                                <a href="{{route('cart')}}" class="btn btn-sm cart-button">{{__('front.viewcart')}}</a>
-                                                <a href="checkout.html" class="btn btn-sm cart-button theme-bg-color
-                                                text-white">{{__('front.checkout')}}</a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @livewire('front.cart.headercart')
                                 </li>
                                 <li class="right-side onhover-dropdown">
                                     <div class="delivery-login-box">
@@ -526,15 +454,15 @@
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
                                                 <i></i>
-                                                <a href="/">{{__('front.login')}}</a>
+                                                <a href="/">{{ __('front.login') }}</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="/">{{__('front.register')}}</a>
+                                                <a href="/">{{ __('front.register') }}</a>
                                             </li>
 
                                             <li class="product-box-contain">
-                                                <a href="/">{{__('front.forgotpass')}}</a>
+                                                <a href="/">{{ __('front.forgotpass') }}</a>
                                             </li>
                                         </ul>
                                     </div>

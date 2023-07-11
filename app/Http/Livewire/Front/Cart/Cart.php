@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Front;
+namespace App\Http\Livewire\Front\Cart;
 
 use App\Models\Cart as ModelsCart;
 use App\Models\Coupon;
@@ -13,10 +13,7 @@ class Cart extends Component
 
     public function mount(){
 
-        $this->cartlist = ProductDetails::whereHas('cart',function ($q) {
-            // return   $q->where('user_id',1);
-        })->with('unit')->with('cart')->with('unit')->with('productheader')->get()->toarray();
-        // dd($this->cartlist);
+
     }
     public function usecoupon(){
         $coupon = Coupon::where('code',$this->coupon)->first();
@@ -26,7 +23,7 @@ class Cart extends Component
     }
     public function pluse($index){
         $this->dispatchBrowserEvent('notifi',['message'=> __('tran.sucesscustomrt') ]);
-        
+
         if($this->cartlist[$index]['cart'][0]['qty'] >= 1){
             $this->cartlist[$index]['cart'][0]['qty'] = $this->cartlist[$index]['cart'][0]['qty']+1;
             ModelsCart::where('product_id',$this->cartlist[$index]['id'])->select('qty')->update(['qty'=> $this->cartlist[$index]['cart'][0]['qty']]);
@@ -47,6 +44,11 @@ class Cart extends Component
     }
     public function render()
     {
-        return view('livewire.front.cart')->layout('layouts.front-end.layout');
+
+        $this->cartlist = ProductDetails::whereHas('cart',function ($q) {
+            // return   $q->where('user_id',1);
+        })->with('unit')->with('cart')->with('unit')->with('productheader')->get()->toarray();
+        // dd($this->cartlist);
+        return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');
     }
 }
