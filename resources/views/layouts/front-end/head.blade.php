@@ -2,14 +2,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fastkart">
-    <meta name="keywords" content="Fastkart">
-    <meta name="author" content="Fastkart">
+    <meta name="description" content="{{$setting->name_shop}}">
+    <meta name="keywords" content="{{$setting->name_shop}}">
+    <meta name="author" content="{{$setting->name_shop}}">
     <link rel="icon" href="{{asset('asset/images/ico/favicon.ico')}}" type="image/x-icon">
     <title>{{$setting->name_shop}}</title>
 
     <!-- Google font -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    {{-- <link rel="preconnect" href="https://fonts.gstatic.com"> --}}
     {{-- <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
