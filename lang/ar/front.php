@@ -1,9 +1,11 @@
 <?php
 
 return [
-    'viewcart' => 'عرض العربة',
-    'checkout' => 'الدفع',
-    'login' => 'تسجيل دخول',
-    'register' => 'أنضم لنا',
+    'viewcart'   => 'عرض العربة',
+    'checkout'   => 'الدفع',
+    'login'      => 'تسجيل دخول',
+    'signup'     => 'تسجيل مستخدم جديد',
+    'phone'      => 'رقم الهاتف',
+    'register'   => 'أنضم لنا',
     'forgotpass' => 'استرجاع الباسورد'
 ];
