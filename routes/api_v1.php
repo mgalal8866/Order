@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\ProductHeader;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\SyncController;

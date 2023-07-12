@@ -16,10 +16,9 @@ class Login extends Component
 
         $user = User::where('client_fhonewhats',$this->phone)->first();
         Auth::guard('client')->login($user);
-    //    $credentials = $request->except(['_token']);
-            if(Auth::guard('client')->attempt( $user))
+            if(Auth::guard('client')->check())
             {
-                return redirect(RouteServiceProvider::FRONT);
+                return redirect()->intended('/');
             }
     }
     public function render()

@@ -16,7 +16,7 @@
                     {{-- <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4> --}}
                     {{-- <p class="card-text mb-2">Please sign-in to your account and start the adventure</p> --}}
 
-                    <form class="auth-login-form mt-2" action="{{ route('login') }}" method="POST">
+                    <form class="auth-login-form mt-2" action="{{ route('postlogin') }}" method="POST">
                         @csrf
                         <div class="mb-1">
                             <label for="login-username" class="form-label">{{ __('tran.username') }}</label>

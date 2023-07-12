@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Config;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Chat;
@@ -82,6 +83,7 @@ Route::post('/store-token', function (Request $request) {
     Auth::user()->update(['fsm' => $request->token]);
     return response()->json(['Token successfully stored.']);
 })->name('store.token');
+
 // Route::get('/sql', function (Request $request) {
 //     DB::purge('mysql');
 //     DB::purge('tenant');
@@ -116,22 +118,30 @@ Route::get('/moveToseleheader', function () {
             $oldRecord->delete();
         });
 });
-
-
-
-
-
+#####################################################
+#################### FRONT Client #####################
 Route::get('/', Home::class)->name('home');
+#################### guest Client #####################
+Route::middleware('guest:client')->group(function () {
 Route::get('/login', Login::class)->name('login');
-Route::get('/cart', Cart::class)->name('cart');
-Route::get('/wishlist', Wishlist::class)->name('wishlist');
-
-
-
-Route::prefix('admin/dashborad')->group(function () {
-    Auth::routes();
 });
-Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
+#################### auth Client #####################
+Route::middleware('auth:client')->group(function () {
+Route::get('/cart', Cart::class)->name('cart');
+Route::post('/logout',[UserAdminController::class,'clientlogout'])->name('clientlogout');
+Route::get('/wishlist', Wishlist::class)->name('wishlist');
+});
+#################### FRONT Client #####################
+#####################################################
+
+########################################    #############
+#################### Dashboard  #####################
+Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
+    Route::get('/login', [UserAdminController::class,'login'])->name('login');
+    Route::post('/postlogin', [UserAdminController::class,'postlogin'])->name('postlogin');
+    // Auth::routes();
+});
+Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');
     Route::get('chat', Chat::class)->name('chat');
@@ -149,4 +159,8 @@ Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('slider/edit/{id}', EditSlider::class)->name('slider');
     Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
+    Route::post('/logout',[UserAdminController::class,'adminlogout'])->name('adminlogout');
 });
+#################### Dashboard  #####################
+#####################################################
+

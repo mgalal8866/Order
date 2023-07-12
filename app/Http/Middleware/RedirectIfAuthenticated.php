@@ -27,18 +27,24 @@ class RedirectIfAuthenticated
         $guards = empty($guards) ? [null] : $guards;
 
         foreach ($guards as $guard) {
-            if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::DASHBOARD);
-            }
             // if (Auth::guard($guard)->check()) {
-
-            //     if ($guard === 'admin') {
-            //         return  redirect(RouteServiceProvider::HOME);
-            //     }
-            //     if ($guard === 'client') {
-            //         return  redirect(RouteServiceProvider::FRONT);
-            //     }
+            //     return redirect(RouteServiceProvider::DASHBOARD);
             // }
+            //  if ($guard == "blog" && Auth::guard($guard)->check()) {
+            //     return redirect('/blog');
+            // }
+            if (Auth::guard($guard)->check()) {
+
+                if ($guard === 'admin') {
+                    return  redirect(RouteServiceProvider::DASHBOARD);
+                }
+                if ($guard === 'client') {
+                    return  redirect(RouteServiceProvider::FRONT);
+                }
+                if (Auth::guard($guard)->check()) {
+                         return redirect(RouteServiceProvider::DASHBOARD);
+               }
+            }
         }
         return $next($request);
     }

@@ -28,7 +28,7 @@
                                             <ul class="navbar-nav">
                                                 <li class="nav-item dropdown">
                                                     <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-                                                        data-bs-toggle="dropdown">{{__('front.home')}}</a>
+                                                        data-bs-toggle="dropdown">{{ __('front.home') }}</a>
 
                                                     <ul class="dropdown-menu">
                                                         <li>
@@ -37,7 +37,7 @@
                                                         <li>
                                                             <a class="dropdown-item" href="index-2.html">Sweetshop</a>
                                                         </li>
-                                        
+
                                                     </ul>
                                                 </li>
 
@@ -406,8 +406,7 @@
                                     </a>
                                 </li>
                                 <li class="right-side">
-                                    <a href="{{ route('wishlist') }}"
-                                        class="btn p-0 position-relative header-wishlist">
+                                    <a href="{{ route('wishlist') }}" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>
                                     </a>
                                 </li>
@@ -428,17 +427,30 @@
 
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
-                                            <li class="product-box-contain">
-                                                <a href="/login">{{ __('front.login') }}</a>
-                                            </li>
-                                            <li class="product-box-contain">
-                                                <a href="/">{{ __('front.register') }}</a>
+                                            @guest('client')
+                                                <li class="product-box-contain">
+                                                    <a href="/login">{{ __('front.login') }}</a>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="/">{{ __('front.register') }}</a>
 
-                                            </li>
+                                                </li>
 
-                                            <li class="product-box-contain">
-                                                <a href="/">{{ __('front.forgotpass') }}</a>
-                                            </li>
+                                                <li class="product-box-contain">
+                                                    <a href="/">{{ __('front.forgotpass') }}</a>
+                                                </li>
+                                            @endguest
+                                            @auth('client')
+                                                <li class="product-box-contain">
+                                                    <a class="dropdown-item" href="{{ route('clientlogout') }}"
+                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                        {{ __('tran.logout') }}</a>
+                                                        <form id="logout-form" action="{{ route('clientlogout') }}" method="POST" class="d-none">
+                                                            @csrf
+                                                        </form>
+                                                </li>
+                                            @endauth
+
                                         </ul>
                                     </div>
                                 </li>
