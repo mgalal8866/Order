@@ -24,10 +24,7 @@ class Login extends Component
     }
     public function render()
     {
-<<<<<<< HEAD
 
-=======
->>>>>>> cebff9e9b4f14264f63d34987ef98607f458afa4
         return view('livewire.front.user.login')->layout('layouts.front-end.layout');
     }
 }
