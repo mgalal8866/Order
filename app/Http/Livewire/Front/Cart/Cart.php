@@ -12,7 +12,11 @@ class Cart extends Component
     public $cartlist=[],$subtotal,$coupondisc = 0.00,$totalfinal,$coupon;
 
     public function mount(){
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> cebff9e9b4f14264f63d34987ef98607f458afa4
 
     }
     public function usecoupon(){

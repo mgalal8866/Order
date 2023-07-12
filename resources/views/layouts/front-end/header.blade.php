@@ -36,6 +36,33 @@
                                                         </li>
                                                         <li>
                                                             <a class="dropdown-item" href="index-2.html">Sweetshop</a>
+<<<<<<< HEAD
+=======
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-3.html">Organic</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-4.html">Supershop</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-5.html">Classic
+                                                                shop</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-6.html">Furniture</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-7.html">Search
+                                                                Oriented</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-8.html">Category
+                                                                Focus</a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item" href="index-9.html">Fashion</a>
+>>>>>>> cebff9e9b4f14264f63d34987ef98607f458afa4
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -428,11 +455,19 @@
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
+<<<<<<< HEAD
                                                 <a href="/login">{{ __('front.login') }}</a>
                                             </li>
 
                                             <li class="product-box-contain">
                                                 <a href="/register">{{ __('front.register') }}</a>
+=======
+                                                <a href="/">{{ __('front.login') }}</a>
+                                            </li>
+
+                                            <li class="product-box-contain">
+                                                <a href="/">{{ __('front.register') }}</a>
+>>>>>>> cebff9e9b4f14264f63d34987ef98607f458afa4
                                             </li>
 
                                             <li class="product-box-contain">

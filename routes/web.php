@@ -120,6 +120,7 @@ Route::get('/moveToseleheader', function () {
 
 
 
+<<<<<<< HEAD
 // Route::group(function () {
 Route::get('/', Home::class)->name('home');
 Route::get('/login', Login::class)->name('login');
@@ -130,6 +131,15 @@ Route::get('/login', Login::class)->name('login');
 // });
 Route::prefix('admin/dashborad')->group(function () {
 
+=======
+Route::get('/', Home::class)->name('home');
+Route::get('/cart', Cart::class)->name('cart');
+Route::get('/login', Login::class)->name('login');
+Route::get('/wishlist', Wishlist::class)->name('wishlist');
+
+
+Route::prefix('admin/dashborad')->group(function () {
+>>>>>>> cebff9e9b4f14264f63d34987ef98607f458afa4
     Auth::routes();
 });
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
