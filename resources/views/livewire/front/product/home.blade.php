@@ -1,4 +1,6 @@
-<div>
+<div>   
+    @include('layouts.front-end.sliderbr')
+
     <section class="section-b-space">
         <div class="container-fluid-lg">
             <div class="row">

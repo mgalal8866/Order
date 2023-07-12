@@ -1,4 +1,5 @@
-<header class="header-compact header-absolute">
+<header class="header-compact pb-md-4  pb-0">
+    {{-- <header class="header-compact header-absolute"> --}}
     <div class="top-nav top-header sticky-header">
         <div class="container-fluid-lg">
             <div class="row">
@@ -10,7 +11,7 @@
                                 <i class="fa-solid fa-bars"></i>
                             </span>
                         </button>
-                        <a href="index.html" class="web-logo nav-logo">
+                        <a href="/" class="web-logo nav-logo">
                             <img src="{{ $setting->logo_shop }}" class="img-fluid blur-up lazyload" alt="elshrouk">
                         </a>
 
@@ -355,12 +356,10 @@
                                                             <a class="dropdown-item" href="search.html">Search</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item" href="user-dashboard.html">User
-                                                                Dashboard</a>
+                                                            <a class="dropdown-item" href="user-dashboard.html">User Dashboard</a>
                                                         </li>
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="{{ route('wishlist') }}">Wishlist</a>
+                                                            <a class="dropdown-item" href="{{ route('wishlist') }}">Wishlist</a>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -453,7 +452,6 @@
                                     <div class="onhover-div onhover-div-login">
                                         <ul class="user-box-name">
                                             <li class="product-box-contain">
-                                                <i></i>
                                                 <a href="/">{{ __('front.login') }}</a>
                                             </li>
 

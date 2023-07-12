@@ -26,6 +26,7 @@ use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Product\Home;
+use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\Front\Wishlist;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
@@ -120,6 +121,7 @@ Route::get('/moveToseleheader', function () {
 
 Route::get('/', Home::class)->name('home');
 Route::get('/cart', Cart::class)->name('cart');
+Route::get('/login', Login::class)->name('login');
 Route::get('/wishlist', Wishlist::class)->name('wishlist');
 
 
