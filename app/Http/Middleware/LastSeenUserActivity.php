@@ -21,13 +21,21 @@ class LastSeenUserActivity
     {
 
 
-        if (auth('web')->check()) {
+        if (auth('admin')->check()) {
             // dd(Auth::user()->id);
             $expireTime = Carbon::now()->addMinute(1); // keep online for 1 min
-            Cache::put('is_online'.Auth::user()->id, true, $expireTime);
+            Cache::put('is_online'.Auth::guard('admin')->user()->id, true, $expireTime);
 
             //Last Seen
-            User::where('id', Auth::user()->id)->update(['last_seen' => Carbon::now()]);
+            User::where('id', Auth::guard('admin')->user()->id)->update(['last_seen' => Carbon::now()]);
+        }
+        if (auth('client')->check()) {
+
+            $expireTime = Carbon::now()->addMinute(1); // keep online for 1 min
+            Cache::put('is_online'.Auth::guard('client')->user()->id, true, $expireTime);
+
+            //Last Seen
+            User::where('id', Auth::guard('client')->user()->id)->update(['last_seen' => Carbon::now()]);
         }
         return $next($request);
     }

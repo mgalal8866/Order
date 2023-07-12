@@ -33,6 +33,7 @@ class DBInvoRepository implements InvoRepositoryinterface
         $head = DeliveryHeader::create([
             'paytayp'           => $request['data']['paytype'],
             'total_profit'      => $request['data']['total_profit']??0,
+            'invoicedate'      => Carbon::now(),
             'coupon_id'         => $request['data']['coupon_id']??null,
             'discount_product'  => $request['data']['discount_product']??0,
             'subtotal'          => $request['data']['subtotal']??0,

@@ -26,7 +26,7 @@ class Cart extends Component
     }
     public function pluse($index){
         $this->dispatchBrowserEvent('notifi',['message'=> __('tran.sucesscustomrt') ]);
-        
+
         if($this->cartlist[$index]['cart'][0]['qty'] >= 1){
             $this->cartlist[$index]['cart'][0]['qty'] = $this->cartlist[$index]['cart'][0]['qty']+1;
             ModelsCart::where('product_id',$this->cartlist[$index]['id'])->select('qty')->update(['qty'=> $this->cartlist[$index]['cart'][0]['qty']]);

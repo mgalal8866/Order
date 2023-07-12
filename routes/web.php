@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use App\Events\MessageSent;
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,8 +25,12 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
-use App\Http\Livewire\Front\Cart;
+use App\Http\Livewire\Front\Cart\Cart;
+use App\Http\Livewire\Front\Product\Home;
+use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\Front\Wishlist;
+use App\Models\DeliveryDetails;
+use App\Models\DeliveryHeader;
 use App\Models\UserAdmin;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
@@ -65,17 +70,17 @@ use Illuminate\Support\Facades\Log;
 // });
 
 Route::get('/send-fsm', function (Request $request) {
-$d = Auth::user()->fsm;
-Log::alert( notificationFCM('Hello','Okay',[$d]));
+    $d = Auth::user()->fsm;
+    Log::alert(notificationFCM('Hello', 'Okay', [$d]));
 });
 Route::post('/store-token', function (Request $request) {
-//   UserAdmin::create([
-//     'username'=>'admin',
-//     'password'=> Hash::make('123456')
-//   ]);
+    //   UserAdmin::create([
+    //     'username'=>'admin',
+    //     'password'=> Hash::make('123456')
+    //   ]);
 
-Auth::user()->update(['fsm'=>$request->token]);
-        return response()->json(['Token successfully stored.']);
+    Auth::user()->update(['fsm' => $request->token]);
+    return response()->json(['Token successfully stored.']);
 })->name('store.token');
 // Route::get('/sql', function (Request $request) {
 //     DB::purge('mysql');
@@ -93,14 +98,40 @@ Auth::user()->update(['fsm'=>$request->token]);
 
 
 
-Route::get('/', function(){
-    return view('layouts.front-end.layout');
-})->name('home');
-Route::get('/cart', Cart::class)->name('cart');
-Route::get('/wishlist', Wishlist::class)->name('wishlist');
-Route::get('/cart', Cart::class)->name('cart');
+Route::get('/moveToseleheader', function () {
+    DeliveryHeader::query()
+        ->where('id', '=', 1)
+        ->each(function ($oldRecord) {
+            $newRecord = $oldRecord->replicate();
+            $newRecord->setTable('sales_headers');
+            $newRecord->save();
+            $oldRecord->delete();
+        });
+    DeliveryDetails::query()
+        ->where('sale_header_id', '=', 1)
+        ->each(function ($oldRecord) {
+            $newRecord = $oldRecord->replicate();
+            $newRecord->setTable('sales_details');
+            $newRecord->save();
+            $oldRecord->delete();
+        });
+});
 
-Auth::routes();
+
+
+
+// Route::group(function () {
+Route::get('/', Home::class)->name('home');
+Route::get('/login', Login::class)->name('login');
+// });
+// Route::group(function () {
+    Route::get('/cart', Cart::class)->name('cart');
+    Route::get('/wishlist', Wishlist::class)->name('wishlist');
+// });
+Route::prefix('admin/dashborad')->group(function () {
+
+    Auth::routes();
+});
 Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');
@@ -120,4 +151,3 @@ Route::prefix('admin/dashborad')->middleware('auth')->group(function () {
     Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
 });
-

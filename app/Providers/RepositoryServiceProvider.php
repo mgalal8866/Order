@@ -14,6 +14,9 @@ use Illuminate\Support\ServiceProvider;
 use App\Repository\DBCategoryRepository;
 use App\Repository\DBWishlistRepository;
 use App\Repository\DBCateoryAppRepository;
+use App\Repository\DBClientPaymentRepository;
+use App\Repository\DBNotifictionRepository;
+use App\Repository\NotifictionRepository;
 use App\Repositoryinterface\CartRepositoryinterface;
 use App\Repositoryinterface\InvoRepositoryinterface;
 use App\Repositoryinterface\UserRepositoryinterface;
@@ -25,6 +28,8 @@ use App\Repositoryinterface\SettingRepositoryinterface;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 use App\Repositoryinterface\WishlistRepositoryinterface;
 use App\Repositoryinterface\CateoryAppRepositoryinterface;
+use App\Repositoryinterface\ClientPaymentRepositoryinterface;
+use App\Repositoryinterface\NotifictionRepositoryinterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -33,18 +38,19 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(UserRepositoryinterface::class,DBUserRepository::class);
-        $this->app->bind(CateoryAppRepositoryinterface::class,DBCateoryAppRepository::class);
-        $this->app->bind(CategoryRepositoryinterface::class,DBCategoryRepository::class);
-        $this->app->bind(ProductRepositoryinterface::class,DBProductRepository::class);
-        $this->app->bind(SettingRepositoryinterface::class,DBSettingRepository::class);
-        $this->app->bind(SliderRepositoryinterface::class,DBSliderRepository::class);
-        $this->app->bind(WishlistRepositoryinterface::class,DBWishlistRepository::class);
-        $this->app->bind(CouponRepositoryinterface::class,DBCouponRepository::class);
-        $this->app->bind(CartRepositoryinterface::class,DBCartRepository::class);
-        $this->app->bind(InvoRepositoryinterface::class,DBInvoRepository::class);
-        $this->app->bind(CommentRepositoryinterface::class,DBCommentRepository::class);
-
+        $this->app->bind(UserRepositoryinterface::class, DBUserRepository::class);
+        $this->app->bind(CateoryAppRepositoryinterface::class, DBCateoryAppRepository::class);
+        $this->app->bind(CategoryRepositoryinterface::class, DBCategoryRepository::class);
+        $this->app->bind(ProductRepositoryinterface::class, DBProductRepository::class);
+        $this->app->bind(SettingRepositoryinterface::class, DBSettingRepository::class);
+        $this->app->bind(SliderRepositoryinterface::class, DBSliderRepository::class);
+        $this->app->bind(WishlistRepositoryinterface::class, DBWishlistRepository::class);
+        $this->app->bind(CouponRepositoryinterface::class, DBCouponRepository::class);
+        $this->app->bind(CartRepositoryinterface::class, DBCartRepository::class);
+        $this->app->bind(InvoRepositoryinterface::class, DBInvoRepository::class);
+        $this->app->bind(CommentRepositoryinterface::class, DBCommentRepository::class);
+        $this->app->bind(NotifictionRepositoryinterface::class, DBNotifictionRepository::class);
+        $this->app->bind(ClientPaymentRepositoryinterface::class, DBClientPaymentRepository::class);
     }
     public function boot(): void
     {

@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Coupon;
+use App\Models\comment;
+use App\Models\Employee;
+use App\Models\UserAdmin;
+use App\Models\DeliveryDetails;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeliveryHeader extends Model
 {
@@ -25,11 +31,11 @@ class DeliveryHeader extends Model
     }
     public function employee()
     {
-        return $this->belongsto(employee::class,'employ_id');
+        return $this->belongsto(Employee::class,'employ_id');
     }
     public function useradmin()
     {
-        return $this->belongsto(useradmin::class,'user_id');
+        return $this->belongsto(UserAdmin::class,'user_id');
     }
     public function comment()
     {

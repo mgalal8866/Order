@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('notifictions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('image');
-            $table->string('body');
-            $table->json('user_id');
-            $table->json('results');
+            $table->string('title')->nullable();
+            $table->string('body')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('user_id')->nullable();
+            $table->json('results')->nullable();
             $table->timestamps();
         });
     }

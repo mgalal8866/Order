@@ -18,7 +18,8 @@ class Coupon extends Model
     public function scopeDateValid($query)
     {
         $today = Carbon::now()->toDateString();
-        return $query->whereDate('start_date', '<=', $today)->whereDate('end_date', '>=', $today);
+
+        return $query->where('start_date', '<=', $today)->where('end_date', '>=', $today);
     }
     public function salesheader()
     {
@@ -28,8 +29,9 @@ class Coupon extends Model
     {
 
         if ($this->getAttribute('used') != 0) {
-            $saleheader = SalesHeader::select('user_id', 'coupon_id')->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
-             $query->Where('used', '>', $saleheader);
+            $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
+            $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
+            $query->Where('used', '>', ($saleheader+$deliveryheader));
         }
         return $query;
 

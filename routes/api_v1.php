@@ -1,21 +1,23 @@
 <?php
 
-use App\Http\Controllers\Api\V1\CategoryController;
+use App\Models\ProductHeader;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\SyncController;
+use App\Http\Controllers\Api\V1\UnitController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\CitiesController;
-use App\Http\Controllers\Api\V1\RegionController;
-use App\Http\Controllers\Api\V1\CateoryAppController;
-use App\Http\Controllers\Api\V1\ProductHeaderController;
-use App\Http\Controllers\Api\V1\SliderController;
-use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CouponController;
-use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\RegionController;
+use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\CommentController;
 use App\Http\Controllers\Api\V1\InvoiceController;
-use App\Http\Controllers\Api\V1\UnitController;
-use App\Models\ProductHeader;
+use App\Http\Controllers\Api\V1\CategoryController;
+use App\Http\Controllers\Api\V1\WishlistController;
+use App\Http\Controllers\Api\V1\CateoryAppController;
+use App\Http\Controllers\Api\V1\NotifictionController;
+use App\Http\Controllers\Api\V1\ProductHeaderController;
+use App\Http\Controllers\Api\V1\ClientPaymentsController;
 
 ################# Start Login & Register #############
 Route::post('/login',   [UserController::class, 'login'])->name('login');
@@ -62,16 +64,19 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('order/getopeninvo', [InvoiceController::class, 'getopeninvo']);
     Route::get('order/invoice/details/{id?}', [InvoiceController::class, 'getinvoicedetails']);
     #################   End Orderplase   #############
+
     #################   Start Coupon #############
     Route::get('checkcoupon/{code?}', [CouponController::class, 'checkcoupon']);
     Route::get('getcoupon', [CouponController::class, 'getall']);
     #################   End Coupon   #############
 
-
     #################   start  category product #############
     Route::get('getcategory', [CategoryController::class, 'getcategory']);
     #################   End  category product   #############
-
+    #################   start  category product #############
+    Route::get('client/notifiction', [NotifictionController::class, 'getnotifiction']);
+    Route::get('client/payment', [ClientPaymentsController::class, 'getclientpayment']);
+    #################   End  category product   #############
     #################   Start  category product   #############
     Route::prefix('unit')->group(function () {
         Route::get('getunit', [UnitController::class, 'getunit']);

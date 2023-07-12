@@ -10,6 +10,7 @@ class UserAdmin  extends Authenticatable
 {
     use  HasRoles ;
     use HasFactory;
+      protected $guard = 'admin';
     protected $guarded = [];
     public function deliveryheader()
     {

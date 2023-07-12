@@ -94,6 +94,8 @@ return [
 'addcart'         => 'اضافة للعربة',
 'yousave'         => 'وفرت',
 'removecart'      => 'حذف',
+'signin'          => 'تسجيل دخول',
+'rememberme'      => 'تذكرنى ؟',
 'limit_order'     => 'حد الطلب'
 
 
