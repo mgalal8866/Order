@@ -16,8 +16,9 @@ class ClientPaymentResource extends JsonResource
             'fromeamount'    => $this->fromeamount ?? '',
             'paidamount'     => $this->paidamount ?? '',
             'newamount'      => $this->newamount ?? '',
-            'pay_note'       => $this->pay_note ?? '',
-            'payment_method' => $this->payment_method ?? ''
+            'pay_note'      => $this->pay_note ?? '',
+            'payment_method' => $this->payment_method ?? '',
+            'created_at'     => $this->created_at ?? ''
         ];
     }
 }
