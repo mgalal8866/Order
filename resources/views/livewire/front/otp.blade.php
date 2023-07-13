@@ -1,5 +1,5 @@
 <div>
-    
+      <x-breadcrumb name="Otp" />
     <section class="log-in-section otp-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row">

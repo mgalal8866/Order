@@ -27,6 +27,7 @@ use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Front\Cart\Cart;
+use App\Http\Livewire\Front\Otp;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\Front\Wishlist;
@@ -124,6 +125,7 @@ Route::get('/', Home::class)->name('home');
 #################### guest Client #####################
 Route::middleware('guest:client')->group(function () {
 Route::get('/login', Login::class)->name('login');
+Route::get('/otp', Otp::class)->name('otp');
 });
 #################### auth Client #####################
 Route::middleware('auth:client')->group(function () {

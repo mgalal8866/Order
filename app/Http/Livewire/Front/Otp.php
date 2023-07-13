@@ -8,6 +8,6 @@ class Otp extends Component
 {
     public function render()
     {
-        return view('livewire.front.otp');
+        return view('livewire.front.otp')->layout('layouts.front-end.layout');
     }
 }
