@@ -87,8 +87,6 @@ Route::middleware(['jwt.verify'])->group(function () {
 });
 
 
-
-
 #################   Start SYNC  #############
 Route::prefix('sync')->group(function () {
     Route::post('/client',       [SyncController::class, 'client']);
