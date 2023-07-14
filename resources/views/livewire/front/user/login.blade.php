@@ -12,53 +12,83 @@
                 </div>
 
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
-                    <div class="log-in-box">
-                        <div class="log-in-title">
-                            <h3>مرحبا بك</h3>
-                            <h4>{{ __('front.login') }}</h4>
+
+                    @if ($showotp == true)
+                        <div id="varr" class="log-in-box">
+                            {{-- style="display:none;" --}}
+                            <div class="log-in-title">
+                                <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
+                                <h5 class="text-content">تم الارسال على رقم
+                                    <span>{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
+                                </h5>
+                            </div>
+                            {{-- <form  wire:submit.prevent="verify()"> --}}
+                            {{-- <div id="otp" class="inputs d-flex flex-row justify-content-center">
+                            <input class="text-center form-control rounded" type="text" id="first" maxlength="1"
+                                placeholder="0">
+                            <input class="text-center form-control rounded" type="text" id="second" maxlength="1"
+                                placeholder="0">
+                            <input class="text-center form-control rounded" type="text" id="third" maxlength="1"
+                                placeholder="0">
+                            <input class="text-center form-control rounded" type="text" id="fourth" maxlength="1"
+                                placeholder="0">
+                            <input class="text-center form-control rounded" type="text" id="fifth" maxlength="1"
+                                placeholder="0">
+                            <input class="text-center form-control rounded" type="text" id="sixth" maxlength="1"
+                                placeholder="0">
+                        </div> --}}
+                            <input type="text" id="verification" class="form-control"
+                                placeholder="Verification code">
+                            <div class="send-box pt-4">
+                                <h5>لم اتلقى كود حتى الان ؟<a href="javascript:void(0)"
+                                        class="theme-color fw-bold">اعاده
+                                        ارسال</a></h5>
+                            </div>
+
+                            <button onclick="verify()" class="btn btn-animation w-100 mt-3" type="submit">تحقق</button>
+                            {{-- </form> --}}
                         </div>
-
-                        <div class="input-box">
-                            <div class="alert alert-success" id="successAuth" style="display: none;"></div>
-
-                            {{-- <form>
-                                <label>Phone Number:</label>
-                                <input type="text" id="number" class="form-control" placeholder="+91 ********">
-                                <div wire:ignore id="recaptcha-container"></div>
-                                <button type="button" class="btn btn-primary mt-3" onclick="sendOTP();">Send
-                                    OTP</button>
-                            </form> --}}
-                            <div class="alert alert-success" id="successOtpAuth" style="display: none;"></div>
-
-                            <form>
-                                <input type="text" id="verification" class="form-control"
-                                    placeholder="Verification code">
-                                <button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify
-                                    code</button>
-                            </form>
-                            <form class="row g-4" wire:submit.prevent="login">
-                                @csrf
-                                <div class="col-12">
-                                    <div class="form-floating theme-form-floating log-in-form">
-                                        <input wire:model.lazy='phone' type="phone" class="form-control"
-                                            id="phone" placeholder="{{ __('front.phone') }}">
-                                        <label for="phone">{{ __('front.phone') }}</label>
+                        {{-- <form>
+                        <input type="text" id="verification" class="form-control" placeholder="Verification code">
+                        <button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify
+                            code</button>
+                    </form> --}}
+                    @else
+                        <div id="login11" class="log-in-box">
+                            <div class="log-in-title">
+                                <h3>مرحبا بك</h3>
+                                <h4>{{ __('front.login') }}</h4>
+                            </div>
+                            <div class="input-box">
+                                <form class="row g-4" wire:submit.prevent="login">
+                                    @csrf
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                            <input style="border: groove" wire:model.lazy='client_fhonewhats'
+                                                type="client_fhonewhats" class="form-control" id="phone"
+                                                placeholder="{{ __('front.phone') }}">
+                                            <label for="phone">{{ __('front.phone') }}</label>
+                                            @error('client_fhonewhats')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div wire:ignore id="recaptcha-container"></div>
-                                </div>
-                                <div class="col-12">
-                                    <button class="btn btn-animation w-100 justify-content-center"
-                                        type="submit">{{ __('front.login') }}</button>
-                                </div>
-                            </form>
+                                    <div class="col-12">
+                                        <div wire:ignore id="recaptcha-container"></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-animation w-100 justify-content-center"
+                                            type="submit">{{ __('front.login') }}</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="sign-up-box">
+                                <h4>Don't have an account?</h4>
+                                <a href="/register">{{ __('front.signup') }}</a>
+                            </div>
                         </div>
-                        <div class="sign-up-box">
-                            <h4>Don't have an account?</h4>
-                            <a href="/register">{{ __('front.signup') }}</a>
-                        </div>
-                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -89,42 +119,36 @@
         };
 
         function render() {
-            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+                size: "invisible"
+            });
             recaptchaVerifier.render();
         }
-        window.addEventListener('sendOTP', e => {
 
+        window.addEventListener('sendOTP', e => {
+            firebase.auth().settings.appVerificationDisabledForTesting = true;
             firebase.auth().signInWithPhoneNumber(e.detail.phone, window.recaptchaVerifier).then(function(
                 confirmationResult) {
                 window.confirmationResult = confirmationResult;
                 coderesult = confirmationResult;
-                Livewire.emit('success', coderesult);
+                // window.livewire.emit('success', coderesult);
+                @this.set('showotp', true);
                 console.log(coderesult);
-                // $("#successAuth").text("Message sent");
-                // $("#successAuth").show();
+
             }).catch(function(error) {
                 $("#error").text(error.message);
                 $("#error").show();
             });
         })
 
-        document.addEventListener("DOMContentLoaded", () => {
-            Livewire.hook('element.updated', (el, component) => {
-                 data = @this.susses;
-            })
-        });
+
 
         function verify() {
             var code = $("#verification").val();
-
             coderesult.confirm(code).then(function(result) {
-                var user = result.user;
-                console.log(user);
-                $("#successOtpAuth").text("Auth is successful");
-                $("#successOtpAuth").show();
+                window.livewire.emit('verify')
             }).catch(function(error) {
-                $("#error").text(error.message);
-                $("#error").show();
+                console.log(error.message);;
             });
         }
     </script>
