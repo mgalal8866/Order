@@ -35,7 +35,7 @@ class SyncController extends Controller
             'client_note'        =>$item['Client_note'],
             'client_code'        =>$item['Client_code'],
             'categoryAPP'        =>$item['CategoryAPP'],
-            'last_active'        =>$item['last_active'],
+            'client_Active'        =>$item['Client_Active'],
             'created_at'         =>$item['caret_data']]);
             $results[$index] =['id'=> $user->id, 'source_id' => $user->source_id] ;
         }
