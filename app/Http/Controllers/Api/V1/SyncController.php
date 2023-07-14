@@ -11,28 +11,27 @@ class SyncController extends Controller
 {
     function client(Request $request) {
         Log::error($request->all());
-        foreach($request['upload'] as $index=>$item){
+        foreach($request->all() as $index=>$item){
 
             $user = User::create([
-            'client_fhonewhats'  =>$item['client_fhonewhats'],
-            'source_id'          => $item['id'],
-            'client_name'        =>$item['client_name'],
-            'client_Balanc'      =>$item['client_Balanc'],
-            'client_points'      =>$item['client_points'],
-            'client_fhoneLeter'  =>$item['client_fhoneLeter'],
-            'client_EntiteNumber'=>$item['client_EntiteNumber'],
-            'region_id'          =>$item['region_id'],
-            'lat_mab'            =>$item['lat_mab'],
-            'long_mab'           =>$item['long_mab'],
-            'client_state'       =>$item['client_state'],
-            'client_Credit_Limit'=>$item['client_Credit_Limit'],
-            'default_Sael'       =>$item['default_Sael'],
-            'client_note'        =>$item['client_note'],
-            'client_code'        =>$item['client_code'],
-            'categoryAPP'        =>$item['categoryAPP'],
-            'source_type'        =>$item['source_type'],
-            'last_active'        =>$item['last_active'],
-            'created_at'         =>$item['created_at']]);
+            'client_fhonewhats'  =>$item->Client_fhoneWhats,
+            'source_id'          =>$item->Client_id,
+            'client_name'        =>$item->Client_name,
+            'client_Balanc'      =>$item->Client_Balanc,
+            'client_points'      =>$item->Client_points,
+            'client_fhoneLeter'  =>$item->Client_fhoneLeter,
+            'client_EntiteNumber'=>$item->Client_EntiteNumber,
+            'region_id'          =>$item->Region_id,
+            'lat_mab'            =>$item->Lat_mab,
+            'long_mab'           =>$item->Long_mab,
+            'client_state'       =>$item->Client_state,
+            'client_Credit_Limit'=>$item->Client_Credit_Limit,
+            'default_Sael'       =>$item->default_Sael,
+            'client_note'        =>$item->Client_note,
+            'client_code'        =>$item->Client_code,
+            'categoryAPP'        =>$item->CategoryAPP,
+            'last_active'        =>$item->last_active,
+            'created_at'         =>$item->caret_data]);
             $results[$index] =['id'=> $user->id, 'source_id' => $user->source_id] ;
         }
         $data = ['users_online'=>User::where('source_id', null)->get(), 'results'=> $results];
