@@ -117,7 +117,7 @@
         function verify() {
             var code = $("#verification").val();
 
-            data.confirm(code).then(function(result) {
+            coderesult.confirm(code).then(function(result) {
                 var user = result.user;
                 console.log(user);
                 $("#successOtpAuth").text("Auth is successful");
