@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Log;
 class SyncController extends Controller
 {
     function client(Request $request) {
+        try {
+
+            // $this->buildXMLHeader();
+
+
         Log::error($request->all());
         foreach($request->all() as $index=>$item){
 
@@ -36,6 +41,10 @@ class SyncController extends Controller
         }
         $data = ['users_online'=>User::where('source_id', null)->get(), 'results'=> $results];
         return  $data;
+    } catch (\Exception $e) {
+
+        Log::error(  $e->getMessage());
+    }
     }
 
     function clienttest() {
