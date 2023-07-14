@@ -5,11 +5,12 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Log;
 
 class SyncController extends Controller
 {
     function client(Request $request) {
+        Log::error($request->all());
         foreach($request['upload'] as $index=>$item){
 
             $user = User::create([
