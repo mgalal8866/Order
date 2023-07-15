@@ -435,16 +435,12 @@
                                                     <a href="/sign-up">{{ __('front.register') }}</a>
 
                                                 </li>
-
-                                                <li class="product-box-contain">
-                                                    <a href="/">{{ __('front.forgotpass') }}</a>
-                                                </li>
                                             @endguest
                                             @auth('client')
                                                 <li class="product-box-contain">
                                                     <a class="dropdown-item" href="{{ route('clientlogout') }}"
                                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                        {{ __('tran.logout') }}</a>
+                                                        {{ __('front.logout') }}</a>
                                                         <form id="logout-form" action="{{ route('clientlogout') }}" method="POST" class="d-none">
                                                             @csrf
                                                         </form>

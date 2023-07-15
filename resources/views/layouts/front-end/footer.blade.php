@@ -10,7 +10,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Every Fresh Products</h5>
+                                <h5>كل اللى تحتاجهة موجود</h5>
                             </div>
                         </div>
 
@@ -20,7 +20,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Free Delivery For Order Over $50</h5>
+                                <h5>توصيل</h5>
                             </div>
                         </div>
 
@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Daily Mega Discounts</h5>
+                                <h5>خصومات</h5>
                             </div>
                         </div>
 
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="service-detail">
-                                <h5>Best Price On The Market</h5>
+                                <h5>افضل سعر</h5>
                             </div>
                         </div>
                     </div>
@@ -78,29 +78,18 @@
 
                 <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
                     <div class="footer-title">
-                        <h4>Categories</h4>
+                        <h4>الاقسام</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
+                            @foreach ( $categorys as $cate)
+
                             <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Vegetables & Fruit</a>
+                                <a href="{{$cate->id}}" class="text-content">{{$cate->category_name}}</a>
                             </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Beverages</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Meats & Seafood</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Frozen Foods</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Biscuits & Snacks</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Grocery & Staples</a>
-                            </li>
+                            @endforeach
+
                         </ul>
                     </div>
                 </div>
@@ -125,7 +114,7 @@
                                 <a href="blog-list.html" class="text-content">Blog</a>
                             </li>
                             <li>
-                                <a href="contact-us.html" class="text-content">Contact Us</a>
+                                <a href="contact-us.html" class="text-content">تواصل معنا</a>
                             </li>
                         </ul>
                     </div>
@@ -133,25 +122,25 @@
 
                 <div class="col-xl-2 col-sm-3">
                     <div class="footer-title">
-                        <h4>Help Center</h4>
+                        <h4>المساعدة</h4>
                     </div>
 
                     <div class="footer-contain">
                         <ul>
                             <li>
-                                <a href="order-success.html" class="text-content">Your Order</a>
+                                <a href="order-success.html" class="text-content">طلباتى</a>
                             </li>
                             <li>
-                                <a href="user-dashboard.html" class="text-content">Your Account</a>
+                                <a href="user-dashboard.html" class="text-content">حسابى</a>
                             </li>
                             <li>
-                                <a href="order-tracking.html" class="text-content">Track Order</a>
+                                <a href="order-tracking.html" class="text-content">تتبع الطلب</a>
                             </li>
                             <li>
-                                <a href="wishlist.html" class="text-content">Your Wishlist</a>
+                                <a href="wishlist.html" class="text-content">المفضلة</a>
                             </li>
                             <li>
-                                <a href="search.html" class="text-content">Search</a>
+                                <a href="search.html" class="text-content">البحث</a>
                             </li>
                             <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
@@ -162,7 +151,7 @@
 
                 <div class="col-xl-3 col-lg-4 col-sm-6">
                     <div class="footer-title">
-                        <h4>Contact Us</h4>
+                        <h4>تواصل معنا</h4>
                     </div>
 
                     <div class="footer-contact">
@@ -177,7 +166,7 @@
                                 </div>
                             </li>
 
-                            <li>
+                            {{-- <li>
                                 <div class="footer-number">
                                     <i data-feather="mail"></i>
                                     <div class="contact-number">
@@ -185,10 +174,10 @@
                                         <h5>fastkart@hotmail.com</h5>
                                     </div>
                                 </div>
-                            </li>
+                            </li> --}}
 
                             <li class="social-app mb-0">
-                                <h5 class="mb-2 text-content">Download App :</h5>
+                                <h5 class="mb-2 text-content">تحميل التطبيق :</h5>
                                 <ul>
                                     <li class="mb-0">
                                         <a href="https://play.google.com/store/apps" target="_blank">
@@ -212,14 +201,14 @@
 
         <div class="sub-footer section-small-space">
             <div class="reserve">
-                <h6 class="text-content">©2022 Fastkart All rights reserved</h6>
+                <h6 class="text-content">©2023 Mohamed Galal All rights reserved</h6>
             </div>
 
-            <div class="payment">
+            {{-- <div class="payment">
                 <img src="{{asset('front/assets/images/payment/1.png')}}" class="blur-up lazyload" alt="">
-            </div>
+            </div> --}}
 
-            <div class="social-link">
+            {{-- <div class="social-link">
                 <h6 class="text-content">Stay connected :</h6>
                 <ul>
                     <li>
@@ -243,7 +232,7 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </div> --}}
         </div>
     </div>
 </footer>
