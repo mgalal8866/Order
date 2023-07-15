@@ -1,4 +1,5 @@
 <div>
+    <x-breadcrumb name="Login" />
     <section class="log-in-section section-b-space">
         <div class="container-fluid-lg w-100">
             <div class="row">
@@ -43,7 +44,8 @@
                                     <div class="log-in-title">
                                         <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
                                         <h5 class="text-content">تم الارسال على رقم
-                                            <span dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
+                                            <span
+                                                dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
                                         </h5>
                                     </div>
                                     <input type="text" id="verification" class="form-control"
@@ -60,7 +62,8 @@
                                 <form class="row g-4" wire:submit.prevent="registerion">
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <input id="namecust" type="text" class="form-control" wire:model.defer="namecust">
+                                            <input id="namecust" type="text" class="form-control"
+                                                wire:model.defer="namecust">
                                             <label for="namecust">{{ __('front.namecust') }}</label>
                                         </div>
                                     </div>
@@ -101,7 +104,7 @@
 
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <select  id="nashat" class="form-control" wire:model="selectnashat">
+                                            <select id="nashat" class="form-control" wire:model="selectnashat">
                                                 <option value="0">اختار النشاط</option>
                                                 @foreach ($nashat as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
