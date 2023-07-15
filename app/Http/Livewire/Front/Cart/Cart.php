@@ -4,10 +4,12 @@ namespace App\Http\Livewire\Front\Cart;
 
 use App\Models\Coupon;
 use Livewire\Component;
-use App\Models\ProductDetails;
-use App\Models\Cart as ModelsCart;
 use App\Models\deferred;
 use App\Models\Wishlist;
+use App\Models\SalesHeader;
+use App\Models\DeliveryHeader;
+use App\Models\ProductDetails;
+use App\Models\Cart as ModelsCart;
 use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
@@ -36,13 +38,27 @@ class Cart extends Component
     }
     public function usecoupon()
     {
-        $coupon = Coupon::where('code', $this->coupon)->first();
-        if ($coupon) {
-            $this->coupondisc = $coupon->value;
-            $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
-        } else {
+        $coupon = Coupon::where('code',$this->coupon)->DateValid()->first();
+        if ($coupon != null)
+            if ($coupon->used > 0) {
+                $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
+                $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
+                $coupon=$coupon->where('code', $this->coupon)->DateValid()->Where('used', '>', ($saleheader + $deliveryheader))->first();
+                $this->coupondisc = $coupon->value;
+                $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
+            }else{
+
+                $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
+            }
             $this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
-        }
+
+        // $coupon = Coupon::where('code', $this->coupon)->first();
+        // if ($coupon) {
+        //     $this->coupondisc = $coupon->value;
+        //     $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
+        // } else {
+        //     $this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
+        // }
     }
     public function pluse($index)
     {
@@ -82,7 +98,7 @@ class Cart extends Component
         $this->cartlist = ProductDetails::whereHas('cart', function ($q) {
             return  $q->where('user_id', Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('productheader')->get();
-  
+
         $this->culc();
         return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');
     }
