@@ -2625,8 +2625,6 @@ return array(
     'Illuminate\\View\\ViewFinderInterface' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewFinderInterface.php',
     'Illuminate\\View\\ViewName' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewName.php',
     'Illuminate\\View\\ViewServiceProvider' => $vendorDir . '/laravel/framework/src/Illuminate/View/ViewServiceProvider.php',
-    'Jenssegers\\Date\\Date' => $vendorDir . '/jenssegers/date/src/Date.php',
-    'Jenssegers\\Date\\DateServiceProvider' => $vendorDir . '/jenssegers/date/src/DateServiceProvider.php',
     'Laravel\\Sail\\Console\\AddCommand' => $vendorDir . '/laravel/sail/src/Console/AddCommand.php',
     'Laravel\\Sail\\Console\\Concerns\\InteractsWithDockerComposeServices' => $vendorDir . '/laravel/sail/src/Console/Concerns/InteractsWithDockerComposeServices.php',
     'Laravel\\Sail\\Console\\InstallCommand' => $vendorDir . '/laravel/sail/src/Console/InstallCommand.php',
