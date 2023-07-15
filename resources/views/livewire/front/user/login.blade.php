@@ -119,7 +119,7 @@
 
         function render() {
             window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-                size: "invisible"
+                // size: "invisible"
             });
             recaptchaVerifier.render();
         }
