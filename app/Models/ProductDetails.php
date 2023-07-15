@@ -94,8 +94,8 @@ class ProductDetails extends Model
     public function scopeCustunit($query){
         $units = $query->units($this->product_header_id)->get();
         // return $this->productd_UnitType == 2 ?   $this->productd_size  . ' X ' .  $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name  : ($this->productd_UnitType == 3 ?''. $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X"  . $this->unit->unit_name   . ' = ' .$units[$this->productd_UnitType - 2]->unit->unit_name  : $this->unit->unit_name);
-        return $this->productd_UnitType == 2 ?   ("<p> $this->productd_size X  {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong></p>")
-        : ($this->productd_UnitType == 3 ? ("<p> {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong></p>"): "<p><strong>   {$this->unit->unit_name} </strong></p>");
+        return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
+        : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>"): "<strong>   {$this->unit->unit_name} </strong>");
 
 
 
