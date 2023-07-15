@@ -432,7 +432,7 @@
                                                     <a href="/login">{{ __('front.login') }}</a>
                                                 </li>
                                                 <li class="product-box-contain">
-                                                    <a href="/">{{ __('front.register') }}</a>
+                                                    <a href="/sign-up">{{ __('front.register') }}</a>
 
                                                 </li>
 

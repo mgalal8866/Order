@@ -30,6 +30,7 @@ use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Otp;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Front\User\Login;
+use App\Http\Livewire\Front\User\Register;
 use App\Http\Livewire\Front\Wishlist;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
@@ -124,7 +125,8 @@ Route::get('/moveToseleheader', function () {
 Route::get('/', Home::class)->name('home');
 #################### guest Client #####################
 Route::middleware('guest:client')->group(function () {
-Route::get('/login', Login::class)->name('login');
+Route::get('/login', Login::class)->name('frontlogin');
+Route::get('/sign-up',Register::class)->name('signup');
 Route::get('/otp', Otp::class)->name('otp');
 });
 #################### auth Client #####################
@@ -139,7 +141,7 @@ Route::get('/wishlist', Wishlist::class)->name('wishlist');
 ########################################    #############
 #################### Dashboard  #####################
 Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
-    Route::get('/login', [UserAdminController::class,'login'])->name('login');
+    Route::get('/login', [UserAdminController::class,'login'])->name('dashlogin');
     Route::post('/postlogin', [UserAdminController::class,'postlogin'])->name('postlogin');
     // Auth::routes();
 });

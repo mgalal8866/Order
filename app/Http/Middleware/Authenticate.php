@@ -12,6 +12,17 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-        return $request->expectsJson() ? null : route('login');
+        if (!$request->expectsJson()) {
+
+            if (in_array('auth:client', $request->route()->middleware())) {
+                return route('frontlogin');
+            }
+            if (in_array('auth:admin', $request->route()->middleware())) {
+                return route('dashlogin');
+            }
+            return route('dashlogin');
+        }
+    //    dd(auth()->guard);
+    //     return $request->expectsJson() ? null : route('login');
     }
 }

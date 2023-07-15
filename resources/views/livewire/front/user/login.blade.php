@@ -6,8 +6,7 @@
             <div class="row">
                 <div class="col-xxl-6 col-xl-5 col-lg-6 d-lg-block d-none ms-auto">
                     <div class="image-contain">
-                        <img src="https://themes.pixelstrap.com/fastkart/assets/images/inner-page/log-in.png"
-                            class="img-fluid" alt="">
+                        <img src="{{ asset('asset/images/log-in.png') }}" class="img-fluid" alt="">
                     </div>
                 </div>
 
@@ -19,7 +18,7 @@
                             <div class="log-in-title">
                                 <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
                                 <h5 class="text-content">تم الارسال على رقم
-                                    <span>{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
+                                    <span dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
                                 </h5>
                             </div>
                             {{-- <form  wire:submit.prevent="verify()"> --}}
@@ -36,7 +35,7 @@
                                 placeholder="0">
                             <input class="text-center form-control rounded" type="text" id="sixth" maxlength="1"
                                 placeholder="0">
-                        </div> --}}
+                            </div> --}}
                             <input type="text" id="verification" class="form-control"
                                 placeholder="Verification code">
                             <div class="send-box pt-4">
@@ -52,7 +51,7 @@
                         <input type="text" id="verification" class="form-control" placeholder="Verification code">
                         <button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify
                             code</button>
-                    </form> --}}
+                            </form> --}}
                     @else
                         <div id="login11" class="log-in-box">
                             <div class="log-in-title">
@@ -133,7 +132,7 @@
                 coderesult = confirmationResult;
                 // window.livewire.emit('success', coderesult);
                 @this.set('showotp', true);
-                console.log(coderesult);
+                // console.log(coderesult);
 
             }).catch(function(error) {
                 $("#error").text(error.message);
