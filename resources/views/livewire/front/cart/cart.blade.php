@@ -1,5 +1,5 @@
 <div>
-    <x-breadcrumb name="Cart" />
+    <x-breadcrumb name="العربة" />
     <section class="cart-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row g-sm-5 g-3">
@@ -24,13 +24,22 @@
                                                             </li>
 
 
-                                                            <li class="text-content"><span
-                                                                    class="text-title">{{ __('tran.unit') }} :
-                                                                </span>{{ $c['unit']['unit_name'] }}</li>
-
-                                                            <li class="text-content"><span class="text-title"> </span>
+                                                            <li class="text-content">{{ __('tran.unit') }} :
+                                                                <span  class="text-title">
+                                                                </span>  {!! $c->Custunit() !!}
                                                             </li>
-                                                            <li>
+
+                                                            @if ($c['isoffer'] == 1)
+                                                                <li class="text-content text-danger">
+                                                                    {{-- <span class="text-title ">تاريخ انتهاء العرض : </span>({{ Carbon\Carbon::createFromTimeString($c['EndOferDate'])->translatedFormat('l j F Y') }}) --}}
+                                                                    <span class="text-title ">تاريخ انتهاء العرض :
+                                                                    </span>({{ $c['EndOferDate'] }})
+                                                                </li>
+                                                            @endif
+
+                                                            {{-- <li class="text-content"><span class="text-title"> </span>
+                                                            </li> --}}
+                                                            {{-- <li>
                                                                 <h5 class="text-content d-inline-block">
                                                                     {{ __('tran.price') }} :</h5>
                                                                 <span>{{ $c['productd_Sele2'] }}</span>
@@ -41,7 +50,7 @@
                                                                 <h5 class="saving theme-color">{{ __('tran.yousave') }}
                                                                     : {{ $c['productd_Sele1'] - $c['productd_Sele2'] }}
                                                                 </h5>
-                                                            </li>
+                                                            </li> --}}
 
                                                             {{-- <li class="quantity-price-box">
                                                             <div class="cart_qty">
@@ -60,11 +69,11 @@
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                        </li> --}}
+                                                        </li>
 
                                                             <li>
                                                                 <h5>Total: $35.10</h5>
-                                                            </li>
+                                                            </li> --}}
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -72,10 +81,21 @@
 
                                             <td class="price">
                                                 <h4 class="table-title text-content">{{ __('tran.price') }}</h4>
-                                                <h5> {{ $c['productd_Sele2'] }}<del
-                                                        class="text-content">{{ $c['productd_Sele1'] }}</del></h5>
-                                                <h6 class="theme-color">{{ __('tran.yousave') }} :
-                                                    {{ $c['productd_Sele1'] - $c['productd_Sele2'] }}</h6>
+                                                <h5>
+                                                    @if ($c['isoffer'] == 1)
+                                                        {{ $c['productd_Sele2'] }}{{ $currency }}
+                                                        <del class="text-content">
+                                                            {{ $c['productd_Sele1'] }}{{ $currency }} </del>
+                                                    @else
+                                                        {{ $c['productd_Sele1'] }}{{ $currency }}
+                                                    @endif
+
+                                                </h5>
+                                                @if ($c['isoffer'] == 1)
+                                                    <h6 class="theme-color">{{ __('tran.yousave') }} :
+                                                        {{ $c['productd_Sele1'] - $c['productd_Sele2'] }}{{ $currency }}
+                                                    </h6>
+                                                @endif
                                             </td>
 
                                             <td class="quantity">
@@ -90,7 +110,8 @@
                                                             </button>
                                                             <input class="form-control input-number qty-input"
                                                                 type="text" name="quantity"
-                                                                wire:model="cartlist.{{ $index }}.cart.0.qty">
+                                                                value="{{ $c['cart'][0]['qty'] }}">
+                                                            {{-- wire:model="cartlist.{{ $index }}.cart.0.qty"> --}}
                                                             <button type="button" class="btn "
                                                                 wire:click.prevent="pluse('{{ $index }}')"
                                                                 data-field="">
@@ -103,14 +124,17 @@
 
                                             <td class="subtotal">
                                                 <h4 class="table-title text-content">{{ __('tran.subtotal') }}</h4>
-                                                <h5>{{ $c['cart'][0]['qty'] * $c['productd_Sele2'] }}</h5>
+
+                                                <h5>{{ $c['isoffer'] == 1 ? $c['cart'][0]['qty'] * $c['productd_Sele2'] : $c['cart'][0]['qty'] * $c['productd_Sele1'] }}
+                                                    {{ $currency }}</h5>
                                             </td>
 
                                             <td class="save-remove">
                                                 <h4 class="table-title text-content">Action</h4>
-                                                <a class="save notifi-wishlist" href="javascript:void(0)">Save for
-                                                    later</a>
-                                                <a class=" close_button"
+                                                <a class="save" href=""
+                                                    wire:click.prevent="saveforlater('{{ $c['id'] }}')">حفظ
+                                                    للمفضلة</a>
+                                                <a class="" href=""
                                                     wire:click.prevent="removefromcart('{{ $index }}')">{{ __('tran.removecart') }}</a>
                                             </td>
                                         </tr>
@@ -124,12 +148,12 @@
                 <div class="col-xxl-3">
                     <div class="summery-box p-sticky">
                         <div class="summery-header">
-                            <h3>Cart Total</h3>
+                            <h3></h3>
                         </div>
 
                         <div class="summery-contain">
                             <div class="coupon-cart">
-                                <h6 class="text-content mb-2">Coupon Apply</h6>
+                                <h6 class="text-content mb-2">تطبيق الكوبون</h6>
                                 <div class="mb-3 coupon-box input-group">
                                     <input type="text" wire:model="coupon" class="form-control"
                                         id="exampleFormControlInput1" placeholder="ادخل الكوبون"
@@ -138,46 +162,71 @@
                                         <button class="btn-apply" wire:click.prevent="removecoupon()">X</button>
                                     @else
                                         <button class="btn-apply" wire:click.prevent="usecoupon()"
-                                            {{ $coupondisc > 0 ? 'disabled' : '' }}>Apply</button>
+                                            {{ $coupondisc > 0 ? 'disabled' : '' }}>تطبيق</button>
                                     @endif
                                 </div>
                             </div>
                             <ul>
                                 <li>
-                                    <h4>Subtotal</h4>
-                                    <h4 class="price">$125.65</h4>
+                                    <h4>طريقه الدفع</h4>
+                                    <h4 class="price">
+                                        <select wire:model="selectdeferreds">
+                                            <option value="0">كاش</option>
+                                            @if ($deferreds == 1)
+                                                <option value="1">اجل</option>
+                                            @endif
+                                        </select>
+                                    </h4>
                                 </li>
+                                <li>
+                                    <h4>اجمالى الاصناف</h4>
+                                    <h4 class="price"> {{ $subtotal }}{{ $currency }}</h4>
+                                </li>
+                                @if ($totaloffer != 0)
+                                    <li>
+                                        <h4>اجمالى التوفير</h4>
+                                        <h4 class="price"> {{ $totaloffer }}{{ $currency }}</h4>
+                                    </li>
+                                @endif
 
                                 <li>
-                                    <h4>Coupon Discount</h4>
-                                    <h4 class="price">(-) {{ $coupondisc }}</h4>
+                                    <h4>خصم الكوبون</h4>
+                                    <h4 class="price">(-) {{ $coupondisc }}{{ $currency }}</h4>
                                 </li>
 
                                 <li class="align-items-start">
-                                    <h4>Shipping</h4>
-                                    <h4 class="price text-end">$6.90</h4>
+                                    <h4>التوصيل</h4>
+                                    <h4 class="price text-end">0 {{ $currency }}</h4>
                                 </li>
                             </ul>
                         </div>
 
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
-                                <h4>Total (USD)</h4>
-                                <h4 class="price theme-color">$132.58</h4>
+                                <h4>الاجمالى ({{ $currency }})</h4>
+                                <h4 class="price theme-color">{{ $subtotal - $coupondisc }}{{ $currency }}</h4>
                             </li>
                         </ul>
 
                         <div class="button-group cart-button">
                             <ul>
-                                <li>
-                                    <button onclick="location.href = 'checkout.html';"
-                                        class="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
-                                </li>
+
+                                @if ($setting->minimum_products > count($cartlist))
+                                    <li>
+                                        <button class="btn btn-info text-danger fw-bold"> يجب اختيار المنتجات حسب الحد
+                                            الادنى</button>
+                                    </li>
+                                @else
+                                    <li>
+                                        <button onclick="location.href = 'checkout.html';"
+                                            class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
+                                    </li>
+                                @endif
 
                                 <li>
-                                    <button onclick="location.href = 'index.html';"
+                                    <button onclick="location.href = '/';"
                                         class="btn btn-light shopping-button text-dark">
-                                        <i class="fa-solid fa-arrow-left-long"></i>Return To Shopping</button>
+                                        <i class="fa-solid fa-arrow-left-long"></i>الرجوع للتسوق</button>
                                 </li>
                             </ul>
                         </div>
@@ -190,42 +239,41 @@
 
 @push('jslive')
     <script>
-
         window.addEventListener('notifi', event => {
             $.notify({
                 icon: "fa fa-check",
-                title: "Success!",
+                // title: "Success!",
                 message: event.detail.message,
             }, {
                 element: "body",
                 position: null,
-                type: "success",
+                type: event.detail.type,
                 allow_dismiss: true,
-                newest_on_top: false,
+                newest_on_top: true,
                 showProgressbar: true,
                 placement: {
                     from: "top",
-                    align: "right",
+                    align: "center",
                 },
                 offset: 20,
                 spacing: 10,
                 z_index: 1031,
-                delay: 5000,
+                delay: 600,
                 animate: {
                     enter: "animated fadeInDown",
                     exit: "animated fadeOutUp",
                 },
                 icon_type: "class",
-                // template: '<div data-notify="container" class="col-xxl-3 col-lg-5 col-md-6 col-sm-7 col-12 alert alert-{0}" role="alert">' +
-                //     '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
-                //     '<span data-notify="icon"></span> ' +
-                //     '<span data-notify="title">{1}</span> ' +
-                //     '<span data-notify="message">{2}</span>' +
-                //     '<div class="progress" data-notify="progressbar">' +
-                //     '<div class="progress-bar progress-bar-info progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
-                //     "</div>" +
-                //     '<a href="{3}" target="{4}" data-notify="url"></a>' +
-                //     "</div>",
+                template: '<div data-notify="container" class="col-xxl-3 col-lg-5 col-md-6 col-sm-7 col-12 alert alert-{0}" role="alert">' +
+                    '<button type="button" aria-hidden="true" class="btn-close" data-notify="dismiss"></button>' +
+                    '<span data-notify="icon"></span> ' +
+                    '<span data-notify="title">{1}</span> ' +
+                    '<span data-notify="message">{2}</span>' +
+                    '<div class="progress" data-notify="progressbar">' +
+                    '<div class="progress-bar progress-bar-info progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+                    "</div>" +
+                    '<a href="{3}" target="{4}" data-notify="url"></a>' +
+                    "</div>",
             });
         })
     </script>

@@ -1,15 +1,15 @@
 <div>
 
     <div class="onhover-dropdown header-badge">
-        <button type="button" class="btn p-0 position-relative header-wishlist">
+        <a href="/cart" class="btn p-0 position-relative header-wishlist">
             <div  wire:ignore>   <i data-feather="shopping-cart"></i> </div>
             <span class="position-absolute top-0 start-100 translate-middle badge">{{ $count }}
             </span>
-        </button>
+        </a>
         @php
-        $total = 0;
+        // $total = 0;
         @endphp
-        <div class="onhover-div">
+        {{-- <div class="onhover-div">
             <ul class="cart-list">
                 @foreach ($cartlist as $item)
                     <li class="product-box-contain">
@@ -49,7 +49,7 @@
                     class="btn btn-sm cart-button theme-bg-color
                     text-white">{{ __('front.checkout') }}</a>
             </div>
-        </div>
+        </div> --}}
     </div>
 
 </div>

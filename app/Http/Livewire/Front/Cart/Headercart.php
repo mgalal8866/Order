@@ -11,7 +11,7 @@ class Headercart extends Component
     public  $cartlist = [],$count;
     public function removefromcart($id){
 
-        Cart::where('product_id',$id)->delete();
+        // Cart::where('product_id',$id)->delete();
     }
     public function render()
     {
@@ -24,7 +24,7 @@ class Headercart extends Component
         // })->with('unit')->with('cart')->with('unit')->with('productheader')->get();
 
         $this->count =$c->count();
-        $this->cartlist = $c;
+        // $this->cartlist = $c;
         // dd($this->cartlist);
         return view('livewire.front.cart.headercart');
     }

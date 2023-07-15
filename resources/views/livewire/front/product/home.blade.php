@@ -1,4 +1,4 @@
-<div>   
+<div>
     @include('layouts.front-end.sliderbr')
 
     <section class="section-b-space">
@@ -60,7 +60,7 @@
                                             </h6>
                                         </a>
 
-                                        <h6 class="sold weight text-content fw-normal"> {{ $product->unit->unit_name }}
+                                        <h6 class="sold weight text-content fw-normal"> {!!$product->Custunit($product->product_header_id) !!}
                                         </h6>
 
                                         <h6 class="price theme-color">{{ $product->productd_Sele1 }} جم</h6>
