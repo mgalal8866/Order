@@ -67,6 +67,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function getinvoicedetailsopen($id)
     {
+    
         return DeliveryDetails::whereSaleHeaderId($id)->with('productdetails')->get();
     }
 }

@@ -28,8 +28,12 @@ class InvoiceController extends Controller
     {
         return Resp(new SalesCollectionResource($this->invoRepositry->getcloseinvo()), 'success', 200, true);
     }
-    public function getinvoicedetails($id)
+    public function getcloseinvodetails($id)
     {
-        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getinvoicedetails($id)), 'success', 200, true);
+        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getinvoicedetailsclose($id)), 'success', 200, true);
+    }
+    public function getopeninvoedetails($id)
+    {
+        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getinvoicedetailsopen($id)), 'success', 200, true);
     }
 }

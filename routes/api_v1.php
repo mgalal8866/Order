@@ -61,7 +61,8 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::post('order/comment', [CommentController::class, 'addcomment']);
     Route::get('order/getcloseinvo', [InvoiceController::class, 'getcloseinvo']);
     Route::get('order/getopeninvo', [InvoiceController::class, 'getopeninvo']);
-    Route::get('order/invoice/details/{id?}', [InvoiceController::class, 'getinvoicedetails']);
+    Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getcloseinvodetails']);
+    Route::get('order/openinvo/details/{id?}', [InvoiceController::class, 'getopeninvoedetails']);
     #################   End Orderplase   #############
 
     #################   Start Coupon #############
