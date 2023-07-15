@@ -110,7 +110,7 @@
                                                 <h4 class="table-title text-content">Action</h4>
                                                 <a class="save notifi-wishlist" href="javascript:void(0)">Save for
                                                     later</a>
-                                                <a class="remove close_button"
+                                                <a class=" close_button"
                                                     wire:click.prevent="removefromcart('{{ $index }}')">{{ __('tran.removecart') }}</a>
                                             </td>
                                         </tr>

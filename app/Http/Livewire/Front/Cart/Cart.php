@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire\Front\Cart;
 
-use App\Models\Cart as ModelsCart;
 use App\Models\Coupon;
-use App\Models\ProductDetails;
 use Livewire\Component;
+use App\Models\ProductDetails;
+use App\Models\Cart as ModelsCart;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
 {
@@ -44,7 +45,7 @@ class Cart extends Component
     {
 
         $this->cartlist = ProductDetails::whereHas('cart',function ($q) {
-            // return   $q->where('user_id',1);
+            return  $q->where('user_id',Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('unit')->with('productheader')->get()->toarray();
         // dd($this->cartlist);
         return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');

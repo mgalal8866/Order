@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Front;
 
-use App\Models\ProductDetails;
-use App\Models\Wishlist as ModelsWishlist;
 use Livewire\Component;
+use App\Models\ProductDetails;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Wishlist as ModelsWishlist;
 
 class Wishlist extends Component
 {
@@ -16,7 +17,7 @@ class Wishlist extends Component
     public function render()
     {
         $wish = ProductDetails::whereHas('wishlist',function ($q) {
-            // return   $q->where('user_id',1);
+            return  $q->where('user_id',Auth::guard('client')->user()->id);
         })->with('unit')->with('productheader')->get();
         return view('livewire.front.wishlist',['wish'=>$wish])->layout('layouts.front-end.layout');
 
