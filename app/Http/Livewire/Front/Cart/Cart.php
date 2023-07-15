@@ -45,8 +45,8 @@ class Cart extends Component
                 $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
                 $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
                 $ss = $saleheader + $deliveryheader;
-                $coupon->where('code', $this->coupon)->DateValid()->Where('used', '>',  $ss)->first();
-                Log::alert('livewirecoupon',['sele'=>$saleheader ,'deliv'=> $deliveryheader,'code'=>$coupon]);
+                $mm =$coupon->where('code', $this->coupon)->Where('used', '>',  $ss)->DateValid()->first();
+                Log::alert('livewirecoupon',['sele'=>$saleheader ,'deliv'=> $deliveryheader,'code'=>$mm ]);
                 $this->coupondisc = $coupon->value;
                 return $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
             } else {
