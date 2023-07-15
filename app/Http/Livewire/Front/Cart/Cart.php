@@ -41,13 +41,13 @@ class Cart extends Component
         $coupon = Coupon::where('code', $this->coupon)->DateValid()->first();
         if ($coupon != null)
             if ($coupon->used > 0) {
-                $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
-                $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
-                $coupon->where('code', $this->coupon)->DateValid()->Where('used', '>=', ($saleheader + $deliveryheader))->first();
+                $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
+                $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
+                $coupon->where('code', $this->coupon)->DateValid()->Where('used', '>', ($saleheader + $deliveryheader))->first();
                 $this->coupondisc = $coupon->value;
                 return $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
             } else {
-              return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
+              return  $this->dispatchBrowserEvent('notifi', ['message' => '- تم اضافه الكوبون ', 'type' => 'success']);
             }
             return$this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
 
