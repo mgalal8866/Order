@@ -90,9 +90,13 @@ Route::middleware(['jwt.verify'])->group(function () {
 
 #################   Start SYNC  #############
 Route::prefix('sync')->group(function () {
-    Route::post('/client',       [SyncController::class, 'client']);
-    Route::post('/update/client',       [SyncController::class, 'updateclient']);
-    Route::get('/upload/products',       [SyncController::class, 'uploadproducts']);
-    Route::get('/category_app', [SyncController::class, 'categoryapp']);
+    Route::post('/client',        [SyncController::class, 'client']);
+    Route::post('/update/client', [SyncController::class, 'updateclient']);
+    Route::post('/upload/products/header',[SyncController::class, 'uploadproductsheader']);
+    Route::post('/upload/products/details',[SyncController::class, 'uploadproductsdetails']);
+    Route::post('/upload/units',   [SyncController::class, 'uploadunits']);
+    Route::post('/upload/category',[SyncController::class, 'uploadcategory']);
+    Route::post('/upload/sales/header',[SyncController::class, 'uploadsalseheader']);
+    Route::post('/upload/sales/details',[SyncController::class, 'uploadsalsedetails']);
 });
 #################   End  SYNC   #############
