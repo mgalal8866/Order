@@ -19,8 +19,13 @@ class ProductHeaderController extends Controller
     {
       return  $this->productRepositry->getoffers();
     }
+    // public function searchproduct($search=null)
     public function searchproduct($search)
     {
+        // if($search==null)
+        // return [];
+
+
       return  $this->productRepositry->searchproduct($search);
     }
  }

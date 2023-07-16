@@ -41,7 +41,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
         Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
         Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
-        Route::get('product/search/{search}', [ProductHeaderController::class, 'searchproduct']);
+        Route::get('product/search/{search?}', [ProductHeaderController::class, 'searchproduct']);
     #################   End product   #############
 
     #################   Start Wishlist #############
@@ -91,7 +91,8 @@ Route::middleware(['jwt.verify'])->group(function () {
 #################   Start SYNC  #############
 Route::prefix('sync')->group(function () {
     Route::post('/client',       [SyncController::class, 'client']);
-    Route::get('/clientget',       [SyncController::class, 'clienttest']);
+    Route::post('/update/client',       [SyncController::class, 'updateclient']);
+    Route::get('/upload/products',       [SyncController::class, 'uploadproducts']);
     Route::get('/category_app', [SyncController::class, 'categoryapp']);
 });
 #################   End  SYNC   #############
