@@ -56,11 +56,16 @@ class SyncController extends Controller
                     'created_at'          => $item['caret_data']
                 ]);
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
+            logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+           
             }
 
             $data = ['users_online' =>   User::where('source_id', null)->get() ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
+            
             return  $data;
         } catch (\Exception $e) {
+            logsync::create(['type' => "Error", 'data'=> null,  'massage' =>  json_encode($e->getMessage())]);
+         
             Log::error($e->getMessage());
         }
     }
