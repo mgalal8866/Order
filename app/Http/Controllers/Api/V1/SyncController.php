@@ -145,7 +145,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   unit::create([
-                    "id"            => $item['id'],
+                    "id"            => $item['unit_id'],
                     "unit_name"     => $item['unit_name'],
                     "unit_note"     => $item['unit_note'],
                     "unit_active"   => $item['unit_active'],
