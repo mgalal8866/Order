@@ -41,7 +41,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
         Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
         Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
-        Route::get('product/search/{search?}', [ProductHeaderController::class, 'searchproduct']);
+        Route::get('product/search/{search}', [ProductHeaderController::class, 'searchproduct']);
     #################   End product   #############
 
     #################   Start Wishlist #############
