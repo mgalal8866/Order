@@ -93,9 +93,9 @@ class SyncController extends Controller
                     'id'                => $item['id'],
                     'product_name'      => $item['product_name'],
                     'product_category'  => $item['product_category'],
-                    'product_acteve'    => $item['product_acteve'],
-                    'product_isscale'   => $item['product_isscale'],
-                    'product_online'    => $item['product_online'],
+                    'product_acteve'    => $item['product_acteve']== true ?1:0,
+                    'product_isscale'   => $item['product_isscale']== true ?1:0,
+                    'product_online'    => $item['product_online'] == true ?1:0,
                     'product_tax'       => $item['product_tax'],
                     'product_limit'     => $item['product_limit'],
                     'user_id'           => $item['user_id'],
@@ -130,8 +130,8 @@ class SyncController extends Controller
                     'productd_fast_Sele' => $item['productd_fast_Sele'],
                     'productd_UnitType'  => $item['productd_UnitType'],
                     'productd_image'     => $image,
-                    'isoffer'            => $item['isoffer'],
-                    'productd_online'    => $item['productd_online'],
+                    'isoffer'            => $item['isoffer']== true ?1:0,
+                    'productd_online'    => $item['productd_online']== true ?1:0,
                     'maxqty'             => $item['maxqty'],
                     'EndOferDate'        => $item['EndOferDate'],
                 ]);
@@ -149,11 +149,11 @@ class SyncController extends Controller
            Log::info('upload UNIT client SyncController', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   unit::create([
+                $uu =   unit::updateOrCreate([ "id" => $item['unit_id']],[
                     "id"            => $item['unit_id'],
                     "unit_name"     => $item['unit_name'],
                     "unit_note"     => $item['unit_note'],
-                    "unit_active"   => $item['unit_Active'],
+                    "unit_active"   => ($item['unit_Active'] == true) ?1:($item['unit_Active'] == false?0:$item['unit_Active']),
                     "user_id"       => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -177,7 +177,7 @@ class SyncController extends Controller
                     "category_name"   => $item['Category_name'],
                     "image"           => $image,
                     "category_note"   => $item['Category_note'],
-                    "category_active" => ($item['Category_Active'] == true ?1:0),
+                    "category_active" => ($item['Category_Active'] == true) ?1:($item['Category_Active'] == false?0:$item['Category_Active']),
                     "user_id"         => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($succ), 'massage' => null]);
