@@ -89,7 +89,7 @@ class ProductDetails extends Model
     public function scopeGetoffers($query)
     {
         $today = Carbon::now()->toDateString();
-        return $query->where('isoffer','1')->where('EndOferDate' ,'>=' , $today )->with('productheader')->with('unit')->with('stock')->with('wishlist');
+        return $query->where('isoffer','1')->where('productd_online', 1)->where('EndOferDate' ,'>=' , $today )->with('productheader')->with('unit')->with('stock')->with('wishlist');
     }
     public function scopeCustunit($query){
         $units = $query->units($this->product_header_id)->get();
