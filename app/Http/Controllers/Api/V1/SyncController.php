@@ -177,7 +177,7 @@ class SyncController extends Controller
                     "category_name"   => $item['Category_name'],
                     "image"           => $image,
                     "category_note"   => $item['Category_note'],
-                    "category_active" => $item['Category_Active'],
+                    "category_active" => ($item['Category_Active'] == true ?1:0),
                     "user_id"         => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($succ), 'massage' => null]);
