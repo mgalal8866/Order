@@ -89,7 +89,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   ProductHeader::create([
+                $uu =   ProductHeader::updateOrCreate( ['id'=> $item['id']],[
                     'id'                => $item['id'],
                     'product_name'      => $item['product_name'],
                     'product_category'  => $item['product_category'],
@@ -118,7 +118,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $image = $item['productd_image'] != null ? uploadbase64images('products',$item['productd_image']):null;
-                $uu =   ProductDetails::create([
+                $uu =   ProductDetails::updateOrCreate(['id'=> $item['id']],[
                     'id'                 => $item['id'],
                     'product_header_id'  => $item['product_header_id'],
                     'productd_unit_id'   => $item['productd_unit_id'],
