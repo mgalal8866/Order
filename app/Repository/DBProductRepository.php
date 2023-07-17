@@ -19,7 +19,7 @@ class DBProductRepository implements ProductRepositoryinterface
     public function getoffers()
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails:: Getoffers()->online()->paginate(10)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getoffers()->online()->paginate(10)), 'success', 200, true)->getData(true);
         // \DB::getQueryLog(); // Show results of log
     }
     public function searchproduct($search)
