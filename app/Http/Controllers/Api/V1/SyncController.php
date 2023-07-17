@@ -85,6 +85,8 @@ class SyncController extends Controller
     }
     function uploadproductsheader(Request $request)
     {
+        Log::info('uploadproductsheader ', $request->all());
+
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   ProductHeader::create([
@@ -111,6 +113,8 @@ class SyncController extends Controller
     }
     function uploadproductsdetails(Request $request)
     {
+        Log::info('uploadproductsdetails ', $request->all());
+
         try {
             foreach ($request->all() as $index => $item) {
                 $image = $item['productd_image'] != null ? uploadbase64images('products',$item['productd_image']):null;
@@ -167,13 +171,13 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $image = $item['image'] != null ? uploadbase64images('category',$item['image']):null;
-                $succ =   Category::create([
-                    "id"              => $item['id'],
-                    "parent_id"       => $item['parent_id'],
-                    "category_name"   => $item['category_name'],
+                $succ =   Category::updateOrCreate(["id" => $item['Category_id']],[
+                    "id"              => $item['Category_id'],
+                    "parent_id"       => $item['parntID'],
+                    "category_name"   => $item['Category_name'],
                     "image"           => $image,
-                    "category_note"   => $item['category_note'],
-                    "category_active" => $item['category_active'],
+                    "category_note"   => $item['Category_note'],
+                    "category_active" => $item['Category_Active'],
                     "user_id"         => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($succ), 'massage' => null]);
@@ -190,6 +194,9 @@ class SyncController extends Controller
 
     function uploadsalseheader(Request $request)
     {
+
+
+        Log::info('uploadsalseheader', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   SalesHeader::create([
@@ -228,9 +235,6 @@ class SyncController extends Controller
                     "deliverycost"   => $item['deliverycost'],
                     "satus_delivery" => $item['satus_delivery'],
                     "sales_online"   => $item['sales_online']
-
-
-
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -243,6 +247,7 @@ class SyncController extends Controller
     }
     function uploadsalsedetails(Request $request)
     {
+        Log::info('uploadsalsedetails', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   SalesDetails::create([
