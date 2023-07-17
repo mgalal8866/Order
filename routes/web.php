@@ -1,42 +1,43 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\UserAdmin;
 use App\Events\MessageSent;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\DeliveryHeader;
+use App\Models\DeliveryDetails;
+use App\Http\Livewire\Front\Otp;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Config;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\Dashborad\UserAdminController;
-use App\Http\Livewire\Dashboard\Category\EditCategory;
-use App\Http\Livewire\Dashboard\Category\ViewCategory;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Livewire\Dashboard\Chat;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
-use App\Http\Livewire\Dashboard\Notification\ViewNotification;
-use App\Http\Livewire\Dashboard\Product\EditProduct;
-use App\Http\Livewire\Dashboard\Product\ViewProduct;
-use App\Http\Livewire\Dashboard\Slider\EditSlider;
-use App\Http\Livewire\Dashboard\Slider\ViewSlider;
-use App\Http\Livewire\Dashboard\Units\EditUnit;
+use App\Http\Livewire\Front\Wishlist;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Front\Cart\Cart;
+use Illuminate\Support\Facades\Config;
+use App\Http\Livewire\Front\User\Login;
+use App\Http\Livewire\Front\Product\Home;
+use App\Http\Livewire\Front\User\Register;
+use App\Http\Controllers\MessageController;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
-use App\Http\Livewire\Front\Cart\Cart;
-use App\Http\Livewire\Front\Otp;
-use App\Http\Livewire\Front\Product\Home;
-use App\Http\Livewire\Front\User\Login;
-use App\Http\Livewire\Front\User\Register;
-use App\Http\Livewire\Front\Wishlist;
-use App\Models\DeliveryDetails;
-use App\Models\DeliveryHeader;
-use App\Models\UserAdmin;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Livewire\Dashboard\Units\EditUnit;
+use App\Http\Livewire\Dashboard\Slider\EditSlider;
+use App\Http\Livewire\Dashboard\Slider\ViewSlider;
+use App\Http\Livewire\Dashboard\Product\EditProduct;
+use App\Http\Livewire\Dashboard\Product\ViewProduct;
+use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
+use App\Http\Livewire\Dashboard\Category\EditCategory;
+use App\Http\Livewire\Dashboard\Category\ViewCategory;
+use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
+use App\Http\Controllers\Dashborad\UserAdminController;
+use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
+use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
+use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,8 +101,11 @@ Route::post('/store-token', function (Request $request) {
 //     return User::all();
 // });
 
-
-
+Route::get('/sssssss', function () {
+    $ddd =  ('7/17/2023 5:26:44 AM');
+   return  Carbon::parse($ddd)->format('Y-m-d H:i:sa');
+//    '   Carbon::createFromFormat('Y-m-d H:i:s',  "7/17/2023 5:26:44 AM");
+});
 Route::get('/moveToseleheader', function () {
     DeliveryHeader::query()
         ->where('id', '=', 1)
