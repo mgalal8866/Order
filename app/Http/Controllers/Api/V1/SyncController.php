@@ -162,6 +162,7 @@ class SyncController extends Controller
     }
     function uploadcategory(Request $request)
     {
+        Log::info('upload Category client SyncController', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
                 $succ =   Category::create([
