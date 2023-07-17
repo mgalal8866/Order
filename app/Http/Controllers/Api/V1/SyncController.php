@@ -117,22 +117,22 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $image = $item['productd_image'] != null ? uploadbase64images('products',$item['productd_image']):null;
-                $uu =   ProductDetails::updateOrCreate(['id'=> $item['id']],[
-                    'id'                 => $item['id'],
-                    'product_header_id'  => $item['product_header_id'],
-                    'productd_unit_id'   => $item['productd_unit_id'],
-                    'productd_barcode'   => $item['productd_barcode'],
-                    'productd_size'      => $item['productd_size'],
-                    'productd_bay'       => $item['productd_bay'],
-                    'productd_Sele1'     => $item['productd_Sele1'],
-                    'productd_Sele2'     => $item['productd_Sele2'],
-                    'productd_fast_Sele' => $item['productd_fast_Sele'],
-                    'productd_UnitType'  => $item['productd_UnitType'],
+                $image = $item['ProductsD_image'] != null ? uploadbase64images('products',$item['ProductsD_image']):null;
+                $uu =   ProductDetails::updateOrCreate(['id'=> $item['ProductD_id']],[
+                    'id'                 => $item['ProductD_id'],
+                    'product_header_id'  => $item['Product_id'],
+                    'productd_unit_id'   => $item['ProductsD_unit_id'],
+                    'productd_barcode'   => $item['ProductsD_Barcode'],
+                    'productd_size'      => $item['ProductsD_Size'],
+                    'productd_bay'       => $item['ProductsD_Bay'],
+                    'productd_Sele1'     => $item['ProductsD_Sele1'],
+                    'productd_Sele2'     => $item['ProductsD_Sele2'],
+                    'productd_fast_Sele' => $item['ProductsD_fast_Sele'],
+                    'productd_UnitType'  => $item['ProductsD_UnitType'],
                     'productd_image'     => $image,
-                    'isoffer'            => $item['isoffer']== true ?1:0,
-                    'productd_online'    => $item['productd_online']== true ?1:0,
-                    'maxqty'             => $item['maxqty'],
+                    'isoffer'            => $item['IsOffer']== true ?1:0,
+                    'productd_online'    => $item['Product_Onlein']== true ?1:0,
+                    'maxqty'             => $item['MaxQuntte'],
                     'EndOferDate'        => $item['EndOferDate'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
