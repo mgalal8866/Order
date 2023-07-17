@@ -22,7 +22,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $imageName = Str::random(10).'.'.'png';
-    File::put(public_path(). '/images/' . $folder.'/'.$imageName, base64_decode($image));
+    File::put(public_path(). '/asset/images/' . $folder.'/'.$imageName, base64_decode($image));
     return  $imageName;
 }
  function notificationFCM($title =null,$body =null, $users=null,$icon =null,$image =null,$link =null,$click =null){
