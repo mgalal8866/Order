@@ -89,7 +89,7 @@ Route::middleware(['jwt.verify'])->group(function () {
 
 
 #################   Start SYNC  #############
-Route::prefix('sync')->group(function () {
+Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/client',        [SyncController::class, 'client']);
     Route::post('/update/client', [SyncController::class, 'updateclient']);
     Route::post('/upload/products/header',[SyncController::class, 'uploadproductsheader']);

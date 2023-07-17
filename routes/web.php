@@ -101,11 +101,7 @@ Route::post('/store-token', function (Request $request) {
 //     return User::all();
 // });
 
-Route::get('/sssssss', function () {
-    $ddd =  ('7/17/2023 5:26:44 AM');
-   return  Carbon::parse($ddd)->format('Y-m-d H:i:sa');
-//    '   Carbon::createFromFormat('Y-m-d H:i:s',  "7/17/2023 5:26:44 AM");
-});
+ 
 Route::get('/moveToseleheader', function () {
     DeliveryHeader::query()
         ->where('id', '=', 1)
