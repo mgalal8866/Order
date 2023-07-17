@@ -74,6 +74,6 @@ class Kernel extends HttpKernel
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
         'tenant'=> \App\Http\Middleware\TenantMiddleware::class,
         'last_seen'=> \App\Http\Middleware\LastSeenUserActivity::class,
-
+        'MeasureResponseTime'=>\App\Http\Middleware\MeasureResponseTime::class
     ];
 }
