@@ -3,19 +3,20 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Exception;
+use Carbon\Carbon;
 use App\Models\unit;
 use App\Models\User;
 use App\Models\logsync;
+use App\Models\Category;
+use App\Models\SalesHeader;
 use Illuminate\Support\Str;
+use App\Models\SalesDetails;
 use Illuminate\Http\Request;
+use App\Models\ProductHeader;
+use App\Models\ProductDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\ProductDetails;
-use App\Models\ProductHeader;
-use App\Models\SalesDetails;
-use App\Models\SalesHeader;
 use Illuminate\Support\Facades\Validator;
 
 class SyncController extends Controller
@@ -133,7 +134,7 @@ class SyncController extends Controller
                     'isoffer'            => ($item['IsOffer'] == true) ?1:($item['IsOffer'] == false?0:$item['IsOffer']),
                     'productd_online'    => ($item['Product_Onlein'] == true) ?1:($item['Product_Onlein'] == false?0:$item['Product_Onlein']),
                     'maxqty'             => $item['MaxQuntte'],
-                    'EndOferDate'        => $item['EndOferDate'],
+                    'EndOferDate'        =>Carbon::createFromFormat('Y-m-d H:i:sa',  $item['EndOferDate']),
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
