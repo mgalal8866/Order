@@ -148,7 +148,7 @@ class SyncController extends Controller
                     "id"            => $item['unit_id'],
                     "unit_name"     => $item['unit_name'],
                     "unit_note"     => $item['unit_note'],
-                    "unit_active"   => $item['unit_active'],
+                    "unit_active"   => $item['unit_Active'],
                     "user_id"       => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -165,11 +165,17 @@ class SyncController extends Controller
         Log::info('upload Category client SyncController', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
+                $image = $item['image'] != null ? uploadbase64images('category',$item['image']):null;
+                // $image = $item['image'];  // your base64 encoded
+                // $image = str_replace('data:image/png;base64,', '', $image);
+                // $image = str_replace(' ', '+', $image);
+                // $imageName = str_random(10).'.'.'png';
+                // \File::put(storage_path(). '/' . $imageName, base64_decode($image));
                 $succ =   Category::create([
                     "id"              => $item['id'],
                     "parent_id"       => $item['parent_id'],
                     "category_name"   => $item['category_name'],
-                    "image"           => $item['image'],
+                    "image"           => $image,
                     "category_note"   => $item['category_note'],
                     "category_active" => $item['category_active'],
                     "user_id"         => $item['user_id']
