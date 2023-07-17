@@ -134,7 +134,7 @@ class SyncController extends Controller
                     'isoffer'            => ($item['IsOffer'] == true) ?1:($item['IsOffer'] == false?0:$item['IsOffer']),
                     'productd_online'    => ($item['Product_Onlein'] == true) ?1:($item['Product_Onlein'] == false?0:$item['Product_Onlein']),
                     'maxqty'             => $item['MaxQuntte'],
-                    'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:sa'),
+                    'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
