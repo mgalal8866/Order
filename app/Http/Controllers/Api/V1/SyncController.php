@@ -113,6 +113,7 @@ class SyncController extends Controller
     {
         try {
             foreach ($request->all() as $index => $item) {
+                $image = $item['productd_image'] != null ? uploadbase64images('products',$item['productd_image']):null;
                 $uu =   ProductDetails::create([
                     'id'                 => $item['id'],
                     'product_header_id'  => $item['product_header_id'],
@@ -124,7 +125,7 @@ class SyncController extends Controller
                     'productd_Sele2'     => $item['productd_Sele2'],
                     'productd_fast_Sele' => $item['productd_fast_Sele'],
                     'productd_UnitType'  => $item['productd_UnitType'],
-                    'productd_image'     => $item['productd_image'],
+                    'productd_image'     => $image,
                     'isoffer'            => $item['isoffer'],
                     'productd_online'    => $item['productd_online'],
                     'maxqty'             => $item['maxqty'],
@@ -166,11 +167,6 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $image = $item['image'] != null ? uploadbase64images('category',$item['image']):null;
-                // $image = $item['image'];  // your base64 encoded
-                // $image = str_replace('data:image/png;base64,', '', $image);
-                // $image = str_replace(' ', '+', $image);
-                // $imageName = str_random(10).'.'.'png';
-                // \File::put(storage_path(). '/' . $imageName, base64_decode($image));
                 $succ =   Category::create([
                     "id"              => $item['id'],
                     "parent_id"       => $item['parent_id'],
