@@ -89,18 +89,18 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   ProductHeader::updateOrCreate( ['id'=> $item['id']],[
-                    'id'                => $item['id'],
-                    'product_name'      => $item['product_name'],
-                    'product_category'  => $item['product_category'],
-                    'product_acteve'    => $item['product_acteve']== true ?1:0,
-                    'product_isscale'   => $item['product_isscale']== true ?1:0,
-                    'product_online'    => $item['product_online'] == true ?1:0,
-                    'product_tax'       => $item['product_tax'],
-                    'product_limit'     => $item['product_limit'],
+                $uu =   ProductHeader::updateOrCreate( ['id'=> $item['Products_ID']],[
+                    'id'                => $item['Products_ID'],
+                    'product_name'      => $item['Products_name'],
+                    'product_category'  => $item['Products_Sup_id'],
+                    'product_acteve'    => ($item['Products_Acteve'] == true) ?1:($item['Products_Acteve'] == false?0:$item['Products_Acteve']),
+                    'product_isscale'   => ($item['Products_IsScale'] == true) ?1:($item['Products_IsScale'] == false?0:$item['Products_IsScale']),
+                    'product_online'    => ($item['Products_Onlein'] == true) ?1:($item['Products_Onlein'] == false?0:$item['Products_Onlein']),
+                    'product_tax'       => $item['Products_Tax'],
+                    'product_limit'     => $item['Products_Lemt'],
                     'user_id'           => $item['user_id'],
-                    'product_limit_day' => $item['product_limit_day'],
-                    'product_note'      => $item['product_note'],
+                    'product_limit_day' => $item['Products_lemt_day'],
+                    'product_note'      => $item['Products_note'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
