@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
+use App\Models\slider;
 use Illuminate\Support\Facades\Validator;
 
 class SyncController extends Controller
@@ -342,6 +343,27 @@ class SyncController extends Controller
                     'discount'           => $item['Discount'],
                     'grandtotal'         => $item['GrandTotalD'],
                     'profit'             => $item['Profit']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploadslider(Request $request)
+    {
+        Log::info('uploadslider', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $uu =   slider::updateOrCreate(['id' => $item['SliderID']],[
+                    'id'       => $item['SliderID'],
+                    'name'     => $item['Name'],
+                    'image'    => $item['Image'],
+                    'active'   => $item['active'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
