@@ -17,13 +17,13 @@ class DBInvoRepository implements InvoRepositoryinterface
 {
     public function getopeninvo()
     {
-        return  DeliveryHeader::status(1)->where('user_id', Auth::user('api')->id)->paginate(10);
-        // return  SalesDetails::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
+        return  DeliveryHeader::status(1)->where('client_id', Auth::user('api')->id)->paginate(10);
+        // return  SalesDetails::where('client_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function getcloseinvo()
     {
-        return  SalesHeader::status(0)->where('user_id', Auth::user('api')->id)->paginate(10);
-        // return  SalesDetails::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
+        return  SalesHeader::status(0)->where('client_id', Auth::user('api')->id)->paginate(10);
+        // return  SalesDetails::where('client_id', Auth::user('api')->id)->with('productdetails')->get();
     }
     public function placeorder($request)
     {
@@ -67,7 +67,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function getinvoicedetailsopen($id)
     {
-    
+
         return DeliveryDetails::whereSaleHeaderId($id)->with('productdetails')->get();
     }
 }
