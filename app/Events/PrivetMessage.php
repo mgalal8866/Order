@@ -22,7 +22,7 @@ class PrivetMessage implements ShouldBroadcast
     {
         // $this->user = $user;
         $this->message = $message;
-        $this->dontBroadcastToCurrentUser();
+        // $this->dontBroadcastToCurrentUser();
     }
     /**
      * Get the channels the event should broadcast on.

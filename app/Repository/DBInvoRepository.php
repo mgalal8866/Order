@@ -63,11 +63,13 @@ class DBInvoRepository implements InvoRepositoryinterface
     }
     public function getinvoicedetailsclose($id)
     {
-        return SalesDetails::whereSaleHeaderId($id)->with('productdetails')->get();
+        // return SalesDetails::whereSaleHeaderId($id)->with('productdetails')->get();
+        return  SalesHeader::status(0)->where('id',$id)->with('salesdetails')->get();
     }
     public function getinvoicedetailsopen($id)
     {
-
-        return DeliveryDetails::whereSaleHeaderId($id)->with('productdetails')->get();
+         
+        return  DeliveryHeader::status(1)->where('id',$id)->with('salesdetails')->get();
+        // return DeliveryDetails::whereSaleHeaderId($id)->with('productdetails')->get();
     }
 }

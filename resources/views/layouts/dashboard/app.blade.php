@@ -21,7 +21,7 @@
 
     <!-- BEGIN: Content-->
     <div class="app-content content ">
-       
+
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper container-xxl p-0">
@@ -87,59 +87,59 @@
 
     @include('layouts.dashboard.script')
     <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
-<script>
-    var firebaseConfig = {
-        apiKey: "AIzaSyASFQiDiY62XTCm7KE9Xx5K03wippJBWqo",
-        authDomain: "order-48bfc.firebaseapp.com",
-        projectId: "order-48bfc",
-        storageBucket: "order-48bfc.appspot.com",
-        messagingSenderId: "324270172795",
-        appId: "1:324270172795:web:d2f7354ffcee3d9fc810de",
-        measurementId: "G-4DX5NRLD86",
-        databaseURL: 'https://project-id.firebaseio.com',
-    };
-    firebase.initializeApp(firebaseConfig);
-    const messaging = firebase.messaging();
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyASFQiDiY62XTCm7KE9Xx5K03wippJBWqo",
+            authDomain: "order-48bfc.firebaseapp.com",
+            projectId: "order-48bfc",
+            storageBucket: "order-48bfc.appspot.com",
+            messagingSenderId: "324270172795",
+            appId: "1:324270172795:web:d2f7354ffcee3d9fc810de",
+            measurementId: "G-4DX5NRLD86",
+            databaseURL: 'https://project-id.firebaseio.com',
+        };
+        firebase.initializeApp(firebaseConfig);
+        const messaging = firebase.messaging();
 
 
         messaging
             .requestPermission()
-            .then(function () {
+            .then(function() {
                 return messaging.getToken()
             })
-            .then(function (response) {
+            .then(function(response) {
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
                 $.ajax({
-                    url: '{{ route("store.token") }}',
+                    url: '{{ route('store.token') }}',
                     type: 'POST',
                     data: {
                         token: response
                     },
                     dataType: 'JSON',
-                    success: function (response) {
+                    success: function(response) {
                         // alert('Token stored.');
                     },
-                    error: function (error) {
+                    error: function(error) {
                         alert(error.messaging);
                     },
                 });
-            }).catch(function (error) {
+            }).catch(function(error) {
                 alert(error);
             });
 
-    messaging.onMessage(function (payload) {
-        const title = payload.notification.title;
-        const options = {
-            body: payload.notification.body,
-            icon: payload.notification.icon,
-        };
-        new Notification(title, options);
-    });
-</script>
+        messaging.onMessage(function(payload) {
+            const title = payload.notification.title;
+            const options = {
+                body: payload.notification.body,
+                icon: payload.notification.icon,
+            };
+            new Notification(title, options);
+        });
+    </script>
 </body>
 <!-- END: Body-->
 

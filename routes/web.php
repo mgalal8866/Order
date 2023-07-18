@@ -39,6 +39,7 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Testchat;
 use App\Models\conversion;
 use App\Models\ProductDetails;
 use App\Models\ProductHeader;
@@ -60,23 +61,24 @@ use App\Models\ProductHeader;
 // Route::get('messages', [MessageController::class],'fetchMessages');
 // Route::post('messages', [MessageController::class],'sendMessage');
 // Route::get('/', [MessageController::class,'index']);
-Route::post('send-message',  function (Request $request) {
-    broadcast(new PrivetMessage( $request->message))->toOthers();
-    // event(new PrivetMessage($request->message));
+Route::get('send-message',  function () {
+    
+    event(new MessageSent('hello world'));
+
     return ['success' => true];
 });
 
-// Route::get('/sss', function (Request $request) {
-//     $users = User::on('mysql')->get(); //الديسك توب
-//     foreach ($users as $user) {
-//         User::on('localmysql')->updateOrCreate(
-//             ['id' => $user->id],
-//             $user->toarray()
-//         );
-//     }
-//     // return view('chat');
-//     return Str::random(18);
-// });
+    // Route::get('/sss', function (Request $request) {
+    //     $users = User::on('mysql')->get(); //الديسك توب
+    //     foreach ($users as $user) {
+    //         User::on('localmysql')->updateOrCreate(
+    //             ['id' => $user->id],
+    //             $user->toarray()
+    //         );
+    //     }
+    //     // return view('chat');
+    //     return Str::random(18);
+    // });
 
 
 Route::get('/deletetable', function (Request $request) {
@@ -158,6 +160,7 @@ Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
 });
 Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
+    Route::get('/chatlive', Testchat::class)->name('chatlive');
     // Route::get('product', CreateProduct::class)->name('product');
 
     Route::get('/chat', [MessageController::class, 'index']);

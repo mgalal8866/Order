@@ -2,7 +2,7 @@
 <script src="{{ asset('asset/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN Vendor JS-->
 
- 
+
 
 <!-- BEGIN: Theme JS-->
 <script src={{URL::asset('asset/vendors/js/extensions/sweetalert2.all.min.js')}}></script>
@@ -45,7 +45,8 @@
             window.location.hash = "";
     }
 </script>
-@livewireScripts
 @yield('js')
+@livewireScripts
+@vite([ 'resources/js/app.js'])
 @stack('jslive')
 <!-- END: Body-->

@@ -12,6 +12,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class MessageSent implements ShouldBroadcast
 {
@@ -23,9 +24,14 @@ class MessageSent implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(String $user, String $message)
+    // public function __construct(String $user, String $message)
+    // {
+    //     $this->user = $user;
+    //     $this->message = $message;
+    // }
+    public function __construct( $message)
     {
-        $this->user = $user;
+
         $this->message = $message;
     }
 
@@ -42,6 +48,6 @@ class MessageSent implements ShouldBroadcast
     }
     public function broadcastAs()
     {
-        return'message';
+        return  'message';
     }
 }
