@@ -6,9 +6,12 @@ use App\Models\Category;
 use App\Models\ProductDetails;
 use App\Models\Wishlist;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Home extends Component
-{   public $data =[] ,$idcategory;
+{
+    use WithPagination;
+     public $data =[] ,$idcategory;
 
 
     public function updatedIdcategory(){
@@ -22,7 +25,7 @@ class Home extends Component
     }
     public function render()
     {   $categorys = Category::Active(1)->get();
-        $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->get();
+        $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->paginate(20);
         $this->data =['categorys'=>$categorys,'products'=>$products];
 // dd($this->data[''] );
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');

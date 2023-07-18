@@ -101,7 +101,7 @@ Route::post('/store-token', function (Request $request) {
 //     return User::all();
 // });
 
- 
+
 Route::get('/moveToseleheader', function () {
     DeliveryHeader::query()
         ->where('id', '=', 1)
@@ -125,15 +125,15 @@ Route::get('/moveToseleheader', function () {
 Route::get('/', Home::class)->name('home');
 #################### guest Client #####################
 Route::middleware('guest:client')->group(function () {
-Route::get('/login', Login::class)->name('frontlogin');
-Route::get('/sign-up',Register::class)->name('signup');
-Route::get('/otp', Otp::class)->name('otp');
+    Route::get('/login', Login::class)->name('frontlogin');
+    Route::get('/sign-up', Register::class)->name('signup');
+    Route::get('/otp', Otp::class)->name('otp');
 });
 #################### auth Client #####################
 Route::middleware('auth:client')->group(function () {
-Route::get('/cart', Cart::class)->name('cart');
-Route::post('/logout',[UserAdminController::class,'clientlogout'])->name('clientlogout');
-Route::get('/wishlist', Wishlist::class)->name('wishlist');
+    Route::get('/cart', Cart::class)->name('cart');
+    Route::post('/logout', [UserAdminController::class, 'clientlogout'])->name('clientlogout');
+    Route::get('/wishlist', Wishlist::class)->name('wishlist');
 });
 #################### FRONT Client #####################
 #####################################################
@@ -141,9 +141,8 @@ Route::get('/wishlist', Wishlist::class)->name('wishlist');
 ########################################    #############
 #################### Dashboard  #####################
 Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
-    Route::get('/login', [UserAdminController::class,'login'])->name('dashlogin');
-    Route::post('/postlogin', [UserAdminController::class,'postlogin'])->name('postlogin');
-    // Auth::routes();
+    Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
+    Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
 });
 Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
@@ -163,8 +162,7 @@ Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('slider/edit/{id}', EditSlider::class)->name('slider');
     Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
     Route::get('units', Units::class)->name('units');
-    Route::post('/logout',[UserAdminController::class,'adminlogout'])->name('adminlogout');
+    Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
 });
 #################### Dashboard  #####################
 #####################################################
-
