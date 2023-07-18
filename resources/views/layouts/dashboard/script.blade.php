@@ -47,6 +47,6 @@
 </script>
 @yield('js')
 @livewireScripts
-@vite([ 'resources/js/app.js'])
+
 @stack('jslive')
 <!-- END: Body-->

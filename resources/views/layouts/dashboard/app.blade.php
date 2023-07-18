@@ -124,7 +124,7 @@
                         // alert('Token stored.');
                     },
                     error: function(error) {
-                        alert(error.messaging);
+                        // alert(error.messaging);
                     },
                 });
             }).catch(function(error) {

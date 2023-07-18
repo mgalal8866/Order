@@ -19,6 +19,4 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     // Broadcast::channel('messages.1', function ($user) {
     //     return $user;
     // });
-    Broadcast::channel('chat', function ($user) {
-        return $user;
-    });
+ 

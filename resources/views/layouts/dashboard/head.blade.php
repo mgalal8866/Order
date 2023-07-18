@@ -56,8 +56,9 @@
     {{--
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}"> --}}
     <!-- END: Custom CSS-->
+    @vite([ 'resources/js/app.js'])
     @livewireStyles
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
 
     @stack('csslive')
     <style>

@@ -62,8 +62,8 @@ use App\Models\ProductHeader;
 // Route::post('messages', [MessageController::class],'sendMessage');
 // Route::get('/', [MessageController::class,'index']);
 Route::get('send-message',  function () {
-    
-    event(new MessageSent('hello world'));
+
+    event(new PrivetMessage('hello world'));
 
     return ['success' => true];
 });
@@ -97,8 +97,8 @@ Route::post('/store-token', function (Request $request) {
     //     'password'=> Hash::make('123456')
     //   ]);
 
-    Auth::user()->update(['fsm' => $request->token]);
-    return response()->json(['Token successfully stored.']);
+    // Auth::user()->update(['fsm' => $request->token]);
+    // return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 // Route::get('/sql', function (Request $request) {

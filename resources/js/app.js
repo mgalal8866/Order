@@ -46,7 +46,7 @@ import './bootstrap';
 //   alert(JSON.stringify(data));
 // });
 window.Echo.channel("chat").listen(".message",(event)=>{
-    console.log("ddddd");
+
     console.log(event);
 });
 
