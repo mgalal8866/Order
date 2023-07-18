@@ -2,10 +2,7 @@
 <script src="{{ asset('asset/vendors/js/vendors.min.js') }}"></script>
 <!-- BEGIN Vendor JS-->
 
-<!-- BEGIN: Page Vendor JS-->
-<script src="{{asset('app-assets/js/scripts/pages/app-chat.min.js')}}"></script>
-
-<!-- END: Page Vendor JS-->
+ 
 
 <!-- BEGIN: Theme JS-->
 <script src={{URL::asset('asset/vendors/js/extensions/sweetalert2.all.min.js')}}></script>

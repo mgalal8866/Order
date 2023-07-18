@@ -155,7 +155,9 @@ Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
 Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');
-    Route::get('chat', Chat::class)->name('chat');
+    Route::get('chat', function () {
+        return view('livewire.dashboard.chat');
+    } )->name('chat');
     Route::get('users', Users::class)->name('viewusers');
     Route::get('categorys', ViewCategory::class)->name('categorys');
     Route::get('category/edit/{id}', EditCategory::class)->name('category');

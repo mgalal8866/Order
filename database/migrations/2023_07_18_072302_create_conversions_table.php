@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
+        Schema::create('conversions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('conversions_id')->nullable();
-            $table->integer('admin_id')->nullable();
             $table->integer('client_id')->nullable();
-            $table->text('message')->nullable();
-            $table->boolean('seen')->default(0);
-            $table->string('channel')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('conversions');
     }
 };
