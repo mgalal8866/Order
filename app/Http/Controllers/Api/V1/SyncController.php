@@ -17,6 +17,8 @@ use App\Models\ProductDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryDetails;
+use App\Models\DeliveryHeader;
 use Illuminate\Support\Facades\Validator;
 
 class SyncController extends Controller
@@ -252,6 +254,86 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   SalesDetails::create([
+                    'id'                 => $item['id'],
+                    'sale_header_id'     => $item['sale_header_id'],
+                    'product_details_id' => $item['product_details_id'],
+                    'buyprice'           => $item['buyprice'],
+                    'sellprice'          => $item['sellprice'],
+                    'quantity'           => $item['quantity'],
+                    'subtotal'           => $item['subtotal'],
+                    'discount'           => $item['discount'],
+                    'grandtotal'         => $item['grandtotal'],
+                    'profit'             => $item['profit']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+
+    function uploadsdeliveryheader(Request $request)
+    {
+
+
+        Log::info('DeliveryHeader', $request->all());
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   DeliveryHeader::create([
+                    "id"            => $item['id'],
+                    "invoicenumber" => $item['invoicenumber'],
+                    "coupon_id"     => $item['coupon_id'],
+                    "type_order"    => $item['type_order'],
+                    "comment_id"    => $item['comment_id'],
+                    "invoicetype"   => $item['invoicetype'],
+                    "invoicedate"   => $item['invoicedate'],
+                    "client_id"     => $item['client_id'],
+                    "lastbalance"   => $item['lastbalance'],
+                    "finalbalance"  => $item['finalbalance'],
+                    "user_id"       => $item['user_id'],
+                    "store_id"      => $item['store_id'],
+                    "safe_id"       => $item['safe_id'],
+                    "status"        => $item['status'],
+                    "employ_id"     => $item['employ_id'],
+                    "dis_point_active" => $item['dis_point_active'],
+                    "paytayp"       => $item['paytayp'],
+                    "subtotal"      => $item['subtotal'],
+                    "totaldiscount" => $item['totaldiscount'],
+                    "discount_g"    => $item['discount_g'],
+                    "discount_f"    => $item['discount_f'],
+                    "total_add_amount" => $item['total_add_amount'],
+                    "add_amount_g"  => $item['add_amount_g'],
+                    "add_amount_f"  => $item['add_amount_f'],
+                    "discount_product" => $item['discount_product'],
+                    "discount_sales" => $item['discount_sales'],
+                    "discount_point" => $item['discount_point'],
+                    "grandtotal"     => $item['grandtotal'],
+                    "paid"           => $item['paid'],
+                    "remaining"      => $item['remaining'],
+                    "total_profit"   => $item['total_profit'],
+                    "note"           => $item['note'],
+                    "deliverycost"   => $item['deliverycost'],
+                    "satus_delivery" => $item['satus_delivery'],
+                    "sales_online"   => $item['sales_online']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploaddeliverydetails(Request $request)
+    {
+        Log::info('uploaddeliverydetails', $request->all());
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   DeliveryDetails::create([
                     'id'                 => $item['id'],
                     'sale_header_id'     => $item['sale_header_id'],
                     'product_details_id' => $item['product_details_id'],

@@ -76,10 +76,10 @@ use App\Models\ProductHeader;
 // });
 
 Route::get('/deletetable', function (Request $request) {
-    DB::statement("SET foreign_key_checks=0");
-    ProductHeader::truncate();
-    ProductDetails::truncate();
-    DB::statement("SET foreign_key_checks=1");
+    // DB::statement("SET foreign_key_checks=0");
+    // ProductHeader::truncate();
+    // ProductDetails::truncate();
+    // DB::statement("SET foreign_key_checks=1");
 });
 Route::get('/send-fsm', function (Request $request) {
     $d = Auth::user()->fsm;
