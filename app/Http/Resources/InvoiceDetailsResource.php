@@ -25,7 +25,6 @@ class InvoiceDetailsResource extends JsonResource
             'discount'      =>$this->discount??'',
             'grandtotal'    =>$this->grandtotal??'',
             'profit'        =>$this->profit??'',
-            'created_at'    =>$this->created_at??''
         ];
     }
 }
