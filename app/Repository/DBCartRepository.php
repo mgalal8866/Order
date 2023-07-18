@@ -2,11 +2,12 @@
 
 namespace App\Repository;
 
+use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\deferred;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\CartRepositoryinterface;
-use Carbon\Carbon;
 
 class DBCartRepository implements CartRepositoryinterface
 {
@@ -16,6 +17,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function addtocart($product_id, $qty)
     {
+        Log::alert("cart",['product_id' => $product_id, 'user_id' => Auth::user('api')->id]);
         $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::user('api')->id], ['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
         if ($qty == 0) {
             $this->deletecart($w->id);
