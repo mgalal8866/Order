@@ -38,6 +38,8 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Models\ProductDetails;
+use App\Models\ProductHeader;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +75,12 @@ use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 //     return Str::random(18);
 // });
 
+Route::get('/deletetable', function (Request $request) {
+    DB::statement("SET foreign_key_checks=0");
+    ProductHeader::truncate();
+    ProductDetails::truncate();
+    DB::statement("SET foreign_key_checks=1");
+});
 Route::get('/send-fsm', function (Request $request) {
     $d = Auth::user()->fsm;
     Log::alert(notificationFCM('Hello', 'Okay', [$d]));
