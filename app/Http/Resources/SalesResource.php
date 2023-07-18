@@ -20,7 +20,7 @@ class SalesResource extends JsonResource
                 'invoicenumber' => $this->invoicenumber??'',
                 'coupon_id'     => $this->coupon_id??'',
                 'invoicetype'   => $this->invoicetype ??'',
-                'invoicedate'   => $this->invoicedate??'',
+                'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('l j F Y') ?? '',
                 'client_id'     => $this->client_id??'',
                 'lastbalance'   => $this->lastbalance??'',
                 'finalbalance'  => $this->finalbalance??'',
