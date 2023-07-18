@@ -1,6 +1,6 @@
 import './bootstrap';
-import {createApp} from 'vue';
-import App from './App.vue';
+// import {createApp} from 'vue';
+// import App from './App.vue';
 const message_el = document.getElementById('messages');
 const username_input = document.getElementById('username');
 const message_input = document.getElementById('message_input');
@@ -31,11 +31,22 @@ message_from.addEventListener('submit', function(e) {
     message_input.value = "";
     axios(options);
 });
-window.Echo.channel('chat')
-    .listen('.message', (e) => {
-        message_el.innerHTML += '<div class="message"><strong>' + e.user + ':</strong> ' + e.message + '</div>';
+window.Echo.channel('messages.1')
+    .listen('message', (e) => {
+        console.log( e.message );
+        message_el.innerHTML += '<div class="message"><strong>'+ ':</strong> ' + e.message + '</div>';
+        // message_el.innerHTML += '<div class="message"><strong>' + e.user + ':</strong> ' + e.message + '</div>';
 
+    }).notification((notification)=>{
+        console.log(notification.type);
     });
 
 
-createApp(App).mount("#app");
+
+window.Echo.channel("messages.1").listen(".message",(event)=>{
+    console.log("ddddd");
+    console.log(event);
+});
+
+
+// createApp(App).mount("#app");

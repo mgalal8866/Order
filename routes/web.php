@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\UserAdmin;
 use App\Events\MessageSent;
+use App\Events\PrivetMessage;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\DeliveryHeader;
@@ -38,6 +39,7 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Models\conversion;
 use App\Models\ProductDetails;
 use App\Models\ProductHeader;
 
@@ -58,10 +60,11 @@ use App\Models\ProductHeader;
 // Route::get('messages', [MessageController::class],'fetchMessages');
 // Route::post('messages', [MessageController::class],'sendMessage');
 // Route::get('/', [MessageController::class,'index']);
-// Route::post('send-message',  function (Request $request) {
-//     event(new MessageSent($request->username,$request->message));
-//     return ['success' => true];
-// });
+Route::post('send-message',  function (Request $request) {
+    broadcast(new PrivetMessage( $request->message))->toOthers();
+    // event(new PrivetMessage($request->message));
+    return ['success' => true];
+});
 
 // Route::get('/sss', function (Request $request) {
 //     $users = User::on('mysql')->get(); //الديسك توب
@@ -74,6 +77,7 @@ use App\Models\ProductHeader;
 //     // return view('chat');
 //     return Str::random(18);
 // });
+
 
 Route::get('/deletetable', function (Request $request) {
     // DB::statement("SET foreign_key_checks=0");
@@ -155,9 +159,8 @@ Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
 Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/', ViewProduct::class)->name('dashboard');
     // Route::get('product', CreateProduct::class)->name('product');
-    Route::get('chat', function () {
-        return view('livewire.dashboard.chat');
-    } )->name('chat');
+
+    Route::get('/chat', [MessageController::class, 'index']);
     Route::get('users', Users::class)->name('viewusers');
     Route::get('categorys', ViewCategory::class)->name('categorys');
     Route::get('category/edit/{id}', EditCategory::class)->name('category');

@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
-    <!-- BEGIN: Head-->
-    @include('layouts.dashboard.head')
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat-list.css') }}">
+<!-- BEGIN: Head-->
+@include('layouts.dashboard.head')
+<link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/app-chat-list.css') }}">
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
@@ -56,20 +55,24 @@
                         <div id="users-list" class="chat-user-list-wrapper list-group">
                             <h4 class="chat-list-title">Contacts</h4>
                             <ul class="chat-users-list contact-list media-list">
-                                <li>
-                                    {{-- <span class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" height="42" width="42" alt="Generic placeholder image" /> --}}
-                                    </span>
-                                    <div class="chat-info">
-                                        <h5 class="mb-0">Jenny Perich</h5>
-                                        <p class="card-text text-truncate">
-                                            Tart dragée carrot cake chocolate bar. Chocolate cake jelly beans caramels tootsie roll candy canes.
-                                        </p>
-                                    </div>
-                                </li>
 
-                                <li class="no-results">
-                                    <h6 class="mb-0">No Contacts Found</h6>
-                                </li>
+                                @forelse($cc as $i)
+                                    <li>
+                                        {{-- <span class="avatar"><img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" height="42" width="42" alt="Generic placeholder image" /> --}}
+                                        </span>
+                                        <div class="chat-info">
+                                            <h5 class="mb-0">{{$i->user->client_name}}</h5>
+                                            {{-- <p class="card-text text-truncate">
+                                                Tart dragée carrot cake chocolate bar. Chocolate cake jelly beans
+                                                caramels tootsie roll candy canes.
+                                            </p> --}}
+                                        </div>
+                                    </li>
+                                @empty
+                                    <li class="no-results">
+                                        <h6 class="mb-0">No Contacts Found</h6>
+                                    </li>
+                                @endforelse
                             </ul>
                         </div>
                         <!-- Sidebar Users end -->
@@ -87,7 +90,7 @@
                         <!-- Main chat area -->
                         <section class="chat-app-window">
                             <!-- To load Conversation -->
-                            <div class="start-chat-area">
+                            <div class="start-chat-area d-none">
                                 <div class="mb-1 start-chat-icon">
                                     <i data-feather="message-square"></i>
                                 </div>
@@ -96,7 +99,7 @@
                             <!--/ To load Conversation -->
 
                             <!-- Active Chat -->
-                            <div class="active-chat d-none">
+                            <div class="active-chat ">
                                 <!-- Chat Header -->
                                 <div class="chat-navbar">
                                     <header class="chat-header">
@@ -105,18 +108,24 @@
                                                 <i data-feather="menu" class="font-medium-5"></i>
                                             </div>
                                             <div class="avatar avatar-border user-profile-toggle m-0 me-1">
-                                                <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="avatar" height="36" width="36" />
+                                                <img src="http://localhost/asset/images/portrait/small/avatar-s-11.jpg"
+                                                    alt="avatar" height="36" width="36" />
                                                 <span class="avatar-status-busy"></span>
                                             </div>
-                                            <h6 class="mb-0">Kristopher Candy</h6>
+                                            <h6 class="mb-0">{{$cc[0]->user->client_name}}</h6>
                                         </div>
                                         <div class="d-flex align-items-center">
 
                                             <div class="dropdown">
-                                                <button class="btn-icon btn btn-transparent hide-arrow btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i data-feather="more-vertical" id="chat-header-actions" class="font-medium-2"></i>
+                                                <button
+                                                    class="btn-icon btn btn-transparent hide-arrow btn-sm dropdown-toggle"
+                                                    type="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    <i data-feather="more-vertical" id="chat-header-actions"
+                                                        class="font-medium-2"></i>
                                                 </button>
-                                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="chat-header-actions">
+                                                <div class="dropdown-menu dropdown-menu-end"
+                                                    aria-labelledby="chat-header-actions">
                                                     <a class="dropdown-item" href="#">View Contact</a>
                                                     <a class="dropdown-item" href="#">Mute Notifications</a>
                                                     <a class="dropdown-item" href="#">Block Contact</a>
@@ -135,7 +144,8 @@
                                         <div class="chat">
                                             <div class="chat-avatar">
                                                 <span class="avatar box-shadow-1 cursor-pointer">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="36" width="36" />
+                                                    <img src="http://localhost/asset/images/portrait/small/avatar-s-11.jpg"
+                                                        alt="avatar" height="36" width="36" />
                                                 </span>
                                             </div>
                                             <div class="chat-body">
@@ -147,7 +157,8 @@
                                         <div class="chat chat-left">
                                             <div class="chat-avatar">
                                                 <span class="avatar box-shadow-1 cursor-pointer">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg" alt="avatar" height="36" width="36" />
+                                                    <img src="http://localhost/asset/images/portrait/small/avatar-s-11.jpg"
+                                                        alt="avatar" height="36" width="36" />
                                                 </span>
                                             </div>
                                             <div class="chat-body">
@@ -166,7 +177,8 @@
                                         <div class="chat">
                                             <div class="chat-avatar">
                                                 <span class="avatar box-shadow-1 cursor-pointer">
-                                                    <img src="../../../app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="36" width="36" />
+                                                    <img src="http://localhost/asset/images/portrait/small/avatar-s-11.jpg"
+                                                        alt="avatar" height="36" width="36" />
                                                 </span>
                                             </div>
                                             <div class="chat-body">
@@ -186,8 +198,10 @@
                                 <!-- Submit Chat form -->
                                 <form class="chat-app-form" action="javascript:void(0);" onsubmit="enterChat();">
                                     <div class="input-group input-group-merge me-1 form-send-message">
-                                        <span class="speech-to-text input-group-text"><i data-feather="mic" class="cursor-pointer"></i></span>
-                                        <input type="text" class="form-control message" placeholder="Type your message or use speech to text" />
+                                        <span class="speech-to-text input-group-text"><i data-feather="mic"
+                                                class="cursor-pointer"></i></span>
+                                        <input type="text" class="form-control message"
+                                            placeholder="Type your message or use speech to text" />
                                         <span class="input-group-text">
                                             <label for="attach-doc" class="attachment-icon form-label mb-0">
                                                 <i data-feather="image" class="cursor-pointer text-secondary"></i>
@@ -220,9 +234,14 @@
 
     @include('layouts.dashboard.script')
     <script src="{{ asset('app-assets/js/scripts/pages/app-chat.js') }}"></script>
- f
+    {{-- <script >
+    window.Echo.channel("messages").listen("PrivetMessage",(event)=>{
+        console.log('ddddd');
+        console.log(event);
+    });
+    </script> --}}
+
 </body>
 <!-- END: Body-->
 
 </html>
-

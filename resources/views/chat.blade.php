@@ -15,7 +15,7 @@
     <div class="app">
         <header>
             <h1>Chat APP</h1>
-            <input type="text" name="username" id="username" placeholder="User Name" value="{{auth()->user()->client_name}}">
+            <input type="text" name="username" id="username" placeholder="User Name" value="ADMIN">
         </header>
         <div id="messages"></div>
         <form id="message_form">
@@ -23,7 +23,7 @@
             <button type="submit" id="message_send">Send</button>
         </form>
     </div>
- 
+
 <script>
 //   const message_el = document.getElementById('messages');
 // const username_input = document.getElementById('username');
