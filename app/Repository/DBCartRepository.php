@@ -17,7 +17,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function addtocart($product_id, $qty)
     {
-        Log::alert("cart",['product_id' => $product_id, 'user_id' => Auth::user('api')->id]);
+        Log::alert("cart",['product_id' => $product_id, 'user_id' => Auth::user('api')->id,'qty'=>$qty]);
         $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::user('api')->id], ['user_id' => Auth::user('api')->id, 'product_id' => $product_id, 'qty' => $qty]);
         if ($qty == 0) {
             $this->deletecart($w->id);
