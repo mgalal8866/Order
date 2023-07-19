@@ -45,10 +45,10 @@ import './bootstrap';
 // window.Echo.channel('chat').listen('.message', function(data) {
 //   alert(JSON.stringify(data));
 // });
-window.Echo.channel("chat").listen(".message",(event)=>{
+// window.Echo.channel("chat").listen(".message",(event)=>{
 
-    console.log(event);
-});
+//     console.log(event);
+// });
 
 
 // createApp(App).mount("#app");

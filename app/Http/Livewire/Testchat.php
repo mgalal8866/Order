@@ -9,13 +9,11 @@ class Testchat extends Component
 
     public $e=[];
     // Special Syntax: ['echo:{channel},{event}' => '{method}']
-    protected $listeners = ['echo:chat,.message' => 'appendContent'];
+    protected $listeners = ['echo:messages.1,.message' => 'appendContent'];
     public function appendContent($event)
     {
-
         $this->e = $event;
-        // dd($event['message']);  //Shows the Post ID
-
+        
     }
 
     public function render()

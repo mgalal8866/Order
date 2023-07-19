@@ -63,7 +63,8 @@ use App\Models\ProductHeader;
 // Route::get('/', [MessageController::class,'index']);
 Route::get('send-message',  function () {
 
-    event(new MessageSent('hello world'));
+    // event(new MessageSent('hello world'));
+    event(new PrivetMessage('hello world'));
 
     return ['success' => true];
 });
@@ -163,7 +164,7 @@ Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
     Route::get('/chatlive', Testchat::class)->name('chatlive');
     // Route::get('product', CreateProduct::class)->name('product');
 
-    Route::get('/chat', [MessageController::class, 'index']);
+    Route::get('/chat', Chat::class );
     Route::get('users', Users::class)->name('viewusers');
     Route::get('categorys', ViewCategory::class)->name('categorys');
     Route::get('category/edit/{id}', EditCategory::class)->name('category');

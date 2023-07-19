@@ -18,9 +18,9 @@ class MessageController extends Controller
     public function index()
     {
         // // PrivetMessage::dispatch('hello');
-        // $cc = conversion::get();
-        //     return view('livewire.dashboard.chat', compact(['cc']));
-        return view('chat');
+        $cc = conversion::get();
+            return view('livewire.dashboard.chat', compact(['cc']));
+        // return view('chat');
     }
 
     public function fetchMessages()
