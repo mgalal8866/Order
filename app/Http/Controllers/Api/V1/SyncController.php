@@ -415,7 +415,7 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $uu =   Coupon::updateOrCreate(['id' => $item['id']], [
+                $uu =   Coupon::updateOrCreate(['id' => $item['PrmoCode_ID']], [
                     'id'          => $item['PrmoCode_ID'],
                     'user_id'     => $item['userID'],
                     'code'        => $item['PrmoCode'],
