@@ -17,8 +17,11 @@ use App\Models\ProductDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
+use App\Models\comment;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
+use App\Models\notifiction;
 use App\Models\slider;
 use Illuminate\Support\Facades\Validator;
 
@@ -60,15 +63,14 @@ class SyncController extends Controller
                     'created_at'          => $item['caret_data']
                 ]);
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
-            logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
-
+                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
 
             $data = ['users_online' =>   User::where('source_id', null)->get() ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
 
             return  $data;
         } catch (\Exception $e) {
-            logsync::create(['type' => "Error", 'data'=> null,  'massage' =>  json_encode($e->getMessage())]);
+            logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
 
             Log::error($e->getMessage());
         }
@@ -93,13 +95,13 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   ProductHeader::updateOrCreate( ['id'=> $item['Products_ID']],[
+                $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
                     'id'                => $item['Products_ID'],
                     'product_name'      => $item['Products_name'],
                     'product_category'  => $item['Products_Sup_id'],
-                    'product_acteve'    => ($item['Products_Acteve'] == true) ?1:($item['Products_Acteve'] == false?0:$item['Products_Acteve']),
-                    'product_isscale'   => ($item['Products_IsScale'] == true) ?1:($item['Products_IsScale'] == false?0:$item['Products_IsScale']),
-                    'product_online'    => ($item['Products_Onlein'] == true) ?1:($item['Products_Onlein'] == false?0:$item['Products_Onlein']),
+                    'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
+                    'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
+                    'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
                     'product_tax'       => $item['Products_Tax'],
                     'product_limit'     => $item['Products_Lemt'],
                     'user_id'           => $item['user_id'],
@@ -121,8 +123,8 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $image = $item['ProductsD_image'] != null ? uploadbase64images('products',$item['ProductsD_image']):null;
-                $uu =   ProductDetails::updateOrCreate(['id'=> $item['ProductD_id']],[
+                $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
+                $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
                     'id'                 => $item['ProductD_id'],
                     'product_header_id'  => $item['Product_id'],
                     'productd_unit_id'   => $item['ProductsD_unit_id'],
@@ -131,11 +133,11 @@ class SyncController extends Controller
                     'productd_bay'       => $item['ProductsD_Bay'],
                     'productd_Sele1'     => $item['ProductsD_Sele1'],
                     'productd_Sele2'     => $item['ProductsD_Sele2'],
-                    'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ?1:($item['ProductsD_fast_Sele'] == false?0:$item['ProductsD_fast_Sele']),
+                    'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 : ($item['ProductsD_fast_Sele'] == false ? 0 : $item['ProductsD_fast_Sele']),
                     'productd_UnitType'  => $item['ProductsD_UnitType'],
                     'productd_image'     => $image,
-                    'isoffer'            => ($item['IsOffer'] == true) ?1:($item['IsOffer'] == false?0:$item['IsOffer']),
-                    'productd_online'    => ($item['Product_Onlein'] == true) ?1:($item['Product_Onlein'] == false?0:$item['Product_Onlein']),
+                    'isoffer'            => ($item['IsOffer'] == true) ? 1 : ($item['IsOffer'] == false ? 0 : $item['IsOffer']),
+                    'productd_online'    => ($item['Product_Onlein'] == true) ? 1 : ($item['Product_Onlein'] == false ? 0 : $item['Product_Onlein']),
                     'maxqty'             => $item['MaxQuntte'],
                     'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
                 ]);
@@ -150,14 +152,14 @@ class SyncController extends Controller
     }
     function uploadunits(Request $request)
     {
-           Log::info('upload UNIT client SyncController', $request->all());
+        Log::info('upload UNIT client SyncController', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   unit::updateOrCreate([ "id" => $item['unit_id']],[
+                $uu =   unit::updateOrCreate(["id" => $item['unit_id']], [
                     "id"            => $item['unit_id'],
                     "unit_name"     => $item['unit_name'],
                     "unit_note"     => $item['unit_note'],
-                    "unit_active"   => ($item['unit_Active'] == true) ?1:($item['unit_Active'] == false?0:$item['unit_Active']),
+                    "unit_active"   => ($item['unit_Active'] == true) ? 1 : ($item['unit_Active'] == false ? 0 : $item['unit_Active']),
                     "user_id"       => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -174,14 +176,14 @@ class SyncController extends Controller
         Log::info('upload Category client SyncController', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $image = $item['image'] != null ? uploadbase64images('category',$item['image']):null;
-                $succ =   Category::updateOrCreate(["id" => $item['Category_id']],[
+                $image = $item['image'] != null ? uploadbase64images('category', $item['image']) : null;
+                $succ =   Category::updateOrCreate(["id" => $item['Category_id']], [
                     "id"              => $item['Category_id'],
                     "parent_id"       => $item['parntID'],
                     "category_name"   => $item['Category_name'],
                     "image"           => $image,
                     "category_note"   => $item['Category_note'],
-                    "category_active" => ($item['Category_Active'] == true) ?1:($item['Category_Active'] == false?0:$item['Category_Active']),
+                    "category_active" => ($item['Category_Active'] == true) ? 1 : ($item['Category_Active'] == false ? 0 : $item['Category_Active']),
                     "user_id"         => $item['user_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($succ), 'massage' => null]);
@@ -201,7 +203,7 @@ class SyncController extends Controller
         Log::info('uploadsalseheader', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],],[
+                $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
                     "id"            => $item['SalesHeader_ID'],
                     "invoicenumber" => $item['InvoiceNumber'],
                     "coupon_id"     => $item['coupon_id'],
@@ -251,9 +253,9 @@ class SyncController extends Controller
     {
         Log::info('uploadsalsedetails', $request->all());
         try {
-            SalesDetails::where('sale_header_id',$request[0]['SalesHeader_ID'])->delete();
+            SalesDetails::where('sale_header_id', $request[0]['SalesHeader_ID'])->delete();
             foreach ($request->all() as $index => $item) {
-                $uu =   SalesDetails::updateOrCreate(['id' => $item['SalesDetails_ID']],[
+                $uu =   SalesDetails::updateOrCreate(['id' => $item['SalesDetails_ID']], [
                     'id'                 => $item['SalesDetails_ID'],
                     'sale_header_id'     => $item['SalesHeader_ID'],
                     'product_details_id' => $item['ProductDetails_ID'],
@@ -279,7 +281,7 @@ class SyncController extends Controller
         Log::info('DeliveryHeader', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   DeliveryHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],],[
+                $uu =   DeliveryHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
                     "id"            => $item['SalesHeader_ID'],
                     "invoicenumber" => $item['InvoiceNumber'],
                     "coupon_id"     => $item['coupon_id'],
@@ -329,10 +331,10 @@ class SyncController extends Controller
     {
         Log::info('uploaddeliverydetails', $request->all());
         try {
-            DeliveryDetails::where('sale_header_id',$request[0]['SalesHeader_ID'])->delete();
+            DeliveryDetails::where('sale_header_id', $request[0]['SalesHeader_ID'])->delete();
             foreach ($request->all() as $index => $item) {
 
-                $uu =   DeliveryDetails::updateOrCreate(['id' => $item['SalesDetails_ID']],[
+                $uu =   DeliveryDetails::updateOrCreate(['id' => $item['SalesDetails_ID']], [
                     'id'                 => $item['SalesDetails_ID'],
                     'sale_header_id'     => $item['SalesHeader_ID'],
                     'product_details_id' => $item['ProductDetails_ID'],
@@ -359,10 +361,12 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $uu =   slider::updateOrCreate(['id' => $item['SliderID']],[
+                $image = $item['image'] != null ? uploadbase64images('sliders', $item['image']) : null;
+
+                $uu =   slider::updateOrCreate(['id' => $item['SliderID']], [
                     'id'       => $item['SliderID'],
                     'name'     => $item['Name'],
-                    'image'    => $item['Image'],
+                    'image'    => $image,
                     'active'   => $item['active'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -376,13 +380,32 @@ class SyncController extends Controller
     }
     function downsdeliveryheader(Request $request)
     {
-       $data = DeliveryHeader::get();
-        return    Resp($data , 'success', 200, true);
-
+        $data = DeliveryHeader::get();
+        return    Resp($data, 'success', 200, true);
     }
     function downdeliverydetails(Request $request)
     {
-            $data = DeliveryDetails::get();
-            return    Resp($data , 'success', 200, true);
+        $data = DeliveryDetails::get();
+        return    Resp($data, 'success', 200, true);
+    }
+    function downcomment()
+    {
+        $data = comment::whereHas('salesheader')->get();
+        return    Resp(CommentResource::collection($data), 'success', 200, true);
+    }
+    function sendnotification(Request $request)
+    {
+        $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
+        $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);
+        $notifi =  notifiction::created(['title' => $request['title'], 'body' => $request['body'], 'image' =>  $image, 'results' => $result]);
+        return    Resp($notifi , 'success', 200, true);
+
+    }
+    function getfsm_notification()
+    {
+        // dd('');
+        // $userfsm = user::where('fsm','!=',null)->pluck(['id','fsm','source_id']);
+        $userfsm = user::where('fsm', '!=',null)->select('id','fsm','source_id')->get()->toarray();
+        return    Resp($userfsm , 'success', 200, true);
     }
 }

@@ -11,6 +11,6 @@ class comment extends Model
     protected $guarded = [];
     public function salesheader()
     {
-        return $this->hasMany(salesheader::class, 'comment_id');
+        return $this->hasOne(salesheader::class, 'comment_id');
     }
 }
