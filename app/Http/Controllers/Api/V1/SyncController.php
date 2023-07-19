@@ -374,4 +374,15 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function downsdeliveryheader(Request $request)
+    {
+       $data = DeliveryHeader::get();
+        return    Resp($data , 'success', 200, true);
+
+    }
+    function downdeliverydetails(Request $request)
+    {
+            $data = DeliveryDetails::get();
+            return    Resp($data , 'success', 200, true);
+    }
 }
