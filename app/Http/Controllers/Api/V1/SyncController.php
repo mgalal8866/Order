@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use App\Models\comment;
+use App\Models\Coupon;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
 use App\Models\notifiction;
@@ -407,5 +408,32 @@ class SyncController extends Controller
         // $userfsm = user::where('fsm','!=',null)->pluck(['id','fsm','source_id']);
         $userfsm = user::where('fsm', '!=',null)->select('id','fsm','source_id')->get()->toarray();
         return    Resp($userfsm , 'success', 200, true);
+    }
+    function uploadcoupon(Request $request)
+    {
+        Log::info('uploadcode', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $uu =   Coupon::updateOrCreate(['id' => $item['id']], [
+                    'id'          => $item['id'],
+                    'user_id'     => $item['user_id'],
+                    'code'        => $item['code'],
+                    'name'        => $item['name'],
+                    'value'       => $item['value'],
+                    'type'        => $item['type'],
+                    'min_invoce'  => $item['min_invoce'],
+                    'used'        => $item['used'],
+                    'start_date'  => Carbon::parse($item['start_date'])->format('Y-m-d H:i:s'),
+                    'end_date'    => Carbon::parse($item['end_date'])->format('Y-m-d H:i:s'),
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
     }
 }

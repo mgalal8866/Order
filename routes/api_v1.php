@@ -106,5 +106,6 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/slider',[SyncController::class, 'uploadslider']);
     Route::get('/get/fsm_notification',[SyncController::class, 'getfsm_notification']);
     Route::post('/notification/send',[SyncController::class, 'sendnotification']);
+    Route::post('/upload/coupon',[SyncController::class, 'uploadcoupon']);
 });
 #################   End  SYNC   #############
