@@ -472,6 +472,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    
     function uploadcategoryapp(Request $request)
     {
         Log::info('uploadcategoryapp', $request->all());
