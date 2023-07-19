@@ -416,16 +416,16 @@ class SyncController extends Controller
 
             foreach ($request->all() as $index => $item) {
                 $uu =   Coupon::updateOrCreate(['id' => $item['id']], [
-                    'id'          => $item['id'],
-                    'user_id'     => $item['user_id'],
-                    'code'        => $item['code'],
-                    'name'        => $item['name'],
+                    'id'          => $item['PrmoCode_ID'],
+                    'user_id'     => $item['userID'],
+                    'code'        => $item['PrmoCode'],
+                    'name'        => $item['PrmoName'],
                     'value'       => $item['value'],
-                    'type'        => $item['type'],
+                    'type'        => $item['TypeDec'],
                     'min_invoce'  => $item['min_invoce'],
                     'used'        => $item['used'],
-                    'start_date'  => Carbon::parse($item['start_date'])->format('Y-m-d H:i:s'),
-                    'end_date'    => Carbon::parse($item['end_date'])->format('Y-m-d H:i:s'),
+                    'start_date'  => Carbon::parse($item['stardate'])->format('Y-m-d H:i:s'),
+                    'end_date'    => Carbon::parse($item['enddate'])->format('Y-m-d H:i:s'),
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

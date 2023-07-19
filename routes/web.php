@@ -63,7 +63,7 @@ use App\Models\ProductHeader;
 // Route::get('/', [MessageController::class,'index']);
 Route::get('send-message',  function () {
 
-    event(new PrivetMessage('hello world'));
+    event(new MessageSent('hello world'));
 
     return ['success' => true];
 });
