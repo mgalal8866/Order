@@ -18,10 +18,12 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Models\CateoryApp;
 use App\Models\comment;
 use App\Models\Coupon;
 use App\Models\DeliveryDetails;
 use App\Models\DeliveryHeader;
+use App\Models\Employee;
 use App\Models\notifiction;
 use App\Models\slider;
 use Illuminate\Support\Facades\Validator;
@@ -426,6 +428,64 @@ class SyncController extends Controller
                     'used'        => $item['used'],
                     'start_date'  => Carbon::parse($item['stardate'])->format('Y-m-d H:i:s'),
                     'end_date'    => Carbon::parse($item['enddate'])->format('Y-m-d H:i:s'),
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploademp(Request $request)
+    {
+        Log::info('uploademp', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $uu =   Employee::updateOrCreate(['id' => $item['id']], [
+                    'id' => $item['id'],
+                    'name' => $item['name'],
+                    'code' => $item['code'],
+                    'phone' => $item['phone'],
+                    'identite' => $item['identite'],
+                    'region_id' => $item['region_id'],
+                    'paytype_id' => $item['paytype_id'],
+                    'pay_sel' => $item['pay_sel'],
+                    'total_houre' => $item['total_houre'],
+                    'job_id' => $item['job_id'],
+                    'branch_id' => $item['branch_id'],
+                    'data_active' => $item['data_active'],
+                    'data_unactive' => $item['data_unactive'],
+                    'note' => $item['note'],
+                    'image' => $item['image'],
+                    'active' => $item['active'],
+
+               ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploadcategoryapp(Request $request)
+    {
+        Log::info('uploadcategoryapp', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $uu =   CateoryApp::updateOrCreate(['id' => $item['id']], [
+                    'id'          => $item['id'],
+                    'parent_id'   => $item['parent_id'],
+                    'name'        => $item['name'],
+                    'image'       => $item['image'],
+                    'note'        => $item['note'],
+                    'cat_active'  => $item['cat_active'],
+
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
