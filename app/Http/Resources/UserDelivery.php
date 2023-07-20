@@ -16,8 +16,8 @@ class UserDelivery extends JsonResource
     {
         return [
             'id'    =>$this->id,
-            'lat'  =>$this->lat,
-            'long'  =>$this->long
+            'lat'  =>$this->lat??'',
+            'long'  =>$this->long??''
         ];
     }
 }
