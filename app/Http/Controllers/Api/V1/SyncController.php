@@ -526,8 +526,6 @@ class SyncController extends Controller
                     'id'        => $item['DelvryID'],
                     'emp_id'    => $item['EmpID'],
                     'password'  => $item['Passwrd'],
-                    'lat'       => $item['Lat'],
-                    'long'      => $item['Long'],
                     'user_id'   => $item['userID'],
                     'active'    => $item['Delvry_Active'],
 
