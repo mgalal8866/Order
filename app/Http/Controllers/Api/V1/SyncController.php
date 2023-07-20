@@ -6,29 +6,30 @@ use Exception;
 use Carbon\Carbon;
 use App\Models\unit;
 use App\Models\User;
+use App\Models\Coupon;
+use App\Models\slider;
+use App\Models\comment;
 use App\Models\logsync;
 use App\Models\Category;
+use App\Models\Employee;
+use App\Models\CateoryApp;
+use App\Models\notifiction;
 use App\Models\SalesHeader;
 use Illuminate\Support\Str;
 use App\Models\SalesDetails;
+use App\Models\UserDelivery;
 use Illuminate\Http\Request;
 use App\Models\ProductHeader;
+use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
+use App\Models\DeliveryDetails;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
-use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
-use App\Models\CateoryApp;
-use App\Models\comment;
-use App\Models\Coupon;
-use App\Models\DeliveryDetails;
-use App\Models\DeliveryHeader;
-use App\Models\Employee;
-use App\Models\notifiction;
-use App\Models\slider;
-use App\Models\UserDelivery;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Resources\clientsyncResource;
+use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
 
 class SyncController extends Controller
 {
@@ -71,7 +72,7 @@ class SyncController extends Controller
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
 
-            $data = ['users_online' =>   User::where('source_id', null)->get() ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
+            $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
 
             return  $data;
         } catch (\Exception $e) {
