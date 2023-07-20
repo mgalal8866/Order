@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
+use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
 use App\Models\CateoryApp;
 use App\Models\comment;
 use App\Models\Coupon;
@@ -520,7 +521,6 @@ class SyncController extends Controller
     {
         Log::info('user_deliveries', $request->all());
         try {
-
             foreach ($request->all() as $index => $item) {
                 $uu =   UserDelivery::updateOrCreate(['id' => $item['DelvryID']], [
                     'id'        => $item['DelvryID'],
@@ -532,16 +532,13 @@ class SyncController extends Controller
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
-            return Resp(null, 'Success', 200, true);
+            $data =   UserDelivery::get();
+            return Resp(ResourcesUserDelivery::collection($data), 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function getuser_deliveries(Request $request)
-    {
-             $data =   UserDelivery::get();
-            return Resp($data, 'Success', 200, true);
-    }
+
 }
