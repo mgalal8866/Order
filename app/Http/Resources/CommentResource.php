@@ -19,7 +19,7 @@ class CommentResource extends JsonResource
             "comment"=>$this->comment,
             "user_id"=>$this->user_id,
             "evalution"=>$this->evalution,
-            "created_at"=>$this->null,
+            "created_at"=>$this->created_at,
             "salesheader"=>$this->salesheader->id,
             "client_name"=>$this->salesheader->user->client_name,
             "client_phone"=>$this->salesheader->user->client_fhonewhats
