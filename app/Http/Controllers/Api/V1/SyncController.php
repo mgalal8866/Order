@@ -539,4 +539,9 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function getuser_deliveries(Request $request)
+    {
+             $data =   UserDelivery::get();
+            return Resp($data, 'Success', 200, true);
+    }
 }
