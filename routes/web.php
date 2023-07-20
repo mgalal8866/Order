@@ -98,8 +98,8 @@ Route::post('/store-token', function (Request $request) {
     //     'password'=> Hash::make('123456')
     //   ]);
 
-    // Auth::user()->update(['fsm' => $request->token]);
-    // return response()->json(['Token successfully stored.']);
+    Auth::guard('client')->user()->update(['fsm' => $request->token]);
+    return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 // Route::get('/sql', function (Request $request) {

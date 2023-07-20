@@ -23,6 +23,7 @@ return new class extends Migration
             $table->decimal('pay_sel',18,2)->nullable();
             $table->string('total_houre')->nullable();
             $table->integer('job_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->integer('branch_id')->nullable();
             $table->timestamp('data_active')->nullable();
             $table->timestamp('data_unactive')->nullable();
