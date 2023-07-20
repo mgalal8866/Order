@@ -500,13 +500,13 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $uu =   CateoryApp::updateOrCreate(['id' => $item['id']], [
-                    'id'          => $item['id'],
-                    'parent_id'   => $item['parent_id'],
+                $uu =   CateoryApp::updateOrCreate(['id' => $item['CategoryAPP_ID']], [
+                    'id'          => $item['CategoryAPP_ID'],
                     'name'        => $item['name'],
                     'image'       => $item['image'],
                     'note'        => $item['note'],
-                    'cat_active'  => $item['cat_active'],
+                    'user_id'     => $item['userID'],
+                    'cat_active'  => $item['CAT_Acteve'],
 
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
