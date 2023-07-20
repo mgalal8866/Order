@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
+        'employees' => [
+            'driver' => 'local',
+            'root' => public_path('asset/images/employees'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+        ],
         'category' => [
             'driver' => 'local',
             'root' => public_path('asset/images/category'),

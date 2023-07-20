@@ -26,6 +26,7 @@ use App\Models\DeliveryHeader;
 use App\Models\Employee;
 use App\Models\notifiction;
 use App\Models\slider;
+use App\Models\UserDelivery;
 use Illuminate\Support\Facades\Validator;
 
 class SyncController extends Controller
@@ -458,6 +459,8 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
+                $image = $request['Employees_image'] != null ? uploadbase64images('employees', $request['Employees_image']) : null;
+
                 $uu =   Employee::updateOrCreate(['id' => $item['Employees_id']], [
                     'id' => $item['Employees_id'],
                     'name' => $item['Employees_name'],
@@ -473,7 +476,7 @@ class SyncController extends Controller
                     'data_active' => $item['data_Active'],
                     'data_unactive' => $item['data_unActive'],
                     'note' => $item['Employees_note'],
-                    'image' => $item['Employees_image'],
+                    'image' =>   $image,
                     'active' => $item['Employees_Active'],
                     'user_id' => $item['user_id'],
                     'state' => $item['Employees_state'],
@@ -502,6 +505,31 @@ class SyncController extends Controller
                     'image'       => $item['image'],
                     'note'        => $item['note'],
                     'cat_active'  => $item['cat_active'],
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploaduser_deliveries(Request $request)
+    {
+        Log::info('user_deliveries', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $uu =   UserDelivery::updateOrCreate(['id' => $item['DelvryID']], [
+                    'id'        => $item['DelvryID'],
+                    'emp_id'    => $item['EmpID'],
+                    'password'  => $item['Passwrd'],
+                    'lat'       => $item['Lat'],
+                    'long'      => $item['Long'],
+                    'user_id'   => $item['userID'],
+                    'active'    => $item['Delvry_Active'],
 
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
