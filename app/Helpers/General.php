@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     if($status == 422 ){
@@ -17,6 +18,11 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $filename = $image->hashName();
     return  $filename;
 }
+
+    function deleteimage($path,$image)
+    {
+        Storage::disk($path)->delete($image);
+    }
   function uploadbase64images($folder,$image){
     $image = $image;  // your base64 encoded
     $image = str_replace('data:image/png;base64,', '', $image);
