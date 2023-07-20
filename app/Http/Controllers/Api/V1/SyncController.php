@@ -370,10 +370,24 @@ class SyncController extends Controller
                     'id'       => $item['SliderID'],
                     'name'     => $item['Name'],
                     'image'    => $image,
-                    'active'   => $item['active'],
+                    'active'   => ($item['active'] == true) ? 1 : ($item['active'] == false ? 0 : $item['active']),
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function deleteslider($id)
+    {
+        // Log::info('uploadslider', $request->all());
+        try {
+             slider::find($id)->first();
+             $image = $item['image'] != null ? uploadbase64images('sliders', $item['image']) : null;
+
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -444,23 +458,25 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $uu =   Employee::updateOrCreate(['id' => $item['id']], [
-                    'id' => $item['id'],
-                    'name' => $item['name'],
-                    'code' => $item['code'],
-                    'phone' => $item['phone'],
-                    'identite' => $item['identite'],
-                    'region_id' => $item['region_id'],
-                    'paytype_id' => $item['paytype_id'],
-                    'pay_sel' => $item['pay_sel'],
-                    'total_houre' => $item['total_houre'],
-                    'job_id' => $item['job_id'],
-                    'branch_id' => $item['branch_id'],
-                    'data_active' => $item['data_active'],
-                    'data_unactive' => $item['data_unactive'],
-                    'note' => $item['note'],
-                    'image' => $item['image'],
-                    'active' => $item['active'],
+                $uu =   Employee::updateOrCreate(['id' => $item['Employees_id']], [
+                    'id' => $item['Employees_id'],
+                    'name' => $item['Employees_name'],
+                    'code' => $item['Employees_code'],
+                    'phone' => $item['Employees_fhone'],
+                    'identite' => $item['Employees_EntiteNumber'],
+                    'region_id' => $item['Region_id'],
+                    'paytype_id' => $item['PayType_id'],
+                    'pay_sel' => $item['Pay_Sel'],
+                    'total_houre' => $item['Total_hour'],
+                    'job_id' => $item['jobs_id'],
+                    'branch_id' => $item['Branch_id'],
+                    'data_active' => $item['data_Active'],
+                    'data_unactive' => $item['data_unActive'],
+                    'note' => $item['Employees_note'],
+                    'image' => $item['Employees_image'],
+                    'active' => $item['Employees_Active'],
+                    'user_id' => $item['user_id'],
+                    'state' => $item['Employees_state'],
 
                ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -472,7 +488,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    
+
     function uploadcategoryapp(Request $request)
     {
         Log::info('uploadcategoryapp', $request->all());
