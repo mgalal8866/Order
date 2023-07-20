@@ -501,7 +501,6 @@ class SyncController extends Controller
 
             foreach ($request->all() as $index => $item) {
                 $image = $item['image'] != null ? uploadbase64images('categoryapp', $item['image']) : null;
-
                 $uu =   CateoryApp::updateOrCreate(['id' => $item['CategoryAPP_ID']], [
                     'id'          => $item['CategoryAPP_ID'],
                     'name'        => $item['name'],
