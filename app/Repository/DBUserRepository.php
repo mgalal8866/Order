@@ -41,9 +41,9 @@ class DBUserRepository implements UserRepositoryinterface
             $user->lat_mab           = $request['lat_mab'];
             $user->long_mab          = $request['long_mab'];
             $user->client_state      = $request['client_state'];
-            $user->long_mab          = $request['long_mab'];
             $user->CategoryAPP       = $request['CategoryAPP'];
             $user->client_code       = $request['client_code'];
+            $user->store_name        = $request['store_name'];
             $user->save();
             $data =  new UserResource($user);
             return Resp($data, 'Success', 200, true);
@@ -58,7 +58,17 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-        $user = User::create($request);
+        $user = User::create([
+        'client_name'=>$request['client_name'],
+        'client_fhonewhats'=>$request['client_fhonewhats'],
+        'client_fhoneLeter'=>$request['client_fhoneLeter'],
+        'region_id'=>$request['region_id'],
+        'lat_mab'=>$request['lat_mab'],
+        'long_mab'=>$request['long_mab'],
+        'client_state'=>$request['client_state'],
+        'long_mab'=>$request['long_mab'],
+        'CategoryAPP'=>$request['CategoryAPP'],
+        'client_code'=>$request['client_code']]);
         if (!$token = auth()->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
