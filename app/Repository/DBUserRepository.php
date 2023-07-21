@@ -38,6 +38,7 @@ class DBUserRepository implements UserRepositoryinterface
             $user->client_name       = $request['client_name'];
             $user->client_fhoneLeter = $request['client_fhoneLeter'];
             $user->region_id         = $request['region_id'];
+            $user->store_name        = $request['store_name'];
             $user->lat_mab           = $request['lat_mab'];
             $user->long_mab          = $request['long_mab'];
             $user->client_state      = $request['client_state'];

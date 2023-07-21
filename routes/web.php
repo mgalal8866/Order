@@ -39,6 +39,11 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Front\Cart\Checkout;
+use App\Http\Livewire\Front\Order\Ordersuccess;
+use App\Http\Livewire\Front\Order\Ordertraking;
+use App\Http\Livewire\Front\Product\Searchproduct;
+use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Testchat;
 use App\Models\conversion;
 use App\Models\ProductDetails;
@@ -146,9 +151,14 @@ Route::middleware('guest:client')->group(function () {
 });
 #################### auth Client #####################
 Route::middleware('auth:client')->group(function () {
-    Route::get('/cart', Cart::class)->name('cart');
     Route::post('/logout', [UserAdminController::class, 'clientlogout'])->name('clientlogout');
+    Route::get('/cart', Cart::class)->name('cart');
+    Route::get('/cart/checkout', Checkout::class)->name('checkout');
+    Route::get('/user/dashboard', Userdashborad::class)->name('userdashborad');
+    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
     Route::get('/wishlist', Wishlist::class)->name('wishlist');
+    Route::get('/order/traking', Ordertraking::class)->name('ordertraking');
+    Route::get('/order/success', Ordersuccess::class)->name('ordersuccess');
 });
 #################### FRONT Client #####################
 #####################################################
