@@ -27,6 +27,8 @@ class UserResource extends JsonResource
             'default_Sael'      => $this->default_Sael ?? '',
             'client_Credit_Limit' => $this->client_Credit_Limit ?? '',
             'region_id'         => $this->region_id ?? '',
+            'city_id'           => $this->region->city->nam ?? '',
+            'store_name'        => $this->store_name ?? '',
             'lat_mab'           => $this->lat_mab ?? '',
             'long_mab'          => $this->long_mab ?? '',
             'client_state'      => $this->client_state ?? '',

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('client_fhoneLeter')->nullable();
             $table->string('client_EntiteNumber')->nullable();
             $table->integer('region_id')->nullable();
+            $table->string('store_name')->nullable();
             $table->string('lat_mab')->nullable();
             $table->string('long_mab')->nullable();
             $table->string('client_state')->nullable();//عنوان
