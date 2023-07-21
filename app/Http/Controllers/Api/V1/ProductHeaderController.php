@@ -22,10 +22,6 @@ class ProductHeaderController extends Controller
     // public function searchproduct($search=null)
     public function searchproduct($search)
     {
-        // if($search==null)
-        // return [];
-
-
       return  $this->productRepositry->searchproduct($search);
     }
  }

@@ -10,16 +10,17 @@ use App\Repositoryinterface\ProductRepositoryinterface;
 
 class DBProductRepository implements ProductRepositoryinterface
 {
+    public $page= 30;
     public function getprobycat($id)
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->online()->paginate(10)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->online()->paginate($this->page)), 'success', 200, true)->getData(true);
         // dd(\DB::getQueryLog()); // Show results of log
     }
     public function getoffers()
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails::Getoffers()->paginate(10)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getoffers()->paginate($this->page)), 'success', 200, true)->getData(true);
         // \DB::getQueryLog(); // Show results of log
     }
     public function searchproduct($search)
@@ -28,7 +29,7 @@ class DBProductRepository implements ProductRepositoryinterface
             ->orWhereHas('productheader', function ($query) use ($search) {
                 $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
             })->online()
-            ->paginate(30);
+            ->paginate($this->page);
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
     }
 }
