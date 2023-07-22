@@ -13,10 +13,13 @@
                                         <h1>Get your grocery in 25 minutes</h1>
                                         <h3>Better ingredients, better food, and beverages, at low prices</h3>
                                         <div class="search-box">
-                                            <input type="search" class="form-control"
+                                            {{-- <form > --}}
+
+                                                <input wire:keydown.enter='gotosearch' wire:model.defer='search' type="search" class="form-control"
                                                 placeholder="I'm searching for..."
                                                 aria-label="Recipient's username">
-                                            <i data-feather="search"></i>
+                                                <i data-feather="search"></i>
+                                            {{-- </form> --}}
                                         </div>
                                     </div>
                                 </div>

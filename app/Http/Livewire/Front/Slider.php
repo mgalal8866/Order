@@ -6,8 +6,14 @@ use Livewire\Component;
 
 class Slider extends Component
 {
+    public $search;
+
+    public function gotosearch(){
+        dd( $this->search);
+
+    }
     public function render()
     {
-        return view('livewire.front.slider');
+        return view('livewire.front.slider')->layout('layouts.front-end.layout');
     }
 }

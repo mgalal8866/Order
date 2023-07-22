@@ -27,10 +27,9 @@
                                         <div class="offcanvas-body">
                                             <ul class="navbar-nav">
                                                 <li class="nav-item dropdown">
-                                                    <a class="nav-link dropdown-toggle" href="javascript:void(0)"
-                                                        data-bs-toggle="dropdown">{{ __('front.home') }}</a>
+                                                    <a class="nav-link dropdown-toggle" href="/" data-bs-toggle="dropdown">{{ __('front.home') }}</a>
 
-                                                    <ul class="dropdown-menu">
+                                                    {{-- <ul class="dropdown-menu">
                                                         <li>
                                                             <a class="dropdown-item" href="index.html">Kartshop</a>
                                                         </li>
@@ -38,7 +37,7 @@
                                                             <a class="dropdown-item" href="index-2.html">Sweetshop</a>
                                                         </li>
 
-                                                    </ul>
+                                                    </ul> --}}
                                                 </li>
 
                                                 {{-- <li class="nav-item dropdown">

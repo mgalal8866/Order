@@ -18,7 +18,7 @@
                                 </div>
 
                                 <div class="order-details-name">
-                                    <h5 class="text-content">Tracking Code</h5>
+                                    <h5 class="text-content">رقم الطلب المؤقت</h5>
                                     <h2 class="theme-color">MH4285UY</h2>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-4 col-sm-6">
+                        {{-- <div class="col-xl-4 col-sm-6">
                             <div class="order-details-contain">
                                 <div class="order-tracking-icon">
                                     <i class="text-content" data-feather="crosshair"></i>
@@ -88,28 +88,24 @@
                                     <h4>7 Frb, 05:05pm</h4>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-12 overflow-hidden">
                             <ol class="progtrckr">
                                 <li class="progtrckr-done">
-                                    <h5>Order Processing</h5>
+                                    <h5>تم الاستلام</h5>
                                     <h6>05:43 AM</h6>
                                 </li>
                                 <li class="progtrckr-done">
-                                    <h5>Pre-Production</h5>
+                                    <h5>جارى التحضير</h5>
                                     <h6>01:21 PM</h6>
                                 </li>
                                 <li class="progtrckr-done">
-                                    <h5>In Production</h5>
+                                    <h5>جارى التوصيل</h5>
                                     <h6>Processing</h6>
                                 </li>
                                 <li class="progtrckr-todo">
-                                    <h5>Shipped</h5>
-                                    <h6>Pending</h6>
-                                </li>
-                                <li class="progtrckr-todo">
-                                    <h5>Delivered</h5>
+                                    <h5>تم التوصيل</h5>
                                     <h6>Pending</h6>
                                 </li>
                             </ol>
@@ -122,7 +118,7 @@
     <!-- Order Detail Section End -->
 
     <!-- Order Table Section Start -->
-    <section class="order-table-section section-b-space">
+    {{-- <section class="order-table-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row">
                 <div class="col-12">
@@ -170,7 +166,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Order Table Section End -->
 
 </div>

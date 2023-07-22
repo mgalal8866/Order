@@ -17,7 +17,7 @@ return [
     'phone2'     => 'رقم تليفون اخر',
     'register'   => 'أنضم لنا',
     'logout'     => ' تسجيل خروج',
-    'myorder'     => ' طلباتى',
-    'myorder'     => ' طلباتى',
+    'myorderstay'     => ' طلباتى الحالية',
+    'myorderdone'     => ' طلباتى السابقة',
     'forgotpass' => 'استرجاع الباسورد'
 ];
