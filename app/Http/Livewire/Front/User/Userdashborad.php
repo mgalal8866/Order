@@ -11,6 +11,6 @@ class Userdashborad extends Component
     public function render()
     {
         $user = User::find(Auth::guard('client')->user()->id);
-        return view('livewire.front.user.userdashborad',['user'])->layout('layouts.front-end.layout');
+        return view('livewire.front.user.userdashborad',['user'=>$user])->layout('layouts.front-end.layout');
     }
 }

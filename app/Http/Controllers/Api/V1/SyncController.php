@@ -391,7 +391,7 @@ class SyncController extends Controller
     {
         // Log::info('uploadslider', $request->all());
         try {
-            $slider=  slider::find($id)->first();
+            $slider=  slider::find($id);
             $slider->orginalimage != null ? deleteimage('sliders',  $slider->orginalimage) : null;
             $slider->delete();
             return Resp(null, 'Success', 200, true);
