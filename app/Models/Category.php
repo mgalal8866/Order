@@ -14,6 +14,10 @@ class Category extends Model
     {
         return $query->whereNull('parent_id');
     }
+    public function scopeParentonly($query)
+    {
+        return $query->where('parent_id','!=' , null);
+    }
     public function productheader()
     {
         return $this->belongsto(ProductHeader::class, 'product_category');

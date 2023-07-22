@@ -30,6 +30,7 @@ use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
+use App\Models\deferred;
 
 class SyncController extends Controller
 {
@@ -388,19 +389,19 @@ class SyncController extends Controller
     {
         // Log::info('uploadslider', $request->all());
         try {
-             slider::find($id)->first();
-             $image = $item['image'] != null ? uploadbase64images('sliders', $item['image']) : null;
-
+            $slider=  slider::find($id)->first();
+            $slider->orginalimage != null ? deleteimage('sliders',  $slider->orginalimage) : null;
+            $slider->delete();
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => $slider,  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
     function downsdeliveryheader(Request $request)
     {
-        $data = DeliveryHeader::get();
+        $data = DeliveryHeader::with('salesdetails')->get();
         return    Resp($data, 'success', 200, true);
     }
     function downdeliverydetails(Request $request)
@@ -541,6 +542,30 @@ class SyncController extends Controller
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
+    }
+    function get_deferreds()
+    {
+        $deferred =deferred::get();
+        return Resp(($deferred), 'Success', 200, true);
+    }
+    function upload_deferreds(Request  $request)
+    {
+
+        Log::info('user_deliveries', $request->all());
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   deferred::updateOrCreate(['id' => $item['id']], [
+                    'statu'    => $item['statu'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp('', 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => $uu ,  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+
     }
 
 }

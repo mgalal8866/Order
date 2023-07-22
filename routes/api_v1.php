@@ -111,5 +111,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/emp',[SyncController::class, 'uploademp']);
     Route::post('/upload/categoryapp',[SyncController::class, 'uploadcategoryapp']);
     Route::post('/upload/user/delivery',[SyncController::class, 'uploaduser_deliveries']);
+    Route::get('/get/deferreds',[SyncController::class, 'get_deferreds']);
+    Route::post('/upload/deferreds',[SyncController::class, 'upload_deferreds']);
 });
 #################   End  SYNC   #############
