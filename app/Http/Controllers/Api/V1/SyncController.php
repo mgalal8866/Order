@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
 use App\Models\deferred;
+use App\Models\jobs;
 
 class SyncController extends Controller
 {
@@ -58,6 +59,7 @@ class SyncController extends Controller
                     'client_fhoneLeter'   => $item['Client_fhoneLeter'],
                     'client_EntiteNumber' => $item['Client_EntiteNumber'],
                     'region_id'           => $item['Region_id'],
+                    'store_name'          => $item['store_name'],
                     'lat_mab'             => $item['Lat_mab'],
                     'long_mab'            => $item['Long_mab'],
                     'client_state'        => $item['Client_state'],
@@ -567,5 +569,25 @@ class SyncController extends Controller
         }
 
     }
+    function upload_jobs(Request  $request)
+    {
 
+        Log::info('upload_jobs', $request->all());
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   jobs::updateOrCreate(['id' => $item['jobs_id']], [
+                    'jobs_id'      => $item['jobs_id'],
+                    'jobs_name'    => $item['jobs_name'],
+                    'jobs_Active'  => $item['jobs_Active'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp('', 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => $uu ,  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+
+    }
 }
