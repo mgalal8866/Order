@@ -32,6 +32,7 @@ class RegisterUser extends FormRequest
             'long_mab'          => 'required',
             'client_state'      => 'required',
             'CategoryAPP'       => 'required',
+            'store_name'       => '',
 
         ];
 

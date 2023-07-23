@@ -61,17 +61,18 @@ class DBUserRepository implements UserRepositoryinterface
     {
         Log::warning($request);
         $user = User::create([
-        'client_name'=>$request['client_name'],
-        'client_fhonewhats'=>$request['client_fhonewhats'],
-        'client_fhoneLeter'=>$request['client_fhoneLeter'],
-        'region_id'=>$request['region_id'],
-        'lat_mab'=>$request['lat_mab'],
-        'long_mab'=>$request['long_mab'],
-        'client_state'=>$request['client_state'],
-        'long_mab'=>$request['long_mab'],
-        'CategoryAPP'=>$request['CategoryAPP'],
-        'client_code'=>$request['client_code'],
-        'store_name' => $request['store_name']]);
+        'client_name'=>$request['client_name']??null,
+        'client_fhonewhats'=>$request['client_fhonewhats']??null,
+        'client_fhoneLeter'=>$request['client_fhoneLeter']??null,
+        'region_id'=>$request['region_id']??null,
+        'lat_mab'=>$request['lat_mab']??null,
+        'long_mab'=>$request['long_mab']??null,
+        'client_state'=>$request['client_state']??null,
+        'long_mab'=>$request['long_mab']??null,
+        'CategoryAPP'=>$request['CategoryAPP']??null,
+        'client_code'=>$request['client_code']??null,
+        'store_name' =>$request['store_name']??null]);
+        
         if (!$token = auth('client')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
