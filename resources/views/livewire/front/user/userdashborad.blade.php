@@ -1,3 +1,15 @@
+@push('csslive')
+<style>
+    .success{
+        background-color: rgba( 13, 164, 135, 0.1)!important;
+    color: #0da487 !important;
+    }
+    .danger {
+    background-color: rgba(255,114,114,0.1)!important;
+    color: #ff7272  !important;
+}
+</style>
+@endpush
 <div>
 
     <section class="user-dashboard-section section-b-space">
@@ -31,7 +43,7 @@
 
                                 <div class="profile-name">
                                     <h3>{{$data['user']->client_name}}</h3>
-                                    <h6 class="text-content">{{$data['user']    ->client_fhonewhats}}</h6>
+                                    <h6 class="text-content">{{$data['user']->client_fhonewhats}}</h6>
                                 </div>
                             </div>
                         </div>
@@ -215,6 +227,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">رقم الطلب</th>
+                                                        <th scope="col">التاريخ</th>
                                                         <th scope="col">طريقة الدفع</th>
                                                         <th scope="col">الحالة</th>
                                                         <th scope="col">الاجمالى</th>
@@ -224,48 +237,30 @@
                                                     @forelse ( $data['deliveryheader'] as $item )
                                                     <tr>
                                                         <td class="product-image">#{{$item->invoicenumber}}</td>
+                                                        <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
                                                         <td >#{{$item->paytayp}}</td>
                                                         <td>
-                                                            <label class="success">Shipped</label>
+                                                            @if ($item->type_order == 'تم التوصيل')
+
+                                                            <label class="success">{{$item->type_order}}</label>
+                                                            @else
+                                                            <label class="danger">{{$item->type_order}}</label>
+
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <h6>$25.69</h6>
+                                                            <h6>{{  $item->grandtotal .  $Cu }}</h6>
                                                         </td>
                                                     </tr>
                                                     @empty
                                                     <tr>
-                                                        <td colspan="4" >No Data</td>
+                                                        <td colspan="5" >No Data</td>
                                                     </tr>
                                                     @endforelse
 
                                                 </tbody>
                                             </table>
                                         </div>
-
-                                        <nav class="custome-pagination">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                                                        <i class="fa-solid fa-angles-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="javascript:void(0)">1</a>
-                                                </li>
-                                                <li class="page-item" aria-current="page">
-                                                    <a class="page-link" href="javascript:void(0)">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)">
-                                                        <i class="fa-solid fa-angles-left"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-
 
                                     </div>
                                 </div>
@@ -274,7 +269,7 @@
                                 aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
-                                        <h2>طلباتى الحالية</h2>
+                                        <h2>طلباتى السابقة</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
                                                 <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
@@ -298,18 +293,24 @@
                                                     @forelse ( $data['saleheader'] as $item )
                                                     <tr>
                                                         <td class="product-image">#{{$item->invoicenumber}}</td>
-                                                        <td >{{$item->invoicedate}}</td>
+                                                        <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
                                                         <td >#{{$item->paytayp}}</td>
                                                         <td>
-                                                            <label class="success">{{$item->Type_Order}}</label>
+                                                            @if ($item->type_order == 'تم التوصيل')
+
+                                                            <label class="success">{{$item->type_order}}</label>
+                                                            @else
+                                                            <label class="danger">{{$item->type_order}}</label>
+
+                                                            @endif
                                                         </td>
                                                         <td>
-                                                            <h6>$25.69</h6>
+                                                            <h6>{{  $item->grandtotal .  $Cu }}</h6>
                                                         </td>
                                                     </tr>
                                                     @empty
                                                     <tr>
-                                                        <td colspan="4" >No Data</td>
+                                                        <td colspan="5" >No Data</td>
                                                     </tr>
                                                     @endforelse
 
@@ -317,7 +318,7 @@
                                             </table>
                                         </div>
 
-                                        <nav class="custome-pagination">
+                                        {{-- <nav class="custome-pagination">
                                             <ul class="pagination justify-content-center">
                                                 <li class="page-item disabled">
                                                     <a class="page-link" href="javascript:void(0)" tabindex="-1">
@@ -339,7 +340,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </nav>
+                                        </nav> --}}
 
 
                                     </div>

@@ -45,11 +45,13 @@
     <!-- Template css -->
     <link id="color-link" rel="stylesheet" type="text/css" href="{{asset('front/assets/css/style.css')}}">
     @livewireStyles()
+
     <style>
         body {
 
             font-family: 'Cairo', 'sans-serif' !important;
         }
     </style>
+    @stack('csslive')
 
 </head>

@@ -127,24 +127,24 @@
 
                     <div class="footer-contain">
                         <ul>
-                            <li>
+                            {{-- <li>
                                 <a href="order-success.html" class="text-content">طلباتى</a>
-                            </li>
+                            </li> --}}
                             <li>
-                                <a href="user-dashboard.html" class="text-content">حسابى</a>
+                                <a href="/user/dashboard" class="text-content">حسابى</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="order-tracking.html" class="text-content">تتبع الطلب</a>
+                            </li> --}}
+                            <li>
+                                <a href="/wishlist" class="text-content">المفضلة</a>
                             </li>
                             <li>
-                                <a href="wishlist.html" class="text-content">المفضلة</a>
+                                <a href="/product/search" class="text-content">البحث</a>
                             </li>
-                            <li>
-                                <a href="search.html" class="text-content">البحث</a>
-                            </li>
-                            <li>
+                            {{-- <li>
                                 <a href="faq.html" class="text-content">FAQ</a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </div>
                 </div>

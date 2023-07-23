@@ -24,8 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
+        View::share('Cu' ,'ج.م');
         View::share('setting',setting::first());
-        View::share('categorys',Category::active(1)->get());
+        View::share('categorys',Category::active(1)->parentonly()->get());
         // Schema::defaultStringLength(191);
     }
 }

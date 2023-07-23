@@ -40,10 +40,12 @@ class Home extends Component
         $this->idcategory=$id;
     }
     public function render()
-    {   $categorys = Category::Active(1)->get();
+    {
+        // $categorys = Category::Active(1)->parentonly()->get();
+        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->paginate(20);
         $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->with('cart')->paginate(20);
-        $this->data =['categorys'=>$categorys,'products'=>$products];
-// dd($this->data[''] );
+        $this->data =[ 'products'=>$products,'offers'=>$offers ];
+
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
     }
 }

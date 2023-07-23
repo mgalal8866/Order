@@ -437,12 +437,14 @@
                                             @endguest
                                             @auth('client')
                                                 <li class="product-box-contain">
-                                                    <a class="dropdown-item" href="{{ route('clientlogout') }}"
-                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                                        {{ __('front.logout') }}</a>
+                                                    <a  href="{{ route('clientlogout') }}"
+                                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('front.logout') }}</a>
                                                         <form id="logout-form" action="{{ route('clientlogout') }}" method="POST" class="d-none">
                                                             @csrf
                                                         </form>
+                                                </li>
+                                                <li class="product-box-contain">
+                                                    <a href="/user/dashboard">حسابى</a>
                                                 </li>
                                             @endauth
 
