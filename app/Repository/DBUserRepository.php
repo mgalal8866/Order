@@ -35,16 +35,16 @@ class DBUserRepository implements UserRepositoryinterface
 
 
             $user =  User::find(Auth::user('api')->id);
-            $user->client_name       = $request['client_name'];
-            $user->client_fhoneLeter = $request['client_fhoneLeter'];
-            $user->region_id         = $request['region_id'];
-            $user->store_name        = $request['store_name'];
-            $user->lat_mab           = $request['lat_mab'];
-            $user->long_mab          = $request['long_mab'];
-            $user->client_state      = $request['client_state'];
-            $user->CategoryAPP       = $request['CategoryAPP'];
-            $user->client_code       = $request['client_code'];
-            $user->store_name        = $request['store_name'];
+            $user->client_name       = $request['client_name']??$user->client_name ;
+            $user->client_fhoneLeter = $request['client_fhoneLeter']??$user->client_fhoneLeter ;
+            $user->region_id         = $request['region_id']??$user->region_id         ;
+            $user->store_name        = $request['store_name']??$user->store_name        ;
+            $user->lat_mab           = $request['lat_mab']??$user->lat_mab           ;
+            $user->long_mab          = $request['long_mab']??$user->long_mab          ;
+            $user->client_state      = $request['client_state']??$user->client_state      ;
+            $user->CategoryAPP       = $request['CategoryAPP']??$user->CategoryAPP       ;
+            $user->client_code       = $request['client_code']??$user->client_code       ;
+            $user->store_name        = $request['store_name']??$user->store_name        ;
             $user->save();
             $data =  new UserResource($user);
             return Resp($data, 'Success', 200, true);

@@ -301,7 +301,7 @@
                                                         <td >{{$item->invoicedate}}</td>
                                                         <td >#{{$item->paytayp}}</td>
                                                         <td>
-                                                            <label class="success">Shipped</label>
+                                                            <label class="success">{{$item->Type_Order}}</label>
                                                         </td>
                                                         <td>
                                                             <h6>$25.69</h6>
