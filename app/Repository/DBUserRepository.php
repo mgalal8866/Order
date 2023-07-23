@@ -72,8 +72,8 @@ class DBUserRepository implements UserRepositoryinterface
         'CategoryAPP'=>$request['CategoryAPP']??null,
         'client_code'=>$request['client_code']??null,
         'store_name' =>$request['store_name']??null]);
-        
-        if (!$token = auth('client')->login($user)) {
+
+        if (!$token =auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
         $user->token = $token;
