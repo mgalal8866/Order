@@ -13,4 +13,5 @@ jobs:
       with:
         server: ftp.order-bay.com
         username: mgala8866@order-bay.com
+        protocol: ftps
         password: mgala8866
