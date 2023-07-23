@@ -59,6 +59,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
+        Log::warning($request->all());
         $user = User::create([
         'client_name'=>$request['client_name'],
         'client_fhonewhats'=>$request['client_fhonewhats'],
@@ -70,7 +71,7 @@ class DBUserRepository implements UserRepositoryinterface
         'long_mab'=>$request['long_mab'],
         'CategoryAPP'=>$request['CategoryAPP'],
         'client_code'=>$request['client_code'],
-       'store_name'  => $request['store_name']]);
+        'store_name' => $request['store_name']]);
         if (!$token = auth('client')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
