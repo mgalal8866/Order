@@ -59,7 +59,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-        Log::warning($request->all());
+        Log::warning($request);
         $user = User::create([
         'client_name'=>$request['client_name'],
         'client_fhonewhats'=>$request['client_fhonewhats'],
