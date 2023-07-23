@@ -288,9 +288,8 @@ class SyncController extends Controller
     function uploadsdeliveryheader(Request $request)
     {
         Log::info('DeliveryHeader', $request[0]);
-        Log::info('DeliveryHeader', $request[1]);
+        Log::info('DeliveryDetails', $request[1]);
         try {
-            // foreach ($request[0] as $index => $item) {
                 $uu =   DeliveryHeader::updateOrCreate(["id"  => $request[0][0]['SalesHeader_ID'],], [
                     "id"            => $request[0][0]['SalesHeader_ID'],
                     "invoicenumber" => $request[0][0]['InvoiceNumber'],
@@ -315,7 +314,7 @@ class SyncController extends Controller
                     "total_add_amount" => $request[0][0]['Total_Add_Amount'],
                     "add_amount_g"  => $request[0][0]['Add_Amount_G'],
                     "add_amount_f"  => $request[0][0]['Add_Amount_F'],
-                    "discount_product" => $request[0][0]['Discount_Prduct'],
+                    "discount_product"=> $request[0][0]['Discount_Prduct'],
                     "discount_sales" => $request[0][0]['Discount_Sales'],
                     "discount_point" => $request[0][0]['Discount_Point'],
                     "grandtotal"     => $request[0][0]['GrandTotal'],
@@ -344,7 +343,6 @@ class SyncController extends Controller
                     logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
                 }
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            // }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -434,10 +432,11 @@ class SyncController extends Controller
     }
     function sendnotification(Request $request)
     {
-        $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
-        $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);
-        $notifi =  notifiction::created(['title' => $request['title'], 'body' => $request['body'], 'image' =>  $image, 'results' => $result]);
-        return    Resp($notifi , 'success', 200, true);
+        Log::info('uploadcategoryapp', $request->all());
+        // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
+        // $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);
+        // $notifi =  notifiction::created(['title' => $request['title'], 'body' => $request['body'], 'image' =>  $image, 'results' => $result]);
+        // return    Resp($notifi , 'success', 200, true);
 
     }
     function getfsm_notification()
