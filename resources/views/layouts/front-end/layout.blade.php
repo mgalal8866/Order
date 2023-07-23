@@ -149,7 +149,7 @@
     <!-- Tap to top end -->
 
 
-    <div class="bg-overlay"></div>
+    {{-- <div class="bg-overlay"></div> --}}
 
     @include('layouts.front-end.script')
 </body>

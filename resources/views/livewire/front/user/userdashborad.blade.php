@@ -24,20 +24,22 @@
                         </div>
                         <div class="profile-box">
                             <div class="cover-image">
-                                <img src="../assets/images/inner-page/cover-img.jpg" class="img-fluid blur-up lazyload"
+                                <img src="{{asset('front/assets/images/inner-page/cover-img.jpg')}}" class="img-fluid blur-up lazyload"
                                     alt="">
                             </div>
 
                             <div class="profile-contain">
                                 <div class="profile-image">
                                     <div class="position-relative">
-                                        <img src="../assets/images/inner-page/user/1.jpg"
-                                            class="blur-up lazyload update_img" alt="">
-                                        <div class="cover-icon">
+                                        <img class="blur-up lazyload update_img" src="{{ Avatar::create($data['user']->client_name )->setFontFamily('Cairo')->toBase64() }}" />
+                                        {{-- $data['user']->client_name --}}
+                                        {{-- <img src="../assets/images/inner-page/user/1.jpg"
+                                            class="blur-up lazyload update_img" alt=""> --}}
+                                        {{-- <div class="cover-icon">
                                             <i class="fa-solid fa-pen">
                                                 <input type="file" onchange="readURL(this,0)">
                                             </i>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
 
@@ -53,7 +55,7 @@
                                 <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-dashboard" type="button" role="tab"
                                     aria-controls="pills-dashboard" aria-selected="true"><i data-feather="home"></i>
-                                    DashBoard</button>
+                                    حسابى</button>
                             </li>
 
                             <li class="nav-item" role="presentation">
@@ -72,12 +74,7 @@
                                     aria-controls="pills-profile" aria-selected="false"><i data-feather="user"></i>
                                     الملف الشخصي</button>
                             </li>
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-security" type="button" role="tab"
-                                    aria-controls="pills-security" aria-selected="false"><i data-feather="shield"></i>
-                                    Privacy</button>
-                            </li>
+
                         </ul>
                     </div>
                 </div>
@@ -91,122 +88,94 @@
                                 aria-labelledby="pills-dashboard-tab">
                                 <div class="dashboard-home">
                                     <div class="title">
-                                        <h2>My Dashboard</h2>
+                                        <h2>حسابى</h2>
                                         <span class="title-leaf">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
 
-                                    <div class="dashboard-user-name">
-                                        <h6 class="text-content">Hello, <b class="text-title">Vicki E. Pope</b></h6>
-                                        <p class="text-content">From your My Account Dashboard you have the ability to
-                                            view a snapshot of your recent account activity and update your account
-                                            information. Select a link below to view or edit information.</p>
-                                    </div>
+
 
                                     <div class="total-box">
                                         <div class="row g-sm-4 g-3">
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="../assets/images/svg/order.svg"
+                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="../assets/images/svg/order.svg" class="blur-up lazyload"
+                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}" class="blur-up lazyload"
                                                         alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Total Order</h5>
-                                                        <h3>3658</h3>
+                                                        <h5  style="color: var(--theme-color);">نقاطى</h5>
+                                                        <h3 style="color: var(--theme-color);">{{$data['user']->client_points}}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
+                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}"
+                                                        class="img-1 blur-up lazyload" alt="">
+                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}" class="blur-up lazyload"
+                                                        alt="">
+                                                    <div class="totle-detail">
+                                                        <h5  style="color: var(--theme-color);">رصيدي</h5>
+                                                        <h3 style="color: var(--theme-color);">{{$data['user']->client_Balanc}}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
+                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}"
+                                                        class="img-1 blur-up lazyload" alt="">
+                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}" class="blur-up lazyload"
+                                                        alt="">
+                                                    <div class="totle-detail">
+                                                        <h5>اجمالى الطلبات السابقة</h5>
+                                                        <h3>{{$data['saleheader']->sum('grandtotal')}}</h3>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="../assets/images/svg/pending.svg"
+                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="../assets/images/svg/pending.svg" class="blur-up lazyload"
+                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}" class="blur-up lazyload"
                                                         alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Total Pending Order</h5>
-                                                        <h3>254</h3>
+                                                        <h5>اجمالى الطلبات الحالية</h5>
+                                                        <h3>  <h3>{{$data['deliveryheader']->sum('grandtotal')}}</h3></h3>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="../assets/images/svg/wishlist.svg"
+                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="../assets/images/svg/wishlist.svg"
+                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
                                                         class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5>Total Wishlist</h5>
-                                                        <h3>32158</h3>
+                                                        <h5>عدد منتجات المفضلة</h5>
+                                                        <h3>{{$data['wishlist']->count()}}</h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
+                                                <div class="totle-contain">
+                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                        class="img-1 blur-up lazyload" alt="">
+                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                        class="blur-up lazyload" alt="">
+                                                    <div class="totle-detail">
+                                                        <h5>عدد منتجات العربة</h5>
+                                                        <h3>{{$data['cart']->count()}}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="dashboard-title">
-                                        <h3>Account Information</h3>
-                                    </div>
-
-                                    <div class="row g-4">
-                                        <div class="col-xxl-6">
-                                            <div class="dashboard-contant-title">
-                                                <h4>Contact Information <a href="javascript:void(0)"
-                                                        data-bs-toggle="modal" data-bs-target="#editProfile">Edit</a>
-                                                </h4>
-                                            </div>
-                                            <div class="dashboard-detail">
-                                                <h6 class="text-content">MARK JECNO</h6>
-                                                <h6 class="text-content">vicki.pope@gmail.com</h6>
-                                                <a href="javascript:void(0)">Change Password</a>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-xxl-6">
-                                            <div class="dashboard-contant-title">
-                                                <h4>Newsletters <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile">Edit</a></h4>
-                                            </div>
-                                            <div class="dashboard-detail">
-                                                <h6 class="text-content">You are currently not subscribed to any
-                                                    newsletter</h6>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="dashboard-contant-title">
-                                                <h4>Address Book <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                        data-bs-target="#editProfile">Edit</a></h4>
-                                            </div>
-
-                                            <div class="row g-4">
-                                                <div class="col-xxl-6">
-                                                    <div class="dashboard-detail">
-                                                        <h6 class="text-content">Default Billing Address</h6>
-                                                        <h6 class="text-content">You have not set a default billing
-                                                            address.</h6>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#editProfile">Edit Address</a>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-xxl-6">
-                                                    <div class="dashboard-detail">
-                                                        <h6 class="text-content">Default Shipping Address</h6>
-                                                        <h6 class="text-content">You have not set a default shipping
-                                                            address.</h6>
-                                                        <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                            data-bs-target="#editProfile">Edit Address</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade show" id="pills-order" role="tabpanel"
@@ -216,7 +185,7 @@
                                         <h2>طلباتى الحالية</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
@@ -235,6 +204,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ( $data['deliveryheader'] as $item )
+                                                    <a href="#">
                                                     <tr>
                                                         <td class="product-image">#{{$item->invoicenumber}}</td>
                                                         <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
@@ -252,6 +222,7 @@
                                                             <h6>{{  $item->grandtotal .  $Cu }}</h6>
                                                         </td>
                                                     </tr>
+                                                    </a>
                                                     @empty
                                                     <tr>
                                                         <td colspan="5" >No Data</td>
@@ -272,7 +243,7 @@
                                         <h2>طلباتى السابقة</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
@@ -291,6 +262,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ( $data['saleheader'] as $item )
+                                                    <a href="">
                                                     <tr>
                                                         <td class="product-image">#{{$item->invoicenumber}}</td>
                                                         <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
@@ -308,6 +280,7 @@
                                                             <h6>{{  $item->grandtotal .  $Cu }}</h6>
                                                         </td>
                                                     </tr>
+                                                     </a>
                                                     @empty
                                                     <tr>
                                                         <td colspan="5" >No Data</td>
@@ -317,32 +290,6 @@
                                                 </tbody>
                                             </table>
                                         </div>
-
-                                        {{-- <nav class="custome-pagination">
-                                            <ul class="pagination justify-content-center">
-                                                <li class="page-item disabled">
-                                                    <a class="page-link" href="javascript:void(0)" tabindex="-1">
-                                                        <i class="fa-solid fa-angles-right"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item active">
-                                                    <a class="page-link" href="javascript:void(0)">1</a>
-                                                </li>
-                                                <li class="page-item" aria-current="page">
-                                                    <a class="page-link" href="javascript:void(0)">2</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)">3</a>
-                                                </li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="javascript:void(0)">
-                                                        <i class="fa-solid fa-angles-left"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav> --}}
-
-
                                     </div>
                                 </div>
                             </div>
@@ -350,115 +297,52 @@
                                 aria-labelledby="pills-profile-tab">
                                 <div class="dashboard-profile">
                                     <div class="title">
-                                        <h2>My Profile</h2>
+                                        <h2>بياناتى</h2>
                                         <span class="title-leaf">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="../assets/svg/leaf.svg#leaf"></use>
+                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
-
-                                    <div class="profile-detail dashboard-bg-box">
-                                        <div class="dashboard-title">
-                                            <h3>Profile Name</h3>
-                                        </div>
-                                        <div class="profile-name-detail">
-                                            <div class="d-sm-flex align-items-center d-block">
-                                                <h3>Vicki E. Pope</h3>
-                                                <div class="product-rating profile-rating">
-                                                    <ul class="rating">
-                                                        <li>
-                                                            <i data-feather="star" class="fill"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i data-feather="star" class="fill"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i data-feather="star" class="fill"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i data-feather="star"></i>
-                                                        </li>
-                                                        <li>
-                                                            <i data-feather="star"></i>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-
-                                            <a href="javascript:void(0)" data-bs-toggle="modal"
-                                                data-bs-target="#editProfile">Edit</a>
-                                        </div>
-
-                                        <div class="location-profile">
-                                            <ul>
-                                                <li>
-                                                    <div class="location-box">
-                                                        <i data-feather="map-pin"></i>
-                                                        <h6>Downers Grove, IL</h6>
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="location-box">
-                                                        <i data-feather="mail"></i>
-                                                        <h6>vicki.pope@gmail.com</h6>
-                                                    </div>
-                                                </li>
-
-                                                <li>
-                                                    <div class="location-box">
-                                                        <i data-feather="check-square"></i>
-                                                        <h6>Licensed for 2 years</h6>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div class="profile-description">
-                                            <p>Residences can be classified by and how they are connected to
-                                                neighbouring residences and land. Different types of housing tenure can
-                                                be used for the same physical type.</p>
-                                        </div>
-                                    </div>
-
                                     <div class="profile-about dashboard-bg-box">
                                         <div class="row">
                                             <div class="col-xxl-7">
-                                                <div class="dashboard-title mb-3">
-                                                    <h3>Profile About</h3>
-                                                </div>
 
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>
+
                                                             <tr>
-                                                                <td>Gender :</td>
-                                                                <td>Female</td>
+                                                                <td>اسم المحل :</td>
+                                                                <td>{{$data['user']->store_name}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Birthday :</td>
-                                                                <td>21/05/1997</td>
+                                                                <td>النشاط:</td>
+                                                                <td>{{$data['user']->categoryAPP}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Phone Number :</td>
-                                                                <td>
-                                                                    <a href="javascript:void(0)"> +91 846 - 547 -
-                                                                        210</a>
-                                                                </td>
+                                                                <td> رقم اخر :</td>
+                                                                <td>{{$data['user']->client_fhoneLeter}}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>Address :</td>
-                                                                <td>549 Sulphur Springs Road, Downers, IL</td>
+                                                                <td>المحافظة و المنطقة  :</td>
+                                                                <td>{{$data['user']->region->city->name . ' - ' . $data['user']->region->name}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>العنوان :</td>
+                                                                <td>{{$data['user']->client_state}}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>رقم القومى :</td>
+                                                                <td>{{$data['user']->client_EntiteNumber}}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
 
-                                                <div class="dashboard-title mb-3">
+                                                {{-- <div class="dashboard-title mb-3">
                                                     <h3>Login Details</h3>
                                                 </div>
-
                                                 <div class="table-responsive">
                                                     <table class="table">
                                                         <tbody>
@@ -480,15 +364,15 @@
                                                             </tr>
                                                         </tbody>
                                                     </table>
-                                                </div>
+                                                </div> --}}
                                             </div>
 
-                                            <div class="col-xxl-5">
+                                            {{-- <div class="col-xxl-5">
                                                 <div class="profile-image">
-                                                    <img src="../assets/images/inner-page/dashboard-profile.png"
+                                                    <img src="{{asset('front/assets/images/inner-page/dashboard-profile.png')}}"
                                                         class="img-fluid blur-up lazyload" alt="">
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
 
                                     </div>

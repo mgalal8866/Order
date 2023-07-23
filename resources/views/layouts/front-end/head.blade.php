@@ -51,7 +51,9 @@
 
             font-family: 'Cairo', 'sans-serif' !important;
         }
+
     </style>
+
     @stack('csslive')
 
 </head>
