@@ -296,7 +296,6 @@ class SyncController extends Controller
                     "invoicenumber" => $request[0][0]['InvoiceNumber'],
                     "coupon_id"     => $request[0][0]['coupon_id'],
                     "type_order"    => $request[0][0]['Type_Order'],
-                    "comment_id"    => $request[0][0]['comment_ID'],
                     "invoicetype"   => $request[0][0]['InvoiceType'],
                     "invoicedate"   => $request[0][0]['InvoiceDate'],
                     "client_id"     => $request[0][0]['Client_ID'],
