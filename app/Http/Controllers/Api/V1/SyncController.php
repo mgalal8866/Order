@@ -329,6 +329,7 @@ class SyncController extends Controller
                 ]);
                 DeliveryDetails::where( 'sale_header_id' ,$request[0][0]['SalesHeader_ID'])->delete();
                 foreach ($request[1] as $index => $item) {
+                    Log::info('DeliveryHeader', $item);
                     $uu =   DeliveryDetails::updateOrCreate(['sale_header_id' =>  $request[0][0]['SalesHeader_ID']], [
                         'sale_header_id'     => $item['SalesHeader_ID'],
                         'product_details_id' => $item['ProductDetails_ID'],
