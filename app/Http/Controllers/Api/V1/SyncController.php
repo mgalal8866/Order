@@ -330,7 +330,7 @@ class SyncController extends Controller
                 ]);
                 foreach ($request[1] as $index => $item) {
 
-                    $uu =   DeliveryDetails::updateOrCreate(['id' => $item['SalesDetails_ID']], [
+                    $uu =   DeliveryDetails::updateOrCreate(['sale_header_id' => $item['SalesDetails_ID']], [
                         'id'                 => $item['SalesDetails_ID'],
                         'sale_header_id'     => $item['SalesHeader_ID'],
                         'product_details_id' => $item['ProductDetails_ID'],
