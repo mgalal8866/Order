@@ -11,11 +11,11 @@ use App\Repositoryinterface\ProductRepositoryinterface;
 
 class DBProductRepository implements ProductRepositoryinterface
 {
-    public $page='30';
+    public $pg=30;
     public function getprobycat($id)
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->online()->paginate($this->page)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->online()->paginate($this->pg)), 'success', 200, true)->getData(true);
         // dd(\DB::getQueryLog()); // Show results of log
     }
     public function getoffers()
@@ -30,7 +30,7 @@ class DBProductRepository implements ProductRepositoryinterface
             ->orWhereHas('productheader', function ($query) use ($search) {
                 $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
             })->online()
-            ->paginate($this->page);
+            ->paginate($this->pg);
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
     }
 }
