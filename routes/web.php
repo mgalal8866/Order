@@ -3,11 +3,16 @@
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\UserAdmin;
+use App\Models\conversion;
 use App\Events\MessageSent;
-use App\Events\PrivetMessage;
+use App\Models\notifiction;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Events\PrivetMessage;
+use App\Models\ProductHeader;
 use App\Models\DeliveryHeader;
+use App\Models\ProductDetails;
+use App\Http\Livewire\Testchat;
 use App\Models\DeliveryDetails;
 use App\Http\Livewire\Front\Otp;
 use Illuminate\Support\Facades\DB;
@@ -21,14 +26,20 @@ use App\Http\Livewire\Front\Cart\Cart;
 use Illuminate\Support\Facades\Config;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\Front\Product\Home;
+use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
 use App\Http\Controllers\MessageController;
+use App\Http\Livewire\Front\Product\Offers;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
+use App\Http\Livewire\Front\Order\Ordersuccess;
+use App\Http\Livewire\Front\Order\Ordertraking;
+use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
 use App\Http\Livewire\Dashboard\Slider\ViewSlider;
+use App\Http\Livewire\Front\Product\Searchproduct;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
@@ -39,16 +50,7 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
-use App\Http\Livewire\Front\Cart\Checkout;
-use App\Http\Livewire\Front\Order\Ordersuccess;
-use App\Http\Livewire\Front\Order\Ordertraking;
-use App\Http\Livewire\Front\Product\Offers;
-use App\Http\Livewire\Front\Product\Searchproduct;
-use App\Http\Livewire\Front\User\Userdashborad;
-use App\Http\Livewire\Testchat;
-use App\Models\conversion;
-use App\Models\ProductDetails;
-use App\Models\ProductHeader;
+use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,8 +97,12 @@ Route::get('/deletetable', function (Request $request) {
     // DB::statement("SET foreign_key_checks=1");
 });
 Route::get('/send-fsm', function (Request $request) {
-    $d = Auth::user()->fsm;
-    Log::alert(notificationFCM('Hello', 'Okay', [$d]));
+    $d = UserAdmin::where('fsm','!=',null)->pluck('fsm');
+    notificationFCM('Hello', 'Okay', $d);
+
+    // $notifi =  notifiction::create(['title' => 'Hello', 'body' => 'body', 'image' =>  null, 'results' =>]);
+// dd($notifi);
+    // Log::alert('',$notifi );
 });
 Route::post('/store-token', function (Request $request) {
     //   UserAdmin::create([
@@ -104,7 +110,8 @@ Route::post('/store-token', function (Request $request) {
     //     'password'=> Hash::make('123456')
     //   ]);
 
-    Auth::guard('client')->user()->update(['fsm' => $request->token]);
+    Auth::guard('admin')->user()->update(['fsm' => $request->token]);
+    // Auth::guard('client')->user()->update(['fsm' => $request->token]);
     return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
@@ -149,16 +156,17 @@ Route::middleware('guest:client')->group(function () {
     Route::get('/login', Login::class)->name('frontlogin');
     Route::get('/sign-up', Register::class)->name('signup');
     Route::get('/otp', Otp::class)->name('otp');
+    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
+    Route::get('/products/offers', Offers::class)->name('offerproduct');
+    Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 });
 #################### auth Client #####################
 Route::middleware('auth:client')->group(function () {
     Route::post('/logout', [UserAdminController::class, 'clientlogout'])->name('clientlogout');
+    Route::get('/wishlist', Wishlist::class)->name('wishlist');
     Route::get('/cart', Cart::class)->name('cart');
     Route::get('/cart/checkout', Checkout::class)->name('checkout');
     Route::get('/user/dashboard', Userdashborad::class)->name('userdashborad');
-    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
-    Route::get('/products/offers', Offers::class)->name('offerproduct');
-    Route::get('/wishlist', Wishlist::class)->name('wishlist');
     Route::get('/order/traking', Ordertraking::class)->name('ordertraking');
     Route::get('/order/success', Ordersuccess::class)->name('ordersuccess');
 });

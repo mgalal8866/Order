@@ -83,10 +83,13 @@
 
                     <div class="footer-contain">
                         <ul>
+                            <li>
+                                <a href="{{route('categoryproduct',['categoryid'=>null])}}" class="text-content">الكل</a>
+                            </li>
                             @foreach ( $categorys as $cate)
 
                             <li>
-                                <a href="{{$cate->id}}" class="text-content">{{$cate->category_name}}</a>
+                                <a href="{{route('categoryproduct',['categoryid'=>$cate->id])}}" class="text-content">{{$cate->category_name}}</a>
                             </li>
                             @endforeach
 
@@ -94,31 +97,6 @@
                     </div>
                 </div>
 
-                <div class="col-xl col-lg-2 col-sm-3">
-                    <div class="footer-title">
-                        <h4>Useful Links</h4>
-                    </div>
-
-                    <div class="footer-contain">
-                        <ul>
-                            <li>
-                                <a href="index.html" class="text-content">Home</a>
-                            </li>
-                            <li>
-                                <a href="shop-left-sidebar.html" class="text-content">Shop</a>
-                            </li>
-                            <li>
-                                <a href="about-us.html" class="text-content">About Us</a>
-                            </li>
-                            <li>
-                                <a href="blog-list.html" class="text-content">Blog</a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html" class="text-content">تواصل معنا</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
 
                 <div class="col-xl-2 col-sm-3">
                     <div class="footer-title">
