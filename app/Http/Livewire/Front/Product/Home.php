@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Auth;
 class Home extends Component
 {
     use WithPagination;
-     public $data =[] ,$idcategory;
-
+     public $data =[] ,$idcategory ,$search;
 
      public function qtyincrement($product_id){
          Cart::where(['product_id' => $product_id, 'user_id' => Auth::guard('client')->user()->id])->first()->increment('qty');
      }
+     public function gotosearch(){
+        
+     }
+
      public function qtydecrement($product_id){
        $data =  Cart::where(['product_id' => $product_id, 'user_id' => Auth::guard('client')->user()->id])->first();
        if($data->qty != 1){
