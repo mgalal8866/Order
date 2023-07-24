@@ -90,6 +90,11 @@ class DBUserRepository implements UserRepositoryinterface
         $dd = setting::find(1);
         return  $dd->toArray();
     }
+    public function sendtoken($token)
+    {
+        auth('api')->user()->update(['fsm' =>$token]);
+        return response()->json(['Token successfully stored.']);
+    }
     public function logout()
     {
         return  auth()->logout();

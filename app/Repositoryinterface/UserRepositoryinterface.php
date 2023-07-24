@@ -8,6 +8,7 @@ interface UserRepositoryinterface{
     public function register($request);
     public function getusers();
     public function logout();
+    public function sendtoken($token);
 
 }
 

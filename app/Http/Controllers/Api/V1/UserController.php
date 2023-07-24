@@ -46,9 +46,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function refresh()
+    public function sendtoken($token)
     {
-        // return $this->respondWithToken(auth()->refresh());
+        return $this->userRepositry->sendtoken($token);
     }
     public function category_app()
     {

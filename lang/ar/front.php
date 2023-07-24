@@ -19,5 +19,8 @@ return [
     'logout'     => ' تسجيل خروج',
     'myorderstay'     => ' طلباتى الحالية',
     'myorderdone'     => ' طلباتى السابقة',
+    'search'     => 'البحث',
+    'offers'     => 'العروض',
+    'myaccount'     => 'حسابى',
     'forgotpass' => 'استرجاع الباسورد'
 ];

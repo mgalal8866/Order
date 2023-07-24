@@ -14,11 +14,16 @@ class Searchproduct extends Component
     public function render()
     {
         $search = $this->search;
-        $results = ProductDetails::where('productd_barcode', 'LIKE',   $search)
+        if($search != ''){
+
+            $results = ProductDetails::where('productd_barcode', 'LIKE',   $search)
             ->orWhereHas('productheader', function ($query) use ($search) {
                 $query->where('product_name', 'LIKE', "%" .   $search . "%")->online();
             })->online()
             ->paginate($this->pag);
+        }else{
+            $results = [];
+        }
         return view('livewire.front.product.searchproduct',['results'=>$results])->layout('layouts.front-end.layout');
 
     }
