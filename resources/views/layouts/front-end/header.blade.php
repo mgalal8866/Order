@@ -30,7 +30,7 @@
                                                     <a class="nav-link" href="/" >{{ __('front.home') }}</a>
                                                 </li>
                                                 <li class="nav-item dropdown">
-                                                    <a class="nav-link" href="/product/offer" >{{ __('front.offers') }}</a>
+                                                    <a class="nav-link" href="/products/offers" >{{ __('front.offers') }}</a>
                                                 </li>
                                                 <li class="nav-item dropdown">
                                                     <a class="nav-link" href="/product/search" >{{ __('front.search') }}</a>

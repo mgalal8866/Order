@@ -1,6 +1,7 @@
 <div>
 
-    @include('layouts.front-end.sliderbr')
+
+  <livewire:front.slider/>
     <section class="section-b-space">
         <div class="container-fluid-lg">
             <div class="row">

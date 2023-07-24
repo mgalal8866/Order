@@ -15,7 +15,7 @@
         </li>
 
         <li>
-            <a href="search.html" class="search-box">
+            <a href="/product/search" class="search-box">
                 <i class="iconly-Search icli"></i>
                 <span>Search</span>
             </a>

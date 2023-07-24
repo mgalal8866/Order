@@ -10,8 +10,8 @@
                             <div class="home-detail p-center text-center home-overlay position-relative">
                                 <div>
                                     <div class="content">
-                                        <h1>Get your grocery in 25 minutes</h1>
-                                        <h3>Better ingredients, better food, and beverages, at low prices</h3>
+                                        <h1>الشروق للتجاره والتوزيع </h1>
+                                        <h3>كل اللى محتاجه موجود عندنا وبافضل سعر</h3>
                                         <div class="search-box">
                                             {{-- <form > --}}
 

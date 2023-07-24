@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="breadscrumb-contain" style="font-family: 'Cairo';">
-                        <h2>{{$name}}</h2>
+                        {{-- <h2>{{$name}}</h2> --}}
                         <nav>
                             <ol class="breadcrumb mb-0">
                                 <li class="breadcrumb-item">
