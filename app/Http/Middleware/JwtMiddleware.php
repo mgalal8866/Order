@@ -13,9 +13,12 @@ class JwtMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-      
+
         try {
             $user = JWTAuth::parseToken()->authenticate();
+            // if (!$user) {
+            //     return response()->json(['message' => 'user not found'], 500);
+            // }
          } catch (Exception $e) {
               if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
              return Resp('','Token is Invalid', 403) ;

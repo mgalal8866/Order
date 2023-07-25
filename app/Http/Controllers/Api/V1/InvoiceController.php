@@ -34,6 +34,23 @@ class InvoiceController extends Controller
     }
     public function getopeninvoedetails($id)
     {
+
         return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getinvoicedetailsopen($id)), 'success', 200, true);
+    }
+    public function getdeliveryopeninvo()
+    {
+        return Resp(new SalesCollectionResource($this->invoRepositry->getdeliveryopeninvo()), 'success', 200, true);
+    }
+    public function getdeliverycloseinvo()
+    {
+        return Resp(new SalesCollectionResource($this->invoRepositry->getdeliverycloseinvo()), 'success', 200, true);
+    }
+    public function getdeliverycloseinvodetails($id)
+    {
+        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsclose($id)), 'success', 200, true);
+    }
+    public function getdeliveryopeninvoedetails($id)
+    {
+        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsopen($id)), 'success', 200, true);
     }
 }

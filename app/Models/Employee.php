@@ -14,6 +14,10 @@ class Employee extends Model
     {
         return $this->hasMany(DeliveryHeader::class,'employ_id');
     }
+    public function region()
+    {
+        return $this->belongsto(region::class, 'region_id');
+    }
     public function useradmin()
     {
         return $this->hasMany(useradmin::class,'emp_id');
