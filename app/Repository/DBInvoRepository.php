@@ -23,8 +23,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     public function getcloseinvo()
     {
         return  SalesHeader::status(0)->where('client_id', Auth::user('api')->id)->paginate(10);
-        // return  SalesDetails::where('client_id', Auth::user('api')->id)->with('productdetails')->get();
-    }
+        }
     public function placeorder($request)
     {
 
@@ -69,22 +68,23 @@ class DBInvoRepository implements InvoRepositoryinterface
     {
         return  DeliveryHeader::status(1)->where('id',$id)->with('salesdetails')->get();
     }
+    ##########################delivery app#########################
+    ##########################delivery app#########################
+    ##########################delivery app#########################
     public function getdeliveryopeninvo()
     {
-
-        return  DeliveryHeader::status(1)->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
+        return  DeliveryHeader::status(1)->delivered()->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
     }
     public function getdeliverycloseinvo()
     {
-        return  SalesHeader::status(0)->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
+        return  SalesHeader::status(0)->delivered()->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
     }
-
     public function getdeliveryinvoicedetailsclose($id)
     {
-        return  SalesHeader::status(0)->where('id',$id)->with('salesdetails')->get();
+        return  SalesHeader::status(0)->delivered()->where('id',$id)->with('salesdetails')->get();
     }
     public function getdeliveryinvoicedetailsopen($id)
     {
-        return  DeliveryHeader::status(1)->where('id',$id)->with('salesdetails')->get();
+        return  DeliveryHeader::status(1)->delivered()->where('id',$id)->with('salesdetails')->get();
     }
 }

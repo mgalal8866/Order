@@ -100,7 +100,7 @@ $file->cleanDirectory('public/asset/images/products/');
     // DB::statement("SET foreign_key_checks=1");
 });
 Route::get('/send-fsm', function (Request $request) {
-    $d = UserAdmin::where('fsm','!=',null)->pluck('fsm');
+    $d = User::where('fsm','!=',null)->pluck('fsm');
     notificationFCM('Hello', 'Okay', $d);
 
     // $notifi =  notifiction::create(['title' => 'Hello', 'body' => 'body', 'image' =>  null, 'results' =>]);

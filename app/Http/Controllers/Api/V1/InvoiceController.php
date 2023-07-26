@@ -37,7 +37,7 @@ class InvoiceController extends Controller
 
         return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getinvoicedetailsopen($id)), 'success', 200, true);
     }
-    public function getdeliveryopeninvo()
+    public function getdeliveryopeninvo(Request $request)
     {
         return Resp(new SalesCollectionResource($this->invoRepositry->getdeliveryopeninvo()), 'success', 200, true);
     }

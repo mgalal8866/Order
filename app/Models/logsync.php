@@ -9,4 +9,7 @@ class logsync extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+
+    
 }

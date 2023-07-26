@@ -34,23 +34,10 @@ class UserDeliveryController extends Controller
         return $this->userdeliveryRepositry->logout();
     }
 
-    protected function respondWithToken($token, $user = null)
-    {
-        return response()->json([
-            'data' => $user ?? '',
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            // 'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
-    }
 
     public function sendtoken($token)
     {
         return $this->userdeliveryRepositry->sendtoken($token);
     }
-    public function category_app()
-    {
-        $dd = setting::find(1);
-        return  $dd->toArray();
-    }
+   
 }

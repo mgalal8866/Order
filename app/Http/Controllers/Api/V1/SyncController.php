@@ -206,9 +206,6 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-
-
-
     function uploadsalseheader(Request $request)
     {
         Log::info('uploadsalseheader', $request->all());
@@ -513,7 +510,6 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-
     function uploadcategoryapp(Request $request)
     {
         Log::info('uploadcategoryapp', $request->all());
@@ -609,7 +605,7 @@ class SyncController extends Controller
     }
     function upload_setting(Request $request)
     {
-        Log::info('uploadsetting ', $request->all());
+        Log::info('uploadsetting ', $request);
 
         try {
             foreach ($request->all() as $index => $item) {
