@@ -154,14 +154,14 @@ Route::get('/moveToseleheader', function () {
 #####################################################
 #################### FRONT Client #####################
 Route::get('/', Home::class)->name('home');
+Route::get('/product/search', Searchproduct::class)->name('searchproduct');
+Route::get('/products/offers', Offers::class)->name('offerproduct');
+Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 #################### guest Client #####################
 Route::middleware('guest:client')->group(function () {
     Route::get('/login', Login::class)->name('frontlogin');
     Route::get('/sign-up', Register::class)->name('signup');
     Route::get('/otp', Otp::class)->name('otp');
-    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
-    Route::get('/products/offers', Offers::class)->name('offerproduct');
-    Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 });
 #################### auth Client #####################
 Route::middleware('auth:client')->group(function () {
