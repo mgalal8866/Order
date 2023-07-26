@@ -103,14 +103,14 @@
                                                 <div class="quantity-price">
                                                     <div class="cart_qty">
                                                         <div class="input-group">
-                                                            {{-- qty-left-minus  qty-right-plus"   value="{{$c['cart'][0]['qty']}}" --}}
+                                                            {{-- qty-left-minus  qty-right-plus"   value="{{$c['cart']['qty']}}" --}}
                                                             <button type="button" class="btn "
                                                                 wire:click.prevent="minus('{{ $index }}')">
                                                                 <i class="fa fa-minus ms-0" aria-hidden="true"></i>
                                                             </button>
                                                             <input class="form-control input-number qty-input"
                                                                 type="text" name="quantity"
-                                                                value="{{ $c['cart'][0]['qty'] }}">
+                                                                value="{{ $c['cart']['qty'] }}">
                                                             {{-- wire:model="cartlist.{{ $index }}.cart.0.qty"> --}}
                                                             <button type="button" class="btn "
                                                                 wire:click.prevent="pluse('{{ $index }}')"
@@ -125,7 +125,7 @@
                                             <td class="subtotal">
                                                 <h4 class="table-title text-content">{{ __('tran.subtotal') }}</h4>
 
-                                                <h5>{{ $c['isoffer'] == 1 ? $c['cart'][0]['qty'] * $c['productd_Sele2'] : $c['cart'][0]['qty'] * $c['productd_Sele1'] }}
+                                                <h5>{{ $c['isoffer'] == 1 ? $c['cart']['qty'] * $c['productd_Sele2'] : $c['cart']['qty'] * $c['productd_Sele1'] }}
                                                     {{ $currency }}</h5>
                                             </td>
 

@@ -30,10 +30,10 @@ class Cart extends Component
         foreach ($this->cartlist as $i) {
 
             if ($i['isoffer'] == 1) {
-                $this->subtotal   +=   $i['cart'][0]['qty'] * $i['productd_Sele2'];
-                $this->totaloffer +=    ($i['cart'][0]['qty'] * $i['productd_Sele1']) - ($i['cart'][0]['qty'] * $i['productd_Sele2']);
+                $this->subtotal   +=   $i['cart']['qty'] * $i['productd_Sele2'];
+                $this->totaloffer +=    ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
             } else {
-                $this->subtotal   +=   $i['cart'][0]['qty'] * $i['productd_Sele1'];
+                $this->subtotal   +=   $i['cart']['qty'] * $i['productd_Sele1'];
             }
         }
     }
@@ -68,10 +68,10 @@ class Cart extends Component
     public function pluse($index)
     {
 
-        if ($this->cartlist[$index]['cart'][0]['qty'] >= 1) {
-            $this->cartlist[$index]['cart'][0]['qty'] = $this->cartlist[$index]['cart'][0]['qty'] + 1;
+        if ($this->cartlist[$index]['cart']['qty'] >= 1) {
+            $this->cartlist[$index]['cart']['qty'] = $this->cartlist[$index]['cart']['qty'] + 1;
             $this->culc();
-            ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart'][0]['qty']]);
+            ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart']['qty']]);
         }
     }
     public function saveforlater($idproduct)
@@ -80,10 +80,10 @@ class Cart extends Component
     }
     public function minus($index)
     {
-        if ($this->cartlist[$index]['cart'][0]['qty'] >= 2) {
-            $this->cartlist[$index]['cart'][0]['qty'] = $this->cartlist[$index]['cart'][0]['qty'] - 1;
+        if ($this->cartlist[$index]['cart']['qty'] >= 2) {
+            $this->cartlist[$index]['cart']['qty'] = $this->cartlist[$index]['cart']['qty'] - 1;
             $this->culc();
-            ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart'][0]['qty']]);
+            ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart']['qty']]);
         }
     }
     public function removefromcart($index)
