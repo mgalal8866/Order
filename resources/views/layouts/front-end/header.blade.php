@@ -50,7 +50,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="right-side">
+                                {{-- <li class="right-side">
                                     <a href="contact-us.html" class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <i data-feather="phone-call"></i>
@@ -60,7 +60,7 @@
                                             <h5>+91 888 104 2340</h5>
                                         </div>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li class="right-side">
                                     <a href="{{ route('wishlist') }}" class="btn p-0 position-relative header-wishlist">
                                         <i data-feather="heart"></i>

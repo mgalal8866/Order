@@ -1,10 +1,13 @@
 <div>
 
+
     <div class="onhover-dropdown header-badge">
         <a href="/cart" class="btn p-0 position-relative header-wishlist">
             <div  wire:ignore>   <i data-feather="shopping-cart"></i> </div>
+            @auth('client')
             <span class="position-absolute top-0 start-100 translate-middle badge">{{ $count }}
             </span>
+            @endauth
         </a>
         @php
         // $total = 0;
@@ -51,5 +54,4 @@
             </div>
         </div> --}}
     </div>
-
 </div>

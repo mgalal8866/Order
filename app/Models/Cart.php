@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cart extends Model
 {
@@ -14,4 +15,10 @@ class Cart extends Model
     {
         return $this->belongsto(ProductDetails::class, 'product_id');
     }
+
+    public function scopeGetroductid($query,$id)
+    {
+        return $query->where('product_id',$id)->where('user_id',Auth::guard('client')->user()->id);
+    }
+
 }

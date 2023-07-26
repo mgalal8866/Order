@@ -1,10 +1,10 @@
  /**=====================
      Quantity 2 js
 ==========================**/
- $(".addcart-button").click(function () {
-     $(this).next().addClass("open");
-     $(".add-to-cart-box .qty-input").val('1');
- });
+//  $(".addcart-button").click(function () {
+//      $(this).next().addClass("open");
+//      $(".add-to-cart-box .qty-input").val('1');
+//  });
 
 //  $('.add-to-cart-box').on('click', function () {
 //      var $qty = $(this).siblings(".qty-input");
@@ -27,8 +27,8 @@
 //      }
 //  });
 
- $('.qty-right-plus').click(function () {
-     if ($(this).prev().val() < 9) {
-         $(this).prev().val(+$(this).prev().val() + 1);
-     }
- });
+//  $('.qty-right-plus').click(function () {
+//      if ($(this).prev().val() < 9) {
+//          $(this).prev().val(+$(this).prev().val() + 1);
+//      }
+//  });

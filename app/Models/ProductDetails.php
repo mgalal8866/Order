@@ -34,7 +34,7 @@ class ProductDetails extends Model
     }
     public function cart()
     {
-        return $this->hasMany(Cart::class,'product_id');
+        return $this->hasone(Cart::class,'product_id');
     }
     public function stock()
     {
