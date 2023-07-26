@@ -18,7 +18,7 @@ class Searchproduct extends Component
 
             $results = ProductDetails::where('productd_barcode', 'like',   $search)
             ->orWhereHas('productheader', function ($query) use ($search) {
-                $query->where('product_name', 'like', '%' .   $search . '%')->online();
+                return $query->where('product_name', 'like', '%' .   $search . '%')->online();
             })->online()
             ->paginate($this->pag);
         }else{
