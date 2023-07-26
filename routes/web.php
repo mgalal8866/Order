@@ -52,6 +52,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
+use App\Models\UserDelivery;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,13 +64,8 @@ use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Route::get('/vue', function () {
-//     return view('Vue.app');
-// })
-// ->name('application');
-// Route::get('messages', [MessageController::class],'fetchMessages');
-// Route::post('messages', [MessageController::class],'sendMessage');
-// Route::get('/', [MessageController::class,'index']);
+
+
 Route::get('send-message',  function () {
 
     // event(new MessageSent('hello world'));
@@ -106,6 +102,12 @@ Route::get('/send-fsm', function (Request $request) {
     // $notifi =  notifiction::create(['title' => 'Hello', 'body' => 'body', 'image' =>  null, 'results' =>]);
 // dd($notifi);
     // Log::alert('',$notifi );
+});
+Route::get('/userdelivery', function (Request $request) {
+      UserDelivery::create([
+        'username'=>'admin',
+        'password'=> Hash::make('admin')
+      ]);
 });
 Route::post('/store-token', function (Request $request) {
     //   UserAdmin::create([
