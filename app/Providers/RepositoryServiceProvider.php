@@ -16,6 +16,7 @@ use App\Repository\DBWishlistRepository;
 use App\Repository\DBCateoryAppRepository;
 use App\Repository\DBClientPaymentRepository;
 use App\Repository\DBNotifictionRepository;
+use App\Repository\DBUserDeliveryRepository;
 use App\Repository\NotifictionRepository;
 use App\Repositoryinterface\CartRepositoryinterface;
 use App\Repositoryinterface\InvoRepositoryinterface;
@@ -30,6 +31,7 @@ use App\Repositoryinterface\WishlistRepositoryinterface;
 use App\Repositoryinterface\CateoryAppRepositoryinterface;
 use App\Repositoryinterface\ClientPaymentRepositoryinterface;
 use App\Repositoryinterface\NotifictionRepositoryinterface;
+use App\Repositoryinterface\UserDeliveryRepositoryinterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -51,6 +53,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CommentRepositoryinterface::class, DBCommentRepository::class);
         $this->app->bind(NotifictionRepositoryinterface::class, DBNotifictionRepository::class);
         $this->app->bind(ClientPaymentRepositoryinterface::class, DBClientPaymentRepository::class);
+        $this->app->bind(UserDeliveryRepositoryinterface::class, DBUserDeliveryRepository::class);
     }
     public function boot(): void
     {

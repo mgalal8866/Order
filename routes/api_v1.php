@@ -17,6 +17,7 @@ use App\Http\Controllers\Api\V1\CateoryAppController;
 use App\Http\Controllers\Api\V1\NotifictionController;
 use App\Http\Controllers\Api\V1\ProductHeaderController;
 use App\Http\Controllers\Api\V1\ClientPaymentsController;
+use App\Http\Controllers\Api\V1\UserDeliveryController;
 
 ################# Start Login & Register #############
 Route::post('/login',   [UserController::class, 'login'])->name('login');
@@ -117,3 +118,15 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/jobs',[SyncController::class, 'upload_jobs']);
 });
 #################   End  SYNC   #############
+
+Route::prefix('delivery')->middleware([])->group(function(){
+    Route::post('/login',   [UserDeliveryController::class, 'login'])->name('login');
+    Route::post('/register', [UserDeliveryController::class, 'register'])->name('register');
+});
+Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
+    Route::get('order/getdeliverycloseinvo',[InvoiceController::class,'getdeliverycloseinvo']);
+    Route::get('order/getdeliveryopeninvo', [InvoiceController::class, 'getdeliveryopeninvo']);
+    Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getdeliverycloseinvodetails']);
+    Route::get('order/openinvo/details/{id?}', [InvoiceController::class, 'getdeliveryopeninvoedetails']);
+});
+
