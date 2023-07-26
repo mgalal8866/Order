@@ -73,11 +73,11 @@ class DBInvoRepository implements InvoRepositoryinterface
     ##########################delivery app#########################
     public function getdeliveryopeninvo()
     {
-        return  DeliveryHeader::status(1)->delivered()->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
+        return  DeliveryHeader::status(1)->delivered()->where('employ_id',Auth::guard('delivery')->user()->employee->id)->paginate(30);
     }
     public function getdeliverycloseinvo()
     {
-        return  SalesHeader::status(0)->delivered()->where('employ_id',Auth::guard('delivery')->user()->id)->paginate(30);
+        return  SalesHeader::status(0)->delivered()->where('employ_id',Auth::guard('delivery')->user()->employee->id)->paginate(30);
     }
     public function getdeliveryinvoicedetailsclose($id)
     {
