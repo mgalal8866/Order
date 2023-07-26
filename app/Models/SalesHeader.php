@@ -31,4 +31,8 @@ class SalesHeader extends Model
     {
         return $query->where('satus_delivery', $v);
     }
+    public function scopeDelivered($query)
+    {
+        return $query->where('type_order', '!=','تم التوصيل');
+    }
 }
