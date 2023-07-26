@@ -15,7 +15,7 @@ class logsync extends Model
     protected static function booted( )
     {
         static::creating(function ($model) {
-            $model->source = request()->attributes->get('source_api');
+            $model->source = request()->attributes->get('source_api')??null;
         });
     }
 }
