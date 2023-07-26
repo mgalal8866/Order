@@ -171,7 +171,7 @@
                                     <h4>طريقه الدفع</h4>
                                     <h4 class="price">
                                         <select wire:model="selectdeferreds">
-                                            <option value="0">كاش</option>
+                                            <option selected value="0">كاش</option>
                                             @if ($deferreds == 1)
                                                 <option value="1">اجل</option>
                                             @endif
@@ -218,8 +218,7 @@
                                     </li>
                                 @else
                                     <li>
-                                        <button onclick="location.href = 'checkout.html';"
-                                            class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
+                                        <button wire:click="pleaceorder()" class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
                                     </li>
                                 @endif
 

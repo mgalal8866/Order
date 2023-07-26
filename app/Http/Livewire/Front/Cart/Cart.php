@@ -2,20 +2,23 @@
 
 namespace App\Http\Livewire\Front\Cart;
 
+use Carbon\Carbon;
 use App\Models\Coupon;
 use Livewire\Component;
 use App\Models\deferred;
 use App\Models\Wishlist;
 use App\Models\SalesHeader;
+use Illuminate\Support\Str;
 use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
+use App\Models\DeliveryDetails;
 use App\Models\Cart as ModelsCart;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
 {
-    public $totaloffer = 0, $culc = 0, $selectdeferreds = 0, $deferreds = 0, $cartlist = [], $subtotal = 0.00, $coupondisc = 0.00, $totalfinal, $coupon, $currency = ' ج.م';
+    public $couponid = null, $totaloffer = 0, $culc = 0, $selectdeferreds = 0, $deferreds = 0, $cartlist = [], $subtotal = 0.00, $coupondisc = 0.00, $totalfinal, $coupon, $currency = ' ج.م';
     public function mount()
     {
         $deferreds = deferred::where('user_id', Auth::guard('client')->user()->id)->select('statu')->first();
@@ -45,17 +48,19 @@ class Cart extends Component
                 $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
                 $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('client')->id)->where('coupon_id', $coupon->id)->count();
                 $ss = $saleheader + $deliveryheader;
-                $mm =$coupon->where('code', $this->coupon)->Where('used', '>',  $ss)->DateValid()->first();
-                if($mm ==null){
-                    return$this->dispatchBrowserEvent('notifi', ['message' => 'تم وصول للحد الاقصى لاستخدام الكوبون', 'type' => 'danger']);
+                $mm = $coupon->where('code', $this->coupon)->Where('used', '>',  $ss)->DateValid()->first();
+                if ($mm == null) {
+                    return $this->dispatchBrowserEvent('notifi', ['message' => 'تم وصول للحد الاقصى لاستخدام الكوبون', 'type' => 'danger']);
                 }
-                 $this->coupondisc = $coupon->value;
+                $this->couponid = $coupon->id;
+                $this->coupondisc = $coupon->value;
                 return $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
             } else {
+                $this->couponid = $coupon->id;
                 $this->coupondisc = $coupon->value;
-              return  $this->dispatchBrowserEvent('notifi', ['message' => '- تم اضافه الكوبون ', 'type' => 'success']);
+                return  $this->dispatchBrowserEvent('notifi', ['message' => '- تم اضافه الكوبون ', 'type' => 'success']);
             }
-            return$this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
+        return $this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
 
         // $coupon = Coupon::where('code', $this->coupon)->first();
         // if ($coupon) {
@@ -73,6 +78,59 @@ class Cart extends Component
             $this->culc();
             ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart']['qty']]);
         }
+    }
+    public function pleaceorder()
+    {
+        dd($this->cartlist);
+        $header =  DeliveryHeader::create([
+            'invoicenumber' => '#' . Str::str_random(6),
+            'coupon_id' => $this->couponid ?? null,
+            'type_order' => 'تم الاستلام',
+            'invoicetype' => 'مبيعات',
+            'invoicedate' => Carbon::now(),
+            'client_id' => Auth::guard('client')->user()->id,
+            'lastbalance' => '',
+            'finalbalance' => '',
+            'user_id' => 1,
+            'store_id' => 1,
+            'safe_id' => 1,
+            'status' => 1,
+            'employ_id' => 1,
+            'dis_point_active' => '',
+            'paytayp' => $this->selectdeferreds == 0 ? 'كاش' : 'اجل',
+            'subtotal' => $this->subtotal,
+            'totaldiscount' => '',
+            'discount_g' => '',
+            'discount_f' => '',
+            'total_add_amount' => '',
+            'add_amount_g' => '',
+            'add_amount_f' => '',
+            'discount_product' => '',
+            'discount_sales' => '',
+            'discount_point' => '',
+            'grandtotal' => '',
+            'paid' => '',
+            'remaining' => '',
+            'total_profit' => '',
+            'deliverycost' => '',
+            'satus_delivery' => '',
+            'sales_online' => '',
+        ]);
+        foreach ($this->cartlist as $i) {
+            DeliveryDetails::create([
+                'sale_header_id'     => $header->id,
+                'product_details_id' => $i->id,
+                'buyprice'           => $i->productd_bay,
+                'sellprice'          => $i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1,
+                'quantity'           => $i['cart']['qty'],
+                'subtotal'           => ($i->isoffer == 1 ? $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']),
+                'discount'           => ($i->isoffer == 1 ? ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']) : 0),
+                'grandtotal'         => ($i->isoffer == 1 ? $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']),
+                'profit'             => '',
+            ]);
+        }
+        //    ModelsCart::where('user_id', Auth::guard('client')->user()->id)->delete();
+
     }
     public function saveforlater($idproduct)
     {
@@ -93,13 +151,11 @@ class Cart extends Component
     public function removecoupon()
     {
         $this->coupondisc = 0;
+        $this->couponid = null;
         $this->reset('coupon');
     }
     public function render()
     {
-        // with('custunit', function ($qwq) {
-        //     return  $qwq->custunit();
-        // })->
         $this->cartlist = ProductDetails::whereHas('cart', function ($q) {
             return  $q->where('user_id', Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('productheader')->get();
