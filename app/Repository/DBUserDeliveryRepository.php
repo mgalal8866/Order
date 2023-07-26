@@ -35,13 +35,13 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
     protected function respondWithToken($token)
     {
         return response()->json([
-            'success' => true,
             'data' => [
-                'data' => new ResourcesUserDelivery (Auth::guard('delivery')->user()),
+                'user' => new ResourcesUserDelivery (Auth::guard('delivery')->user()),
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 // 'expires_in' => auth()->factory()->getTTL() * 60
-            ]
+            ],
+                'success' => true,
         ], 200);
     }
     public function sendtoken($token)
