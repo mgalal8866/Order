@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->json('data')->nullable();
             $table->string('massage')->nullable();
+            $table->string('source')->nullable();
             $table->timestamps();
         });
     }

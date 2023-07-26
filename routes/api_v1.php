@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\logsync;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CartController;
 use App\Http\Controllers\Api\V1\SyncController;
@@ -15,9 +16,9 @@ use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CateoryAppController;
 use App\Http\Controllers\Api\V1\NotifictionController;
+use App\Http\Controllers\Api\V1\UserDeliveryController;
 use App\Http\Controllers\Api\V1\ProductHeaderController;
 use App\Http\Controllers\Api\V1\ClientPaymentsController;
-use App\Http\Controllers\Api\V1\UserDeliveryController;
 
 ################# Start Login & Register #############
 Route::post('/login',   [UserController::class, 'login'])->name('login');
@@ -117,6 +118,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/deferreds',[SyncController::class, 'upload_deferreds']);
     Route::post('/upload/jobs',[SyncController::class, 'upload_jobs']);
     Route::post('/upload/setting',[SyncController::class, 'upload_setting']);
+  
 });
 #################   End  SYNC   #############
 
