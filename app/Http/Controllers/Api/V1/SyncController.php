@@ -132,6 +132,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
+                
                 $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
                 $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
                     'id'                 => $item['ProductD_id'],

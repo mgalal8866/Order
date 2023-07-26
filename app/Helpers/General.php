@@ -30,6 +30,16 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $image = str_replace(' ', '+', $image);
     $imageName = Str::random(10).'.'.'png';
     File::put(public_path(). '/asset/images/' . $folder.'/'.$imageName, base64_decode($image));
+
+
+        // $folderPath = public_path(). '/asset/images/' . $folder.'/';
+        // $base64Image = explode(";base64,", $image);
+        // $explodeImage = explode("image/", $base64Image[0]);
+        // $imageType = $explodeImage[1];
+        // $image_base64 = base64_decode($base64Image[1]);
+        // $imageName =  uniqid() . '. '.$imageType;
+        // $file = $folderPath .$imageName ;
+        // file_put_contents($file, $image_base64);
     return  $imageName;
 }
  function notificationFCM($title =null,$body =null, $users=null,$icon =null,$image =null,$link =null,$click =null){
@@ -68,7 +78,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
 
 
-    
+
       notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) ]);
 
     return  curl_exec($ch);

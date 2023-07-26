@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Livewire\Dashboard\Chat;
 use App\Http\Livewire\Front\Wishlist;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
 use Illuminate\Support\Facades\Config;
@@ -91,6 +92,8 @@ Route::get('send-message',  function () {
 
 
 Route::get('/deletetable', function (Request $request) {
+    $file = new Filesystem;
+$file->cleanDirectory('public/asset/images/products/');
     // DB::statement("SET foreign_key_checks=0");
     // ProductHeader::truncate();
     // ProductDetails::truncate();
