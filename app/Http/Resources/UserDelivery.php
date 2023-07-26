@@ -16,10 +16,10 @@ class UserDelivery extends JsonResource
     {
         return [
             'id'            =>$this->id,
-            'name'          =>$this->employee->name,
-            'region_id'     =>$this->employee->region_id,
-            'region_name'   =>$this->employee->region->name,
-            'city_name'     =>$this->employee->region->city->name,
+            'name'          =>$this->employee->name??'',
+            'region_id'     =>$this->employee->region_id??'',
+            'region_name'   =>$this->employee->region->name??'',
+            'city_name'     =>$this->employee->region->city->name??'',
             'lat'           =>$this->lat??'',
             'long'          =>$this->long??''
         ];

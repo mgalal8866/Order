@@ -32,6 +32,7 @@ use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
 use App\Models\deferred;
 use App\Models\jobs;
+use App\Models\setting;
 
 class SyncController extends Controller
 {
@@ -132,7 +133,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                
+
                 $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
                 $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
                     'id'                 => $item['ProductD_id'],
@@ -605,5 +606,44 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
 
+    }
+    function upload_setting(Request $request)
+    {
+        Log::info('uploadsetting ', $request->all());
+
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $image = $item['logo_shop'] != null ? uploadbase64images('logos', $item['logo_shop']) : null;
+                $uu =   setting::updateOrCreate(['id' => 1], [
+                    'name_shop'         => $item['name_shop'] ,
+                    'maneger_phone'     => $item['maneger_phone'] ,
+                    'phone_shop'        => $item['phone_shop'] ,
+                    'address_shop'      => $item['address_shop'] ,
+                    'logo_shop'         => $image  ,
+                    'message_report'    => $item['message_report'] ,
+                    'delivery_amount'   => $item['delivery_amount'] ,
+                    'delivery_message'  => $item['delivery_message']  ,
+                    'salesstatus'       => $item['salesstatus'] ,
+                    'point_system'      => $item['point_system']  ,
+                    'point_le'          => $item['point_le']  ,
+                    'region_id'         => $item['region_id'] ,
+                    'country_id'        => $item['country_id'] ,
+                    'supcategory_id'    => $item['supcategory_id'] ,
+                    'type_of_goods'     => $item['type_of_goods'] ,
+                    'delivery_though'   => $item['delivery_though'] ,
+                    'minimum_products'  => $item['minimum_products'] ,
+                    'minimum_financial' => $item['minimum_financial'] ,
+                    'deferred_sale'     => $item['deferred_sale'] ,
+                    'low_profit'        => $item['low_profit'] ,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
     }
 }

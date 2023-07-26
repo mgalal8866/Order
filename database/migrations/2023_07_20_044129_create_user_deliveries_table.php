@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user_deliveries', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('emp_id')->nullable();
+            $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->string('lat')->nullable();
             $table->string('long')->nullable();

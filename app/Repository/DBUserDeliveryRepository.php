@@ -21,12 +21,14 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
     public function login($request)
     {
         $credentials = $request->only('username', 'password');
+        // UserDelivery::create($credentials);
         try {
             if (!$token = Auth::guard('delivery')->attempt($credentials)) {
-                return response()->json(['success' => false, 'error' => 'Some Error Message'], 401);
+                return Resp('', 'error', 401, true);
+
             }
         } catch (JWTException $e) {
-            return response()->json(['success' => false, 'error' => 'Failed to login, please try again.'], 500);
+            return Resp('', 'error', 500, true);
         }
 
         return $this->respondWithToken($token);
