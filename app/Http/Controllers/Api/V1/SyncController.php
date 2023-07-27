@@ -542,7 +542,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 $uu =   UserDelivery::updateOrCreate(['id' => $item['DelvryID']], [
                     'id'        => $item['DelvryID'],
-                    'username'  => $item['username'],
+                    'username'  => $item['userName'],
                     'emp_id'    => $item['EmpID'],
                     'password'  => $item['Passwrd'],
                     'user_id'   => $item['userID'],
@@ -570,8 +570,9 @@ class SyncController extends Controller
         Log::info('user_deliveries', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   deferred::updateOrCreate(['id' => $item['id']], [
-                    'statu'    => $item['statu'],
+                $uu =   deferred::updateOrCreate(['user_id' => $item['ClaintID']], [
+                    'statu'    => $item['Acteve'],
+                    'user_id'  => $item['ClaintID']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
