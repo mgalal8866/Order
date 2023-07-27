@@ -605,7 +605,7 @@ class SyncController extends Controller
     }
     function upload_setting(Request $request)
     {
-        Log::info('uploadsetting', ['0'=>$request]);
+        Log::info('uploadsetting', ['0'=>$request->all()]);
 
         try {
             foreach ($request->all() as $index => $item) {
