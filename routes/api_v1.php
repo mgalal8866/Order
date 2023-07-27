@@ -128,6 +128,7 @@ Route::prefix('delivery')->middleware([])->group(function(){
 });
 Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
     Route::get('update/map',[UserDeliveryController::class,'updatemap']);
+    Route::get('checkuser',[UserDeliveryController::class,'checkuser']);
     Route::get('order/getdeliverycloseinvo',[InvoiceController::class,'getdeliverycloseinvo']);
     Route::get('order/getdeliveryopeninvo', [InvoiceController::class, 'getdeliveryopeninvo']);
     Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getdeliverycloseinvodetails']);

@@ -29,12 +29,8 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
         } catch (JWTException $e) {
             return Resp('', 'error', 500, true);
         }
-        $user =  Auth::guard('delivery')->user();
-        if($user->active ==0){
-            return Resp('', 'error', 500, false);
-        }else{
-           return $this->respondWithToken($token);
-        }
+        return $this->respondWithToken($token);
+
     }
     protected function respondWithToken($token)
     {
@@ -83,16 +79,15 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
             return Resp( '','error',401,false);
         }
     }
-    public function checkblock($request)
+    public function checkuser()
     {
+        $user =  Auth::guard('delivery')->user();
+        if($user->active ==0){
+            return Resp('', 'error', 500, false);
+        }else{
+            return Resp('', 'success', 200, true);
+        }
 
-            // $userd = UserDelivery::find(Auth::guard('delivery')->user()->id);
-            // if($userd ){
-            //     Resp( $userd    ,'success',200,true);
-            //   }else{
-            //       Resp( '','error',401,$userd->active?);
-
-            //   }
     }
 }
 

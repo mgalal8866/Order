@@ -43,5 +43,9 @@ class UserDeliveryController extends Controller
     {
         return $this->userdeliveryRepositry->updatemap($request);
     }
+    public function checkuser()
+    {
+        return $this->userdeliveryRepositry->checkuser();
+    }
 
 }
