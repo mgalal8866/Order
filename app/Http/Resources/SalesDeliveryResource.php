@@ -24,7 +24,7 @@ class SalesDeliveryResource extends JsonResource
                 'client_name'   => $this->user->client_name ??'',
                 'client_lat'    => $this->user->lat_mab ??'',
                 'client_long'   => $this->user->long_mab ??'',
-                'address'       =>  $this->user->region->name??'' .'-'  . $this->user->region->city->name??'' .'-'. $this->user->stat ??'',
+                'address'       =>  ($this->user->region->name??'') . '-'  .( $this->user->region->city->name??'') . '-' .  ($this->user->client_state ??''),
                 // 'invoicenumber' => $this->invoicenumber??'',
                 // 'status'        => $this->status??'',
                 // 'subtotal'      => $this->subtotal??'',
