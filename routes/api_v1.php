@@ -118,7 +118,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/deferreds',[SyncController::class, 'upload_deferreds']);
     Route::post('/upload/jobs',[SyncController::class, 'upload_jobs']);
     Route::post('/upload/setting',[SyncController::class, 'upload_setting']);
-  
+
 });
 #################   End  SYNC   #############
 
@@ -127,6 +127,7 @@ Route::prefix('delivery')->middleware([])->group(function(){
     Route::post('/register', [UserDeliveryController::class, 'register'])->name('register');
 });
 Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
+    Route::get('update/map',[InvoiceController::class,'getdeliverycloseinvo']);
     Route::get('order/getdeliverycloseinvo',[InvoiceController::class,'getdeliverycloseinvo']);
     Route::get('order/getdeliveryopeninvo', [InvoiceController::class, 'getdeliveryopeninvo']);
     Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getdeliverycloseinvodetails']);
