@@ -17,15 +17,15 @@ class SalesDeliveryResource extends JsonResource
         // return parent::toArray($request);
         return [
                 'id'            => $this->id ??'',
-                // 'invoicenumber' => $this->invoicenumber??'',
                 'invoicetype'   => ($this->invoicetype == 1) ?'مرتجع':'مبيعات',
-                'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('l j F Y') ?? '',
+                'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('l j F Y H:i') ?? '',
                 'paytayp'       => $this->paytayp ??'',
                 'client_phone'  => $this->user->client_fhonewhats ??'',
                 'client_name'   => $this->user->client_name ??'',
                 'client_lat'    => $this->user->lat_mab ??'',
                 'client_long'   => $this->user->long_mab ??'',
                 'address'       => $this->user->stat ??'',
+                // 'invoicenumber' => $this->invoicenumber??'',
                 // 'status'        => $this->status??'',
                 // 'subtotal'      => $this->subtotal??'',
                 // 'totaldiscount' => $this->totaldiscount ??'',

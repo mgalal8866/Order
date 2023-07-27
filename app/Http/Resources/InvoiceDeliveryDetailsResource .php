@@ -6,7 +6,7 @@ use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\InvoiceDetailsResourcelvl2;
+use App\Http\Resources\InvoiceDeliveryDetailsResourcelvl2;
 
 class InvoiceDeliveryDetailsResource  extends JsonResource
 {
@@ -24,7 +24,7 @@ class InvoiceDeliveryDetailsResource  extends JsonResource
                 'remaining'        => $this->remaining ?? '',
                 'paytayp'          => $this->paytayp ??'',
             ],
-            'details' =>InvoiceDetailsResourcelvl2::collection($this->salesdetails),
+            'details' =>InvoiceDeliveryDetailsResourcelvl2::collection($this->salesdetails),
         ];
     }
 }
