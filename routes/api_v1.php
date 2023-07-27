@@ -127,7 +127,7 @@ Route::prefix('delivery')->middleware([])->group(function(){
     Route::post('/register', [UserDeliveryController::class, 'register'])->name('register');
 });
 Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
-    Route::get('update/map',[InvoiceController::class,'getdeliverycloseinvo']);
+    Route::get('update/map',[UserDeliveryController::class,'updatemap']);
     Route::get('order/getdeliverycloseinvo',[InvoiceController::class,'getdeliverycloseinvo']);
     Route::get('order/getdeliveryopeninvo', [InvoiceController::class, 'getdeliveryopeninvo']);
     Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getdeliverycloseinvodetails']);
