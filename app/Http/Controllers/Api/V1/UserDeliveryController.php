@@ -39,7 +39,7 @@ class UserDeliveryController extends Controller
     {
         return $this->userdeliveryRepositry->sendtoken($token);
     }
-    public function updatemap($request)
+    public function updatemap(Request $request)
     {
         return $this->userdeliveryRepositry->updatemap($request);
     }
