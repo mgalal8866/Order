@@ -34,6 +34,9 @@ return new class extends Migration
             $table->string('minimum_products')->nullable();
             $table->string('minimum_financial')->nullable();
             $table->boolean('deferred_sale')->nullable();
+            $table->integer('Store_id')->nullable();
+            $table->string('Shop_Manegaer')->nullable();
+            $table->integer('BackupDB')->nullable();
             $table->string('low_profit')->nullable();
             $table->timestamps();
         });

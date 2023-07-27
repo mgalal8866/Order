@@ -610,28 +610,33 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $image = $item['logo_shop'] != null ? uploadbase64images('logos', $item['logo_shop']) : null;
+                $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
                 $uu =   setting::updateOrCreate(['id' => 1], [
-                    'name_shop'         => $item['name_shop'] ,
-                    'maneger_phone'     => $item['maneger_phone'] ,
-                    'phone_shop'        => $item['phone_shop'] ,
-                    'address_shop'      => $item['address_shop'] ,
+                    'name_shop'         => $item['Name_Shope'] ,
+                    'maneger_phone'     => $item['Manegaer_Fhone'] ,
+                    'phone_shop'        => $item['Shope_Fhone'] ,
+                    'address_shop'      => $item['Shope_Adresse'] ,
                     'logo_shop'         => $image  ,
-                    'message_report'    => $item['message_report'] ,
-                    'delivery_amount'   => $item['delivery_amount'] ,
-                    'delivery_message'  => $item['delivery_message']  ,
-                    'salesstatus'       => $item['salesstatus'] ,
-                    'point_system'      => $item['point_system']  ,
-                    'point_le'          => $item['point_le']  ,
-                    'region_id'         => $item['region_id'] ,
-                    'country_id'        => $item['country_id'] ,
-                    'supcategory_id'    => $item['supcategory_id'] ,
-                    'type_of_goods'     => $item['type_of_goods'] ,
-                    'delivery_though'   => $item['delivery_though'] ,
-                    'minimum_products'  => $item['minimum_products'] ,
-                    'minimum_financial' => $item['minimum_financial'] ,
+                    'message_report'    => $item['Messge_Report'] ,
+                    'delivery_amount'   => $item['Delivery_Amount'] ,
+                    'delivery_message'  => $item['Delivery_Messge']  ,
+                    'salesstatus'       => $item['SalesStatus'] ,
+                    'point_system'      => $item['PointSystem']  ,
+                    'point_le'          => $item['PointPerLE']  ,
+                    'region_id'         => $item['Region'] ,
+                    'country_id'        => $item['Country'] ,
+                    'supcategory_id'    => $item['SUPCategoryAPPID'] ,
+                    'type_of_goods'     => $item['Type_of_goods'] ,
+                    'delivery_though'   => $item['delivery_through'] ,
+                    'minimum_products'  => $item['Minimum_products'] ,
+                    'minimum_financial' => $item['Financial_minimum'] ,
                     'deferred_sale'     => $item['deferred_sale'] ,
                     'low_profit'        => $item['low_profit'] ,
+                    'Store_id'          => $item['Store_id'] ,
+                    'point_price'       => $item['PointPrice'] ,
+                    'BackupDB'          => $item['BackupDB'] ,
+                    'city_id'           => $item['City'] ,
+                    'Shop_Manegaer'     => $item['Shop_Manegaer'] ,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
