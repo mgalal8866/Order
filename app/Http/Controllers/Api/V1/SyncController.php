@@ -542,6 +542,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 $uu =   UserDelivery::updateOrCreate(['id' => $item['DelvryID']], [
                     'id'        => $item['DelvryID'],
+                    'username'  => $item['username'],
                     'emp_id'    => $item['EmpID'],
                     'password'  => $item['Passwrd'],
                     'user_id'   => $item['userID'],
