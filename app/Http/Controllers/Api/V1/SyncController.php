@@ -552,7 +552,7 @@ class SyncController extends Controller
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             $data =   UserDelivery::get();
-            return Resp(ResourcesUserDelivery::collection($data), 'Success', 200, true);
+            return Resp($data, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
