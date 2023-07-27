@@ -9,6 +9,7 @@ interface UserDeliveryRepositoryinterface{
     public function getusers();
     public function logout();
     public function sendtoken($token);
+    public function updatemap($request);
 
 }
 

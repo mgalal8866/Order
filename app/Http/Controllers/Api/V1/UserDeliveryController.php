@@ -39,5 +39,9 @@ class UserDeliveryController extends Controller
     {
         return $this->userdeliveryRepositry->sendtoken($token);
     }
-   
+    public function updatemap($token)
+    {
+        return $this->userdeliveryRepositry->updatemap($token);
+    }
+
 }
