@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\InvoiceDetailsResource;
 use App\Http\Resources\SalesCollectionResource;
 use App\Repositoryinterface\InvoRepositoryinterface;
+use App\Http\Resources\InvoiceDeliveryDetailsResource;
+use App\Http\Resources\SalesDeliveryCollectionResource;
 
 class InvoiceController extends Controller
 {
@@ -39,18 +41,18 @@ class InvoiceController extends Controller
     }
     public function getdeliveryopeninvo(Request $request)
     {
-        return Resp(new SalesCollectionResource($this->invoRepositry->getdeliveryopeninvo()), 'success', 200, true);
+        return Resp(new SalesDeliveryCollectionResource($this->invoRepositry->getdeliveryopeninvo()), 'success', 200, true);
     }
     public function getdeliverycloseinvo()
     {
-        return Resp(new SalesCollectionResource($this->invoRepositry->getdeliverycloseinvo()), 'success', 200, true);
+        return Resp(new SalesDeliveryCollectionResource($this->invoRepositry->getdeliverycloseinvo()), 'success', 200, true);
     }
     public function getdeliverycloseinvodetails($id)
     {
-        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsclose($id)), 'success', 200, true);
+        return Resp(InvoiceDeliveryDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsclose($id)), 'success', 200, true);
     }
     public function getdeliveryopeninvoedetails($id)
     {
-        return Resp(InvoiceDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsopen($id)), 'success', 200, true);
+        return Resp(InvoiceDeliveryDetailsResource::collection($this->invoRepositry->getdeliveryinvoicedetailsopen($id)), 'success', 200, true);
     }
 }
