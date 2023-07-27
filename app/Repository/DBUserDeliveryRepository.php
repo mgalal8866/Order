@@ -45,7 +45,7 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
                 'token_type' => 'bearer',
                 // 'expires_in' => auth()->factory()->getTTL() * 60
             ],
-                'success' => true,
+                'statusval' => true,
         ], 200);
     }
     public function sendtoken($token)
