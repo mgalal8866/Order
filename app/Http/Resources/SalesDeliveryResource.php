@@ -23,6 +23,8 @@ class SalesDeliveryResource extends JsonResource
                 'paytayp'       => $this->paytayp ??'',
                 'client_phone'  => $this->user->client_fhonewhats ??'',
                 'client_name'   => $this->user->client_name ??'',
+                'client_lat'    => $this->user->lat_mab ??'',
+                'client_long'   => $this->user->long_mab ??'',
                 'address'       => $this->user->stat ??'',
                 'status'        => $this->status??'',
                 'subtotal'      => $this->subtotal??'',
