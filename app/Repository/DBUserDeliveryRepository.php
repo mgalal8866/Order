@@ -72,7 +72,7 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
     public function updatemap($request)
     {
 
-        var_dump($request->all());
+        
         UserDelivery::update(['id'=> Auth::guard('delivery')->user()->id],['lat'=>$request->lat,'long'=>$request->long]);
     }
 }
