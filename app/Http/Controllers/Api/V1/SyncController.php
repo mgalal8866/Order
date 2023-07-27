@@ -286,8 +286,8 @@ class SyncController extends Controller
     }
     function uploadsdeliveryheader(Request $request)
     {
-        Log::info('DeliveryHeader', $request[0]);
-        Log::info('DeliveryDetails', $request[1]);
+        Log::info('DeliveryHeader', ['0' => $request[0],'1'=> $request[1]]);
+
         try {
                 $uu =   DeliveryHeader::updateOrCreate(["id"  => $request[0][0]['SalesHeader_ID'],], [
                     "id"            => $request[0][0]['SalesHeader_ID'],
