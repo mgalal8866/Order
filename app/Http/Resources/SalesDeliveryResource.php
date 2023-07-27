@@ -18,7 +18,7 @@ class SalesDeliveryResource extends JsonResource
         return [
                 'id'            => $this->id ??'',
                 'invoicetype'   => ($this->invoicetype == 1) ?'مرتجع':'مبيعات',
-                'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('H:i:s l j F Y') ?? '',
+                'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('H:i:s / l j F Y') ?? '',
                 'paytayp'       => $this->paytayp ??'',
                 'client_phone'  => $this->user->client_fhonewhats ??'',
                 'client_name'   => $this->user->client_name ??'',
