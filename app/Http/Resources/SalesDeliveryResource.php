@@ -17,7 +17,7 @@ class SalesDeliveryResource extends JsonResource
         // return parent::toArray($request);
         return [
                 'id'            => $this->id ??'',
-                'invoicetype'   => ($this->invoicetype == 1) ?'مرتجع':'مبيعات',
+                'type_order'    => $this->type_order,
                 'invoicedate'   => Carbon::parse($this->invoicedate)->translatedFormat('H:i / l j F Y') ?? '',
                 'paytayp'       => $this->paytayp ??'',
                 'client_phone'  => $this->user->client_fhonewhats ??'',
