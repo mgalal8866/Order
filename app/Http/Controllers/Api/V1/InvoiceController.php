@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\InvoiceDetailsResource;
 use App\Http\Resources\SalesCollectionResource;
 use App\Repositoryinterface\InvoRepositoryinterface;
+
 use App\Http\Resources\InvoiceDeliveryDetailsResource;
 use App\Http\Resources\SalesDeliveryCollectionResource;
 
