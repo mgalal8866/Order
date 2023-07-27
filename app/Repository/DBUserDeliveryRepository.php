@@ -76,7 +76,8 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
     }
     public function updatemap($request)
     {
-      $userddelivery =   UserDelivery::where('id',Auth::guard('delivery')->user()->id)->update(['lat'=>$request->lat,'long'=>$request->long]);
+      $userddelivery =   UserDelivery::where('id',Auth::guard('delivery')->user()->id)->first();
+      $userddelivery->update(['lat'=>$request->lat,'long'=>$request->long]);
       if($userddelivery){
           Resp( $userddelivery   ,'success',200,true);
         }else{
