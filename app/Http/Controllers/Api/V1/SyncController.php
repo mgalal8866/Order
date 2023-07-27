@@ -612,6 +612,7 @@ class SyncController extends Controller
 
                 $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
                 $uu =   setting::find(1)->first();
+                deleteimage('logos',$uu->logo_shop);
                 $uu->update( [
                     'name_shop'         => $item['Name_Shope'] ,
                     'maneger_phone'     => $item['Manegaer_Fhone'] ,

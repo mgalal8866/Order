@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('phone_shop')->nullable();
             $table->string('address_shop')->nullable();
             $table->string('logo_shop')->nullable();
-            $table->string('message_report')->nullable();
+            $table->text('message_report')->nullable();
             $table->decimal('delivery_amount',8,2)->nullable();//قيمه توصيل
             $table->string('delivery_message')->nullable();//
             $table->boolean('salesstatus')->nullable();
