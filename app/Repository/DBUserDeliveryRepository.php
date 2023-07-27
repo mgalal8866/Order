@@ -79,9 +79,9 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
       $userddelivery =   UserDelivery::where('id',Auth::guard('delivery')->user()->id)->first();
       $userddelivery->update(['lat'=>$request->lat,'long'=>$request->long]);
       if($userddelivery){
-          Resp( $userddelivery   ,'success',200,true);
+        return  Resp( $userddelivery   ,'success',200,true);
         }else{
-            Resp( '','error',401,false);
+            return Resp( '','error',401,false);
         }
     }
     public function checkblock($request)
