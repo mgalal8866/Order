@@ -30,12 +30,12 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
         } catch (JWTException $e) {
             return Resp('', 'error', 500, true);
         }
-       $user =  Auth::guard('delivery')->user();
-       if($user->active ==0){
-        return Resp('', 'error', 500, false);
-       }else{
-           return $this->respondWithToken($token);
-        }
+               return $this->respondWithToken($token);
+    //    $user =  Auth::guard('delivery')->user();
+    //    if($user->active ==0){
+    //     return Resp('', 'error', 500, false);
+    //    }else{
+    //     }
     }
     protected function respondWithToken($token)
     {
