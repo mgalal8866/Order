@@ -556,23 +556,21 @@ class SyncController extends Controller
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
+            return Resp(null, 'Error', 400, true);
         }
     }
     function get_deferreds()
     {
         $deferred =deferred::get();
-        return Resp(($deferred), 'Success', 200, true);
+        return Resp($deferred, 'Success', 200, true);
     }
     function upload_deferreds(Request  $request)
     {
-
         Log::info('user_deliveries', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   deferred::updateOrCreate(['user_id' => $item['ClaintID']], [
                     'statu'    => $item['Acteve'],
-                    'user_id'  => $item['ClaintID']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -651,4 +649,37 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function delete_selseheader($id)
+    {
+        Log::info('delete_selseheader', ['0'=>$id]);
+
+        try {
+            SalesHeader::where('id',$id)->delete();
+            SalesDetails::where('sale_header_id',$id)->delete();
+            logsync::create(['type' => 'success', 'data' => json_encode($id), 'massage' => null]);
+
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($id),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function delete_deliveryheader($id)
+    {
+        Log::info('delete_selseheader', ['0'=>$id]);
+
+        try {
+            DeliveryHeader::where('id',$id)->delete();
+            DeliveryDetails::where('sale_header_id',$id)->delete();
+            logsync::create(['type' => 'success', 'data' => json_encode($id), 'massage' => null]);
+
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($id),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
 }
+
