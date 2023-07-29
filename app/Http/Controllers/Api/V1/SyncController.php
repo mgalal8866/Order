@@ -4,13 +4,18 @@ namespace App\Http\Controllers\Api\V1;
 
 use Exception;
 use Carbon\Carbon;
+use App\Models\jobs;
 use App\Models\unit;
 use App\Models\User;
+use App\Models\Stock;
+use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\slider;
 use App\Models\comment;
 use App\Models\logsync;
+use App\Models\setting;
 use App\Models\Category;
+use App\Models\deferred;
 use App\Models\Employee;
 use App\Models\CateoryApp;
 use App\Models\notifiction;
@@ -30,9 +35,6 @@ use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
-use App\Models\deferred;
-use App\Models\jobs;
-use App\Models\setting;
 
 class SyncController extends Controller
 {
@@ -678,6 +680,52 @@ class SyncController extends Controller
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($id),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_store(Request $request)
+    {
+        Log::info('uploadStock', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Store::updateOrCreate(['id' => $item['Store_id']], [
+                    'id'          => $item['Store_id'],
+                    'store_name'    => $item['Store_name'],
+                    'store_phone'  => $item['Store_fhone'],
+                    'store_note'  => $item['Sotre_note'],
+                    'branch_id'  => $item['Branch_id'],
+                    'user_id'  => $item['user_id'],
+                    'store_active'    => $item['Store_Active'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+      function upload_stock(Request $request)
+    {
+        Log::info('upload_stock', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Stock::updateOrCreate(['id' => $item['Stock_ID']], [
+                    'id'          => $item['Stock_ID'],
+                    'store_id'    => $item['Store_id'],
+                    'product_id'  => $item['Product_id'],
+                    'quantity'    => $item['Quantity'],
+                    'expiredate'  => $item['ExpireDate'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }

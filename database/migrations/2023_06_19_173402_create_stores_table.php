@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('store_name')->nullable();
             $table->string('store_phone')->nullable();
-            $table->string('sotre_note')->nullable();
+            $table->string('store_note')->nullable();
             $table->integer('branch_id')->nullable();
             $table->integer('user_id')->default(0)->nullable();
             $table->boolean('store_active')->default(1);
