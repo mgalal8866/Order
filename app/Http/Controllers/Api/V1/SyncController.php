@@ -716,7 +716,7 @@ class SyncController extends Controller
                 $uu = Stock::updateOrCreate(['id' => $item['Stock_ID']], [
                     'id'          => $item['Stock_ID'],
                     'store_id'    => $item['Store_id'],
-                    'product_id'  => $item['Product_id'],
+                    'product_id'  => $item['Product_Id'],
                     'quantity'    => $item['Quantity'],
                     'expiredate'  => $item['ExpireDate'],
                 ]);
