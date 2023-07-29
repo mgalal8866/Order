@@ -24,7 +24,7 @@ class DBUserDeliveryRepository implements UserDeliveryRepositoryinterface
         // UserDelivery::create($credentials);
         try {
             if (!$token = Auth::guard('delivery')->attempt($credentials)) {
-                return Resp('', 'error', 401, true);
+                return Resp('', 'المستخدم غير موجود او يوجد خطاء فى بيانات الدخول', 401, true);
             }
         } catch (JWTException $e) {
             return Resp('', 'error', 500, true);
