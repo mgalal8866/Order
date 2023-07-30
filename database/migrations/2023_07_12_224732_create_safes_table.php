@@ -15,8 +15,8 @@ return new class extends Migration
             $table->increments('id');
             $table->string('safe_name')->nullable();
             $table->string('branch_id')->nullable();
-            $table->decimal('opening_balance', 8, 2)->default(0);
-            $table->decimal('balance_now', 8, 2)->default(0);
+            $table->decimal('opening_balance', 8,3)->default(0);
+            $table->decimal('balance_now', 8,3)->default(0);
             $table->integer('user_id')->default(1);
             $table->boolean('save_active')->default(1);
             $table->timestamps();

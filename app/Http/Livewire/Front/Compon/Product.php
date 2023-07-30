@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Auth;
 
 class Product extends Component
 {
-    public $product ,$count;
+    public $product ,$count,$qty;
     public function mount( $product){
         $this->product= $product;
+        $this->product->productheader->product_isscale == 1 ?
+        $this->qty = 0.125 :
+        $this->qty = 1;
     }
     public function qtyincrement($product_id){
-        Cart::getroductid($product_id)->increment('qty');
+        Cart::getroductid($product_id)->increment('qty', $this->qty);
 
     }
     public function gotosearch(){
@@ -25,14 +28,16 @@ class Product extends Component
     public function qtydecrement($product_id){
       $data =  Cart::getroductid($product_id)->first();
       if($data->qty != 1){
-          $data->decrement('qty');
+          $data->decrement('qty', $this->qty);
        }else{
         $data->delete();
         $this->emit('count');
        }
     }
    public function addtocart($product_id){
-        $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>  1]);
+
+
+        $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
    }
    public function addtowishlist($product_id){
@@ -45,7 +50,7 @@ class Product extends Component
             if(!empty(Auth::guard('client')->user()->id)){
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
-           
+
         })->first();
         return view('livewire.front.compon.product');
     }

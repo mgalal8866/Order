@@ -18,9 +18,9 @@ return new class extends Migration
             $table->integer('productd_unit_id')->nullable();
             $table->string('productd_barcode')->nullable();
             $table->integer('productd_size')->nullable();
-            $table->decimal('productd_bay',8,2)->nullable();//سعر الشراء
-            $table->decimal('productd_Sele1',8,2)->nullable();//سعر البيع العادى
-            $table->decimal('productd_Sele2',8,2)->nullable();//سعر العرض
+            $table->decimal('productd_bay',8,3)->nullable();//سعر الشراء
+            $table->decimal('productd_Sele1',8,3)->nullable();//سعر البيع العادى
+            $table->decimal('productd_Sele2',8,3)->nullable();//سعر العرض
             $table->integer('productd_fast_Sele')->nullable();//
             $table->integer('productd_UnitType')->nullable();
             $table->string('productd_image')->nullable();

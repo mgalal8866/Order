@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->text('comment')->nullable();
             $table->integer('user_id')->nullable();
-            $table->decimal('evalution',8,2)->nullable();
+            $table->decimal('evalution',8,3)->nullable();
             $table->timestamps();
         });
     }

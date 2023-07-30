@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('region_id')->nullable();
             $table->text('state')->nullable();
             $table->integer('paytype_id')->default(0);
-            $table->decimal('pay_sel',18,2)->nullable();
+            $table->decimal('pay_sel',18,3)->nullable();
             $table->string('total_houre')->nullable();
             $table->integer('job_id')->nullable();
             $table->integer('user_id')->nullable();

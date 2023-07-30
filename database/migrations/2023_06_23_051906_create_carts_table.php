@@ -15,7 +15,7 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('product_id');
-            $table->decimal('qty',8,2)->nullable();
+            $table->decimal('qty',8,3)->nullable();
             $table->timestamps();
         });
     }

@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('client_payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('clientpay_id')->nullable();
-            $table->decimal('fromeamount',8,2)->default(0);
-            $table->decimal('paidamount',8,2)->default(0);
-            $table->decimal('newamount', 8, 2)->default(0);
+            $table->decimal('fromeamount',8,3)->default(0);
+            $table->decimal('paidamount',8,3)->default(0);
+            $table->decimal('newamount', 8,3)->default(0);
             $table->string('pay_note')->nullable();
             $table->string('payment_method')->nullable();
             $table->integer('user_id')->default(1);
