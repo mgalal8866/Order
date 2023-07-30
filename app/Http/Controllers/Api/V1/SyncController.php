@@ -75,6 +75,8 @@ class SyncController extends Controller
                     'client_Active'       => $item['Client_Active'],
                     'created_at'          => $item['caret_data']
                 ]);
+                Log::warning( $user );
+
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
