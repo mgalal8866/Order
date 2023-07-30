@@ -157,12 +157,12 @@
                                 <div class="mb-3 coupon-box input-group">
                                     <input type="text" wire:model="coupon" class="form-control"
                                         id="exampleFormControlInput1" placeholder="ادخل الكوبون"
-                                        {{ $coupondisc > 0 ? 'disabled' : '' }}>
-                                    @if ($coupondisc > 0)
+                                        {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>
+                                    @if ($cul['coupondisc'] > 0)
                                         <button class="btn-apply" wire:click.prevent="removecoupon()">X</button>
                                     @else
                                         <button class="btn-apply" wire:click.prevent="usecoupon()"
-                                            {{ $coupondisc > 0 ? 'disabled' : '' }}>تطبيق</button>
+                                            {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>تطبيق</button>
                                     @endif
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                     <h4 class="price">
                                         <select wire:model="selectdeferreds">
                                             <option selected value="0">كاش</option>
-                                            @if ($deferreds == 1)
+                                            @if ($cul['deferreds'] == 1)
                                                 <option value="1">اجل</option>
                                             @endif
                                         </select>
@@ -180,18 +180,18 @@
                                 </li>
                                 <li>
                                     <h4>اجمالى الاصناف</h4>
-                                    <h4 class="price"> {{ $subtotal }}{{ $currency }}</h4>
+                                    <h4 class="price"> {{ $cul['subtotal'] }}{{ $currency }}</h4>
                                 </li>
-                                @if ($totaloffer != 0)
+                                @if ($cul['totaldiscount'] != 0)
                                     <li>
                                         <h4>اجمالى التوفير</h4>
-                                        <h4 class="price"> {{ $totaloffer }}{{ $currency }}</h4>
+                                        <h4 class="price"> {{ $cul['totaldiscount'] }}{{ $currency }}</h4>
                                     </li>
                                 @endif
 
                                 <li>
                                     <h4>خصم الكوبون</h4>
-                                    <h4 class="price">(-) {{ $coupondisc }}{{ $currency }}</h4>
+                                    <h4 class="price">(-) {{ $cul['coupondisc']  . '  ' . ($cul['coupontype'] ==0 ? $currency : ' % ') }}</h4>
                                 </li>
 
                                 <li class="align-items-start">
@@ -204,23 +204,23 @@
                         <ul class="summery-total">
                             <li class="list-total border-top-0">
                                 <h4>الاجمالى ({{ $currency }})</h4>
-                                <h4 class="price theme-color">{{ $subtotal - $coupondisc }}{{ $currency }}</h4>
+                                <h4 class="price theme-color">{{ $cul['finalsubtotal'] }}{{ $currency }}</h4>
                             </li>
                         </ul>
 
                         <div class="button-group cart-button">
                             <ul>
 
-                                @if ($setting->minimum_products > count($cartlist))
+                                {{-- @if ($setting->minimum_products > count($cartlist)) --}}
                                     <li>
-                                        <button class="btn btn-info text-danger fw-bold"> يجب اختيار المنتجات حسب الحد
+                                        {{-- <button class="btn btn-info text-danger fw-bold"> يجب اختيار المنتجات حسب الحد
                                             الادنى</button>
                                     </li>
-                                @else
+                                @else --}}
                                     <li>
                                         <button wire:click="pleaceorder()" class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
                                     </li>
-                                @endif
+                                {{-- @endif --}}
 
                                 <li>
                                     <button onclick="location.href = '/';"
