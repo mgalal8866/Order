@@ -22,6 +22,7 @@ class clientsyncResource extends JsonResource
         'client_balanc'     => $this->client_Balanc ?? '',
         'client_EntiteNumber' => $this->client_EntiteNumber ?? '',
         'client_points'     => $this->client_points ?? '',
+        'store_name'        => $this->store_name ?? '',
         'default_Sael'      => $this->default_Sael ?? '',
         'client_Credit_Limit' => $this->client_Credit_Limit ?? '',
         'region_id'         => $this->region_id ?? '',

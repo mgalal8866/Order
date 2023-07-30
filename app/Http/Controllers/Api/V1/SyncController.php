@@ -54,7 +54,8 @@ class SyncController extends Controller
                     $errors[$index] = ['message' => $validator->messages(), 'Client_id' => $item['Client_id']];
                     continue;
                 }
-                $user = User::create([
+                $user = User::updateOrCreate([  'id'   => $item['Client_id']],[
+                    'id'   => $item['Client_id'],
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
                     'source_id'           => $item['Client_id'],
                     'client_name'         => $item['Client_name'],
@@ -796,6 +797,29 @@ class SyncController extends Controller
                     'DamageCost'  => $item['DamageCost'],
                     'UserId'  => $item['UserId'],
                     'StoreId'  => $item['StoreId'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_erolment_emps(Request $request)
+    {
+        Log::info('upload_erolment_emps', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Stock::updateOrCreate(['id' => $item['eroment_id']], [
+                    'id'          => $item['eroment_id'],
+                    'jop_id'    => $item['jop_id'],
+                    'emp_name'  => $item['emp_name'],
+                    'emp_fhone'    => $item['emp_fhone'],
+                    'emp_note'  => $item['emp_note'],
+                    'user_id'  => $item['user_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

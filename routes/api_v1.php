@@ -121,6 +121,10 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/setting',[SyncController::class, 'upload_setting']);
     Route::post('/upload/stock',[SyncController::class, 'upload_stock']);
     Route::post('/upload/store',[SyncController::class, 'upload_store']);
+    Route::post('/upload/attendance',[SyncController::class, 'upload_Attendance']);
+    Route::post('/upload/banks',[SyncController::class, 'upload_banks']);
+    Route::post('/upload/damage',[SyncController::class, 'upload_Damage']);
+    Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
     Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
 
