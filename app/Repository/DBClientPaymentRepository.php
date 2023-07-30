@@ -11,6 +11,6 @@ use App\Repositoryinterface\ClientPaymentRepositoryinterface;
 class DBClientPaymentRepository implements ClientPaymentRepositoryinterface
 {
     public function getClientPayment(){
-        return ClientPayments::where('clientpay_id', Auth::user('api')->id)->get();
+        return ClientPayments::where('clientpay_id', Auth::guard('api')->user()->id)->get();
     }
 }

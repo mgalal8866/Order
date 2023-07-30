@@ -36,9 +36,9 @@ class DBSalesRepository implements SalesRepositoryinterface
     }
     public function delete($id)
     {
-        $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::user('api')->id)->first();
+        $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::guard('api')->user()->id)->first();
         if ($w->delete()) {
-            return  Wishlist::where('user_id', Auth::user('api')->id)->get();
+            return  Wishlist::where('user_id', Auth::guard('api')->user()->id)->get();
         };
     }
 }

@@ -10,7 +10,7 @@ class DBNotifictionRepository implements NotifictionRepositoryinterface
 {
     public function getnotifiction()
     {
-        return  notifiction::where('user_id', Auth::user('api')->id)->orwhere('user_id', null)->get();
+        return  notifiction::where('user_id', Auth::guard('api')->user()->id)->orwhere('user_id', null)->get();
     }
 
 }

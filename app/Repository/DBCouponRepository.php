@@ -17,8 +17,8 @@ class DBCouponRepository implements CouponRepositoryinterface
 
         if ($coupon != null)
             if ($coupon->used > 0) {
-                $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
-                $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user('api')->id)->where('coupon_id', $coupon->id)->count();
+                $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::guard('api')->user()->id)->where('coupon_id', $coupon->id)->count();
+                $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::guard('api')->user()->id)->where('coupon_id', $coupon->id)->count();
                 return $coupon->where('code', $code)->DateValid()->Where('used', '>', ($saleheader + $deliveryheader))->first();
             }else{
 

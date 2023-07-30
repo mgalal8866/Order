@@ -34,7 +34,7 @@ class DBUserRepository implements UserRepositoryinterface
         try {
 
 
-            $user =  User::find(Auth::user('api')->id);
+            $user =  User::find(Auth::guard('api')->user()->id);
             $user->client_name       = $request['client_name']??$user->client_name ;
             $user->client_fhoneLeter = $request['client_fhoneLeter']??$user->client_fhoneLeter ;
             $user->region_id         = $request['region_id']??$user->region_id         ;

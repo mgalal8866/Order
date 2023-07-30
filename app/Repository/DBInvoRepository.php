@@ -17,12 +17,12 @@ class DBInvoRepository implements InvoRepositoryinterface
 {
     public function getopeninvo()
     {
-        return  DeliveryHeader::status(1)->where('client_id', Auth::user('api')->id)->paginate(10);
-        // return  SalesDetails::where('client_id', Auth::user('api')->id)->with('productdetails')->get();
+        return  DeliveryHeader::status(1)->where('client_id', Auth::guard('api')->user()->id)->paginate(10);
+        // return  SalesDetails::where('client_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
     }
     public function getcloseinvo()
     {
-        return  SalesHeader::status(0)->where('client_id', Auth::user('api')->id)->paginate(10);
+        return  SalesHeader::status(0)->where('client_id', Auth::guard('api')->user()->id)->paginate(10);
         }
     public function placeorder($request)
     {
@@ -36,7 +36,7 @@ class DBInvoRepository implements InvoRepositoryinterface
             'coupon_id'         => $request['data']['coupon_id']??null,
             'discount_product'  => $request['data']['discount_product']??0,
             'subtotal'          => $request['data']['subtotal']??0,
-            'client_id'         => Auth::user('api')->id,
+            'client_id'         => Auth::guard('api')->user()->id,
             'grandtotal'        => $request['data']['grandtotal']??0,
             'remaining'         => $request['data']['grandtotal']??0,
             'totaldiscount'     => $request['data']['totaldiscount']??0,
@@ -57,7 +57,7 @@ class DBInvoRepository implements InvoRepositoryinterface
                 ]);
             }
         }
-        Cart::where('user_id', Auth::user('api')->id)->delete();
+        Cart::where('user_id', Auth::guard('api')->user()->id)->delete();
         return $head->with('salesdetails')->get();
     }
     public function getinvoicedetailsclose($id)
