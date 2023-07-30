@@ -12,11 +12,11 @@ class DBWishlistRepository implements WishlistRepositoryinterface
 {
     public function getwishlist()
     {
-        return  Wishlist::where('user_id', Auth::user('api')->id)->with('productdetails')->get();
+        return  Wishlist::where('user_id','user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
     }
     public function addwishlist($id)
     {
-        dd(Auth::guard('api')->user()->id);
+        Log::error(Auth::guard('api')->user()->id);
         $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::guard('api')->user()->id)->first();
         if($w){
             return $this->getwishlist();
@@ -28,7 +28,7 @@ class DBWishlistRepository implements WishlistRepositoryinterface
     }
     public function delete($id)
     {
-        $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::user('api')->id)->first();
+        $w =   Wishlist::where('product_id', $id)->where('user_id','user_id', Auth::guard('api')->user()->id)->first();
         if($w){
           $w->delete();
         }
