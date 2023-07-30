@@ -17,6 +17,7 @@ use App\Models\setting;
 use App\Models\Category;
 use App\Models\deferred;
 use App\Models\Employee;
+use App\Models\Attendance;
 use App\Models\CateoryApp;
 use App\Models\notifiction;
 use App\Models\SalesHeader;
@@ -62,7 +63,7 @@ class SyncController extends Controller
                     'client_fhoneLeter'   => $item['Client_fhoneLeter'],
                     'client_EntiteNumber' => $item['Client_EntiteNumber'],
                     'region_id'           => $item['Region_id'],
-                    'store_name'          => $item['store_name'],
+                    'store_name'          => $item['stor_name'],
                     'lat_mab'             => $item['Lat_mab'],
                     'long_mab'            => $item['Long_mab'],
                     'client_state'        => $item['Client_state'],
@@ -707,7 +708,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-      function upload_stock(Request $request)
+    function upload_stock(Request $request)
     {
         Log::info('upload_stock', ['0'=>$request->all()]);
 
@@ -729,5 +730,82 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function upload_Attendance(Request $request)
+    {
+        Log::info('upload_stock', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Attendance::updateOrCreate(['id' => $item['Attendance_id']], [
+                    'id'          => $item['Attendance_id'],
+                    'Emp_id'    => $item['Emp_id'],
+                    'start_time'  => $item['start_time'],
+                    'end_time'    => $item['end_time'],
+                    'user_id_start'  => $item['user_id_start'],
+                    'user_id_End'  => $item['user_id_End'],
+                    'Total_hour'  => $item['Total_hour'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_banks(Request $request)
+    {
+        Log::info('upload_banks', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Stock::updateOrCreate(['id' => $item['banks_id']], [
+                    'id'          => $item['banks_id'],
+                    'banks_name'    => $item['banks_name'],
+                    'banksNamper'  => $item['banksNamper'],
+                    'name_branch'    => $item['name_branch'],
+                    'discount'    => $item['discount'],
+                    'banks_note'    => $item['banks_note'],
+                    'balanceNow'    => $item['balanceNow'],
+                    'banks_Acteve'  => $item['banks_Acteve'],
+                    'user_id'  => $item['user_id'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_Damage(Request $request)
+    {
+        Log::info('upload_Damage', ['0'=>$request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Stock::updateOrCreate(['id' => $item['DamageId']], [
+                    'id'          => $item['DamageId'],
+                    'ProductDetailsId'    => $item['ProductDetailsId'],
+                    'DamageQuantity'  => $item['DamageQuantity'],
+                    'BuyPrice'    => $item['BuyPrice'],
+                    'DamageDate'  => $item['DamageDate'],
+                    'DamageNotes'  => $item['DamageNotes'],
+                    'DamageCost'  => $item['DamageCost'],
+                    'UserId'  => $item['UserId'],
+                    'StoreId'  => $item['StoreId'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+
 }
 
