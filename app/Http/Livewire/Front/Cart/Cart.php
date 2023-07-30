@@ -83,12 +83,26 @@ class Cart extends Component
     {
 
         $header =  DeliveryHeader::create([
+
+            'paytayp'           =>  $this->selectdeferreds == 0 ? 'كاش' : 'اجل',
+            'total_profit'      => $request['data']['total_profit']??0,
+            'invoicedate'       => Carbon::now(),
+            'coupon_id'         => $this->couponid ?? null,
+            'discount_product'  => $request['data']['discount_product']??0,
+            'subtotal'          => $request['data']['subtotal']??0,
+            'client_id'         => Auth::guard('client')->user()->id,
+            'grandtotal'        => $request['data']['grandtotal']??0,
+            'remaining'         => $request['data']['grandtotal']??0,
+            'totaldiscount'     => $request['data']['totaldiscount']??0,
+            'discount_g'        => $request['data']['discount_g']??0,
+            'note'              => $request['data']['note']??'لايوجد ملاحظات',
+
             'invoicenumber' => '3',
-            'coupon_id' => $this->couponid ?? null,
+            'coupon_id' =>
             'type_order' => 'تم الاستلام',
             'invoicetype' => 0,
             'invoicedate' => Carbon::now(),
-            'client_id' => Auth::guard('client')->user()->id,
+            'client_id' =>
             'lastbalance' => '0.00',
             'finalbalance' => '0.00',
             'user_id' => 1,
@@ -97,7 +111,7 @@ class Cart extends Component
             'status' => 1,
             'employ_id' => 1,
             'dis_point_active' => 0,
-            'paytayp' => $this->selectdeferreds == 0 ? 'كاش' : 'اجل',
+            'paytayp' =>
             'subtotal' => $this->subtotal,
             'totaldiscount' => 0,
             'discount_g' => 0,

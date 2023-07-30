@@ -54,8 +54,7 @@ class SyncController extends Controller
                     $errors[$index] = ['message' => $validator->messages(), 'Client_id' => $item['Client_id']];
                     continue;
                 }
-                $user = User::updateOrCreate([  'id'   => $item['Client_id']],[
-                    'id'   => $item['Client_id'],
+                $user = User::updateOrCreate(['source_id'   => $item['Client_id']],[
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
                     'source_id'           => $item['Client_id'],
                     'client_name'         => $item['Client_name'],
