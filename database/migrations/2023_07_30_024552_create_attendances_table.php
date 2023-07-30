@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->increments('id');
-            $table->increments('Emp_id')->nullable();
+            $table->integer('Emp_id')->nullable();
             $table->timestamp('start_time')->nullable();
             $table->timestamp('end_time')->nullable();
             $table->integer('user_id_start')->nullable();
