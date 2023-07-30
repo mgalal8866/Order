@@ -693,7 +693,7 @@ class SyncController extends Controller
                     'id'          => $item['Store_id'],
                     'store_name'    => $item['Store_name'],
                     'store_phone'  => $item['Store_fhone'],
-                    'store_note'  => $item['Sotre_note'],
+                    'store_note'  => $item['Store_note'],
                     'branch_id'  => $item['Branch_id'],
                     'user_id'  => $item['user_id'],
                     'store_active'    => $item['Store_Active'],
