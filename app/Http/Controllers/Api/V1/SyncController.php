@@ -43,6 +43,7 @@ class SyncController extends Controller
     {
         try {
             Log::warning($request->all());
+            $results=[];
             foreach ($request->all() as $index => $item) {
                 $rules['Client_fhoneWhats'] = 'unique:users';
                 $messages = [
@@ -80,7 +81,7 @@ class SyncController extends Controller
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
-            Log::warning( $results);
+
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
 
             return  $data;
