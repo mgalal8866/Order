@@ -158,7 +158,7 @@
                                 <h5 class="mb-2 text-content">تحميل التطبيق :</h5>
                                 <ul>
                                     <li class="mb-0">
-                                        <a href="https://play.google.com/store/apps" target="_blank">
+                                        <a href="https://play.google.com/store/apps/details?id=net.elshroq.order" target="_blank">
                                             <img src="{{asset('front/assets/images/playstore.svg')}}" class="blur-up lazyload"
                                                 alt="">
                                         </a>
