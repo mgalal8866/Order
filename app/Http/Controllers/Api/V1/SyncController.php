@@ -45,16 +45,16 @@ class SyncController extends Controller
             Log::warning($request->all());
             $results=[];
             foreach ($request->all() as $index => $item) {
-                $rules['Client_fhoneWhats'] = 'unique:users';
-                $messages = [
-                    'required'  => 'error required (:attribute)',
-                    'unique'    => 'error unique (:attribute)',
-                ];
-                $validator = Validator::make($item, $rules, $messages);
-                if ($validator->fails()) {
-                    $errors[$index] = ['message' => $validator->messages(), 'Client_id' => $item['Client_id']];
-                    continue;
-                }
+                // $rules['Client_fhoneWhats'] = 'unique:users,Client_fhoneWhats,'.$this->user->id;
+                // $messages = [
+                //     'required'  => 'error required (:attribute)',
+                //     'unique'    => 'error unique (:attribute)',
+                // ];
+                // $validator = Validator::make($item, $rules, $messages);
+                // if ($validator->fails()) {
+                //     $errors[$index] = ['message' => $validator->messages(), 'Client_id' => $item['Client_id']];
+                //     continue;
+                // }
                 $user = User::updateOrCreate(['source_id'   => $item['Client_id']],[
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
                     'source_id'           => $item['Client_id'],
@@ -82,7 +82,8 @@ class SyncController extends Controller
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
 
-            $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
+            // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
+            $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
 
             return  $data;
         } catch (\Exception $e) {
