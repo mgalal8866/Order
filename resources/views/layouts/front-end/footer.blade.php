@@ -59,8 +59,7 @@
                         </div>
 
                         <div class="footer-logo-contain">
-                            <p>We are a friendly bar serving a variety of cocktails, wines and beers. Our bar is a
-                                perfect place for a couple.</p>
+                            {{-- <p>{{$setting->}}</p> --}}
 
                             <ul class="address">
                                 <li>
@@ -69,7 +68,7 @@
                                 </li>
                                 <li>
                                     <i data-feather="mail"></i>
-                                    <a href="javascript:void(0)">support@fastkart.com</a>
+                                    <a href="javascript:void(0)">support@elshrouk.order-bay.com</a>
                                 </li>
                             </ul>
                         </div>
