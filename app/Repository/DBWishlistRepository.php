@@ -16,11 +16,12 @@ class DBWishlistRepository implements WishlistRepositoryinterface
     }
     public function addwishlist($id)
     {
-        $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::user('api')->id)->first();
+        dd(Auth::guard('api')->user()->id);
+        $w =   Wishlist::where('product_id', $id)->where('user_id', Auth::guard('api')->user()->id)->first();
         if($w){
             return $this->getwishlist();
         }
-          $w = Wishlist::create(['user_id'=> Auth::user('api')->id,'product_id'=> $id]);
+          $w = Wishlist::create(['user_id'=> Auth::guard('api')->user()->id,'product_id'=> $id]);
         if($w)
         return   $this->getwishlist();
 
