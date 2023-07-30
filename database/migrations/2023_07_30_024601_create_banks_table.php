@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('banks_note')->nullable();
             $table->integer('user_id')->nullable();
             $table->boolean('banks_Acteve')->nullable();
-            $table->id();
             $table->timestamps();
         });
     }
