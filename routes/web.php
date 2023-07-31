@@ -66,7 +66,12 @@ use App\Models\UserDelivery;
 */
 
 Route::domain('order-bay.com')->group(function () {
-    return 'Welcome To order-bay.com';
+        Route::get('/', function (Request $request) {
+
+
+            return 'Welcome To order-bay.com';
+        });
+    //     $users = User::on('mysql')->get(); //الديسك توب
 });
 Route::get('send-message',  function () {
 
