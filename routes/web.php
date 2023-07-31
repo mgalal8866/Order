@@ -67,7 +67,7 @@ use App\Models\UserDelivery;
 
 Route::domain('order-bay.com')->group(function () {
         Route::get('/', function (Request $request) {
-            return 'Welcome To order-bay.com';
+            return view('main-domin.index');
         });
     //     $users = User::on('mysql')->get(); //الديسك توب
 });
