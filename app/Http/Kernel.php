@@ -21,7 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
- 
+
     ];
 
     /**
@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $middlewareAliases = [
+        'tenant'=> \App\Http\Middleware\TenantMiddleware::class,
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
@@ -72,7 +73,6 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
-        'tenant'=> \App\Http\Middleware\TenantMiddleware::class,
         'last_seen'=> \App\Http\Middleware\LastSeenUserActivity::class,
         'MeasureResponseTime'=>\App\Http\Middleware\MeasureResponseTime::class
     ];

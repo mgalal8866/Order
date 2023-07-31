@@ -2,11 +2,17 @@
 
 namespace App\Providers;
 
-use App\Models\Category;
+use App\service\TenantService;
+use App\Models\Tenant;
 use App\Models\setting;
-use Illuminate\Support\Facades\Schema;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
+use App\Http\Middleware\TenantMiddleware;
+
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+
     }
 
     /**
@@ -25,8 +31,26 @@ class AppServiceProvider extends ServiceProvider
     {
 
         View::share('Cu' ,'ج.م');
-        View::share('setting',setting::first());
-        View::share('categorys',Category::active(1)->parentonly()->get());
+
+       
+
+        if (env('tenant') != false) {
+            // $host  = $request->getHost();
+            // $tenant = Tenant::where('domin', $host)->first();
+            // if ($tenant == null ||  $tenant->database == null) {
+            //     abort(404);
+            // };
+
+            DB::getDefaultConnection() ;
+            View::share('setting',setting::first());
+            View::share('categorys',Category::active(1)->parentonly()->get());
+        }
+            // $general_setting = DB::table('general_settings')->latest()->first();
+            //...
+
+        // if(DB::getDefaultConnection() == 'tenant'){
+
+        // }
         // Schema::defaultStringLength(191);
     }
 }

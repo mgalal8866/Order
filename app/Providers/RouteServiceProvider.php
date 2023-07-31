@@ -33,17 +33,17 @@ class RouteServiceProvider extends ServiceProvider
         });
 
         $this->routes(function () {
-            Route::middleware('api')
+            Route::middleware('tenant', 'api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware([ 'api', 'ApiVersion:v1','ApiCheckKey'])
+            Route::middleware(['tenant', 'api', 'ApiVersion:v1','ApiCheckKey'])
                 ->prefix('api/v1')
                 ->namespace("{$this->apiNamespace}\V1")
                 ->group(base_path('routes/api_v1.php'));
 
             // Route::middleware(['tenant','web'])
-            Route::middleware(['web'])
+            Route::middleware(['tenant', 'web'])
                 ->group(base_path('routes/web.php'));
         });
     }

@@ -65,6 +65,8 @@ use App\Models\UserDelivery;
 |
 */
 
+// php artisan migrate --path=database/migrations/system --database=mysql
+
 Route::domain('order-bay.com')->group(function () {
         Route::get('/', function (Request $request) {
             return view('main-domin.index');
@@ -160,6 +162,7 @@ Route::get('/moveToseleheader', function () {
 });
 #####################################################
 #################### FRONT Client #####################
+ 
 Route::get('/', Home::class)->name('home');
 Route::get('/product/search', Searchproduct::class)->name('searchproduct');
 Route::get('/products/offers', Offers::class)->name('offerproduct');
