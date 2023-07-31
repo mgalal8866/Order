@@ -22,7 +22,7 @@ class ApiCheckKey
             if($keys == null || empty($keys)){
                 $data = [
                     'status' => 201,
-                    'msg'    => 'Filed'
+                    'msg'    => 'Api Token Not Found'
                 ];
                 return response()->json($data);
             }else{
