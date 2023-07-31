@@ -65,7 +65,9 @@ use App\Models\UserDelivery;
 |
 */
 
-
+Route::domain('order-bay.com')->group(function () {
+    return 'Welcome To order-bay.com';
+});
 Route::get('send-message',  function () {
 
     // event(new MessageSent('hello world'));
