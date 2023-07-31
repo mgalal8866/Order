@@ -11,7 +11,7 @@ use App\Repositoryinterface\ProductRepositoryinterface;
 
 class DBProductRepository implements ProductRepositoryinterface
 {
-    public $pg=10;
+    public $pg=30;
     public function getprobycat($id)
     {
         // \DB::enableQueryLog(); // Enable query log
