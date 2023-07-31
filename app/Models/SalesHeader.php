@@ -33,6 +33,6 @@ class SalesHeader extends Model
     }
     public function scopeDelivered($query)
     {
-        return $query->where('type_order', '!=','تم التوصيل');
+        return $query->where('type_order', '!=','تم التوصيل')->where('status','=','دليفرى');
     }
 }

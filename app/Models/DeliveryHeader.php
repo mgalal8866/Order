@@ -31,11 +31,11 @@ class DeliveryHeader extends Model
     }
     public function employee()
     {
-        return $this->belongsto(Employee::class,'employ_id');
+        return $this->belongsto(Employee::class, 'employ_id');
     }
     public function useradmin()
     {
-        return $this->belongsto(UserAdmin::class,'user_id');
+        return $this->belongsto(UserAdmin::class, 'user_id');
     }
     public function comment()
     {
@@ -47,6 +47,6 @@ class DeliveryHeader extends Model
     }
     public function scopeDelivered($query)
     {
-        return $query->where('type_order', '!=','تم التوصيل');
+        return $query->where('type_order', '!=', 'تم التوصيل')->where('status', '=', 'دليفرى');
     }
 }
