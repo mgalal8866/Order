@@ -11,11 +11,11 @@ class ProductDetails extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    protected $casts =
-    [
-        'productd_Sele1' => 'float',
-        'productd_Sele2' => 'float',
-    ];
+    // protected $casts =
+    // [
+    //     'productd_Sele1' => 'float',
+    //     'productd_Sele2' => 'float',
+    // ];
     public function unit()
     {
         return $this->belongsto(unit::class, 'productd_unit_id');
