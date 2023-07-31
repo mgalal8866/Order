@@ -20,7 +20,15 @@ class CateoryApp extends Model
     {
         return $this->hasMany(self::class, 'parent_id');
     }
-
+   public function getImageAttribute($val)
+    {
+        $path = public_path('asset/images/categoryapp/' . $val);
+        if (File::exists($path)) {
+            return ($val !== null) ? asset('asset/images/categoryapp/' . $val) : asset('asset/images/noimage.jpg');
+        } else {
+            return asset('asset/images/noimage.jpg');
+        }
+    }
     public function _parent()
     {
         return $this->belongsTo(self::class, 'parent_id');
