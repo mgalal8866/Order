@@ -28,8 +28,7 @@ class TenantMiddleware
             };
             TenantService::switchToTanent($tenant);
         }
-        View::share('setting',setting::first());
-        View::share('categorys',Category::active(1)->parentonly()->get());
+        
         return $next($request);
     }
 }
