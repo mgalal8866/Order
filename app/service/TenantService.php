@@ -9,6 +9,8 @@ class TenantService{
     private static $tenant;
     private static $domain;
     private static $database;
+    private static $username;
+    private static $password;
 
     public static function switchToTanent(Tenant $tenant){
         if(!$tenant instanceof Tenant)
@@ -24,6 +26,8 @@ class TenantService{
         Self::$tenant   = $tenant;
         Self::$domain   = $tenant->domain;
         Self::$database = $tenant->database;
+        Self::$database = $tenant->username;
+        Self::$database = $tenant->password;
     }
 
     public static function switchToDefault(){
