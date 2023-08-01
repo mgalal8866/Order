@@ -37,6 +37,14 @@ class LastSeenUserActivity
             //Last Seen
             User::where('id', Auth::guard('client')->user()->id)->update(['last_seen' => Carbon::now()]);
         }
+        // if (auth('api')->check()) {
+
+        //     $expireTime = Carbon::now()->addMinute(1); // keep online for 1 min
+        //     Cache::put('is_online' . Auth::guard('api')->user()->id, true, $expireTime);
+
+        //     //Last Seen
+        //     User::where('id', Auth::guard('api')->user()->id)->update(['last_seen' => Carbon::now()]);
+        // }
         return $next($request);
     }
 }
