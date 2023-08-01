@@ -27,7 +27,7 @@ class TenantMiddleware
             $tenant = Tenant::where('domin',$host)->first();
             if($tenant == null ||  $tenant->database == null){
                 // return $next($request);
-                // abort(404);
+                abort(404);
             };
             Tenants::switchToTanent($tenant);
             // TenantService::switchToTanent($tenant);
