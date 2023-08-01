@@ -3,10 +3,11 @@
 namespace App\Http\Livewire\Front\User;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
-use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use SebastianBergmann\Type\ObjectType;
+use App\Providers\RouteServiceProvider;
 
 class Login extends Component
 {
@@ -29,6 +30,7 @@ class Login extends Component
     }
     public function login()
     {
+        dd(DB::getDefaultConnection());
         $this->validate();
         $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
         $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
