@@ -26,8 +26,8 @@ class TenantMiddleware
             $host  = $request->getHost();
             $tenant = Tenant::where('domin',$host)->first();
             if($tenant == null ||  $tenant->database == null){
-            
-                return redirect()->route('maindomin');
+
+                return redirect('maindomin');
 
                 // return $next($request);
                 // abort(404);
