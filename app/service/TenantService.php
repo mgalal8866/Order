@@ -25,6 +25,7 @@ class TenantService{
         DB::setDefaultconnection('tenant');
         Self::$tenant   = $tenant;
         Self::$domain   = $tenant->domain;
+        dd( $tenant->username);
         Self::$database = $tenant->database;
         Self::$username = $tenant->username;
         Self::$password = $tenant->password;
