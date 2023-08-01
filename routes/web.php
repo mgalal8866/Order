@@ -75,13 +75,14 @@ Route::get('send-message',  function () {
 
     return ['success' => true];
 });
-
-Route::group(['domain' => 'order-bay.com'], function () {
-    Route::get('/',function (Request $request) {
-        return view('main-domin.index');
-    })->name('maindomin');
+Route::domain('order-bay.com')->group(
+    function () {
+        Route::get('/', function () {
+            return view('main-domin.index');
+        })->name('maindomin');
 
 });
+
 
 Route::get('/deletetable', function (Request $request) {
     $file = new Filesystem;
