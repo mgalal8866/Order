@@ -634,6 +634,7 @@ class ComposerStaticInit18af7a1809ee1b39723f923487327822
         'App\\Events\\MessageSent' => __DIR__ . '/../..' . '/app/Events/MessageSent.php',
         'App\\Events\\PrivetMessage' => __DIR__ . '/../..' . '/app/Events/PrivetMessage.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Facade\\Tenants' => __DIR__ . '/../..' . '/app/Facade/Tenants.php',
         'App\\Http\\Controllers\\Api\\V1\\BranchController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/BranchController.php',
         'App\\Http\\Controllers\\Api\\V1\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CartController.php',
         'App\\Http\\Controllers\\Api\\V1\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Api/V1/CategoryController.php',

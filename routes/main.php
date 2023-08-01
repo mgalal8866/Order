@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Route; 
+use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // php artisan migrate --path=database/migrations/system --database=mysql
-Route::get('/', function (Request $request) {
-    return view('main-domin.index');
+Route::domain('order-bay.com')->group(function () {
+        Route::get('/', function (Request $request) {
+            return view('main-domin.index');
+        });
+    //     $users = User::on('mysql')->get(); //الديسك توب
 });
-

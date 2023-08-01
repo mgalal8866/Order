@@ -21,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        $this->app->bind('Tenants',function(){
+            return new TenantService();
+        });
 
     }
 
@@ -42,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
             // };
 
             DB::getDefaultConnection() ;
-           
+
         }
             // $general_setting = DB::table('general_settings')->latest()->first();
             //...

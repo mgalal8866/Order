@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Facade\Tenants;
 use Closure;
 use App\Models\Tenant;
 use App\Models\setting;
@@ -24,11 +25,13 @@ class TenantMiddleware
             $host  = $request->getHost();
             $tenant = Tenant::where('domin',$host)->first();
             if($tenant == null ||  $tenant->database == null){
+                return $next($request);
                 abort(404);
             };
-            TenantService::switchToTanent($tenant);
+            Tenants::switchToTanent($tenant);
+            // TenantService::switchToTanent($tenant);
         }
-        
+
         return $next($request);
     }
 }

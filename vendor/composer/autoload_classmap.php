@@ -11,6 +11,7 @@ return array(
     'App\\Events\\MessageSent' => $baseDir . '/app/Events/MessageSent.php',
     'App\\Events\\PrivetMessage' => $baseDir . '/app/Events/PrivetMessage.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
+    'App\\Facade\\Tenants' => $baseDir . '/app/Facade/Tenants.php',
     'App\\Http\\Controllers\\Api\\V1\\BranchController' => $baseDir . '/app/Http/Controllers/Api/V1/BranchController.php',
     'App\\Http\\Controllers\\Api\\V1\\CartController' => $baseDir . '/app/Http/Controllers/Api/V1/CartController.php',
     'App\\Http\\Controllers\\Api\\V1\\CategoryController' => $baseDir . '/app/Http/Controllers/Api/V1/CategoryController.php',

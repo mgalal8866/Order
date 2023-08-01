@@ -1,5 +1,6 @@
 <?php
 
+use App\Facade\Tenants;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -189,7 +190,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         'Carbon' => Carbon\Carbon::class,
-
+        'tenats' => Tenants::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

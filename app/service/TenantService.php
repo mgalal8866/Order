@@ -12,11 +12,11 @@ use Illuminate\Validation\ValidationException;
 
 class TenantService
 {
-    private static $tenant;
-    private static $domain;
-    private static $database;
+    private  $tenant;
+    private  $domain;
+    private  $database;
 
-    public static function switchToTanent(Tenant $tenant)
+    public function switchToTanent(Tenant $tenant)
     {
         if (!$tenant instanceof Tenant) {
             throw ValidationException::withMessages(['field_name' => 'This value is incorrect']);
@@ -41,16 +41,16 @@ class TenantService
 
         DB::reconnect('tenant');
         DB::setDefaultconnection('tenant');
-        Self::$tenant   = $tenant;
-        Self::$domain   = $tenant->domain;
-        Self::$database = $tenant->database;
-        // Self::$username = $tenant->username;
-        // Self::$password = $tenant->password;
+       $this->tenant   = $tenant;
+       $this->domain   = $tenant->domain;
+       $this->database = $tenant->database;
+        //$this->username = $tenant->username;
+        //$this->password = $tenant->password;
         View::share('setting',setting::first());
         View::share('categorys',Category::active(1)->parentonly()->get());
     }
 
-    public static function switchToDefault()
+    public  function switchToDefault()
     {
         DB::purge('mysql');
         DB::purge('tenant');
@@ -58,8 +58,8 @@ class TenantService
         DB::setDefaultconnection('mysql');
     }
 
-    public static function gettenant()
+    public function gettenant()
     {
-        return Self::$tenant;
+        return $this->tenant;
     }
 }
