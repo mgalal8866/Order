@@ -787,7 +787,6 @@ class ComposerStaticInit18af7a1809ee1b39723f923487327822
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RepositoryServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RepositoryServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
-        'App\\Providers\\TelescopeServiceProvider' => __DIR__ . '/../..' . '/app/Providers/TelescopeServiceProvider.php',
         'App\\Repository\\DBCartRepository' => __DIR__ . '/../..' . '/app/Repository/DBCartRepository.php',
         'App\\Repository\\DBCategoryRepository' => __DIR__ . '/../..' . '/app/Repository/DBCategoryRepository.php',
         'App\\Repository\\DBCateoryAppRepository' => __DIR__ . '/../..' . '/app/Repository/DBCateoryAppRepository.php',

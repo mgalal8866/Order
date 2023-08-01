@@ -164,7 +164,6 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RepositoryServiceProvider' => $baseDir . '/app/Providers/RepositoryServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
-    'App\\Providers\\TelescopeServiceProvider' => $baseDir . '/app/Providers/TelescopeServiceProvider.php',
     'App\\Repository\\DBCartRepository' => $baseDir . '/app/Repository/DBCartRepository.php',
     'App\\Repository\\DBCategoryRepository' => $baseDir . '/app/Repository/DBCategoryRepository.php',
     'App\\Repository\\DBCateoryAppRepository' => $baseDir . '/app/Repository/DBCateoryAppRepository.php',
