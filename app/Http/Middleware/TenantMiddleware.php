@@ -9,6 +9,7 @@ use App\Models\setting;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\service\TenantService;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -25,8 +26,8 @@ class TenantMiddleware
             $host  = $request->getHost();
             $tenant = Tenant::where('domin',$host)->first();
             if($tenant == null ||  $tenant->database == null){
-                return $next($request);
-                abort(404);
+                // return $next($request);
+                // abort(404);
             };
             Tenants::switchToTanent($tenant);
             // TenantService::switchToTanent($tenant);

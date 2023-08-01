@@ -80,25 +80,25 @@ Route::get('send-message',  function () {
 
 Route::get('/deletetable', function (Request $request) {
     $file = new Filesystem;
-$file->cleanDirectory('public/asset/images/products/');
+    $file->cleanDirectory('public/asset/images/products/');
     // DB::statement("SET foreign_key_checks=0");
     // ProductHeader::truncate();
     // ProductDetails::truncate();
     // DB::statement("SET foreign_key_checks=1");
 });
 Route::get('/send-fsm', function (Request $request) {
-    $d = User::where('fsm','!=',null)->pluck('fsm');
+    $d = User::where('fsm', '!=', null)->pluck('fsm');
     notificationFCM('Hello', 'Okay', $d);
 
     // $notifi =  notifiction::create(['title' => 'Hello', 'body' => 'body', 'image' =>  null, 'results' =>]);
-// dd($notifi);
+    // dd($notifi);
     // Log::alert('',$notifi );
 });
 Route::get('/userdelivery', function (Request $request) {
-      UserDelivery::create([
-        'username'=>'admin',
-        'password'=> Hash::make('admin')
-      ]);
+    UserDelivery::create([
+        'username' => 'admin',
+        'password' => Hash::make('admin')
+    ]);
 });
 Route::post('/store-token', function (Request $request) {
     //   UserAdmin::create([
@@ -133,56 +133,62 @@ Route::get('/moveToseleheader', function () {
 #####################################################
 #################### FRONT Client #####################
 
-Route::get('/', Home::class)->name('home');
-Route::get('/product/search', Searchproduct::class)->name('searchproduct');
-Route::get('/products/offers', Offers::class)->name('offerproduct');
-Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
-#################### guest Client #####################
-Route::middleware('guest:client')->group(function () {
-    Route::get('/login', Login::class)->name('frontlogin');
-    Route::get('/sign-up', Register::class)->name('signup');
-    Route::get('/otp', Otp::class)->name('otp');
-});
-#################### auth Client #####################
-Route::middleware('auth:client')->group(function () {
-    Route::post('/logout', [UserAdminController::class, 'clientlogout'])->name('clientlogout');
-    Route::get('/wishlist', Wishlist::class)->name('wishlist');
-    Route::get('/cart', Cart::class)->name('cart');
-    Route::get('/cart/checkout', Checkout::class)->name('checkout');
-    Route::get('/user/dashboard', Userdashborad::class)->name('userdashborad');
-    Route::get('/order/traking', Ordertraking::class)->name('ordertraking');
-    Route::get('/order/success', Ordersuccess::class)->name('ordersuccess');
-});
-#################### FRONT Client #####################
-#####################################################
+Route::middleware('tenant')->group(function () {
+    Route::get('/', Home::class)->name('home');
+    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
+    Route::get('/products/offers', Offers::class)->name('offerproduct');
+    Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 
-########################################    #############
-#################### Dashboard  #####################
-Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
-    Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
-    Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
-});
-Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
-    Route::get('/', ViewProduct::class)->name('dashboard');
-    Route::get('/chatlive', Testchat::class)->name('chatlive');
-    // Route::get('product', CreateProduct::class)->name('product');
+    #################### guest Client #####################
+    Route::middleware('guest:client')->group(function () {
+        Route::get('/login', Login::class)->name('frontlogin');
+        Route::get('/sign-up', Register::class)->name('signup');
+        Route::get('/otp', Otp::class)->name('otp');
+    });
+    #################### auth Client #####################
+    Route::middleware('auth:client')->group(function () {
+        Route::post('/logout', [UserAdminController::class, 'clientlogout'])->name('clientlogout');
+        Route::get('/wishlist', Wishlist::class)->name('wishlist');
+        Route::get('/cart', Cart::class)->name('cart');
+        Route::get('/cart/checkout', Checkout::class)->name('checkout');
+        Route::get('/user/dashboard', Userdashborad::class)->name('userdashborad');
+        Route::get('/order/traking', Ordertraking::class)->name('ordertraking');
+        Route::get('/order/success', Ordersuccess::class)->name('ordersuccess');
+    });
+    #################### FRONT Client #####################
+    #####################################################
 
-    Route::get('/chat', Chat::class );
-    Route::get('users', Users::class)->name('viewusers');
-    Route::get('categorys', ViewCategory::class)->name('categorys');
-    Route::get('category/edit/{id}', EditCategory::class)->name('category');
-    Route::get('products', ViewProduct::class)->name('products');
-    Route::get('notifiction', ViewNotification::class)->name('notifiction');
-    Route::get('product/edit/{id}', EditProduct::class)->name('product');
-    Route::get('invoices/open', ViewInvoopen::class)->name('invoices_open');
-    Route::get('invoices/close', ViewInvoclose::class)->name('invoices_close');
-    Route::get('invoices-close/details/{id}', ViewInvodetails::class)->name('invodetails-close');
-    Route::get('invoices-open/details/{id}', ViewInvodetailsopen::class)->name('invodetails-open');
-    Route::get('sliders', ViewSlider::class)->name('sliders');
-    Route::get('slider/edit/{id}', EditSlider::class)->name('slider');
-    Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
-    Route::get('units', Units::class)->name('units');
-    Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
+    ########################################    #############
+    #################### Dashboard  #####################
+    Route::prefix('admin/dashborad')->middleware('guest:admin')->group(function () {
+        Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
+        Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
+    });
+    Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
+        Route::get('/', ViewProduct::class)->name('dashboard');
+        Route::get('/chatlive', Testchat::class)->name('chatlive');
+        // Route::get('product', CreateProduct::class)->name('product');
+
+        Route::get('/chat', Chat::class);
+        Route::get('users', Users::class)->name('viewusers');
+        Route::get('categorys', ViewCategory::class)->name('categorys');
+        Route::get('category/edit/{id}', EditCategory::class)->name('category');
+        Route::get('products', ViewProduct::class)->name('products');
+        Route::get('notifiction', ViewNotification::class)->name('notifiction');
+        Route::get('product/edit/{id}', EditProduct::class)->name('product');
+        Route::get('invoices/open', ViewInvoopen::class)->name('invoices_open');
+        Route::get('invoices/close', ViewInvoclose::class)->name('invoices_close');
+        Route::get('invoices-close/details/{id}', ViewInvodetails::class)->name('invodetails-close');
+        Route::get('invoices-open/details/{id}', ViewInvodetailsopen::class)->name('invodetails-open');
+        Route::get('sliders', ViewSlider::class)->name('sliders');
+        Route::get('slider/edit/{id}', EditSlider::class)->name('slider');
+        Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
+        Route::get('units', Units::class)->name('units');
+        Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
+    });
+    #################### Dashboard  #####################
+    #####################################################
 });
-#################### Dashboard  #####################
-#####################################################
+// Route::get('/', function (Request $request) {
+//     return view('main-domin.index');
+// });

@@ -44,7 +44,7 @@ class AppServiceProvider extends ServiceProvider
             //     abort(404);
             // };
 
-            DB::getDefaultConnection() ;
+            // DB::getDefaultConnection() ;
 
         }
             // $general_setting = DB::table('general_settings')->latest()->first();
