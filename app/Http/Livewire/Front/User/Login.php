@@ -16,7 +16,7 @@ class Login extends Component
         'success' => 'success1', 'verify' => 'verify'
     ];
     protected $rules = [
-        'client_fhonewhats' => 'required|exists:users',
+        'client_fhonewhats' => 'required|exists:tenant.users',
     ];
     protected $messages = [
         'client_fhonewhats.exists' => 'رقم الهاتف غير مسجل يمكنك تسجيل مستخدم جديد',
