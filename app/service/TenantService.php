@@ -21,13 +21,15 @@ class TenantService{
         DB::purge('mysql');
         DB::purge('tenant');
         Config::set('database.connections.tenant.database' , $tenant->database);
+        Config::set('database.connections.tenant.username' , $tenant->username);
+        Config::set('database.connections.tenant.password' , $tenant->password);
         DB::reconnect('tenant');
         DB::setDefaultconnection('tenant');
         Self::$tenant   = $tenant;
         Self::$domain   = $tenant->domain;
         Self::$database = $tenant->database;
-        Self::$username = $tenant->username;
-        Self::$password = $tenant->password;
+        // Self::$username = $tenant->username;
+        // Self::$password = $tenant->password;
     }
 
     public static function switchToDefault(){
