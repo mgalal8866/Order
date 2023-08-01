@@ -46,8 +46,8 @@ class TenantService
         Self::$database = $tenant->database;
         // Self::$username = $tenant->username;
         // Self::$password = $tenant->password;
-        // View::share('setting',setting::first());
-        // View::share('categorys',Category::active(1)->parentonly()->get());
+        View::share('setting',setting::first());
+        View::share('categorys',Category::active(1)->parentonly()->get());
     }
 
     public static function switchToDefault()
