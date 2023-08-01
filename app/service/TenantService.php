@@ -26,8 +26,8 @@ class TenantService{
         Self::$tenant   = $tenant;
         Self::$domain   = $tenant->domain;
         Self::$database = $tenant->database;
-        Self::$database = $tenant->username;
-        Self::$database = $tenant->password;
+        Self::$username = $tenant->username;
+        Self::$username = $tenant->username;
     }
 
     public static function switchToDefault(){
