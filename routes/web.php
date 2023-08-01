@@ -79,7 +79,7 @@ Route::get('send-message',  function () {
 Route::group(['domain' => 'order-bay.com'], function () {
     Route::get('/',function (Request $request) {
         return view('main-domin.index');
-    });
+    })->name('maindomin');
 
 });
 
