@@ -168,7 +168,7 @@ Route::get('/product/search', Searchproduct::class)->name('searchproduct');
 Route::get('/products/offers', Offers::class)->name('offerproduct');
 Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 #################### guest Client #####################
-Route::middleware(['tenant','guest:client'])->group(function () {
+Route::middleware('guest:client')->group(function () {
     Route::get('/login', Login::class)->name('frontlogin');
     Route::get('/sign-up', Register::class)->name('signup');
     Route::get('/otp', Otp::class)->name('otp');
