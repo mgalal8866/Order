@@ -29,7 +29,7 @@ class Login extends Component
     }
     public function login()
     {
-        dd(DB::getDefaultConnection());
+        // dd(DB::getDefaultConnection());
         $this->validate();
         $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
         $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
