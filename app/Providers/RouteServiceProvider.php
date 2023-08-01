@@ -43,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api_v1.php'));
 
 
-            Route::middleware(['tenant', 'web'])
+            Route::middleware(['tenant', 'web','tenant'])
                 ->group(base_path('routes/web.php'));
 
             // Route::middleware(['web'])
