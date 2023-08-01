@@ -4,9 +4,13 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Tenant;
-use App\service\TenantService;
+use App\Models\setting;
+use App\Models\Category;
 use Illuminate\Http\Request;
+use App\service\TenantService;
+use Illuminate\Support\Facades\View;
 use Symfony\Component\HttpFoundation\Response;
+
 class TenantMiddleware
 {
     /**
@@ -24,6 +28,8 @@ class TenantMiddleware
             };
             TenantService::switchToTanent($tenant);
         }
+        View::share('setting',setting::first());
+        View::share('categorys',Category::active(1)->parentonly()->get());
         return $next($request);
     }
 }

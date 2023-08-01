@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('Cu' ,'ج.م');
 
-       
+
 
         if (env('tenant') != false) {
             // $host  = $request->getHost();
@@ -42,8 +42,7 @@ class AppServiceProvider extends ServiceProvider
             // };
 
             DB::getDefaultConnection() ;
-            View::share('setting',setting::first());
-            View::share('categorys',Category::active(1)->parentonly()->get());
+           
         }
             // $general_setting = DB::table('general_settings')->latest()->first();
             //...
