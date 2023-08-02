@@ -37,7 +37,7 @@
             <h6 class="price theme-color">{{ $product->productd_Sele1 ?? '' }} جم</h6>
             @else
 
-            <h6 class="price theme-color">{{ $product->productd_Sele2 . 'جم <del>' . $product->productd_Sele1 . ' جم </del>' }} </h6>
+            <h6 class="price theme-color">{{ $product->productd_Sele2 . "جم <del>" . $product->productd_Sele1 . "جم </del>" }} </h6>
             @endif
             @if ($product->stock->sum('quantity') > 0)
                 @auth('client')
