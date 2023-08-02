@@ -145,7 +145,7 @@ class Cart extends Component
         $this->cartlist = ProductDetails::whereHas('cart', function ($q) {
             return  $q->where('user_id', Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('productheader')->get();
-
+ 
         $this->culc();
         return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');
     }

@@ -15,7 +15,7 @@
                             <img src="{{ $setting->logo_shop }}" class="img-fluid blur-up lazyload" alt="">
                         </a>
 
-                        <div class="middle-box">
+                        {{-- <div class="middle-box">
 
                             <div class="search-box">
                                 <div class="input-group">
@@ -26,7 +26,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="rightside-box">
                             <div class="search-full">

@@ -8,7 +8,7 @@
                         <div class="table-responsive-xl">
                             <table class="table">
                                 <tbody>
-                                    @foreach ($cartlist as $index => $c)
+                                    @forelse ($cartlist as $index => $c)
                                         <tr class="product-box-contain">
                                             <td class="product-detail">
                                                 <div class="product border-0">
@@ -138,13 +138,17 @@
                                                     wire:click.prevent="removefromcart('{{ $index }}')">{{ __('tran.removecart') }}</a>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                    @empty
+                                        <tr >
+                                            العربه فارغة - لا يوجد منتجات
+                                        </tr>
+                                    @endforelse
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-
+                @if($cartlist->count() > 0)
                 <div class="col-xxl-3">
                     <div class="summery-box p-sticky">
                         <div class="summery-header">
@@ -238,6 +242,8 @@
                         </div>
                     </div>
                 </div>
+                @endif
+
             </div>
         </div>
     </section>

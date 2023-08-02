@@ -3,7 +3,7 @@
     <section class="wishlist-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row g-sm-3 g-2">
-                @foreach ($wish as $w)
+                @forelse ($wish as $w)
                     <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
                         <div class="product-box-3 h-100">
                             <div class="product-header">
@@ -56,7 +56,11 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                    @empty
+                    <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+                      المفضلة فارغه
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
