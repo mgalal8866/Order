@@ -75,7 +75,7 @@ Route::get('send-message',  function () {
 
     return ['success' => true];
 });
-Route::domain('order-bay.com')->group(
+Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
     function () {
         Route::get('/', function () {
             return view('main-domin.index');
