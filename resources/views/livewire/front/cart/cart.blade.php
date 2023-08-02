@@ -166,6 +166,13 @@
                                     @endif
                                 </div>
                             </div>
+                            <div class="coupon-cart">
+                                <h6 class="text-content mb-2">ملاحظات </h6>
+                                <div class="mb-3 coupon-box input-group">
+                                    <input type="text" wire:model.debounce="note" class="form-control"
+                                        id="exampleFormControlInput13" placeholder="اكتب ملاحظاتك">
+                                </div>
+                            </div>
                             <ul>
                                 <li>
                                     <h4>طريقه الدفع</h4>

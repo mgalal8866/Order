@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Auth;
 class Cart extends Component
 {
     public $cul = [
-            'finalsubtotal'    => 0, 'couponid'        => null, 'coupondisc'      => 0, 'coupontype'      => 0, 'total_profit'    => 0, 'subtotal'        => 0, 'totalfinal'      => 0, 'selectdeferreds' => 0, 'deferreds'       => 0, 'totaldiscount'   => 0, 'discount_g'      => 0
+        'productdiscount'    => 0, 'finalsubtotal'    => 0, 'couponid'        => null, 'coupondisc'      => 0, 'coupontype'      => 0, 'total_profit'    => 0, 'subtotal'        => 0, 'totalfinal'      => 0, 'selectdeferreds' => 0, 'deferreds'       => 0, 'totaldiscount'   => 0, 'discount_g'      => 0
         ],
-        $coupon, $currency = ' ج.م', $cartlist = [];
+        $coupon, $currency = ' ج.م', $cartlist = [],$note=null;
     public function mount()
     {
 
@@ -37,6 +37,7 @@ class Cart extends Component
         $this->cul['total_profit']  = 0;
         foreach ($this->cartlist as $i) {
             if ($i['isoffer'] == 1) {
+                $this->cul['productdiscount']+= ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
                 $this->cul['subtotal']       +=  $i['cart']['qty'] * $i['productd_Sele2'];
                 $this->cul['totaldiscount']  += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
                 $this->cul['total_profit']   += ($i['cart']['qty'] * $i['productd_Sele2']) - ($i['cart']['qty'] * $i['productd_bay']);
@@ -45,9 +46,8 @@ class Cart extends Component
                 $this->cul['total_profit']   += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_bay']);
             }
         }
-        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ? $this->cul['coupondisc'] : (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']) )  : 0;
+        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ? $this->cul['coupondisc'] : (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']))  : 0;
         $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ? $this->cul['coupondisc'] : $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100)) : $this->cul['subtotal'];
-
     }
     public function usecoupon()
     {
@@ -74,17 +74,9 @@ class Cart extends Component
                 return  $this->dispatchBrowserEvent('notifi', ['message' => '- تم اضافه الكوبون ', 'type' => 'success']);
             }
         return $this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
-        // $coupon = Coupon::where('code', $this->coupon)->first();
-        // if ($coupon) {
-        //     $this->coupondisc = $coupon->value;
-        //     $this->dispatchBrowserEvent('notifi', ['message' => 'تم اضافه الكوبون ', 'type' => 'success']);
-        // } else {
-        //     $this->dispatchBrowserEvent('notifi', ['message' => 'كوبون غير صالح', 'type' => 'danger']);
-        // }
     }
     public function pluse($index)
     {
-
         if ($this->cartlist[$index]['cart']['qty'] >= 1) {
             $this->cartlist[$index]['cart']['qty'] = $this->cartlist[$index]['cart']['qty'] + 1;
             $this->culc();
@@ -99,14 +91,14 @@ class Cart extends Component
             'total_profit'      => $this->cul['total_profit'] ?? 0,
             'invoicedate'       => Carbon::now(),
             'coupon_id'         => $this->cul['couponid'] ?? null,
-            'discount_product'  => '111111',
+            'discount_product'  => $this->cul['productdiscount'] ?? null,
             'subtotal'          => $this->cul['subtotal'] ?? 0,
             'client_id'         => Auth::guard('client')->user()->id,
             'grandtotal'        => $this->cul['finalsubtotal'] ?? 0,
             'remaining'         => 0,
             'totaldiscount'     => $this->cul['totaldiscount'] ?? 0,
             'discount_g'        => $this->cul['discount_g'] ?? 0,
-            'note'              => 'لايوجد ملاحظات',
+            'note'              => $this->note??'لا يوجد ملاحظات',
         ]);
         foreach ($this->cartlist as $i) {
             DeliveryDetails::create([
@@ -121,8 +113,9 @@ class Cart extends Component
                 'profit'             => ($i->isoffer == 1 ?  $i->productd_Sele2 : $i->productd_Sele1) - $i->productd_bay,
             ]);
         }
-        //    ModelsCart::where('user_id', Auth::guard('client')->user()->id)->delete();
 
+        redirect()->route('ordersuccess')->with( ['status' => true,'id' => $header->id] );;
+        //    ModelsCart::where('user_id', Auth::guard('client')->user()->id)->delete();
     }
     public function saveforlater($idproduct)
     {

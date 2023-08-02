@@ -7,116 +7,47 @@
                         <div class="table-responsive">
                             <table class="table mb-0">
                                 <tbody>
+                                    @foreach ( $order->salesdetails as $item )
                                     <tr>
                                         <td class="product-detail">
                                             <div class="product border-0">
                                                 <a href="product.left-sidebar.html" class="product-image">
-                                                    <img src="../assets/images/vegetable/product/1.png"
+                                                    <img src="{{$item->productdetails->productd_image}}"
                                                         class="img-fluid blur-up lazyload" alt="">
                                                 </a>
                                                 <div class="product-detail">
                                                     <ul>
                                                         <li class="name">
-                                                            <a href="product-left-thumbnail.html">Bell pepper</a>
+                                                            <a href="">{{$item->productdetails->productheader->product_name}}</a>
                                                         </li>
 
-                                                        <li class="text-content">Sold By: Fresho</li>
+                                                        {{-- <li class="text-content">Sold By: Fresho</li> --}}
 
-                                                        <li class="text-content">Quantity - 500 g</li>
+                                                        {{-- <li class="text-content">Quantity -{{$item->quantity}}</li> --}}
                                                     </ul>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td class="price">
-                                            <h4 class="table-title text-content">Price</h4>
-                                            <h6 class="theme-color">$20.68</h6>
+                                            <h4 class="table-title text-content">{{__('tran.price')}}</h4>
+                                            <h6 class="theme-color">{{$item->sellprice}}</h6>
                                         </td>
 
                                         <td class="quantity">
-                                            <h4 class="table-title text-content">Qty</h4>
-                                            <h4 class="text-title">01</h4>
+                                            <h4 class="table-title text-content">{{__('tran.qty')}}</h4>
+                                            <h4 class="text-title">{{$item->quantity}}</h4>
                                         </td>
 
                                         <td class="subtotal">
                                             <h4 class="table-title text-content">Total</h4>
-                                            <h5>$35.10</h5>
+                                            <h5>{{$item->grandtotal}}</h5>
                                         </td>
                                     </tr>
+                                    @endforeach
 
-                                    <tr>
-                                        <td class="product-detail">
-                                            <div class="product border-0">
-                                                <a href="product.left-sidebar.html" class="product-image">
-                                                    <img src="../assets/images/vegetable/product/2.png"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-                                                <div class="product-detail">
-                                                    <ul>
-                                                        <li class="name">
-                                                            <a href="product-left-thumbnail.html">Eggplant</a>
-                                                        </li>
 
-                                                        <li class="text-content">Sold By: Nesto</li>
 
-                                                        <li class="text-content">Quantity - 250 g</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="price">
-                                            <h4 class="table-title text-content">Price</h4>
-                                            <h6 class="theme-color">$15.14</h6>
-                                        </td>
-
-                                        <td class="quantity">
-                                            <h4 class="table-title text-content">Qty</h4>
-                                            <h4 class="text-title">01</h4>
-                                        </td>
-
-                                        <td class="subtotal">
-                                            <h4 class="table-title text-content">Total</h4>
-                                            <h5>$52.95</h5>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td class="product-detail">
-                                            <div class="product border-0">
-                                                <a href="product.left-sidebar.html" class="product-image">
-                                                    <img src="../assets/images/vegetable/product/3.png"
-                                                        class="img-fluid blur-up lazyload" alt="">
-                                                </a>
-                                                <div class="product-detail">
-                                                    <ul>
-                                                        <li class="name">
-                                                            <a href="product-left-thumbnail.html">Onion</a>
-                                                        </li>
-
-                                                        <li class="text-content">Sold By: Basket</li>
-
-                                                        <li class="text-content">Quantity - 750 g</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="price">
-                                            <h4 class="table-title text-content">Price</h4>
-                                            <h6 class="theme-color">$29.22</h6>
-                                        </td>
-
-                                        <td class="quantity">
-                                            <h4 class="table-title text-content">Qty</h4>
-                                            <h4 class="text-title">01</h4>
-                                        </td>
-
-                                        <td class="subtotal">
-                                            <h4 class="table-title text-content">Total</h4>
-                                            <h5>$67.36</h5>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -128,37 +59,49 @@
                         <div class="col-lg-12 col-sm-6">
                             <div class="summery-box">
                                 <div class="summery-header">
-                                    <h3>Price Details</h3>
-                                    <h5 class="ms-auto theme-color">(3 Items)</h5>
+                                    <h3>التفاصيل</h3>
+                                    <h5 class="ms-auto theme-color"> عدد المنتجات({{$order->salesdetails->count()}})</h5>
                                 </div>
 
                                 <ul class="summery-contain">
                                     <li>
-                                        <h4>Vegetables Total</h4>
-                                        <h4 class="price">$32.34</h4>
+                                        <h4>اجمالى الفرعى</h4>
+                                        <h4 class="price">{{$order->subtotal}}</h4>
                                     </li>
 
                                     <li>
-                                        <h4>Vegetables Saving</h4>
-                                        <h4 class="price theme-color">$12.23</h4>
+                                        <h4>اجمالى التوفير</h4>
+                                        <h4 class="price theme-color">{{$order->discount_product}}</h4>
                                     </li>
 
                                     <li>
-                                        <h4>Coupon Discount</h4>
-                                        <h4 class="price text-danger">$6.27</h4>
+                                        <h4>خصم الكوبون</h4>
+                                        <h4 class="price text-danger">{{$order->discount_g}}</h4>
                                     </li>
                                 </ul>
 
                                 <ul class="summery-total">
                                     <li class="list-total">
-                                        <h4>Total (USD)</h4>
-                                        <h4 class="price">$19.28</h4>
+                                        <h4>اجمالى النهائي</h4>
+                                        <h4 class="price">{{$order->grandtotal}}</h4>
+                                    </li>
+                                </ul>
+                                <ul class="summery-total">
+                                    <li class="list-total">
+                                        <h6>  ملاحظات  </h6>
+                                        <h4 class="price">{{$order->note}}</h4>
+                                    </li>
+                                </ul>
+                                <ul class="summery-total">
+                                    <li class="list-total">
+                                        <h6>  حاله الطلب  </h6>
+                                        <h4 class="price text-danger">{{$order->type_order}}</h4>
                                     </li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="col-lg-12 col-sm-6">
+                        {{-- <div class="col-lg-12 col-sm-6">
                             <div class="summery-box">
                                 <div class="summery-header d-block">
                                     <h3>Shipping Address</h3>
@@ -184,22 +127,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </div>
-
-                        <div class="col-12">
-                            <div class="summery-box">
-                                <div class="summery-header d-block">
-                                    <h3>Payment Method</h3>
-                                </div>
-
-                                <ul class="summery-contain pb-0 border-bottom-0">
-                                    <li class="d-block pt-0">
-                                        <p class="text-content">Pay on Delivery (Cash/Card). Cash on delivery (COD)
-                                            available. Card/Net banking acceptance subject to device availability.</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

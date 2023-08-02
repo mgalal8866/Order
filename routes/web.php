@@ -78,6 +78,7 @@ Route::get('send-message',  function () {
 Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
     function () {
         Route::get('/', function () {
+
             return view('main-domin.index');
         })->name('maindomin');
 
@@ -95,10 +96,6 @@ Route::get('/deletetable', function (Request $request) {
 Route::get('/send-fsm', function (Request $request) {
     $d = User::where('fsm', '!=', null)->pluck('fsm');
     notificationFCM('Hello', 'Okay', $d);
-
-    // $notifi =  notifiction::create(['title' => 'Hello', 'body' => 'body', 'image' =>  null, 'results' =>]);
-    // dd($notifi);
-    // Log::alert('',$notifi );
 });
 Route::get('/userdelivery', function (Request $request) {
     UserDelivery::create([
@@ -107,35 +104,31 @@ Route::get('/userdelivery', function (Request $request) {
     ]);
 });
 Route::post('/store-token', function (Request $request) {
-    //   UserAdmin::create([
-    //     'username'=>'admin',
-    //     'password'=> Hash::make('123456')
-    //   ]);
-
     Auth::guard('admin')->user()->update(['fsm' => $request->token]);
     // Auth::guard('client')->user()->update(['fsm' => $request->token]);
     return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 
-Route::get('/moveToseleheader', function () {
-    DeliveryHeader::query()
-        ->where('id', '=', 1)
-        ->each(function ($oldRecord) {
-            $newRecord = $oldRecord->replicate();
-            $newRecord->setTable('sales_headers');
-            $newRecord->save();
-            $oldRecord->delete();
-        });
-    DeliveryDetails::query()
-        ->where('sale_header_id', '=', 1)
-        ->each(function ($oldRecord) {
-            $newRecord = $oldRecord->replicate();
-            $newRecord->setTable('sales_details');
-            $newRecord->save();
-            $oldRecord->delete();
-        });
-});
+// Route::get('/moveToseleheader', function () {
+//     DeliveryHeader::query()
+//         ->where('id', '=', 1)
+//         ->each(function ($oldRecord) {
+//             $newRecord = $oldRecord->replicate();
+//             $newRecord->setTable('sales_headers');
+//             $newRecord->save();
+//             $oldRecord->delete();
+//         });
+//     DeliveryDetails::query()
+//         ->where('sale_header_id', '=', 1)
+//         ->each(function ($oldRecord) {
+//             $newRecord = $oldRecord->replicate();
+//             $newRecord->setTable('sales_details');
+//             $newRecord->save();
+//             $oldRecord->delete();
+//         });
+// });
+
 #####################################################
 #################### FRONT Client #####################
 
@@ -195,6 +188,3 @@ Route::middleware('tenant')->group(function () {
     #################### Dashboard  #####################
     #####################################################
 });
-// Route::get('/', function (Request $request) {
-//     return view('main-domin.index');
-// });
