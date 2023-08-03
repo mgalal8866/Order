@@ -21,7 +21,8 @@ return new class extends Migration
             $table->decimal('subtotal',8,3)->nullable();//اجمالى كميه فى السعر
             $table->decimal('discount',8,3)->nullable();//الخصم
             $table->decimal('grandtotal',8,3)->nullable();//الاجمالى بعد الخصم
-            $table->decimal('profit',8,3)->nullable();// الربح = سعر الشرا- سعر البيع * الكمية - الخصم
+            $table->decimal('profit',8,3)->nullable(); // الربح = سعر الشرا- سعر البيع * الكمية - الخصم
+            $table->timestamp('lastsyncdate')->nullable();
             $table->timestamps();
         });
     }
