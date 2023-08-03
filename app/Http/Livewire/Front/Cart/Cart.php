@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Front\Cart;
 
 use Carbon\Carbon;
 use App\Models\Coupon;
+use App\Models\setting;
 use Livewire\Component;
 use App\Models\deferred;
 use App\Models\Wishlist;
@@ -21,10 +22,10 @@ class Cart extends Component
     public $cul = [
         'productdiscount'    => 0, 'finalsubtotal'    => 0, 'couponid'        => null, 'coupondisc'      => 0, 'coupontype'      => 0, 'total_profit'    => 0, 'subtotal'        => 0, 'totalfinal'      => 0, 'selectdeferreds' => 0, 'deferreds'       => 0, 'totaldiscount'   => 0, 'discount_g'      => 0
         ],
-        $coupon, $currency = ' ج.م', $cartlist = [],$note=null;
+        $coupon, $currency = ' ج.م', $cartlist = [],$note=null, $setting;
     public function mount()
     {
-
+        $this->setting = setting::find(1);
         $deferreds = deferred::where('user_id', Auth::guard('client')->user()->id)->select('statu')->first();
         if ($deferreds) {
             $this->cul['deferreds'] = $deferreds->statu;
@@ -145,7 +146,7 @@ class Cart extends Component
         $this->cartlist = ProductDetails::whereHas('cart', function ($q) {
             return  $q->where('user_id', Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('productheader')->get();
- 
+
         $this->culc();
         return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');
     }

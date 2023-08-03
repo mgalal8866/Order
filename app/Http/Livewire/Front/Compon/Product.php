@@ -35,13 +35,16 @@ class Product extends Component
        }
     }
    public function addtocart($product_id){
-
-
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
    }
    public function addtowishlist($product_id){
-       Wishlist::create(['product_id'=>$this->product->id,'user_id'=> Auth::guard('client')->user()->id]);
+        $wishlist = Wishlist::where(['product_id'=>$this->product->id,'user_id'=> Auth::guard('client')->user()->id])->first();
+    if($wishlist){
+        $wishlist->delete();
+    }else{
+        Wishlist::create(['product_id'=>$this->product->id,'user_id'=> Auth::guard('client')->user()->id]);
+    }
    }
     public function render()
     {

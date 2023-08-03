@@ -25,8 +25,8 @@
 
 
                                                             <li class="text-content">{{ __('tran.unit') }} :
-                                                                <span  class="text-title">
-                                                                </span>  {!! $c->Custunit() !!}
+                                                                <span class="text-title">
+                                                                </span> {!! $c->Custunit() !!}
                                                             </li>
 
                                                             @if ($c['isoffer'] == 1)
@@ -139,7 +139,7 @@
                                             </td>
                                         </tr>
                                     @empty
-                                        <tr >
+                                        <tr>
                                             العربه فارغة - لا يوجد منتجات
                                         </tr>
                                     @endforelse
@@ -148,100 +148,107 @@
                         </div>
                     </div>
                 </div>
-                @if($cartlist->count() > 0)
-                <div class="col-xxl-3">
-                    <div class="summery-box p-sticky">
-                        <div class="summery-header">
-                            <h3></h3>
-                        </div>
+                @if ($cartlist->count() > 0)
+                    <div class="col-xxl-3">
+                        <div class="summery-box p-sticky">
+                            <div class="summery-header">
+                                <h3></h3>
+                            </div>
 
-                        <div class="summery-contain">
-                            <div class="coupon-cart">
-                                <h6 class="text-content mb-2">تطبيق الكوبون</h6>
-                                <div class="mb-3 coupon-box input-group">
-                                    <input type="text" wire:model="coupon" class="form-control"
-                                        id="exampleFormControlInput1" placeholder="ادخل الكوبون"
-                                        {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>
-                                    @if ($cul['coupondisc'] > 0)
-                                        <button class="btn-apply" wire:click.prevent="removecoupon()">X</button>
-                                    @else
-                                        <button class="btn-apply" wire:click.prevent="usecoupon()"
-                                            {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>تطبيق</button>
+                            <div class="summery-contain">
+                                <div class="coupon-cart">
+                                    <h6 class="text-content mb-2">تطبيق الكوبون</h6>
+                                    <div class="mb-3 coupon-box input-group">
+                                        <input type="text" wire:model="coupon" class="form-control"
+                                            id="exampleFormControlInput1" placeholder="ادخل الكوبون"
+                                            {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>
+                                        @if ($cul['coupondisc'] > 0)
+                                            <button class="btn-apply" wire:click.prevent="removecoupon()">X</button>
+                                        @else
+                                            <button class="btn-apply" wire:click.prevent="usecoupon()"
+                                                {{ $cul['coupondisc'] > 0 ? 'disabled' : '' }}>تطبيق</button>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="coupon-cart">
+                                    <h6 class="text-content mb-2">ملاحظات </h6>
+                                    <div class="mb-3 coupon-box input-group">
+                                        <input type="text" wire:model.debounce="note" class="form-control"
+                                            id="exampleFormControlInput13" placeholder="اكتب ملاحظاتك">
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <h4>طريقه الدفع</h4>
+                                        <h4 class="price">
+                                            <select wire:model="selectdeferreds">
+                                                <option selected value="0">كاش</option>
+                                                @if ($cul['deferreds'] == 1)
+                                                    <option value="1">اجل</option>
+                                                @endif
+                                            </select>
+                                        </h4>
+                                    </li>
+                                    <li>
+                                        <h4>اجمالى الاصناف</h4>
+                                        <h4 class="price"> {{ $cul['subtotal'] }}{{ $currency }}</h4>
+                                    </li>
+                                    @if ($cul['totaldiscount'] != 0)
+                                        <li>
+                                            <h4>اجمالى التوفير</h4>
+                                            <h4 class="price"> {{ $cul['totaldiscount'] }}{{ $currency }}</h4>
+                                        </li>
                                     @endif
-                                </div>
-                            </div>
-                            <div class="coupon-cart">
-                                <h6 class="text-content mb-2">ملاحظات </h6>
-                                <div class="mb-3 coupon-box input-group">
-                                    <input type="text" wire:model.debounce="note" class="form-control"
-                                        id="exampleFormControlInput13" placeholder="اكتب ملاحظاتك">
-                                </div>
-                            </div>
-                            <ul>
-                                <li>
-                                    <h4>طريقه الدفع</h4>
-                                    <h4 class="price">
-                                        <select wire:model="selectdeferreds">
-                                            <option selected value="0">كاش</option>
-                                            @if ($cul['deferreds'] == 1)
-                                                <option value="1">اجل</option>
-                                            @endif
-                                        </select>
-                                    </h4>
-                                </li>
-                                <li>
-                                    <h4>اجمالى الاصناف</h4>
-                                    <h4 class="price"> {{ $cul['subtotal'] }}{{ $currency }}</h4>
-                                </li>
-                                @if ($cul['totaldiscount'] != 0)
+
                                     <li>
-                                        <h4>اجمالى التوفير</h4>
-                                        <h4 class="price"> {{ $cul['totaldiscount'] }}{{ $currency }}</h4>
+                                        <h4>خصم الكوبون</h4>
+                                        <h4 class="price">(-)
+                                            {{ $cul['coupondisc'] . '  ' . ($cul['coupontype'] == 0 ? $currency : ' % ') }}
+                                        </h4>
                                     </li>
-                                @endif
 
-                                <li>
-                                    <h4>خصم الكوبون</h4>
-                                    <h4 class="price">(-) {{ $cul['coupondisc']  . '  ' . ($cul['coupontype'] ==0 ? $currency : ' % ') }}</h4>
-                                </li>
+                                    <li class="align-items-start">
+                                        <h4>التوصيل</h4>
+                                        <h4 class="price text-end">0 {{ $currency }}</h4>
+                                    </li>
+                                </ul>
+                            </div>
 
-                                <li class="align-items-start">
-                                    <h4>التوصيل</h4>
-                                    <h4 class="price text-end">0 {{ $currency }}</h4>
+                            <ul class="summery-total">
+                                <li class="list-total border-top-0">
+                                    <h4>الاجمالى ({{ $currency }})</h4>
+                                    <h4 class="price theme-color">{{ $cul['finalsubtotal'] }}{{ $currency }}</h4>
                                 </li>
                             </ul>
-                        </div>
 
-                        <ul class="summery-total">
-                            <li class="list-total border-top-0">
-                                <h4>الاجمالى ({{ $currency }})</h4>
-                                <h4 class="price theme-color">{{ $cul['finalsubtotal'] }}{{ $currency }}</h4>
-                            </li>
-                        </ul>
+                            <div class="button-group cart-button">
+                                <ul>
+                                    @if ($setting->minimum_products > count($cartlist))
+                                        <li>
+                                            <button class="btn btn-info text-danger fw-bold">
+                                                ({{ $setting->minimum_products }}) الحد الادنى لعدد للمنتجات </button>
+                                        </li>
+                                    @elseif ($setting->minimum_financial > $this->cul['subtotal'])
+                                        <li>
+                                            <button class="btn btn-info text-danger fw-bold">
+                                                ({{ $setting->minimum_financial }}) الحد الادنى لسعر الشراء </button>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <button wire:click="pleaceorder()"
+                                                class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
+                                        </li>
+                                    @endif
 
-                        <div class="button-group cart-button">
-                            <ul>
-
-                                {{-- @if ($setting->minimum_products > count($cartlist)) --}}
                                     <li>
-                                        {{-- <button class="btn btn-info text-danger fw-bold"> يجب اختيار المنتجات حسب الحد
-                                            الادنى</button>
+                                        <button onclick="location.href = '/';"
+                                            class="btn btn-light shopping-button text-dark">
+                                            <i class="fa-solid fa-arrow-left-long"></i>الرجوع للتسوق</button>
                                     </li>
-                                @else --}}
-                                    <li>
-                                        <button wire:click="pleaceorder()" class="btn btn-animation proceed-btn fw-bold">استكمال الطلب</button>
-                                    </li>
-                                {{-- @endif --}}
-
-                                <li>
-                                    <button onclick="location.href = '/';"
-                                        class="btn btn-light shopping-button text-dark">
-                                        <i class="fa-solid fa-arrow-left-long"></i>الرجوع للتسوق</button>
-                                </li>
-                            </ul>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endif
 
             </div>
