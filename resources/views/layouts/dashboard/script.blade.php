@@ -5,8 +5,8 @@
 
 
 <!-- BEGIN: Theme JS-->
-<script src={{URL::asset('asset/vendors/js/extensions/sweetalert2.all.min.js')}}></script>
-<script src={{URL::asset('asset/vendors/js/extensions/toastr.min.js')}}></script>
+<script src="{{asset('asset/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset('asset/vendors/js/extensions/toastr.min.js')}}"></script>
 <script src="{{ asset('asset/js/core/app-menu.js') }}"></script>
 <script src="{{ asset('asset/js/core/app.js') }}"></script>
 <!-- END: Theme JS-->

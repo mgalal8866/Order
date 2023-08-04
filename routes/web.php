@@ -67,14 +67,19 @@ use App\Models\UserDelivery;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
-
 Route::get('send-message',  function () {
-
-    // event(new MessageSent('hello world'));
-    event(new PrivetMessage('hello world'));
-
-    return ['success' => true];
+    $d =[];
+    $dd = user::get()->pluck('fsm');
+    $d = ['title'=>'1111','body'=>'2222','users'=> $dd];
+    return  $d ;
 });
+// Route::get('send-message',  function () {
+
+//     // event(new MessageSent('hello world'));
+//     event(new PrivetMessage('hello world'));
+
+//     return ['success' => true];
+// });
 Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
     function () {
         Route::get('/', function () {

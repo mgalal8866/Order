@@ -1,6 +1,4 @@
-@push('csslive')
-    <link rel="stylesheet" type="text/css" href={{ asset('asset/vendors/css/forms/select/select2.min.css') }}>
-@endpush
+
 <div>
     <form id="notifi" wire:submit.prevent="sendnotifiction">
 
@@ -22,14 +20,12 @@
                         </div>
                     </div>
                     @if ($selectactive == 0)
-                    <div class="col-md-6 mb-1">
+                    <div wire:ignore class="col-md-6 mb-1">
                         <label class="form-label" for="select2-multiple">Multiple</label>
                         <select class="select2 form-select" id="select2-multiple" multiple>
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
-                            </optgroup>
-
+                               @foreach ($users as $item )
+                               <option value="{{$item->fsm}}">{{$item->client_name}}</option>
+                               @endforeach
                         </select>
                     </div>
 
@@ -86,40 +82,52 @@
             });
         })
 
-        var select = $('.select2');
-        $(document).on('click', '.add-new-customer', function() {
-            select.select2('close');
-        });
+        // var select = $('.select2');
+        // $(document).on('click', '.add-new-customer', function() {
+        //     select.select2('close');
+        // });
 
-        select.on('select2:open', function() {
-            if (!$(document).find('.add-new-customer').length) {
-                $(document)
-                    .find('.select2-results__options')
-                    .before(
-                        '<div class="add-new-customer btn btn-flat-success cursor-pointer rounded-0 text-start mb-50 p-50 w-100" data-bs-toggle="modal" data-bs-target="#newcustomer">' +
-                        feather.icons['plus'].toSvg({
-                            class: 'font-medium-1 me-50'
-                        }) +
-                        '<span class="align-middle">Add New Customer</span></div>'
-                    );
-            }
-        });
-        select.each(function() {
-            var $this = $(this)
-            $this.wrap('<div style="width: 100%;" class="position-relative"></div>');
-            // $this.wrap('<div class="position-relative"></div>');
-            $this.select2({
-                // the following code is used to disable x-scrollbar when click in select input and
-                // take 100% width in responsive also
-                dropdownAutoWidth: true,
-                width: '100%',
-                dropdownParent: $this.parent()
-            });
-            $('#select2').on('change', function(e) {
-                var data = $('#select2').select2("val");
-                @this.set('selected', data);
-            });
-        });
+        // select.on('select2:open', function() {
+        //     if (!$(document).find('.add-new-customer').length) {
+        //         $(document)
+        //             .find('.select2-results__options')
+        //             .before(
+        //                 '<div class="add-new-customer btn btn-flat-success cursor-pointer rounded-0 text-start mb-50 p-50 w-100" data-bs-toggle="modal" data-bs-target="#newcustomer">' +
+        //                 feather.icons['plus'].toSvg({
+        //                     class: 'font-medium-1 me-50'
+        //                 }) +
+        //                 '<span class="align-middle">Add New Customer</span></div>'
+        //             );
+        //     }
+        // });
+        // select.each(function() {
+        //     var $this = $(this)
+        //     $this.wrap('<div style="width: 100%;" class="position-relative"></div>');
+        //     // $this.wrap('<div class="position-relative"></div>');
+        //     $this.select2({
+        //         // the following code is used to disable x-scrollbar when click in select input and
+        //         // take 100% width in responsive also
+        //         dropdownAutoWidth: true,
+        //         width: '100%',
+        //         dropdownParent: $this.parent()
+        //     });
+        //     $('#select2').on('change', function(e) {
+        //         var data = $('#select2').select2("val");
+        //         @this.set('selected', data);
+        //     });
+        // });
     </script>
     <script src={{ asset('asset/vendors/js/forms/select/select2.full.min.js') }}></script>
+    <script src={{ asset('asset/vendors/js/forms/select/form-select2.js') }}></script>
+    <script >
+// (function (window, document, $) {
+//     // to remove sm control classes from datatables
+//     if ($.fn.dataTable) {
+//         $.extend($.fn.dataTable.ext.classes, {
+//             sFilterInput: 'form-control',
+//             sLengthSelect: 'form-select'
+//         });
+//     }
+// });
+    </script>
 @endpush

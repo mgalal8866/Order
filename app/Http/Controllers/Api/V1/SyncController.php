@@ -442,6 +442,8 @@ class SyncController extends Controller
     }
     function sendnotification(Request $request)
     {
+        Log::info('uploadcategoryapp', $request[0]['title'] );
+        Log::info('uploadcategoryapp', $request['title'] );
         Log::info('uploadcategoryapp', $request->all());
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
         // $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);

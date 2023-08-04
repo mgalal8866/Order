@@ -9,8 +9,11 @@ use Livewire\WithFileUploads;
 
 class ViewNotification extends Component
 {   use WithFileUploads;
-    public $selectactive =1,$body,$title,$image,$users,$selectusers;
+    public $selectactive =1,$body,$title,$image,$users,$selectusers=[];
 
+    public function mount(){
+        $this->users = user::where('fsm','!=',null)->get();
+    }
     public function sendnotifiction(){
       $results =  notificationFCM($this->title,$this->body,[]);
         notifiction::create(['titel'=>$this->title, 'body'=>$this->body ,'user'=>$this->users,'image'=>$this->image,'results'=>$results]);

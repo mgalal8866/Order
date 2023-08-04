@@ -49,6 +49,7 @@
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
+    <link rel="stylesheet" type="text/css" href={{ asset('asset/vendors/css/forms/select/select2.min.css') }}>
 
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/custom-rtl.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}">
@@ -56,11 +57,11 @@
     {{--
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}"> --}}
     <!-- END: Custom CSS-->
-    @vite([ 'resources/js/app.js'])
+    {{-- @vite([ 'resources/js/app.js']) --}}
     @livewireStyles
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
-
     @stack('csslive')
+
     <style>
         .navigation .navigation-header ,.navigation ,.header-navbar,body {
             font-family: 'Cairo', 'sans-serif' !important;

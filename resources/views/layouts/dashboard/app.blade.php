@@ -86,59 +86,59 @@
     <!-- END: Footer-->
 
     @include('layouts.dashboard.script')
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+    {{-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script> --}}
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyBJY0LBM4gH9gYCnjqC7yy23Gjo2CFVch0",
-    authDomain: "elshroq-d4137.firebaseapp.com",
-    projectId: "elshroq-d4137",
-    storageBucket: "elshroq-d4137.appspot.com",
-    messagingSenderId: "309300782707",
-    appId: "1:309300782707:web:69e2c603d3a02754e82c06",
-    measurementId: "G-PEJM2XN1D5",
-            databaseURL: 'https://project-id.firebaseio.com',
-        };
-        firebase.initializeApp(firebaseConfig);
-        const messaging = firebase.messaging();
+    //     var firebaseConfig = {
+    //         apiKey: "AIzaSyBJY0LBM4gH9gYCnjqC7yy23Gjo2CFVch0",
+    // authDomain: "elshroq-d4137.firebaseapp.com",
+    // projectId: "elshroq-d4137",
+    // storageBucket: "elshroq-d4137.appspot.com",
+    // messagingSenderId: "309300782707",
+    // appId: "1:309300782707:web:69e2c603d3a02754e82c06",
+    // measurementId: "G-PEJM2XN1D5",
+    //         databaseURL: 'https://project-id.firebaseio.com',
+    //     };
+    //     firebase.initializeApp(firebaseConfig);
+    //     const messaging = firebase.messaging();
 
 
-        messaging
-            .requestPermission()
-            .then(function() {
-                return messaging.getToken()
-            })
-            .then(function(response) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    url: '{{ route('store.token') }}',
-                    type: 'POST',
-                    data: {
-                        token: response
-                    },
-                    dataType: 'JSON',
-                    success: function(response) {
-                        // alert('Token stored.');
-                    },
-                    error: function(error) {
-                        alert(error.messaging);
-                    },
-                });
-            }).catch(function(error) {
-                alert(error);
-            });
+    //     messaging
+    //         .requestPermission()
+    //         .then(function() {
+    //             return messaging.getToken()
+    //         })
+    //         .then(function(response) {
+    //             $.ajaxSetup({
+    //                 headers: {
+    //                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //                 }
+    //             });
+    //             $.ajax({
+    //                 url: '{{ route('store.token') }}',
+    //                 type: 'POST',
+    //                 data: {
+    //                     token: response
+    //                 },
+    //                 dataType: 'JSON',
+    //                 success: function(response) {
+    //                     // alert('Token stored.');
+    //                 },
+    //                 error: function(error) {
+    //                     alert(error.messaging);
+    //                 },
+    //             });
+    //         }).catch(function(error) {
+    //             alert(error);
+    //         });
 
-        messaging.onMessage(function(payload) {
-            const title = payload.notification.title;
-            const options = {
-                body: payload.notification.body,
-                icon: payload.notification.icon,
-            };
-            new Notification(title, options);
-        });
+    //     messaging.onMessage(function(payload) {
+    //         const title = payload.notification.title;
+    //         const options = {
+    //             body: payload.notification.body,
+    //             icon: payload.notification.icon,
+    //         };
+    //         new Notification(title, options);
+    //     });
     </script>
 </body>
 <!-- END: Body-->
