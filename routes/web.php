@@ -68,10 +68,12 @@ use App\Models\UserDelivery;
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('send-message',  function () {
-    $d =[];
-    $dd = user::get()->pluck('fsm');
-    $d = ['title'=>'1111','body'=>'2222','users'=> $dd];
-    return  $d ;
+    $d =
+        "{\"title\":\"1111\",\"body\":\"2222\",\"users\":[\"cnyJX_XoQ8irvcVokMKRLI:APA91bEaa0ZMEyP4HRYpVMc9Ljh8UptN_vLux_f5-BkCQ7auuwu7jvqHIxdwvujsq7XdOdA0VYG3bb3NuViK0_B1_JDhgY7KYG4lRkENc1DGad4HQ5VdZm7SiuuAN6SgLaJa1fDBtQ35\",\"foJ91-SBRfakbbqrTI-3BQ:APA91bG6mBjuUB9F60iqRnHYmiJe8jt1Ur3oaQvSev_wkQsOY-0cet5hCVxu-igbeu1Vem7x3UV83xUW1a_tapQqDXG3epCvZ65ushJ-K5YoabZ6ycBDKo1p6GYEV79TEQrTF_aU-FBz\",\"cCJCLs-PSjOCMDTqnFFyEk:APA91bEZFYoap7_-9g46xZy2DQ9grncyIbt71AGfatE7Wbd5tGELKgvLD5W5OB-RT2ssnRNcM_8hf-crUh-tW5U1x34x7OVnAuy4ZJLTAifOtPnD6hsYKAL66ViXCYrRlcp0UURxK45a\"]}"
+      ;
+     $d = json_decode($d,true);
+      return    $d['title'];
+
 });
 // Route::get('send-message',  function () {
 
