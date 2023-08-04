@@ -442,19 +442,11 @@ class SyncController extends Controller
     }
     function sendnotification(Request $request)
     {
-
-
-      
         $dd = json_decode($request[0], true);
-        Log::error($dd['title']);
-        // Log::error(json_decode($request[0][0]['title']));
-        // Log::error($request[0]['title']);
-        // Log::info('uploadcategoryapp', json_encode($request[0],JSON_UNESCAPED_SLASHES));
-        // Log::info('uploadcategoryapp', json_decode($request));
-        // Log::info('uploadcategoryapp', response()->json($request->all(), 200, [], JSON_UNESCAPED_UNICODE));
+        Log::error($dd);
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
-        // $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);
-        // $notifi =  notifiction::created(['title' => $request['title'], 'body' => $request['body'], 'image' =>  $image, 'results' => $result]);
+        $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null,  null);
+        $notifi =  notifiction::created(['title' => $dd['title'], 'body' => $dd['body'], 'image' =>  null, 'results' => $result]);
         // return    Resp($notifi , 'success', 200, true);
 
     }
