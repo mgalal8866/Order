@@ -430,7 +430,7 @@ class SyncController extends Controller
     function downdeliverydetails(Request $request)
     {
         $data = DeliveryDetails::where('lastsyncdate', null)->get();
-        $data->update(['lastsyncdate' => carbon::now()]);
+        DeliveryDetails::query()->update(['lastsyncdate', null],['lastsyncdate' => carbon::now()]);
         return    Resp($data, 'success', 200, true);
     }
     function downcomment()
