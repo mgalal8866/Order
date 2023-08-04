@@ -446,8 +446,8 @@ class SyncController extends Controller
         Log::error($request->title);
 
         // Log::error($request[0]['users']);
-        Log::error($request[0]['body']);
-        Log::error($request[0]['title']);
+        Log::error($request[0]->title);
+        // Log::error($request[0]['title']);
         // Log::info('uploadcategoryapp', json_encode($request[0],JSON_UNESCAPED_SLASHES));
         // Log::info('uploadcategoryapp', json_decode($request));
         // Log::info('uploadcategoryapp', response()->json($request->all(), 200, [], JSON_UNESCAPED_UNICODE));
