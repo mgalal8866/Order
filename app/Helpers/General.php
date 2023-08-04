@@ -79,7 +79,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
 
 
 
-      notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) ]);
+    //   notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) ]);
 
     return  curl_exec($ch);
 }
