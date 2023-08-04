@@ -98,9 +98,9 @@ Route::get('/send-fsm', function (Request $request) {
     notificationFCM('Hello', 'Okay', $d);
 });
 Route::get('/userdelivery', function (Request $request) {
-    UserDelivery::create([
+    UserAdmin::create([
         'username' => 'admin',
-        'password' => Hash::make('admin')
+        'password' => Hash::make('admin1234')
     ]);
 });
 Route::post('/store-token', function (Request $request) {
