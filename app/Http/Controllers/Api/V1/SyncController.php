@@ -443,6 +443,8 @@ class SyncController extends Controller
     function sendnotification(Request $request)
     {
 
+        Log::error($request->title);
+      
         Log::error($request[0]);
         // Log::info('uploadcategoryapp', json_encode($request[0],JSON_UNESCAPED_SLASHES));
         // Log::info('uploadcategoryapp', json_decode($request));
