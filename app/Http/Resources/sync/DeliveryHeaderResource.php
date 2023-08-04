@@ -15,7 +15,7 @@ class DeliveryHeaderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'header' => [
+
                 'id '              => $this->id  ?? '',
                 'invoicenumber' => $this->invoicenumber,
                 'coupon_id' => $this->coupon_id,
@@ -54,8 +54,7 @@ class DeliveryHeaderResource extends JsonResource
                 'created_at' => $this->created_at,
                 'lastsyncdate' => $this->lastsyncdate,
                 'updated_at'      => $this->updated_at,
-            ],
-            'details' =>DeliveryDetailsResource::collection($this->salesdetails),
+                'salesdetails' =>DeliveryDetailsResource::collection($this->salesdetails),
         ];
     }
 }
