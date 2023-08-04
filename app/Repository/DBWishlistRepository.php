@@ -12,7 +12,7 @@ class DBWishlistRepository implements WishlistRepositoryinterface
 {
     public function getwishlist()
     {
-        return  Wishlist::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
+        return  Wishlist::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->latest()->get();
     }
     public function addwishlist($id)
     {
