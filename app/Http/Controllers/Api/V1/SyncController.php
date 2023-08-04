@@ -442,9 +442,10 @@ class SyncController extends Controller
     }
     function sendnotification(Request $request)
     {
-        Log::info('uploadcategoryapp', $request[0]['title'] );
-        Log::info('uploadcategoryapp', $request['title'] );
-        Log::info('uploadcategoryapp', $request->all());
+
+        Log::info('uploadcategoryapp', json_encode($request->all()));
+        Log::info('uploadcategoryapp', json_decode($request));
+        Log::info('uploadcategoryapp', response()->json($request->all(), 200, [], JSON_UNESCAPED_UNICODE));
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
         // $result = notificationFCM($request['title'], $request['body'], $request['user'], null,  $image);
         // $notifi =  notifiction::created(['title' => $request['title'], 'body' => $request['body'], 'image' =>  $image, 'results' => $result]);
