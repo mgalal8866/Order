@@ -121,7 +121,7 @@
                     },
                     dataType: 'JSON',
                     success: function(response) {
-                        alert('Token stored.');
+                        // alert('Token stored.');
                     },
                     error: function(error) {
                         alert(error.messaging);

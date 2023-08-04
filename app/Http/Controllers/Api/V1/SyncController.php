@@ -35,6 +35,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\clientsyncResource;
+use App\Http\Resources\sync\DeliveryHeaderResource;
 use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
 
 class SyncController extends Controller
@@ -425,7 +426,7 @@ class SyncController extends Controller
     {
         $data = DeliveryHeader::where('lastsyncdate', null)->with('salesdetails')->get();
         DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
-        return    Resp($data, 'success', 200, true);
+        return    Resp(DeliveryHeaderResource::collection( $data), 'success', 200, true);
     }
     function downdeliverydetails(Request $request)
     {
