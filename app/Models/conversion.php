@@ -13,4 +13,8 @@ class conversion extends Model
     {
         return $this->belongsto(User::class, 'client_id');
     }
+    public function messages()
+    {
+        return $this->belongsto(message::class, 'conversions_id');
+    }
 }

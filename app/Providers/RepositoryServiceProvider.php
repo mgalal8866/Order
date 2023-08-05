@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repository\DBCartRepository;
+use App\Repository\DBChatRepository;
 use App\Repository\DBInvoRepository;
 use App\Repository\DBUserRepository;
 use App\Repository\DBCouponRepository;
@@ -13,12 +14,13 @@ use App\Repository\DBSettingRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Repository\DBCategoryRepository;
 use App\Repository\DBWishlistRepository;
+use App\Repository\NotifictionRepository;
 use App\Repository\DBCateoryAppRepository;
-use App\Repository\DBClientPaymentRepository;
 use App\Repository\DBNotifictionRepository;
 use App\Repository\DBUserDeliveryRepository;
-use App\Repository\NotifictionRepository;
+use App\Repository\DBClientPaymentRepository;
 use App\Repositoryinterface\CartRepositoryinterface;
+use App\Repositoryinterface\ChatRepositoryinterface;
 use App\Repositoryinterface\InvoRepositoryinterface;
 use App\Repositoryinterface\UserRepositoryinterface;
 use App\Repositoryinterface\CouponRepositoryinterface;
@@ -29,9 +31,9 @@ use App\Repositoryinterface\SettingRepositoryinterface;
 use App\Repositoryinterface\CategoryRepositoryinterface;
 use App\Repositoryinterface\WishlistRepositoryinterface;
 use App\Repositoryinterface\CateoryAppRepositoryinterface;
-use App\Repositoryinterface\ClientPaymentRepositoryinterface;
 use App\Repositoryinterface\NotifictionRepositoryinterface;
 use App\Repositoryinterface\UserDeliveryRepositoryinterface;
+use App\Repositoryinterface\ClientPaymentRepositoryinterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -54,6 +56,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(NotifictionRepositoryinterface::class, DBNotifictionRepository::class);
         $this->app->bind(ClientPaymentRepositoryinterface::class, DBClientPaymentRepository::class);
         $this->app->bind(UserDeliveryRepositoryinterface::class, DBUserDeliveryRepository::class);
+        $this->app->bind(ChatRepositoryinterface::class, DBChatRepository::class);
     }
     public function boot(): void
     {

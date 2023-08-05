@@ -3,6 +3,7 @@
 use App\Models\logsync;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\CartController;
+use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\SyncController;
 use App\Http\Controllers\Api\V1\UnitController;
 use App\Http\Controllers\Api\V1\UserController;
@@ -39,6 +40,10 @@ Route::post('/add/slider', [SliderController::class, 'addslider']);
 Route::get('/getcity', [CitiesController::class, 'getcity']);
 Route::get('/getregion/{id}', [RegionController::class, 'getregionbycity']);
 ################# End City & Region   #############
+################# Chat #############
+Route::post('/sentmessage', [ChatController::class, 'sentmessage']);
+Route::get('/getmessage', [ChatController::class, 'getmessage']);
+################# Chat #############
 
 Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############

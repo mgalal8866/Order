@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Tenants;
 
+use App\Facade\Tenants;
 use Illuminate\Console\Command;
 use App\Models\Tenant;
 use App\service\TenantService;
@@ -31,7 +32,7 @@ class MigtareCommand extends Command
     {
         $tenants = Tenant::get();
         $tenants->each(function ($tenant){
-            TenantService::switchToTanent($tenant);
+            Tenants::switchToTanent($tenant);
             $this->info('Start migrating : '.$tenant->domain);
             $this->info('---------------------------------------');
             Artisan::call('migrate --path=database/migrations/tenants/  --database=tenant');
@@ -39,8 +40,8 @@ class MigtareCommand extends Command
             $this->info(Artisan::output());
         });
         return Command::SUCCESS;
-       
-        
-      
+
+
+
     }
 }
