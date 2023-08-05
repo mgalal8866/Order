@@ -23,7 +23,7 @@ class DeliveryHeaderResource extends JsonResource
                 'comment_id' => $this->comment_id,
                 'invoicetype' => $this->invoicetype,
                 'invoicedate' => $this->invoicedate,
-                'client_id' => $this->user->source_id,
+                'client_id' => $this->user->source_id??'مفيش اى دى ياحسام',
                 'lastbalance' => $this->lastbalance,
                 'finalbalance' => $this->finalbalance,
                 'user_id' => $this->user_id,
