@@ -16,7 +16,7 @@ class DeliveryHeaderResource extends JsonResource
     {
         return [
 
-                'id '           => (string)  $this->id  ?? '',
+                'id'           => $this->id  ?? '',
                 'invoicenumber' => $this->invoicenumber,
                 'coupon_id' => $this->coupon_id,
                 'type_order' => $this->type_order,
