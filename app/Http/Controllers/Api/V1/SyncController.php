@@ -425,7 +425,7 @@ class SyncController extends Controller
     function downsdeliveryheader(Request $request)
     {
         $data = DeliveryHeader::where('lastsyncdate', null)->with('salesdetails')->get();
-        DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
+        // DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
         // return    Resp( $data, 'success', 200, true);
         return    Resp(DeliveryHeaderResource::collection( $data), 'success', 200, true);
     }
