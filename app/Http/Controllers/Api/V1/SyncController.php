@@ -445,6 +445,7 @@ class SyncController extends Controller
         $dd = json_decode($request[0], true);
         Log::info('notification',$dd);
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
+        Log::error( $image);
         $result = notificationFCM($dd['title'], $dd['body'], $dd['users'],null,'https://elshrouk.order-bay.com/asset/images/notification/'.$image);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
