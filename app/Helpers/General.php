@@ -47,6 +47,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     // $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
     // return $firebaseToken;
     // notifiction::create()
+    notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) ]);
     $SERVER_API_KEY = env('FCM_SERVER_KEY',null);
     $data = [
         "registration_ids" => $users,
@@ -76,7 +77,6 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-      notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) ]);
 
     return  curl_exec($ch);
 }
