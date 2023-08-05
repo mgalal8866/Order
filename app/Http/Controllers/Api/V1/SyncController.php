@@ -443,7 +443,7 @@ class SyncController extends Controller
     function sendnotification(Request $request)
     {
         $dd = json_decode($request[0], true);
-        Log::error($dd);
+        Log::error($dd['title']. $dd['body'] . $dd['users']);
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
         $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null,  null);
         $notifi =  notifiction::created(['title' => $dd['title'], 'body' => $dd['body'], 'image' =>  null, 'results' => $result]);
