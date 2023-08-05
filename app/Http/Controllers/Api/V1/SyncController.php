@@ -425,7 +425,7 @@ class SyncController extends Controller
     function downsdeliveryheader(Request $request)
     {
         $data = DeliveryHeader::where('lastsyncdate', null)->with('salesdetails')->get();
-        // DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
+        DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
         // return    Resp( $data, 'success', 200, true);
         return    Resp(DeliveryHeaderResource::collection( $data), 'success', 200, true);
     }
@@ -443,7 +443,10 @@ class SyncController extends Controller
     function sendnotification(Request $request)
     {
         $dd = json_decode($request[0], true);
-        Log::error($dd['title']. $dd['body'] . $dd['users']);
+
+        Log::error($dd['title']);
+        Log::error($dd['body']);
+        Log::error($dd['users']);
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
         $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null,  null);
         $notifi =  notifiction::created(['title' => $dd['title'], 'body' => $dd['body'], 'image' =>  null, 'results' => $result]);
