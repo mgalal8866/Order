@@ -448,7 +448,7 @@ class SyncController extends Controller
         Log::error($dd['body']);
         Log::error($dd['users']);
         // $image = $request['image'] != null ? uploadbase64images('products', $request['image']) : null;
-        $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null,  null);
+        $result = notificationFCM($dd['title'], $dd['body'], $dd['users']);
         $notifi =  notifiction::created(['title' => $dd['title'], 'body' => $dd['body'], 'image' =>  null, 'results' => $result]);
         // return    Resp($notifi , 'success', 200, true);
 

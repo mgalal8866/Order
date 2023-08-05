@@ -68,9 +68,8 @@ use App\Models\UserDelivery;
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('sss',  function () {
-    DB::enableQueryLog();
-    $dd =  DeliveryHeader::query()->with('salesdetails')->get();
-   dd(  DB::getQueryLog() );
+ $firebaseToken =   User::whereNotNull('fsm')->pluck('fsm');
+ dd($firebaseToken);
 });
 Route::get('send-message',  function () {
     $d =
