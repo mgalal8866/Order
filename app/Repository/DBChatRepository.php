@@ -31,6 +31,7 @@ class DBChatRepository implements ChatRepositoryinterface
          $messages= Message::WhereHas('conversion', function ($query) {
             return $query->where('client_id', Auth::guard('api')->user()->id);
         })->get();
-        return  $messages;
+        return  ChatResource::collection($messages);
+        
     }
 }
