@@ -129,3 +129,7 @@
         </div>
     </div>
 </div>
+@push('jslive')
+@vite([ 'resources/js/app.js'])
+
+@endpush

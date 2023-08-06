@@ -61,7 +61,7 @@
     @livewireStyles
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
     @stack('csslive')
-
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     <style>
         .navigation .navigation-header ,.navigation ,.header-navbar,body {
             font-family: 'Cairo', 'sans-serif' !important;

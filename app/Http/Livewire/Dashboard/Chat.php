@@ -12,7 +12,18 @@ use App\Http\Resources\chat\ChatResource;
 class Chat extends Component
 {
     public $messages=[],$conversions_id =null,$text ;
+    public function getListeners()
+    {
 
+        return [
+            "echo:chat.{$this->conversions_id},message" => 'appendContent'
+        ];
+    }
+    public function appendContent($event){
+        dd($event);
+        array_push($this->messages, $event->message);
+
+    }
 
 
     public function sentmessage(){
