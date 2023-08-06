@@ -62,7 +62,6 @@
                 <div class="body-content-overlay"></div>
 
                 <section class="chat-app-window">
-
                     <div class="start-chat-area d-none">
                         <div class="mb-1 start-chat-icon">
                             <i data-feather="message-square"></i>
@@ -82,7 +81,7 @@
                                             alt="avatar" height="36" width="36" />
                                         <span class="avatar-status-busy"></span>
                                     </div>
-                                    <h6 class="mb-0">{{ $cc[0]->user->client_name }}</h6>
+                                    <h6 class="mb-0">{{ $cc[0]->user->client_name ?? '' }}</h6>
                                 </div>
                                 <div class="d-flex align-items-center">
 
@@ -106,36 +105,31 @@
                             </header>
                         </div>
                         @if ($conversions_id != null)
-                        <livewire:dashboard.chat.messages :id='$conversions_id '/>
-                        <form class="chat-app-form">
-                            <div class="input-group input-group-merge me-1 form-send-message">
-                                <span class="speech-to-text input-group-text"><i data-feather="mic"
-                                    class="cursor-pointer"></i></span>
-                                    <input type="text" class="form-control message"
-                                    placeholder="Type your message or use speech to text" />
+                            <livewire:dashboard.chat.messages :id='$conversions_id' />
+                            <form class="chat-app-form">
+                                <div class="input-group input-group-merge me-1 form-send-message">
+                                    <span class="speech-to-text input-group-text"><i data-feather="mic"
+                                            class="cursor-pointer"></i></span>
+                                    <input wire:model='text' type="text" class="form-control message"
+                                        placeholder="Type your message or use speech to text" />
                                     <span class="input-group-text">
                                         <label for="attach-doc" class="attachment-icon form-label mb-0">
-                                        <i data-feather="image" class="cursor-pointer text-secondary"></i>
-                                        <input type="file" id="attach-doc" hidden /> </label></span>
-                                    </div>
-                                    <button type="button" class="btn btn-primary " wire:click.prevent="sentmessage">
-                                        <i data-feather="send" class="d-lg-none"></i>
-                                        <span class="d-none d-lg-block">ارسال </span>
-                                    </button>
-                                </form>
-
-
+                                            <i data-feather="image" class="cursor-pointer text-secondary"></i>
+                                            <input type="file" id="attach-doc" hidden /> </label></span>
+                                </div>
+                                <button type="button" class="btn btn-primary " wire:click.prevent="sentmessage">
+                                    <i data-feather="send" class="d-lg-none"></i>
+                                    <span class="d-none d-lg-block">ارسال </span>
+                                </button>
+                            </form>
                         @endif
-
-
-
                     </div>
-
                 </section>
-
-
-
             </div>
         </div>
     </div>
 </div>
+@push('jslive')
+@vite([ 'resources/js/app.js'])
+
+@endpush

@@ -46,7 +46,7 @@
     }
 </script>
 @yield('js')
-@livewireScripts
 
 @stack('jslive')
+@livewireScripts
 <!-- END: Body-->

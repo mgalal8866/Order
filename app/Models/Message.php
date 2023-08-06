@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\UserAdmin;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Message extends Model
 {
@@ -13,7 +14,7 @@ class Message extends Model
     {
         return $this->belongsto(User::class, 'client_id');
     }
-    public function conversion()
+    public function conversions()
     {
         return $this->belongsto(conversion::class, 'conversions_id');
     }

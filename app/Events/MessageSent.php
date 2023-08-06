@@ -6,19 +6,15 @@ use App\Models\User;
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use App\Http\Resources\MessageResource;
-use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
 class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $user;
+    protected $user;
 
     public $message;
     /**
@@ -29,7 +25,7 @@ class MessageSent implements ShouldBroadcast
     //     $this->user = $user;
     //     $this->message = $message;
     // }
-    public function __construct($message)
+    public function __construct( $message)
     {
         $this->message = $message;
     }
@@ -41,8 +37,9 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
+
         return [
-            new Channel('chat'),
+            new Channel('chat.'.$this->message->conversions_id),
         ];
     }
     public function broadcastAs()
