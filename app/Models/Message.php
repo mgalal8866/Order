@@ -13,7 +13,7 @@ class Message extends Model
     {
         return $this->belongsto(User::class, 'client_id');
     }
-    public function conversions()
+    public function conversion()
     {
         return $this->belongsto(conversion::class, 'conversions_id');
     }

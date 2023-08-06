@@ -18,11 +18,11 @@ class DBChatRepository implements ChatRepositoryinterface
     {
         $conversion = conversion::where('client_id', Auth::guard('api')->user()->id)->first();
         if ($conversion) {
-             $messages =  message::create(['conversions_id'=> $conversion->id,'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
+             $messages =  Message::create(['conversions_id'=> $conversion->id,'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
             return new ChatResource($messages);
             }else{
             $conversion = conversion::create(['client_id'=> Auth::guard('api')->user()->id]);
-            $messages = message::create(['conversions_id' => $conversion->id, 'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
+            $messages = Message::create(['conversions_id' => $conversion->id, 'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
             return new ChatResource($messages);
         }
     }
