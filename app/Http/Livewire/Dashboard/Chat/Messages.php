@@ -11,7 +11,9 @@ class Messages extends Component
     public function mount($id)
     {
         $this->conversions_id = $id;
-        $this->messages = Message::where('conversions_id',$id)->get()->toarray();
+
+        // $this->messages =
+        $this->messages = Message::where('conversions_id',$id)->get()->toarray()??[];
     }
      public function getListeners()
     {

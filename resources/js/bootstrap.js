@@ -31,6 +31,7 @@ import Pusher from 'pusher-js';
 //     forceTLS: true,
 //     enabledTransports: ['ws', 'wss'],
 // });
+
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: import.meta.env.VITE_PUSHER_APP_KEY,

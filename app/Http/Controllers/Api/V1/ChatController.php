@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\Api\V1;
+use App\Events\MessageSent;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositoryinterface\ChatRepositoryinterface;
-use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
@@ -19,7 +20,9 @@ class ChatController extends Controller
     }
    public function sentmessage(Request $request)  {
 
-    return $this->chatRepositry->sentmessage($request->message);
+    $msg = $this->chatRepositry->sentmessage($request->message);
+    event(new MessageSent($msg));
+    return $msg;
     }
 
 }

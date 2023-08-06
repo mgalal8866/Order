@@ -2,14 +2,15 @@
 
 namespace App\Repository;
 
-use App\Http\Resources\chat\ChatResource;
 use Carbon\Carbon;
 use App\Models\Cart;
-use App\Models\conversion;
-use App\Models\deferred;
 use App\Models\Message;
+use App\Models\deferred;
+use App\Models\conversion;
+use App\Events\MessageSent;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\chat\ChatResource;
 use App\Repositoryinterface\ChatRepositoryinterface;
 
 class DBChatRepository implements ChatRepositoryinterface
@@ -19,10 +20,12 @@ class DBChatRepository implements ChatRepositoryinterface
         $conversion = conversion::where('client_id', Auth::guard('api')->user()->id)->first();
         if ($conversion) {
              $messages =  message::create(['conversions_id'=> $conversion->id,'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
+
             return new ChatResource($messages);
             }else{
             $conversion = conversion::create(['client_id'=> Auth::guard('api')->user()->id]);
             $messages = message::create(['conversions_id' => $conversion->id, 'message' => $message, 'client_id' => Auth::guard('api')->user()->id]);;
+
             return new ChatResource($messages);
         }
     }
