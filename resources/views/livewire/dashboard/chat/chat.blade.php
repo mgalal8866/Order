@@ -8,7 +8,7 @@
                     <i data-feather="x"></i>
                 </span>
                 <!-- Sidebar header start -->
-                {{-- <div class="chat-fixed-search">
+                <div class="chat-fixed-search">
                 <div class="d-flex align-items-center w-100">
                     <div class="sidebar-profile-toggle">
                         <div class="avatar avatar-border">
@@ -21,7 +21,7 @@
                         <input type="text" class="form-control round" id="chat-search" placeholder="Search or start a new chat" aria-label="Search..." aria-describedby="chat-search" />
                     </div>
                 </div>
-            </div> --}}
+            </div>
                 <!-- Sidebar header end -->
 
                 <!-- Sidebar Users start -->
@@ -77,7 +77,7 @@
                                         <i data-feather="menu" class="font-medium-5"></i>
                                     </div>
                                     <div class="avatar avatar-border user-profile-toggle m-0 me-1">
-                                        <img src="http://localhost/asset/images/portrait/small/avatar-s-11.jpg"
+                                        <img src="{{asset('asset/images/portrait/small/avatar-s-11.jpg')}}"
                                             alt="avatar" height="36" width="36" />
                                         <span class="avatar-status-busy"></span>
                                     </div>
