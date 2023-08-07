@@ -1,39 +1,24 @@
 <?php
 
-use Carbon\Carbon;
 use App\Models\User;
 use App\Models\UserAdmin;
-use App\Models\conversion;
-use App\Events\MessageSent;
-use App\Models\notifiction;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Events\PrivetMessage;
-use App\Models\ProductHeader;
-use App\Models\DeliveryHeader;
-use App\Models\ProductDetails;
 use App\Http\Livewire\Testchat;
-use App\Models\DeliveryDetails;
 use App\Http\Livewire\Front\Otp;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Livewire\Dashboard\Chat;
+use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Wishlist;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
-use Illuminate\Support\Facades\Config;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
-use App\Http\Controllers\MessageController;
 use App\Http\Livewire\Front\Product\Offers;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Front\Order\Ordersuccess;
 use App\Http\Livewire\Front\Order\Ordertraking;
@@ -52,7 +37,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Models\UserDelivery;
+
 
 /*
 |--------------------------------------------------------------------------
