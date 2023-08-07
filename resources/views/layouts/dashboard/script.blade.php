@@ -10,7 +10,7 @@
 <script src="{{ asset('asset/js/core/app-menu.js') }}"></script>
 <script src="{{ asset('asset/js/core/app.js') }}"></script>
 <!-- END: Theme JS-->
-{{-- <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script> --}}
+<script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
 @stack('alpine-plugins')
 <!-- BEGIN: Page JS-->
