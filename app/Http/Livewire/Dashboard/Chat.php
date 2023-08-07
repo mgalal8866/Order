@@ -12,26 +12,21 @@ use App\Http\Resources\chat\ChatResource;
 class Chat extends Component
 {
     public $messages=[],$conversions_id =null,$text ;
-    public function getListeners()
-    {
+    // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
 
-        return [
-            "echo:chat.{$this->conversions_id},message" => 'appendContent'
-        ];
-    }
-    public function appendContent($event){
-        dd($event);
-        array_push($this->messages, $event->message);
 
-    }
 
+
+
+  
 
     public function sentmessage(){
 
         $messages = message::create(['conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
          $msg = new ChatResource($messages);
-         $this->text ='';
          event(new MessageSent($msg));
+        //  dd($this->conversions_id);
+         $this->text ='';
 
     }
     public function loadmessage($id){

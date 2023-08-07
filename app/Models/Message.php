@@ -14,6 +14,10 @@ class Message extends Model
     {
         return $this->belongsto(User::class, 'client_id');
     }
+    public function admin()
+    {
+        return $this->belongsto(UserAdmin::class, 'admin_id');
+    }
     public function conversion()
     {
         return $this->belongsto(conversion::class, 'conversions_id');

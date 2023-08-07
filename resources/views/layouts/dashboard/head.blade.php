@@ -61,7 +61,9 @@
     @livewireStyles
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
     @stack('csslive')
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js" integrity="sha512-fTsYx0MbHyjq1vtD1hkb8pg/t06gIUsxiZc1THqiClKqd7bBKitKw/39mrL3bsOfIAi72vIa3BJngjLZXTYxBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
+    {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script> --}}
     <style>
         .navigation .navigation-header ,.navigation ,.header-navbar,body {
             font-family: 'Cairo', 'sans-serif' !important;
