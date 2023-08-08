@@ -149,7 +149,7 @@ Route::middleware('tenant')->group(function () {
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         // Route::get('product', CreateProduct::class)->name('product');
 
-        Route::get('/chat', Chat::class);
+        Route::get('/chat', Chat::class)->name('chat');
         Route::get('users', Users::class)->name('viewusers');
         Route::get('categorys', ViewCategory::class)->name('categorys');
         Route::get('category/edit/{id}', EditCategory::class)->name('category');

@@ -40,6 +40,10 @@
                         data-feather="home"></i><span
                         class="menu-title text-truncate">{{ __('tran.notifiction') }}</span></a>
             </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('chat') }}"><i
+                        data-feather="home"></i><span
+                        class="menu-title text-truncate">المحادثة</span></a>
+            </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{ __('tran.customers') }}</span>
                     {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}

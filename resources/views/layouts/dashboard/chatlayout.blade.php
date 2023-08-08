@@ -22,13 +22,14 @@
             @isset($slot)
                 {{ $slot }}
             @endisset
-         
+
     </div>
     <div class="sidenav-overlay"></div>
     <div class="drag-target"></div>
 
     @include('layouts.dashboard.footer')
     @include('layouts.dashboard.script')
+    <script src="{{ asset('app-assets/js/scripts/pages/app-chat.js') }}"></script>
 </body>
 
 

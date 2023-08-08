@@ -11,7 +11,7 @@ use App\Http\Resources\chat\ChatResource;
 
 class Chat extends Component
 {
-    public $messages=[],$conversions_id =null,$text ;
+    public $messagesold=[], $messages=[],$conversions_id =null,$text ;
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function sentmessage(){
         $messages = message::create(['conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
@@ -21,6 +21,10 @@ class Chat extends Component
     }
     public function loadmessage($id){
         $this->conversions_id =$id;
+        // dd($this->conversions_id);
+
+        // $this->messagesold = Message::where('conversions_id',$id)->get()->toarray()??[];
+
     }
     public function render()
     {
