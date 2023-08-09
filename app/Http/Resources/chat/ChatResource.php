@@ -21,7 +21,7 @@ class ChatResource extends JsonResource
             "message"               => $this->message ?? '',
             "seen"                  => $this->seen,
             "sendername"            => $this->user->client_name ?? 'admin -'. $this->admin->username,
-            "datetime"              => Carbon::parse($this->invoicedate)->translatedFormat('H:i / l j F Y') ?? '',Carbon::parse($this->invoicedate)->translatedFormat('H:i / l j F Y')  ?? '',
+            "datetime"              => Carbon::parse($this->invoicedate)->translatedFormat('H:i / l j F Y') ?? '',
         ];
     }
 }
