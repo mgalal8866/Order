@@ -14,7 +14,7 @@ class Messages extends Component
     {
 
         $this->getid = $id;
-        $this->messageso = Message::where('conversions_id',$id)->get();
+        $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
     }
 
     public function getListeners()
@@ -26,8 +26,8 @@ class Messages extends Component
         ];
     }
     public function appendContent($event){
-     dd($event['message']['message']);
-        array_push($this->messageso, $event['message']['message']);
+    // dd($event['message']['message']);
+        array_push($this->messageso, $event['message']);
 
     }
 
