@@ -1,7 +1,7 @@
 <div>
 
         @foreach ($messageso as $msg)
-            @if (Auth::guard('admin')->user()->id == $msg->admin_id)
+            @if (Auth::guard('admin')->user()->id == $msg['admin_id'])
             <div class="chat chat-left">
                 <div class="chat-avatar">
                     <span class="avatar box-shadow-1 cursor-pointer">
@@ -11,7 +11,7 @@
                 </div>
                 <div class="chat-body">
                     <div class="chat-content">
-                        <p>ME : {{  $msg->message }}</p>
+                        <p>ME : {{  $msg['message'] }}</p>
 
                     </div>
                 </div>
@@ -27,7 +27,9 @@
                 </div>
                 <div class="chat-body">
                     <div class="chat-content">
-                        <p> {{ $msg->user->client_name . ' : ' . $msg->message }}</p>
+                        <p> {{  $msg['message'] }}</p>
+                    {{--<p> {{ $msg->user->client_name . ' : ' . $msg['message'] }}</p>--}}
+                  
                     </div>
                 </div>
             </div>
