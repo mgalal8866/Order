@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('supplier_grups', function (Blueprint $table) {
             $table->increments('SupplierGrup_id');
-            $table->string('SupplierGrup_name', 50)->nullable();
+            $table->string('SupplierGrup_name')->nullable();
             $table->text('Grup_note')->nullable();
             $table->integer('user_id')->nullable();
             $table->boolean('Grup_Active')->nullable();
-            $table->primary('SupplierGrup_id')->nullable();
             $table->timestamps();
         });
     }
