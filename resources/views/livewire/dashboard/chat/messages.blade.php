@@ -1,7 +1,7 @@
 <div>
 
         @foreach ($messageso as $msg)
-            @if (Auth::guard('admin')->user()->id == $msg['admin_idsite'])
+            @if (Auth::guard('admin')->user()->id == $msg['admin_id'])
             <div class="chat chat-left">
                 <div class="chat-avatar">
                     <span class="avatar box-shadow-1 cursor-pointer">
