@@ -137,8 +137,8 @@
                     <h4 class="chat-list-title">Chats</h4>
                     <ul  class="chat-users-list chat-list media-list">
                         @forelse($cc as $i)
-                            <li @if ($conversions_id == $i->id) class="active" @endif>
-                                <div class="chat-info" wire:click.prevent="loadmessage({{ $i->id }},{{ $i->user->client_name}})">
+                            <li @if ($conversions_id == $i->id) class="active" @endif wire:click.prevent="loadmessage({{ $i->id }},'{{ $i->user->client_name}}')">
+                                <div class="chat-info"   >
                                     <h5 class="mb-0">{{ $i->user->client_name }} </h5>
                                 </div>
                             </li>
@@ -185,11 +185,11 @@
                                         <div class="sidebar-toggle d-block d-lg-none me-1">
                                             <i data-feather="menu" class="font-medium-5"></i>
                                         </div>
-                                        {{-- <div class="avatar avatar-border user-profile-toggle m-0 me-1">
-                                            <img src="../../../app-assets/images/portrait/small/avatar-s-7.jpg"
+                                        <div class="avatar avatar-border user-profile-toggle m-0 me-1">
+                                            <img src="{{ Avatar::create($nameuser)->setFontFamily('Cairo')->toBase64() }}"
                                                 alt="avatar" height="36" width="36" />
                                             <span class="avatar-status-busy"></span>
-                                        </div> --}}
+                                        </div>
                                         <h6 class="mb-0">{{$nameuser ?? '' }}</h6>
                                     </div>
                                     <div class="d-flex align-items-center">
@@ -228,19 +228,19 @@
                                 </div>
                             </div>
                             @if ($conversions_id != null)
-                                <form class="chat-app-form">
+                                <div class="chat-app-form"  >
                                     <div class="input-group input-group-merge me-1 form-send-message">
                                         <span class="speech-to-text input-group-text"><i data-feather="mic"
                                                 class="cursor-pointer"></i></span>
-                                        <input wire:model='text' type="text" class="form-control message"
+                                        <input wire:keydown.enter="sentmessage" wire:model='text' type="text" class="form-control message"
                                             placeholder="Type your message or use speech to text" />
 
                                     </div>
-                                    <button type="button" class="btn btn-primary " wire:click.prevent="sentmessage">
+                                    {{-- <button type="button" class="btn btn-primary " wire:click.prevent="sentmessage">
                                         <i data-feather="send" class="d-lg-none"></i>
                                         <span class="d-none d-lg-block">ارسال </span>
-                                    </button>
-                                </form>
+                                    </button> --}}
+                                </div>
                             @endif
                         </div>
                     {{-- @endif --}}

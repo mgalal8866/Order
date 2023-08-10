@@ -7,10 +7,14 @@ use Livewire\Component;
 
 class Messages extends Component
 {
+
     public $messageso=[],$getid ;
 
-    // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function mount($id)
+    {
+        $this->getid = $id;
+    }
+    public function getmessagesold($id)
     {
         $this->getid = $id;
         $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
@@ -20,18 +24,19 @@ class Messages extends Component
     {
 
         return [
-            "echo:chat.{$this->getid},.message" => 'appendContent'
+            "echo:chat.{$this->getid},.message" => 'appendContent',
+            'getmessagesold' => 'getmessagesold'
 
         ];
     }
     public function appendContent($event){
     // dd($event['message']['message']);
-        array_push($this->messageso, $event['message']);
+    array_push($this->messageso, $event['message']);
 
-    }
+}
 
-    public function render()
-    {
-        return view('livewire.dashboard.chat.messages');
-    }
+public function render()
+{
+   return view('livewire.dashboard.chat.messages');
+}
 }

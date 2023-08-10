@@ -44,7 +44,7 @@ return [
     'uppercase' => false,
 
     // Right to Left (RTL)
-    'rtl' => true,
+    'rtl' => false,
 
     // Fonts used to render text.
     // If contains more than one fonts, randomly selected based on name supplied

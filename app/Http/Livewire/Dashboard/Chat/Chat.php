@@ -22,14 +22,11 @@ class Chat extends Component
     public function loadmessage($id,$name){
         $this->conversions_id = $id;
          $this->nameuser = $name;
-        // dd($this->conversions_id);
-
-        // $this->messagesold = Message::where('conversions_id',$id)->get()->toarray()??[];
-
+         $this->emit('getmessagesold', $id);
     }
     public function render()
     {
         $this->cc = conversion::get();
-        return view('livewire.dashboard.chat.chat',compact(['cc']))->layout('layouts.dashboard.chatlayout');
+        return view('livewire.dashboard.chat.chat')->layout('layouts.dashboard.chatlayout');
     }
 }
