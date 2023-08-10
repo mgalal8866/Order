@@ -18,7 +18,7 @@ class Messages extends Component
     {
         $this->getid = $id;
         $this->name = $name;
-        
+
         $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
     }
 
@@ -33,6 +33,7 @@ class Messages extends Component
     }
     public function appendContent($event){
     // dd($event['message']['message']);
+    dd($event['message']);
     array_push($this->messageso, $event['message']);
 
 }

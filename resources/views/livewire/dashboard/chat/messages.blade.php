@@ -12,9 +12,7 @@
                 <div class="chat-body">
                     <div class="chat-content">
                         <p>{{  $msg['message'] }}</p>
-                        <p> {{Carbon::parse($msg['created_at']??$msg['datetime'])->translatedFormat('H:i / l j F Y') }}  </p>
-
-
+                        <p> <font size="-3">{{Carbon::parse($msg['created_at'])->translatedFormat('H:i A / m-d-Y') }} </font></p>
                     </div>
                 </div>
             </div>
@@ -30,8 +28,7 @@
                 <div class="chat-body">
                     <div class="chat-content">
                         <p> {{  $msg['message'] }}</p>
-                        <p>  {{Carbon::parse($msg['created_at']??$msg['datetime'])->translatedFormat('H:i / l j F Y') }} </p>
-
+                       <p> <font size="-3">{{Carbon::parse($msg['created_at'])->translatedFormat('H:i A / m-d-Y') }} </font></p>
                     {{--<p> {{ $msg->user->client_name . ' : ' . $msg['message'] }}</p>--}}
 
                     </div>
