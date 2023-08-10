@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Employee;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Spatie\Permission\Traits\HasRoles;
 
 class UserAdmin  extends Authenticatable
 {
@@ -18,6 +19,6 @@ class UserAdmin  extends Authenticatable
     }
     public function employee()
     {
-        return $this->belongsto(employee::class,'emp_id');
+        return $this->belongsto(Employee::class,'emp_id');
     }
 }
