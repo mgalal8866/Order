@@ -33,7 +33,7 @@ class Messages extends Component
     }
     public function appendContent($event){
     // dd($event['message']['message']);
-    dd($event['message']);
+    // dd($event['message']);
     array_push($this->messageso, $event['message']);
 
 }
