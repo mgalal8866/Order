@@ -117,7 +117,7 @@
                     <div class="d-flex align-items-center w-100">
                         <div class="sidebar-profile-toggle">
                             <div class="avatar avatar-border">
-                                <img src="{{ Avatar::create( Auth::guard('admin')->user()->employee->name)->setFontFamily('Cairo')->toBase64() }}" alt="user_avatar" height="42" width="42" />
+                                <img src="{{ Avatar::create( Auth::guard('admin')->user()->employee->name??'')->setFontFamily('Cairo')->toBase64() }}" alt="user_avatar" height="42" width="42" />
                                 <span class="avatar-status-online"></span>
                             </div>
                         </div>

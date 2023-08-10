@@ -5,7 +5,7 @@
             <div class="chat chat-left">
                 <div class="chat-avatar">
                     <span class="avatar box-shadow-1 cursor-pointer">
-                        <img src="{{ Avatar::create( Auth::guard('admin')->user()->employee->name)->setFontFamily('Cairo')->toBase64() }}" alt="avatar"
+                        <img src="{{ Avatar::create( Auth::guard('admin')->user()->employee->name??'')->setFontFamily('Cairo')->toBase64() }}" alt="avatar"
                             height="36" width="36" />
                     </span>
                 </div>
