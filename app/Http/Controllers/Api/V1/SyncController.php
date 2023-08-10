@@ -706,7 +706,7 @@ class SyncController extends Controller
                     'user_id'  => $item['user_id'],
                     'store_active'    => $item['Store_Active'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode(  $uu ), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -752,7 +752,7 @@ class SyncController extends Controller
                     'user_id_End'  => $item['user_id_End'],
                     'Total_hour'  => $item['Total_hour'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -766,7 +766,7 @@ class SyncController extends Controller
         Log::info('upload_banks', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                  Stock::updateOrCreate(['id' => $item['banks_id']], [
+                $uu = Stock::updateOrCreate(['id' => $item['banks_id']], [
                     'id'            => $item['banks_id'],
                     'banks_name'    => $item['banks_name'],
                     'banksNamper'   => $item['banksNamper'],
@@ -777,7 +777,7 @@ class SyncController extends Controller
                     'banks_Acteve'  => $item['banks_Acteve'],
                     'user_id'       => $item['user_id'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -803,7 +803,7 @@ class SyncController extends Controller
                     'UserId'  => $item['UserId'],
                     'StoreId'  => $item['StoreId'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -826,7 +826,7 @@ class SyncController extends Controller
                     'emp_note'    => $item['emp_note'],
                     'user_id'     => $item['user_id'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode(  $uu ), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
