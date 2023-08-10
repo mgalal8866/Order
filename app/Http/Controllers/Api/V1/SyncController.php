@@ -599,10 +599,10 @@ class SyncController extends Controller
         Log::info('upload_jobs', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   jobs::updateOrCreate(['id' => $item['jobs_id']], [
+                $uu =   jobs::updateOrCreate(['jobs_id' => $item['jobs_id']], [
                     'jobs_id'      => $item['jobs_id'],
                     'jobs_name'    => $item['jobs_name'],
-                    'jobs_Active'  => $item['jobs_Active'],
+                    'jobs_Active'  => $item['jobs_Active'] ==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
