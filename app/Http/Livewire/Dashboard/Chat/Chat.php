@@ -15,7 +15,7 @@ class Chat extends Component
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function sentmessage(){
         $messages = message::create(['seenmsg' =>  0, 'conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
-       
+
         $msg = new ChatResource($messages);
          event(new MessageSent($msg));
          $this->text ='';
@@ -24,6 +24,7 @@ class Chat extends Component
         $this->conversions_id = $id;
          $this->nameuser = $name;
          $this->emit('getmessagesold', $id,$name);
+         $this->dispatchBrowserEvent('scroll');
     }
     public function render()
     {

@@ -1,5 +1,6 @@
 <div>
 
+  
         @foreach ($messageso as $msg)
             @if (Auth::guard('admin')->user()->id == $msg['admin_id'])
             <div class="chat chat-left">

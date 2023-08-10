@@ -8,38 +8,34 @@ use Livewire\Component;
 class Messages extends Component
 {
 
-    public $messageso=[],$getid,$name ;
+    public $messageso = [], $getid, $name;
 
     public function mount($id)
     {
         $this->getid = $id;
     }
-    public function getmessagesold($id,$name)
+    public function getmessagesold($id, $name)
     {
         $this->getid = $id;
         $this->name = $name;
-
-        $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
+        $this->messageso = Message::where('conversions_id', $id)->get()->toarray() ?? [];
     }
 
     public function getListeners()
     {
-
         return [
             "echo:chat.{$this->getid},.message" => 'appendContent',
             'getmessagesold' => 'getmessagesold'
-
         ];
     }
-    public function appendContent($event){
-    // dd($event['message']['message']);
-    // dd($event['message']);
-    array_push($this->messageso, $event['message']);
+    public function appendContent($event)
+    {
+        $this->dispatchBrowserEvent('scroll');
+        array_push($this->messageso, $event['message']);
+    }
 
-}
-
-public function render()
-{
-   return view('livewire.dashboard.chat.messages');
-}
+    public function render()
+    {
+        return view('livewire.dashboard.chat.messages');
+    }
 }

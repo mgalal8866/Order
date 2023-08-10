@@ -326,4 +326,12 @@
     </div>
 </div>
 @push('jslive')
+<script>
+    window.addEventListener('scroll', event => {
+        userChats = $('.user-chats');
+    userChats.animate({ scrollTop: userChats[0].scrollHeight }, 400);
+    })
+    </script>
+
+
 @endpush
