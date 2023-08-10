@@ -117,7 +117,7 @@
                     <div class="d-flex align-items-center w-100">
                         <div class="sidebar-profile-toggle">
                             <div class="avatar avatar-border">
-                                <img src="" alt="user_avatar" height="42" width="42" />
+                                <img src="{{ Avatar::create( Auth::guard('admin')->user()->employee->name)->setFontFamily('Cairo')->toBase64() }}" alt="user_avatar" height="42" width="42" />
                                 <span class="avatar-status-online"></span>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                                         <span class="speech-to-text input-group-text"><i data-feather="mic"
                                                 class="cursor-pointer"></i></span>
                                         <input wire:keydown.enter="sentmessage" wire:model='text' type="text" class="form-control message"
-                                            placeholder="Type your message or use speech to text" />
+                                            placeholder=" اكتب رسالتك .... واضغط Enter" />
 
                                     </div>
                                     {{-- <button type="button" class="btn btn-primary " wire:click.prevent="sentmessage">

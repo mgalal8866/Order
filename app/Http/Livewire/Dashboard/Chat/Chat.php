@@ -22,7 +22,7 @@ class Chat extends Component
     public function loadmessage($id,$name){
         $this->conversions_id = $id;
          $this->nameuser = $name;
-         $this->emit('getmessagesold', $id);
+         $this->emit('getmessagesold', $id,$name);
     }
     public function render()
     {

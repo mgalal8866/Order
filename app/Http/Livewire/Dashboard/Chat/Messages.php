@@ -8,15 +8,17 @@ use Livewire\Component;
 class Messages extends Component
 {
 
-    public $messageso=[],$getid ;
+    public $messageso=[],$getid,$name ;
 
     public function mount($id)
     {
         $this->getid = $id;
     }
-    public function getmessagesold($id)
+    public function getmessagesold($id,$name)
     {
         $this->getid = $id;
+        $this->name = $name;
+        
         $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
     }
 
