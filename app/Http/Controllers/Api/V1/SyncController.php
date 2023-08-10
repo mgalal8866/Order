@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use App\Models\jobs;
 use App\Models\unit;
 use App\Models\User;
+use App\Models\banks;
 use App\Models\Stock;
 use App\Models\Store;
 use App\Models\Coupon;
@@ -766,7 +767,7 @@ class SyncController extends Controller
         Log::info('upload_banks', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Stock::updateOrCreate(['id' => $item['banks_id']], [
+                $uu = banks::updateOrCreate(['id' => $item['banks_id']], [
                     'id'            => $item['banks_id'],
                     'banks_name'    => $item['banks_name'],
                     'banksNamper'   => $item['banksNamper'],
