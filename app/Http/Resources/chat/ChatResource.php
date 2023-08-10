@@ -15,7 +15,7 @@ class ChatResource extends JsonResource
 
         return [
             "conversions_id"        => $this->conversions_id,
-            "client_id"             => $this->client_id ??  '',
+            "client_id"             => $this->client_id ?? null,
             "message_id"            => $this->id,
             "admin_id"              => $this->admin_id??'',
             "message"               => $this->message ?? '',
