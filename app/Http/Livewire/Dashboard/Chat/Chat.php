@@ -14,8 +14,9 @@ class Chat extends Component
     public $messagesold=[], $messages=[],$conversions_id =null,$text ,$nameuser,$cc ;
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function sentmessage(){
-        $messages = message::create(['conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
-         $msg = new ChatResource($messages);
+        $messages = message::create(['seenmsg' =>  0, 'conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
+       
+        $msg = new ChatResource($messages);
          event(new MessageSent($msg));
          $this->text ='';
     }
