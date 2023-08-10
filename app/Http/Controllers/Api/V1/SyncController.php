@@ -604,12 +604,12 @@ class SyncController extends Controller
                     'jobs_name'    => $item['jobs_name'],
                     'jobs_Active'  => $item['jobs_Active'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
             return Resp('', 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => $uu,  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => $item,  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
