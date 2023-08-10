@@ -739,7 +739,7 @@ class SyncController extends Controller
     }
     function upload_Attendance(Request $request)
     {
-        Log::info('upload_stock', ['0' => $request->all()]);
+        Log::info('upload_Attendance', ['0' => $request->all()]);
 
         try {
             foreach ($request->all() as $index => $item) {
