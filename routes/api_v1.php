@@ -132,6 +132,16 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
     Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
+     // new table
+
+    Route::post('/upload/supplier/grups',[SyncController::class, 'upload_supplier_grups']);
+    Route::post('/upload/second/offers',[SyncController::class, 'upload_second_offers']);
+    Route::post('/upload/suppliers',[SyncController::class, 'upload_suppliers']);
+    Route::post('/upload/purchase/headers',[SyncController::class, 'upload_purchase_headers']);
+    Route::post('/upload/purchase/details',[SyncController::class, 'upload_purchase_details']);
+    Route::post('/upload/movement/stock_details',[SyncController::class, 'upload_movement_stock_details']);
+    Route::post('/upload/movement/stocks',[SyncController::class, 'upload_movement_stocks']);
+    Route::post('/upload/supplier/payments',[SyncController::class, 'upload_supplier_payments']);
 
 });
 #################   End  SYNC   #############

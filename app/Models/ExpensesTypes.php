@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Erolment_Emp extends Model
+class ExpensesTypes extends Model
 {
     use HasFactory;
     protected $guarded = [];

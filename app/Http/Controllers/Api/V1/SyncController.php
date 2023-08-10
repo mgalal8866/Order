@@ -21,9 +21,7 @@ use App\Models\deferred;
 use App\Models\Employee;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
-use App\Models\notifiction;
 use App\Models\SalesHeader;
-use Illuminate\Support\Str;
 use App\Models\SalesDetails;
 use App\Models\UserDelivery;
 use Illuminate\Http\Request;
@@ -31,14 +29,18 @@ use App\Models\ProductHeader;
 use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
 use App\Models\DeliveryDetails;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CommentResource;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Http\Resources\UserDelivery as ResourcesUserDelivery;
+use App\Models\MovementStock;
+use App\Models\MovementStockDetails;
+use App\Models\PurchaseDetails;
+use App\Models\PurchaseHeader;
+use App\Models\SecondOffer;
+use App\Models\Supplier_Grup;
+use App\Models\SupplierPayments;
 
 class SyncController extends Controller
 {
@@ -429,7 +431,7 @@ class SyncController extends Controller
         $data = DeliveryHeader::where('lastsyncdate', null)->with('salesdetails')->get();
         DeliveryHeader::query()->where('lastsyncdate', null)->update(['lastsyncdate' => carbon::now()]);
         // return    Resp( $data, 'success', 200, true);
-        return    Resp(DeliveryHeaderResource::collection( $data), 'success', 200, true);
+        return    Resp(DeliveryHeaderResource::collection($data), 'success', 200, true);
     }
     function downdeliverydetails(Request $request)
     {
@@ -445,10 +447,10 @@ class SyncController extends Controller
     function sendnotification(Request $request)
     {
         $dd = json_decode($request[0], true);
-        Log::info('notification',$dd);
+        Log::info('notification', $dd);
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
-        Log::error( $image);
-        $result = notificationFCM($dd['title'], $dd['body'], $dd['users'],null,'https://elshrouk.order-bay.com/asset/images/notification/'.$image);
+        Log::error($image);
+        $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, 'https://elshrouk.order-bay.com/asset/images/notification/' . $image);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
     }
@@ -604,9 +606,9 @@ class SyncController extends Controller
                 $uu =   jobs::updateOrCreate(['jobs_id' => $item['jobs_id']], [
                     'jobs_id'      => $item['jobs_id'],
                     'jobs_name'    => $item['jobs_name'],
-                    'jobs_Active'  => $item['jobs_Active'] ==true?1:0,
+                    'jobs_Active'  => $item['jobs_Active'] == true ? 1 : 0,
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode( $uu), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp('', 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -708,7 +710,7 @@ class SyncController extends Controller
                     'user_id'  => $item['user_id'],
                     'store_active'    => $item['Store_Active'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode(  $uu ), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
@@ -828,7 +830,230 @@ class SyncController extends Controller
                     'emp_note'    => $item['emp_note'],
                     'user_id'     => $item['user_id'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode(  $uu ), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    // ######################NEW###################
+    // ######################NEW###################
+    // ######################NEW###################
+    function upload_supplier_grups(Request $request)
+    {
+        Log::info('upload_supplier_grups', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Supplier_Grup::updateOrCreate(['SupplierGrup_id' => $item['SupplierGrup_id']], [
+                    'SupplierGrup_id'  => $item['SupplierGrup_id'],
+                    'SupplierGrup_name' => $item['SupplierGrup_name'],
+                    'Grup_note'        => $item['Grup_note'],
+                    'user_id'          => $item['user_id'],
+                    'Grup_Active'      => $item['Grup_Active'],
+                    'SupplierGrup_id'  => $item['SupplierGrup_id'],
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_second_offers(Request $request)
+    {
+        Log::info('upload_second_offers', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = SecondOffer::updateOrCreate(['id'          => $item['id']], [
+                    'id'                => $item['id'],
+                    'product_details_id' => $item['product_details_id'],
+                    'pieces_number'     => $item['pieces_number'],
+                    'discount'          => $item['discount'],
+                    'from_date'         => $item['from_date'],
+                    'to_date'           => $item['to_date'],
+                    'price_before'      => $item['price_before'],
+                    'price_after'       => $item['price_after'],
+                    'user_id'           => $item['user_id'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_suppliers(Request $request)
+    {
+        Log::info('upload_suppliers', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = SecondOffer::updateOrCreate(['Supplier_id' => $item['Supplier_id']], [
+                    'Supplier_id'      => $item['Supplier_id'],
+                    'Supplier_name'    => $item['Supplier_name'],
+                    'Supplier_code'    => $item['Supplier_code'],
+                    'Supplier_Balance' => $item['Supplier_Balance'],
+                    'Supplier_fhone'   => $item['Supplier_fhone'],
+                    'Grup_id'          => $item['Grup_id'],
+                    'Region_id'        => $item['Region_id'],
+                    'Supplier_state'   => $item['Supplier_state'],
+                    'Supervisor_name'  => $item['Supervisor_name'],
+                    'Supervisor_fhone' => $item['Supervisor_fhone'],
+                    'agent_name'       => $item['agent_name'],
+                    'agent_fhone'      => $item['agent_fhone'],
+                    'Supplier_note'    => $item['Supplier_note'],
+                    'user_id'          => $item['user_id'],
+                    'Supplier_Active'  => $item['Supplier_Active'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_purchase_headers(Request $request)
+    {
+        Log::info('upload_purchase_headers', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
+                    'PurchaseH_id'           => $item['PurchaseH_id'],
+                    'invoice_Number'         => $item['invoice_Number'],
+                    'InvoiceType'            => $item['InvoiceType'],
+                    'Company_invoice_number' => $item['Company_invoice_number'],
+                    'Suppliers_id'           => $item['Suppliers_id'],
+                    'Store_id'               => $item['Store_id'],
+                    'Safe_id'                => $item['Safe_id'],
+                    'Name_Emp'               => $item['Name_Emp'],
+                    'image_invoice'          => $item['image_invoice'],
+                    'note'                   => $item['note'],
+                    'uoser_id'               => $item['uoser_id'],
+                    'Sup_total'              => $item['Sup_total'],
+                    'Total_Discount'          => $item['Total_Discount'],
+                    'Suppliers_Last_balance'  => $item['Suppliers_Last_balance'],
+                    'Grand_Total'             => $item['Grand_Total'],
+                    'Paid'                    => $item['Paid'],
+                    'Remaining'               => $item['Remaining'],
+                    'Suppliers_Final_balance' => $item['Suppliers_Final_balance'],
+                    'tax'                     => $item['tax'],
+                    'noCare'                  => $item['noCare'],
+
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_purchase_details(Request $request)
+    {
+        Log::info('upload_purchase_details', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = PurchaseDetails::updateOrCreate(['PurchaseD_id' => $item['PurchaseD_id']], [
+                    'PurchaseD_id'       => $item['PurchaseD_id'],
+                    'Purchase_H_id'      => $item['Purchase_H_id'],
+                    'Product_Details_Id' => $item['Product_Details_Id'],
+                    'ExpireDate'         => $item['ExpireDate'],
+                    'BuyPrice'           => $item['BuyPrice'],
+                    'SellPrice'          => $item['SellPrice'],
+                    'Quantity'           => $item['Quantity'],
+                    'SubTotal'           => $item['SubTotal'],
+                    'Discount'           => $item['Discount'],
+                    'GrandTotal'         => $item['GrandTotal'],
+                    'IsReturn'           => $item['IsReturn'],
+
+
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_movement_stock_details(Request $request)
+    {
+        Log::info('upload_movement_stock_details', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = MovementStockDetails::updateOrCreate(['Id' => $item['Id']], [
+                    'Id'               => $item['Id'],
+                    'MovementStockId'  => $item['MovementStockId'],
+                    'ProductDetailsId' => $item['ProductDetailsId'],
+                    'Quantity'         => $item['Quantity'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_movement_stocks(Request $request)
+    {
+        Log::info('upload_movement_stocks', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = MovementStock::updateOrCreate(['Move_Id' => $item['Move_Id']], [
+                    'Move_Id'        => $item['Move_Id'],
+                    'FromStore'      => $item['FromStore'],
+                    'ToStore'        => $item['ToStore'],
+                    'MoveDate'       => $item['MoveDate'],
+                    'UserId'         => $item['UserId'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_supplier_payments(Request $request)
+    {
+        Log::info('upload_supplier_payments', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = SupplierPayments::updateOrCreate(['PaymentsSup_id' => $item['PaymentsSup_id']], [
+                    'PaymentsSup_id'  => $item['PaymentsSup_id'],
+                    'SupplierPay_Id'  => $item['SupplierPay_Id'],
+                    'FromeAmount'     => $item['FromeAmount'],
+                    'PaidAmount'      => $item['PaidAmount'],
+                    'NewAmount'       => $item['NewAmount'],
+                    'Pay_note'        => $item['Pay_note'],
+                    'Payment_method'  => $item['Payment_method'],
+                    'user_id'         => $item['user_id'],
+                    'safe_id'         => $item['safe_id'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
