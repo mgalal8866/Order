@@ -621,7 +621,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
 
                 $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
-                $uu =   setting::find(1)->first();
+                $uu    =   setting::find(1)->first();
                 deleteimage('logos', $uu->logo_shop);
                 $uu->update([
                     'name_shop'         => $item['Name_Shope'],
