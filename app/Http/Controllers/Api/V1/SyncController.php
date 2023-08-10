@@ -604,7 +604,7 @@ class SyncController extends Controller
                     'jobs_name'    => $item['jobs_name'],
                     'jobs_Active'  => $item['jobs_Active'] ==true?1:0,
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                logsync::create(['type' => 'success', 'data' => json_encode( $uu), 'massage' => null]);
             }
             return Resp('', 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
