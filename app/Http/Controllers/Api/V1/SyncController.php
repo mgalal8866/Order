@@ -11,6 +11,7 @@ use App\Models\banks;
 use App\Models\Stock;
 use App\Models\Store;
 use App\Models\Coupon;
+use App\Models\Damage;
 use App\Models\slider;
 use App\Models\comment;
 use App\Models\logsync;
@@ -793,7 +794,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Stock::updateOrCreate(['id' => $item['DamageId']], [
+                $uu = Damage::updateOrCreate(['id' => $item['DamageId']], [
                     'id'          => $item['DamageId'],
                     'ProductDetailsId'    => $item['ProductDetailsId'],
                     'DamageQuantity'  => $item['DamageQuantity'],
