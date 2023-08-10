@@ -11,7 +11,7 @@ use App\Http\Resources\chat\ChatResource;
 
 class Chat extends Component
 {
-    public $messagesold=[], $messages=[],$conversions_id =null,$text ;
+    public $messagesold=[], $messages=[],$conversions_id =null,$text ,$nameuser,$cc ;
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function sentmessage(){
         $messages = message::create(['conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
@@ -19,8 +19,9 @@ class Chat extends Component
          event(new MessageSent($msg));
          $this->text ='';
     }
-    public function loadmessage($id){
-        $this->conversions_id =$id;
+    public function loadmessage($id,$name){
+        $this->conversions_id = $id;
+         $this->nameuser = $name;
         // dd($this->conversions_id);
 
         // $this->messagesold = Message::where('conversions_id',$id)->get()->toarray()??[];
@@ -28,7 +29,7 @@ class Chat extends Component
     }
     public function render()
     {
-        $cc = conversion::get();
+        $this->cc = conversion::get();
         return view('livewire.dashboard.chat.chat',compact(['cc']))->layout('layouts.dashboard.chatlayout');
     }
 }

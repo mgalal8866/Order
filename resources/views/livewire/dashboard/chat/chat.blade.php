@@ -137,8 +137,8 @@
                     <h4 class="chat-list-title">Chats</h4>
                     <ul  class="chat-users-list chat-list media-list">
                         @forelse($cc as $i)
-                            <li @if ($conversions_id !=null) class="active" @endif>
-                                <div class="chat-info" wire:click.prevent="loadmessage({{ $i->id }})">
+                            <li @if ($conversions_id == $i->id) class="active" @endif>
+                                <div class="chat-info" wire:click.prevent="loadmessage({{ $i->id }},{{ $i->user->client_name}})">
                                     <h5 class="mb-0">{{ $i->user->client_name }} </h5>
                                 </div>
                             </li>
@@ -190,7 +190,7 @@
                                                 alt="avatar" height="36" width="36" />
                                             <span class="avatar-status-busy"></span>
                                         </div> --}}
-                                        <h6 class="mb-0">{{ $cc[0]->user->client_name ?? '' }}</h6>
+                                        <h6 class="mb-0">{{$nameuser ?? '' }}</h6>
                                     </div>
                                     <div class="d-flex align-items-center">
                                         <i data-feather="phone-call"

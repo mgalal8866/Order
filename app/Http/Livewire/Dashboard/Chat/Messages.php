@@ -12,7 +12,6 @@ class Messages extends Component
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function mount($id)
     {
-
         $this->getid = $id;
         $this->messageso = Message::where('conversions_id',$id)->get()->toarray()??[];
     }
