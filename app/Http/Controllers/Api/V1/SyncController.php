@@ -856,7 +856,7 @@ class SyncController extends Controller
                     'SupplierGrup_name' => $item['SupplierGrup_name'],
                     'Grup_note'        => $item['Grup_note'],
                     'user_id'          => $item['user_id'],
-                    'Grup_Active'      => $item['Grup_Active'],
+                    'Grup_Active'      => $item['Grup_Active']==true?1:0,
                     'SupplierGrup_id'  => $item['SupplierGrup_id'],
 
                 ]);
