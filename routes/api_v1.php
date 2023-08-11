@@ -132,6 +132,8 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
     Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
+
+    //new
     Route::post('/upload/supplier/grups',[SyncController::class, 'upload_supplier_grups']);
     Route::post('/upload/second/offers',[SyncController::class, 'upload_second_offers']);
     Route::post('/upload/suppliers',[SyncController::class, 'upload_suppliers']);
@@ -140,7 +142,19 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/movement/stock_details',[SyncController::class, 'upload_movement_stock_details']);
     Route::post('/upload/movement/stocks',[SyncController::class, 'upload_movement_stocks']);
     Route::post('/upload/supplier/payments',[SyncController::class, 'upload_supplier_payments']);
-
+    Route::post('/upload/stock/settlements',[SyncController::class, 'upload_stock_settlements']);
+    Route::post('/upload/settlements',[SyncController::class, 'upload_settlements']);
+    Route::post('/upload/shift',[SyncController::class, 'upload_shift']);
+    Route::post('/upload/product/moves',[SyncController::class, 'upload_product_moves']);
+    Route::post('/upload/permission/screnes',[SyncController::class, 'upload_permission_screnes']);
+    Route::post('/upload/partners',[SyncController::class, 'upload_partners']);
+    Route::post('/upload/movement/balances',[SyncController::class, 'upload_movement_balances']);
+    Route::post('/upload/move/partners',[SyncController::class, 'upload_move_partners']);
+    Route::post('/upload/income/types',[SyncController::class, 'upload_income_types']);
+    Route::post('/upload/expenses/types',[SyncController::class, 'upload_expenses_types']);
+    Route::post('/upload/expenses',[SyncController::class, 'upload_expenses']);
+    Route::post('/upload/movement/bank',[SyncController::class, 'upload_movement_bank']);
+    Route::post('/upload/pricing',[SyncController::class, 'upload_pricing']);
 });
 #################   End  SYNC   #############
 

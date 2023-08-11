@@ -3,47 +3,63 @@
 namespace App\Http\Controllers\Api\V1;
 
 use Exception;
+use permission;
 use Carbon\Carbon;
 use App\Models\jobs;
 use App\Models\unit;
 use App\Models\User;
 use App\Models\banks;
+use App\Models\Shift;
 use App\Models\Stock;
 use App\Models\Store;
 use App\Models\Coupon;
 use App\Models\Damage;
+use App\Models\income;
 use App\Models\slider;
 use App\Models\comment;
 use App\Models\logsync;
+use App\Models\pricing;
 use App\Models\setting;
 use App\Models\Category;
 use App\Models\deferred;
 use App\Models\Employee;
+use App\Models\Expenses;
+use App\Models\Partners;
+use App\Models\Supplier;
+use App\Models\Offer_Bay;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
 use App\Models\Statements;
+use App\Models\incomeTypes;
 use App\Models\SalesHeader;
 use App\Models\SecondOffer;
+use App\Models\MovementBank;
 use App\Models\SalesDetails;
 use App\Models\UserDelivery;
 use Illuminate\Http\Request;
+use App\Models\ExpensesTypes;
+use App\Models\Move_Partners;
 use App\Models\MovementStock;
+use App\Models\product_moves;
 use App\Models\ProductHeader;
 use App\Models\Supplier_Grup;
 use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
 use App\Models\PurchaseHeader;
 use App\Models\DeliveryDetails;
+use App\Models\MovementBalance;
 use App\Models\PurchaseDetails;
 use App\Models\StockSettlement;
+use App\Models\PermissionScrene;
 use App\Models\SupplierPayments;
+use App\Models\Permissions_Saels;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Models\MovementStockDetails;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
+use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Models\Supplier;
 
 class SyncController extends Controller
 {
@@ -1118,27 +1134,133 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    // function upload_shift(Request $request)
-    // {
-    //     Log::info('upload_Statements', ['0' => $request->all()]);
+    function upload_shift(Request $request)
+    {
+        Log::info('upload_Statements', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Shift::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
+                    'Shift_Id'      => $item['Shift_Id'],
+                    'UserId'        => $item['UserId'],
+                    'SafeId'        => $item['SafeId'],
+                    'StartDate'     => $item['StartDate'],
+                    'FirstBalance'  => $item['FirstBalance'],
+                    'EndDate'       => $item['EndDate'],
+                    'LastBalance'   => $item['LastBalance'],
+                    'totalSaels'     => $item['totalSaels'],
+                    'totalRetrnSaels'       => $item['totalRetrnSaels'],
+                    'totalPorshes'  => $item['totalPorshes'],
+                    'totalRetrnProsh' => $item['totalRetrnProsh'],
+                    'totalSalfeat'    => $item['totalSalfeat'],
+                    'TotalIncome'     => $item['TotalIncome'],
+                    'TotalExprte'     => $item['TotalExprte'],
 
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_product_moves(Request $request)
+    {
+        Log::info('upload_product_moves', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = product_moves::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
+                    'Product_Moves_ID'  => $item['Product_Moves_ID'],
+                    'Product_ID'        => $item['Product_ID'],
+                    'Quantity'      => $item['Quantity'],
+                    'BuyPrice'      => $item['BuyPrice'],
+                    'SellPrice'     => $item['SellPrice'],
+                    'Profit'        => $item['Profit'],
+                    'NumperMove'    => $item['NumperMove'],
+                    'user_ID'       => $item['user_ID'],
+                    'InvoiceType'   => $item['InvoiceType']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_permission_screnes(Request $request)
+    {
+        Log::info('upload_permission_screnes', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = PermissionScrene::updateOrCreate( ['PermissionID' => $item['PermissionID']], [
+
+                    'PermissionID'      => $item['PermissionID'],
+                    'userID'            => $item['userID'],
+                    'NO_Screne'         => $item['NO_Screne'],
+                    'Srene'             => $item['Srene']==true?1:0,
+                    'add'               => $item['add']==true?1:0,
+                    'Ediet'             => $item['Ediet']==true?1:0,
+                    'Delaet'            => $item['Delaet']==true?1:0
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_partners(Request $request)
+    {
+        Log::info('upload_partners', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = Partners::updateOrCreate( ['PartnersID'    => $item['PartnersID']], [
+                    'PartnersID'    => $item['PartnersID'],
+                    'name'          => $item['name'],
+                    'Fhone'         => $item['Fhone'],
+                    'FromeBalnce'   => $item['FromeBalnce'],
+                    'nowBalnce'     => $item['nowBalnce'],
+                    'percent_store' => $item['percent_store'],
+                    'steos'         => $item['steos'],
+                    'note'          => $item['note'],
+                    'userID'        => $item['userID'],
+                    'PartnersActeve' => $item['PartnersActeve'],
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    // function upload_offer_bays(Request $request)
+    // {
+    //     Log::info('upload_offer_bays', ['0' => $request->all()]);
     //     try {
     //         foreach ($request->all() as $index => $item) {
-    //             $uu = Statements::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
-    //                 'Shift_Id'      => $item['Shift_Id'],
-    //                 'UserId'        => $item['UserId'],
-    //                 'SafeId'        => $item['SafeId'],
-    //                 'StartDate'     => $item['StartDate'],
-    //                 'FirstBalance'  => $item['FirstBalance'],
-    //                 'EndDate'       => $item['EndDate'],
-    //                 'LastBalance'   => $item['LastBalance'],
-    //                 'totalSaels'     => $item['totalSaels'],
-    //                 'totalRetrnSaels'       => $item['totalRetrnSaels'],
-    //                 'totalPorshes'  => $item['totalPorshes'],
-    //                 'totalRetrnProsh' => $item['totalRetrnProsh'],
-    //                 'totalSalfeat'    => $item['totalSalfeat'],
-    //                 'TotalIncome'     => $item['TotalIncome'],
-    //                 'TotalExprte'     => $item['TotalExprte'],
+
+    //             $uu = Offer_Bay::updateOrCreate( ['PartnersID'     => $item['PartnersID']], [
+    //                 'PartnersID'     => $item['PartnersID'],
+    //                 'name'           => $item['name'],
+    //                 'Fhone'          => $item['Fhone'],
+    //                 'FromeBalnce'    => $item['FromeBalnce'],
+    //                 'nowBalnce'      => $item['nowBalnce'],
+    //                 'percent_store'  => $item['percent_store'],
+    //                 'steos'          => $item['steos'],
+    //                 'note'           => $item['note'],
+    //                 'userID'         => $item['userID'],
+    //                 'PartnersActeve' => $item['PartnersActeve'],
 
     //             ]);
     //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -1150,4 +1272,167 @@ class SyncController extends Controller
     //         return    Resp(null, 'Error', 400, true);
     //     }
     // }
+    function upload_movement_balances(Request $request)
+    {
+        Log::info('upload_movement_balances', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = MovementBalance::updateOrCreate( [  'Con_id'        => $item['Con_id']], [
+                    'Con_id'        => $item['Con_id'],
+                    'from_safe_id'  => $item['from_safe_id'],
+                    'to_safe_id'    => $item['to_safe_id'],
+                    'balance_frome' => $item['balance_frome'],
+                    'balance_To'    => $item['balance_To'],
+                    'balance_frome_after' => $item['balance_frome_after'],
+                    'balance_To_after'    => $item['balance_To_after'],
+                    'balance_convert'     => $item['balance_convert'],
+                    'user_id'             => $item['user_id'],
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_move_partners(Request $request)
+    {
+        Log::info('upload_move_partners', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Move_Partners::updateOrCreate( [ 'Move_PartnersID'  => $item['Move_PartnersID']], [
+                    'Move_PartnersID'  => $item['Move_PartnersID'],
+                    'PartnersID'       => $item['PartnersID'],
+                    'StetMove'         => $item['StetMove'],
+                    'FromeBalncce'     => $item['FromeBalncce']==true?1:0,
+                    'endBalance'       => $item['endBalance']==true?1:0,
+                    'moveBalnce'       => $item['moveBalnce']==true?1:0,
+                    'note'             => $item['note']==true?1:0,
+                    'userID'           => $item['userID']==true?1:0,
+                    'safeID'           => $item['safeID']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_income_types(Request $request)
+    {
+        Log::info('upload_income_types', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = incomeTypes::updateOrCreate( [  'incomeT_id'  => $item['incomeT_id']], [
+                    'incomeT_id'  => $item['incomeT_id'],
+                    'incT_name'   => $item['incT_name'],
+                    'incT_note'   => $item['incT_note'],
+                    'user_id'     => $item['user_id'],
+                    'incT_acteve' => $item['incT_acteve']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_expenses_types(Request $request)
+    {
+        Log::info('upload_expenses_types', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = ExpensesTypes::updateOrCreate( ['Expenses_id'  => $item['Expenses_id']], [
+                    'ExpensesT_id'  => $item['ExpensesT_id'],
+                    'Exp_name'      => $item['Exp_name'],
+                    'Exp_note'      => $item['Exp_note'],
+                    'user_id'       => $item['user_id'],
+                    'Exp_Acteve'    => $item['Exp_Acteve']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_expenses(Request $request)
+    {
+        Log::info('upload_expenses', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Expenses::updateOrCreate( ['Expenses_id'  => $item['Expenses_id']], [
+                    'Expenses_id'  => $item['Expenses_id'],
+                    'ExpT_id'     => $item['ExpT_id'],
+                    'Exp_Amount' => $item['Exp_Amount'],
+                    'Exps_note'   => $item['Exps_note'],
+                    'user_id'       => $item['user_id'],
+                    'Expenses_acteve' => $item['Expenses_acteve']==true?1:0,
+                    'safe_id'       => $item['safe_id']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_movement_bank(Request $request)
+    {
+        Log::info('upload_MovementBank', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = MovementBank::updateOrCreate( [ 'bank_id'=> $item['bank_id']], [
+                    'bank_id'             => $item['bank_id'],
+                    'from_bank_id'        => $item['from_bank_id'],
+                    'to_bank_id'          => $item['to_bank_id'],
+                    'balance_frome'       => $item['balance_frome'],
+                    'balance_To'          => $item['balance_To'],
+                    'balance_frome_after' => $item['balance_frome_after'],
+                    'balance_To_after'    => $item['balance_To_after'],
+                    'balance_convert'     => $item['balance_convert'],
+                    'user_id'             => $item['user_id']
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_pricing(Request $request)
+    {
+        Log::info('upload_pricing', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = pricing::updateOrCreate( [ 'pricing_id'=> $item['pricing_id']], [
+                    'pricing_id'             => $item['pricing_id'],
+                    'pricing_name'        => $item['pricing_name'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
 }

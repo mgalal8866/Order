@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->boolean('income_acteve')->nullable();
             $table->integer('Safe_id')->nullable();
-            $table->datetime('caret_data')->nullable();
             $table->timestamps();
         });
     }

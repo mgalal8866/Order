@@ -21,7 +21,6 @@ return new class extends Migration
             $table->text('note')->nullable();
             $table->integer('userID')->nullable();
             $table->integer('safeID')->nullable();
-            $table->datetime('careteDate')->nullable();
             $table->timestamps();
         });
     }
