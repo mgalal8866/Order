@@ -60,6 +60,8 @@ use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\sync\DeliveryHeaderResource;
+use App\Models\cities;
+use App\Models\region;
 
 class SyncController extends Controller
 {
@@ -871,9 +873,9 @@ class SyncController extends Controller
                 $uu = Supplier_Grup::updateOrCreate(['SupplierGrup_id' => $item['SupplierGrup_id']], [
                     'SupplierGrup_id'  => $item['SupplierGrup_id'],
                     'SupplierGrup_name' => $item['SupplierGrup_name'],
-                    'Grup_note'        => $item['Grup_note']??'',
+                    'Grup_note'        => $item['Grup_note'] ?? '',
                     'user_id'          => $item['user_id'],
-                    'Grup_Active'      => $item['Grup_Active']==true?1:0,
+                    'Grup_Active'      => $item['Grup_Active'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -931,7 +933,7 @@ class SyncController extends Controller
                     'agent_fhone'      => $item['agent_fhone'],
                     'Supplier_note'    => $item['Supplier_note'],
                     'user_id'          => $item['user_id'],
-                    'Supplier_Active'  => $item['Supplier_Active']==true?1:0,
+                    'Supplier_Active'  => $item['Supplier_Active'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -951,7 +953,7 @@ class SyncController extends Controller
                 $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
                     'PurchaseH_id'           => $item['PurchaseH_id'],
                     'invoice_Number'         => $item['invoice_Number'],
-                    'InvoiceType'            => $item['InvoiceType']==true?1:0,
+                    'InvoiceType'            => $item['InvoiceType'] == true ? 1 : 0,
                     'Company_invoice_number' => $item['Company_invoice_number'],
                     'Suppliers_id'           => $item['Suppliers_id'],
                     'Store_id'               => $item['Store_id'],
@@ -998,7 +1000,7 @@ class SyncController extends Controller
                     'SubTotal'           => $item['SubTotal'],
                     'Discount'           => $item['Discount'],
                     'GrandTotal'         => $item['GrandTotal'],
-                    'IsReturn'           => $item['IsReturn']==true?1:0,
+                    'IsReturn'           => $item['IsReturn'] == true ? 1 : 0,
 
 
 
@@ -1114,7 +1116,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Statements::updateOrCreate( ['Statement_id' => $item['Statement_id']], [
+                $uu = Statements::updateOrCreate(['Statement_id' => $item['Statement_id']], [
                     'Statement_id'          => $item['Statement_id'],
                     'Emp_id'                => $item['Emp_id'],
                     'Statements_Type'       => $item['Statements_Type'],
@@ -1139,7 +1141,7 @@ class SyncController extends Controller
         Log::info('upload_Statements', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Shift::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
+                $uu = Shift::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
                     'Shift_Id'      => $item['Shift_Id'],
                     'UserId'        => $item['UserId'],
                     'SafeId'        => $item['SafeId'],
@@ -1171,7 +1173,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = product_moves::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
+                $uu = product_moves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
                     'Product_Moves_ID'  => $item['Product_Moves_ID'],
                     'Product_ID'        => $item['Product_ID'],
                     'Quantity'      => $item['Quantity'],
@@ -1197,15 +1199,15 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = PermissionScrene::updateOrCreate( ['PermissionID' => $item['PermissionID']], [
+                $uu = PermissionScrene::updateOrCreate(['PermissionID' => $item['PermissionID']], [
 
                     'PermissionID'      => $item['PermissionID'],
                     'userID'            => $item['userID'],
                     'NO_Screne'         => $item['NO_Screne'],
-                    'Srene'             => $item['Srene']==true?1:0,
-                    'add'               => $item['add']==true?1:0,
-                    'Ediet'             => $item['Ediet']==true?1:0,
-                    'Delaet'            => $item['Delaet']==true?1:0
+                    'Srene'             => $item['Srene'] == true ? 1 : 0,
+                    'add'               => $item['add'] == true ? 1 : 0,
+                    'Ediet'             => $item['Ediet'] == true ? 1 : 0,
+                    'Delaet'            => $item['Delaet'] == true ? 1 : 0
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1222,7 +1224,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = Partners::updateOrCreate( ['PartnersID'    => $item['PartnersID']], [
+                $uu = Partners::updateOrCreate(['PartnersID'    => $item['PartnersID']], [
                     'PartnersID'    => $item['PartnersID'],
                     'name'          => $item['name'],
                     'Fhone'         => $item['Fhone'],
@@ -1250,7 +1252,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = Offer_Bay::updateOrCreate(['Offer_Bay_Id'=> $item['Offer_Bay_Id'],], [
+                $uu = Offer_Bay::updateOrCreate(['Offer_Bay_Id' => $item['Offer_Bay_Id'],], [
                     'Offer_Bay_Id'  => $item['Offer_Bay_Id'],
                     'FromTotal'     => $item['FromTotal'],
                     'ToTotal'       => $item['ToTotal'],
@@ -1274,7 +1276,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = MovementBalance::updateOrCreate( [  'Con_id'        => $item['Con_id']], [
+                $uu = MovementBalance::updateOrCreate(['Con_id'        => $item['Con_id']], [
                     'Con_id'        => $item['Con_id'],
                     'from_safe_id'  => $item['from_safe_id'],
                     'to_safe_id'    => $item['to_safe_id'],
@@ -1300,16 +1302,16 @@ class SyncController extends Controller
         Log::info('upload_move_partners', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Move_Partners::updateOrCreate( [ 'Move_PartnersID'  => $item['Move_PartnersID']], [
+                $uu = Move_Partners::updateOrCreate(['Move_PartnersID'  => $item['Move_PartnersID']], [
                     'Move_PartnersID'  => $item['Move_PartnersID'],
                     'PartnersID'       => $item['PartnersID'],
                     'StetMove'         => $item['StetMove'],
-                    'FromeBalncce'     => $item['FromeBalncce']==true?1:0,
-                    'endBalance'       => $item['endBalance']==true?1:0,
-                    'moveBalnce'       => $item['moveBalnce']==true?1:0,
-                    'note'             => $item['note']==true?1:0,
-                    'userID'           => $item['userID']==true?1:0,
-                    'safeID'           => $item['safeID']==true?1:0,
+                    'FromeBalncce'     => $item['FromeBalncce'] == true ? 1 : 0,
+                    'endBalance'       => $item['endBalance'] == true ? 1 : 0,
+                    'moveBalnce'       => $item['moveBalnce'] == true ? 1 : 0,
+                    'note'             => $item['note'] == true ? 1 : 0,
+                    'userID'           => $item['userID'] == true ? 1 : 0,
+                    'safeID'           => $item['safeID'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1326,12 +1328,12 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = incomeTypes::updateOrCreate( [  'incomeT_id'  => $item['incomeT_id']], [
+                $uu = incomeTypes::updateOrCreate(['incomeT_id'  => $item['incomeT_id']], [
                     'incomeT_id'  => $item['incomeT_id'],
                     'incT_name'   => $item['incT_name'],
                     'incT_note'   => $item['incT_note'],
                     'user_id'     => $item['user_id'],
-                    'incT_acteve' => $item['incT_acteve']==true?1:0,
+                    'incT_acteve' => $item['incT_acteve'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1348,7 +1350,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = income::updateOrCreate( ['income_id' => $item['income_id']], [
+                $uu = income::updateOrCreate(['income_id' => $item['income_id']], [
                     'income_id'     => $item['income_id'],
                     'incomeTid'     => $item['incomeTid'],
                     'income_Amount' => $item['income_Amount'],
@@ -1372,12 +1374,12 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = ExpensesTypes::updateOrCreate( ['Expenses_id'  => $item['Expenses_id']], [
+                $uu = ExpensesTypes::updateOrCreate(['Expenses_id'  => $item['Expenses_id']], [
                     'ExpensesT_id'  => $item['ExpensesT_id'],
                     'Exp_name'      => $item['Exp_name'],
                     'Exp_note'      => $item['Exp_note'],
                     'user_id'       => $item['user_id'],
-                    'Exp_Acteve'    => $item['Exp_Acteve']==true?1:0,
+                    'Exp_Acteve'    => $item['Exp_Acteve'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1393,13 +1395,13 @@ class SyncController extends Controller
         Log::info('upload_expenses', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Expenses::updateOrCreate( ['Expenses_id'  => $item['Expenses_id']], [
+                $uu = Expenses::updateOrCreate(['Expenses_id'  => $item['Expenses_id']], [
                     'Expenses_id'  => $item['Expenses_id'],
                     'ExpT_id'     => $item['ExpT_id'],
                     'Exp_Amount' => $item['Exp_Amount'],
                     'Exps_note'   => $item['Exps_note'],
                     'user_id'       => $item['user_id'],
-                    'Expenses_acteve' => $item['Expenses_acteve']==true?1:0,
+                    'Expenses_acteve' => $item['Expenses_acteve'] == true ? 1 : 0,
                     'safe_id'       => $item['safe_id']
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -1417,7 +1419,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = MovementBank::updateOrCreate( [ 'bank_id'=> $item['bank_id']], [
+                $uu = MovementBank::updateOrCreate(['bank_id' => $item['bank_id']], [
                     'bank_id'             => $item['bank_id'],
                     'from_bank_id'        => $item['from_bank_id'],
                     'to_bank_id'          => $item['to_bank_id'],
@@ -1442,9 +1444,49 @@ class SyncController extends Controller
         Log::info('upload_pricing', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = pricing::updateOrCreate( [ 'pricing_id'=> $item['pricing_id']], [
+                $uu = pricing::updateOrCreate(['pricing_id' => $item['pricing_id']], [
                     'pricing_id'             => $item['pricing_id'],
                     'pricing_name'        => $item['pricing_name'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_region(Request $request)
+    {
+        Log::info('upload_region', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = region::updateOrCreate(['id' => $item['Region_id']], [
+                    'id'               => $item['Region_id'],
+                    'region_name_ar'   => $item['Region_name'],
+                    'region_name_en'   => $item['Region_name'],
+                    'city_id'       => $item['City_id'],
+                    'main'          => null,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_cities(Request $request)
+    {
+        Log::info('upload_cities', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = cities::updateOrCreate(['id' => $item['City_id']], [
+                    'id'            => $item['City_id'],
+                    'city_name_ar'  => $item['City_name'],
+                    'city_name_en'  => $item['City_name'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
