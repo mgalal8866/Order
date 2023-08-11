@@ -854,7 +854,7 @@ class SyncController extends Controller
                 $uu = Supplier_Grup::updateOrCreate(['SupplierGrup_id' => $item['SupplierGrup_id']], [
                     'SupplierGrup_id'  => $item['SupplierGrup_id'],
                     'SupplierGrup_name' => $item['SupplierGrup_name'],
-                    'Grup_note'        => $item['Grup_note'],
+                    'Grup_note'        => $item['Grup_note']??'',
                     'user_id'          => $item['user_id'],
                     'Grup_Active'      => $item['Grup_Active']==true?1:0,
                     'SupplierGrup_id'  => $item['SupplierGrup_id'],
@@ -916,7 +916,7 @@ class SyncController extends Controller
                     'agent_fhone'      => $item['agent_fhone'],
                     'Supplier_note'    => $item['Supplier_note'],
                     'user_id'          => $item['user_id'],
-                    'Supplier_Active'  => $item['Supplier_Active'],
+                    'Supplier_Active'  => $item['Supplier_Active']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -936,7 +936,7 @@ class SyncController extends Controller
                 $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
                     'PurchaseH_id'           => $item['PurchaseH_id'],
                     'invoice_Number'         => $item['invoice_Number'],
-                    'InvoiceType'            => $item['InvoiceType'],
+                    'InvoiceType'            => $item['InvoiceType']==true?1:0,
                     'Company_invoice_number' => $item['Company_invoice_number'],
                     'Suppliers_id'           => $item['Suppliers_id'],
                     'Store_id'               => $item['Store_id'],
@@ -983,7 +983,7 @@ class SyncController extends Controller
                     'SubTotal'           => $item['SubTotal'],
                     'Discount'           => $item['Discount'],
                     'GrandTotal'         => $item['GrandTotal'],
-                    'IsReturn'           => $item['IsReturn'],
+                    'IsReturn'           => $item['IsReturn']==true?1:0,
 
 
 
@@ -1119,7 +1119,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    // function upload_settlements(Request $request)
+    // function upload_shift(Request $request)
     // {
     //     Log::info('upload_Statements', ['0' => $request->all()]);
 
