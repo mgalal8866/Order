@@ -12,9 +12,11 @@ use App\Models\banks;
 use App\Models\Shift;
 use App\Models\Stock;
 use App\Models\Store;
+use App\Models\cities;
 use App\Models\Coupon;
 use App\Models\Damage;
 use App\Models\income;
+use App\Models\region;
 use App\Models\slider;
 use App\Models\comment;
 use App\Models\logsync;
@@ -60,9 +62,6 @@ use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Models\cities;
-use App\Models\region;
-
 class SyncController extends Controller
 {
     function client(Request $request)
