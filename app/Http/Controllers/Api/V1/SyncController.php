@@ -43,6 +43,7 @@ use App\Models\MovementStockDetails;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
+use App\Models\Supplier;
 
 class SyncController extends Controller
 {
@@ -899,7 +900,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = SecondOffer::updateOrCreate(['Supplier_id' => $item['Supplier_id']], [
+                $uu = Supplier::updateOrCreate(['Supplier_id' => $item['Supplier_id']], [
                     'Supplier_id'      => $item['Supplier_id'],
                     'Supplier_name'    => $item['Supplier_name'],
                     'Supplier_code'    => $item['Supplier_code'],
