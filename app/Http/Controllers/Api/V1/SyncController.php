@@ -857,8 +857,6 @@ class SyncController extends Controller
                     'Grup_note'        => $item['Grup_note']??'',
                     'user_id'          => $item['user_id'],
                     'Grup_Active'      => $item['Grup_Active']==true?1:0,
-                    'SupplierGrup_id'  => $item['SupplierGrup_id'],
-
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
