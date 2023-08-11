@@ -21,26 +21,28 @@ use App\Models\deferred;
 use App\Models\Employee;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
+use App\Models\Statements;
 use App\Models\SalesHeader;
+use App\Models\SecondOffer;
 use App\Models\SalesDetails;
 use App\Models\UserDelivery;
 use Illuminate\Http\Request;
+use App\Models\MovementStock;
 use App\Models\ProductHeader;
+use App\Models\Supplier_Grup;
 use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
+use App\Models\PurchaseHeader;
 use App\Models\DeliveryDetails;
+use App\Models\PurchaseDetails;
+use App\Models\StockSettlement;
+use App\Models\SupplierPayments;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\MovementStockDetails;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Models\MovementStock;
-use App\Models\MovementStockDetails;
-use App\Models\PurchaseDetails;
-use App\Models\PurchaseHeader;
-use App\Models\SecondOffer;
-use App\Models\Supplier_Grup;
-use App\Models\SupplierPayments;
 
 class SyncController extends Controller
 {
@@ -844,6 +846,7 @@ class SyncController extends Controller
     // ######################NEW###################
     function upload_supplier_grups(Request $request)
     {
+
         Log::info('upload_supplier_grups', ['0' => $request->all()]);
 
         try {
@@ -1062,4 +1065,90 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function upload_stock_settlements(Request $request)
+    {
+        Log::info('upload_stock_settlements', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = StockSettlement::updateOrCreate(['ID'  => $item['ID']], [
+                    'ID'                 => $item['ID'],
+                    'NoSettlement'       => $item['NoSettlement'],
+                    'ProductDetailsId'   => $item['ProductDetailsId'],
+                    'SettlementDate'     => $item['SettlementDate'],
+                    'StockNow'           => $item['StockNow'],
+                    'StockNew'           => $item['StockNew'],
+                    'QuantityDifference' => $item['QuantityDifference'],
+                    'BayProduct'        => $item['BayProduct'],
+                    'totalCost'         => $item['totalCost'],
+                    'StoreID'           => $item['StoreID'],
+                    'UserID'            => $item['UserID'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_settlements(Request $request)
+    {
+        Log::info('upload_Statements', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Statements::updateOrCreate( ['Statement_id' => $item['Statement_id']], [
+                    'Statement_id'          => $item['Statement_id'],
+                    'Emp_id'                => $item['Emp_id'],
+                    'Statements_Type'       => $item['Statements_Type'],
+                    'Statements_TypeDetils' => $item['Statements_TypeDetils'],
+                    'Amount'                => $item['Amount'],
+                    'note'                  => $item['note'],
+                    'user_id'               => $item['user_id'],
+                    'safe_id'               => $item['safe_id'],
+
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    // function upload_settlements(Request $request)
+    // {
+    //     Log::info('upload_Statements', ['0' => $request->all()]);
+
+    //     try {
+    //         foreach ($request->all() as $index => $item) {
+    //             $uu = Statements::updateOrCreate( [ 'Shift_Id'  => $item['Shift_Id'],], [
+    //                 'Shift_Id'      => $item['Shift_Id'],
+    //                 'UserId'        => $item['UserId'],
+    //                 'SafeId'        => $item['SafeId'],
+    //                 'StartDate'     => $item['StartDate'],
+    //                 'FirstBalance'  => $item['FirstBalance'],
+    //                 'EndDate'       => $item['EndDate'],
+    //                 'LastBalance'   => $item['LastBalance'],
+    //                 'totalSaels'     => $item['totalSaels'],
+    //                 'totalRetrnSaels'       => $item['totalRetrnSaels'],
+    //                 'totalPorshes'  => $item['totalPorshes'],
+    //                 'totalRetrnProsh' => $item['totalRetrnProsh'],
+    //                 'totalSalfeat'    => $item['totalSalfeat'],
+    //                 'TotalIncome'     => $item['TotalIncome'],
+    //                 'TotalExprte'     => $item['TotalExprte'],
+
+    //             ]);
+    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+    //         }
+    //         return Resp(null, 'Success', 200, true);
+    //     } catch (\Illuminate\Database\QueryException  $exception) {
+    //         $e = $exception->errorInfo;
+    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+    //         return    Resp(null, 'Error', 400, true);
+    //     }
+    // }
 }

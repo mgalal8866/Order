@@ -132,8 +132,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
     Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
-     // new table
-
+    
     Route::post('/upload/supplier/grups',[SyncController::class, 'upload_supplier_grups']);
     Route::post('/upload/second/offers',[SyncController::class, 'upload_second_offers']);
     Route::post('/upload/suppliers',[SyncController::class, 'upload_suppliers']);
