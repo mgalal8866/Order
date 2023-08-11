@@ -1244,34 +1244,30 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    // function upload_offer_bays(Request $request)
-    // {
-    //     Log::info('upload_offer_bays', ['0' => $request->all()]);
-    //     try {
-    //         foreach ($request->all() as $index => $item) {
+    function upload_offer_bays(Request $request)
+    {
+        Log::info('upload_offer_bays', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
 
-    //             $uu = Offer_Bay::updateOrCreate( ['PartnersID'     => $item['PartnersID']], [
-    //                 'PartnersID'     => $item['PartnersID'],
-    //                 'name'           => $item['name'],
-    //                 'Fhone'          => $item['Fhone'],
-    //                 'FromeBalnce'    => $item['FromeBalnce'],
-    //                 'nowBalnce'      => $item['nowBalnce'],
-    //                 'percent_store'  => $item['percent_store'],
-    //                 'steos'          => $item['steos'],
-    //                 'note'           => $item['note'],
-    //                 'userID'         => $item['userID'],
-    //                 'PartnersActeve' => $item['PartnersActeve'],
-
-    //             ]);
-    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-    //         }
-    //         return Resp(null, 'Success', 200, true);
-    //     } catch (\Illuminate\Database\QueryException  $exception) {
-    //         $e = $exception->errorInfo;
-    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-    //         return    Resp(null, 'Error', 400, true);
-    //     }
-    // }
+                $uu = Offer_Bay::updateOrCreate(['Offer_Bay_Id'=> $item['Offer_Bay_Id'],], [
+                    'Offer_Bay_Id'  => $item['Offer_Bay_Id'],
+                    'FromTotal'     => $item['FromTotal'],
+                    'ToTotal'       => $item['ToTotal'],
+                    'FromDate'      => $item['FromDate'],
+                    'ToDate'        => $item['ToDate'],
+                    'Discount'      => $item['Discount'],
+                    'userId'        => $item['userId'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
     function upload_movement_balances(Request $request)
     {
         Log::info('upload_movement_balances', ['0' => $request->all()]);
@@ -1336,6 +1332,30 @@ class SyncController extends Controller
                     'incT_note'   => $item['incT_note'],
                     'user_id'     => $item['user_id'],
                     'incT_acteve' => $item['incT_acteve']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_income(Request $request)
+    {
+        Log::info('upload_income', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = income::updateOrCreate( ['income_id' => $item['income_id']], [
+                    'income_id'     => $item['income_id'],
+                    'incomeTid'     => $item['incomeTid'],
+                    'income_Amount' => $item['income_Amount'],
+                    'income_note'   => $item['income_note'],
+                    'user_id'       => $item['user_id'],
+                    'income_acteve' => $item['income_acteve'] == true ? 1 : 0,
+                    'Safe_id'       => $item['Safe_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

@@ -12,17 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('offer_bays', function (Blueprint $table) {
-            $table->increments('PartnersID');
-            $table->string('name', 50)->nullable();
-            $table->string('Fhone', 50)->nullable();
-            $table->decimal('FromeBalnce', 18, 2)->nullable();
-            $table->decimal('nowBalnce', 18, 2)->nullable();
-            $table->decimal('percent_store', 4, 2)->nullable();
-            $table->boolean('steos')->nullable();
-            $table->text('note')->nullable();
-            $table->integer('userID')->nullable();
-            $table->boolean('PartnersActeve')->nullable();
-            $table->timestamps();
+            $table->increments('Offer_Bay_Id');
+            $table->decimal('FromTotal', 12, 2)->nullable();
+            $table->decimal('ToTotal', 12, 2)->nullable();
+            $table->datetime('FromDate')->nullable();
+            $table->datetime('ToDate')->nullable();
+            $table->decimal('Discount', 7, 2)->nullable();
+            $table->integer('userId');
+            $table->timestamps(); // Adds 'created_at' and 'updated_at' columns
         });
     }
 
