@@ -1109,9 +1109,6 @@ class SyncController extends Controller
                     'Discount'           => $item['Discount'],
                     'GrandTotal'         => $item['GrandTotal'],
                     'IsReturn'           => $item['IsReturn'] == true ? 1 : 0,
-
-
-
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1125,50 +1122,29 @@ class SyncController extends Controller
     function upload_movement_stocks(Request $request)
     {
         Log::info('upload_movement_stocks', ['0' => $request->all()]);
-
         try {
-            $uu =   MovementStock::updateOrCreate([ "PurchaseH_id"     => $request[0][0]['PurchaseH_id']], [
-
-                $uu = MovementStock::updateOrCreate(['Move_Id' => $item['Move_Id']], [
-                    'Move_Id'        => $item['Move_Id'],
-                    'FromStore'      => $item['FromStore'],
-                    'ToStore'        => $item['ToStore'],
-                    'MoveDate'       => $item['MoveDate'],
-                    'UserId'         => $item['UserId'],
+                $uu = MovementStock::updateOrCreate(['Move_Id' => $request[0][0]['Move_Id']], [
+                    'Move_Id'        => $request[0][0]['Move_Id'],
+                    'FromStore'      => $request[0][0]['FromStore'],
+                    'ToStore'        => $request[0][0]['ToStore'],
+                    'MoveDate'       => $request[0][0]['MoveDate'],
+                    'UserId'         => $request[0][0]['UserId'],
             ]);
-            PurchaseDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
+            MovementStockDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
             foreach ($request[1] as $index => $item) {
-                Log::info('PurchaseDetails', $item);
-                $uu =   PurchaseDetails::create([
+                Log::info('MovementStockDetails', $item);
+                $uu =   MovementStockDetails::create([
                     'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
-                    'PurchaseD_id' => $item['PurchaseD_id'],
-                    'Product_Details_Id'          => $item['Product_Details_Id'],
-                    'ExpireDate'           => $item['ExpireDate'],
-                    'BuyPrice'           => $item['BuyPrice'],
-                    'SellPrice'           => $item['SellPrice'],
+                    'Id'               => $item['Id'],
+                    'MovementStockId'  => $item['MovementStockId'],
+                    'ProductDetailsId' => $item['ProductDetailsId'],
                     'Quantity'         => $item['Quantity'],
-                    'SubTotal'             => $item['SubTotal'],
-                    'Discount'             => $item['Discount'],
-                    'GrandTotal'             => $item['GrandTotal'],
-                    'IsReturn'             => $item['IsReturn']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
 
-        try {
-            foreach ($request->all() as $index => $item) {
-                $uu = MovementStock::updateOrCreate(['Move_Id' => $item['Move_Id']], [
-                    'Move_Id'        => $item['Move_Id'],
-                    'FromStore'      => $item['FromStore'],
-                    'ToStore'        => $item['ToStore'],
-                    'MoveDate'       => $item['MoveDate'],
-                    'UserId'         => $item['UserId'],
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
