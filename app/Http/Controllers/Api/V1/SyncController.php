@@ -1142,8 +1142,8 @@ class SyncController extends Controller
         Log::info('upload_shift', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Shift::updateOrCreate(['Shift_Id'  => $item['Shift_Id']], [
-                    'Shift_Id'      => $item['Shift_Id'],
+                $uu = Shift::updateOrCreate(['id'  => $item['Shift_Id']], [
+                    'id'      => $item['Shift_Id'],
                     'UserId'        => $item['UserId'],
                     'SafeId'        => $item['SafeId'],
                     'StartDate'     => $item['StartDate'],

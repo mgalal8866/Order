@@ -25,7 +25,7 @@ return new class extends Migration
             $table->decimal('totalRetrnProsh', 18, 2)->nullable();
             $table->decimal('totalSalfeat', 18, 2)->nullable();
             $table->decimal('TotalIncome', 18, 2)->nullable();
-            $table->decimal('TotalExprte', 18, 2)->nullable();
+            $table->decimal('TotalExprte', 18, 2)->nullable(); 
             $table->timestamps();
         });
     }
