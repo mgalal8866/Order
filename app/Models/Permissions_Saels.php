@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Permissions_Saels extends Model
 {
     use HasFactory;
+    protected $table ='permissions_saels';
     protected $guarded = [];
 }
