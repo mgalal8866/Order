@@ -1038,24 +1038,22 @@ class SyncController extends Controller
             foreach ($request[1] as $index => $item) {
                 Log::info('PurchaseDetails', $item);
                 $uu =   PurchaseDetails::create([
-                    'Purchase_H_id'     => $request[0][0]['PurchaseH_id'],
-                    'purchased_id' => $item['PurchaseD_id'],
-                    'Product_Details_Id'          => $item['Product_Details_Id'],
-                    'ExpireDate'           => $item['ExpireDate'],
-                    'BuyPrice'           => $item['BuyPrice'],
+                    'Purchase_H_id'       => $request[0][0]['PurchaseH_id'],
+                    'purchased_id'        => $item['PurchaseD_id'],
+                    'Product_Details_Id'  => $item['Product_Details_Id'],
+                    'ExpireDate'          => $item['ExpireDate'],
+                    'BuyPrice'            => $item['BuyPrice'],
                     'SellPrice'           => $item['SellPrice'],
-                    'Quantity'         => $item['Quantity'],
-                    'SubTotal'             => $item['SubTotal'],
-                    'Discount'             => $item['Discount'],
-                    'GrandTotal'             => $item['GrandTotal'],
-                    'IsReturn'             => $item['IsReturn']==true?1:0,
+                    'Quantity'            => $item['Quantity'],
+                    'SubTotal'            => $item['SubTotal'],
+                    'Discount'            => $item['Discount'],
+                    'GrandTotal'          => $item['GrandTotal'],
+                    'IsReturn'            => $item['IsReturn']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
-
-
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
@@ -1141,7 +1139,6 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-
     function upload_supplier_payments(Request $request)
     {
         Log::info('upload_supplier_payments', ['0' => $request->all()]);
