@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Move_Partners extends Model
 {
     use HasFactory;
+    protected $table = 'move_partners';
     protected $guarded = [];
 }
