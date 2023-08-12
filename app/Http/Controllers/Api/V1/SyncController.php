@@ -62,6 +62,8 @@ use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\sync\DeliveryHeaderResource;
+use App\Models\UserAdmin;
+
 class SyncController extends Controller
 {
     function client(Request $request)
@@ -1137,10 +1139,10 @@ class SyncController extends Controller
     }
     function upload_shift(Request $request)
     {
-        Log::info('upload_Statements', ['0' => $request->all()]);
+        Log::info('upload_shift', ['0' => $request->all()]);
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Shift::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
+                $uu = Shift::updateOrCreate(['Shift_Id'  => $item['Shift_Id']], [
                     'Shift_Id'      => $item['Shift_Id'],
                     'UserId'        => $item['UserId'],
                     'SafeId'        => $item['SafeId'],
@@ -1207,6 +1209,47 @@ class SyncController extends Controller
                     'add'               => $item['add_'] == true ? 1 : 0,
                     'Ediet'             => $item['Ediet'] == true ? 1 : 0,
                     'Delaet'            => $item['Delaet'] == true ? 1 : 0
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_permissions_saels(Request $request)
+    {
+        Log::info('upload_permissions_saels', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+
+                $uu = Permissions_Saels::updateOrCreate(['Permissions_Saels_id' => $item['Permissions_Saels_id']], [
+
+                    'Permissions_Saels_id'      => $item['Permissions_Saels_id'],
+                    'User_id'            => $item['User_id'],
+                    'Passwrd_Selas'         => $item['Passwrd_Selas'],
+                    'Saels_Leve'             => $item['Saels_Leve'] == true ? 1 : 0,
+                    'Saels_Delvery'               => $item['Saels_Delvery'] == true ? 1 : 0,
+                    'Saels_Agel'             => $item['Saels_Agel'] == true ? 1 : 0,
+                    'Descuont_Product'            => $item['Descuont_Product'] == true ? 1 : 0,
+                    'Descuont_G'            => $item['Descuont_G'] == true ? 1 : 0,
+                    'ADD_G'            => $item['ADD_G'] == true ? 1 : 0,
+                    'ADD_M'            => $item['ADD_M'] == true ? 1 : 0,
+                    'Descount_M'            => $item['Descount_M'] == true ? 1 : 0,
+                    'Prent_Selas'            => $item['Prent_Selas'] == true ? 1 : 0,
+                    'Seals_Count'            => $item['Seals_Count'] ,
+                    'bay_Tayp'            => $item['bay_Tayp'] == true ? 1 : 0,
+                    'Edite_Saels_Dlevry'            => $item['Edite_Saels_Dlevry'] == true ? 1 : 0,
+                    'Done_1_Saels_Delvry'            => $item['Done_1_Saels_Delvry'] == true ? 1 : 0,
+                    'Done_ALL_Delvry'            => $item['Done_ALL_Delvry'] == true ? 1 : 0,
+                    'Cancel_1_Delvry'            => $item['Cancel_1_Delvry'] == true ? 1 : 0,
+                    'DeleteCode'            => $item['DeleteCode'] == true ? 1 : 0,
+                    'SershSaels'            => $item['SershSaels'] == true ? 1 : 0,
+                    'TotalSaelsDelvry'            => $item['TotalSaelsDelvry'] == true ? 1 : 0,
+                    'TotalSaels'            => $item['TotalSaels'] == true ? 1 : 0,
+                    'EditeCostDelvry'            => $item['EditeCostDelvry'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1486,6 +1529,29 @@ class SyncController extends Controller
                     'id'            => $item['City_id'],
                     'city_name_ar'  => $item['City_name'],
                     'city_name_en'  => $item['City_name'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_users(Request $request)
+    {
+        Log::info('upload_users', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = UserAdmin::updateOrCreate(['id' => $item['id_user']], [
+                    'id'        => $item['id_user'],
+                    'username'  => $item['user_name'],
+                    'password'  => $item['user_pass'],
+                    'emp_id'    => $item['user_Emp_id'],
+                    'user_type' => $item['user_Type'],
+                    'note'      => $item['use_note'],
+                    'active'    => $item['user_Active']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

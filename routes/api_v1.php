@@ -147,6 +147,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/shift',[SyncController::class, 'upload_shift']);
     Route::post('/upload/product/moves',[SyncController::class, 'upload_product_moves']);
     Route::post('/upload/permission/screnes',[SyncController::class, 'upload_permission_screnes']);
+    Route::post('/upload/permission/saels',[SyncController::class, 'upload_permissions_saels']);
     Route::post('/upload/partners',[SyncController::class, 'upload_partners']);
     Route::post('/upload/movement/balances',[SyncController::class, 'upload_movement_balances']);
     Route::post('/upload/move/partners',[SyncController::class, 'upload_move_partners']);
@@ -160,6 +161,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/region',[SyncController::class, 'upload_region']);
     Route::post('/upload/income',[SyncController::class, 'upload_income']);
     Route::post('/upload/offer/bays',[SyncController::class, 'upload_offer_bays']);
+    Route::post('/upload/users',[SyncController::class, 'upload_users']);
 });
 #################   End  SYNC   #############
 
