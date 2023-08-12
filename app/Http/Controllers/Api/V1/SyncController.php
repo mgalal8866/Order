@@ -1040,7 +1040,6 @@ class SyncController extends Controller
                 $uu =   PurchaseDetails::create([
                     'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
                     'PurchaseD_id' => $item['PurchaseD_id'],
-                    'Purchase_H_id'           => $item['Purchase_H_id'],
                     'Product_Details_Id'          => $item['Product_Details_Id'],
                     'ExpireDate'           => $item['ExpireDate'],
                     'BuyPrice'           => $item['BuyPrice'],
