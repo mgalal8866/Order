@@ -1039,7 +1039,7 @@ class SyncController extends Controller
                 Log::info('PurchaseDetails', $item);
                 $uu =   PurchaseDetails::create([
                     'Purchase_H_id'     => $request[0][0]['PurchaseH_id'],
-                    'PurchaseD_id' => $item['PurchaseD_id'],
+                    'purchased_id' => $item['PurchaseD_id'],
                     'Product_Details_Id'          => $item['Product_Details_Id'],
                     'ExpireDate'           => $item['ExpireDate'],
                     'BuyPrice'           => $item['BuyPrice'],
@@ -1056,35 +1056,6 @@ class SyncController extends Controller
             return Resp(null, 'Success', 200, true);
 
 
-        // Log::info('upload_purchase_headers', ['0' => $request->all()]);
-
-        // try {
-        //     foreach ($request->all() as $index => $item) {
-        //         $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
-        //             'PurchaseH_id'           => $item['PurchaseH_id'],
-        //             'invoice_Number'         => $item['invoice_Number'],
-        //             'InvoiceType'            => $item['InvoiceType'] == true ? 1 : 0,
-        //             'Company_invoice_number' => $item['Company_invoice_number'],
-        //             'Suppliers_id'           => $item['Suppliers_id'],
-        //             'Store_id'               => $item['Store_id'],
-        //             'Safe_id'                => $item['Safe_id'],
-        //             'Name_Emp'               => $item['Name_Emp'],
-        //             'image_invoice'          => $item['image_invoice'],
-        //             'note'                   => $item['note'],
-        //             'uoser_id'               => $item['uoser_id'],
-        //             'Sup_total'              => $item['Sup_total'],
-        //             'Total_Discount'          => $item['Total_Discount'],
-        //             'Suppliers_Last_balance'  => $item['Suppliers_Last_balance'],
-        //             'Grand_Total'             => $item['Grand_Total'],
-        //             'Paid'                    => $item['Paid'],
-        //             'Remaining'               => $item['Remaining'],
-        //             'Suppliers_Final_balance' => $item['Suppliers_Final_balance'],
-        //             'tax'                     => $item['tax'],
-        //             'noCare'                  => $item['noCare'],
-        //         ]);
-        //         logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-        //     }
-        //     return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
