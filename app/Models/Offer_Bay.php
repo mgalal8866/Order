@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Offer_Bay extends Model
 {
     use HasFactory;
+    protected $table = 'offer_bays';
     protected $guarded = [];
 }
