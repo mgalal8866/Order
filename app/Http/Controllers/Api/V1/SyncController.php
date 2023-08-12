@@ -893,15 +893,15 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = SecondOffer::updateOrCreate(['id'          => $item['id']], [
-                    'id'                => $item['id'],
-                    'product_details_id' => $item['product_details_id'],
-                    'pieces_number'     => $item['pieces_number'],
-                    'discount'          => $item['discount'],
-                    'from_date'         => $item['from_date'],
-                    'to_date'           => $item['to_date'],
-                    'price_before'      => $item['price_before'],
-                    'price_after'       => $item['price_after'],
+                $uu = SecondOffer::updateOrCreate(['id' => $item['Id']], [
+                    'id'                 => $item['Id'],
+                    'product_details_id' => $item['ProductDetailsId'],
+                    'pieces_number'     => $item['PiecesNumber'],
+                    'discount'          => $item['Discount'],
+                    'from_date'         => $item['FromDate'],
+                    'to_date'           => $item['ToDate'],
+                    'price_before'      => $item['PriceBefore'],
+                    'price_after'       => $item['PriceAfter'],
                     'user_id'           => $item['user_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -1226,7 +1226,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
 
                 $uu = Permissions_Saels::updateOrCreate(['id' => $item['Permissions_Saels_id']], [
-                    'id'      => $item['Permissions_Saels_id'],
+                    'id'                        => $item['Permissions_Saels_id'],
                     'User_id'                   => $item['User_id'],
                     'Passwrd_Selas'             => $item['Passwrd_Selas'],
                     'Saels_Leve'                => $item['Saels_Leve'] == true ? 1 : 0,
@@ -1243,12 +1243,12 @@ class SyncController extends Controller
                     'Edite_Saels_Dlevry'        => $item['Edite_Saels_Dlevry'] == true ? 1 : 0,
                     'Done_1_Saels_Delvry'       => $item['Done_1_Saels_Delvry'] == true ? 1 : 0,
                     'Done_ALL_Delvry'           => $item['Done_ALL_Delvry'] == true ? 1 : 0,
-                    'Cancel_1_Delvry'            => $item['Cancel_1_Delvry'] == true ? 1 : 0,
-                    'DeleteCode'            => $item['DeleteCode'] == true ? 1 : 0,
-                    'SershSaels'            => $item['SershSaels'] == true ? 1 : 0,
-                    'TotalSaelsDelvry'            => $item['TotalSaelsDelvry'] == true ? 1 : 0,
-                    'TotalSaels'            => $item['TotalSaels'] == true ? 1 : 0,
-                    'EditeCostDelvry'            => $item['EditeCostDelvry'] == true ? 1 : 0,
+                    'Cancel_1_Delvry'           => $item['Cancel_1_Delvry'] == true ? 1 : 0,
+                    'DeleteCode'                => $item['DeleteCode'] == true ? 1 : 0,
+                    'SershSaels'                => $item['SershSaels'] == true ? 1 : 0,
+                    'TotalSaelsDelvry'          => $item['TotalSaelsDelvry'] == true ? 1 : 0,
+                    'TotalSaels'                => $item['TotalSaels'] == true ? 1 : 0,
+                    'EditeCostDelvry'           => $item['EditeCostDelvry'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
