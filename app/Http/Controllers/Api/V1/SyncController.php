@@ -243,8 +243,6 @@ class SyncController extends Controller
     function uploadsalseheader(Request $request)
     {
 
-
-
         Log::info('SalesHeader', ['0' => $request[0], '1' => $request[1]]);
 
         try {
@@ -1009,37 +1007,85 @@ class SyncController extends Controller
     }
     function upload_purchase_headers(Request $request)
     {
-        Log::info('upload_purchase_headers', ['0' => $request->all()]);
+        Log::info('SalesHeader', ['0' => $request[0], '1' => $request[1]]);
 
         try {
-            foreach ($request->all() as $index => $item) {
-                $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
-                    'PurchaseH_id'           => $item['PurchaseH_id'],
-                    'invoice_Number'         => $item['invoice_Number'],
-                    'InvoiceType'            => $item['InvoiceType'] == true ? 1 : 0,
-                    'Company_invoice_number' => $item['Company_invoice_number'],
-                    'Suppliers_id'           => $item['Suppliers_id'],
-                    'Store_id'               => $item['Store_id'],
-                    'Safe_id'                => $item['Safe_id'],
-                    'Name_Emp'               => $item['Name_Emp'],
-                    'image_invoice'          => $item['image_invoice'],
-                    'note'                   => $item['note'],
-                    'uoser_id'               => $item['uoser_id'],
-                    'Sup_total'              => $item['Sup_total'],
-                    'Total_Discount'          => $item['Total_Discount'],
-                    'Suppliers_Last_balance'  => $item['Suppliers_Last_balance'],
-                    'Grand_Total'             => $item['Grand_Total'],
-                    'Paid'                    => $item['Paid'],
-                    'Remaining'               => $item['Remaining'],
-                    'Suppliers_Final_balance' => $item['Suppliers_Final_balance'],
-                    'tax'                     => $item['tax'],
-                    'noCare'                  => $item['noCare'],
+            $uu =   PurchaseHeader::updateOrCreate([ "PurchaseH_id"     => $request[0][0]['PurchaseH_id']], [
 
+                "PurchaseH_id"     => $request[0][0]['PurchaseH_id'],
+                "invoice_Number"    => $request[0][0]['invoice_Number'],
+                "InvoiceType"   => $request[0][0]['InvoiceType']==true?1:0,
+                "Company_invoice_number"   => $request[0][0]['Company_invoice_number'],
+                "Suppliers_id"     => $request[0][0]['Suppliers_id'],
+                "Store_id"   => $request[0][0]['Store_id'],
+                "Safe_id"  => $request[0][0]['Safe_id'],
+                "Name_Emp"       => $request[0][0]['Name_Emp'],
+                "image_invoice"      => $request[0][0]['image_invoice'],
+                "note"       => $request[0][0]['note'],
+                "uoser_id"        => $request[0][0]['uoser_id'],
+                "Sup_total"     => $request[0][0]['Sup_total'],
+                "Total_Discount" => $request[0][0]['Total_Discount'],
+                "Suppliers_Last_balance"       => $request[0][0]['Suppliers_Last_balance'],
+                "Grand_Total"      => $request[0][0]['Grand_Total'],
+                "Paid" => $request[0][0]['Paid'],
+                "Remaining"    => $request[0][0]['Remaining'],
+                "Suppliers_Final_balance"    => $request[0][0]['Suppliers_Final_balance'],
+                "tax" => $request[0][0]['tax'],
+                "noCare"  => $request[0][0]['noCare'],
 
+            ]);
+            PurchaseDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
+            foreach ($request[1] as $index => $item) {
+                Log::info('PurchaseDetails', $item);
+                $uu =   PurchaseDetails::create([
+                    'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
+                    'PurchaseD_id' => $item['PurchaseD_id'],
+                    'Purchase_H_id'           => $item['Purchase_H_id'],
+                    'Product_Details_Id'          => $item['Product_Details_Id'],
+                    'ExpireDate'           => $item['ExpireDate'],
+                    'BuyPrice'           => $item['BuyPrice'],
+                    'SellPrice'           => $item['SellPrice'],
+                    'Quantity'         => $item['Quantity'],
+                    'SubTotal'             => $item['SubTotal'],
+                    'Discount'             => $item['Discount'],
+                    'GrandTotal'             => $item['GrandTotal'],
+                    'IsReturn'             => $item['IsReturn']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
+            logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
+
+
+        // Log::info('upload_purchase_headers', ['0' => $request->all()]);
+
+        // try {
+        //     foreach ($request->all() as $index => $item) {
+        //         $uu = PurchaseHeader::updateOrCreate(['PurchaseH_id' => $item['PurchaseH_id']], [
+        //             'PurchaseH_id'           => $item['PurchaseH_id'],
+        //             'invoice_Number'         => $item['invoice_Number'],
+        //             'InvoiceType'            => $item['InvoiceType'] == true ? 1 : 0,
+        //             'Company_invoice_number' => $item['Company_invoice_number'],
+        //             'Suppliers_id'           => $item['Suppliers_id'],
+        //             'Store_id'               => $item['Store_id'],
+        //             'Safe_id'                => $item['Safe_id'],
+        //             'Name_Emp'               => $item['Name_Emp'],
+        //             'image_invoice'          => $item['image_invoice'],
+        //             'note'                   => $item['note'],
+        //             'uoser_id'               => $item['uoser_id'],
+        //             'Sup_total'              => $item['Sup_total'],
+        //             'Total_Discount'          => $item['Total_Discount'],
+        //             'Suppliers_Last_balance'  => $item['Suppliers_Last_balance'],
+        //             'Grand_Total'             => $item['Grand_Total'],
+        //             'Paid'                    => $item['Paid'],
+        //             'Remaining'               => $item['Remaining'],
+        //             'Suppliers_Final_balance' => $item['Suppliers_Final_balance'],
+        //             'tax'                     => $item['tax'],
+        //             'noCare'                  => $item['noCare'],
+        //         ]);
+        //         logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+        //     }
+        //     return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
