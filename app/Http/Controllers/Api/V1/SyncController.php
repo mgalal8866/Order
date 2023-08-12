@@ -1117,7 +1117,7 @@ class SyncController extends Controller
 
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
