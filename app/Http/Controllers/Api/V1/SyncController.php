@@ -1101,13 +1101,12 @@ class SyncController extends Controller
                     'MoveDate'       => $request[0][0]['MoveDate'],
                     'UserId'         => $request[0][0]['UserId'],
             ]);
-            MovementStockDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
+            MovementStockDetails::where('MovementStockId', $request[0][0]['Move_Id'])->delete();
             foreach ($request[1] as $index => $item) {
                 Log::info('MovementStockDetails', $item);
                 $uu =   MovementStockDetails::create([
-                    'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
                     'Id'               => $item['Id'],
-                    'MovementStockId'  => $item['MovementStockId'],
+                    'MovementStockId'  => $request[0][0]['Move_Id'],
                     'ProductDetailsId' => $item['ProductDetailsId'],
                     'Quantity'         => $item['Quantity'],
                 ]);
