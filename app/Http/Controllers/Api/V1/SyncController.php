@@ -1204,7 +1204,7 @@ class SyncController extends Controller
                     'userID'            => $item['userID'],
                     'NO_Screne'         => $item['NO_Screne'],
                     'Srene'             => $item['Srene'] == true ? 1 : 0,
-                    'add'               => $item['add'] == true ? 1 : 0,
+                    'add'               => $item['add_'] == true ? 1 : 0,
                     'Ediet'             => $item['Ediet'] == true ? 1 : 0,
                     'Delaet'            => $item['Delaet'] == true ? 1 : 0
                 ]);
@@ -1373,7 +1373,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = ExpensesTypes::updateOrCreate(['Expenses_id'  => $item['Expenses_id']], [
+                $uu = ExpensesTypes::updateOrCreate(['ExpensesT_id'  => $item['ExpensesT_id']], [
                     'ExpensesT_id'  => $item['ExpensesT_id'],
                     'Exp_name'      => $item['Exp_name'],
                     'Exp_note'      => $item['Exp_note'],
