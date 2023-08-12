@@ -890,7 +890,6 @@ class SyncController extends Controller
     function upload_second_offers(Request $request)
     {
         Log::info('upload_second_offers', ['0' => $request->all()]);
-
         try {
             foreach ($request->all() as $index => $item) {
                 $uu = SecondOffer::updateOrCreate(['id' => $item['Id']], [
