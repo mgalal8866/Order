@@ -1010,7 +1010,7 @@ class SyncController extends Controller
         Log::info('PurchaseHeader', ['0' => $request[0], '1' => $request[1]]);
 
         try {
-            $uu =   PurchaseHeader::updateOrCreate([ "PurchaseH_id"     => $request[0][0]['PurchaseH_id']], [
+            $uu =   PurchaseHeader::updateOrCreate([ "PurchaseH_id"  => $request[0][0]['PurchaseH_id']], [
 
                 "PurchaseH_id"     => $request[0][0]['PurchaseH_id'],
                 "invoice_Number"    => $request[0][0]['invoice_Number'],
@@ -1034,11 +1034,11 @@ class SyncController extends Controller
                 "noCare"  => $request[0][0]['noCare'],
 
             ]);
-            PurchaseDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
+            PurchaseDetails::where('Purchase_H_id', $request[0][0]['PurchaseH_id'])->delete();
             foreach ($request[1] as $index => $item) {
                 Log::info('PurchaseDetails', $item);
                 $uu =   PurchaseDetails::create([
-                    'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
+                    'Purchase_H_id'     => $request[0][0]['PurchaseH_id'],
                     'PurchaseD_id' => $item['PurchaseD_id'],
                     'Product_Details_Id'          => $item['Product_Details_Id'],
                     'ExpireDate'           => $item['ExpireDate'],
@@ -1125,6 +1125,37 @@ class SyncController extends Controller
     function upload_movement_stocks(Request $request)
     {
         Log::info('upload_movement_stocks', ['0' => $request->all()]);
+
+        try {
+            $uu =   MovementStock::updateOrCreate([ "PurchaseH_id"     => $request[0][0]['PurchaseH_id']], [
+
+                $uu = MovementStock::updateOrCreate(['Move_Id' => $item['Move_Id']], [
+                    'Move_Id'        => $item['Move_Id'],
+                    'FromStore'      => $item['FromStore'],
+                    'ToStore'        => $item['ToStore'],
+                    'MoveDate'       => $item['MoveDate'],
+                    'UserId'         => $item['UserId'],
+            ]);
+            PurchaseDetails::where('PurchaseH_id', $request[0][0]['PurchaseH_id'])->delete();
+            foreach ($request[1] as $index => $item) {
+                Log::info('PurchaseDetails', $item);
+                $uu =   PurchaseDetails::create([
+                    'PurchaseH_id'     => $request[0][0]['PurchaseH_id'],
+                    'PurchaseD_id' => $item['PurchaseD_id'],
+                    'Product_Details_Id'          => $item['Product_Details_Id'],
+                    'ExpireDate'           => $item['ExpireDate'],
+                    'BuyPrice'           => $item['BuyPrice'],
+                    'SellPrice'           => $item['SellPrice'],
+                    'Quantity'         => $item['Quantity'],
+                    'SubTotal'             => $item['SubTotal'],
+                    'Discount'             => $item['Discount'],
+                    'GrandTotal'             => $item['GrandTotal'],
+                    'IsReturn'             => $item['IsReturn']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            return Resp(null, 'Success', 200, true);
 
         try {
             foreach ($request->all() as $index => $item) {
