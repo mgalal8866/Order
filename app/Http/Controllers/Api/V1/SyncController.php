@@ -1007,7 +1007,7 @@ class SyncController extends Controller
     }
     function upload_purchase_headers(Request $request)
     {
-        Log::info('SalesHeader', ['0' => $request[0], '1' => $request[1]]);
+        Log::info('PurchaseHeader', ['0' => $request[0], '1' => $request[1]]);
 
         try {
             $uu =   PurchaseHeader::updateOrCreate([ "PurchaseH_id"     => $request[0][0]['PurchaseH_id']], [
@@ -1088,7 +1088,7 @@ class SyncController extends Controller
         //     return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
