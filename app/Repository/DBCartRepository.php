@@ -31,6 +31,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function deletecart($cart_id)
     {
+        Log::error($cart_id);
         $w =   Cart::where('id', $cart_id)->where('user_id', Auth::guard('api')->user()->id)->first();
         if ($w->delete() != null) {
             return   $this->getcart();
