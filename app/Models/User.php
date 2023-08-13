@@ -80,8 +80,17 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-    public function setCodeClientAttribute()
+    // public function setCodeClientAttribute()
+    // {
+    //     $this->attributes['code_client'] = 'On-'. Str::random(6);
+    // }
+    protected static function boot()
     {
-        $this->attributes['code_client'] = 'On-'. Str::random(6);
+        parent::boot();
+
+        // auto-sets values on creation
+        static::creating(function ($query) {
+            $query->code_client = 'On-' . Str::random(6);
+        });
     }
 }
