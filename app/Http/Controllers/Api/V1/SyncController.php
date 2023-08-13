@@ -42,7 +42,7 @@ use Illuminate\Http\Request;
 use App\Models\ExpensesTypes;
 use App\Models\Move_Partners;
 use App\Models\MovementStock;
-use App\Models\product_moves;
+use App\Models\ProductMoves;
 use App\Models\ProductHeader;
 use App\Models\Supplier_Grup;
 use App\Models\DeliveryHeader;
@@ -62,6 +62,7 @@ use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\sync\DeliveryHeaderResource;
+use App\Models\Safe;
 use App\Models\UserAdmin;
 
 class SyncController extends Controller
@@ -303,49 +304,49 @@ class SyncController extends Controller
 
 
 
-        // Log::info('uploadsalseheader', $request->all());
-        // try {
-        //     foreach ($request->all() as $index => $item) {
-        //         $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
-        //             "id"            => $item['SalesHeader_ID'],
-        //             "invoicenumber" => $item['InvoiceNumber'],
-        //             "coupon_id"     => $item['coupon_id'],
-        //             "type_order"    => $item['Type_Order'],
-        //             "comment_id"    => $item['comment_ID'],
-        //             "invoicetype"   => $item['InvoiceType'],
-        //             "invoicedate"   => $item['InvoiceDate'],
-        //             "client_id"     => $item['Client_ID'],
-        //             "lastbalance"   => $item['LastBalance'],
-        //             "finalbalance"  => $item['finalbalance'],
-        //             "user_id"       => $item['User_ID'],
-        //             "store_id"      => $item['Store_ID'],
-        //             "safe_id"       => $item['Safe_ID'],
-        //             "status"        => $item['Status'],
-        //             "employ_id"     => $item['Employ_ID'],
-        //             "dis_point_active" => $item['Dis_Point_Active'],
-        //             "paytayp"       => $item['PayTayp'],
-        //             "subtotal"      => $item['SubTotal'],
-        //             "totaldiscount" => $item['Total_Discount'],
-        //             "discount_g"    => $item['Discount_G'],
-        //             "discount_f"    => $item['Discount_F'],
-        //             "total_add_amount" => $item['Total_Add_Amount'],
-        //             "add_amount_g"  => $item['Add_Amount_G'],
-        //             "add_amount_f"  => $item['Add_Amount_F'],
-        //             "discount_product" => $item['Discount_Prduct'],
-        //             "discount_sales" => $item['Discount_Sales'],
-        //             "discount_point" => $item['Discount_Point'],
-        //             "grandtotal"     => $item['GrandTotal'],
-        //             "paid"           => $item['Paid'],
-        //             "remaining"      => $item['Remaining'],
-        //             "total_profit"   => $item['Total_Profit'],
-        //             "note"           => $item['note'],
-        //             "deliverycost"   => $item['DelverCost'],
-        //             "satus_delivery" => $item['Status_Delvery'],
-        //             "sales_online"   => $item['SalesOnlain']
-        //         ]);
-        //         logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-        //     }
-        //     return Resp(null, 'Success', 200, true);
+            // Log::info('uploadsalseheader', $request->all());
+            // try {
+            //     foreach ($request->all() as $index => $item) {
+            //         $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
+            //             "id"            => $item['SalesHeader_ID'],
+            //             "invoicenumber" => $item['InvoiceNumber'],
+            //             "coupon_id"     => $item['coupon_id'],
+            //             "type_order"    => $item['Type_Order'],
+            //             "comment_id"    => $item['comment_ID'],
+            //             "invoicetype"   => $item['InvoiceType'],
+            //             "invoicedate"   => $item['InvoiceDate'],
+            //             "client_id"     => $item['Client_ID'],
+            //             "lastbalance"   => $item['LastBalance'],
+            //             "finalbalance"  => $item['finalbalance'],
+            //             "user_id"       => $item['User_ID'],
+            //             "store_id"      => $item['Store_ID'],
+            //             "safe_id"       => $item['Safe_ID'],
+            //             "status"        => $item['Status'],
+            //             "employ_id"     => $item['Employ_ID'],
+            //             "dis_point_active" => $item['Dis_Point_Active'],
+            //             "paytayp"       => $item['PayTayp'],
+            //             "subtotal"      => $item['SubTotal'],
+            //             "totaldiscount" => $item['Total_Discount'],
+            //             "discount_g"    => $item['Discount_G'],
+            //             "discount_f"    => $item['Discount_F'],
+            //             "total_add_amount" => $item['Total_Add_Amount'],
+            //             "add_amount_g"  => $item['Add_Amount_G'],
+            //             "add_amount_f"  => $item['Add_Amount_F'],
+            //             "discount_product" => $item['Discount_Prduct'],
+            //             "discount_sales" => $item['Discount_Sales'],
+            //             "discount_point" => $item['Discount_Point'],
+            //             "grandtotal"     => $item['GrandTotal'],
+            //             "paid"           => $item['Paid'],
+            //             "remaining"      => $item['Remaining'],
+            //             "total_profit"   => $item['Total_Profit'],
+            //             "note"           => $item['note'],
+            //             "deliverycost"   => $item['DelverCost'],
+            //             "satus_delivery" => $item['Status_Delvery'],
+            //             "sales_online"   => $item['SalesOnlain']
+            //         ]);
+            //         logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            //     }
+            //     return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
@@ -1010,11 +1011,11 @@ class SyncController extends Controller
         Log::info('PurchaseHeader', ['0' => $request[0], '1' => $request[1]]);
 
         try {
-            $uu =   PurchaseHeader::updateOrCreate([ "PurchaseH_id"  => $request[0][0]['PurchaseH_id']], [
+            $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  => $request[0][0]['PurchaseH_id']], [
 
                 "PurchaseH_id"     => $request[0][0]['PurchaseH_id'],
                 "invoice_Number"    => $request[0][0]['invoice_Number'],
-                "InvoiceType"   => $request[0][0]['InvoiceType']==true?1:0,
+                "InvoiceType"   => $request[0][0]['InvoiceType'] == true ? 1 : 0,
                 "Company_invoice_number"   => $request[0][0]['Company_invoice_number'],
                 "Suppliers_id"     => $request[0][0]['Suppliers_id'],
                 "Store_id"   => $request[0][0]['Store_id'],
@@ -1048,7 +1049,7 @@ class SyncController extends Controller
                     'SubTotal'            => $item['SubTotal'],
                     'Discount'            => $item['Discount'],
                     'GrandTotal'          => $item['GrandTotal'],
-                    'IsReturn'            => $item['IsReturn']==true?1:0,
+                    'IsReturn'            => $item['IsReturn'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1092,12 +1093,12 @@ class SyncController extends Controller
     {
         Log::info('upload_movement_stocks', ['0' => $request->all()]);
         try {
-                $uu = MovementStock::updateOrCreate(['Move_Id' => $request[0][0]['Move_Id']], [
-                    'Move_Id'        => $request[0][0]['Move_Id'],
-                    'FromStore'      => $request[0][0]['FromStore'],
-                    'ToStore'        => $request[0][0]['ToStore'],
-                    'MoveDate'       => $request[0][0]['MoveDate'],
-                    'UserId'         => $request[0][0]['UserId'],
+            $uu = MovementStock::updateOrCreate(['Move_Id' => $request[0][0]['Move_Id']], [
+                'Move_Id'        => $request[0][0]['Move_Id'],
+                'FromStore'      => $request[0][0]['FromStore'],
+                'ToStore'        => $request[0][0]['ToStore'],
+                'MoveDate'       => $request[0][0]['MoveDate'],
+                'UserId'         => $request[0][0]['UserId'],
             ]);
             MovementStockDetails::where('MovementStockId', $request[0][0]['Move_Id'])->delete();
             foreach ($request[1] as $index => $item) {
@@ -1112,7 +1113,6 @@ class SyncController extends Controller
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
-
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
             logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
@@ -1256,7 +1256,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = product_moves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
+                $uu = ProductMoves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
                     'Product_Moves_ID'  => $item['Product_Moves_ID'],
                     'Product_ID'        => $item['Product_ID'],
                     'Quantity'      => $item['Quantity'],
@@ -1320,7 +1320,7 @@ class SyncController extends Controller
                     'ADD_M'                     => $item['ADD_M'] == true ? 1 : 0,
                     'Descount_M'                => $item['Descount_M'] == true ? 1 : 0,
                     'Prent_Selas'               => $item['Prent_Selas'] == true ? 1 : 0,
-                    'Seals_Count'               => $item['Seals_Count'] ,
+                    'Seals_Count'               => $item['Seals_Count'],
                     'bay_Tayp'                  => $item['bay_Tayp'] == true ? 1 : 0,
                     'Edite_Saels_Dlevry'        => $item['Edite_Saels_Dlevry'] == true ? 1 : 0,
                     'Done_1_Saels_Delvry'       => $item['Done_1_Saels_Delvry'] == true ? 1 : 0,
@@ -1632,7 +1632,30 @@ class SyncController extends Controller
                     'emp_id'    => $item['user_Emp_id'],
                     'user_type' => $item['user_Type'],
                     'note'      => $item['use_note'],
-                    'active'    => $item['user_Active']==true?1:0,
+                    'active'    => $item['user_Active'] == true ? 1 : 0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_safe(Request $request)
+    {
+        Log::info('upload_safe', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Safe::updateOrCreate(['id' => $item['safe_id']], [
+                    'id'        => $item['safe_id'],
+                    'safe_name'  => $item['safe_name'],
+                    'branch_id'  => $item['bransh_id'],
+                    'opening_balance'    => $item['Opening_balance'],
+                    'balance_now' => $item['balance_now'],
+                    'user_id'      => $item['user_id'],
+                    'save_active'    => $item['save_acteve'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
