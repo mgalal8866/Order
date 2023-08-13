@@ -18,7 +18,7 @@ class CartResource extends JsonResource
             "conver"        => $this->id,
             "productd_id"    => $this->productdetails->id,
             "productd_name"  => $this->productdetails->productheader->product_name ?? '',
-            "productd_qty"   =>  $this->productdetails->productheader->product_isscale==1? $this->qty: intval($this->qty),
+            "productd_qty"   =>  $this->productdetails->productheader->product_isscale==1? $this->qty: $this->qty,
             "productd_bay"   => $this->productdetails->productd_bay ?? '',
             "product_isscale" => $this->productdetails->productheader->product_isscale,
             "productd_barcode" => $this->productdetails->productd_barcode ?? '',
