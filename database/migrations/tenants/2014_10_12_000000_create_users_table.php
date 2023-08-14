@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fsm')->nullable();
-            $table->string('client_fhonewhats')->unique()->nullable();
-            $table->string('password')->nullable();
+            $table->string('client_fhonewhats')->index()->unique()->nullable();
+     
             $table->string('source_id')->nullable();
             $table->string('client_name')->nullable();
             $table->decimal('client_Balanc', 8, 2)->default(0);
