@@ -17,7 +17,8 @@ class ApiKeySeeder extends Seeder
     {
         $keys = [
             ['name'=>'APP','token'=>'poOLz4qcSBdmbS9X'],
-            ['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb']
+            ['name'=>'Desktop','token'=>'moaKriCSu1KHLZ0oZb'],
+            ['name'=>'Postmantest','token'=>'moaKkuusSu1KHLZ0oZb']
         ];
         foreach($keys as $key){
             ApiToken::create($key);
