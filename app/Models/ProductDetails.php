@@ -103,20 +103,30 @@ class ProductDetails extends Model
         return $this->productd_UnitType == 2 ?
             $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name);
     }
-    public function scopeQtystockapi($query,$qty)
+    public function scopeQtystockapi($query, $qty)
     {
         $units = $query->units($this->product_header_id)->get();
-        if($qty ==0 ){
-            return    'غير متوفر';}
+        if ($qty == 0) {
+            return    'غير متوفر';
+        }
         switch ($this->productd_UnitType) {
             case (1):
-                return ($qty/$this->productd_size ) >= 1 ? 'متوفر' : 'غير متوفر';
+                if ($this->productd_size == 0) {
+                    return 'غير متوفر';
+                };
+                return ($qty / $this->productd_size) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             case (2):
-                return  ($qty/$this->productd_size) >= 1 ?'متوفر' : 'غير متوفر';
+                if ($this->productd_size == 0) {
+                    return 'غير متوفر';
+                };
+                return ($qty / $this->productd_size) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             case (3):
-                return ($qty/($this->productd_size * $units[1]->productd_size)) >= 1 ? 'متوفر' : 'غير متوفر';
+                if ($this->productd_size == 0) {
+                    return 'غير متوفر';
+                };
+                return ($qty / ($this->productd_size * $units[1]->productd_size)) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             default:
         }
