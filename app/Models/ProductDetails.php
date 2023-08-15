@@ -108,16 +108,16 @@ class ProductDetails extends Model
         $units = $query->units($this->product_header_id)->get();
         switch ($this->productd_UnitType) {
             case (1):
-                $this->productd_size;
+                return ($qty/$this->productd_size ) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             case (2):
-                $this->productd_size . $units[$this->productd_UnitType - 1]->productd_size;
+                return  ($qty / $units[1]->productd_size) >= 1 ?'متوفر' : 'غير متوفر';
                 break;
             case (3):
-                $this->productd_size . $units[$this->productd_UnitType - 1]->productd_size. $units[$this->productd_UnitType - 2]->productd_size;
+                return ($qty/($this->productd_size * $units[1]->productd_size)) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             default:
         }
-        return  $this->productd_size . $units[$this->productd_UnitType - 2]->productd_size;
+        // return  $this->productd_size . $units[$this->productd_UnitType - 2]->productd_size;
     }
 }

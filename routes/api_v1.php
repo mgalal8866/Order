@@ -99,6 +99,7 @@ Route::middleware(['jwt.verify'])->group(function () {
 #################   Start SYNC  #############
 Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
 
+    Route::get('/down/cart',[SyncController::class, 'getcart']);
     Route::get('/down/delivery/header',[SyncController::class, 'downsdeliveryheader']);
     Route::get('/down/delivery/details',[SyncController::class, 'downdeliverydetails']);
     Route::get('/down/comments',[SyncController::class, 'downcomment']);
@@ -163,7 +164,6 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/offer/bays',[SyncController::class, 'upload_offer_bays']);
     Route::post('/upload/users',[SyncController::class, 'upload_users']);
     Route::post('/upload/safe',[SyncController::class, 'upload_safe']);
-    Route::get('/down/cart',[SyncController::class, 'getcart']);
     Route::post('/upload/branch',[SyncController::class, 'upload_branch']);
     Route::post('/upload/product/header/details',[SyncController::class, 'upload_product_header_details']);
 
@@ -174,6 +174,7 @@ Route::prefix('delivery')->middleware([])->group(function(){
     Route::post('/login',   [UserDeliveryController::class, 'login'])->name('login');
     Route::post('/register', [UserDeliveryController::class, 'register'])->name('register');
 });
+
 Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
     Route::get('update/map',[UserDeliveryController::class,'updatemap']);
     Route::get('checkuser',[UserDeliveryController::class,'checkuser']);
