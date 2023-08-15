@@ -1,8 +1,10 @@
 <?php
-
 namespace Database\Seeders\tenants;
-use App\Models\UserAdmin;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\UserAdmin;
+
 class UserSeeder extends Seeder
 {
     /**

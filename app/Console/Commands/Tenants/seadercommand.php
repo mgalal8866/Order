@@ -35,7 +35,7 @@ class seadercommand extends Command
             $this->info('Start seeding : ' . $tenant->domain);
             $this->info('---------------------------------------');
             Artisan::call('db:seed', [
-                "--class" => "Database\\seeders\\tenants\\" . $class,
+                "--class" => "Database\\Seeders\\Tenants\\" . $class,
                 "--database" => 'tenant'
             ]);
             $this->info(Artisan::output());

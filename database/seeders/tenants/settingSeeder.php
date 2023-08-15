@@ -1,13 +1,11 @@
 <?php
-
 namespace Database\Seeders\tenants;
 
-
-use App\Models\ApiToken;
-use App\Models\setting;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\File;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+
+use App\Models\setting;
+
 
 class settingSeeder extends Seeder
 {
