@@ -113,6 +113,7 @@ class ProductDetails extends Model
                 return ($qty/$this->productd_size ) >= 1 ? 'متوفر' : 'غير متوفر';
                 break;
             case (2):
+                return $units[1]->productd_size;
                 return  ($qty / $units[1]->productd_size) >= 1 ?'متوفر' : 'غير متوفر';
                 break;
             case (3):
