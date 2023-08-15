@@ -67,7 +67,7 @@ use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
 use App\Http\Resources\CartResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Models\UserAdmin;
+
 
 class SyncController extends Controller
 {
@@ -1266,7 +1266,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = product_moves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
+                $uu = ProductMoves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
                     'Product_Moves_ID'  => $item['Product_Moves_ID'],
                     'Product_ID'        => $item['Product_ID'],
                     'Quantity'      => $item['Quantity'],
