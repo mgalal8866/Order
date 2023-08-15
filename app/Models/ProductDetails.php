@@ -106,6 +106,8 @@ class ProductDetails extends Model
     public function scopeQtystockapi($query,$qty)
     {
         $units = $query->units($this->product_header_id)->get();
+        if($qty ==0 ){
+            return    'غير متوفر';}
         switch ($this->productd_UnitType) {
             case (1):
                 return ($qty/$this->productd_size ) >= 1 ? 'متوفر' : 'غير متوفر';
