@@ -15,7 +15,6 @@ return new class extends Migration
             $table->increments('id');
             $table->string('fsm')->nullable();
             $table->string('client_fhonewhats')->index()->unique()->nullable();
-     
             $table->string('source_id')->nullable();
             $table->string('client_name')->nullable();
             $table->decimal('client_Balanc', 8, 2)->default(0);
