@@ -29,6 +29,7 @@ class seadercommand extends Command
     public function handle()
     {
         $class = $this->argument('class');
+        dd( $class);
         $tenants = Tenant::get();
         $tenants->each(function ($tenant) use ($class) {
             Tenants::switchToTanent($tenant);
