@@ -15,7 +15,7 @@ class DBProductRepository implements ProductRepositoryinterface
     public function getprobycat($id)
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->orderBy('updated_at','DESC')->online()->paginate($this->pg)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->with('productheader')->orderBy('updated_at','DESC')->online()->paginate($this->pg)), 'success', 200, true)->getData(true);
         // dd(\DB::getQueryLog()); // Show results of log
     }
     public function getoffers()
