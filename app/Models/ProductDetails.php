@@ -3,9 +3,10 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\ProductHeader;
 use Illuminate\Support\Facades\File;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductDetails extends Model
 {
@@ -36,7 +37,7 @@ class ProductDetails extends Model
     {
         return $this->hasone(Cart::class,'product_id');
     }
-   
+
     public function getOrginalimageAttribute()
     {
             return $this->getAttributes()['productd_image'];
