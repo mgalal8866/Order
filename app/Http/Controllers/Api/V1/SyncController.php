@@ -144,8 +144,8 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   ProductHeader::updateOrCreate(['id' => $item['ProductsID']], [
-                    'id'                => $item['ProductsID'],
+                $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
+                    'id'                => $item['Products_ID'],
                     'product_name'      => $item['Products_name'],
                     'product_category'  => $item['Products_Sup_id'],
                     'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
