@@ -9,8 +9,8 @@ class Stock extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function productdetails()
+    public function productheader()
     {
-        return $this->belongsto(ProductDetails::class, 'product_id');
+        return $this->belongsto(ProductHeader::class, 'product_id');
     }
 }
