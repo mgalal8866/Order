@@ -27,20 +27,20 @@ class ProductDetails extends Model
     }
     public function wishlist()
     {
-        return $this->hasMany(Wishlist::class,'product_id');
+        return $this->hasMany(Wishlist::class, 'product_id');
     }
     public function salesdetails()
     {
-        return $this->hasMany(SalesDetails::class,'product_details_id');
+        return $this->hasMany(SalesDetails::class, 'product_details_id');
     }
     public function cart()
     {
-        return $this->hasone(Cart::class,'product_id');
+        return $this->hasone(Cart::class, 'product_id');
     }
 
     public function getOrginalimageAttribute()
     {
-            return $this->getAttributes()['productd_image'];
+        return $this->getAttributes()['productd_image'];
     }
     public function getProductdImageAttribute($val)
     {
@@ -57,7 +57,7 @@ class ProductDetails extends Model
         if (($val == 1) && (Carbon::now()->diffInDays($this->getAttributes()['EndOferDate'], false) > 0)) {
             return true;
         } else {
-            $this->update(['isoffer'=>0,'EndOferDate'=>null]);
+            $this->update(['isoffer' => 0, 'EndOferDate' => null]);
             return false;
         };
     }
@@ -80,28 +80,44 @@ class ProductDetails extends Model
     }
     public function scopeGetcategory($query, $id)
     {
-        return $query->WhereHas('productheader',function($q)use ($id){
-                if($id != null) $q->where('product_category',$id)->with('stock');
-            })->with('productheader')->with('unit')->with('wishlist');
+        return $query->WhereHas('productheader', function ($q) use ($id) {
+            if ($id != null) $q->where('product_category', $id)->with('stock');
+        })->with('productheader')->with('unit')->with('wishlist');
     }
     public function scopeGetoffers($query)
     {
         $today = Carbon::now()->toDateString();
-        return $query->where('isoffer','1')->where('productd_online', 1)->where('EndOferDate' ,'>=' , $today )->with('productheader')->with('unit')->with('wishlist');
+        return $query->where('isoffer', '1')->where('productd_online', 1)->where('EndOferDate', '>=', $today)->with('productheader')->with('unit')->with('wishlist');
     }
-    public function scopeCustunit($query){
+    public function scopeCustunit($query)
+    {
         $units = $query->units($this->product_header_id)->get();
         // return $this->productd_UnitType == 2 ?   $this->productd_size  . ' X ' .  $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name  : ($this->productd_UnitType == 3 ?''. $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X"  . $this->unit->unit_name   . ' = ' .$units[$this->productd_UnitType - 2]->unit->unit_name  : $this->unit->unit_name);
         return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 1]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
-        : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>"): "<strong>   {$this->unit->unit_name} </strong>");
-
+            : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>") : "<strong>   {$this->unit->unit_name} </strong>");
     }
 
-    public function scopeCustunitapi($query){
+    public function scopeCustunitapi($query)
+    {
         $units = $query->units($this->product_header_id)->get();
         return $this->productd_UnitType == 2 ?
-        $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name);
-
+            $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name);
     }
-
+    public function scopeQtystockapi($query,$qty)
+    {
+        $units = $query->units($this->product_header_id)->get();
+        switch ($this->productd_UnitType) {
+            case (1):
+                $this->productd_size;
+                break;
+            case (2):
+                $this->productd_size . $units[$this->productd_UnitType - 1]->productd_size;
+                break;
+            case (3):
+                $this->productd_size . $units[$this->productd_UnitType - 1]->productd_size. $units[$this->productd_UnitType - 2]->productd_size;
+                break;
+            default:
+        }
+        return  $this->productd_size . $units[$this->productd_UnitType - 2]->productd_size;
+    }
 }
