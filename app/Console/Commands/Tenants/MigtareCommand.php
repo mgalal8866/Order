@@ -35,9 +35,7 @@ class MigtareCommand extends Command
             Tenants::switchToTanent($tenant);
             $this->info('Start migrating : ' . $tenant->domain);
             $this->info('---------------------------------------');
-            // Artisan::call('migrate --path=database/migrations/tenants/  --database=tenant');
             Artisan::call('migrate --path=database/migrations/tenants/  --database=tenant');
-            // \Artisan::call('migrate:rollback --path=database/migrations/tenants/ --database=tenant' );
             $this->info(Artisan::output());
         });
         return Command::SUCCESS;
