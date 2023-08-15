@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('admin_id')->nullable();
             $table->integer('client_id')->nullable();
             $table->text('message')->nullable();
-            $table->boolean('seen')->default(0);
+            $table->boolean('seenmsg')->default(0);
             $table->string('channel')->nullable();
             $table->timestamps();
         });

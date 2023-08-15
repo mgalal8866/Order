@@ -36,10 +36,7 @@ class ProductDetails extends Model
     {
         return $this->hasone(Cart::class,'product_id');
     }
-    public function stock()
-    {
-        return $this->hasMany(Stock::class,'product_id');
-    }
+   
     public function getOrginalimageAttribute()
     {
             return $this->getAttributes()['productd_image'];
