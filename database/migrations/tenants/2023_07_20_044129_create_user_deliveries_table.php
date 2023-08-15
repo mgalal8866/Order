@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('username')->nullable();
             $table->string('password')->nullable();
             $table->string('lat')->nullable();
-            $table->string('long')->nullable();
+            $table->string('longitude')->nullable();
             $table->integer('user_id')->nullable();
             $table->boolean('active')->nullable();
             $table->timestamps();

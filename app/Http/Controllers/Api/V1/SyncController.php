@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use Exception;
 use permission;
 use Carbon\Carbon;
+use App\Models\Cart;
 use App\Models\jobs;
 use App\Models\unit;
 use App\Models\User;
@@ -12,6 +13,7 @@ use App\Models\banks;
 use App\Models\Shift;
 use App\Models\Stock;
 use App\Models\Store;
+use App\Models\Branch;
 use App\Models\cities;
 use App\Models\Coupon;
 use App\Models\Damage;
@@ -29,6 +31,7 @@ use App\Models\Expenses;
 use App\Models\Partners;
 use App\Models\Supplier;
 use App\Models\Offer_Bay;
+use App\Models\UserAdmin;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
 use App\Models\Statements;
@@ -40,9 +43,10 @@ use App\Models\SalesDetails;
 use App\Models\UserDelivery;
 use Illuminate\Http\Request;
 use App\Models\ExpensesTypes;
+use App\Models\Erolment_emp;
 use App\Models\Move_Partners;
 use App\Models\MovementStock;
-use App\Models\product_moves;
+use App\Models\Product_moves;
 use App\Models\ProductHeader;
 use App\Models\Supplier_Grup;
 use App\Models\DeliveryHeader;
@@ -61,8 +65,8 @@ use App\Models\MovementStockDetails;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
+use App\Http\Resources\CartResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
-use App\Models\UserAdmin;
 
 class SyncController extends Controller
 {
@@ -527,6 +531,11 @@ class SyncController extends Controller
         $data = comment::whereHas('salesheader')->get();
         return    Resp(CommentResource::collection($data), 'success', 200, true);
     }
+    function getcart()
+    {
+        $data = Cart::get();
+        return    Resp(CartResource::collection($data), 'success', 200, true);
+    }
     function sendnotification(Request $request)
     {
         $dd = json_decode($request[0], true);
@@ -904,13 +913,14 @@ class SyncController extends Controller
         Log::info('upload_erolment_emps', ['0' => $request->all()]);
 
         try {
+
             foreach ($request->all() as $index => $item) {
-                $uu = Stock::updateOrCreate(['id' => $item['eroment_id']], [
+                $uu = Erolment_emp::updateOrCreate(['id' => $item['eroment_id']], [
                     'id'          => $item['eroment_id'],
                     'jop_id'      => $item['jop_id'],
                     'emp_name'    => $item['emp_name'],
                     'emp_fhone'   => $item['emp_fhone'],
-                    'emp_note'    => $item['emp_note'],
+                    'emp_note   '    => $item['emp_note'],
                     'user_id'     => $item['user_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
@@ -1256,7 +1266,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = product_moves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
+                $uu = Product_moves::updateOrCreate(['Shift_Id'  => $item['Shift_Id'],], [
                     'Product_Moves_ID'  => $item['Product_Moves_ID'],
                     'Product_ID'        => $item['Product_ID'],
                     'Quantity'      => $item['Quantity'],
@@ -1633,6 +1643,30 @@ class SyncController extends Controller
                     'user_type' => $item['user_Type'],
                     'note'      => $item['use_note'],
                     'active'    => $item['user_Active']==true?1:0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_branch(Request $request)
+    {
+        Log::info('upload_branch', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Branch::updateOrCreate(['id' => $item['Branch_id']], [
+                    'id'        => $item['Branch_id'],
+                    'branch_name'  => $item['Branch_name'],
+                    'branch_bus'  => $item['Branch_nameBus'],
+                    'branch_phone'    => $item['Branch_fhone'],
+                    'branch_address' => $item['Branch_Address'],
+                    'branch_note'      => $item['Branch_note'],
+                    'user_id'      => $item['user_id'],
+                    'branch_active'    => $item['Branch_Active']==true?1:0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

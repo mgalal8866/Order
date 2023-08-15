@@ -98,6 +98,17 @@ Route::middleware(['jwt.verify'])->group(function () {
 
 #################   Start SYNC  #############
 Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
+
+    Route::get('/down/delivery/header',[SyncController::class, 'downsdeliveryheader']);
+    Route::get('/down/delivery/details',[SyncController::class, 'downdeliverydetails']);
+    Route::get('/down/comments',[SyncController::class, 'downcomment']);
+    Route::get('/delete/slider/{id?}',[SyncController::class, 'deleteslider']);
+    Route::get('/get/fsm_notification',[SyncController::class, 'getfsm_notification']);
+    Route::get('/get/deferreds',[SyncController::class, 'get_deferreds']);
+    Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
+    Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
+    //Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
+
     Route::post('/client',        [SyncController::class, 'client']);
     Route::post('/update/client', [SyncController::class, 'updateclient']);
     Route::post('/upload/products/header',[SyncController::class, 'uploadproductsheader']);
@@ -108,19 +119,12 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/sales/details',[SyncController::class, 'uploadsalsedetails']);
     Route::post('/upload/delivery/header',[SyncController::class, 'uploadsdeliveryheader']);
     Route::post('/upload/delivery/details',[SyncController::class, 'uploaddeliverydetails']);
-    Route::get('/down/delivery/header',[SyncController::class, 'downsdeliveryheader']);
-    Route::get('/down/delivery/details',[SyncController::class, 'downdeliverydetails']);
-    Route::get('/down/comments',[SyncController::class, 'downcomment']);
     Route::post('/upload/slider',[SyncController::class, 'uploadslider']);
-    Route::get('/delete/slider/{id?}',[SyncController::class, 'deleteslider']);
-    Route::get('/get/fsm_notification',[SyncController::class, 'getfsm_notification']);
     Route::post('/notification/send',[SyncController::class, 'sendnotification']);
     Route::post('/upload/coupon',[SyncController::class, 'uploadcoupon']);
     Route::post('/upload/emp',[SyncController::class, 'uploademp']);
     Route::post('/upload/categoryapp',[SyncController::class, 'uploadcategoryapp']);
     Route::post('/upload/user/delivery',[SyncController::class, 'uploaduser_deliveries']);
-    // Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
-    Route::get('/get/deferreds',[SyncController::class, 'get_deferreds']);
     Route::post('/upload/deferreds',[SyncController::class, 'upload_deferreds']);
     Route::post('/upload/jobs',[SyncController::class, 'upload_jobs']);
     Route::post('/upload/setting',[SyncController::class, 'upload_setting']);
@@ -130,10 +134,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/banks',[SyncController::class, 'upload_banks']);
     Route::post('/upload/damage',[SyncController::class, 'upload_Damage']);
     Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
-    Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
-    Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
 
-    //new
     Route::post('/upload/supplier/grups',[SyncController::class, 'upload_supplier_grups']);
     Route::post('/upload/second/offers',[SyncController::class, 'upload_second_offers']);
     Route::post('/upload/suppliers',[SyncController::class, 'upload_suppliers']);
@@ -156,12 +157,15 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/expenses',[SyncController::class, 'upload_expenses']);
     Route::post('/upload/movement/bank',[SyncController::class, 'upload_movement_bank']);
     Route::post('/upload/pricing',[SyncController::class, 'upload_pricing']);
-
     Route::post('/upload/cities',[SyncController::class, 'upload_cities']);
     Route::post('/upload/region',[SyncController::class, 'upload_region']);
     Route::post('/upload/income',[SyncController::class, 'upload_income']);
     Route::post('/upload/offer/bays',[SyncController::class, 'upload_offer_bays']);
     Route::post('/upload/users',[SyncController::class, 'upload_users']);
+
+    Route::get('/down/cart',[SyncController::class, 'getcart']);
+    Route::post('/upload/branch',[SyncController::class, 'upload_branch']);
+
 });
 #################   End  SYNC   #############
 
