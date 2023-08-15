@@ -718,9 +718,12 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
 
                 $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
-                $uu    =   setting::find(1)->first();
-                deleteimage('logos', $uu->logo_shop);
-                $uu->update([
+                $uu    = setting::find(1)->first();
+                if($uu){
+
+                    deleteimage('logos', $uu->logo_shop);
+                }
+                $uu    =   setting::updateOrCreate(['id' => 1],[
                     'name_shop'         => $item['Name_Shope'],
                     'maneger_phone'     => $item['Manegaer_Fhone'],
                     'phone_shop'        => $item['Shope_Fhone'],
@@ -747,6 +750,8 @@ class SyncController extends Controller
                     'city_id'           => $item['City'],
                     'Shop_Manegaer'     => $item['Shop_Manegaer'],
                 ]);
+
+
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
