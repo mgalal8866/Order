@@ -21,7 +21,7 @@ class ProductDetailsResource extends JsonResource
             // "productd_stock"    =>$this->productheader->stock->sum('quantity') != null ?'متوفر':'غير متوفر',
             // "productd_stock"    =>'متوفر',
             // "productd_stock1"   =>$this->productheader->stock->sum('quantity')??'',
-            "productd_stock1"   => $this->Qtystockapi($this->productheader->stock->sum('quantity')),
+            "productd_stock"   => $this->Qtystockapi($this->productheader->stock->sum('quantity')),
             "productd_wishlist" =>$this->wishlist->count()?true:false,
             "product_isscale"   =>$this->productheader->product_isscale,
             "productd_barcode"  =>$this->productd_barcode??'',
