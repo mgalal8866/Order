@@ -1676,7 +1676,7 @@ class SyncController extends Controller
                 'product_limit_day' => $request[0][0]['Products_lemt_day'],
                 'product_note'      => $request[0][0]['Products_note'],
             ]);
-            ProductDetails::where('id', $request[0][0]['ProductD_id'])->delete();
+            ProductDetails::where('product_header_id', $request[0][0]['Products_ID'])->delete();
             foreach ($request[1] as $index => $item) {
                 Log::info('ProductDetails', $item);
                 $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
