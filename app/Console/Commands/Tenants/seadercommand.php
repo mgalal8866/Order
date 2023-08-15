@@ -14,7 +14,7 @@ class seadercommand extends Command
      *
      * @var string
      */
-    protected $signature = 'tenants:seader {class}';
+    protected $signature = 'tenants:seeder {class}';
 
     /**
      * The console command description.
