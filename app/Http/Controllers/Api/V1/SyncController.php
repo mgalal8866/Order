@@ -997,8 +997,8 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu = Supplier::updateOrCreate(['Supplier_id' => $item['Supplier_id']], [
-                    'Supplier_id'      => $item['Supplier_id'],
+                $uu = Supplier::updateOrCreate(['id' => $item['Supplier_id']], [
+                    'id'      => $item['Supplier_id'],
                     'Supplier_name'    => $item['Supplier_name'],
                     'Supplier_code'    => $item['Supplier_code'],
                     'Supplier_Balance' => $item['Supplier_Balance'],
