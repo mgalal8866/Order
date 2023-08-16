@@ -12,6 +12,6 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ftp.order-bay.com
-        username: mgala8866@order-bay.com
+        username: testapp@test.order-bay.com
         protocol: ftps
         password: mgala8866
