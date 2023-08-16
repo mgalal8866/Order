@@ -60,6 +60,7 @@ use App\Models\StockSettlement;
 use App\Models\PermissionScrene;
 use App\Models\SupplierPayments;
 use App\Models\Permissions_Saels;
+use App\Models\tenants\userdesck;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
@@ -1696,6 +1697,29 @@ class SyncController extends Controller
                     'branch_note'    => $item['Branch_note'],
                     'user_id'        => $item['user_id'],
                     'branch_active'  => $item['Branch_Active'] == true ? 1 : 0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_userdesck(Request $request)
+    {
+        Log::info('upload_userdesck', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = userdesck::updateOrCreate(['id' => $item['id_user']], [
+                    'id'          => $item['id_user'],
+                    'user_name'   => $item['user_name'],
+                    'user_pass'   => $item['user_pass'],
+                    'user_Type'   => $item['user_Emp_id'],
+                    'user_Emp_id' => $item['user_Type'],
+                    'use_note'    => $item['use_note'],
+                    'user_Active' => $item['user_Active'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }

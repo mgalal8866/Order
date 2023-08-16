@@ -17,6 +17,7 @@ class clientsyncResource extends JsonResource
         return[   'id'                => $this->id,
         'client_name'       => $this->client_name,
         'client_code'       => $this->client_code ?? '',
+        'code_client'       => $this->code_client ?? '',
         'client_fhonewhats' => $this->client_fhonewhats ?? '',
         'client_fhoneLeter' => $this->client_fhoneLeter ?? '',
         'client_balanc'     => $this->client_Balanc ?? '',
