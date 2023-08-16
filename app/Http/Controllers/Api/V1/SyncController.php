@@ -7,6 +7,7 @@ use permission;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\jobs;
+use App\Models\Safe;
 use App\Models\unit;
 use App\Models\User;
 use App\Models\banks;
@@ -38,15 +39,15 @@ use App\Models\Statements;
 use App\Models\incomeTypes;
 use App\Models\SalesHeader;
 use App\Models\SecondOffer;
+use App\Models\Erolment_emp;
 use App\Models\MovementBank;
+use App\Models\ProductMoves;
 use App\Models\SalesDetails;
 use App\Models\UserDelivery;
 use Illuminate\Http\Request;
 use App\Models\ExpensesTypes;
-use App\Models\Erolment_emp;
 use App\Models\Move_Partners;
 use App\Models\MovementStock;
-use App\Models\ProductMoves;
 use App\Models\ProductHeader;
 use App\Models\Supplier_Grup;
 use App\Models\DeliveryHeader;
@@ -61,11 +62,11 @@ use App\Models\SupplierPayments;
 use App\Models\Permissions_Saels;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CartResource;
 use App\Models\MovementStockDetails;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
-use App\Http\Resources\CartResource;
 use App\Http\Resources\sync\DeliveryHeaderResource;
 
 
@@ -1648,6 +1649,53 @@ class SyncController extends Controller
                     'user_type' => $item['user_Type'],
                     'note'      => $item['use_note'],
                     'active'    => $item['user_Active'] == true ? 1 : 0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_safe(Request $request)
+    {
+        Log::info('upload_safe', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Safe::updateOrCreate(['id' => $item['safe_id']], [
+                    'id'        => $item['safe_id'],
+                    'safe_name'  => $item['safe_name'],
+                    'branch_id'  => $item['bransh_id'],
+                    'opening_balance'    => $item['Opening_balance'],
+                    'balance_now' => $item['balance_now'],
+                    'user_id'      => $item['user_id'],
+                    'save_active'    => $item['save_acteve'] == true ? 1 : 0,
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_branch(Request $request)
+    {
+        Log::info('upload_branch', ['0' => $request->all()]);
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = Branch::updateOrCreate(['id' => $item['Branch_id']], [
+                    'id'           => $item['Branch_id'],
+                    'branch_name'  => $item['Branch_name'],
+                    'branch_bus'   => $item['Branch_nameBus'],
+                    'branch_phone'   => $item['Branch_fhone'],
+                    'branch_address' => $item['Branch_Address'],
+                    'branch_note'    => $item['Branch_note'],
+                    'user_id'        => $item['user_id'],
+                    'branch_active'  => $item['Branch_Active'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
