@@ -37,7 +37,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +62,12 @@ Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
         Route::get('/', function () {
 
             return view('main-domin.index');
+        })->name('maindomin');
+        Route::get('/migrate/system', function () {
+            return view('main-domin.index');
+        })->name('maindomin');
+        Route::get('/migrate/tenants', function () {
+            return Artisan::call('tenants:migrate');
         })->name('maindomin');
 
 });
