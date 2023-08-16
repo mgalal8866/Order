@@ -36,10 +36,10 @@ use App\Models\UserAdmin;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
 use App\Models\Statements;
+use App\Models\ErolmentEmp;
 use App\Models\incomeTypes;
 use App\Models\SalesHeader;
 use App\Models\SecondOffer;
-use App\Models\Erolment_emp;
 use App\Models\MovementBank;
 use App\Models\ProductMoves;
 use App\Models\SalesDetails;
@@ -923,7 +923,7 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $uu = Erolment_emp::updateOrCreate(['id' => $item['eroment_id']], [
+                $uu = ErolmentEmp::updateOrCreate(['id' => $item['eroment_id']], [
                     'id'          => $item['eroment_id'],
                     'jop_id'      => $item['jop_id'],
                     'emp_name'    => $item['emp_name'],
