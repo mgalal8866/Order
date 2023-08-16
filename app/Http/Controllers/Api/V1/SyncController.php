@@ -1323,8 +1323,8 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = Permissions_Saels::updateOrCreate(['id' => $item['Permissions_Saels_id']], [
-                    'id'                        => $item['Permissions_Saels_id'],
+                $uu = Permissions_Saels::updateOrCreate(['Permissions_Saels_id' => $item['Permissions_Saels_id']], [
+                    'Permissions_Saels_id'                        => $item['Permissions_Saels_id'],
                     'User_id'                   => $item['User_id'],
                     'Passwrd_Selas'             => $item['Passwrd_Selas'],
                     'Saels_Leve'                => $item['Saels_Leve'] == true ? 1 : 0,
