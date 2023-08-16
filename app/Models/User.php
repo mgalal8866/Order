@@ -90,7 +90,7 @@ class User extends Authenticatable implements JWTSubject
 
         // auto-sets values on creation
         static::creating(function ($query) {
-            $query->code_client = 'On-' . Str::random(6);
+            $query->code_client = 'On-' . $query->id . rand(0, 99999);;
         });
     }
 }
