@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('movement_balances', function (Blueprint $table) {
-            $table->increments('Con_id');
+            $table->increments('id');
             $table->integer('from_safe_id')->nullable();
             $table->integer('to_safe_id')->nullable();
             $table->decimal('balance_frome', 18, 0)->nullable();

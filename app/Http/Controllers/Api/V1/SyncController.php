@@ -1416,8 +1416,8 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = MovementBalance::updateOrCreate(['Con_id'        => $item['Con_id']], [
-                    'Con_id'        => $item['Con_id'],
+                $uu = MovementBalance::updateOrCreate(['id'=> $item['Con_id']], [
+                    'id'        => $item['Con_id'],
                     'from_safe_id'  => $item['from_safe_id'],
                     'to_safe_id'    => $item['to_safe_id'],
                     'balance_frome' => $item['balance_frome'],
