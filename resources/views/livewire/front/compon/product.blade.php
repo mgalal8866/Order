@@ -33,7 +33,7 @@
                 </h6>
             </a>
             <h6 class="name theme-color">
-                {{ $product->stock->sum('quantity') != null ? 'متوفر' : 'غير متوفر' }}
+                {{ $product->Qtystockapi($product->productheader->stock->sum('quantity'))}}
                 </h6>
             <h6 class="sold weight text-content fw-normal">@if($product->productheader->product_isscale == 0) {!! $product->Custunit($product->product_header_id) ?? '' !!} @else  بالوزن  @endif</h6>
             @if ($product->isoffer == 0)
