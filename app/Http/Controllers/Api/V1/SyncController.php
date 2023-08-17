@@ -1734,6 +1734,7 @@ class SyncController extends Controller
     function upload_product_header_details(Request $request)
     {
         Log::info('upload_product_header_details', ['0' => $request->all()]);
+        Log::error($request[0][0]['Products_ID']);
         try {
             $uu = ProductHeader::updateOrCreate(['id' => $request[0][0]['Products_ID']], [
                 'id'                => $request[0][0]['Products_ID'],
@@ -1769,8 +1770,7 @@ class SyncController extends Controller
                     'maxqty'             => $item['MaxQuntte'],
                     'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
                 ]);
-                Log::error( Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'));
-                
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
