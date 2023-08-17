@@ -928,7 +928,7 @@ class SyncController extends Controller
                     'jop_id'      => $item['jop_id'],
                     'emp_name'    => $item['emp_name'],
                     'emp_fhone'   => $item['emp_fhone'],
-                    'emp_note   '    => $item['emp_note'],
+                    'emp_note'    => $item['emp_note'],
                     'user_id'     => $item['user_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
