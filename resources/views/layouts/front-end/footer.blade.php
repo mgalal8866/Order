@@ -80,19 +80,16 @@
                         <h4>الاقسام</h4>
                     </div>
 
-                    <div class="footer-contain">
+                    <div class="footer-contain" style="overflow-y: scroll; height:150px;">
                         <ul>
                             <li>
                                 <a href="{{route('categoryproduct',['categoryid'=>null])}}" class="text-content">الكل</a>
                             </li>
-                            
                             @foreach ( $categorys as $cate)
-
                             <li>
                                 <a href="{{route('categoryproduct',['categoryid'=>$cate->id])}}" class="text-content">{{$cate->category_name}}</a>
                             </li>
                             @endforeach
-
                         </ul>
                     </div>
                 </div>

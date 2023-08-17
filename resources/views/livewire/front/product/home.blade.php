@@ -2,6 +2,7 @@
 
 
     {{-- <livewire:front.slider/> --}}
+    <livewire:front.product.searchproduct>
     <livewire:front.sliderbar>
         <section class="section-b-space">
             <div class="container-fluid-lg">
