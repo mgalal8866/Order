@@ -162,12 +162,12 @@
                                                 alt="">
                                         </a>
                                     </li>
-                                    <li class="mb-0">
+                                    {{-- <li class="mb-0">
                                         <a href="https://www.apple.com/in/app-store/" target="_blank">
                                             <img src="{{asset('front/assets/images/appstore.svg')}}" class="blur-up lazyload"
                                                 alt="">
                                         </a>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </li>
                         </ul>
