@@ -22,5 +22,8 @@ return [
     'search'     => 'البحث',
     'offers'     => 'العروض',
     'myaccount'     => 'حسابى',
-    'forgotpass' => 'استرجاع الباسورد'
+    'gellary'       => 'معرض الصور',
+    'about'         => 'حول',
+    'contactus'     => 'اتصل بنا',
+    'forgotpass'    => 'استرجاع الباسورد'
 ];

@@ -85,6 +85,7 @@
                             <li>
                                 <a href="{{route('categoryproduct',['categoryid'=>null])}}" class="text-content">الكل</a>
                             </li>
+                            
                             @foreach ( $categorys as $cate)
 
                             <li>

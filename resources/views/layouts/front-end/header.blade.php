@@ -181,6 +181,15 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link" href="/product/search">{{ __('front.search') }}</a>
                                         </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="">{{ __('front.gellary') }}</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="">{{ __('front.about') }}</a>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link" href="">{{ __('front.contactus') }}</a>
+                                        </li>
                                         @auth('client')
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link" href="/user/dashboard">{{ __('front.myaccount') }}</a>
