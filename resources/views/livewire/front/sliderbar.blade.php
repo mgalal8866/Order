@@ -7,13 +7,13 @@
                         @foreach ($sliders as $item)
                             <div>
                                 <div class="banner-contain-2 hover-effect">
-                                    <img src="{{$item->image}}" class="bg-img rounded-3 blur-up lazyload" alt="">
-                                    <div
+                                    <img src="{{$item->image}}" class="bg-img rounded-3  lazyload" alt="">
+                                     <div
                                         class="banner-detail p-center-right position-relative shop-banner ms-auto banner-small">
-                                        <div>
+                                        {{-- <div>
                                             <h2>Healthy, nutritious & Tasty Fruits & Veggies</h2>
                                             <h3>Save upto 50%</h3>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>
