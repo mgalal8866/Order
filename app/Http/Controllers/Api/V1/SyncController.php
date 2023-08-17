@@ -1770,6 +1770,7 @@ class SyncController extends Controller
                     'maxqty'             => $item['MaxQuntte'],
                     'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
                 ]);
+                Log::error(Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'));
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
