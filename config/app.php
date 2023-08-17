@@ -174,7 +174,7 @@ return [
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         App\Providers\RepositoryServiceProvider::class,
-
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -191,6 +191,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Carbon' => Carbon\Carbon::class,
         'tenats' => Tenants::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

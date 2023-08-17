@@ -7,13 +7,15 @@ use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Livewire\Dashboard\Chat\Chat;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Front\Wishlist;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\User\Login;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\Front\Product\Home;
+use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
 use App\Http\Livewire\Front\Product\Offers;
@@ -37,7 +39,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use Illuminate\Support\Facades\Artisan;
+use App\Imports\Client;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,11 +55,11 @@ use Illuminate\Support\Facades\Artisan;
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('sss',  function () {
- $firebaseToken =   User::whereNotNull('fsm')->pluck('fsm');
- dd($firebaseToken);
+    $firebaseToken =   User::whereNotNull('fsm')->pluck('fsm');
+    dd($firebaseToken);
 });
 
-Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
+Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
         Route::get('/', function () {
 
@@ -69,8 +71,8 @@ Route::domain(env('CENTERAL_DOMAIN','order-bay.com'))->group(
         Route::get('/migrate/tenants', function () {
             return Artisan::call('tenants:migrate');
         })->name('maindomin');
-
-});
+    }
+);
 
 Route::get('/deletetable', function (Request $request) {
     $file = new Filesystem;
@@ -120,6 +122,15 @@ Route::post('/store-token', function (Request $request) {
 #################### FRONT Client #####################
 
 Route::middleware('tenant')->group(function () {
+
+    Route::get('/import', function (Request $request) {
+        return view('importclient');
+    })->name('import');
+    Route::post('/import_user', function (Request $request) {
+        
+        Excel::import(new Client, $request->file('file')->store('files'));
+        return redirect()->back();
+    })->name('import_user');
     Route::get('/', Home::class)->name('home');
     Route::get('/product/search', Searchproduct::class)->name('searchproduct');
     Route::get('/products/offers', Offers::class)->name('offerproduct');
@@ -154,6 +165,8 @@ Route::middleware('tenant')->group(function () {
         Route::get('/', ViewProduct::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         // Route::get('product', CreateProduct::class)->name('product');
+
+
 
         Route::get('/chat', Chat::class)->name('chat');
         Route::get('users', Users::class)->name('viewusers');
