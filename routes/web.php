@@ -127,9 +127,16 @@ Route::middleware('tenant')->group(function () {
         return view('importclient');
     })->name('import');
     Route::post('/import_user', function (Request $request) {
-        
-        Excel::import(new Client, $request->file('file')->store('files'));
-        return redirect()->back();
+
+        //   $import =  Excel::import(new Client, $request->file('file')->store('files'));
+        $file = $request->file('file')->store('files');
+        $import =  new Client;
+        $import->import($file);
+
+        if ($import->failures()->isNotEmpty()) {
+            return back()->withFailures($import->failures());
+        }
+        return back()->withStatus('Import in queue, we will send notification after import finished.');
     })->name('import_user');
     Route::get('/', Home::class)->name('home');
     Route::get('/product/search', Searchproduct::class)->name('searchproduct');
