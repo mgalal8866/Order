@@ -20,5 +20,5 @@
     </section>
     <!-- Search Bar Section End -->
 
-    
+
 </div>

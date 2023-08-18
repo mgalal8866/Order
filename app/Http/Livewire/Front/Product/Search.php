@@ -10,10 +10,11 @@ class Search extends Component
 {
     use WithPagination;
 
-    public $search =null,$pag=30;
+    public $search =null;
+    
     public function render()
     {
-        
+
         // $search = $this->search;
         // if($search != ''){
 

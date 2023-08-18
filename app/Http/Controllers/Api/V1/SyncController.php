@@ -113,7 +113,7 @@ class SyncController extends Controller
                 // Log::warning($request->all());
 
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
-                logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
 
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
