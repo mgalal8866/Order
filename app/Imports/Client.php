@@ -47,7 +47,8 @@ class Client implements
     public function rules(): array
     {
         return [
-            '*.phone' => 'required|integer|size:11|unique:users,client_fhonewhats',
+            // '*.phone' => 'required|integer|size:11|unique:users,client_fhonewhats',
+            '*.phone' => 'required|unique:users,client_fhonewhats',
             '*.name' =>  'required',
             '*.sale' =>  'required',
         ];
