@@ -129,7 +129,7 @@ Route::middleware('tenant')->group(function () {
     Route::post('/import_user', function (Request $request) {
 
         //   $import =  Excel::import(new Client, $request->file('file')->store('files'));
-        $file = $request->file('file')->store('files');
+        $file = $request->file('file')->store('excel');
         $import =  new Client;
         $import->import($file);
 
