@@ -40,7 +40,7 @@ class Client implements ToCollection, SkipsEmptyRows, WithHeadingRow, SkipsOnErr
     public function rules(): array
     {
         return [
-            '*.phone' => 'required|integer|digits:11|unique:users,client_fhonewhats',
+            '*.phone' => 'required|integer|size:11|unique:users,client_fhonewhats',
             '*.name' =>  'required',
             '*.sale' =>  'required',
         ];
@@ -49,6 +49,7 @@ class Client implements ToCollection, SkipsEmptyRows, WithHeadingRow, SkipsOnErr
     {
         return [
             '*.phone.unique'  => 'الرقم موجود مسبقا',
+            '*.phone.size'  => 'الرقم التليفون غير صحيح ',
             '*.phone.digits'  => 'الرقم التليفون غير صحيح ',
             '*.phone.integer'  => 'الرقم التليفون غير صحيح ',
             '*.name.required' => 'الاسم العميل مطلوب',
