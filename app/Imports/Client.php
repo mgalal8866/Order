@@ -19,16 +19,23 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class Client implements ToCollection, SkipsEmptyRows, WithHeadingRow, SkipsOnError ,SkipsOnFailure,WithValidation
-{
+class Client implements
+ ToCollection,
+ SkipsEmptyRows,
+  WithHeadingRow, SkipsOnError
+  ,SkipsOnFailure
+  ,WithValidation{
+
 
     use Importable, SkipsErrors,SkipsFailures;
+
+
     public function Collection(Collection $rows)
     {
         foreach ($rows as $row) {
         $data = [
             'client_name'       => $row['name'],
-            'client_fhonewhats' => $row['phone'] = $row['phone'],
+            'client_fhonewhats' => $row['phone'] ,
             'client_state'      => $row['address'],
             'default_Sael'      => $row['sale'] == 'Cash' ? 'كاش' : 'اجل',
             'store_name'        => $row['store'],
