@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jobs', function (Blueprint $table) {
+        Schema::create('jobs_tpl', function (Blueprint $table) {
             $table->increments('jobs_id');
             $table->string('jobs_name')->nullable();
             $table->boolean('jobs_Active')->nullable();

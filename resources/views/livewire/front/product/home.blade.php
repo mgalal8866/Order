@@ -2,7 +2,7 @@
 
 
     {{-- <livewire:front.slider/> --}}
-    <livewire:front.product.searchproduct>
+    <livewire:front.product.search>
         <livewire:front.sliderbar>
             <section class="section-b-space">
                 <div class="container-fluid-lg">
@@ -33,18 +33,18 @@
                             </div>
                         </div>
                         <div class="col-xxl-9 col-lg-8">
-                            @empty($data['offers'])
-                            <div class="title d-block">
-                                <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
-                            </div>
-                            <div class="product-box-slider-2 no-arrow">
-                                <div>
-                                    @foreach ($data['offers'] as $product)
-                                    @livewire('front.compon.product', ['product' => $product], key($product->id))
-                                    @endforeach
+                                @empty($data['offers'])
+                                <div class="title d-block">
+                                    <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
-                            </div>
-                            @endempty
+                                <div class="product-box-slider-2 no-arrow">
+                                    <div>
+                                        @foreach ($data['offers'] as $product)
+                                        @livewire('front.compon.product', ['product' => $product], key($product->id))
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endempty
 
                             <div class="title d-block">
                                 <h2 class="text-theme font-sm">{{ __('tran.products') }}</h2>

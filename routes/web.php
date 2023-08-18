@@ -136,7 +136,8 @@ Route::middleware('tenant')->group(function () {
         if ($import->failures()->isNotEmpty()) {
             return back()->withFailures($import->failures());
         }
-        return back()->withStatus('Import in queue, we will send notification after import finished.');
+        // Artisan::call('queue:work');
+        return back()->withStatus('Done');
     })->name('import_user');
     Route::get('/', Home::class)->name('home');
     Route::get('/product/search', Searchproduct::class)->name('searchproduct');

@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class jobs extends Model
 {
     use HasFactory;
+    protected $table = 'jobs_tpl';
     protected $guarded = [];
 }

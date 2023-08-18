@@ -5,6 +5,7 @@ namespace App\service;
 use App\Models\Tenant;
 use App\Models\setting;
 use App\Models\Category;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
@@ -26,6 +27,9 @@ class TenantService
         DB::purge('tenant');
 
         Config::set('database.connections.tenant.database', $tenant->database);
+        Config::set('queue.batching.database', 'tenant');
+        Config::set('queue.failed.database', 'tenant');
+        // Config::set('queue.default', 'tenant');
 
 
         if ($tenant->username != null) {
@@ -44,6 +48,7 @@ class TenantService
        $this->tenant   = $tenant;
        $this->domain   = $tenant->domain;
        $this->database = $tenant->database;
+
         //$this->username = $tenant->username;
         //$this->password = $tenant->password;
         if(env('SHARE_VIEW',true) == true){
