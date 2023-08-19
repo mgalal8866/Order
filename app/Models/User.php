@@ -92,9 +92,10 @@ class User extends Authenticatable implements JWTSubject
         // auto-sets values on creation
         static::creating(function ($query) {
 
-            $max=User::max('id');
-            Log::error($max);
-            $query->code_client = 'On-' . substr ($query->client_fhonewhats, -4) . rand(0, 999);;
+            $max = User::max('id');
+            // Log::error( $max);
+            // $query->code_client = 'On-' . $max .''. rand(0, 999);;
+            $query->code_client = $max;
         });
     }
 }
