@@ -182,13 +182,13 @@
                                             <a class="nav-link" href="/product/search">{{ __('front.search') }}</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="">{{ __('front.gellary') }}</a>
+                                            <a class="nav-link" href="/gallery">{{ __('front.gellary') }}</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="">{{ __('front.about') }}</a>
+                                            <a class="nav-link" href="/about">{{ __('front.about') }}</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link" href="">{{ __('front.contactus') }}</a>
+                                            <a class="nav-link" href="/contactus">{{ __('front.contactus') }}</a>
                                         </li>
                                         @auth('client')
                                             <li class="nav-item dropdown">

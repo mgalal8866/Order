@@ -6,7 +6,8 @@
                     <div class="service-contain">
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="{{asset('front/assets/svg/product.svg')}}" class="blur-up lazyload" alt="">
+                                <img src="{{ asset('front/assets/svg/product.svg') }}" class="blur-up lazyload"
+                                    alt="">
                             </div>
 
                             <div class="service-detail">
@@ -16,7 +17,8 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="{{asset('front/assets/svg/delivery.svg')}}" class="blur-up lazyload" alt="">
+                                <img src="{{ asset('front/assets/svg/delivery.svg') }}" class="blur-up lazyload"
+                                    alt="">
                             </div>
 
                             <div class="service-detail">
@@ -26,7 +28,8 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="{{asset('front/assets/svg/discount.svg')}}" class="blur-up lazyload" alt="">
+                                <img src="{{ asset('front/assets/svg/discount.svg') }}" class="blur-up lazyload"
+                                    alt="">
                             </div>
 
                             <div class="service-detail">
@@ -36,7 +39,8 @@
 
                         <div class="service-box">
                             <div class="service-image">
-                                <img src="{{asset('front/assets/svg/market.svg')}}" class="blur-up lazyload" alt="">
+                                <img src="{{ asset('front/assets/svg/market.svg') }}" class="blur-up lazyload"
+                                    alt="">
                             </div>
 
                             <div class="service-detail">
@@ -54,23 +58,25 @@
                     <div class="footer-logo">
                         <div class="theme-logo">
                             <a href="index.html">
-                                <img src="{{$setting->logo_shop}}"  width="50" class="blur-up lazyload" alt="">
+                                <img src="{{ $setting->logo_shop }}" width="50" class="blur-up lazyload"
+                                    alt="">
                             </a>
                         </div>
 
                         <div class="footer-logo-contain">
                             {{-- <p>{{$setting->}}</p> --}}
-
-                            <ul class="address">
-                                <li>
-                                    <i data-feather="home"></i>
-                                    <a href="javascript:void(0)">{{$setting->address_shop}}</a>
-                                </li>
-                                <li>
+                            @empty(!$setting->address_shop)
+                                <ul class="address">
+                                    <li>
+                                        <i data-feather="home"></i>
+                                        <a href="javascript:void(0)">{{ $setting->address_shop }}</a>
+                                    </li>
+                                    {{-- <li>
                                     <i data-feather="mail"></i>
                                     <a href="javascript:void(0)">support@elshrouk.order-bay.com</a>
-                                </li>
-                            </ul>
+                                </li> --}}
+                                </ul>
+                            @endempty
                         </div>
                     </div>
                 </div>
@@ -83,12 +89,14 @@
                     <div class="footer-contain" style="overflow-y: scroll; height:150px;">
                         <ul>
                             <li>
-                                <a href="{{route('categoryproduct',['categoryid'=>null])}}" class="text-content">الكل</a>
+                                <a href="{{ route('categoryproduct', ['categoryid' => null]) }}"
+                                    class="text-content">الكل</a>
                             </li>
-                            @foreach ( $categorys as $cate)
-                            <li>
-                                <a href="{{route('categoryproduct',['categoryid'=>$cate->id])}}" class="text-content">{{$cate->category_name}}</a>
-                            </li>
+                            @foreach ($categorys as $cate)
+                                <li>
+                                    <a href="{{ route('categoryproduct', ['categoryid' => $cate->id]) }}"
+                                        class="text-content">{{ $cate->category_name }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -131,15 +139,17 @@
 
                     <div class="footer-contact">
                         <ul>
-                            <li>
-                                <div class="footer-number">
-                                    <i data-feather="phone"></i>
-                                    <div class="contact-number">
-                                        <h6 class="text-content">Hotline 24/7 :</h6>
-                                        <h5>{{$setting->phone_shop}}</h5>
+                            @empty(!$setting->phone_shop)
+                                <li>
+                                    <div class="footer-number">
+                                        <i data-feather="phone"></i>
+                                        <div class="contact-number">
+                                            <h6 class="text-content">تليفون </h6>
+                                            <h5>{{ $setting->phone_shop }}</h5>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
+                                </li>
+                            @endempty
 
                             {{-- <li>
                                 <div class="footer-number">
@@ -150,24 +160,30 @@
                                     </div>
                                 </div>
                             </li> --}}
-
-                            <li class="social-app mb-0">
-                                <h5 class="mb-2 text-content">تحميل التطبيق :</h5>
-                                <ul>
-                                    <li class="mb-0">
-                                        <a href="https://play.google.com/store/apps/details?id=net.elshroq.order" target="_blank">
-                                            <img src="{{asset('front/assets/images/playstore.svg')}}" class="blur-up lazyload"
-                                                alt="">
-                                        </a>
-                                    </li>
-                                    {{-- <li class="mb-0">
-                                        <a href="https://www.apple.com/in/app-store/" target="_blank">
-                                            <img src="{{asset('front/assets/images/appstore.svg')}}" class="blur-up lazyload"
-                                                alt="">
-                                        </a>
-                                    </li> --}}
-                                </ul>
-                            </li>
+                            @empty(!$setting->app_android && !$setting->app_ios)
+                                <li class="social-app mb-0">
+                                    <h5 class="mb-2 text-content">تحميل التطبيق :</h5>
+                                    <ul>
+                                        @empty(!$setting->app_android)
+                                            {{-- https://play.google.com/store/apps/details?id=net.elshroq.order --}}
+                                            <li class="mb-0">
+                                                <a href="{{ $setting->app_android }}" target="_blank">
+                                                    <img src="{{ asset('front/assets/images/playstore.svg') }}"
+                                                        class="blur-up lazyload" alt="">
+                                                </a>
+                                            </li>
+                                        @endempty
+                                        @empty(!$setting->app_ios)
+                                            <li class="mb-0">
+                                                <a href="{{ $setting->app_ios }}" target="_blank">
+                                                    <img src="{{ asset('front/assets/images/appstore.svg') }}"
+                                                        class="blur-up lazyload" alt="">
+                                                </a>
+                                            </li>
+                                        @endempty
+                                    </ul>
+                                </li>
+                            @endempty
                         </ul>
                     </div>
                 </div>
