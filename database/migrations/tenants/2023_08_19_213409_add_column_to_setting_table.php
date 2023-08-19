@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('setting', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             $table->string('app_android')->nullable();
             $table->string('app_ios')->nullable();
             $table->string('facebook')->nullable();
@@ -28,7 +28,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('setting', function (Blueprint $table) {
+        Schema::table('settings', function (Blueprint $table) {
             //
         });
     }
