@@ -130,7 +130,7 @@ Route::middleware('tenant')->group(function () {
 
         $yy = user::get();
         foreach($yy as $i){
-            $i->update(['code_client'=> 'On-' . $i->id. rand(0, 99)]);
+            $i->update(['code_client'=> 'On-' . $i->id]);
         }
         // return view('importclient');
     })->name('import');
