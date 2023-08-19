@@ -388,115 +388,6 @@
                                 for you to edit.</p>
 
 
-
-                            <figure class="wp-block-image size-full"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:440/h:143/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/creating-a-new-page-in-WordPress-1.png"
-                                    decoding="async" width="440" height="143"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:440/h:143/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/creating-a-new-page-in-WordPress-1.png"
-                                    alt="creating a new page in WordPress" class="wp-image-40263"
-                                    data-opt-lazy-loaded="false" data-opt-optimized-width="440"
-                                    data-opt-optimized-height="143"></figure>
-
-
-
-                            <p>With WordPress’s block editor – also known as the Gutenberg editor, you have a variety of
-                                highly
-                                customizable content blocks to work with. To add a new block, click on the <strong>+
-                                </strong>sign in
-                                your editor, or on your left sidebar.</p>
-
-
-
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:463/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/creating-an-about-us-page-in-WordPress-1.jpg"
-                                    decoding="async" width="1024" height="463"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:232/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/creating-an-about-us-page-in-WordPress-1.jpg"
-                                    alt="creating an about us page in WordPress" class="wp-image-40266"
-                                    data-opt-lazy-loaded="true" data-opt-optimized-width="514"
-                                    data-opt-optimized-height="232"></figure>
-
-
-
-                            <p>Use these blocks to add images/content and change the look of the page. You have blocks
-                                where you can
-                                have an image next to text, or the cover block is also a great way to add a big image
-                                with text on
-                                it.&nbsp;Next to that, there is the “pattern” menu which gives you even more design
-                                options to choose.
-                            </p>
-
-
-
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:404/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/using-different-blocks-on-your-about-us-page-1.jpg"
-                                    decoding="async" width="1024" height="404"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:202/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/using-different-blocks-on-your-about-us-page-1.jpg"
-                                    alt="using different blocks on your about us page" class="wp-image-40269"
-                                    data-opt-lazy-loaded="true" data-opt-optimized-width="514"
-                                    data-opt-optimized-height="202"></figure>
-
-
-
-                            <p>Don’t forget about your right sidebar, as it gives options to further customize
-                                text/images. Let’s say
-                                you want an image to display in an oval shape instead of a square. Then look to your
-                                right sidebar,
-                                click on the “block” menu. You should see an option called “style” where you can
-                                customize the shape of
-                                your image.&nbsp; &nbsp;<br>&nbsp;<br>Do play around with the tools, explore your
-                                options. It is your
-                                site after all! And you can always check the preview to see if things work and look the
-                                way you want
-                                to.&nbsp;<br>&nbsp;<br>You can name your page “About”, “About Us”, or “our story”,
-                                depending on your
-                                brand image. The permalink/URL should be the same as the page title. When you finish
-                                adding content,
-                                click on “Publish” to save your page. Be sure to set your visibility to “Public” in the
-                                right
-                                sidebar.&nbsp;</p>
-
-
-
-                            <p>Once you’re done creating your page, you need to add it to your navigation menu so
-                                visitors can find it.
-                                From your navigation menu in WordPress, go to “Appearance” &gt; “Menus”&nbsp;</p>
-
-
-
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:438/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/edit-your-menu-in-WordPress-1.jpg"
-                                    decoding="async" width="1024" height="438"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:219/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/edit-your-menu-in-WordPress-1.jpg"
-                                    alt="edit your menu in WordPress" class="wp-image-40272" data-opt-lazy-loaded="true"
-                                    data-opt-optimized-width="514" data-opt-optimized-height="219"></figure>
-
-
-
-                            <p>To display the About page in your menu navigation, select the “About Us” option in the
-                                list of pages.
-                                After that, click “Add to Menu” and choose the desired position in the menu. Many brands
-                                place their
-                                About section in the top navigation or footer menu. Then, click on “Save Menu” and
-                                you’re done. You’ve
-                                just created your About page and added it to your menu!</p>
-
-
-
-                            <h2><span class="ez-toc-section" id="How_To_Write_An_About_Us_Page_For_a_Business"
-                                    ez-toc-data-id="#How_To_Write_An_About_Us_Page_For_a_Business"></span>How To Write
-                                An About Us Page
-                                For a Business<span class="ez-toc-section-end"></span></h2>
-
-
-
-                            <p>Crafting an engaging “About Us” page for your business is crucial in conveying your
-                                brand’s essence and
-                                building a meaningful connection with your audience. Here’s a concise guide to help you
-                                navigate the
-                                process:</p>
-
-
-
                             <h3>The Art of Authentic Storytelling</h3>
 
 
@@ -590,17 +481,7 @@
 
 
 
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:479/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Headspace-1.jpg"
-                                    decoding="async" width="1024" height="479"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:240/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Headspace-1.jpg"
-                                    alt="About us page Headspace website" class="wp-image-40275"
-                                    data-opt-lazy-loaded="true" data-opt-optimized-width="514"
-                                    data-opt-optimized-height="240"></figure>
-
-
-
-                            <p>In addition to this, the design of the page is simple but stunning. The smiling character
+                     <p>In addition to this, the design of the page is simple but stunning. The smiling character
                                 in the featured
                                 image not only encapsulates what the brand is about – relaxation and happiness, but also
                                 represents
@@ -630,13 +511,6 @@
 
 
 
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:452/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Hubspot-1.jpg"
-                                    decoding="async" width="1024" height="452"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:226/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Hubspot-1.jpg"
-                                    alt="About us page Hubspot website" class="wp-image-40278"
-                                    data-opt-lazy-loaded="true" data-opt-optimized-width="514"
-                                    data-opt-optimized-height="226"></figure>
 
 
 
@@ -670,27 +544,11 @@
 
 
 
-                            <figure class="wp-block-image size-large"><img decoding="async" width="1024"
-                                    height="469"
-                                    src="http://localhost/bh/wp-content/uploads/2022/01/About-us-page-Minaal-1-1024x469.jpg"
-                                    alt="About us page Minaal website" class="wp-image-40281"
-                                    data-opt-lazy-loaded="false"></figure>
 
 
 
-                            <figure class="wp-block-image size-large"><img
-                                    data-opt-src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:1024/h:469/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Minaal-1.jpg"
-                                    decoding="async" width="1024" height="469"
-                                    src="https://mlx3lspc9ed5.i.optimole.com/cb:2Vr7.34364/w:514/h:235/q:mauto/f:avif/https://www.bluehost.com/blog/wp-content/uploads/2022/01/About-us-page-Minaal-1.jpg"
-                                    alt="About us page Minaal website" class="wp-image-40281"
-                                    data-opt-lazy-loaded="true" data-opt-optimized-width="514"
-                                    data-opt-optimized-height="235"></figure>
 
 
-
-                            <h2><span class="ez-toc-section" id="Final_thoughts"
-                                    ez-toc-data-id="#Final_thoughts"></span>Final
-                                thoughts<span class="ez-toc-section-end"></span></h2>
 
 
 
@@ -715,14 +573,7 @@
 
 
 
-                            <p>Now that you’ve created your About Us page, keep the momentum going and work on the rest
-                                of your website!
-                                Create those other essential pages and start writing (your first) posts. And when you’re
-                                not sure when
-                                to choose a page or post, check out our blog on <a
-                                    href="https://www.bluehost.com/resources/how-to-use-wordpress-pages-and-postsbluehost/">how
-                                    to use
-                                    WordPress pages and posts</a>.</p>
+                       
 
                         </div>
 
