@@ -125,12 +125,7 @@ Route::post('/store-token', function (Request $request) {
 #################### FRONT Client #####################
 
 Route::middleware('tenant')->group(function () {
-    Route::get('/migrate/tenants', function () {
-        return Artisan::call('tenants:migrate');
-    })->name('maindomin');
-    Route::get('/import', function (Request $request) {
-        return view('importclient');
-    })->name('import');
+
 
     Route::get('/set', function (Request $request) {
         $yy = user::get();
