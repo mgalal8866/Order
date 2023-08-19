@@ -127,7 +127,7 @@ Route::middleware('tenant')->group(function () {
         return view('importclient');
     })->name('import');
     Route::get('/set', function (Request $request) {
-
+return   User::max('id');
         $yy = user::get();
         foreach($yy as $i){
             $i->update(['code_client'=> 'On-' . $i->id]);
