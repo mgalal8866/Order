@@ -126,6 +126,13 @@ Route::middleware('tenant')->group(function () {
     Route::get('/import', function (Request $request) {
         return view('importclient');
     })->name('import');
+    Route::get('/set', function (Request $request) {
+        $yy = user::get();
+        foreach($yy as $i){
+            $i->update(['code_client'=> 'On-' . substr ($i->client_fhonewhats, -4) . rand(0, 999)]);
+        }
+        // return view('importclient');
+    })->name('import');
     Route::post('/import_user', function (Request $request) {
 
         //   $import =  Excel::import(new Client, $request->file('file')->store('files'));
