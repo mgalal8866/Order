@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Traits\UUID;
 use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
@@ -91,6 +92,8 @@ class User extends Authenticatable implements JWTSubject
         // auto-sets values on creation
         static::creating(function ($query) {
 
+            $max=User::max('id');
+            Log::error($max);
             $query->code_client = 'On-' . substr ($query->client_fhonewhats, -4) . rand(0, 999);;
         });
     }
