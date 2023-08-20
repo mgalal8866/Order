@@ -4,6 +4,7 @@ use App\Models\notifiction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 
 function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     if($status == 422 ){
@@ -18,6 +19,16 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $image->store('/',$folder);
     $filename = $image->hashName();
     return  $filename;
+}
+  function sendsms($phone,$code){
+    $msg = 'كود التحقق ' . $code;
+    $response = Http::accept('application/json')->get('https://smssmartegypt.com/sms/api/?
+    username='.env('SMS_USERNAME').'
+    &password='.env('SMS_USERNAME').'
+    &sendername=الشروق للتجارة والتوزيع
+    &message='.$msg. '
+    &mobiles='.$phone);
+    return $response->json();
 }
 
     function deleteimage($path,$image)

@@ -40,6 +40,7 @@ Route::post('/add/slider', [SliderController::class, 'addslider']);
 Route::get('/getcity', [CitiesController::class, 'getcity']);
 Route::get('/getregion/{id}', [RegionController::class, 'getregionbycity']);
 ################# End City & Region   #############
+
 ################# Chat #############
 Route::post('/sentmessage', [ChatController::class, 'sentmessage']);
 Route::get('/getmessage', [ChatController::class, 'getmessage']);
@@ -47,9 +48,9 @@ Route::get('/getmessage', [ChatController::class, 'getmessage']);
 
 Route::middleware(['jwt.verify'])->group(function () {
     ################# Start product   #############
-        Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
-        Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
-        Route::get('product/search/{search}', [ProductHeaderController::class, 'searchproduct']);
+    Route::get('product/getproductbycat/{id?}', [ProductHeaderController::class, 'getproductbycat']);
+    Route::get('product/offers', [ProductHeaderController::class, 'getoffers']);
+    Route::get('product/search/{search}', [ProductHeaderController::class, 'searchproduct']);
     #################   End product   #############
 
     #################   Start Wishlist #############
@@ -64,6 +65,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     Route::get('delete/cart/{cart_id?}', [CartController::class, 'deletefromcart']);
     Route::get('apply/deferred', [CartController::class, 'applydeferred']);
     #################   End Cart   #############
+
     #################   Start Orderplase #############
     Route::post('order/plase', [InvoiceController::class, 'orderplase']);
     Route::post('order/comment', [CommentController::class, 'addcomment']);
@@ -81,6 +83,7 @@ Route::middleware(['jwt.verify'])->group(function () {
     #################   start  category product #############
     Route::get('getcategory', [CategoryController::class, 'getcategory']);
     #################   End  category product   #############
+
     #################   start  category product #############
     Route::get('client/notifiction', [NotifictionController::class, 'getnotifiction']);
     Route::get('client/payment', [ClientPaymentsController::class, 'getclientpayment']);
@@ -90,7 +93,6 @@ Route::middleware(['jwt.verify'])->group(function () {
         Route::get('getunit', [UnitController::class, 'getunit']);
     });
     #################   End  category product   #############
-
     Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
     Route::get('/logout',    [UserController::class, 'logout'])->name('logout');
 });
@@ -99,89 +101,87 @@ Route::middleware(['jwt.verify'])->group(function () {
 #################   Start SYNC  #############
 Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
 
-    Route::get('/down/cart',[SyncController::class, 'getcart']);
-    Route::get('/down/delivery/header',[SyncController::class, 'downsdeliveryheader']);
-    Route::get('/down/delivery/details',[SyncController::class, 'downdeliverydetails']);
-    Route::get('/down/comments',[SyncController::class, 'downcomment']);
-    Route::get('/delete/slider/{id?}',[SyncController::class, 'deleteslider']);
-    Route::get('/get/fsm_notification',[SyncController::class, 'getfsm_notification']);
-    Route::get('/get/deferreds',[SyncController::class, 'get_deferreds']);
-    Route::get('/delete/sales/header/{id}',[SyncController::class, 'delete_selseheader']);
-    Route::get('/delete/delivery/header/{id}',[SyncController::class, 'delete_deliveryheader']);
+    Route::get('/down/cart', [SyncController::class, 'getcart']);
+    Route::get('/down/delivery/header', [SyncController::class, 'downsdeliveryheader']);
+    Route::get('/down/delivery/details', [SyncController::class, 'downdeliverydetails']);
+    Route::get('/down/comments', [SyncController::class, 'downcomment']);
+    Route::get('/delete/slider/{id?}', [SyncController::class, 'deleteslider']);
+    Route::get('/get/fsm_notification', [SyncController::class, 'getfsm_notification']);
+    Route::get('/get/deferreds', [SyncController::class, 'get_deferreds']);
+    Route::get('/delete/sales/header/{id}', [SyncController::class, 'delete_selseheader']);
+    Route::get('/delete/delivery/header/{id}', [SyncController::class, 'delete_deliveryheader']);
     //Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
 
     Route::post('/client',        [SyncController::class, 'client']);
     Route::post('/update/user/descktop', [SyncController::class, 'upload_userdesck']);
     Route::post('/update/client', [SyncController::class, 'updateclient']);
-    Route::post('/upload/products/header',[SyncController::class, 'uploadproductsheader']);
-    Route::post('/upload/products/details',[SyncController::class, 'uploadproductsdetails']);
+    Route::post('/upload/products/header', [SyncController::class, 'uploadproductsheader']);
+    Route::post('/upload/products/details', [SyncController::class, 'uploadproductsdetails']);
     Route::post('/upload/units',   [SyncController::class, 'uploadunits']);
-    Route::post('/upload/category',[SyncController::class, 'uploadcategory']);
-    Route::post('/upload/sales/header',[SyncController::class, 'uploadsalseheader']);
-    Route::post('/upload/sales/details',[SyncController::class, 'uploadsalsedetails']);
-    Route::post('/upload/delivery/header',[SyncController::class, 'uploadsdeliveryheader']);
-    Route::post('/upload/delivery/details',[SyncController::class, 'uploaddeliverydetails']);
-    Route::post('/upload/slider',[SyncController::class, 'uploadslider']);
-    Route::post('/notification/send',[SyncController::class, 'sendnotification']);
-    Route::post('/upload/coupon',[SyncController::class, 'uploadcoupon']);
-    Route::post('/upload/emp',[SyncController::class, 'uploademp']);
-    Route::post('/upload/categoryapp',[SyncController::class, 'uploadcategoryapp']);
-    Route::post('/upload/user/delivery',[SyncController::class, 'uploaduser_deliveries']);
-    Route::post('/upload/deferreds',[SyncController::class, 'upload_deferreds']);
-    Route::post('/upload/jobs',[SyncController::class, 'upload_jobs']);
-    Route::post('/upload/setting',[SyncController::class, 'upload_setting']);
-    Route::post('/upload/stock',[SyncController::class, 'upload_stock']);
-    Route::post('/upload/store',[SyncController::class, 'upload_store']);
-    Route::post('/upload/attendance',[SyncController::class, 'upload_Attendance']);
-    Route::post('/upload/banks',[SyncController::class, 'upload_banks']);
-    Route::post('/upload/damage',[SyncController::class, 'upload_Damage']);
-    Route::post('/upload/erolment_emps',[SyncController::class, 'upload_erolment_emps']);
+    Route::post('/upload/category', [SyncController::class, 'uploadcategory']);
+    Route::post('/upload/sales/header', [SyncController::class, 'uploadsalseheader']);
+    Route::post('/upload/sales/details', [SyncController::class, 'uploadsalsedetails']);
+    Route::post('/upload/delivery/header', [SyncController::class, 'uploadsdeliveryheader']);
+    Route::post('/upload/delivery/details', [SyncController::class, 'uploaddeliverydetails']);
+    Route::post('/upload/slider', [SyncController::class, 'uploadslider']);
+    Route::post('/notification/send', [SyncController::class, 'sendnotification']);
+    Route::post('/upload/coupon', [SyncController::class, 'uploadcoupon']);
+    Route::post('/upload/emp', [SyncController::class, 'uploademp']);
+    Route::post('/upload/categoryapp', [SyncController::class, 'uploadcategoryapp']);
+    Route::post('/upload/user/delivery', [SyncController::class, 'uploaduser_deliveries']);
+    Route::post('/upload/deferreds', [SyncController::class, 'upload_deferreds']);
+    Route::post('/upload/jobs', [SyncController::class, 'upload_jobs']);
+    Route::post('/upload/setting', [SyncController::class, 'upload_setting']);
+    Route::post('/upload/stock', [SyncController::class, 'upload_stock']);
+    Route::post('/upload/store', [SyncController::class, 'upload_store']);
+    Route::post('/upload/attendance', [SyncController::class, 'upload_Attendance']);
+    Route::post('/upload/banks', [SyncController::class, 'upload_banks']);
+    Route::post('/upload/damage', [SyncController::class, 'upload_Damage']);
+    Route::post('/upload/erolment_emps', [SyncController::class, 'upload_erolment_emps']);
 
-    Route::post('/upload/supplier/grups',[SyncController::class, 'upload_supplier_grups']);
-    Route::post('/upload/second/offers',[SyncController::class, 'upload_second_offers']);
-    Route::post('/upload/suppliers',[SyncController::class, 'upload_suppliers']);
-    Route::post('/upload/purchase/headers',[SyncController::class, 'upload_purchase_headers']);
-    Route::post('/upload/purchase/details',[SyncController::class, 'upload_purchase_details']);
-    Route::post('/upload/movement/stock_details',[SyncController::class, 'upload_movement_stock_details']);
-    Route::post('/upload/movement/stocks',[SyncController::class, 'upload_movement_stocks']);
-    Route::post('/upload/supplier/payments',[SyncController::class, 'upload_supplier_payments']);
-    Route::post('/upload/stock/settlements',[SyncController::class, 'upload_stock_settlements']);
-    Route::post('/upload/settlements',[SyncController::class, 'upload_settlements']);
-    Route::post('/upload/shift',[SyncController::class, 'upload_shift']);
-    Route::post('/upload/product/moves',[SyncController::class, 'upload_product_moves']);
-    Route::post('/upload/permission/screnes',[SyncController::class, 'upload_permission_screnes']);
-    Route::post('/upload/permission/saels',[SyncController::class, 'upload_permissions_saels']);
-    Route::post('/upload/partners',[SyncController::class, 'upload_partners']);
-    Route::post('/upload/movement/balances',[SyncController::class, 'upload_movement_balances']);
-    Route::post('/upload/move/partners',[SyncController::class, 'upload_move_partners']);
-    Route::post('/upload/income/types',[SyncController::class, 'upload_income_types']);
-    Route::post('/upload/expenses/types',[SyncController::class, 'upload_expenses_types']);
-    Route::post('/upload/expenses',[SyncController::class, 'upload_expenses']);
-    Route::post('/upload/movement/bank',[SyncController::class, 'upload_movement_bank']);
-    Route::post('/upload/pricing',[SyncController::class, 'upload_pricing']);
-    Route::post('/upload/cities',[SyncController::class, 'upload_cities']);
-    Route::post('/upload/region',[SyncController::class, 'upload_region']);
-    Route::post('/upload/income',[SyncController::class, 'upload_income']);
-    Route::post('/upload/offer/bays',[SyncController::class, 'upload_offer_bays']);
-    Route::post('/upload/users',[SyncController::class, 'upload_users']);
-    Route::post('/upload/safe',[SyncController::class, 'upload_safe']);
-    Route::post('/upload/branch',[SyncController::class, 'upload_branch']);
-    Route::post('/upload/product/header/details',[SyncController::class, 'upload_product_header_details']);
-
+    Route::post('/upload/supplier/grups', [SyncController::class, 'upload_supplier_grups']);
+    Route::post('/upload/second/offers', [SyncController::class, 'upload_second_offers']);
+    Route::post('/upload/suppliers', [SyncController::class, 'upload_suppliers']);
+    Route::post('/upload/purchase/headers', [SyncController::class, 'upload_purchase_headers']);
+    Route::post('/upload/purchase/details', [SyncController::class, 'upload_purchase_details']);
+    Route::post('/upload/movement/stock_details', [SyncController::class, 'upload_movement_stock_details']);
+    Route::post('/upload/movement/stocks', [SyncController::class, 'upload_movement_stocks']);
+    Route::post('/upload/supplier/payments', [SyncController::class, 'upload_supplier_payments']);
+    Route::post('/upload/stock/settlements', [SyncController::class, 'upload_stock_settlements']);
+    Route::post('/upload/settlements', [SyncController::class, 'upload_settlements']);
+    Route::post('/upload/shift', [SyncController::class, 'upload_shift']);
+    Route::post('/upload/product/moves', [SyncController::class, 'upload_product_moves']);
+    Route::post('/upload/permission/screnes', [SyncController::class, 'upload_permission_screnes']);
+    Route::post('/upload/permission/saels', [SyncController::class, 'upload_permissions_saels']);
+    Route::post('/upload/partners', [SyncController::class, 'upload_partners']);
+    Route::post('/upload/movement/balances', [SyncController::class, 'upload_movement_balances']);
+    Route::post('/upload/move/partners', [SyncController::class, 'upload_move_partners']);
+    Route::post('/upload/income/types', [SyncController::class, 'upload_income_types']);
+    Route::post('/upload/expenses/types', [SyncController::class, 'upload_expenses_types']);
+    Route::post('/upload/expenses', [SyncController::class, 'upload_expenses']);
+    Route::post('/upload/movement/bank', [SyncController::class, 'upload_movement_bank']);
+    Route::post('/upload/pricing', [SyncController::class, 'upload_pricing']);
+    Route::post('/upload/cities', [SyncController::class, 'upload_cities']);
+    Route::post('/upload/region', [SyncController::class, 'upload_region']);
+    Route::post('/upload/income', [SyncController::class, 'upload_income']);
+    Route::post('/upload/offer/bays', [SyncController::class, 'upload_offer_bays']);
+    Route::post('/upload/users', [SyncController::class, 'upload_users']);
+    Route::post('/upload/safe', [SyncController::class, 'upload_safe']);
+    Route::post('/upload/branch', [SyncController::class, 'upload_branch']);
+    Route::post('/upload/product/header/details', [SyncController::class, 'upload_product_header_details']);
 });
 #################   End  SYNC   #############
 
-Route::prefix('delivery')->middleware([])->group(function(){
+Route::prefix('delivery')->middleware([])->group(function () {
     Route::post('/login',   [UserDeliveryController::class, 'login'])->name('login');
     Route::post('/register', [UserDeliveryController::class, 'register'])->name('register');
 });
 
-Route::prefix('delivery')->middleware(['jwt.verify'])->group(function(){
-    Route::get('update/map',[UserDeliveryController::class,'updatemap']);
-    Route::get('checkuser',[UserDeliveryController::class,'checkuser']);
-    Route::get('order/getdeliverycloseinvo',[InvoiceController::class,'getdeliverycloseinvo']);
+Route::prefix('delivery')->middleware(['jwt.verify'])->group(function () {
+    Route::get('update/map', [UserDeliveryController::class, 'updatemap']);
+    Route::get('checkuser', [UserDeliveryController::class, 'checkuser']);
+    Route::get('order/getdeliverycloseinvo', [InvoiceController::class, 'getdeliverycloseinvo']);
     Route::get('order/getdeliveryopeninvo', [InvoiceController::class, 'getdeliveryopeninvo']);
     Route::get('order/closeinvo/details/{id?}', [InvoiceController::class, 'getdeliverycloseinvodetails']);
     Route::get('order/openinvo/details/{id?}', [InvoiceController::class, 'getdeliveryopeninvoedetails']);
 });
-

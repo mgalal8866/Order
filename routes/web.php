@@ -55,10 +55,15 @@ use App\Http\Livewire\Front\Contactus;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('sss',  function () {
+    $e = sendsms(1,1);
+    // {"type":"error","error":{"msg":"Please send username and password in request!","number":101},"data":""}
+    // return  $e['type'];
+    // return  $e['error']['msg'];
+    // return  $e['error']['number'];
+    // return  $e['data'];
    return user::on('sqlsrv')->get();
 });
 
