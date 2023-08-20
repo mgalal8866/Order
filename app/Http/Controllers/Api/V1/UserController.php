@@ -27,10 +27,10 @@ class UserController extends Controller
         $data = $this->userRepositry->verificationcode($request);
         return Resp($data, 'Success', 200, true);
     }
-    public function sendotp(Request $request)
+    public function sendotp($phone)
     {
-        $data =  $this->userRepositry->sendotp($request);
-        return Resp($data, 'Success', 200, true);
+        return $this->userRepositry->sendotp($phone);
+        
     }
 
     public function login(Request $request)

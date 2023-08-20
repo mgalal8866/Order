@@ -23,7 +23,7 @@ use App\Http\Controllers\Api\V1\ClientPaymentsController;
 
 ################# Start Login & Register #############
 // Route::post('/login',   [UserController::class, 'login'])->name('login');
-Route::post('/sendotp',   [UserController::class, 'sendotp'])->name('sendotp');
+Route::post('/sendotp/{phone?}',   [UserController::class, 'sendotp'])->name('sendotp');
 Route::post('/verificationcode',   [UserController::class, 'verificationcode'])->name('verificationcode');
 Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
