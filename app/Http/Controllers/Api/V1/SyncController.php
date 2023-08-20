@@ -168,6 +168,55 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function uploadproducts(Request $request)
+    {
+        Log::info('uploadproducts ', $request->all());
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
+                    'id'                => $item['Products_ID'],
+                    'product_name'      => $item['Products_name'],
+                    'product_category'  => $item['Products_Sup_id'],
+                    'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
+                    'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
+                    'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
+                    'product_tax'       => $item['Products_Tax'],
+                    'product_limit'     => $item['Products_Lemt'],
+                    'user_id'           => $item['user_id'],
+                    'product_limit_day' => $item['Products_lemt_day'],
+                    'product_note'      => $item['Products_note'],
+                ]);
+                foreach ($item['Details'] as $index => $item2) {
+
+                    $image = $item2['ProductsD_image'] != null ? uploadbase64images('products', $item2['ProductsD_image']) : null;
+                    $uu =   ProductDetails::updateOrCreate(['id' => $item2['ProductD_id']], [
+                        'id'                 => $item2['ProductD_id'],
+                        'product_header_id'  => $item2['Product_id'],
+                        'productd_unit_id'   => $item2['ProductsD_unit_id'],
+                        'productd_barcode'   => $item2['ProductsD_Barcode'],
+                        'productd_size'      => $item2['ProductsD_Size'],
+                        'productd_bay'       => $item2['ProductsD_Bay'],
+                        'productd_Sele1'     => $item2['ProductsD_Sele1'],
+                        'productd_Sele2'     => $item2['ProductsD_Sele2'],
+                        'productd_fast_Sele' => ($item2['ProductsD_fast_Sele'] == true) ? 1 : ($item2['ProductsD_fast_Sele'] == false ? 0 : $item2['ProductsD_fast_Sele']),
+                        'productd_UnitType'  => $item2['ProductsD_UnitType'],
+                        'productd_image'     => $image,
+                        'isoffer'            => ($item2['IsOffer'] == true) ? 1 : ($item2['IsOffer'] == false ? 0 : $item2['IsOffer']),
+                        'productd_online'    => ($item2['Product_Onlein'] == true) ? 1 : ($item2['Product_Onlein'] == false ? 0 : $item2['Product_Onlein']),
+                        'maxqty'             => $item2['MaxQuntte'],
+                        'EndOferDate'        => Carbon::parse($item2['EndOferDate'])->format('Y-m-d H:i:s'),
+                    ]);
+                    // logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                }
+                // logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
     function uploadproductsdetails(Request $request)
     {
         Log::info('uploadproductsdetails ', $request->all());

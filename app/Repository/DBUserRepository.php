@@ -19,9 +19,9 @@ class DBUserRepository implements UserRepositoryinterface
         // $response = sendsms($request->get('client_fhonewhats'), $otp);
         $response = 1;
         if( $response  == 1){
-            return Resp('', 'Success', 200, true);
+            return Resp('', 'تم ارسال كود التحقق', 200, true);
         }else{
-            return Resp('', 'field', 302, false);
+            return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
         }
     }
     public function verificationcode($request)
