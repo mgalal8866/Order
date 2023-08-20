@@ -24,13 +24,13 @@ class UserController extends Controller
     }
     public function verificationcode(Request $request)
     {
-        $data = $this->userRepositry->verificationcode($request);
-        return Resp($data, 'Success', 200, true);
+        return  $this->userRepositry->verificationcode($request);
+        
     }
     public function sendotp($phone)
     {
         return $this->userRepositry->sendotp($phone);
-        
+
     }
 
     public function login(Request $request)

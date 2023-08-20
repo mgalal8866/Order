@@ -26,7 +26,6 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function verificationcode($request)
     {
-
         if( $request->code  == 0000){
             $this->login($request);
         }else{
