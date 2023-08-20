@@ -22,6 +22,16 @@ class UserController extends Controller
         $data = new UserResource($this->userRepositry->register($request->validated()));
         return Resp($data, 'Success', 200, true);
     }
+    public function verificationcode(Request $request)
+    {
+        $data = $this->userRepositry->verificationcode($request);
+        return Resp($data, 'Success', 200, true);
+    }
+    public function sendotp(Request $request)
+    {
+        $data =  $this->userRepositry->sendotp($request);
+        return Resp($data, 'Success', 200, true);
+    }
 
     public function login(Request $request)
     {

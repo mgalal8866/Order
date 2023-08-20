@@ -13,14 +13,25 @@ use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
 {
-    public function otp($request)
+    public function sendotp($request)
     {
-        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
-        if ($user == null) {
-            return Resp(null, 'User Not found', 404, false);
+        // $otp =  rand(1234, 9999);
+        // $response = sendsms($request->get('client_fhonewhats'), $otp);
+        $response = 1;
+        if( $response  == 1){
+            return Resp('', 'Success', 200, true);
+        }else{
+            return Resp('', 'field', 302, false);
         }
+    }
+    public function verificationcode($request)
+    {
 
-        
+        if( $request->code  == 0000){
+            $this->login($request);
+        }else{
+            return Resp('', 'كود التحقق خطاء', 302, false);
+        }
     }
     public function login($request)
     {
@@ -35,7 +46,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user->setting = $this->settings();
         // dd($user);
         $data =  new UserResource($user);
-        return Resp($data, 'Success', 200, true);;
+        return Resp($data, 'Success', 200, true);
     }
     public function edit($request)
     {
