@@ -59,12 +59,13 @@ use App\Http\Livewire\Front\Contactus;
 
 Route::get('sss',  function () {
     $e = sendsms(1,1);
+    return $e;
     // {"type":"error","error":{"msg":"Please send username and password in request!","number":101},"data":""}
     // return  $e['type'];
     // return  $e['error']['msg'];
     // return  $e['error']['number'];
     // return  $e['data'];
-   return user::on('sqlsrv')->get();
+//    return user::on('sqlsrv')->get();
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(

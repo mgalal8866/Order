@@ -28,7 +28,16 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     &sendername=الشروق للتجارة والتوزيع
     &message='.$msg. '
     &mobiles='.$phone);
-    return $response->json();
+        $res = $response->json();
+    if ($res['type'] == 'error'){
+        return 0;
+    }else{
+        return 1;
+    };
+    // return  $res['error']['msg'];
+    // return  $res['error']['number'];
+    // return  $res['data'];
+    // return
 }
 
     function deleteimage($path,$image)

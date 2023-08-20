@@ -22,6 +22,7 @@ use App\Http\Controllers\Api\V1\ProductHeaderController;
 use App\Http\Controllers\Api\V1\ClientPaymentsController;
 
 ################# Start Login & Register #############
+// Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');

@@ -13,6 +13,15 @@ use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
 {
+    public function otp($request)
+    {
+        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
+        if ($user == null) {
+            return Resp(null, 'User Not found', 404, false);
+        }
+
+        
+    }
     public function login($request)
     {
         $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
@@ -32,8 +41,6 @@ class DBUserRepository implements UserRepositoryinterface
     {
         DB::beginTransaction();
         try {
-
-
             $user =  User::find(Auth::guard('api')->user()->id);
             $user->client_name       = $request['client_name']??$user->client_name ;
             $user->client_fhoneLeter = $request['client_fhoneLeter']??$user->client_fhoneLeter ;
