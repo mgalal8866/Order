@@ -55,8 +55,7 @@ use App\Imports\Client;
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('sss',  function () {
-    $firebaseToken =   User::whereNotNull('fsm')->pluck('fsm');
-    dd($firebaseToken);
+   return user::on('sqlsrv')->get();
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
