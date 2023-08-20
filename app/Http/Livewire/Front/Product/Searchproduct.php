@@ -11,6 +11,11 @@ class Searchproduct extends Component
     use WithPagination;
 
     public $search =null,$pag=30;
+ 
+    public function mount($search = null)
+    {
+        $this->search = $search;
+    }
     public function render()
     {
         $search = $this->search;

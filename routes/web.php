@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\User;
+use App\Imports\Client;
 use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
+use App\Http\Livewire\Front\Gallery;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -35,11 +37,13 @@ use App\Http\Livewire\Dashboard\Category\EditCategory;
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 use App\Http\Controllers\Dashborad\UserAdminController;
+use App\Http\Livewire\About;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
+
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Imports\Client;
+use App\Http\Livewire\Front\Contactus;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,8 +97,7 @@ Route::get('/userdelivery', function (Request $request) {
 });
 Route::post('/store-token', function (Request $request) {
     Auth::guard('admin')->user()->update(['fsm' => $request->token]);
-    // Auth::guard('client')->user()->update(['fsm' => $request->token]);
-    return response()->json(['Token successfully stored.']);
+     return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 
@@ -122,32 +125,31 @@ Route::post('/store-token', function (Request $request) {
 
 Route::middleware('tenant')->group(function () {
 
-    Route::get('/import', function (Request $request) {
-        return view('importclient');
-    })->name('import');
+
     Route::get('/set', function (Request $request) {
-// return   User::max('id');
         $yy = user::get();
         foreach($yy as $i){
             $i->update(['code_client'=> 'On-' . $i->id]);
         }
-        // return view('importclient');
     })->name('import');
-    Route::post('/import_user', function (Request $request) {
 
-        //   $import =  Excel::import(new Client, $request->file('file')->store('files'));
+    Route::post('/import_user', function (Request $request) {
         $file = $request->file('file')->store('excel');
         $import =  new Client;
         $import->import($file);
-
         if ($import->failures()->isNotEmpty()) {
             return back()->withFailures($import->failures());
         }
-        // Artisan::call('queue:work');
         return back()->withStatus('Done');
     })->name('import_user');
+
+
+
     Route::get('/', Home::class)->name('home');
-    Route::get('/product/search', Searchproduct::class)->name('searchproduct');
+    Route::get('/gallery', Gallery::class)->name('gallery');
+    Route::get('/about', About::class)->name('about');
+    Route::get('/contactus', Contactus::class)->name('contactus');
+    Route::get('/product/search/{search?}', Searchproduct::class)->name('searchproduct');
     Route::get('/products/offers', Offers::class)->name('offerproduct');
     Route::get('/category/{categoryid?}', CategoryViewcategory::class)->name('categoryproduct');
 
