@@ -78,7 +78,7 @@ Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
             return view('main-domin.index');
         })->name('maindomin');
 
-        
+
         Route::get('/migrate/tenants', function () {
             return Artisan::call('tenants:migrate');
         })->name('maindomin');
@@ -135,10 +135,11 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/set', function (Request $request) {
-        $yy = user::get();
-        foreach($yy as $i){
-            $i->update(['code_client'=> 'On-' . $i->id]);
-        }
+        return view('importclient');
+        // $yy = user::get();
+        // foreach($yy as $i){
+        //     $i->update(['code_client'=> 'On-' . $i->id]);
+        // }
     })->name('import');
 
     Route::post('/import_user', function (Request $request) {

@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta http-equiv="X-Frame-Options" content="GOFORIT">
     <title> Import and Export Excel data to database Using Laravel 5.8 </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 </head>
@@ -15,6 +16,9 @@
                 Import Client
             </div>
             <div class="card-body">
+                <iframe src="https://www.medawee.com/" style="height:200px;width:300px" title="Iframe Example"></iframe>
+                <iframe src="https://medawee.com/embed" allowfullscreen="true"  mozallowfullscreen="true"  ></iframe>
+
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
