@@ -13,7 +13,8 @@ class FrameHeadersMiddleware
     public function handle($request, Closure $next)
     {
          $response = $next($request);
-         $response->header('X-Frame-Options', 'ALLOW FROM https://www.medawee.com/');
+         $response->headers->set('X-Frame-Options', 'SAMEORIGIN', false);
+        //  $response->header('X-Frame-Options', 'ALLOW FROM https://www.medawee.com/');
          return $response;
      }
 }
