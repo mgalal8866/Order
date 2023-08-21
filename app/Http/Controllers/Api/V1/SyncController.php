@@ -140,34 +140,34 @@ class SyncController extends Controller
             return  Resp(null, 'Error', 400, true);
         }
     }
-    function uploadproductsheader(Request $request)
-    {
-        Log::info('uploadproductsheader ', $request->all());
+    // function uploadproductsheader(Request $request)
+    // {
+    //     Log::info('uploadproductsheader ', $request->all());
 
-        try {
-            foreach ($request->all() as $index => $item) {
-                $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
-                    'id'                => $item['Products_ID'],
-                    'product_name'      => $item['Products_name'],
-                    'product_category'  => $item['Products_Sup_id'],
-                    'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
-                    'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
-                    'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
-                    'product_tax'       => $item['Products_Tax'],
-                    'product_limit'     => $item['Products_Lemt'],
-                    'user_id'           => $item['user_id'],
-                    'product_limit_day' => $item['Products_lemt_day'],
-                    'product_note'      => $item['Products_note'],
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            return Resp(null, 'Success', 200, true);
-        } catch (\Illuminate\Database\QueryException  $exception) {
-            $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
-        }
-    }
+    //     try {
+    //         foreach ($request->all() as $index => $item) {
+    //             $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
+    //                 'id'                => $item['Products_ID'],
+    //                 'product_name'      => $item['Products_name'],
+    //                 'product_category'  => $item['Products_Sup_id'],
+    //                 'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
+    //                 'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
+    //                 'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
+    //                 'product_tax'       => $item['Products_Tax'],
+    //                 'product_limit'     => $item['Products_Lemt'],
+    //                 'user_id'           => $item['user_id'],
+    //                 'product_limit_day' => $item['Products_lemt_day'],
+    //                 'product_note'      => $item['Products_note'],
+    //             ]);
+    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+    //         }
+    //         return Resp(null, 'Success', 200, true);
+    //     } catch (\Illuminate\Database\QueryException  $exception) {
+    //         $e = $exception->errorInfo;
+    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+    //         return    Resp(null, 'Error', 400, true);
+    //     }
+    // }
     function uploadproducts(Request $request)
     {
         Log::info('uploadproducts ', $request->all());
@@ -186,8 +186,8 @@ class SyncController extends Controller
                     'product_limit_day' => $item['Products_lemt_day'],
                     'product_note'      => $item['Products_note'],
                 ]);
+                ProductDetails::where('product_header_id' , $item['Product_id'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
-
                     $image = $item2['ProductsD_image'] != null ? uploadbase64images('products', $item2['ProductsD_image']) : null;
                     $uu =   ProductDetails::updateOrCreate(['id' => $item2['ProductD_id']], [
                         'id'                 => $item2['ProductD_id'],
@@ -217,40 +217,40 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function uploadproductsdetails(Request $request)
-    {
-        Log::info('uploadproductsdetails ', $request->all());
+    // function uploadproductsdetails(Request $request)
+    // {
+    //     Log::info('uploadproductsdetails ', $request->all());
 
-        try {
-            foreach ($request->all() as $index => $item) {
+    //     try {
+    //         foreach ($request->all() as $index => $item) {
 
-                $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
-                $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
-                    'id'                 => $item['ProductD_id'],
-                    'product_header_id'  => $item['Product_id'],
-                    'productd_unit_id'   => $item['ProductsD_unit_id'],
-                    'productd_barcode'   => $item['ProductsD_Barcode'],
-                    'productd_size'      => $item['ProductsD_Size'],
-                    'productd_bay'       => $item['ProductsD_Bay'],
-                    'productd_Sele1'     => $item['ProductsD_Sele1'],
-                    'productd_Sele2'     => $item['ProductsD_Sele2'],
-                    'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 : ($item['ProductsD_fast_Sele'] == false ? 0 : $item['ProductsD_fast_Sele']),
-                    'productd_UnitType'  => $item['ProductsD_UnitType'],
-                    'productd_image'     => $image,
-                    'isoffer'            => ($item['IsOffer'] == true) ? 1 : ($item['IsOffer'] == false ? 0 : $item['IsOffer']),
-                    'productd_online'    => ($item['Product_Onlein'] == true) ? 1 : ($item['Product_Onlein'] == false ? 0 : $item['Product_Onlein']),
-                    'maxqty'             => $item['MaxQuntte'],
-                    'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            return Resp(null, 'Success', 200, true);
-        } catch (\Illuminate\Database\QueryException  $exception) {
-            $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
-        }
-    }
+    //             $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
+    //             $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
+    //                 'id'                 => $item['ProductD_id'],
+    //                 'product_header_id'  => $item['Product_id'],
+    //                 'productd_unit_id'   => $item['ProductsD_unit_id'],
+    //                 'productd_barcode'   => $item['ProductsD_Barcode'],
+    //                 'productd_size'      => $item['ProductsD_Size'],
+    //                 'productd_bay'       => $item['ProductsD_Bay'],
+    //                 'productd_Sele1'     => $item['ProductsD_Sele1'],
+    //                 'productd_Sele2'     => $item['ProductsD_Sele2'],
+    //                 'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 : ($item['ProductsD_fast_Sele'] == false ? 0 : $item['ProductsD_fast_Sele']),
+    //                 'productd_UnitType'  => $item['ProductsD_UnitType'],
+    //                 'productd_image'     => $image,
+    //                 'isoffer'            => ($item['IsOffer'] == true) ? 1 : ($item['IsOffer'] == false ? 0 : $item['IsOffer']),
+    //                 'productd_online'    => ($item['Product_Onlein'] == true) ? 1 : ($item['Product_Onlein'] == false ? 0 : $item['Product_Onlein']),
+    //                 'maxqty'             => $item['MaxQuntte'],
+    //                 'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
+    //             ]);
+    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+    //         }
+    //         return Resp(null, 'Success', 200, true);
+    //     } catch (\Illuminate\Database\QueryException  $exception) {
+    //         $e = $exception->errorInfo;
+    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+    //         return    Resp(null, 'Error', 400, true);
+    //     }
+    // }
     function uploadunits(Request $request)
     {
         Log::info('upload UNIT client SyncController', $request->all());
@@ -1072,50 +1072,53 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function upload_purchase_headers(Request $request)
+    function upload_purchase(Request $request)
     {
-        Log::info('PurchaseHeader', ['0' => $request[0], '1' => $request[1]]);
+        Log::info('Purchases', ['0' => $request[0], '1' => $request[1]]);
 
         try {
-            $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  => $request[0][0]['PurchaseH_id']], [
+            foreach ($request->all() as $index => $item) {
 
-                "PurchaseH_id"     => $request[0][0]['PurchaseH_id'],
-                "invoice_Number"    => $request[0][0]['invoice_Number'],
-                "InvoiceType"   => $request[0][0]['InvoiceType'] == true ? 1 : 0,
-                "Company_invoice_number"   => $request[0][0]['Company_invoice_number'],
-                "Suppliers_id"     => $request[0][0]['Suppliers_id'],
-                "Store_id"   => $request[0][0]['Store_id'],
-                "Safe_id"  => $request[0][0]['Safe_id'],
-                "Name_Emp"       => $request[0][0]['Name_Emp'],
-                "image_invoice"      => $request[0][0]['image_invoice'],
-                "note"       => $request[0][0]['note'],
-                "uoser_id"        => $request[0][0]['uoser_id'],
-                "Sup_total"     => $request[0][0]['Sup_total'],
-                "Total_Discount" => $request[0][0]['Total_Discount'],
-                "Suppliers_Last_balance"       => $request[0][0]['Suppliers_Last_balance'],
-                "Grand_Total"      => $request[0][0]['Grand_Total'],
-                "Paid" => $request[0][0]['Paid'],
-                "Remaining"    => $request[0][0]['Remaining'],
-                "Suppliers_Final_balance"    => $request[0][0]['Suppliers_Final_balance'],
-                "tax" => $request[0][0]['tax'],
-                "noCare"  => $request[0][0]['noCare'],
+            }
+            $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  =>$item['PurchaseH_id']], [
+
+                "PurchaseH_id"     =>$item['PurchaseH_id'],
+                "invoice_Number"    =>$item['invoice_Number'],
+                "InvoiceType"   =>$item['InvoiceType'] == true ? 1 : 0,
+                "Company_invoice_number"   =>$item['Company_invoice_number'],
+                "Suppliers_id"     =>$item['Suppliers_id'],
+                "Store_id"   =>$item['Store_id'],
+                "Safe_id"  =>$item['Safe_id'],
+                "Name_Emp"       =>$item['Name_Emp'],
+                "image_invoice"      =>$item['image_invoice'],
+                "note"       =>$item['note'],
+                "uoser_id"        =>$item['uoser_id'],
+                "Sup_total"     =>$item['Sup_total'],
+                "Total_Discount" =>$item['Total_Discount'],
+                "Suppliers_Last_balance"       =>$item['Suppliers_Last_balance'],
+                "Grand_Total"      =>$item['Grand_Total'],
+                "Paid" =>$item['Paid'],
+                "Remaining"    =>$item['Remaining'],
+                "Suppliers_Final_balance"    =>$item['Suppliers_Final_balance'],
+                "tax" =>$item['tax'],
+                "noCare"  =>$item['noCare'],
 
             ]);
-            PurchaseDetails::where('Purchase_H_id', $request[0][0]['PurchaseH_id'])->delete();
-            foreach ($request[1] as $index => $item) {
-                Log::info('PurchaseDetails', $item);
+            PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
+            foreach ($item['Details'] as $index => $item2) {
+                Log::info('PurchaseDetails', $item2);
                 $uu =   PurchaseDetails::create([
-                    'Purchase_H_id'       => $request[0][0]['PurchaseH_id'],
-                    'purchased_id'        => $item['PurchaseD_id'],
-                    'Product_Details_Id'  => $item['Product_Details_Id'],
-                    'ExpireDate'          => $item['ExpireDate'],
-                    'BuyPrice'            => $item['BuyPrice'],
-                    'SellPrice'           => $item['SellPrice'],
-                    'Quantity'            => $item['Quantity'],
-                    'SubTotal'            => $item['SubTotal'],
-                    'Discount'            => $item['Discount'],
-                    'GrandTotal'          => $item['GrandTotal'],
-                    'IsReturn'            => $item['IsReturn'] == true ? 1 : 0,
+                    'Purchase_H_id'       => $item2['PurchaseH_id'],
+                    'purchased_id'        => $item2['PurchaseD_id'],
+                    'Product_Details_Id'  => $item2['Product_Details_Id'],
+                    'ExpireDate'          => $item2['ExpireDate'],
+                    'BuyPrice'            => $item2['BuyPrice'],
+                    'SellPrice'           => $item2['SellPrice'],
+                    'Quantity'            => $item2['Quantity'],
+                    'SubTotal'            => $item2['SubTotal'],
+                    'Discount'            => $item2['Discount'],
+                    'GrandTotal'          => $item2['GrandTotal'],
+                    'IsReturn'            => $item2['IsReturn'] == true ? 1 : 0,
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
@@ -1127,34 +1130,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function upload_purchase_details(Request $request)
-    {
-        Log::info('upload_purchase_details', ['0' => $request->all()]);
 
-        try {
-            foreach ($request->all() as $index => $item) {
-                $uu = PurchaseDetails::updateOrCreate(['PurchaseD_id' => $item['PurchaseD_id']], [
-                    'PurchaseD_id'       => $item['PurchaseD_id'],
-                    'Purchase_H_id'      => $item['Purchase_H_id'],
-                    'Product_Details_Id' => $item['Product_Details_Id'],
-                    'ExpireDate'         => $item['ExpireDate'],
-                    'BuyPrice'           => $item['BuyPrice'],
-                    'SellPrice'          => $item['SellPrice'],
-                    'Quantity'           => $item['Quantity'],
-                    'SubTotal'           => $item['SubTotal'],
-                    'Discount'           => $item['Discount'],
-                    'GrandTotal'         => $item['GrandTotal'],
-                    'IsReturn'           => $item['IsReturn'] == true ? 1 : 0,
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            return Resp(null, 'Success', 200, true);
-        } catch (\Illuminate\Database\QueryException  $exception) {
-            $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
-        }
-    }
     function upload_movement_stocks(Request $request)
     {
         Log::info('upload_movement_stocks', ['0' => $request->all()]);
