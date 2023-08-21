@@ -121,10 +121,12 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/products', [SyncController::class, 'uploadproducts']);
     Route::post('/upload/units',   [SyncController::class, 'uploadunits']);
     Route::post('/upload/category', [SyncController::class, 'uploadcategory']);
+
     Route::post('/upload/sales/header', [SyncController::class, 'uploadsalseheader']);
     Route::post('/upload/sales/details', [SyncController::class, 'uploadsalsedetails']);
     Route::post('/upload/delivery/header', [SyncController::class, 'uploadsdeliveryheader']);
     Route::post('/upload/delivery/details', [SyncController::class, 'uploaddeliverydetails']);
+
     Route::post('/upload/slider', [SyncController::class, 'uploadslider']);
     Route::post('/notification/send', [SyncController::class, 'sendnotification']);
     Route::post('/upload/coupon', [SyncController::class, 'uploadcoupon']);
@@ -140,7 +142,6 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/banks', [SyncController::class, 'upload_banks']);
     Route::post('/upload/damage', [SyncController::class, 'upload_Damage']);
     Route::post('/upload/erolment_emps', [SyncController::class, 'upload_erolment_emps']);
-
     Route::post('/upload/supplier/grups', [SyncController::class, 'upload_supplier_grups']);
     Route::post('/upload/second/offers', [SyncController::class, 'upload_second_offers']);
     Route::post('/upload/suppliers', [SyncController::class, 'upload_suppliers']);
