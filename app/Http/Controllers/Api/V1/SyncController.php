@@ -89,7 +89,7 @@ class SyncController extends Controller
                 //     $errors[$index] = ['message' => $validator->messages(), 'Client_id' => $item['Client_id']];
                 //     continue;
                 // }
-                $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'],'source_id'   => $item['Client_id']], [
+                $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
                     'source_id'           => $item['Client_id'],
                     'client_name'         => $item['Client_name'],
@@ -186,7 +186,7 @@ class SyncController extends Controller
                     'product_limit_day' => $item['Products_lemt_day'],
                     'product_note'      => $item['Products_note'],
                 ]);
-                ProductDetails::where('product_header_id' , $item['Product_id'])->delete();
+                ProductDetails::where('product_header_id', $item['Product_id'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
                     $image = $item2['ProductsD_image'] != null ? uploadbase64images('products', $item2['ProductsD_image']) : null;
                     $uu =   ProductDetails::updateOrCreate(['id' => $item2['ProductD_id']], [
@@ -770,11 +770,11 @@ class SyncController extends Controller
 
                 $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
                 $uu    = setting::find(1);
-                if($uu){
+                if ($uu) {
 
                     deleteimage('logos', $uu->logo_shop);
                 }
-                $uu    =   setting::updateOrCreate(['id' => 1],[
+                $uu    =   setting::updateOrCreate(['id' => 1], [
                     'name_shop'         => $item['Name_Shope'],
                     'maneger_phone'     => $item['Manegaer_Fhone'],
                     'phone_shop'        => $item['Shope_Fhone'],
@@ -1078,32 +1078,30 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
+                $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  => $item['PurchaseH_id']], [
+                    "PurchaseH_id"           => $item['PurchaseH_id'],
+                    "invoice_Number"         => $item['invoice_Number'],
+                    "InvoiceType"            => $item['InvoiceType'] == true ? 1 : 0,
+                    "Company_invoice_number" => $item['Company_invoice_number'],
+                    "Suppliers_id"           => $item['Suppliers_id'],
+                    "Store_id"               => $item['Store_id'],
+                    "Safe_id"                => $item['Safe_id'],
+                    "Name_Emp"               => $item['Name_Emp'],
+                    "image_invoice"          => $item['image_invoice'],
+                    "note"                   => $item['note'],
+                    "uoser_id"               => $item['uoser_id'],
+                    "Sup_total"              => $item['Sup_total'],
+                    "Total_Discount"         => $item['Total_Discount'],
+                    "Suppliers_Last_balance" => $item['Suppliers_Last_balance'],
+                    "Grand_Total"            => $item['Grand_Total'],
+                    "Paid"                   => $item['Paid'],
+                    "Remaining"              => $item['Remaining'],
+                    "Suppliers_Final_balance" => $item['Suppliers_Final_balance'],
+                    "tax"                    => $item['tax'],
+                    "noCare"                 => $item['noCare'],
 
+                ]);
             }
-            $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  =>$item['PurchaseH_id']], [
-
-                "PurchaseH_id"     =>$item['PurchaseH_id'],
-                "invoice_Number"    =>$item['invoice_Number'],
-                "InvoiceType"   =>$item['InvoiceType'] == true ? 1 : 0,
-                "Company_invoice_number"   =>$item['Company_invoice_number'],
-                "Suppliers_id"     =>$item['Suppliers_id'],
-                "Store_id"   =>$item['Store_id'],
-                "Safe_id"  =>$item['Safe_id'],
-                "Name_Emp"       =>$item['Name_Emp'],
-                "image_invoice"      =>$item['image_invoice'],
-                "note"       =>$item['note'],
-                "uoser_id"        =>$item['uoser_id'],
-                "Sup_total"     =>$item['Sup_total'],
-                "Total_Discount" =>$item['Total_Discount'],
-                "Suppliers_Last_balance"       =>$item['Suppliers_Last_balance'],
-                "Grand_Total"      =>$item['Grand_Total'],
-                "Paid" =>$item['Paid'],
-                "Remaining"    =>$item['Remaining'],
-                "Suppliers_Final_balance"    =>$item['Suppliers_Final_balance'],
-                "tax" =>$item['tax'],
-                "noCare"  =>$item['noCare'],
-
-            ]);
             PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
             foreach ($item['Details'] as $index => $item2) {
                 Log::info('PurchaseDetails', $item2);
@@ -1441,7 +1439,7 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
 
-                $uu = MovementBalance::updateOrCreate(['id'=> $item['Con_id']], [
+                $uu = MovementBalance::updateOrCreate(['id' => $item['Con_id']], [
                     'id'        => $item['Con_id'],
                     'from_safe_id'  => $item['from_safe_id'],
                     'to_safe_id'    => $item['to_safe_id'],
@@ -1787,7 +1785,7 @@ class SyncController extends Controller
                     'productd_bay'       => $item['ProductsD_Bay'],
                     'productd_Sele1'     => $item['ProductsD_Sele1'],
                     'productd_Sele2'     => $item['ProductsD_Sele2'],
-                    'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 :0,
+                    'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 : 0,
                     'productd_UnitType'  => $item['ProductsD_UnitType'],
                     'productd_image'     => $image,
                     'isoffer'            => ($item['IsOffer'] == true) ? 1 : 0,
