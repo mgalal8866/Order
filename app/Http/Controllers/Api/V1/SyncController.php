@@ -296,136 +296,64 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function uploadsalseheader(Request $request)
+    function uploadsalse(Request $request)
     {
-
-        Log::info('SalesHeader', ['0' => $request[0], '1' => $request[1]]);
+        Log::info('SalesHeader ', $request->all());
 
         try {
-            $uu =   SalesHeader::updateOrCreate(["id"  => $request[0][0]['SalesHeader_ID'],], [
-                "id"            => $request[0][0]['SalesHeader_ID'],
-                "invoicenumber" => $request[0][0]['InvoiceNumber'],
-                "coupon_id"     => $request[0][0]['coupon_id'],
-                "type_order"    => $request[0][0]['Type_Order'],
-                "invoicetype"   => $request[0][0]['InvoiceType'],
-                "invoicedate"   => $request[0][0]['InvoiceDate'],
-                "client_id"     => $request[0][0]['Client_ID'],
-                "lastbalance"   => $request[0][0]['LastBalance'],
-                "finalbalance"  => $request[0][0]['finalbalance'],
-                "user_id"       => $request[0][0]['User_ID'],
-                "store_id"      => $request[0][0]['Store_ID'],
-                "safe_id"       => $request[0][0]['Safe_ID'],
-                "status"        => $request[0][0]['Status'],
-                "employ_id"     => $request[0][0]['Employ_ID'],
-                "dis_point_active" => $request[0][0]['Dis_Point_Active'],
-                "paytayp"       => $request[0][0]['PayTayp'],
-                "subtotal"      => $request[0][0]['SubTotal'],
-                "totaldiscount" => $request[0][0]['Total_Discount'],
-                "discount_g"    => $request[0][0]['Discount_G'],
-                "discount_f"    => $request[0][0]['Discount_F'],
-                "total_add_amount" => $request[0][0]['Total_Add_Amount'],
-                "add_amount_g"  => $request[0][0]['Add_Amount_G'],
-                "add_amount_f"  => $request[0][0]['Add_Amount_F'],
-                "discount_product" => $request[0][0]['Discount_Prduct'],
-                "discount_sales" => $request[0][0]['Discount_Sales'],
-                "discount_point" => $request[0][0]['Discount_Point'],
-                "grandtotal"     => $request[0][0]['GrandTotal'],
-                "paid"           => $request[0][0]['Paid'],
-                "remaining"      => $request[0][0]['Remaining'],
-                "total_profit"   => $request[0][0]['Total_Profit'],
-                "note"           => $request[0][0]['note'],
-                "deliverycost"   => $request[0][0]['DelverCost'],
-                "satus_delivery" => $request[0][0]['Status_Delvery'],
-                "sales_online"   => $request[0][0]['SalesOnlain']
-            ]);
-            SalesDetails::where('sale_header_id', $request[0][0]['SalesHeader_ID'])->delete();
-            foreach ($request[1] as $index => $item) {
-                Log::info('SalesDetails', $item);
-                $uu =   SalesDetails::create([
-                    'sale_header_id'     => $request[0][0]['SalesHeader_ID'],
-                    'product_details_id' => $item['ProductDetails_ID'],
-                    'buyprice'           => $item['BuyPrice'],
-                    'sellprice'          => $item['SellPrice'],
-                    'quantity'           => $item['Quantity'],
-                    'subtotal'           => $item['SubTotalD'],
-                    'discount'           => $item['Discount'],
-                    'grandtotal'         => $item['GrandTotalD'],
-                    'profit'             => $item['Profit']
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            return Resp(null, 'Success', 200, true);
-
-
-
-            // Log::info('uploadsalseheader', $request->all());
-            // try {
-            //     foreach ($request->all() as $index => $item) {
-            //         $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
-            //             "id"            => $item['SalesHeader_ID'],
-            //             "invoicenumber" => $item['InvoiceNumber'],
-            //             "coupon_id"     => $item['coupon_id'],
-            //             "type_order"    => $item['Type_Order'],
-            //             "comment_id"    => $item['comment_ID'],
-            //             "invoicetype"   => $item['InvoiceType'],
-            //             "invoicedate"   => $item['InvoiceDate'],
-            //             "client_id"     => $item['Client_ID'],
-            //             "lastbalance"   => $item['LastBalance'],
-            //             "finalbalance"  => $item['finalbalance'],
-            //             "user_id"       => $item['User_ID'],
-            //             "store_id"      => $item['Store_ID'],
-            //             "safe_id"       => $item['Safe_ID'],
-            //             "status"        => $item['Status'],
-            //             "employ_id"     => $item['Employ_ID'],
-            //             "dis_point_active" => $item['Dis_Point_Active'],
-            //             "paytayp"       => $item['PayTayp'],
-            //             "subtotal"      => $item['SubTotal'],
-            //             "totaldiscount" => $item['Total_Discount'],
-            //             "discount_g"    => $item['Discount_G'],
-            //             "discount_f"    => $item['Discount_F'],
-            //             "total_add_amount" => $item['Total_Add_Amount'],
-            //             "add_amount_g"  => $item['Add_Amount_G'],
-            //             "add_amount_f"  => $item['Add_Amount_F'],
-            //             "discount_product" => $item['Discount_Prduct'],
-            //             "discount_sales" => $item['Discount_Sales'],
-            //             "discount_point" => $item['Discount_Point'],
-            //             "grandtotal"     => $item['GrandTotal'],
-            //             "paid"           => $item['Paid'],
-            //             "remaining"      => $item['Remaining'],
-            //             "total_profit"   => $item['Total_Profit'],
-            //             "note"           => $item['note'],
-            //             "deliverycost"   => $item['DelverCost'],
-            //             "satus_delivery" => $item['Status_Delvery'],
-            //             "sales_online"   => $item['SalesOnlain']
-            //         ]);
-            //         logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            //     }
-            //     return Resp(null, 'Success', 200, true);
-        } catch (\Illuminate\Database\QueryException  $exception) {
-            $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
-        }
-    }
-    function uploadsalsedetails(Request $request)
-    {
-        Log::info('uploadsalsedetails', $request->all());
-        try {
-            SalesDetails::where('sale_header_id', $request[0]['SalesHeader_ID'])->delete();
             foreach ($request->all() as $index => $item) {
-                $uu =   SalesDetails::updateOrCreate(['id' => $item['SalesDetails_ID']], [
-                    'id'                 => $item['SalesDetails_ID'],
-                    'sale_header_id'     => $item['SalesHeader_ID'],
-                    'product_details_id' => $item['ProductDetails_ID'],
-                    'buyprice'           => $item['BuyPrice'],
-                    'sellprice'          => $item['SellPrice'],
-                    'quantity'           => $item['Quantity'],
-                    'subtotal'           => $item['SubTotalD'],
-                    'discount'           => $item['Discount'],
-                    'grandtotal'         => $item['GrandTotalD'],
-                    'profit'             => $item['Profit']
+                $uu =   SalesHeader::updateOrCreate(["id"  => $item['SalesHeader_ID'],], [
+                    "id"            => $item['SalesHeader_ID'],
+                    "invoicenumber" => $item['InvoiceNumber'],
+                    "coupon_id"     => $item['coupon_id'],
+                    "type_order"    => $item['Type_Order'],
+                    "invoicetype"   => $item['InvoiceType'],
+                    "invoicedate"   => $item['InvoiceDate'],
+                    "client_id"     => $item['Client_ID'],
+                    "lastbalance"   => $item['LastBalance'],
+                    "finalbalance"  => $item['finalbalance'],
+                    "user_id"       => $item['User_ID'],
+                    "store_id"      => $item['Store_ID'],
+                    "safe_id"       => $item['Safe_ID'],
+                    "status"        => $item['Status'],
+                    "employ_id"     => $item['Employ_ID'],
+                    "dis_point_active" => $item['Dis_Point_Active'],
+                    "paytayp"       => $item['PayTayp'],
+                    "subtotal"      => $item['SubTotal'],
+                    "totaldiscount" => $item['Total_Discount'],
+                    "discount_g"    => $item['Discount_G'],
+                    "discount_f"    => $item['Discount_F'],
+                    "total_add_amount" => $item['Total_Add_Amount'],
+                    "add_amount_g"  => $item['Add_Amount_G'],
+                    "add_amount_f"  => $item['Add_Amount_F'],
+                    "discount_product" => $item['Discount_Prduct'],
+                    "discount_sales" => $item['Discount_Sales'],
+                    "discount_point" => $item['Discount_Point'],
+                    "grandtotal"     => $item['GrandTotal'],
+                    "paid"           => $item['Paid'],
+                    "remaining"      => $item['Remaining'],
+                    "total_profit"   => $item['Total_Profit'],
+                    "note"           => $item['note'],
+                    "deliverycost"   => $item['DelverCost'],
+                    "satus_delivery" => $item['Status_Delvery'],
+                    "sales_online"   => $item['SalesOnlain']
                 ]);
+                SalesDetails::where('sale_header_id', $item['SalesHeader_ID'])->delete();
+                foreach ($item['Details'] as $index => $item2) {
+                    Log::info('SalesDetails', $item2);
+                    $uu2 =   SalesDetails::create([
+                        'sale_header_id'     => $item['SalesHeader_ID'],
+                        'product_details_id' => $item2['ProductDetails_ID'],
+                        'buyprice'           => $item2['BuyPrice'],
+                        'sellprice'          => $item2['SellPrice'],
+                        'quantity'           => $item2['Quantity'],
+                        'subtotal'           => $item2['SubTotalD'],
+                        'discount'           => $item2['Discount'],
+                        'grandtotal'         => $item2['GrandTotalD'],
+                        'profit'             => $item2['Profit']
+                    ]);
+                    logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
+                }
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
@@ -435,64 +363,67 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function uploadsdeliveryheader(Request $request)
+
+    function uploadsdelivery(Request $request)
     {
-        Log::info('DeliveryHeader', ['0' => $request[0], '1' => $request[1]]);
+        Log::info('Delivery', ['0' => $request->all()]);
 
         try {
-            $uu =   DeliveryHeader::updateOrCreate(["id"  => $request[0][0]['SalesHeader_ID'],], [
-                "id"            => $request[0][0]['SalesHeader_ID'],
-                "invoicenumber" => $request[0][0]['InvoiceNumber'],
-                "coupon_id"     => $request[0][0]['coupon_id'],
-                "type_order"    => $request[0][0]['Type_Order'],
-                "invoicetype"   => $request[0][0]['InvoiceType'],
-                "invoicedate"   => $request[0][0]['InvoiceDate'],
-                "client_id"     => $request[0][0]['Client_ID'],
-                "lastbalance"   => $request[0][0]['LastBalance'],
-                "finalbalance"  => $request[0][0]['finalbalance'],
-                "user_id"       => $request[0][0]['User_ID'],
-                "store_id"      => $request[0][0]['Store_ID'],
-                "safe_id"       => $request[0][0]['Safe_ID'],
-                "status"        => $request[0][0]['Status'],
-                "employ_id"     => $request[0][0]['Employ_ID'],
-                "dis_point_active" => $request[0][0]['Dis_Point_Active'],
-                "paytayp"       => $request[0][0]['PayTayp'],
-                "subtotal"      => $request[0][0]['SubTotal'],
-                "totaldiscount" => $request[0][0]['Total_Discount'],
-                "discount_g"    => $request[0][0]['Discount_G'],
-                "discount_f"    => $request[0][0]['Discount_F'],
-                "total_add_amount" => $request[0][0]['Total_Add_Amount'],
-                "add_amount_g"  => $request[0][0]['Add_Amount_G'],
-                "add_amount_f"  => $request[0][0]['Add_Amount_F'],
-                "discount_product" => $request[0][0]['Discount_Prduct'],
-                "discount_sales" => $request[0][0]['Discount_Sales'],
-                "discount_point" => $request[0][0]['Discount_Point'],
-                "grandtotal"     => $request[0][0]['GrandTotal'],
-                "paid"           => $request[0][0]['Paid'],
-                "remaining"      => $request[0][0]['Remaining'],
-                "total_profit"   => $request[0][0]['Total_Profit'],
-                "note"           => $request[0][0]['note'],
-                "deliverycost"   => $request[0][0]['DelverCost'],
-                "satus_delivery" => $request[0][0]['Status_Delvery'],
-                "sales_online"   => $request[0][0]['SalesOnlain']
-            ]);
-            DeliveryDetails::where('sale_header_id', $request[0][0]['SalesHeader_ID'])->delete();
-            foreach ($request[1] as $index => $item) {
-                Log::info('DeliveryHeader', $item);
-                $uu =   DeliveryDetails::create([
-                    'sale_header_id'     => $request[0][0]['SalesHeader_ID'],
-                    'product_details_id' => $item['ProductDetails_ID'],
-                    'buyprice'           => $item['BuyPrice'],
-                    'sellprice'          => $item['SellPrice'],
-                    'quantity'           => $item['Quantity'],
-                    'subtotal'           => $item['SubTotalD'],
-                    'discount'           => $item['Discount'],
-                    'grandtotal'         => $item['GrandTotalD'],
-                    'profit'             => $item['Profit']
+            foreach ($request->all() as $index => $item) {
+                $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
+                    "id"            =>  $item['SalesHeader_ID'],
+                    "invoicenumber" =>  $item['InvoiceNumber'],
+                    "coupon_id"     =>  $item['coupon_id'],
+                    "type_order"    =>  $item['Type_Order'],
+                    "invoicetype"   =>  $item['InvoiceType'],
+                    "invoicedate"   =>  $item['InvoiceDate'],
+                    "client_id"     =>  $item['Client_ID'],
+                    "lastbalance"   =>  $item['LastBalance'],
+                    "finalbalance"  =>  $item['finalbalance'],
+                    "user_id"       =>  $item['User_ID'],
+                    "store_id"      =>  $item['Store_ID'],
+                    "safe_id"       =>  $item['Safe_ID'],
+                    "status"        =>  $item['Status'],
+                    "employ_id"     =>  $item['Employ_ID'],
+                    "dis_point_active" =>  $item['Dis_Point_Active'],
+                    "paytayp"       =>  $item['PayTayp'],
+                    "subtotal"      =>  $item['SubTotal'],
+                    "totaldiscount" =>  $item['Total_Discount'],
+                    "discount_g"    =>  $item['Discount_G'],
+                    "discount_f"    =>  $item['Discount_F'],
+                    "total_add_amount" =>  $item['Total_Add_Amount'],
+                    "add_amount_g"  =>  $item['Add_Amount_G'],
+                    "add_amount_f"  =>  $item['Add_Amount_F'],
+                    "discount_product" =>  $item['Discount_Prduct'],
+                    "discount_sales" =>  $item['Discount_Sales'],
+                    "discount_point" =>  $item['Discount_Point'],
+                    "grandtotal"     =>  $item['GrandTotal'],
+                    "paid"           =>  $item['Paid'],
+                    "remaining"      =>  $item['Remaining'],
+                    "total_profit"   =>  $item['Total_Profit'],
+                    "note"           =>  $item['note'],
+                    "deliverycost"   =>  $item['DelverCost'],
+                    "satus_delivery" =>  $item['Status_Delvery'],
+                    "sales_online"   =>  $item['SalesOnlain']
                 ]);
+                DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
+                foreach ($item[1] as $index => $item2) {
+                    Log::info('DeliveryHeader', $item2);
+                    $uu2 =   DeliveryDetails::create([
+                        'sale_header_id'     => $item['SalesHeader_ID'],
+                        'product_details_id' => $item2['ProductDetails_ID'],
+                        'buyprice'           => $item2['BuyPrice'],
+                        'sellprice'          => $item2['SellPrice'],
+                        'quantity'           => $item2['Quantity'],
+                        'subtotal'           => $item2['SubTotalD'],
+                        'discount'           => $item2['Discount'],
+                        'grandtotal'         => $item2['GrandTotalD'],
+                        'profit'             => $item2['Profit']
+                    ]);
+                    logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
+                }
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
-            logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -1102,27 +1033,27 @@ class SyncController extends Controller
 
                 ]);
 
-            PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
-            foreach ($item['Details'] as $index => $item2) {
-                Log::info('PurchaseDetails', $item2);
-                $uu =   PurchaseDetails::create([
-                    'Purchase_H_id'       => $item2['Purchase_H_id'],
-                    'purchased_id'        => $item2['PurchaseD_id'],
-                    'Product_Details_Id'  => $item2['Product_Details_Id'],
-                    'ExpireDate'          => $item2['ExpireDate'],
-                    'BuyPrice'            => $item2['BuyPrice'],
-                    'SellPrice'           => $item2['SellPrice'],
-                    'Quantity'            => $item2['Quantity'],
-                    'SubTotal'            => $item2['SubTotal'],
-                    'Discount'            => $item2['Discount'],
-                    'GrandTotal'          => $item2['GrandTotal'],
-                    'IsReturn'            => $item2['IsReturn'] == true ? 1 : 0,
-                ]);
+                PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
+                foreach ($item['Details'] as $index => $item2) {
+                    Log::info('PurchaseDetails', $item2);
+                    $uu =   PurchaseDetails::create([
+                        'Purchase_H_id'       => $item2['Purchase_H_id'],
+                        'purchased_id'        => $item2['PurchaseD_id'],
+                        'Product_Details_Id'  => $item2['Product_Details_Id'],
+                        'ExpireDate'          => $item2['ExpireDate'],
+                        'BuyPrice'            => $item2['BuyPrice'],
+                        'SellPrice'           => $item2['SellPrice'],
+                        'Quantity'            => $item2['Quantity'],
+                        'SubTotal'            => $item2['SubTotal'],
+                        'Discount'            => $item2['Discount'],
+                        'GrandTotal'          => $item2['GrandTotal'],
+                        'IsReturn'            => $item2['IsReturn'] == true ? 1 : 0,
+                    ]);
+                    logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                }
+
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
-
-            logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-        }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -1145,7 +1076,7 @@ class SyncController extends Controller
                     'UserId'         =>  $item['UserId'],
                 ]);
                 MovementStockDetails::where('MovementStockId',  $item['Move_Id'])->delete();
-                foreach ( $item['Details'] as $index => $item2) {
+                foreach ($item['Details'] as $index => $item2) {
                     Log::info('MovementStockDetails', $item2);
                     $uu =   MovementStockDetails::create([
                         'Id'               => $item2['Id'],

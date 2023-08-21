@@ -122,10 +122,8 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/units',   [SyncController::class, 'uploadunits']);
     Route::post('/upload/category', [SyncController::class, 'uploadcategory']);
 
-    Route::post('/upload/sales/header', [SyncController::class, 'uploadsalseheader']);
-    Route::post('/upload/sales/details', [SyncController::class, 'uploadsalsedetails']);
-    Route::post('/upload/delivery/header', [SyncController::class, 'uploadsdeliveryheader']);
-    Route::post('/upload/delivery/details', [SyncController::class, 'uploaddeliverydetails']);
+    Route::post('/upload/sales', [SyncController::class, 'uploadsalse']);
+    Route::post('/upload/delivery', [SyncController::class, 'uploadsdelivery']);
 
     Route::post('/upload/slider', [SyncController::class, 'uploadslider']);
     Route::post('/notification/send', [SyncController::class, 'sendnotification']);
