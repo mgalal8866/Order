@@ -77,6 +77,8 @@ Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
         Route::get('/migrate/system', function () {
             return view('main-domin.index');
         })->name('maindomin');
+
+        
         Route::get('/migrate/tenants', function () {
             return Artisan::call('tenants:migrate');
         })->name('maindomin');
