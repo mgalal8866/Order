@@ -6,7 +6,6 @@
 
 
     <title> Import and Export Excel data to database Using Laravel 5.8 </title>
-     <meta http-equiv="X-Frame-Options" content="deny">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 </head>
@@ -21,7 +20,8 @@
             </div>
             <div class="card-body">
                 <iframe src="https://www.medawee.com/" style="height:200px;width:300px" title="Iframe Example"></iframe>
-                <iframe src="https://medawee.com/embed" allowfullscreen="true"  mozallowfullscreen="true"  ></iframe>
+                <iframe src="https://medawee.com" allowfullscreen="true"  mozallowfullscreen="true"  ></iframe>
+                <embed src='https://www.medawee.com/' width='100%' height='100%'  type="application/pdf" />
 
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
