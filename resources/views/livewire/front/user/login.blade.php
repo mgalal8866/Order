@@ -44,7 +44,7 @@
                                         ارسال</a></h5>
                             </div>
 
-                            <button onclick="verify()" class="btn btn-animation w-100 mt-3" type="submit">تحقق</button>
+                            <button  class="btn btn-animation w-100 mt-3" type="submit">تحقق</button>
                             {{-- </form> --}}
                         </div>
                         {{-- <form>
@@ -94,61 +94,60 @@
     </section>
 </div>
 @push('jslive')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --}}
     <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    {{-- <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script> --}}
-    <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script>
+    {{-- <script src="https://www.gstatic.com/firebasejs/8.3.2/firebase.js"></script> --}}
 
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyASFQiDiY62XTCm7KE9Xx5K03wippJBWqo",
-            authDomain: "order-48bfc.firebaseapp.com",
-            projectId: "order-48bfc",
-            storageBucket: "order-48bfc.appspot.com",
-            messagingSenderId: "324270172795",
-            appId: "1:324270172795:web:d2f7354ffcee3d9fc810de",
-            measurementId: "G-4DX5NRLD86",
-            databaseURL: 'https://project-id.firebaseio.com',
-        };
-        firebase.initializeApp(firebaseConfig);
+        // var firebaseConfig = {
+        //     apiKey: "AIzaSyASFQiDiY62XTCm7KE9Xx5K03wippJBWqo",
+        //     authDomain: "order-48bfc.firebaseapp.com",
+        //     projectId: "order-48bfc",
+        //     storageBucket: "order-48bfc.appspot.com",
+        //     messagingSenderId: "324270172795",
+        //     appId: "1:324270172795:web:d2f7354ffcee3d9fc810de",
+        //     measurementId: "G-4DX5NRLD86",
+        //     databaseURL: 'https://project-id.firebaseio.com',
+        // };
+        // firebase.initializeApp(firebaseConfig);
     </script>
     <script type="text/javascript">
-        window.onload = function() {
-            render();
-        };
+        // window.onload = function() {
+        //     render();
+        // };
 
-        function render() {
-            window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-                // size: "invisible"
-            });
-            recaptchaVerifier.render();
-        }
+        // function render() {
+        //     window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+        //         // size: "invisible"
+        //     });
+        //     recaptchaVerifier.render();
+        // }
 
-        window.addEventListener('sendOTP', e => {
-            firebase.auth().settings.appVerificationDisabledForTesting = true;
-            firebase.auth().signInWithPhoneNumber(e.detail.phone, window.recaptchaVerifier).then(function(
-                confirmationResult) {
-                window.confirmationResult = confirmationResult;
-                coderesult = confirmationResult;
-                // window.livewire.emit('success', coderesult);
-                @this.set('showotp', true);
-                // console.log(coderesult);
+        // window.addEventListener('sendOTP', e => {
+        //     firebase.auth().settings.appVerificationDisabledForTesting = true;
+        //     firebase.auth().signInWithPhoneNumber(e.detail.phone, window.recaptchaVerifier).then(function(
+        //         confirmationResult) {
+        //         window.confirmationResult = confirmationResult;
+        //         coderesult = confirmationResult;
+        //         // window.livewire.emit('success', coderesult);
+        //         @this.set('showotp', true);
+        //         // console.log(coderesult);
 
-            }).catch(function(error) {
-                $("#error").text(error.message);
-                $("#error").show();
-            });
-        })
+        //     }).catch(function(error) {
+        //         $("#error").text(error.message);
+        //         $("#error").show();
+        //     });
+        // })
 
 
 
-        function verify() {
-            var code = $("#verification").val();
-            coderesult.confirm(code).then(function(result) {
-                window.livewire.emit('verify')
-            }).catch(function(error) {
-                console.log(error.message);;
-            });
-        }
+        // function verify() {
+        //     var code = $("#verification").val();
+        //     coderesult.confirm(code).then(function(result) {
+        //         window.livewire.emit('verify')
+        //     }).catch(function(error) {
+        //         console.log(error.message);;
+        //     });
+        // }
     </script>
 @endpush

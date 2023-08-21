@@ -1,10 +1,13 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Otp;
+use App\Models\User;
 use App\Models\notifiction;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 
 function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     if($status == 422 ){
@@ -20,7 +23,8 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $filename = $image->hashName();
     return  $filename;
 }
-  function sendsms($phone,$code){
+  function sendsms($phone){
+    $code = rand(123456, 999999);
     $msg = 'كود التحقق ' . $code;
     $response = Http::accept('application/json')->get('https://smssmartegypt.com/sms/api/?
     username='.env('SMS_USERNAME').'
@@ -33,6 +37,12 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
         return 0;
     }else{
         return 1;
+        $user = User::where('mobile_no', $phone)->first();
+        Otp::create([
+            'user_id' => $user->id??null,
+            'otp' => $code,
+            'expire_at' => Carbon::now()->addMinutes(5)
+        ]);
     };
     // return  $res['error']['msg'];
     // return  $res['error']['number'];

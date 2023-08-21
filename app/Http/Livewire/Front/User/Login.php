@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Front\User;
 
+use App\Models\Otp;
 use App\Models\User;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -13,7 +14,7 @@ class Login extends Component
     public $client_fhonewhats, $showotp = false, $user;
     public $success;
     protected $listeners = [
-        'success' => 'success1', 'verify' => 'verify'
+        'success' => 'success1'
     ];
     protected $rules = [
         'client_fhonewhats' => 'required|exists:tenant.users',
@@ -32,13 +33,21 @@ class Login extends Component
         // dd(DB::getDefaultConnection());
         $this->validate();
         $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
-        $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
+        // $otp = sendsms($this->client_fhonewhats);
+        // if ($otp == 1) {
+        //     $this->showotp = true;
+        // }
+
+        // $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
     }
     public function verify()
     {
-        Auth::guard('client')->login($this->user);
-        if (Auth::guard('client')->check()) {
-            return redirect()->intended('/');
+        $votp =  Otp::where('code','')->first();
+        if($votp != null ){
+            Auth::guard('client')->login($this->user);
+            if (Auth::guard('client')->check()) {
+                return redirect()->intended('/');
+            }
         }
     }
     public function render()

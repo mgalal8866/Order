@@ -14,7 +14,7 @@ class Register extends Component
     public $client_fhonewhats,$user, $showotp =1,$formsignup, $phone2,$namecust,$namestore,$selectcity,$selectnashat,$selectstate, $citys=[],$states=[],$nashat=[];
     public $success;
     protected $listeners = [
-        'success' => 'success1', 'verify' => 'verify'
+        'success' => 'success1'
     ];
     protected $rules = [
         'client_fhonewhats' => 'required|unique:users,client_fhonewhats',
@@ -32,7 +32,12 @@ class Register extends Component
     }
     public function checkphone()
     {
-       $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->client_fhonewhats]);
+        // $otp = sendsms($this->client_fhonewhats);
+        // if ($otp == 1) {
+        //     $this->showotp = true;
+        // }
+
+     //    $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->client_fhonewhats]);
     }
     public function verify()
     {

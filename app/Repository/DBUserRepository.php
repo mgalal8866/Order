@@ -15,8 +15,8 @@ class DBUserRepository implements UserRepositoryinterface
 {
     public function sendotp($request)
     {
-        // $otp =  rand(1234, 9999);
-        // $response = sendsms($request->get('client_fhonewhats'), $otp);
+
+        // $response = sendsms($request->get('client_fhonewhats'));
         $response = 1;
         if( $response  == 1){
             return Resp('', 'تم ارسال كود التحقق', 200, true);
