@@ -41,8 +41,7 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
-$app->forgetMiddleware(
-    Illuminate\Http\FrameGuard::class);
+ 
 
 /*
 |--------------------------------------------------------------------------
