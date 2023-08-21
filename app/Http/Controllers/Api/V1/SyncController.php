@@ -1101,7 +1101,7 @@ class SyncController extends Controller
                     "noCare"                 => $item['noCare'],
 
                 ]);
-            }
+
             PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
             foreach ($item['Details'] as $index => $item2) {
                 Log::info('PurchaseDetails', $item2);
@@ -1120,7 +1120,9 @@ class SyncController extends Controller
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
+
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+        }
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -1133,23 +1135,26 @@ class SyncController extends Controller
     {
         Log::info('upload_movement_stocks', ['0' => $request->all()]);
         try {
-            $uu = MovementStock::updateOrCreate(['Move_Id' => $request[0][0]['Move_Id']], [
-                'Move_Id'        => $request[0][0]['Move_Id'],
-                'FromStore'      => $request[0][0]['FromStore'],
-                'ToStore'        => $request[0][0]['ToStore'],
-                'MoveDate'       => $request[0][0]['MoveDate'],
-                'UserId'         => $request[0][0]['UserId'],
-            ]);
-            MovementStockDetails::where('MovementStockId', $request[0][0]['Move_Id'])->delete();
-            foreach ($request[1] as $index => $item) {
-                Log::info('MovementStockDetails', $item);
-                $uu =   MovementStockDetails::create([
-                    'Id'               => $item['Id'],
-                    'MovementStockId'  => $request[0][0]['Move_Id'],
-                    'ProductDetailsId' => $item['ProductDetailsId'],
-                    'Quantity'         => $item['Quantity'],
+            foreach ($request->all() as $index => $item) {
+
+                $uu = MovementStock::updateOrCreate(['Move_Id' =>  $item['Move_Id']], [
+                    'Move_Id'        =>  $item['Move_Id'],
+                    'FromStore'      =>  $item['FromStore'],
+                    'ToStore'        =>  $item['ToStore'],
+                    'MoveDate'       =>  $item['MoveDate'],
+                    'UserId'         =>  $item['UserId'],
                 ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                MovementStockDetails::where('MovementStockId',  $item['Move_Id'])->delete();
+                foreach ( $item['Details'] as $index => $item2) {
+                    Log::info('MovementStockDetails', $item2);
+                    $uu =   MovementStockDetails::create([
+                        'Id'               => $item2['Id'],
+                        'MovementStockId'  => $item2['MovementStockId'],
+                        'ProductDetailsId' => $item2['ProductDetailsId'],
+                        'Quantity'         => $item2['Quantity'],
+                    ]);
+                    logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                }
             }
             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             return Resp(null, 'Success', 200, true);
@@ -1159,26 +1164,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    function upload_movement_stock_details(Request $request)
-    {
-        Log::info('upload_movement_stock_details', ['0' => $request->all()]);
-        try {
-            foreach ($request->all() as $index => $item) {
-                $uu = MovementStockDetails::updateOrCreate(['Id' => $item['Id']], [
-                    'Id'               => $item['Id'],
-                    'MovementStockId'  => $item['MovementStockId'],
-                    'ProductDetailsId' => $item['ProductDetailsId'],
-                    'Quantity'         => $item['Quantity'],
-                ]);
-                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-            }
-            return Resp(null, 'Success', 200, true);
-        } catch (\Illuminate\Database\QueryException  $exception) {
-            $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-            return    Resp(null, 'Error', 400, true);
-        }
-    }
+
     function upload_supplier_payments(Request $request)
     {
         Log::info('upload_supplier_payments', ['0' => $request->all()]);
