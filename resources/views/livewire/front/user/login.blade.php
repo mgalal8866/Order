@@ -83,7 +83,7 @@
                             </div>
                             <div class="sign-up-box">
                                 <h4>Don't have an account?</h4>
-                                <a href="/register">{{ __('front.signup') }}</a>
+                                <a href="/sign-up">{{ __('front.signup') }}</a>
                             </div>
                         </div>
                     @endif
