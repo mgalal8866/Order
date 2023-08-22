@@ -15,6 +15,7 @@ class DBUserRepository implements UserRepositoryinterface
 {
     public function sendotp($request)
     {
+        Log::error($request->all());
 
         $response = sendsms($request->get('client_fhonewhats'));
 
