@@ -31,7 +31,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     'password'  => env('SMS_PASSWORD','Gomla1234'),
     'sendername'=> env('SMS_SENDERID','test'),
     'message'   => $msg,
-    'mobiles'   => '201024346011']);
+    'mobile'    => '201024346011']);
       return $response->json();
        $res = $response->json();
     if ($res['type'] == 'error'){
