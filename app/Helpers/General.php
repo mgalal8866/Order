@@ -27,11 +27,12 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $code = rand(123456, 999999);
     $msg = 'كود التحقق ' . $code;
     $response = Http::accept('application/json')->get('https://smssmartegypt.com/sms/api/?
-    username='.env('SMS_USERNAME').'
-    &password='.env('SMS_PASSWORD').'
-    &sendername='.env('SMS_SENDERID').'
-    &message='.$msg. '
-    &mobiles='.$phone);
+    username='.env('SMS_USERNAME','gomla1234').'
+    &password='.env('SMS_PASSWORD','Gomla1234').'
+    &sendername='.env('SMS_SENDERID','test').'
+   &message='.$msg. '
+    &mobiles=01024346011');
+   // &mobiles='.$phone);
         $res = $response->json();
     if ($res['type'] == 'error'){
         return 0;
