@@ -57,6 +57,18 @@ use App\Http\Livewire\Front\Contactus;
 */
 // php artisan migrate --path=database/migrations/system --database=mysql
 
+Route::get('sql',  function () {
+    // $now = Carbon::now();
+    // if (!$verificationCode) {
+    //     return redirect()->back()->with('error', 'Your OTP is not correct');
+    // }elseif($verificationCode && $now->isAfter($verificationCode->expire_at)){
+    //     return redirect()->route('otp.login')->with('error', 'Your OTP has been expired');
+    // }
+    // if($verificationCode && $now->isBefore($verificationCode->expire_at)){
+    //     return $verificationCode;
+    // }
+    return user::on('sqlsrv')->get();
+});
 Route::get('sss',  function () {
     $e = sendsms(1,1);
     return $e;
