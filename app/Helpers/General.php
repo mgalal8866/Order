@@ -28,8 +28,8 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     $msg = 'كود التحقق ' . $code;
     $response = Http::accept('application/json')->get('https://smssmartegypt.com/sms/api/?
     username='.env('SMS_USERNAME').'
-    &password='.env('SMS_USERNAME').'
-    &sendername=الشروق للتجارة والتوزيع
+    &password='.env('SMS_PASSWORD').'
+    &sendername='.env('SMS_SENDERID').'
     &message='.$msg. '
     &mobiles='.$phone);
         $res = $response->json();
