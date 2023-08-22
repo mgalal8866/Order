@@ -33,17 +33,18 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
    &message='.$msg. '
     &mobiles=01024346011');
    // &mobiles='.$phone);
-        $res = $response->json();
+      return $response->json();
+      //  $res = $response->json();
     if ($res['type'] == 'error'){
         return 0;
     }else{
         return 1;
-        $user = User::where('mobile_no', $phone)->first();
-        Otp::create([
-            'user_id' => $user->id??null,
-            'otp' => $code,
-            'expire_at' => Carbon::now()->addMinutes(5)
-        ]);
+     //   $user = User::where('mobile_no', $phone)->first();
+      //  Otp::create([
+        //    'user_id' => $user->id??null,
+      //      'otp' => $code,
+        //    'expire_at' => Carbon::now()->addMinutes(5)
+       // ]);
     };
     // return  $res['error']['msg'];
     // return  $res['error']['number'];
