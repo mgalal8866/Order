@@ -70,7 +70,7 @@ Route::get('sql',  function () {
     return user::on('sqlsrv')->get();
 });
 Route::get('sss',  function () {
-    $e = sendsms(1,1);
+    $e = sendsms(1);
     return $e;
     // {"type":"error","error":{"msg":"Please send username and password in request!","number":101},"data":""}
     // return  $e['type'];
