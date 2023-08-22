@@ -15,15 +15,15 @@ class DBUserRepository implements UserRepositoryinterface
 {
     public function sendotp($request)
     {
-        Log::error($request->all());
+        Log::error($request);
 
-        $response = sendsms($request->get('client_fhonewhats'));
+        // $response = sendsms($request);
 
-        if( $response  == 1){
-            return Resp('', 'تم ارسال كود التحقق', 200, true);
-        }else{
-            return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
-        }
+        // if( $response  == 1){
+        //     return Resp('', 'تم ارسال كود التحقق', 200, true);
+        // }else{
+        //     return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
+        // }
     }
     public function verificationcode($request)
     {
