@@ -13,17 +13,17 @@ use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
 {
-    public function sendotp($request)
+    public function sendotp($phone)
     {
-        Log::error($request);
+        Log::error($phone);
 
-        // $response = sendsms($request);
+        $response = sendsms($phone);
 
-        // if( $response  == 1){
-        //     return Resp('', 'تم ارسال كود التحقق', 200, true);
-        // }else{
-        //     return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
-        // }
+        if( $response  == 1){
+            return Resp('', 'تم ارسال كود التحقق', 200, true);
+        }else{
+            return Resp('', 'خطاء فى ارسال كود التحقق', 302, false);
+        }
     }
     public function verificationcode($request)
     {
