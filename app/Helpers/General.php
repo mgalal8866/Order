@@ -26,24 +26,25 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
   function sendsms($phone){
     $code = rand(123456, 999999);
     $msg = 'كود التحقق ' . $code;
+    // $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send',[
     $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send',[
-    'username'  => env('SMS_USERNAME','gomla1234'),
-    'password'  => env('SMS_PASSWORD','Gomla1234'),
-    'sendername'=> env('SMS_SENDERID','test'),
-    'message'   => $msg,
-    'mobile'    => '201024346011']);
-      return $response->json();
+        'username'  => env('SMS_USERNAME','hosamalden236@gmail.com'),
+        'password'  => env('SMS_PASSWORD','0101196246'),
+        'sender'    => env('SMS_SENDERID','ELMOSWK'),
+        'mobile'    =>'2'.$phone,
+        'lang'      =>'ar']);
+    //   return $response->json();
        $res = $response->json();
     if ($res['type'] == 'error'){
         return 0;
     }else{
         return 1;
-     //   $user = User::where('mobile_no', $phone)->first();
-      //  Otp::create([
-        //    'user_id' => $user->id??null,
-      //      'otp' => $code,
-        //    'expire_at' => Carbon::now()->addMinutes(5)
-       // ]);
+    //    $user = User::where('mobile_no', $phone)->first();
+    //    Otp::create([
+    //        'user_id' => $user->id??null,
+    //        'otp' => $code,
+    //        'expire_at' => Carbon::now()->addMinutes(5)
+    //    ]);
     };
     // return  $res['error']['msg'];
     // return  $res['error']['number'];
@@ -51,6 +52,23 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
     // return
 }
 
+    function otp_check($phone,$code)
+    {
+        $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-check',[
+            'username'  => env('SMS_USERNAME','hosamalden236@gmail.com'),
+            'password'  => env('SMS_PASSWORD','0101196246'),
+            'mobile'    => '2'.$phone,
+            'otp'       => $code,
+            'verify'=> true
+        ]);
+            //   return $response->json();
+               $res = $response->json();
+            if ($res['type'] == 'error'){
+                return 0;
+            }else{
+                return 1;
+            }
+    }
     function deleteimage($path,$image)
     {
         Storage::disk($path)->delete($image);
