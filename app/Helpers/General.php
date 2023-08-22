@@ -5,6 +5,7 @@ use App\Models\Otp;
 use App\Models\User;
 use App\Models\notifiction;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +34,8 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
         'sender'    => env('SMS_SENDERID','ELMOSWK'),
         'mobile'    =>'2'.$phone,
         'lang'      =>'ar']);
-    //   return $response->json();
+        Log::info("sms",[ $response->json()]);
+      return $response->json();
        $res = $response->json();
     if ($res['type'] == 'error'){
         return 0;
@@ -61,6 +63,7 @@ function Resp($data = null , $msg = null , $status = 200 ,$statusval=true){
             'otp'       => $code,
             'verify'=> true
         ]);
+        Log::info("sms",[ $response->json()]);
             //   return $response->json();
                $res = $response->json();
             if ($res['type'] == 'error'){
