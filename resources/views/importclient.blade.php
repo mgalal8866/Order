@@ -6,8 +6,7 @@
 
 
     <title> Import and Export Excel data to database Using Laravel 5.8 </title>
-    <meta http-equiv=”Content-Security-Policy”
-    content=”default-src ’self’; img-src *”>
+ 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
 </head>
 
