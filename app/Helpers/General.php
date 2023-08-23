@@ -33,7 +33,7 @@ function sendsms($phone)
     } else {
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
-        $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
+        $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
             'username'  => env('SMS_USERNAME', 'hosamalden236@gmail.com'),
             'password'  => env('SMS_PASSWORD', '0101196246'),
             'sender'    => env('SMS_SENDERID', 'ELMOSWK'),
