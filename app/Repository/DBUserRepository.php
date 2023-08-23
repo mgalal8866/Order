@@ -15,10 +15,7 @@ class DBUserRepository implements UserRepositoryinterface
 {
     public function sendotp($phone)
     {
-        // Log::error($phone);
-
         $response = sendsms($phone);
-
         if( $response  == 1){
             return Resp('', 'تم ارسال كود التحقق', 200, true);
         }else{
@@ -46,7 +43,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
         $user->token = $token;
         $user->setting = $this->settings();
-        // dd($user);
+    
         $data =  new UserResource($user);
         return Resp($data, 'Success', 200, true);
     }
