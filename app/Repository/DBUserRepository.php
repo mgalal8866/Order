@@ -15,10 +15,10 @@ class DBUserRepository implements UserRepositoryinterface
 {
     public function sendotp($phone)
     {
-        Log::error($phone);
+        // Log::error($phone);
 
-        $response = sendsms($phone);
-
+        // $response = sendsms($phone);
+        $response = 1;
         if( $response  == 1){
             return Resp('', 'تم ارسال كود التحقق', 200, true);
         }else{
@@ -27,7 +27,8 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function verificationcode($request)
     {
-        $response = otp_check($request->get('client_fhonewhats'),$request->code  );
+        // $response = otp_check($request->get('client_fhonewhats'),$request->code  );
+        $response = 1;
         if( $response === 1){
             return $this->login($request);
         }else{

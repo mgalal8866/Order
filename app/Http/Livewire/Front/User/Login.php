@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $client_fhonewhats, $showotp = false, $user;
+    public $client_fhonewhats, $showotp = false, $user,$code;
     public $success;
     protected $listeners = [
         'success' => 'success1'
@@ -33,22 +33,27 @@ class Login extends Component
         // dd(DB::getDefaultConnection());
         $this->validate();
         $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
-        // $otp = sendsms($this->client_fhonewhats);
-        // if ($otp == 1) {
-        //     $this->showotp = true;
-        // }
+        $otp = sendsms($this->client_fhonewhats);
+        if ($otp == 1) {
+            $this->showotp = true;
+        }
 
         // $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
     }
     public function verify()
     {
-        $votp =  Otp::where('code','')->first();
-        if($votp != null ){
+        // $votp =  Otp::where('code','')->first();
+
+        $response = otp_check($this->client_fhonewhats,$this->code  );
+        if( $response === 1){
             Auth::guard('client')->login($this->user);
             if (Auth::guard('client')->check()) {
                 return redirect()->intended('/');
             }
+        }else{
+            return Resp('', 'كود التحقق خطاء', 302, false);
         }
+
     }
     public function render()
     {
