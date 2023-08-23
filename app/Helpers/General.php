@@ -31,9 +31,8 @@ function sendsms($phone)
     if (env('SMS_OTP', false) === false) {
         return 1;
     } else {
-        $code = rand(123456, 999999);
-        $msg = 'كود التحقق ' . $code;
-        // $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send',[
+        // $code = rand(123456, 999999);
+        // $msg = 'كود التحقق ' . $code;
         $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
             'username'  => env('SMS_USERNAME', 'hosamalden236@gmail.com'),
             'password'  => env('SMS_PASSWORD', '0101196246'),
@@ -41,8 +40,6 @@ function sendsms($phone)
             'mobile'    => '2' . $phone,
             'lang'      => 'ar'
         ]);
-        Log::info("sms", [$response->json()]);
-        return $response->json();
         $res = $response->json();
         if ($res['type'] == 'error') {
             return 0;
@@ -50,18 +47,6 @@ function sendsms($phone)
             return 1;
         };
     }
-
-    //    $user = User::where('mobile_no', $phone)->first();
-    //    Otp::create([
-    //        'user_id' => $user->id??null,
-    //        'otp' => $code,
-    //        'expire_at' => Carbon::now()->addMinutes(5)
-    //    ]);
-
-    // return  $res['error']['msg'];
-    // return  $res['error']['number'];
-    // return  $res['data'];
-    // return
 }
 
 function otp_check($phone, $code)

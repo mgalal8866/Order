@@ -33,7 +33,7 @@ class Login extends Component
         // dd(DB::getDefaultConnection());
         $this->validate();
         $otp = sendsms($this->client_fhonewhats);
-        if ($otp == 1) {
+        if ($otp === 1) {
             $this->showotp = true;
         }
 
