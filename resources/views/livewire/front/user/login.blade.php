@@ -36,7 +36,7 @@
                             <input class="text-center form-control rounded" type="text" id="sixth" maxlength="1"
                                 placeholder="0">
                             </div> --}}
-                            <input type="text" id="verification" class="form-control"
+                            <input type="text" id="verification" wire:model='code' class="form-control"
                                 placeholder="Verification code">
                             <div class="send-box pt-4">
                                 <h5>لم اتلقى كود حتى الان ؟<a href="javascript:void(0)"

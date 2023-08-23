@@ -32,7 +32,6 @@ class Login extends Component
     {
         // dd(DB::getDefaultConnection());
         $this->validate();
-        $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
         $otp = sendsms($this->client_fhonewhats);
         if ($otp == 1) {
             $this->showotp = true;
@@ -42,10 +41,10 @@ class Login extends Component
     }
     public function verify()
     {
-        // $votp =  Otp::where('code','')->first();
-
+        // $votp =  Otp::where('code',$this->code )->first();
         $response = otp_check($this->client_fhonewhats,$this->code  );
         if( $response === 1){
+            $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
             Auth::guard('client')->login($this->user);
             if (Auth::guard('client')->check()) {
                 return redirect()->intended('/');
