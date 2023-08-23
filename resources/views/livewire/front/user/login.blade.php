@@ -44,7 +44,7 @@
                                         ارسال</a></h5>
                             </div>
 
-                            <button  class="btn btn-animation w-100 mt-3" type="submit">تحقق</button>
+                            <button  class="btn btn-animation w-100 mt-3" wire:click='verify'>تحقق</button>
                             {{-- </form> --}}
                         </div>
                         {{-- <form>
