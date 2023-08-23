@@ -41,6 +41,7 @@ function sendsms($phone)
             'lang'      => 'ar'
         ]);
         $res = $response->json();
+        Log::error( $res);
         if ($res['type'] == 'error') {
             return 0;
         } else {
