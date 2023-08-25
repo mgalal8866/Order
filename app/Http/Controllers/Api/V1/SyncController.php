@@ -731,6 +731,14 @@ class SyncController extends Controller
                     'BackupDB'          => $item['BackupDB'],
                     'city_id'           => $item['City'],
                     'Shop_Manegaer'     => $item['Shop_Manegaer'],
+                    'app_android'       => $item['app_android'],
+                    'app_ios'           => $item['app_ios'],
+                    'facebook'          => $item['facebook'],
+                    'phone_site'        => $item['phone_site'],
+                    'youtube'           => $item['youtube'],
+                    'about'             => $item['about'],
+                    'lat'               => $item['lat'],
+                    'long'              => $item['long']
                 ]);
 
 
