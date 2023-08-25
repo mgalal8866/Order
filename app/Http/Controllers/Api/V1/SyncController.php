@@ -1033,8 +1033,8 @@ class SyncController extends Controller
 
                 ]);
 
-               $deletepd = PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->first();
-                $deletepd != null ? $deletepd->delete(): null;
+                PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
+
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('PurchaseDetails', $item2);
                     $uu =   PurchaseDetails::updateOrCreate('Purchase_H_id', $item['PurchaseH_id'],[
