@@ -6,7 +6,9 @@ use App\Models\UserAdmin;
 use Illuminate\Http\Request;
 use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
-use App\Http\Livewire\Front\Gallery;
+
+use App\Http\Livewire\Front\Gallery as galleryfront;
+use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
@@ -167,7 +169,8 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/', Home::class)->name('home');
-    Route::get('/gallery', Gallery::class)->name('gallery');
+
+    Route::get('/gallery', galleryfront::class)->name('gallery');
     Route::get('/about', About::class)->name('about');
     Route::get('/contactus', Contactus::class)->name('contactus');
     Route::get('/product/search/{search?}', Searchproduct::class)->name('searchproduct');
@@ -203,7 +206,7 @@ Route::middleware('tenant')->group(function () {
         Route::get('/', ViewProduct::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         // Route::get('product', CreateProduct::class)->name('product');
-
+        Route::get('/gallery', galleryback::class)->name('gallerydashboard');
 
 
         Route::get('/chat', Chat::class)->name('chat');

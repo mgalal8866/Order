@@ -30,7 +30,7 @@
                                                     </div>
 
                                                     <div class="contact-detail-contain">
-                                                        <p>{{ $setting->phone_shop }}</p>
+                                                        <p>{{ $setting->phone_site}}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,7 +92,7 @@
                                                   <i class="fa-brands fa-youtube"></i>
                                                     </div>
                                                     <div class="contact-detail-title">
-                                                        <h4>فيس بوك</h4>
+                                                        <h4>يوتيوب </h4>
                                                     </div>
 
                                                     <div class="contact-detail-contain">
