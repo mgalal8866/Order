@@ -1009,6 +1009,7 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
+                Log::info('Purchases', ['0' =>  $item['PurchaseH_id']]);
                 $uu =   PurchaseHeader::updateOrCreate(["Purchaseh_id"  => $item['PurchaseH_id']], [
                     "Purchaseh_id"           => $item['PurchaseH_id'],
                     "invoice_Number"         => $item['invoice_Number'],
