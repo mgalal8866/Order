@@ -1034,7 +1034,7 @@ class SyncController extends Controller
 
                 ]);
 
-                // PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
+                PurchaseDetails::where('Purchase_h_id', $item['Purchaseh_id'])->delete();
 
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('Purchases', ['2' =>  $item['PurchaseH_id']]);
