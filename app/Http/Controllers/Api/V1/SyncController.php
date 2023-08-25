@@ -1018,7 +1018,7 @@ class SyncController extends Controller
                     "Store_id"               => $item['Store_id'],
                     "Safe_id"                => $item['Safe_id'],
                     "Name_Emp"               => $item['Name_Emp'],
-                    "image_invoice"          => $item['image_invoice'],
+                    // "image_invoice"          => $item['image_invoice'],
                     "note"                   => $item['note'],
                     "uoser_id"               => $item['uoser_id'],
                     "Sup_total"              => $item['Sup_total'],
@@ -1033,25 +1033,25 @@ class SyncController extends Controller
 
                 ]);
 
-                PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
+                // PurchaseDetails::where('Purchase_H_id', $item['PurchaseH_id'])->delete();
 
-                foreach ($item['Details'] as $index => $item2) {
-                    Log::info('PurchaseDetails', $item2);
-                    $uu =   PurchaseDetails::updateOrCreate(['Purchase_H_id'=> $item['PurchaseH_id']],[
-                        'Purchase_H_id'       => $item2['Purchase_H_id'],
-                        'purchased_id'        => $item2['PurchaseD_id'],
-                        'Product_Details_Id'  => $item2['Product_Details_Id'],
-                        'ExpireDate'          => $item2['ExpireDate'],
-                        'BuyPrice'            => $item2['BuyPrice'],
-                        'SellPrice'           => $item2['SellPrice'],
-                        'Quantity'            => $item2['Quantity'],
-                        'SubTotal'            => $item2['SubTotal'],
-                        'Discount'            => $item2['Discount'],
-                        'GrandTotal'          => $item2['GrandTotal'],
-                        'IsReturn'            => $item2['IsReturn'] == true ? 1 : 0,
-                    ]);
-                    logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-                }
+                // foreach ($item['Details'] as $index => $item2) {
+                //     Log::info('PurchaseDetails', $item2);
+                //     $uu =   PurchaseDetails::updateOrCreate(['Purchase_H_id'=> $item['PurchaseH_id']],[
+                //         'Purchase_H_id'       => $item2['Purchase_H_id'],
+                //         'purchased_id'        => $item2['PurchaseD_id'],
+                //         'Product_Details_Id'  => $item2['Product_Details_Id'],
+                //         'ExpireDate'          => $item2['ExpireDate'],
+                //         'BuyPrice'            => $item2['BuyPrice'],
+                //         'SellPrice'           => $item2['SellPrice'],
+                //         'Quantity'            => $item2['Quantity'],
+                //         'SubTotal'            => $item2['SubTotal'],
+                //         'Discount'            => $item2['Discount'],
+                //         'GrandTotal'          => $item2['GrandTotal'],
+                //         'IsReturn'            => $item2['IsReturn'] == true ? 1 : 0,
+                //     ]);
+                //     logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+                // }
 
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
