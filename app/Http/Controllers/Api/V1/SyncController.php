@@ -522,9 +522,9 @@ class SyncController extends Controller
     function sendnotification(Request $request)
     {
         $dd = json_decode($request[0], true);
-        Log::info('notification', $dd);
+        // Log::info('notification', $dd);
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
-        Log::error($image);
+        // Log::error($image);
         $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, 'https://elshrouk.order-bay.com/asset/images/notification/' . $image);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
@@ -1057,7 +1057,7 @@ class SyncController extends Controller
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode([]),  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
