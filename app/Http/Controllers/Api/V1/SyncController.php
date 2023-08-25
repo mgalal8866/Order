@@ -1039,8 +1039,8 @@ class SyncController extends Controller
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('Purchases', ['2' =>  $item['PurchaseH_id']]);
 
-                    $uu =   PurchaseDetails::updateOrCreate(['Purchase_H_id'=> $item['PurchaseH_id']],[
-                        'Purchase_H_id'       => $item2['Purchase_H_id'],
+                    $uu =   PurchaseDetails::updateOrCreate(['Purchase_h_id'=> $item['PurchaseH_id']],[
+                        'Purchase_h_id'       => $item2['Purchase_H_id'],
                         'purchased_id'        => $item2['PurchaseD_id'],
                         'Product_Details_Id'  => $item2['Product_Details_Id'],
                         'ExpireDate'          => $item2['ExpireDate'],
