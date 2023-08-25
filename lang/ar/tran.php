@@ -96,6 +96,7 @@ return [
 'removecart'      => 'حذف',
 'signin'          => 'تسجيل دخول',
 'rememberme'      => 'تذكرنى ؟',
+'gallery'      => 'معرض الصور',
 'limit_order'     => 'حد الطلب'
 
 

@@ -42,7 +42,7 @@
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('notifiction') }}"><i
                         data-feather="home"></i><span
-                        class="menu-title text-truncate">{{ __('tran.notifiction') }}</span></a>
+                        class="menu-title text-truncate">{{ __('tran.gallery') }}</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('chat') }}"><i
                         data-feather="home"></i><span
