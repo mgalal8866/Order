@@ -18,7 +18,7 @@ class WishlistResource extends JsonResource
             "wishlist_id"    => $this->id,
             "product_id"     => $this->productdetails->id,
             "productd_name"  => $this->productdetails->productheader->product_name??'',
-            "productd_stock"    =>$this->productdetails->stock->sum('quantity') != null ?'متوفر':'غير متوفر',
+            "productd_stock"    => $this->Qtystockapi($this->productheader->stock->sum('quantity')),
             "productd_bay"      =>$this->productd_bay??0.00,
             "product_isscale"=> $this->productdetails->productheader->product_isscale,
             "productd_barcode"=> $this->productdetails->productd_barcode??'',
