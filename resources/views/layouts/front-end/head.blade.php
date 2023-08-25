@@ -52,6 +52,10 @@
             font-family: 'Cairo', 'sans-serif' !important;
         }
 
+            .theme-color-6 {
+                --theme-color: {{$setting->site_color_primary}} !important;
+                --theme-color-rgb: 221, 87, 30;
+            }
     </style>
 
     @stack('csslive')
