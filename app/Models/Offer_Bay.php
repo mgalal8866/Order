@@ -9,5 +9,6 @@ class Offer_Bay extends Model
 {
     use HasFactory;
     protected $table = 'offer_bays';
+    protected $primaryKey = 'Offer_Bay_Id';
     protected $guarded = [];
 }
