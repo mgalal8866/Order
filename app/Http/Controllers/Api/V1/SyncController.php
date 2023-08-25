@@ -1009,8 +1009,8 @@ class SyncController extends Controller
 
         try {
             foreach ($request->all() as $index => $item) {
-                $uu =   PurchaseHeader::updateOrCreate(["PurchaseH_id"  => $item['PurchaseH_id']], [
-                    "PurchaseH_id"           => $item['PurchaseH_id'],
+                $uu =   PurchaseHeader::updateOrCreate(["Purchaseh_id"  => $item['PurchaseH_id']], [
+                    "Purchaseh_id"           => $item['PurchaseH_id'],
                     "invoice_Number"         => $item['invoice_Number'],
                     "InvoiceType"            => $item['InvoiceType'] == true ? 1 : 0,
                     "Company_invoice_number" => $item['Company_invoice_number'],
