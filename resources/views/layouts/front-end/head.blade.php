@@ -51,11 +51,13 @@
 
             font-family: 'Cairo', 'sans-serif' !important;
         }
+        @if ($setting->site_color_primary != null)
 
-            .theme-color-6 {
-                --theme-color: {{$setting->site_color_primary}} !important;
-                --theme-color-rgb: 221, 87, 30;
-            }
+        .theme-color-6 {
+            --theme-color: {{$setting->site_color_primary}} !important;
+            --theme-color-rgb: 221, 87, 30;
+        }
+        @endif
             /* --theme-color2: linear-gradient(90.56deg, var({{$setting->site_color_primary}}) 8.46%, var({{$setting->site_color_primary}}) 62.97%)!important;; */
     </style>
 
