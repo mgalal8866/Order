@@ -23,7 +23,7 @@ return [
     'offers'     => 'العروض',
     'myaccount'     => 'حسابى',
     'gellary'       => 'معرض الصور',
-    'about'         => 'حول',
+    'about'         => 'من نحن',
     'contactus'     => 'اتصل بنا',
     'forgotpass'    => 'استرجاع الباسورد'
 ];
