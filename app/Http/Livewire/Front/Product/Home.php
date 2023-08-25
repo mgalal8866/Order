@@ -26,13 +26,13 @@ class Home extends Component
     public function render()
     {
         // $categorys = Category::Active(1)->parentonly()->get();
-        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->paginate(20);
+        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->with('cart'
         ,function($q){
             if(!empty(Auth::guard('client')->user()->id)){
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
-        })->paginate($this->count);
+        })->orderBy('updated_at','DESC')->paginate($this->count);
         $this->data =[ 'products'=>$products,'offers'=>$offers ];
 
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
