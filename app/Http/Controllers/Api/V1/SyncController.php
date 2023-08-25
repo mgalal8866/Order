@@ -186,7 +186,7 @@ class SyncController extends Controller
                     'product_limit_day' => $item['Products_lemt_day'],
                     'product_note'      => $item['Products_note'],
                 ]);
-                ProductDetails::where('product_header_id', $item['Products_ID'])->delete();
+                // ProductDetails::where('product_header_id', $item['Products_ID'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
                     $image = $item2['ProductsD_image'] != null ? uploadbase64images('products', $item2['ProductsD_image']) : null;
                     $uu =   ProductDetails::updateOrCreate(['id' => $item2['ProductD_id']], [
@@ -1057,7 +1057,7 @@ class SyncController extends Controller
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
-            logsync::create(['type' => "Error", 'data' => json_encode($uu),  'massage' =>  json_encode($e)]);
+            logsync::create(['type' => "Error", 'data' => json_encode([]),  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
     }
