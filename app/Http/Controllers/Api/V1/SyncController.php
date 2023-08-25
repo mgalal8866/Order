@@ -738,7 +738,7 @@ class SyncController extends Controller
                     'youtube'           => $item['youtube'],
                     'about'             => $item['about'],
                     'lat'               => $item['lat'],
-                    'long'              => $item['long']
+                    'long'              => $item['long_']
                 ]);
 
 
