@@ -76,8 +76,8 @@ Route::get('sql',  function () {
     return user::on('sqlsrv')->get();
 });
 Route::get('sss',  function () {
-    
-    return getsetting()->sms_active;
+
+    return getsetting();
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
