@@ -19,7 +19,7 @@ class DBChatRepository implements ChatRepositoryinterface
 
     public function sentmessage($message)
     {
-        // Tenants::changepusher();
+        Tenants::changepusher();
         $conversion = conversion::where('client_id', Auth::guard('api')->user()->id)->first();
         if (!$conversion) {
             $conversion = conversion::create(['client_id'=> Auth::guard('api')->user()->id]);
@@ -29,7 +29,7 @@ class DBChatRepository implements ChatRepositoryinterface
     }
     public function getmessage()
     {
-        // Tenants::changepusher();
+        Tenants::changepusher();
          $messages= Message::WhereHas('conversion', function ($query) {
             return $query->where('client_id', Auth::guard('api')->user()->id);
         })->get();
