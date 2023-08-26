@@ -76,7 +76,7 @@ Route::get('sql',  function () {
     return user::on('sqlsrv')->get();
 });
 Route::get('sss',  function () {
-
+    Cache::forget('settings');
     return getsetting();
 });
 
