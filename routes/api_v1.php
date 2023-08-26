@@ -113,6 +113,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::get('/get/deferreds', [SyncController::class, 'get_deferreds']);
     Route::get('/delete/sales/header/{id}', [SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}', [SyncController::class, 'delete_deliveryheader']);
+    Route::get('/delete/gallery/{id?}', [SyncController::class, 'deletegallery']);
     //Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
 
     Route::post('/client',        [SyncController::class, 'client']);
@@ -124,7 +125,6 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::post('/upload/sales', [SyncController::class, 'uploadsalse']);
     Route::post('/upload/delivery', [SyncController::class, 'uploadsdelivery']);
     Route::post('/upload/slider', [SyncController::class, 'uploadslider']);
-    Route::post('/delete/gallery/{id?}', [SyncController::class, 'deletegallery']);
     Route::post('/upload/gallery', [SyncController::class, 'uploadgallery']);
     Route::post('/notification/send', [SyncController::class, 'sendnotification']);
     Route::post('/upload/coupon', [SyncController::class, 'uploadcoupon']);
