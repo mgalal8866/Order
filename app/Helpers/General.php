@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 
 function getsetting(){
     $namedomain = Tenants::getdomain();
-
+return $namedomain;
     if (Cache::get($namedomain.'_settings',[]) == null){
         Cache::forget($namedomain.'_settings');
         Cache::rememberForever($namedomain.'_settings', function () {
