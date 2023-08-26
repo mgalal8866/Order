@@ -21,6 +21,7 @@ use App\Models\Damage;
 use App\Models\income;
 use App\Models\region;
 use App\Models\slider;
+use App\Facade\Tenants;
 use App\Models\comment;
 use App\Models\gallery;
 use App\Models\logsync;
@@ -497,7 +498,7 @@ class SyncController extends Controller
                     'id'       => $item['id'],
                     'text'     => $item['note'],
                     'img'       => $image,
-                    ]);
+                ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
@@ -510,12 +511,12 @@ class SyncController extends Controller
     function deletegallery($id)
     {
 
-     try {
+        try {
             $gallery =  gallery::find($id);
-            if( $gallery == null){
+            if ($gallery == null) {
                 return    Resp(null, 'Error', 400, true);
             }
-            Log::info('deleteslider', ['id'=>$id,'orginalimage'=>  $gallery->orginalimage]);
+            Log::info('deleteslider', ['id' => $id, 'orginalimage' =>  $gallery->orginalimage]);
             $gallery->orginalimage != null ? deleteimage('gallery',  $gallery->orginalimage) : null;
             $gallery->delete();
             return Resp(null, 'Success', 200, true);
@@ -524,13 +525,12 @@ class SyncController extends Controller
             logsync::create(['type' => "Error", 'data' => $gallery,  'massage' =>  json_encode($e)]);
             return    Resp(null, 'Error', 400, true);
         }
-
     }
     function deleteslider($id)
     {
         try {
             $slider =  slider::find($id);
-            Log::info('deleteslider', ['id'=>$id,'orginalimage'=>  $slider->orginalimage]);
+            Log::info('deleteslider', ['id' => $id, 'orginalimage' =>  $slider->orginalimage]);
             $slider->orginalimage != null ? deleteimage('sliders',  $slider->orginalimage) : null;
             $slider->delete();
             return Resp(null, 'Success', 200, true);
@@ -788,10 +788,12 @@ class SyncController extends Controller
 
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
-            Cache::forget('settings');
-              Cache::rememberForever('settings', function () {
+            $namedomain = Tenants::getdomain();
+            Cache::forget($namedomain . '_settings');
+            Cache::rememberForever($namedomain . '_settings', function () {
                 return DB::table('settings')->find(1);
             });
+
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;
@@ -1095,7 +1097,7 @@ class SyncController extends Controller
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('Purchases', ['2' =>  $item['PurchaseH_id']]);
 
-                    $uu =   PurchaseDetails::updateOrCreate(['Purchase_h_id'=> $item['PurchaseH_id']],[
+                    $uu =   PurchaseDetails::updateOrCreate(['Purchase_h_id' => $item['PurchaseH_id']], [
                         'id'                  => $item2['PurchaseD_id'],
                         'Purchase_h_id'       => $item2['Purchase_H_id'],
                         'Product_Details_Id'  => $item2['Product_Details_Id'],
