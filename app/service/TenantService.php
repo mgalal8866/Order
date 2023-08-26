@@ -6,6 +6,7 @@ use App\Models\Tenant;
 use App\Models\setting;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
@@ -72,6 +73,9 @@ class TenantService
     }
     public function changepusher()
     {
+        Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key,
+        'broadcasting.connections.pusher.secret'=> $this->setting->pusher_app_SECRET,
+        'broadcasting.connections.pusher.app_id'=> $this->setting->pusher_app_id]);
         Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key);
         Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET);
         Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id);

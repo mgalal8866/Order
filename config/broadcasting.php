@@ -29,6 +29,13 @@ return [
     */
 
     'connections' => [
+#PUSHER_APP_ID=1609416
+#PUSHER_APP_KEY=c6a08bda0da3444802b3
+#PUSHER_APP_SECRET=990c30402d46f6cc95d6
+#PUSHER_HOST=
+#PUSHER_PORT=443
+#PUSHER_SCHEME=https
+#PUSHER_APP_CLUSTER=eu
 
         'pusher' => [
             'driver' => 'pusher',
