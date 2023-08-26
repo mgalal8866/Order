@@ -84,9 +84,11 @@ function otp_check($phone, $code)
         }
     }
 }
-function deleteimage($path, $image)
+function deleteimage($folder, $image)
 {
-    Storage::disk($path)->delete($image);
+    $file = public_path() . '/asset/images/' . $folder.'/'. $image;
+    $img=File::delete($file);
+    // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
