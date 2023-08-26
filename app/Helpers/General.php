@@ -3,8 +3,10 @@
 use Carbon\Carbon;
 use App\Models\Otp;
 use App\Models\User;
+use App\Facade\Tenants;
 use App\Models\notifiction;
 use Illuminate\Support\Str;
+use App\service\TenantService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
@@ -13,9 +15,11 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
 function getsetting(){
-    if (Cache::get('settings',[]) == null){
-        Cache::forget('settings');
-        Cache::rememberForever('settings', function () {
+    $namedomain = Tenants::getdomain();
+
+    if (Cache::get($namedomain.'_settings',[]) == null){
+        Cache::forget($namedomain.'_settings');
+        Cache::rememberForever($namedomain.'_settings', function () {
             return DB::table('settings')->find(1);
         });
     }

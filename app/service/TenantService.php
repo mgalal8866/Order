@@ -71,4 +71,9 @@ class TenantService
     {
         return $this->tenant;
     }
+    public function getdomain()
+    {
+
+        return $this->domain;
+    }
 }
