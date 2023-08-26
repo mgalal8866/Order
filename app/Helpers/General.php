@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Storage;
 
 function getsetting(){
     $namedomain = Tenants::getdomain();
- 
+
     if (Cache::get($namedomain.'_settings',[]) == null){
         Cache::forget($namedomain.'_settings');
         Cache::rememberForever($namedomain.'_settings', function () {
             return DB::table('settings')->find(1);
         });
     }
-    return Cache::get('settings',[]) ;
+    return Cache::get($namedomain.'_settings',[]) ;
 }
 function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 {
