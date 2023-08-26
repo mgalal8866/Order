@@ -4,21 +4,7 @@
             {{-- <div class="row g-4"> --}}
                 <div class="col-xxl-12 col-xl-12 col-lg-12 order-lg-12">
                     <div class="row g-4 ratio_65">
-                        <div class="col-xxl-4 col-sm-6">
-                            <div class="blog-box wow fadeInUp">
-                                <div class="blog-image">
-                                    <a href="#">
-                                        <img src="{{asset('front/assets/images/veg-2/blog/1.jpg')}}"
-                                            class="bg-img blur-up lazyload" alt="">
-                                    </a>
-                                </div>
-                                <div class="blog-contain">
-                                    <a href="#">
-                                        <h3>one pot creamy mediterranean chicken pasta cream.</h3>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                        
                         @forelse ($gallery as $item )
                         <div class="col-xxl-4 col-sm-6">
                             <div class="blog-box wow fadeInUp" data-wow-delay="0.05s">
