@@ -11,6 +11,7 @@ use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Front\Wishlist;
@@ -41,8 +42,8 @@ use App\Http\Livewire\Front\Gallery as galleryfront;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 
+use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
@@ -75,6 +76,7 @@ Route::get('sql',  function () {
     return user::on('sqlsrv')->get();
 });
 Route::get('sss',  function () {
+    
     return getsetting()->sms_active;
 });
 

@@ -90,11 +90,15 @@ function deleteimage($path, $image)
 }
 function uploadbase64images($folder, $image)
 {
+    $path = public_path() . '/asset/images/' . $folder;
+    if(!File::exists($path)) {
+            mkdir($path, 0777, true);
+    }
     $image = $image;  // your base64 encoded
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $imageName = Str::random(10) . '.' . 'png';
-    File::put(public_path() . '/asset/images/' . $folder . '/' . $imageName, base64_decode($image));
+    File::put( $path.'/' .$imageName, base64_decode($image));
 
 
     // $folderPath = public_path(). '/asset/images/' . $folder.'/';
