@@ -18,7 +18,7 @@ class gallery extends Model
     {
             return $this->getAttributes()['img'];
     }
-    public function getImageAttribute($val)
+    public function getImgAttribute($val)
     {
         $path = public_path('asset/images/gallery/' . $val);
         if (File::exists($path)) {
