@@ -46,9 +46,11 @@ class Login extends Component
     {
         if (getsetting()->sms_active == 0) {
             $response = 1;
-        }else{
+        } else {
             $response = otp_check($this->client_fhonewhats, $this->code);
         }
+
+
         if ($response === 1) {
             $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
             Auth::guard('client')->login($this->user);
