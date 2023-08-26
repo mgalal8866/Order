@@ -34,17 +34,20 @@ class Register extends Component
     }
     public function checkphone()
     {
-        $otp = sendsms($this->client_fhonewhats);
-        if ($otp == 1) {
-            $this->showotp = true;
+        if (getsetting()->sms_active == 0) {
+            $this->showotp = 3;
+        } else {
+            $otp = sendsms($this->client_fhonewhats);
+            if ($otp === 1) {
+                $this->showotp = 2;
+            }
         }
-
         //    $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->client_fhonewhats]);
     }
     public function verify()
     {
         if (getsetting()->sms_active == 0) {
-            $response = 1;
+            $this->showotp = 3;
         } else {
             $response = otp_check($this->client_fhonewhats, $this->code);
         }
@@ -55,19 +58,18 @@ class Register extends Component
     }
     public function registerion()
     {
-
-            $user = User::create([
-                'client_fhonewhats' =>  $this->client_fhonewhats,
-                'client_name' =>  $this->namecust,
-                'client_fhoneLeter' =>  $this->phone2,
-                'region_id' =>  $this->selectstate,
-                'categoryAPP' =>  $this->selectnashat,
-            ]);
-            Auth::guard('client')->login($user);
-            if (Auth::guard('client')->check()) {
-                return redirect()->intended('/');
-            }
-
+        $this->validate();
+        $user = User::create([
+            'client_fhonewhats' =>  $this->client_fhonewhats,
+            'client_name' =>  $this->namecust,
+            'client_fhoneLeter' =>  $this->phone2,
+            'region_id' =>  $this->selectstate,
+            'categoryAPP' =>  $this->selectnashat,
+        ]);
+        Auth::guard('client')->login($user);
+        if (Auth::guard('client')->check()) {
+            return redirect()->intended('/');
+        }
     }
     public function render()
     {
