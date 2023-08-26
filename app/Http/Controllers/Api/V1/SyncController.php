@@ -22,6 +22,7 @@ use App\Models\income;
 use App\Models\region;
 use App\Models\slider;
 use App\Models\comment;
+use App\Models\gallery;
 use App\Models\logsync;
 use App\Models\pricing;
 use App\Models\setting;
@@ -61,10 +62,12 @@ use App\Models\PermissionScrene;
 use App\Models\SupplierPayments;
 use App\Models\Permissions_Saels;
 use App\Models\tenants\userdesck;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
 use App\Models\MovementStockDetails;
+use Illuminate\Support\Facades\Cache;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
@@ -482,6 +485,28 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function uploadgallery(Request $request)
+    {
+        Log::info('uploadgallery', $request->all());
+        try {
+
+            foreach ($request->all() as $index => $item) {
+                $image = $item['image'] != null ? uploadbase64images('gallery', $item['img']) : null;
+
+                $uu =   gallery::updateOrCreate(['id' => $item['id']], [
+                    'id'       => $item['id'],
+                    'text'     => $item['text'],
+                    'img'       => $image,
+                    ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
     function deleteslider($id)
     {
         try {
@@ -744,6 +769,10 @@ class SyncController extends Controller
 
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
+            Cache::forget('settings');
+              Cache::rememberForever('settings', function () {
+                return DB::table('settings')->find(1);
+            });
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;

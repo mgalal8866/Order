@@ -2,20 +2,23 @@
 
 use App\Models\User;
 use App\Imports\Client;
+use App\Models\setting;
 use App\Models\UserAdmin;
+use App\Http\Livewire\About;
 use Illuminate\Http\Request;
+
 use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
-
-use App\Http\Livewire\Front\Gallery as galleryfront;
-use App\Http\Livewire\Dashboard\Gallery as galleryback;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Front\Wishlist;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
+use App\Http\Livewire\Front\Contactus;
 use App\Http\Livewire\Front\User\Login;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Livewire\Front\Product\Home;
@@ -34,18 +37,18 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Front\Product\Searchproduct;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
+use App\Http\Livewire\Front\Gallery as galleryfront;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
+
 use App\Http\Controllers\Dashborad\UserAdminController;
-use App\Http\Livewire\About;
+use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
-
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Http\Livewire\Front\Contactus;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,14 +75,7 @@ Route::get('sql',  function () {
     return user::on('sqlsrv')->get();
 });
 Route::get('sss',  function () {
-    $e = sendsms(1);
-    return $e;
-    // {"type":"error","error":{"msg":"Please send username and password in request!","number":101},"data":""}
-    // return  $e['type'];
-    // return  $e['error']['msg'];
-    // return  $e['error']['number'];
-    // return  $e['data'];
-//    return user::on('sqlsrv')->get();
+    return getsetting()->sms_active;
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(

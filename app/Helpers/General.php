@@ -5,11 +5,22 @@ use App\Models\Otp;
 use App\Models\User;
 use App\Models\notifiction;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
+function getsetting(){
+    if (Cache::get('settings',[]) == null){
+        Cache::forget('settings');
+        Cache::rememberForever('settings', function () {
+            return DB::table('settings')->find(1);
+        });
+    }
+    return Cache::get('settings',[]) ;
+}
 function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 {
     if ($status == 422) {
@@ -28,15 +39,17 @@ function uploadimages($folder, $image)
 }
 function sendsms($phone)
 {
+    $settings  =  Cache::get('settings',[]);
+
     if (env('SMS_OTP', false) === false) {
         return 1;
     } else {
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
         $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
-            'username'  => env('SMS_USERNAME', 'hosamalden236@gmail.com'),
-            'password'  => env('SMS_PASSWORD', '0101196246'),
-            'sender'    => env('SMS_SENDERID', 'ELMOSWK'),
+            'username'  => $settings->sms_username,
+            'password'  => $settings->sms_password,
+            'sender'    => $settings->sms_senderid,
             'mobile'    => '2' . $phone,
             'lang'      => 'ar'
         ]);

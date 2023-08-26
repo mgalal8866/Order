@@ -5,10 +5,11 @@ namespace App\service;
 use App\Models\Tenant;
 use App\Models\setting;
 use App\Models\Category;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Validation\ValidationException;
 
 class TenantService
@@ -52,7 +53,8 @@ class TenantService
         //$this->username = $tenant->username;
         //$this->password = $tenant->password;
         if(env('SHARE_VIEW',true) == true){
-            View::share('setting',setting::first());
+
+            View::share('setting', Cache::get('settings',[]));
             View::share('categorys',Category::active(1)->parentonly()->get());
         }
     }

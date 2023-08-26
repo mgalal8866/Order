@@ -35,8 +35,6 @@ class AppServiceProvider extends ServiceProvider
 
         View::share('Cu' ,'ج.م');
 
-
-
         if (env('tenant') != false) {
             // $host  = $request->getHost();
             // $tenant = Tenant::where('domin', $host)->first();

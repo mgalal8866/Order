@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $client_fhonewhats, $showotp = false, $user,$code;
+    public $client_fhonewhats, $showotp = false, $user, $code;
     public $success;
+
     protected $listeners = [
         'success' => 'success1'
     ];
@@ -30,29 +31,33 @@ class Login extends Component
     }
     public function login()
     {
-        // dd(DB::getDefaultConnection());
         $this->validate();
-        $otp = sendsms($this->client_fhonewhats);
-        if ($otp === 1) {
-            $this->showotp = true;
+        if (getsetting()->sms_active == 0) {
+            $this->verify();
+        } else {
+            $otp = sendsms($this->client_fhonewhats);
+            if ($otp === 1) {
+                $this->showotp = true;
+            }
         }
-
         // $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
     }
     public function verify()
     {
-        // $votp =  Otp::where('code',$this->code )->first();
-        $response = otp_check($this->client_fhonewhats,$this->code  );
-        if( $response === 1){
+        if (getsetting()->sms_active == 0) {
+            $response = 1;
+        }else{
+            $response = otp_check($this->client_fhonewhats, $this->code);
+        }
+        if ($response === 1) {
             $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
             Auth::guard('client')->login($this->user);
             if (Auth::guard('client')->check()) {
                 return redirect()->intended('/');
             }
-        }else{
+        } else {
             return Resp('', 'كود التحقق خطاء', 302, false);
         }
-
     }
     public function render()
     {
