@@ -509,11 +509,11 @@ class SyncController extends Controller
     }
     function deletegallery($id)
     {
-        dd('');
+       
      try {
             $gallery =  gallery::find($id);
             Log::info('deleteslider', ['id'=>$id,'orginalimage'=>  $gallery->orginalimage]);
-            $gallery->orginalimage != null ? deleteimage('gallery',  $gallery->orginalimage) : null;
+            // $gallery->orginalimage != null ? deleteimage('gallery',  $gallery->orginalimage) : null;
             $gallery->delete();
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
