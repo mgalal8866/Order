@@ -47,7 +47,7 @@ class TenantService
         DB::reconnect('tenant');
         DB::setDefaultconnection('tenant');
        $this->tenant   = $tenant;
-       $this->domain   = $tenant->domain;
+       $this->domain   = $tenant->domin;
        $this->database = $tenant->database;
 
         //$this->username = $tenant->username;
@@ -73,7 +73,6 @@ class TenantService
     }
     public function getdomain()
     {
-
         return $this->domain;
     }
 }
