@@ -117,7 +117,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     // $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
     // return $firebaseToken;
     // notifiction::create()
-    $SERVER_API_KEY = env('FCM_SERVER_KEY', null);
+    $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
         "registration_ids" => $users,
         "notification" => [

@@ -22,8 +22,8 @@
                                     <a href="#">
                                         <h3>{{$item->text}}</h3>
                                     </a>
-                                    <button onclick="location.href = '#';" class="blog-button">Read More
-                                        <i class="fa-solid fa-right-long"></i></button>
+                                    {{-- <button onclick="location.href = '#';" class="blog-button">Read More
+                                        <i class="fa-solid fa-right-long"></i></button> --}}
                                 </div>
                             </div>
                         </div>

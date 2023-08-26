@@ -507,6 +507,21 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
+    function deletegallery($id)
+    {
+     try {
+            $gallery =  gallery::find($id);
+            Log::info('deleteslider', ['id'=>$id,'orginalimage'=>  $gallery->orginalimage]);
+            $gallery->orginalimage != null ? deleteimage('gallery',  $gallery->orginalimage) : null;
+            $gallery->delete();
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => $gallery,  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+
+    }
     function deleteslider($id)
     {
         try {
