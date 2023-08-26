@@ -17,7 +17,7 @@ class TenantService
     private  $tenant;
     private  $domain;
     private  $database;
-
+    private  $setting;
     public function switchToTanent(Tenant $tenant)
     {
         if (!$tenant instanceof Tenant) {
@@ -49,12 +49,11 @@ class TenantService
        $this->tenant   = $tenant;
        $this->domain   = $tenant->domin;
        $this->database = $tenant->database;
-
-        $setting = Cache::get($tenant->domin.'_settings',[]);
-
+        $this->setting = Cache::get($tenant->domin.'_settings',[]);
+        $this->changepusher();
         if(env('SHARE_VIEW',true) == true){
             // Config::set('database.connections.tenant.password', $tenant->password);
-            View::share('setting', $setting);
+            View::share('setting',   $this->setting);
             View::share('categorys',Category::active(1)->parentonly()->get());
         }
     }
@@ -73,11 +72,10 @@ class TenantService
     }
     public function changepusher()
     {
-        Config::set('broadcasting.connections.pusher.key', $tenant->password);
-        Config::set('broadcasting.connections.pusher.secret', $tenant->password);
-        Config::set('broadcasting.connections.pusher.app_id', $tenant->password);
-        Config::set('broadcasting.connections.pusher.options.cluster', $tenant->password);
-        Config::set('broadcasting.connections.pusher.app_id', $tenant->password);
+        Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key);
+        Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET);
+        Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id);
+
     }
     public function getdomain()
     {
