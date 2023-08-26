@@ -78,6 +78,7 @@ Route::get('sql',  function () {
 });
 Route::get('sss',  function () {
     $namedomain = Tenants::getdomain();
+    return  $namedomain ;
     Cache::forget($namedomain.'_settings');
     return getsetting();
 });
