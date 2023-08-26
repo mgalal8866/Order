@@ -4,7 +4,7 @@
             {{-- <div class="row g-4"> --}}
                 <div class="col-xxl-12 col-xl-12 col-lg-12 order-lg-12">
                     <div class="row g-4 ratio_65">
-                        
+
                         @forelse ($gallery as $item )
                         <div class="col-xxl-4 col-sm-6">
                             <div class="blog-box wow fadeInUp" data-wow-delay="0.05s">
@@ -22,8 +22,8 @@
                                     <a href="#">
                                         <h3>{{$item->text}}</h3>
                                     </a>
-                                    {{-- <button onclick="location.href = '#';" class="blog-button">Read More
-                                        <i class="fa-solid fa-right-long"></i></button> --}}
+                                    <button onclick="location.href = '#';" class="blog-button">Read More
+                                        <i class="fa-solid fa-right-long"></i></button>
                                 </div>
                             </div>
                         </div>
