@@ -491,11 +491,11 @@ class SyncController extends Controller
         try {
 
             foreach ($request->all() as $index => $item) {
-                $image = $item['image'] != null ? uploadbase64images('gallery', $item['img']) : null;
+                $image = $item['image'] != null ? uploadbase64images('gallery', $item['image']) : null;
 
                 $uu =   gallery::updateOrCreate(['id' => $item['id']], [
                     'id'       => $item['id'],
-                    'text'     => $item['text'],
+                    'text'     => $item['note'],
                     'img'       => $image,
                     ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
