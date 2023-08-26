@@ -36,12 +36,14 @@ return [
 #PUSHER_PORT=443
 #PUSHER_SCHEME=https
 #PUSHER_APP_CLUSTER=eu
-
+// 'key' => env('PUSHER_APP_KEY'),
+// 'secret' => env('PUSHER_APP_SECRET'),
+// 'app_id' => env('PUSHER_APP_ID'),
         'pusher' => [
             'driver' => 'pusher',
-            'key' => env('PUSHER_APP_KEY'),
-            'secret' => env('PUSHER_APP_SECRET'),
-            'app_id' => env('PUSHER_APP_ID'),
+            'key' => '',
+            'secret' =>'',
+            'app_id' =>'',
             'options' => [
                 // 'cluster' => env('PUSHER_APP_CLUSTER'),
                 'useTLS' => true,
