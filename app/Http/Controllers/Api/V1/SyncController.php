@@ -512,6 +512,9 @@ class SyncController extends Controller
 
      try {
             $gallery =  gallery::find($id);
+            if( $gallery == null){
+                return    Resp(null, 'Error', 400, true);
+            }
             Log::info('deleteslider', ['id'=>$id,'orginalimage'=>  $gallery->orginalimage]);
             $gallery->orginalimage != null ? deleteimage('gallery',  $gallery->orginalimage) : null;
             $gallery->delete();
