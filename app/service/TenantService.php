@@ -50,11 +50,11 @@ class TenantService
        $this->domain   = $tenant->domin;
        $this->database = $tenant->database;
 
-        //$this->username = $tenant->username;
-        //$this->password = $tenant->password;
-        if(env('SHARE_VIEW',true) == true){
+        $setting = Cache::get($tenant->domin.'_settings',[]);
 
-            View::share('setting', Cache::get('settings',[]));
+        if(env('SHARE_VIEW',true) == true){
+            // Config::set('database.connections.tenant.password', $tenant->password);
+            View::share('setting', $setting);
             View::share('categorys',Category::active(1)->parentonly()->get());
         }
     }
@@ -70,6 +70,14 @@ class TenantService
     public function gettenant()
     {
         return $this->tenant;
+    }
+    public function changepusher()
+    {
+        Config::set('broadcasting.connections.pusher.key', $tenant->password);
+        Config::set('broadcasting.connections.pusher.secret', $tenant->password);
+        Config::set('broadcasting.connections.pusher.app_id', $tenant->password);
+        Config::set('broadcasting.connections.pusher.options.cluster', $tenant->password);
+        Config::set('broadcasting.connections.pusher.app_id', $tenant->password);
     }
     public function getdomain()
     {

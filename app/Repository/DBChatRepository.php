@@ -14,8 +14,11 @@ use App\Repositoryinterface\ChatRepositoryinterface;
 
 class DBChatRepository implements ChatRepositoryinterface
 {
+
+    
     public function sentmessage($message)
     {
+
         $conversion = conversion::where('client_id', Auth::guard('api')->user()->id)->first();
         if (!$conversion) {
             $conversion = conversion::create(['client_id'=> Auth::guard('api')->user()->id]);
