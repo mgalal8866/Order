@@ -1,62 +1,147 @@
 <div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">اعدادات الاشعارات</h4>
+        </div>
+        <form id="smsform" wire:submit.prevent="fireconfig">
+            <div class="card-body">
+                <div class="row">
 
+                    <div class="col-12">
+                        <x-label for="fire_servies" label="نص الاشعار" />
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار تغير حاله الطلب</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
+                                    id="fire_active" />
+                                <label class="form-check-label" for="fire_active">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="text" wire:model.defer='fire_servies' id="fire_servies" class="form-control" />
+                    </div>
+
+                    <div class="col-12 col-md-6">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار العربة</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
+                                id="fire_active" />
+                                <label class="form-check-label" for="fire_active">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <x-label for="fire_servies" label="نص الاشعار  " />
+                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_authDomain" label="Auth Domain" />
+                        <input type="text" wire:model.defer='fire_authDomain' id="fire_authDomain"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_project_id" label="Project-id" />
+                        <input type="text" wire:model.defer='fire_project_id' id="fire_project_id"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_storageBucket" label="StorageBucket" />
+                        <input type="text" wire:model.defer='fire_storageBucket' id="fire_storageBucket"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_measurement_id" label="Measurement-id" />
+                        <input type="text" wire:model.defer='fire_measurement_id' id="fire_measurement_id"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_app_id" label="App_id" />
+                        <input type="text" wire:model.defer='fire_app_id' id="fire_app_id" class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_messagingSender_id" label="Messaging-Sender-id" />
+                        <input type="text" wire:model.defer='fire_messagingSender_id' id="fire_messagingSender_id"
+                            class="form-control" />
+                    </div>
+
+
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">{{ __('tran.send') }}</button>
+                </div>
+            </div>
+        </form>
+    </div>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>
         </div>
         <form id="smsform" wire:submit.prevent="fireconfig">
-        <div class="card-body">
-            <div class="row">
-                <div class="d-flex flex-column">
-                    <label class="form-check-label mb-50" for="fire_active">{{ __('tran.active') }} </label>
-                    <div class="form-check form-switch form-check-success">
-                        <input type="checkbox" class="form-check-input" wire:model.defer='fire_active' id="fire_active" />
-                        <label class="form-check-label" for="fire_active">
-                            <span class="switch-icon-left"><i data-feather="check"></i></span>
-                            <span class="switch-icon-right"><i data-feather="x"></i></span>
-                        </label>
+            <div class="card-body">
+                <div class="row">
+                    <div class="d-flex flex-column">
+                        <label class="form-check-label mb-50" for="fire_active">{{ __('tran.active') }} </label>
+                        <div class="form-check form-switch form-check-success">
+                            <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
+                                id="fire_active" />
+                            <label class="form-check-label" for="fire_active">
+                                <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                <span class="switch-icon-right"><i data-feather="x"></i></span>
+                            </label>
+                        </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <x-label for="fire_servies" label="Key-servies" />
-                    <input type="text" wire:model.defer='fire_servies' id="fire_servies" class="form-control" />
-                </div>
+                    <div class="col-12">
+                        <x-label for="fire_servies" label="Key-servies" />
+                        <input type="text" wire:model.defer='fire_servies' id="fire_servies"
+                            class="form-control" />
+                    </div>
 
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_apiKey" label="Api-Key" />
-                    <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_authDomain" label="Auth Domain" />
-                    <input type="text" wire:model.defer='fire_authDomain' id="fire_authDomain" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_project_id" label="Project-id" />
-                    <input type="text" wire:model.defer='fire_project_id' id="fire_project_id" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_storageBucket" label="StorageBucket" />
-                    <input type="text" wire:model.defer='fire_storageBucket' id="fire_storageBucket" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_measurement_id" label="Measurement-id" />
-                    <input type="text" wire:model.defer='fire_measurement_id' id="fire_measurement_id" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_app_id" label="App_id" />
-                    <input type="text" wire:model.defer='fire_app_id' id="fire_app_id" class="form-control" />
-                </div>
-                <div class="col-12 col-md-6">
-                    <x-label for="fire_messagingSender_id" label="Messaging-Sender-id" />
-                    <input type="text" wire:model.defer='fire_messagingSender_id' id="fire_messagingSender_id" class="form-control" />
-                </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_apiKey" label="Api-Key" />
+                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_authDomain" label="Auth Domain" />
+                        <input type="text" wire:model.defer='fire_authDomain' id="fire_authDomain"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_project_id" label="Project-id" />
+                        <input type="text" wire:model.defer='fire_project_id' id="fire_project_id"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_storageBucket" label="StorageBucket" />
+                        <input type="text" wire:model.defer='fire_storageBucket' id="fire_storageBucket"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_measurement_id" label="Measurement-id" />
+                        <input type="text" wire:model.defer='fire_measurement_id' id="fire_measurement_id"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_app_id" label="App_id" />
+                        <input type="text" wire:model.defer='fire_app_id' id="fire_app_id"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <x-label for="fire_messagingSender_id" label="Messaging-Sender-id" />
+                        <input type="text" wire:model.defer='fire_messagingSender_id' id="fire_messagingSender_id"
+                            class="form-control" />
+                    </div>
 
 
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-success">{{ __('tran.send') }}</button>
+                </div>
             </div>
-            <div class="card-footer">
-                <button class="btn btn-success">{{ __('tran.send') }}</button>
-            </div>
-        </div>
         </form>
     </div>
     <div class="card">
@@ -64,24 +149,26 @@
             <h4 class="card-title">{{ __('tran.settingsite') }}</h4>
         </div>
         <form id="smsform" wire:submit.prevent="siteconfig">
-        <div class="card-body">
-            <div class="row">
+            <div class="card-body">
+                <div class="row">
 
-                <div class="col-12">
-                    <x-label for="smssenderid" label="Color_primary" />
-                    <input type="color"  class="form-control" id="head" name="head"  wire:model.defer='site_color_primary' />
+                    <div class="col-12">
+                        <x-label for="smssenderid" label="Color_primary" />
+                        <input type="color" class="form-control" id="head" name="head"
+                            wire:model.defer='site_color_primary' />
+                    </div>
+                    <div class="col-12">
+                        <x-label for="smssenderid" label="Color_Second" />
+                        <input type="color" class="form-control" id="head" name="head"
+                            wire:model.defer='site_color_second' />
+                    </div>
+
                 </div>
-                <div class="col-12">
-                    <x-label for="smssenderid" label="Color_Second" />
-                    <input type="color"   class="form-control" id="head" name="head" wire:model.defer='site_color_second'  />
+                <div class="card-footer">
+                    <button class="btn btn-success">{{ __('tran.send') }}</button>
                 </div>
 
             </div>
-            <div class="card-footer">
-                <button class="btn btn-success">{{ __('tran.send') }}</button>
-            </div>
-
-        </div>
         </form>
     </div>
     <div class="card">
@@ -94,7 +181,8 @@
                     <div class="d-flex flex-column">
                         <label class="form-check-label mb-50" for="smsactive">{{ __('tran.active') }} </label>
                         <div class="form-check form-switch form-check-success">
-                            <input type="checkbox" class="form-check-input" wire:model.defer='smsactive' id="smsactive" />
+                            <input type="checkbox" class="form-check-input" wire:model.defer='smsactive'
+                                id="smsactive" />
                             <label class="form-check-label" for="smsactive">
                                 <span class="switch-icon-left"><i data-feather="check"></i></span>
                                 <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -103,15 +191,18 @@
                     </div>
                     <div class="col-12">
                         <x-label for="smssenderid" label="{{ __('tran.senderid') }}" />
-                        <input type="text" wire:model.defer='smssenderid' id="smssenderid" class="form-control" />
+                        <input type="text" wire:model.defer='smssenderid' id="smssenderid"
+                            class="form-control" />
                     </div>
                     <div class="col-12">
                         <x-label for="smsusername" label="{{ __('tran.smsusername') }}" />
-                        <input type="text" wire:model.defer='smsusername' id="smsusername" class="form-control" />
+                        <input type="text" wire:model.defer='smsusername' id="smsusername"
+                            class="form-control" />
                     </div>
                     <div class="col-12">
                         <x-label for="smspassword" label="{{ __('tran.password') }}" />
-                        <input type="text" wire:model.defer='smspassword' id="smspassword" class="form-control" />
+                        <input type="text" wire:model.defer='smspassword' id="smspassword"
+                            class="form-control" />
                     </div>
 
                 </div>
