@@ -120,8 +120,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="header-nav">
-                    {{-- <div class="header-nav-left">
-                        <button class="dropdown-category">
+                    <div class="header-nav-left">
+                        {{--  <button class="dropdown-category">
                             <i data-feather="align-left"></i>
                             <span>الاقسام</span>
                         </button>--}}
