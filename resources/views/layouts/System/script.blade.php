@@ -39,6 +39,6 @@
 @yield('js')
 
 @stack('jslive')
-@vite([ 'resources/js/app.js'])
+{{-- @vite([ 'resources/js/app.js']) --}}
 @livewireScripts
 <!-- END: Body-->
