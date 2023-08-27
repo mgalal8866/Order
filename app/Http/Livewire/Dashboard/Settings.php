@@ -12,41 +12,41 @@ use Illuminate\Support\Facades\Cache;
 
 class Settings extends Component
 {
-    public $setting, $apitoken,$nametoken,
-    $smsactive,
-    $smssenderid,
-    $smsusername,
-    $smspassword,
+    public $setting, $apitoken, $nametoken,
+        $smsactive,
+        $smssenderid,
+        $smsusername,
+        $smspassword,
 
-    $site_color_primary,
-    $site_color_second,
+        $site_color_primary,
+        $site_color_second,
 
-    $fire_active,
-    $fire_apiKey,
-    $fire_authDomain,
-    $fire_project_id,
-    $fire_storageBucket,
-    $fire_servies,
-    $fire_measurement_id,
-    $fire_app_id,
-    $fire_messagingSender_id;
+        $fire_active,
+        $fire_apiKey,
+        $fire_authDomain,
+        $fire_project_id,
+        $fire_storageBucket,
+        $fire_servies,
+        $fire_measurement_id,
+        $fire_app_id,
+        $fire_messagingSender_id;
 
 
     public function fireconfig()
     {
         $this->setting->update([
-            'fire_active'             =>$this->fire_active,
-            'fire_apiKey'             =>$this->fire_apiKey,
-            'fire_authDomain'         =>$this->fire_authDomain,
-            'fire_project_id'         =>$this->fire_project_id,
-            'fire_storageBucket'      =>$this->fire_storageBucket,
-            'fire_servies'            =>$this->fire_servies,
-            'fire_measurement_id'     =>$this->fire_measurement_id,
-            'fire_app_id'             =>$this->fire_app_id,
-            'fire_messagingSender_id' =>$this->fire_messagingSender_id,
+            'fire_active'             => $this->fire_active,
+            'fire_apiKey'             => $this->fire_apiKey,
+            'fire_authDomain'         => $this->fire_authDomain,
+            'fire_project_id'         => $this->fire_project_id,
+            'fire_storageBucket'      => $this->fire_storageBucket,
+            'fire_servies'            => $this->fire_servies,
+            'fire_measurement_id'     => $this->fire_measurement_id,
+            'fire_app_id'             => $this->fire_app_id,
+            'fire_messagingSender_id' => $this->fire_messagingSender_id,
         ]);
         setsetting();
-        $this->dispatchBrowserEvent('swal',['ev'=>'success','message'=>'تم التعديل بنجاح' ]);
+        $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم التعديل بنجاح']);
     }
     public function smsconfig()
     {
@@ -57,30 +57,30 @@ class Settings extends Component
             'sms_senderid' => $this->smssenderid,
         ]);
         setsetting();
-        $this->dispatchBrowserEvent('swal',['ev'=>'success','message'=>'تم التعديل بنجاح' ]);
+        $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم التعديل بنجاح']);
     }
     public function siteconfig()
     {
         $this->setting->update([
-            'site_color_primary'=>$this->site_color_primary,
-            'site_color_second'=>$this->site_color_second,
+            'site_color_primary' => $this->site_color_primary,
+            'site_color_second' => $this->site_color_second,
         ]);
         setsetting();
-        $this->dispatchBrowserEvent('swal',['ev'=>'success','message'=>'تم الاضافة بنجاح' ]);
+        $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
     }
 
     public function apicreate()
     {
         ApiToken::create([
-            'name'=>Str::upper($this->nametoken),
-            'token'=>Str::random(25),
+            'name' => Str::upper($this->nametoken),
+            'token' => Str::random(25),
         ]);
         $this->reset('nametoken');
-        $this->dispatchBrowserEvent('swal',['ev'=>'success','message'=>'تم الاضافة بنجاح' ]);
+        $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
     }
-    public function apidelete()
+    public function apidelete($id)
     {
-        $apitokn = ApiToken::find();
+        $apitokn = ApiToken::find($id);
         $apitokn->delete();
         $this->reset('nametoken');
     }
@@ -90,7 +90,7 @@ class Settings extends Component
         $this->apitoken = ApiToken::get();
         $this->setting = setting::find(1);
 
-        $this->smsactive   = $this->setting->sms_active ;
+        $this->smsactive   = $this->setting->sms_active;
         $this->smsusername = $this->setting->sms_username;
         $this->smspassword = $this->setting->sms_password;
         $this->smssenderid = $this->setting->sms_senderid;
