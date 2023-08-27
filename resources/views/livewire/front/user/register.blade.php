@@ -136,7 +136,7 @@
                         </div>
                         <div class="sign-up-box">
                             <h4>تمتلك حساب بالفعل ؟</h4>
-                            <a href="login.html">تسجيل دخول</a>
+                            <a href="/login">تسجيل دخول</a>
                         </div>
                     </div>
                 </div>
