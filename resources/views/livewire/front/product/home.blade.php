@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="col-xxl-9 col-lg-8">
-                            @if(!empty($data['offers']))
+                            @if( count($data['offers'])  > 1)
                                 {{-- @empty($data['offers']) --}}
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
