@@ -45,8 +45,7 @@
                         class="menu-title text-truncate">{{ __('tran.gallery') }}</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('chat') }}"><i
-                        data-feather="home"></i><span
-                        class="menu-title text-truncate">المحادثة</span></a>
+                        data-feather="home"></i><span class="menu-title text-truncate">المحادثة</span></a>
             </li>
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{ __('tran.customers') }}</span>
@@ -78,7 +77,32 @@
                             <div class="badge bg-success rounded-pill ms-auto">0</div>
                         </a>
                     </li>
+
                 </ul>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
+                        class="menu-title text-truncate">{{ __('tran.report') }}</span>
+                    {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}
+                </a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="{{ route('invoices_open') }}"><i
+                                data-feather="circle"></i><span
+                                class="menu-item text-truncate">{{ __('tran.invoiceopen') }}</span>
+                            <div class="badge bg-danger rounded-pill ms-auto">0</div>
+                        </a>
+                    </li>
+                    <li><a class="d-flex align-items-center" href="{{ route('invoices_close') }}"><i
+                                data-feather="circle"></i><span
+                                class="menu-item text-truncate">{{ __('tran.invoiceclose') }}</span>
+                            <div class="badge bg-success rounded-pill ms-auto">0</div>
+                        </a>
+                    </li>
+
+                </ul>
+            </li>
+            <li class=" nav-item"><a class="d-flex align-items-center" href="{{ route('settings') }}"><i
+                        data-feather="home"></i><span
+                        class="menu-title text-truncate">{{ __('tran.setting') }}</span></a>
             </li>
             {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{__('tran.products')}}</span>

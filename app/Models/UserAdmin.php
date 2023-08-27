@@ -13,6 +13,9 @@ class UserAdmin  extends Authenticatable
     use HasFactory;
       protected $guard = 'admin';
     protected $guarded = [];
+    protected $casts = [
+        'password' => 'hashed',
+    ];
     public function deliveryheader()
     {
         return $this->hasMany(DeliveryHeader::class,'user_id');

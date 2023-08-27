@@ -96,8 +96,17 @@ return [
 'removecart'      => 'حذف',
 'signin'          => 'تسجيل دخول',
 'rememberme'      => 'تذكرنى ؟',
-'gallery'      => 'معرض الصور',
-'limit_order'     => 'حد الطلب'
+'gallery'         => 'معرض الصور',
+'report'          => 'التقارير',
+'setting'          => 'الاعدادات',
+'settingfirebase'     => 'اعدادات الاشعارات',
+'settingsms'          => 'اعدادات الرسايل النصية',
+'site_color_primary'  => 'لون الموقع الرئيسي',
+'site_color_second'   => 'لون الموقع الثانوى',
+'settingsite'         => 'اعدادات الموقع',
+'settingsecurity'     => 'اعدادات الامان',
+'active'              => 'تفعيل الخاصية',
+'limit_order'         => 'حد الطلب'
 
 
 

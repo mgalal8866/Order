@@ -788,12 +788,7 @@ class SyncController extends Controller
 
                 logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
-            $namedomain = Tenants::getdomain();
-            Cache::forget($namedomain . '_settings');
-            Cache::rememberForever($namedomain . '_settings', function () {
-                return DB::table('settings')->find(1);
-            });
-
+            setsetting();
             return Resp(null, 'Success', 200, true);
         } catch (\Illuminate\Database\QueryException  $exception) {
             $e = $exception->errorInfo;

@@ -50,18 +50,9 @@ use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('sql',  function () {
@@ -76,6 +67,7 @@ Route::get('sql',  function () {
     // }
     return user::on('sqlsrv')->get();
 });
+
 Route::get('sss',  function () {
     $namedomain = Tenants::getdomain();
     // return  $namedomain   ;
@@ -108,16 +100,19 @@ Route::get('/deletetable', function (Request $request) {
     // ProductDetails::truncate();
     // DB::statement("SET foreign_key_checks=1");
 });
+
 Route::get('/send-fsm', function (Request $request) {
     $d = User::where('fsm', '!=', null)->pluck('fsm');
     notificationFCM('Hello', 'Okay', $d);
 });
+
 Route::get('/userdelivery', function (Request $request) {
     UserAdmin::create([
         'username' => 'admin',
         'password' => Hash::make('admin1234')
     ]);
 });
+
 Route::post('/store-token', function (Request $request) {
     Auth::guard('admin')->user()->update(['fsm' => $request->token]);
      return response()->json(['Token successfully stored.']);
@@ -149,8 +144,15 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/set', function (Request $request) {
-        return view('importclient');
+    Route::get('/test', function (Request $request) {
+        $users= [
+            'username'  =>'admin',
+            'password'  =>'admin1234',
+         ];
+
+       $admin =  UserAdmin::firstOrCreate($users);
+    //    $admin->create($users);
+        // return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){
         //     $i->update(['code_client'=> 'On-' . $i->id]);
@@ -208,6 +210,7 @@ Route::middleware('tenant')->group(function () {
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
+        Route::get('/setting', Settings::class)->name('settings');
 
 
         Route::get('/chat', Chat::class)->name('chat');

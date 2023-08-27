@@ -25,6 +25,14 @@ function getsetting(){
     }
     return Cache::get($namedomain.'_settings',[]) ;
 }
+function setsetting(){
+    $namedomain = Tenants::getdomain();
+    Cache::forget($namedomain . '_settings');
+    Cache::rememberForever($namedomain . '_settings', function () {
+        return DB::table('settings')->find(1);
+    });
+    // return Cache::get($namedomain.'_settings',[]) ;
+}
 function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 {
     if ($status == 422) {
