@@ -29,7 +29,7 @@
                         </div> --}}
 
                         <div class="rightside-box">
-                            <div class="search-full">
+                            {{-- <div class="search-full">
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i data-feather="search" class="font-light"></i>
@@ -39,9 +39,9 @@
                                         <i data-feather="x" class="font-light"></i>
                                     </span>
                                 </div>
-                            </div>
+                            </div> --}}
                             <ul class="right-side-menu">
-                                <li class="right-side">
+                                {{-- <li class="right-side">
                                     <div class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <div class="search-box">
@@ -49,7 +49,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="right-side">
                                     <a href="contact-us.html" class="delivery-login-box">
                                         <div class="delivery-icon">
