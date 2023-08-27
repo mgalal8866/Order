@@ -48,7 +48,7 @@
     <style>
         .text-primary,
         a {
-            color: #FA6829 !important
+            color:  {{ $setting->site_color_primary }} !important
         }
 
         .bg-light-primary .fc-list-event-dot,
@@ -57,8 +57,8 @@
         }
 
         .form-check-input:checked {
-            background-color: #FA6829 !important;
-            border-color: #FA6829 !important;
+            background-color:  {{ $setting->site_color_primary }} !important;
+            border-color:  {{ $setting->site_color_primary }} !important;
         }
         .form-check-input:not(:disabled):checked {
     box-shadow: 0 2px 4px 0 rgb(221, 87, 30)!important;
@@ -70,11 +70,11 @@
         .btn-primary:active,
         .btn-primary:focus {
             color: #FFF;
-            background-color: #FA6829 !important;
+            background-color:  {{ $setting->site_color_primary }} !important;
         }
 
         .btn-primary {
-            background-color: #FA6829 !important
+            background-color:  {{ $setting->site_color_primary }} !important
         }
 
         .navigation .navigation-header,
