@@ -82,9 +82,9 @@ Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
             Route::get('/', Dashboard::class)->name('dashboard1');
         });
 
-        // Route::get('/', function () {
-        //     return view('main-domin.index');
-        // })->name('maindomin');
+        Route::get('/1', function () {
+            return view('main-domin.index');
+        })->name('maindomin');
         // Route::get('/migrate/system', function () {
         //     return view('main-domin.index');
         // })->name('maindomin');

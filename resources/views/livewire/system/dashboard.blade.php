@@ -1,6 +1,6 @@
 <div>
-    @foreach ($tenant as $it )
+    {{-- @foreach ($tenant as $it )
         {{$it->name}}
-    @endforeach
-  test
+    @endforeach --}}
+
 </div>
