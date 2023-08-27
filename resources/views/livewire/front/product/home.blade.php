@@ -33,7 +33,8 @@
                             </div>
                         </div>
                         <div class="col-xxl-9 col-lg-8">
-                                @empty(!$data['offers'])
+                            @if(!empty($data['offers']))
+                                {{-- @empty($data['offers']) --}}
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
@@ -44,7 +45,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                @endempty
+                                @endif
 
                             <div class="title d-block">
                                 <h2 class="text-theme font-sm">{{ __('tran.products') }}</h2>
@@ -60,7 +61,7 @@
                                 wire:click="loadmore()">المزيد</button>
 
                         </div>
-                        @empty(!$data['offers'])
+                        {{-- @empty(!$data['offers'])
                             <div class="col-xxl-9 col-lg-8">
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
@@ -72,7 +73,7 @@
                                     @endforeach
                                 </div>
                             </div>
-                        @endempty
+                        @endempty --}}
                         {{-- <div class="col-xxl-9 col-lg-8">
                             <div class="title d-block">
                                 <h2 class="text-theme font-sm">{{ __('tran.products') }}</h2>
