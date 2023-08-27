@@ -76,13 +76,9 @@ Route::get('sss',  function () {
     return getsetting();
 });
 
-Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
-    function () {
-        Route::prefix('system/dashborad')->group(
-            function () {
-                Route::get('/', Dashboard::class)->name('dashboard');
-            }
-        );
+Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(function () {
+        Route::prefix('system/dashborad')->group( function () {
+                Route::get('/', Dashboard::class)->name('dashboard');});
         // Route::get('/', function () {
         //     return view('main-domin.index');
         // })->name('maindomin');
