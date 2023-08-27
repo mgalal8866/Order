@@ -9,13 +9,33 @@
                     padding: calc(190px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important;
                 }
             }
-
+            */
+            @media only screen and (min-width: 200px) {
+                .banner-contain-2 .banner-detail {
+                    padding: calc(129px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important
+                     }
+            }
+            @media only screen and (min-width: 550px) {
+                .banner-contain-2 .banner-detail {
+                    padding: calc(174px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important
+                     }
+            }
             @media only screen and (min-width: 768px) {
                 .banner-contain-2 .banner-detail {
 
-                    padding: calc(190px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important;
+                    padding: calc(240px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important;
                 }
-            } */
+            }
+            @media only screen and (min-width: 930px) {
+                .banner-contain-2 .banner-detail {
+                    padding: calc(272px + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important
+                     }
+            }
+            @media only screen and (min-width: 1200px) {
+                .banner-contain-2 .banner-detail {
+                    padding: calc(476px  + (25 - 14) * ((100vw - 320px) / (1920 - 320))) calc(190px + (25 - 19) * ((100vw - 320px) / (1920 - 320))) !important
+                     }
+            }
         </style>
     @endpush
 
