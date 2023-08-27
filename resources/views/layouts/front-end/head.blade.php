@@ -66,6 +66,9 @@
             padding: 24px 0;
             background-color: {{ $setting->site_color_primary }} !important;
         }
+        .product-box.product-box-bg {
+                background: #ffffff;
+        }
     </style>
 
     @stack('csslive')
