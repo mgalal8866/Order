@@ -78,9 +78,9 @@ Route::get('sss',  function () {
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
-        // Route::prefix('system/dashborad')->group(function () {
-        //     Route::get('/', Dashboard::class)->name('dashboard1');
-        // });
+        Route::prefix('system/dashborad')->group(function () {
+            Route::get('/', Dashboard::class)->name('dashboard1');
+        });
         Route::get('/', function () { return '88888'; })->name('yur');
         // Route::get('/', function () {
         //     return view('main-domin.index');
@@ -208,9 +208,9 @@ Route::middleware('tenant')->group(function () {
     });
 
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
+        // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/', ViewProduct::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
-        // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
         Route::get('/setting', Settings::class)->name('settings');
         Route::get('/chat', Chat::class)->name('chat');
