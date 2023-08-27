@@ -1,13 +1,13 @@
 <div>
 
     <select wire:model='selecttenats'>
-         <option value="" selected>Please Select Tenats</option>
-        @foreach ($tenant as $i )
-            <option value="{{$i->id}}">{{$i->name}}</option>
+        <option value="" selected>Please Select Tenats</option>
+        @foreach ($tenant as $i)
+            <option value="{{ $i->id }}">{{ $i->name }}</option>
         @endforeach
     </select>
 
-    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات</h4>
         </div>
@@ -20,7 +20,7 @@
                             <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار تغير حاله الطلب</label>
                             <div class="form-check form-switch form-check-success">
                                 <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                id="fire_active" />
+                                    id="fire_active" />
                                 <label class="form-check-label" for="fire_active">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -36,7 +36,7 @@
                             <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار العربة</label>
                             <div class="form-check form-switch form-check-success">
                                 <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                id="fire_active" />
+                                    id="fire_active" />
                                 <label class="form-check-label" for="fire_active">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -56,7 +56,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>
         </div>
@@ -76,14 +76,12 @@
                     </div>
                     <div class="col-12">
                         <x-label for="fire_servies" label="Key-servies" />
-                        <input type="text" wire:model.defer='fire_servies' id="fire_servies"
-                            class="form-control" />
+                        <input type="text" wire:model.defer='fire_servies' id="fire_servies" class="form-control" />
                     </div>
 
                     <div class="col-12 col-md-6">
                         <x-label for="fire_apiKey" label="Api-Key" />
-                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey"
-                            class="form-control" />
+                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
                     </div>
                     <div class="col-12 col-md-6">
                         <x-label for="fire_authDomain" label="Auth Domain" />
@@ -124,7 +122,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsite') }}</h4>
         </div>
@@ -151,7 +149,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsms') }}</h4>
         </div>
@@ -193,7 +191,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsecurity') }}</h4>
         </div>
