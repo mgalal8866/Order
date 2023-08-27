@@ -33,20 +33,21 @@
                             </div>
                         </div>
                         <div class="col-xxl-9 col-lg-8">
-                            @if( count($data['offers'])  > 1)
-                                {{-- @empty($data['offers']) --}}
+
+                            @if (count($data['offers']) > 1)
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
-                                <div class="product-box-slider-2 no-arrow">
-                                    <div>
-                                        @foreach ($data['offers'] as $product)
-                                        @livewire('front.compon.product', ['product' => $product], key($product->id))
-                                        @endforeach
-                                    </div>
+                                <div class="slider-6_1 product-wrapper">
+                                    @foreach ($data['offers'] as $product)
+                                        <div>
+                                            <div class="product-box-3 wow fadeInUp">
+                                                @livewire('front.compon.offer', ['product' => $product], key($product->id))
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                                @endif
-
+                            @endif
                             <div class="title d-block">
                                 <h2 class="text-theme font-sm">{{ __('tran.products') }}</h2>
                             </div>
