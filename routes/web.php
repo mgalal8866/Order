@@ -52,6 +52,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
+use App\Http\Livewire\System\Dashboard;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -71,12 +72,17 @@ Route::get('sql',  function () {
 Route::get('sss',  function () {
     $namedomain = Tenants::getdomain();
     // return  $namedomain   ;
-    Cache::forget($namedomain.'_settings');
+    Cache::forget($namedomain . '_settings');
     return getsetting();
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
+        Route::prefix('system/dashborad')->middleware('auth:admin')->group(
+            function () {
+                Route::get('/', Dashboard::class)->name('dashboard');
+            }
+        );
         Route::get('/', function () {
 
             return view('main-domin.index');
@@ -115,7 +121,7 @@ Route::get('/userdelivery', function (Request $request) {
 
 Route::post('/store-token', function (Request $request) {
     Auth::guard('admin')->user()->update(['fsm' => $request->token]);
-     return response()->json(['Token successfully stored.']);
+    return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 
@@ -145,13 +151,13 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
-        $users= [
-            'username'  =>'admin',
-            'password'  =>'admin1234',
-         ];
+        $users = [
+            'username'  => 'admin',
+            'password'  => 'admin1234',
+        ];
 
-       $admin =  UserAdmin::firstOrCreate($users);
-    //    $admin->create($users);
+        $admin =  UserAdmin::firstOrCreate($users);
+        //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){
