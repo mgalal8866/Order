@@ -78,23 +78,22 @@ Route::get('sss',  function () {
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
-        Route::prefix('system/dashborad')->middleware('auth:admin')->group(
+        Route::prefix('system/dashborad')->group(
             function () {
                 Route::get('/', Dashboard::class)->name('dashboard');
             }
         );
-        Route::get('/', function () {
+        // Route::get('/', function () {
+        //     return view('main-domin.index');
+        // })->name('maindomin');
+        // Route::get('/migrate/system', function () {
+        //     return view('main-domin.index');
+        // })->name('maindomin');
 
-            return view('main-domin.index');
-        })->name('maindomin');
-        Route::get('/migrate/system', function () {
-            return view('main-domin.index');
-        })->name('maindomin');
 
-
-        Route::get('/migrate/tenants', function () {
-            return Artisan::call('tenants:migrate');
-        })->name('maindomin');
+        // Route::get('/migrate/tenants', function () {
+        //     return Artisan::call('tenants:migrate');
+        // })->name('maindomin');
     }
 );
 
