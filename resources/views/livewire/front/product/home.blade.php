@@ -7,12 +7,12 @@
             <section class="section-b-space">
                 <div class="container-fluid-lg">
                     <div class="row">
-                          {{-- <div class="col-xxl-3 col-lg-4 d-none d-lg-block">
+                        <div class="col-xxl-3 col-lg-4 d-none d-lg-block">
                             <div class="category-menu menu-xl">
                                 <ul>
                                     <li>
                                         <div class="category-list">
-                                          <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt="">
+                                            {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
                                             <h5>
                                                 <a wire:click.prevent="selectid(null)" href="">الجميع</a>
                                             </h5>
@@ -21,14 +21,14 @@
                                     @foreach ($categorys as $category)
                                         <li>
                                             <div class="category-list">
-                                                 <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt="">
+                                                {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
                                                 <h5>
                                                     <a wire:click.prevent="selectid({{ $category->id }})"
                                                         href="">{{ $category->category_name }}</a>
                                                 </h5>
                                             </div>
                                         </li>
-                                    @endforeach--}}
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>

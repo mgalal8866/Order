@@ -126,7 +126,7 @@
                             <span>الاقسام</span>
                         </button>
 
-                        <div class="category-dropdown">
+                        {{-- <div class="category-dropdown">
                             <div class="category-title">
                                 <h5>Categories</h5>
                                 <button type="button" class="btn p-0 close-button text-content">
@@ -137,7 +137,7 @@
                             <ul class="category-list">
                                 <li class="onhover-category-list">
                                     <a href="{{route('categoryproduct',['categoryid'=>null])}}" class="category-name">
-                                        {{-- <img src="../assets/svg/1/vegetable.svg" alt=""> --}}
+                                        <img src="../assets/svg/1/vegetable.svg" alt="">
                                         <h6>الكل</h6>
                                         <i class="fa-solid fa-angle-right"></i>
                                     </a>
@@ -147,7 +147,7 @@
                                 @foreach ( $categorys as $item )
                                 <li class="onhover-category-list">
                                     <a href="{{route('categoryproduct',['categoryid'=>$item->id])}}" class="category-name">
-                                        {{-- <img src="../assets/svg/1/vegetable.svg" alt=""> --}}
+                                        <img src="../assets/svg/1/vegetable.svg" alt="">
                                         <h6>{{$item->category_name}}</h6>
                                         <i class="fa-solid fa-angle-right"></i>
                                     </a>
@@ -158,7 +158,7 @@
 
 
                             </ul>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="header-nav-middle">
