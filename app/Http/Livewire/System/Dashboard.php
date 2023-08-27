@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Dashboard extends Component
 {
-    public $tenant ,$setting, $apitoken =[], $nametoken,
+    public $tenant ,$selecttenats,$setting, $apitoken =[], $nametoken,
         $smsactive,
         $smssenderid,
         $smsusername,
