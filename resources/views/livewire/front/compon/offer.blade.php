@@ -1,5 +1,6 @@
-<div wire:ignore>
-
+<div >
+<div >
+    <div class="product-box-3 wow fadeInUp">
         <div class="product-image">
             <a>
                 <img src="{{ $product->productd_image ?? '' }}" class="img-fluid lazyload"
@@ -85,5 +86,6 @@
                 @endauth
             @endif
         </div>
-
+    </div>
+</div>
 </div>

@@ -40,11 +40,7 @@
                                 </div>
                                 <div class="slider-6_1 product-wrapper">
                                     @foreach ($data['offers'] as $product)
-                                        <div>
-                                            <div class="product-box-3 wow fadeInUp">
-                                                @livewire('front.compon.offer', ['product' => $product], key($product->id))
-                                            </div>
-                                        </div>
+                                        @livewire('front.compon.offer', ['product' => $product], key($product->id))
                                     @endforeach
                                 </div>
                             @endif
