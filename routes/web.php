@@ -76,9 +76,12 @@ Route::get('sss',  function () {
     return getsetting();
 });
 
-Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(function () {
-        Route::prefix('system/dashborad')->group( function () {
-                Route::get('/', Dashboard::class)->name('dashboard');});
+Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
+    function () {
+        // Route::prefix('system/dashborad')->group(function () {
+        //     Route::get('/', Dashboard::class)->name('dashboard1');
+        // });
+        Route::get('/', function () { return '88888'; })->name('yur');
         // Route::get('/', function () {
         //     return view('main-domin.index');
         // })->name('maindomin');
@@ -170,10 +173,7 @@ Route::middleware('tenant')->group(function () {
         return back()->withStatus('Done');
     })->name('import_user');
 
-
-
     Route::get('/', Home::class)->name('home');
-
     Route::get('/gallery', galleryfront::class)->name('gallery');
     Route::get('/about', About::class)->name('about');
     Route::get('/contactus', Contactus::class)->name('contactus');
@@ -206,14 +206,13 @@ Route::middleware('tenant')->group(function () {
         Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
         Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
     });
+
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
         Route::get('/', ViewProduct::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
         Route::get('/setting', Settings::class)->name('settings');
-
-
         Route::get('/chat', Chat::class)->name('chat');
         Route::get('users', Users::class)->name('viewusers');
         Route::get('categorys', ViewCategory::class)->name('categorys');
