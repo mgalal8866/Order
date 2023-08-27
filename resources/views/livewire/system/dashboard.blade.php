@@ -1,5 +1,11 @@
 <div>
-    <div class="card">
+       <select wire:model='selecttenats'>
+        <option value="" selected>Please Select Tenats</option>
+        @foreach ($tenant as $i)
+            <option value="{{ $i->id }}">{{ $i->name }}</option>
+        @endforeach
+    </select>
+    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات</h4>
         </div>
@@ -76,7 +82,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>
         </div>
@@ -144,7 +150,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsite') }}</h4>
         </div>
@@ -171,7 +177,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsms') }}</h4>
         </div>
@@ -213,7 +219,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsecurity') }}</h4>
         </div>
