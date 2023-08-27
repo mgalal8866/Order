@@ -1,4 +1,4 @@
-<div >
+<div wire:ignore.self>
 <div >
     <div class="product-box-3 wow fadeInUp">
         <div class="product-image">
