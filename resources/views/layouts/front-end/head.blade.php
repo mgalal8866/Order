@@ -66,7 +66,7 @@
             padding: 24px 0;
             background-color: {{ $setting->site_color_primary }} !important;
         }
-        .product-box.product-box-bg {
+        .product-box.product-box-bg .product-box-3  {
                 background: #ffffff !important;
         }
     </style>
