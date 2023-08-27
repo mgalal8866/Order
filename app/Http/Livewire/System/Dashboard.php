@@ -7,10 +7,10 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    public $tenant;
+    // public $tenant;
     public function render()
     {
-        $this->tenant = Tenant::get();
+        // $this->tenant = Tenant::get();
         return view('livewire.system.dashboard')->layout('layouts.System.layout');
     }
 }
