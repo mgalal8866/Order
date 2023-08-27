@@ -6,7 +6,8 @@
     <meta name="keywords" content="{{ $setting->name_shop }}">
     <meta name="author" content="{{ $setting->name_shop }}">
     {{-- <link rel="icon" href="{{ asset('asset/images/ico/favicon.ico') }}" type="image/x-icon"> --}}
-    <link rel="icon" href="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" type="image/x-icon">
+    <link rel="icon" href="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop }}"
+        type="image/x-icon">
     <title>{{ $setting->name_shop }}</title>
 
     <!-- Google font -->
@@ -54,24 +55,23 @@
 
             font-family: 'Cairo', 'sans-serif' !important;
         }
-
         @if ($setting->site_color_primary != null)
-
             .theme-color-6 {
                 --theme-color: {{ $setting->site_color_primary }} !important;
                 --theme-color-rgb: 221, 87, 30;
             }
+            header .top-nav {
+                padding: 24px 0;
+                background-color: {{ $setting->site_color_primary }} !important;
+            }
         @endif
-        /* --theme-color2: linear-gradient(90.56deg, var({{ $setting->site_color_primary }}) 8.46%, var({{ $setting->site_color_primary }}) 62.97%)!important;; */
-        header .top-nav {
-            padding: 24px 0;
-            background-color: {{ $setting->site_color_primary }} !important;
+
+        .product-box.product-box-bg {
+            background: #ffffff !important;
         }
-        .product-box.product-box-bg  {
-                background: #ffffff !important;
-        }
-        .product-box-3  {
-                background: #ffffff !important;
+
+        .product-box-3 {
+            background: #ffffff !important;
         }
     </style>
 
