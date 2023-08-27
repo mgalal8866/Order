@@ -3,9 +3,9 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                        <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="50" />
+                        <img src=" " width="50" />
                     </span>
-                    <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }}</h2>
+                    <h2 class="brand-text" style="color: #2c75b9">SYSTEM</h2>
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i
                         class="d-block d-xl-none text-primary toggle-icon font-medium-4" data-feather="x"></i><i

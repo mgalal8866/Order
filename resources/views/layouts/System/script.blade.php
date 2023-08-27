@@ -1,10 +1,5 @@
-<!-- BEGIN: Vendor JS-->
+
 <script src="{{ asset('asset/vendors/js/vendors.min.js') }}"></script>
-<!-- BEGIN Vendor JS-->
-
-
-
-<!-- BEGIN: Theme JS-->
 <script src="{{asset('asset/vendors/js/extensions/sweetalert2.all.min.js')}}"></script>
 <script src="{{asset('asset/vendors/js/extensions/toastr.min.js')}}"></script>
 <script src="{{ asset('asset/js/core/app-menu.js') }}"></script>
@@ -28,10 +23,6 @@
     $(".navigation a[href='" + window.location.href + "']").closest('li').addClass('active');
 
     $(window).on('load', function() {
-
-
-
-
         if (feather) {
             feather.replace({
                 width: 14,
