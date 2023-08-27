@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 
 class Dashboard extends Component
 {
-    public $setting, $apitoken =[], $nametoken,
+    public $tenant,$setting, $apitoken =[], $nametoken,
         $smsactive,
         $smssenderid,
         $smsusername,
@@ -83,7 +83,7 @@ class Dashboard extends Component
     }
     public function render()
     {
-        // $this->tenant = Tenant::get();
+        $this->tenant = Tenant::get();
         return view('livewire.system.dashboard')->layout('layouts.System.layout');
     }
 }

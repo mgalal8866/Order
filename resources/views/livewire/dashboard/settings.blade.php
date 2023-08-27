@@ -1,4 +1,12 @@
 <div>
+
+    <select wire:model='selecttenats'>
+         <option value="" selected>Please Select Tenats</option>
+        @foreach ($tenant as $i )
+            <option value="{{$i->id}}">{{$i->name}}</option>
+        @endforeach
+    </select>
+
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات</h4>
@@ -38,7 +46,7 @@
                         <x-label for="fire_servies" label="نص الاشعار  " />
                         <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
                     </div>
-                 
+
 
 
                 </div>
