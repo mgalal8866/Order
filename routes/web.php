@@ -78,10 +78,10 @@ Route::get('sss',  function () {
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
-        Route::prefix('system/dashborad')->group(function () {
+        Route::prefix('system/dashboard')->group(function () {
             Route::get('/', Dashboard::class)->name('dashboard1');
         });
-        Route::get('/', function () { return '88888'; })->name('yur');
+
         // Route::get('/', function () {
         //     return view('main-domin.index');
         // })->name('maindomin');
