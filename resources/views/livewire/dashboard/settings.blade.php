@@ -7,7 +7,7 @@
         @endforeach
     </select>
 
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null?true:false }}"> class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات</h4>
         </div>
@@ -56,7 +56,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>
         </div>
@@ -124,7 +124,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsite') }}</h4>
         </div>
@@ -151,7 +151,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsms') }}</h4>
         </div>
@@ -193,7 +193,7 @@
             </div>
         </form>
     </div>
-    <div class="card">
+    <div  disabled="{{ $selecttenats == null?true:false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsecurity') }}</h4>
         </div>
