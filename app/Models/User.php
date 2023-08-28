@@ -73,6 +73,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsto(region::class, 'region_id');
     }
+    public function cateorya()
+    {
+        return $this->belongsto(CateoryApp::class, 'categoryAPP');
+    }
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *

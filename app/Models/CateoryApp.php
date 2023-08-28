@@ -15,7 +15,10 @@ class CateoryApp extends Model
     {
         return $query->whereNull('parent_id');
     }
-
+    public function user()
+    {
+        return $this->hasMany(User::class, 'categoryAPP');
+    }
     public function childrens()
     {
         return $this->hasMany(self::class, 'parent_id');

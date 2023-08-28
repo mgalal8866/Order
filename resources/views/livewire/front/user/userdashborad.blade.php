@@ -318,7 +318,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>النشاط:</td>
-                                                                <td>{{$data['user']->categoryAPP}}</td>
+                                                                <td>{{$data['user']->cateorya->name}}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td> رقم اخر :</td>
@@ -332,10 +332,7 @@
                                                                 <td>العنوان :</td>
                                                                 <td>{{$data['user']->client_state}}</td>
                                                             </tr>
-                                                            <tr>
-                                                                <td>رقم القومى :</td>
-                                                                <td>{{$data['user']->client_EntiteNumber}}</td>
-                                                            </tr>
+
                                                         </tbody>
                                                     </table>
                                                 </div>
