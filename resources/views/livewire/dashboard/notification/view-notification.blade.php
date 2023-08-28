@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <x-label for="notif_change_text" label="نص الاشعار" />
-                        <input type="text" disabled="{{ $notif_change_statu == 0 ? true : '' }}"
+                        <input type="text" {{ $notif_change_statu == 0 ? 'disabled' : '' }}  
                             wire:model.defer='notif_change_text' id="notif_change_text" class="form-control" />
                     </div>
 
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <x-label for="notif_cart_text1" label="نص الاشعار " />
-                        <input type="text" disabled="{{ $notif_sent_cart == 0 ? true : '' }}"
+                        <input type="text" {{ $notif_sent_cart == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_cart_text' id="notif_cart_text1" class="form-control" />
                     </div>
 
@@ -72,7 +72,7 @@
                             </div>
                         </div>
                         <x-label for="notif_newoffer_text1" label="نص الاشعار " />
-                        <input type="text" disabled="{{ $notif_newoffer == 0 ? true : '' }}"
+                        <input type="text"  {{ $notif_newoffer == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_newoffer_text' id="notif_newoffer_text1" class="form-control" />
                     </div>
 
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                         <x-label for="notif_welcome_text1" label="نص الاشعار " />
-                        <input type="text" disabled="{{ $notif_welcome == 0 ? true : '' }}"
+                        <input type="text" {{ $notif_welcome == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_welcome_text' id="notif_welcome_text1" class="form-control" />
                     </div>
                     <div class="col-12">
@@ -105,7 +105,7 @@
                             </div>
                         </div>
                         <x-label for="notif_newchat_text1" label="نص الاشعار " />
-                        <input type="text" disabled="{{ $notif_chat == 0 ? true : '' }}"
+                        <input type="text" {{ $notif_chat == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_newchat_text' id="notif_newchat_text1" class="form-control" />
                     </div>
                 </div>
