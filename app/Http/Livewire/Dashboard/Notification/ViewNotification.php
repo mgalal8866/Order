@@ -30,12 +30,12 @@ class ViewNotification extends Component
 
         $this->setting = setting::find(1);
 
-        $this->notif_sent_cart       = $this->setting->notif_sent_cart;
-        $this->notif_change_statu    = $this->setting->notif_change_statu;
-        $this->notif_neworder        = $this->setting->notif_neworder;
-        $this->notif_newoffer        = $this->setting->notif_newoffer;
-        $this->notif_welcome         = $this->setting->notif_welcome;
-        $this->notif_chat            = $this->setting->notif_chat;
+        $this->notif_sent_cart       = $this->setting->notif_sent_cart == 1 ? true : false;
+        $this->notif_change_statu    = $this->setting->notif_change_statu == 1 ? true : false;
+        $this->notif_neworder        = $this->setting->notif_neworder == 1 ? true : false;
+        $this->notif_newoffer        = $this->setting->notif_newoffer == 1 ? true : false;
+        $this->notif_welcome         = $this->setting->notif_welcome == 1 ? true : false;
+        $this->notif_chat            = $this->setting->notif_chat == 1 ? true : false;
 
         $this->notif_cart_text       = $this->setting->notif_cart_text;
         $this->notif_change_text     = $this->setting->notif_change_text;
