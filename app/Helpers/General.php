@@ -133,12 +133,11 @@ function uploadbase64images($folder, $image)
     // file_put_contents($file, $image_base64);
     return  $imageName;
 }
-function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
+function notificationFCM( $title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
 {
 
-    // $firebaseToken =   User::whereNotNull('device_token')->pluck('device_token');
-    // return $firebaseToken;
-    // notifiction::create()
+
+
     $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
         "registration_ids" => $users,

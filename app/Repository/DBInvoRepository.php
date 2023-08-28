@@ -58,6 +58,9 @@ class DBInvoRepository implements InvoRepositoryinterface
             }
         }
         Cart::where('user_id', Auth::guard('api')->user()->id)->delete();
+
+        $text = getsetting()->notif_neworder_text;
+        notificationFCM('طلب جديد',$text,[Auth::guard('api')->user()->fsm]);
         return $head->with('salesdetails')->get();
     }
     public function getinvoicedetailsclose($id)
