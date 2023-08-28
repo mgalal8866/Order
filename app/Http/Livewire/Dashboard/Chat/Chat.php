@@ -22,7 +22,7 @@ class Chat extends Component
          $this->text ='';
          $con = conversion::find($this->conversions_id);
          $sett = setting::find(1);
-         notificationFCM('البان عمر', $sett->notif_newchat_text,[$con->user->fsm]);
+         notificationFCM('رسالة جديده', $this->text,[$con->user->fsm]);
     }
     public function loadmessage($id,$name){
         $this->conversions_id = $id;
