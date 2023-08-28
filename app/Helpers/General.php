@@ -171,3 +171,25 @@ function notificationFCM( $title = null, $body = null, $users = null, $icon = nu
     notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
     // return  curl_exec($ch);
 }
+
+function replacetext($originalString, $user=null,$product=null,$cart=null)
+{
+    $replacements = [
+        '{name}'  => $user->client_name??'',
+        '{email}' => $user->email??'',
+        '{oldprice}' => $product->productd_Sele1??'',
+        '{newprice}' => $product->productd_Sele2??'',
+        '{product_name}' => $product->productheader->product_name??'',
+    ];
+
+    foreach ($replacements as $placeholder => $value) {
+        $originalString = str_replace($placeholder, $value, $originalString);
+    }
+
+    return $originalString;
+}
+
+
+
+$updatedString = replacePlaceholdersWithUserData($originalString, $user);
+echo $updatedString; // Output: Welcome John! Your email is john@example.com.

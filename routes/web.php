@@ -53,6 +53,7 @@ use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 use App\Http\Livewire\System\Dashboard;
+use App\Models\ProductDetails;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -148,12 +149,12 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/test', function (Request $request) {
-        $originalString = "Hello {first_name}, your username is {username}";
-        $first_name = "Alice";
-        $username = "alice123";
+    Route::get('/test/{id?}', function (Request $request) {
+        $p = ProductDetails::find($request->id);
 
-        $updatedString = str_replace(['{first_name}', '{username}'], [$first_name, '23123'], $originalString);
+        $text = getsetting()->notif_neworder_text;
+
+        $updatedString =  replacetext($text, '', $p);
 
        return $updatedString;
         // $users = [
