@@ -88,7 +88,7 @@
                                 </label>
                             </div>
                         </div>
-                        <x-label class="mt-1" for="notif_welcome_text1" label="نص الاشعار " />
+                        <x-label class="mt-1" for="notif_welcome_text1" label="نص الاشعار "  info="( اسم المستخدم= {name}  )" />
                         <input type="text" {{ $notif_welcome == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_welcome_text' id="notif_welcome_text1" class="form-control" />
                     </div>
@@ -104,7 +104,7 @@
                                 </label>
                             </div>
                         </div>
-                        <x-label  class="mt-1" for="notif_newchat_text1" label="نص الاشعار "  info="( اسم المستخدم= {name}  )"" />
+                        <x-label  class="mt-1" for="notif_newchat_text1" label="نص الاشعار " />
                         <input type="text" {{ $notif_chat == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_newchat_text' id="notif_newchat_text1" class="form-control" />
                     </div>
