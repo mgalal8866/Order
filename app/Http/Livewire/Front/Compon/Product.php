@@ -17,6 +17,7 @@ class Product extends Component
     }
     public function qtyincrement($product_id){
         Cart::getroductid($product_id)->increment('qty', $this->qty);
+        $this->qty +=  $this->qty;
 
     }
     public function gotosearch(){
@@ -27,6 +28,7 @@ class Product extends Component
       $data =  Cart::getroductid($product_id)->first();
       if($data->qty != 1){
           $data->decrement('qty', $this->qty);
+            $this->qty -=  $this->qty;
        }else{
         $data->delete();
         $this->emit('count');
