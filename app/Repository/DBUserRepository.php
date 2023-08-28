@@ -43,8 +43,12 @@ class DBUserRepository implements UserRepositoryinterface
         }
         $user->token = $token;
         $user->setting = $this->settings();
-    
+
         $data =  new UserResource($user);
+        
+        $text = getsetting()->notif_newoffer_text;
+        $rep = replacetext($text, '', $user);
+        notificationFCM('اهلا بك', $rep,[$user->fsm]);
         return Resp($data, 'Success', 200, true);
     }
     public function edit($request)
