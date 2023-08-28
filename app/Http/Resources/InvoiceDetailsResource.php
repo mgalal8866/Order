@@ -23,6 +23,7 @@ class InvoiceDetailsResource extends JsonResource
                 'paid'             => $this->paid ?? '',
                 'remaining'        => $this->remaining ?? '',
                 'paytayp'       => $this->paytayp ??'',
+                'note'          => $this->note ??'',
             ],
             'details' =>InvoiceDetailsResourcelvl2::collection($this->salesdetails),
         ];
