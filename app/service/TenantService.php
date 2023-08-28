@@ -78,12 +78,12 @@ class TenantService
     }
     public function changepusher()
     {
-        Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key??'',
-        'broadcasting.connections.pusher.secret'=> $this->setting->pusher_app_SECRET??'',
-        'broadcasting.connections.pusher.app_id'=> $this->setting->pusher_app_id??'']);
-        Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key??'');
-        Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET??'');
-        Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id??'');
+        // Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key??'',
+        // 'broadcasting.connections.pusher.secret'=> $this->setting->pusher_app_SECRET??'',
+        // 'broadcasting.connections.pusher.app_id'=> $this->setting->pusher_app_id??'']);
+        // Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key??'');
+        // Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET??'');
+        // Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id??'');
 
     }
     public function getdomain()
@@ -99,8 +99,8 @@ class TenantService
         }
         DB::purge('tenant');
         Config::set('database.connections.tenant.database', $tenant->database);
-        Config::set('queue.batching.database', 'tenant');
-        Config::set('queue.failed.database', 'tenant');
+        // Config::set('queue.batching.database', 'tenant');
+        // Config::set('queue.failed.database', 'tenant');
         // Config::set('queue.default', 'tenant');
         if ($tenant->username != null) {
             Config::set('database.connections.tenant.username', $tenant->username);
