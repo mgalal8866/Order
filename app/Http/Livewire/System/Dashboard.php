@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Livewire\Dashboard;
+namespace App\Http\Livewire\System;
 
+use App\Models\Tenant;
 use App\Facade\Tenants;
 use App\Models\setting;
 use Livewire\Component;
 use App\Models\ApiToken;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Cache;
 
-class Settings extends Component
+class Dashboard extends Component
 {
-    public $setting, $apitoken, $nametoken,
+    public $maintenats, $domintenant, $tenant, $selecttenats = null, $setting, $apitoken = [], $nametoken,
         $smsactive,
         $smssenderid,
         $smsusername,
@@ -31,7 +30,32 @@ class Settings extends Component
         $fire_app_id,
         $fire_messagingSender_id;
 
+    public function updatedSelecttenats()
+    {
+        $this->maintenats =  Tenant::find($this->selecttenats);
+        Tenants::switchTanent($this->maintenats);
+        $this->setting = setting::on('tenant')->find(1);
+        dd($this->maintenats,  $this->setting);
+        // $this->setting = setting::find(1);
 
+        // $this->smsactive   = $this->setting->sms_active;
+        // $this->smsusername = $this->setting->sms_username;
+        // $this->smspassword = $this->setting->sms_password;
+        // $this->smssenderid = $this->setting->sms_senderid;
+
+        // $this->site_color_primary = $this->setting->site_color_primary;
+        // $this->site_color_second  = $this->setting->site_color_second;
+
+        // $this->fire_active         = $this->setting->fire_active;
+        // $this->fire_apiKey         = $this->setting->fire_apiKey;
+        // $this->fire_authDomain     = $this->setting->fire_authDomain;
+        // $this->fire_project_id     = $this->setting->fire_project_id;
+        // $this->fire_storageBucket  = $this->setting->fire_storageBucket;
+        // $this->fire_servies        = $this->setting->fire_servies;
+        // $this->fire_measurement_id = $this->setting->fire_measurement_id;
+        // $this->fire_app_id         = $this->setting->fire_app_id;
+        // $this->fire_messagingSender_id = $this->setting->fire_messagingSender_id;
+    }
     public function fireconfig()
     {
         $this->setting->update([
@@ -78,38 +102,15 @@ class Settings extends Component
         $this->reset('nametoken');
         $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
     }
-    public function apidelete($id)
+    public function apidelete()
     {
-        $apitokn = ApiToken::find($id);
+        $apitokn = ApiToken::find();
         $apitokn->delete();
         $this->reset('nametoken');
     }
-
     public function render()
     {
-        $this->apitoken = ApiToken::get();
-        $this->setting = setting::find(1);
-
-        $this->smsactive   = $this->setting->sms_active;
-        $this->smsusername = $this->setting->sms_username;
-        $this->smspassword = $this->setting->sms_password;
-        $this->smssenderid = $this->setting->sms_senderid;
-
-        $this->site_color_primary = $this->setting->site_color_primary;
-        $this->site_color_second  = $this->setting->site_color_second;
-
-        $this->fire_active         = $this->setting->fire_active;
-        $this->fire_apiKey         = $this->setting->fire_apiKey;
-        $this->fire_authDomain     = $this->setting->fire_authDomain;
-        $this->fire_project_id     = $this->setting->fire_project_id;
-        $this->fire_storageBucket  = $this->setting->fire_storageBucket;
-        $this->fire_servies        = $this->setting->fire_servies;
-        $this->fire_measurement_id = $this->setting->fire_measurement_id;
-        $this->fire_app_id         = $this->setting->fire_app_id;
-        $this->fire_messagingSender_id = $this->setting->fire_messagingSender_id;
-
-
-
-        return view('livewire.dashboard.settings');
+        $this->tenant = Tenant::get();
+        return view('livewire.system.dashboard')->layout('layouts.System.layout');
     }
 }

@@ -13,7 +13,7 @@
     <meta name="author" content="PIXINVENT">
     <title>@yield('title', 'Title')</title>
     <link rel="apple-touch-icon" href="{{ asset('asset/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href={{ asset('asset/images/ico/favicon.ico') }}>
+    <link rel="shortcut icon" type="image/x-icon" href="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}">
     {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap"
         rel="stylesheet">
@@ -48,7 +48,7 @@
     <style>
         .text-primary,
         a {
-            color: #FA6829 !important
+            color:  {{ $setting->site_color_primary }} !important
         }
 
         .bg-light-primary .fc-list-event-dot,
@@ -57,8 +57,8 @@
         }
 
         .form-check-input:checked {
-            background-color: #FA6829 !important;
-            border-color: #FA6829 !important;
+            background-color:  {{ $setting->site_color_primary }} !important;
+            border-color:  {{ $setting->site_color_primary }} !important;
         }
         .form-check-input:not(:disabled):checked {
     box-shadow: 0 2px 4px 0 rgb(221, 87, 30)!important;
@@ -70,11 +70,11 @@
         .btn-primary:active,
         .btn-primary:focus {
             color: #FFF;
-            background-color: #FA6829 !important;
+            background-color:  {{ $setting->site_color_primary }} !important;
         }
 
         .btn-primary {
-            background-color: #FA6829 !important
+            background-color:  {{ $setting->site_color_primary }} !important
         }
 
         .navigation .navigation-header,

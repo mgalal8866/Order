@@ -52,6 +52,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
+use App\Http\Livewire\System\Dashboard;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -71,24 +72,27 @@ Route::get('sql',  function () {
 Route::get('sss',  function () {
     $namedomain = Tenants::getdomain();
     // return  $namedomain   ;
-    Cache::forget($namedomain.'_settings');
+    Cache::forget($namedomain . '_settings');
     return getsetting();
 });
 
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
-        Route::get('/', function () {
+        Route::prefix('system/dashboard')->group(function () {
+            Route::get('/', Dashboard::class)->name('dashboard1');
+        });
 
+        Route::get('/1', function () {
             return view('main-domin.index');
         })->name('maindomin');
-        Route::get('/migrate/system', function () {
-            return view('main-domin.index');
-        })->name('maindomin');
+        // Route::get('/migrate/system', function () {
+        //     return view('main-domin.index');
+        // })->name('maindomin');
 
 
-        Route::get('/migrate/tenants', function () {
-            return Artisan::call('tenants:migrate');
-        })->name('maindomin');
+        // Route::get('/migrate/tenants', function () {
+        //     return Artisan::call('tenants:migrate');
+        // })->name('maindomin');
     }
 );
 
@@ -115,7 +119,7 @@ Route::get('/userdelivery', function (Request $request) {
 
 Route::post('/store-token', function (Request $request) {
     Auth::guard('admin')->user()->update(['fsm' => $request->token]);
-     return response()->json(['Token successfully stored.']);
+    return response()->json(['Token successfully stored.']);
 })->name('store.token');
 
 
@@ -145,13 +149,13 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
-        $users= [
-            'username'  =>'admin',
-            'password'  =>'admin1234',
-         ];
+        $users = [
+            'username'  => 'admin',
+            'password'  => 'admin1234',
+        ];
 
-       $admin =  UserAdmin::firstOrCreate($users);
-    //    $admin->create($users);
+        $admin =  UserAdmin::firstOrCreate($users);
+        //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){
@@ -169,10 +173,7 @@ Route::middleware('tenant')->group(function () {
         return back()->withStatus('Done');
     })->name('import_user');
 
-
-
     Route::get('/', Home::class)->name('home');
-
     Route::get('/gallery', galleryfront::class)->name('gallery');
     Route::get('/about', About::class)->name('about');
     Route::get('/contactus', Contactus::class)->name('contactus');
@@ -205,14 +206,13 @@ Route::middleware('tenant')->group(function () {
         Route::get('/login', [UserAdminController::class, 'login'])->name('dashlogin');
         Route::post('/postlogin', [UserAdminController::class, 'postlogin'])->name('postlogin');
     });
+
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
+        // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/', ViewProduct::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
-        // Route::get('product', CreateProduct::class)->name('product');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
         Route::get('/setting', Settings::class)->name('settings');
-
-
         Route::get('/chat', Chat::class)->name('chat');
         Route::get('users', Users::class)->name('viewusers');
         Route::get('categorys', ViewCategory::class)->name('categorys');

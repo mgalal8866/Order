@@ -12,7 +12,7 @@
                             </span>
                         </button>
                         <a href="/" class="web-logo nav-logo">
-                            <img src="{{ $setting->logo_shop }}" class="img-fluid blur-up lazyload" alt="">
+                            <img src="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" class="img-fluid blur-up lazyload" alt="">
                         </a>
 
                         {{-- <div class="middle-box">
@@ -29,7 +29,7 @@
                         </div> --}}
 
                         <div class="rightside-box">
-                            <div class="search-full">
+                            {{-- <div class="search-full">
                                 <div class="input-group">
                                     <span class="input-group-text">
                                         <i data-feather="search" class="font-light"></i>
@@ -39,9 +39,9 @@
                                         <i data-feather="x" class="font-light"></i>
                                     </span>
                                 </div>
-                            </div>
+                            </div> --}}
                             <ul class="right-side-menu">
-                                <li class="right-side">
+                                {{-- <li class="right-side">
                                     <div class="delivery-login-box">
                                         <div class="delivery-icon">
                                             <div class="search-box">
@@ -49,7 +49,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                                 {{-- <li class="right-side">
                                     <a href="contact-us.html" class="delivery-login-box">
                                         <div class="delivery-icon">
@@ -121,10 +121,10 @@
             <div class="col-12">
                 <div class="header-nav">
                     <div class="header-nav-left">
-                        <button class="dropdown-category">
+                        {{--  <button class="dropdown-category">
                             <i data-feather="align-left"></i>
                             <span>الاقسام</span>
-                        </button>
+                        </button>--}}
 
                         <div class="category-dropdown">
                             <div class="category-title">

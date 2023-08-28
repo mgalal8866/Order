@@ -9,8 +9,8 @@
             <div class="card mb-0">
                 <div class="card-body">
                     <a href="index.html" class="brand-logo">
-                        <img src="{{ asset('asset/images/logo.png') }}" width="10%" />
-                        <h2 class="brand-text text-primary ms-1">الشروق</h2>
+                        <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="10%" />
+                        <h2 class="brand-text text-primary ms-1">{{ $setting->name_shop }}</h2>
                     </a>
 
                     {{-- <h4 class="card-title mb-1">Welcome to Vuexy! 👋</h4> --}}
