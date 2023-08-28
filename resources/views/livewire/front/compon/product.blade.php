@@ -73,7 +73,7 @@
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </button>
                                     <input class="form-control input-number qty-input" type="text" name="quantity"
-                                        value="{{$product->productheader->product_isscale==1? $product->qty :  number_format((float)$product->qty, 0, '.', '') }}">
+                                        value="{{ $product->productheader->product_isscale == 1 ? $product->qty : number_format($product->qty, 0, '.', '') }}">
                                     <button type="button" wire:click.prevent="qtyincrement({{ $product->id }})"
                                         class="qty-right-plus">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
