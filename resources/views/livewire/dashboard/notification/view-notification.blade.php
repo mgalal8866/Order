@@ -172,7 +172,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="d-flex  mt-2">
-                            <x-imageupload wire:model.defer="image" :width="300" :height="150"
+                            <x-imageupload wire:model.defer="image" :width="100" :height="100"
                                 :imagenew="$image" :imageold="$image ?? asset('asset/images/noimage.jpg')" />
                         </div>
                     </div>
