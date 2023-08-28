@@ -39,8 +39,9 @@
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
                                 <div class="slider-6_1 product-wrapper">
-                                    @foreach ($data['offers'] as $product)
-                                        @livewire('front.compon.offer', ['product' => $product], key($loop->index))
+                                    @foreach ($data['offers'] as $index => $product)
+                                    {{$index}}
+                                        @livewire('front.compon.offer', ['product' => $product], key($index))
                                     @endforeach
                                 </div>
                             @endif
@@ -51,7 +52,7 @@
                                 class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow
                                     section-b-space">
                                 @foreach ($data['products'] as $product)
-                                    @livewire('front.compon.product', ['product' => $product], key($loop->index))
+                                    @livewire('front.compon.product', ['product' => $product], key($index))
                                 @endforeach
                             </div>
                             <button type="button" class="btn  mt-sm-4 btn-2 theme-bg-color text-white mend-auto "
