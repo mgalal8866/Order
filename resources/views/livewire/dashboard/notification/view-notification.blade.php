@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <x-label for="notif_neworder_text1" label="نص الاشعار " />
-                        <input type="text"  {{ $notif_neworder == 0 ? 'disable' : '' }}
+                        <input type="text"  {{ $notif_neworder == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_neworder_text' id="notif_neworder_text1" class="form-control" />
                     </div>
 

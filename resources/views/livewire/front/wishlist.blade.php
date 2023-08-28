@@ -13,7 +13,7 @@
                                             alt="">
                                     </a>
                                     <div class="product-header-top">
-                                        <a class="btn wishlist-button"  wire:click='removewishlist({{$w->id}})'>
+                                        <a class="btn wishlist-button" wire:click='removewishlist({{ $w->id }})'>
                                             <div wire:ignore><i data-feather="x"></i></div>
                                         </a>
                                     </div>
@@ -56,9 +56,9 @@
                             </div>
                         </div>
                     </div>
-                    @empty
+                @empty
                     <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
-                      المفضلة فارغه
+                        المفضلة فارغه
                     </div>
                 @endforelse
             </div>

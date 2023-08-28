@@ -40,7 +40,6 @@
                                 </div>
                                 <div class="slider-6_1 product-wrapper">
                                     @foreach ($data['offers'] as $index => $product)
-                                    {{$index}}
                                         @livewire('front.compon.offer', ['product' => $product], key($index))
                                     @endforeach
                                 </div>
