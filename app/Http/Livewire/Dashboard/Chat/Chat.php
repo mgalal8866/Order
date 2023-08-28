@@ -8,6 +8,7 @@ use App\Models\conversion;
 use App\Events\MessageSent;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\chat\ChatResource;
+use App\Models\setting;
 
 class Chat extends Component
 {
@@ -19,6 +20,9 @@ class Chat extends Component
         $msg = new ChatResource($messages);
          event(new MessageSent($msg));
          $this->text ='';
+         $con = conversion::find($this->conversions_id);
+         $sett = setting::find(1);
+         notificationFCM('البان عمر', $sett->notif_newchat_text,[$con->user->fsm]);
     }
     public function loadmessage($id,$name){
         $this->conversions_id = $id;
