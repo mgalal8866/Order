@@ -14,7 +14,7 @@
                               section-b-space">
 
                             @forelse ($data['offers'] as $product)
-                                @livewire('front.compon.product', ['product' => $product],:wire:key="$loop->index")
+                                @livewire('front.compon.product', ['product' => $product], key="$loop->index")
                             @empty
                                 <div>
                                     <h3>لايوجد عروض حاليا</h3>
