@@ -47,7 +47,7 @@ class DBUserRepository implements UserRepositoryinterface
         $data =  new UserResource($user);
 
         $text = getsetting()->notif_welcome_text;
-        $rep = replacetext($text, '', $user);
+        $rep = replacetext($text, $user);
         notificationFCM('اهلا بك', $rep,[$user->fsm]);
         return Resp($data, 'Success', 200, true);
     }
@@ -100,7 +100,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user->token = $token;
         $user->setting = $this->settings();
         $text = getsetting()->notif_welcome_text;
-        $rep = replacetext($text, '', $user);
+        $rep = replacetext($text,  $user);
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return $user;
     }
