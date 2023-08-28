@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <x-label for="notif_neworder_text1" label="نص الاشعار " />
-                        <input type="text"  {{ $notif_neworder == 0 ? 'disable' : '' }} 
+                        <input type="text"  {{ $notif_neworder == 0 ? 'disable' : '' }}
                             wire:model.defer='notif_neworder_text' id="notif_neworder_text1" class="form-control" />
                     </div>
 
@@ -78,11 +78,11 @@
 
                     <div class="col-12">
                         <div class="d-flex flex-column">
-                            <label class="form-check-label mb-50" for="notif_newoffer1">تفعيل اشعار الترحيب </label>
+                            <label class="form-check-label mb-50" for="notif_welcome1">تفعيل اشعار الترحيب </label>
                             <div class="form-check form-switch form-check-success">
                                 <input type="checkbox" class="form-check-input" wire:model.defer='notif_welcome'
-                                    id="notif_newoffer1" />
-                                <label class="form-check-label" for="notif_newoffer1">
+                                    id="notif_welcome1" />
+                                <label class="form-check-label" for="notif_welcome1">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
                                 </label>
