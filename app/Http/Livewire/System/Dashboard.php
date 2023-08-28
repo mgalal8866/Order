@@ -8,11 +8,12 @@ use App\Models\setting;
 use Livewire\Component;
 use App\Models\ApiToken;
 use Illuminate\Support\Str;
+use App\Http\Livewire\MyHook;
 use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
-    public $maintenats, $domintenant, $tenant=[], $selecttenats = null, $setting, $apitoken = [], $nametoken,
+    public   $maintenats, $domintenant, $tenant=[], $selecttenats = null, $setting, $apitoken = [], $nametoken,
         $smsactive,
         $smssenderid,
         $smsusername,
@@ -36,6 +37,7 @@ class Dashboard extends Component
 
         Tenants::switchTanent($this->selecttenats);
         $setting = setting::on('tenant')->find(1);
+
         $this->smsactive   =  $setting->sms_active;
         $this->smsusername =  $setting->sms_username;
         $this->smspassword =  $setting->sms_password;
@@ -57,7 +59,9 @@ class Dashboard extends Component
     }
     public function fireconfig()
     {
-        $this->setting->update([
+        Tenants::switchTanent($this->selecttenats);
+        $setting = setting::on('tenant')->find(1);
+        $setting->update([
             'fire_active'             => $this->fire_active,
             'fire_apiKey'             => $this->fire_apiKey,
             'fire_authDomain'         => $this->fire_authDomain,
@@ -68,38 +72,43 @@ class Dashboard extends Component
             'fire_app_id'             => $this->fire_app_id,
             'fire_messagingSender_id' => $this->fire_messagingSender_id,
         ]);
-        setsetting();
+        setsettingwithdomain(Tenants::getdomain());
         $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم التعديل بنجاح']);
     }
-
+    public function boot()
+    {
+        // Tenants::switchTanent($this->id);
+    }
     public function smsconfig()
     {
 
-        // Tenants::switchTanent($this->maintenats);
-        // $this->setting->update([
-        //     'sms_active'   => $this->smsactive,
-        //     'sms_username' => $this->smsusername,
-        //     'sms_password' => $this->smspassword,
-        //     'sms_senderid' => $this->smssenderid,
-        // ]);
-        // setsetting();
+        Tenants::switchTanent($this->selecttenats);
+        $setting = setting::on('tenant')->find(1);
+         $setting->update([$this->smsactive,
+            'sms_username' => $this->smsusername,
+            'sms_password' => $this->smspassword,
+            'sms_senderid' => $this->smssenderid,
+        ]);
+        setsettingwithdomain(Tenants::getdomain());
         $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم التعديل بنجاح']);
     }
     public function siteconfig()
     {
-
+        // dd(Tenants::getdomain());
         Tenants::switchTanent($this->selecttenats);
         $setting = setting::on('tenant')->find(1);
         $setting->update([
             'site_color_primary' => $this->site_color_primary,
             'site_color_second' => $this->site_color_second,
         ]);
-        setsetting();
+        // dd(Tenants::getdomain());
+        setsettingwithdomain(Tenants::getdomain());
         $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
     }
 
     public function apicreate()
     {
+        Tenants::switchTanent($this->selecttenats);
         ApiToken::on('tenant')->create([
             'name' => Str::upper($this->nametoken),
             'token' => Str::random(25),
@@ -109,18 +118,17 @@ class Dashboard extends Component
     }
     public function apidelete($id)
     {
+        Tenants::switchTanent($this->selecttenats);
         $apitokn = ApiToken::on('tenant')->find($id);
         $apitokn->delete();
         $this->reset('nametoken');
+
     }
     public function render()
     {
-        // if($this->selecttenats != null){
-
-
-        // }
         return view('livewire.system.dashboard')->layout('layouts.System.layout');
     }
+
     public function mount(){
 
         $this->tenant = Tenant::get();

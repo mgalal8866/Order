@@ -2,55 +2,7 @@
 
 
 
-    <div class="card">
-        <div class="card-header">
-            <h4 class="card-title">اعدادات الاشعارات</h4>
-        </div>
-        <form id="smsform" wire:submit.prevent="fireconfig">
-            <div class="card-body">
-                <div class="row">
-
-                    <div class="col-12">
-                        <div class="d-flex flex-column">
-                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار تغير حاله الطلب</label>
-                            <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                    id="fire_active" />
-                                <label class="form-check-label" for="fire_active">
-                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                </label>
-                            </div>
-                        </div>
-                        <x-label for="fire_servies" label="نص الاشعار" />
-                        <input type="text" wire:model.defer='fire_servies' id="fire_servies" class="form-control" />
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <div class="d-flex flex-column">
-                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار العربة</label>
-                            <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                    id="fire_active" />
-                                <label class="form-check-label" for="fire_active">
-                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
-                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
-                                </label>
-                            </div>
-                        </div>
-                        <x-label for="fire_servies" label="نص الاشعار  " />
-                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
-                    </div>
-
-
-
-                </div>
-                <div class="card-footer">
-                    <button class="btn btn-success">{{ __('tran.send') }}</button>
-                </div>
-            </div>
-        </form>
-    </div>
+   
     <div  class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>

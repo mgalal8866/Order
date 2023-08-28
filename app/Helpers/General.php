@@ -4,6 +4,7 @@ use Carbon\Carbon;
 use App\Models\Otp;
 use App\Models\User;
 use App\Facade\Tenants;
+use App\Models\setting;
 use App\Models\notifiction;
 use Illuminate\Support\Str;
 use App\service\TenantService;
@@ -24,6 +25,13 @@ function getsetting(){
         });
     }
     return Cache::get($namedomain.'_settings',[]) ;
+}
+function setsettingwithdomain($namedomain){
+    Cache::forget($namedomain . '_settings');
+    Cache::rememberForever($namedomain . '_settings', function () {
+        return setting::on('tenant')->find(1);
+    });
+    // return Cache::get($namedomain.'_settings',[]) ;
 }
 function setsetting(){
     $namedomain = Tenants::getdomain();

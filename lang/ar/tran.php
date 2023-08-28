@@ -106,6 +106,7 @@ return [
 'settingsite'         => 'اعدادات الموقع',
 'settingsecurity'     => 'اعدادات الامان',
 'active'              => 'تفعيل الخاصية',
+'save'                => 'حفظ',
 'limit_order'         => 'حد الطلب'
 
 
