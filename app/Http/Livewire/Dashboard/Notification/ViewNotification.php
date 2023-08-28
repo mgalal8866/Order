@@ -47,23 +47,24 @@ class ViewNotification extends Component
         $this->users = user::where('fsm', '!=', null)->get();
     }
 
-    public function setconfig(){
+    public function setconfig()
+    {
 
-            $this->setting->update([
-                'notif_sent_cart'=>$this->notif_sent_cart,
-                'notif_change_statu'=>$this->notif_change_statu,
-                'notif_neworder'=>$this->notif_neworder,
-                'notif_newoffer'=>$this->notif_newoffer,
-                'notif_welcome'=>$this->notif_welcome,
-                'notif_chat'=>$this->notif_chat,
-                'notif_cart_text'=>$this->notif_cart_text,
-                'notif_change_text'=>$this->notif_change_text,
-                'notif_neworder_text'=>$this->notif_neworder_text,
-                'notif_newoffer_text'=>$this->notif_newoffer_text,
-                'notif_welcome_text'=>$this->notif_welcome_text,
-                'notif_newchat_text'=>$this->notif_newchat_text,
-            ]);
-            setsetting();
+        $this->setting->update([
+            'notif_sent_cart' => $this->notif_sent_cart == true ? 0 : 1,
+            'notif_change_statu' => $this->notif_change_statu == true ? 0 : 1,
+            'notif_neworder' => $this->notif_neworder == true ? 0 : 1,
+            'notif_newoffer' => $this->notif_newoffer == true ? 0 : 1,
+            'notif_welcome' => $this->notif_welcome == true ? 0 : 1,
+            'notif_chat' => $this->notif_chat == true ? 0 : 1,
+            'notif_cart_text' => $this->notif_cart_text,
+            'notif_change_text' => $this->notif_change_text,
+            'notif_neworder_text' => $this->notif_neworder_text,
+            'notif_newoffer_text' => $this->notif_newoffer_text,
+            'notif_welcome_text' => $this->notif_welcome_text,
+            'notif_newchat_text' => $this->notif_newchat_text,
+        ]);
+        setsetting();
     }
 
     public function sendnotifiction()
