@@ -73,6 +73,9 @@
         .product-box-3 {
             background: #ffffff !important;
         }
+        header .top-nav .navbar-top .rightside-box .right-side-menu .right-side:first-child {
+                display: block;
+        }
     </style>
 
     @stack('csslive')
