@@ -13,7 +13,7 @@
     <meta name="author" content="PIXINVENT">
     <title>@yield('title', 'Title')</title>
     <link rel="apple-touch-icon" href="{{ asset('asset/images/ico/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}">
+    <link rel="shortcut icon" type="image/x-icon" href="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop??'' }}">
     {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap"
         rel="stylesheet">

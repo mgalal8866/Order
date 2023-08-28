@@ -1,4 +1,5 @@
 <div>
+     {{$selecttenats}}
        <select wire:model='selecttenats'>
         <option value="" selected>Please Select Tenats</option>
         @foreach ($tenant as $i)
@@ -267,7 +268,7 @@
                                             </div>
                                             <h6 class="d-flex align-items-center fw-bolder">
                                                 <span class="me-50">{{ $token->token }}</span>
-                                                {{-- <span><i data-feather="copy" class="font-medium-4 cursor-pointer"></i></span> --}}
+
                                             </h6>
                                             <span>Created on {{ $token->created_at }}</span>
                                         </div>

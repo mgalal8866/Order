@@ -22,7 +22,7 @@ class InvoiceDeliveryDetailsResourcelvl2 extends JsonResource
                 'product_barcode'  => $this->productdetails->productd_barcode ?? '',
                 'product_unit'  => $this->productdetails->Custunitapi($this->productdetails->product_header_id) ?? '',
                 'sellprice'     => $this->sellprice ?? '',
-                'quantity'      => $this->quantity ?? '',
+                'quantity'      => $this->productdetails->productheader->product_isscale==1? $this->quantity :  number_format((float)$this->quantity, 0, '.', ''),
                 'subtotal'      => $this->subtotal ?? '',
                 'discount'      => $this->discount ?? '',
                 'grandtotal'    => $this->grandtotal ?? '',

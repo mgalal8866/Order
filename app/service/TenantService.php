@@ -50,13 +50,18 @@ class TenantService
        $this->tenant   = $tenant;
        $this->domain   = $tenant->domin;
        $this->database = $tenant->database;
-        $this->setting = Cache::get($tenant->domin.'_settings',[]);
-        $this->changepusher();
-        if(env('SHARE_VIEW',true) == true){
-            // Config::set('database.connections.tenant.password', $tenant->password);
+       $this->changepusher();
+
+       if (env('SHARE_VIEW', true) == true) {
+        // if( $tenant != null){
+            $this->setting = Cache::get($tenant->domin . '_settings', []);
             View::share('setting',   $this->setting);
-            View::share('categorys',Category::active(1)->parentonly()->get());
-        }
+            View::share('categorys', Category::active(1)->parentonly()->get());
+        // }
+        //    View::composer('site.layout.layout', function ($view) use($tenant) {
+        //    });
+       // Config::set('database.connections.tenant.password', $tenant->password);
+       }
     }
 
     public  function switchToDefault()
@@ -86,15 +91,13 @@ class TenantService
         return $this->domain;
     }
 
-    public function switchTanent(Tenant $tenant)
+    public function switchTanent($id)
     {
+        $tenant =   Tenant::find($id);
         if (!$tenant instanceof Tenant) {
             throw ValidationException::withMessages(['field_name' => 'This value is incorrect']);
         }
-
-
         DB::purge('tenant');
-
         Config::set('database.connections.tenant.database', $tenant->database);
         Config::set('queue.batching.database', 'tenant');
         Config::set('queue.failed.database', 'tenant');
@@ -108,16 +111,9 @@ class TenantService
             Config::set('database.connections.tenant.password', $tenant->password);
         };
         DB::reconnect('tenant');
-        DB::setDefaultconnection('tenant');
         $this->tenant   = $tenant;
         $this->domain   = $tenant->domin;
         $this->database = $tenant->database;
-        $this->setting = Cache::get($tenant->domin . '_settings', []);
-        $this->changepusher();
-        if (env('SHARE_VIEW', true) == true) {
-            // Config::set('database.connections.tenant.password', $tenant->password);
-            View::share('setting',   $this->setting);
-            View::share('categorys', Category::active(1)->parentonly()->get());
-        }
+
     }
 }
