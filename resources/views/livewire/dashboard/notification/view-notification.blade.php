@@ -21,7 +21,7 @@
                             </div>
                         </div>
                         <x-label for="notif_change_text" label="نص الاشعار" />
-                        <input type="text" {{ $notif_change_statu == 0 ? 'disabled' : '' }}  
+                        <input type="text" {{ $notif_change_statu == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_change_text' id="notif_change_text" class="form-control" />
                     </div>
 
@@ -42,7 +42,7 @@
                             wire:model.defer='notif_cart_text' id="notif_cart_text1" class="form-control" />
                     </div>
 
-                    <div class="col-12">
+                    <div class="col-12 mt-2" >
                         <div class="d-flex flex-column">
                             <label class="form-check-label mb-50" for="notif_neworder1">تفعيل اشعار طلب جديد'</label>
                             <div class="form-check form-switch form-check-success">
