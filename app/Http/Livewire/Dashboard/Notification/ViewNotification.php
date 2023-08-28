@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\notifiction;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ViewNotification extends Component
 {
