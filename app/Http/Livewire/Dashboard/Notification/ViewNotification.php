@@ -51,12 +51,12 @@ class ViewNotification extends Component
     {
 
         $this->setting->update([
-            'notif_sent_cart' => $this->notif_sent_cart == true ? 0 : 1,
-            'notif_change_statu' => $this->notif_change_statu == true ? 0 : 1,
-            'notif_neworder' => $this->notif_neworder == true ? 0 : 1,
-            'notif_newoffer' => $this->notif_newoffer == true ? 0 : 1,
-            'notif_welcome' => $this->notif_welcome == true ? 0 : 1,
-            'notif_chat' => $this->notif_chat == true ? 0 : 1,
+            'notif_sent_cart' => $this->notif_sent_cart == true ? 1 : 0,
+            'notif_change_statu' => $this->notif_change_statu == true ? 1 : 0,
+            'notif_neworder' => $this->notif_neworder == true ? 1 : 0,
+            'notif_newoffer' => $this->notif_newoffer == true ? 1 : 0,
+            'notif_welcome' => $this->notif_welcome == true ? 1 : 0,
+            'notif_chat' => $this->notif_chat == true ? 1 : 0,
             'notif_cart_text' => $this->notif_cart_text,
             'notif_change_text' => $this->notif_change_text,
             'notif_neworder_text' => $this->notif_neworder_text,
