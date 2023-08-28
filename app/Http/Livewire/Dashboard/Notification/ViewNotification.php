@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Dashboard\Notification;
 
-use App\Models\notifiction;
-use App\Models\setting;
 use App\Models\User;
+use App\Models\setting;
 use Livewire\Component;
+use App\Models\notifiction;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class ViewNotification extends Component
 {
@@ -69,7 +70,9 @@ class ViewNotification extends Component
 
     public function sendnotifiction()
     {
-        $results =  notificationFCM($this->title, $this->body, []);
+
+        $users= DB::table('users')->where('fsm')->pluck('fsm');
+        $results =  notificationFCM($this->title, $this->body, $users);
         notifiction::create(['titel' => $this->title, 'body' => $this->body, 'user' => $this->users, 'image' => $this->image, 'results' => $results]);
     }
     public function render()
