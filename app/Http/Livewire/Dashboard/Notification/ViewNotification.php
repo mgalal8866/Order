@@ -71,9 +71,9 @@ class ViewNotification extends Component
     public function sendnotifiction()
     {
 
-        $users= DB::table('users')->where('fsm')->pluck('fsm');
-        $results =  notificationFCM($this->title, $this->body, $users);
-        notifiction::create(['titel' => $this->title, 'body' => $this->body, 'user' => $this->users, 'image' => $this->image, 'results' => $results]);
+        $this->users = DB::table('users')->where('fsm')->pluck('fsm')->toArray();
+        $results =  notificationFCM($this->title, $this->body,$this->users);
+        // notifiction::create(['titel' => $this->title, 'body' => $this->body, 'user' => $this->users, 'image' => $this->image, 'results' => $results]);
     }
     public function render()
     {
