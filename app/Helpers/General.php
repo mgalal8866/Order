@@ -179,6 +179,7 @@ function replacetext($originalString, $user=null,$product=null,$cart=null)
         '{email}' => $user->email??'',
         '{oldprice}' => $product->productd_Sele1??'',
         '{newprice}' => $product->productd_Sele2??'',
+        '{exp_date}' => $product->EndOferDate??'',
         '{product_name}' => $product->productheader->product_name??'',
     ];
 
