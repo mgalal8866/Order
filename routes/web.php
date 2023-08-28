@@ -150,13 +150,13 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test/{id?}', function (Request $request) {
-        $p = ProductDetails::find($request->id);
+        // $p = ProductDetails::find($request->id);
 
-        $text = getsetting()->notif_neworder_text;
+        // $text = getsetting()->notif_neworder_text;
 
-        $updatedString =  replacetext($text, '', $p);
+        // $updatedString =  replacetext($text, '', $p);
 
-       return $updatedString;
+    //    return $updatedString;
         // $users = [
         //     'username'  => 'admin',
         //     'password'  => 'admin1234',
