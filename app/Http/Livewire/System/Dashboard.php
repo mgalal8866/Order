@@ -87,19 +87,15 @@ class Dashboard extends Component
     }
     public function siteconfig()
     {
-      
-        Tenants::switchTanent($this->selecttenats);
-        dd(Tenants::gettenant());
 
-        // $setting = setting::on('tenant')->find(1);
-        // Tenants::switchTanent($this->maintenats);
-        // dd(Tenants::gettenant());
-        // // $setting->update([
-        // //     'site_color_primary' => $this->site_color_primary,
-        // //     'site_color_second' => $this->site_color_second,
-        // // ]);
-        // // setsetting();
-        // $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
+        Tenants::switchTanent($this->selecttenats);
+        $setting = setting::on('tenant')->find(1);
+        $setting->update([
+            'site_color_primary' => $this->site_color_primary,
+            'site_color_second' => $this->site_color_second,
+        ]);
+        setsetting();
+        $this->dispatchBrowserEvent('swal', ['ev' => 'success', 'message' => 'تم الاضافة بنجاح']);
     }
 
     public function apicreate()
