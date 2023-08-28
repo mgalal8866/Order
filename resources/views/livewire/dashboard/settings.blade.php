@@ -1,8 +1,4 @@
 <div>
-
-
-
-   
     <div  class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>

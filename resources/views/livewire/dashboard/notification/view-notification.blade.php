@@ -1,47 +1,113 @@
-
 <div>
     <div class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات التلقائية</h4>
         </div>
-        <form id="smsform" wire:submit.prevent="fireconfig">
+        <form id="smsform" wire:submit.prevent="setconfig">
             <div class="card-body">
                 <div class="row">
 
                     <div class="col-12">
                         <div class="d-flex flex-column">
-                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار تغير حاله الطلب</label>
+                            <label class="form-check-label mb-50" for="notif_change_text1">تفعيل اشعار تغير حاله
+                                الطلب</label>
                             <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                    id="fire_active" />
-                                <label class="form-check-label" for="fire_active">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_change_statu'
+                                    id="notif_change_text1" />
+                                <label class="form-check-label" for="notif_change_text1">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
                                 </label>
                             </div>
                         </div>
-                        <x-label for="fire_servies" label="نص الاشعار" />
-                        <input type="text" wire:model.defer='fire_servies' id="fire_servies" class="form-control" />
+                        <x-label for="notif_change_text" label="نص الاشعار" />
+                        <input type="text" wire:model.defer='notif_change_text' id="notif_change_text"
+                            class="form-control" />
                     </div>
 
-                    <div class="col-12 col-md-6">
+                    <div class="col-12 ">
                         <div class="d-flex flex-column">
-                            <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار العربة</label>
+                            <label class="form-check-label mb-50" for="notif_sent_cart1">تفعيل اشعار العربة</label>
                             <div class="form-check form-switch form-check-success">
-                                <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                    id="fire_active" />
-                                <label class="form-check-label" for="fire_active">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_sent_cart'
+                                    id="notif_sent_cart1" />
+                                <label class="form-check-label" for="notif_sent_cart1">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
                                 </label>
                             </div>
                         </div>
-                        <x-label for="fire_servies" label="نص الاشعار  " />
-                        <input type="text" wire:model.defer='fire_apiKey' id="fire_apiKey" class="form-control" />
+                        <x-label for="notif_cart_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_cart_text' id="notif_cart_text1"
+                            class="form-control" />
                     </div>
 
+                    <div class="col-12">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="notif_neworder1">تفعيل اشعار طلب جديد'</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_neworder'
+                                    id="notif_neworder1" />
+                                <label class="form-check-label" for="notif_neworder1">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <x-label for="notif_neworder_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_neworder_text' id="notif_neworder_text1"
+                            class="form-control" />
+                    </div>
 
+                    <div class="col-12">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="notif_newoffer1">تفعيل اشعار عرض جديد</label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_newoffer'
+                                    id="notif_newoffer1" />
+                                <label class="form-check-label" for="notif_newoffer1">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <x-label for="notif_neworder_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_neworder_text' id="notif_neworder_text1"
+                            class="form-control" />
+                    </div>
 
+                    <div class="col-12">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="notif_newoffer1">تفعيل اشعار الترحيب </label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_welcome'
+                                    id="notif_newoffer1" />
+                                <label class="form-check-label" for="notif_newoffer1">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <x-label for="notif_welcome_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_welcome_text' id="notif_welcome_text1"
+                            class="form-control" />
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex flex-column">
+                            <label class="form-check-label mb-50" for="notif_chat1">تفعيل اشعار رساله جديدة </label>
+                            <div class="form-check form-switch form-check-success">
+                                <input type="checkbox" class="form-check-input" wire:model.defer='notif_chat'
+                                    id="notif_chat1" />
+                                <label class="form-check-label" for="notif_chat1">
+                                    <span class="switch-icon-left"><i data-feather="check"></i></span>
+                                    <span class="switch-icon-right"><i data-feather="x"></i></span>
+                                </label>
+                            </div>
+                        </div>
+                        <x-label for="notif_newchat_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_newchat_text' id="notif_newchat_text1"
+                            class="form-control" />
+                    </div>
                 </div>
                 <div class="card-footer">
                     <button class="btn btn-success">{{ __('tran.save') }}</button>
@@ -49,12 +115,12 @@
             </div>
         </form>
     </div>
-    <form id="notifi" wire:submit.prevent="sendnotifiction">
 
-        <div class="card">
-            <div class="card-header">
-                <h4 class="card-title">{{ __('tran.notifiction') }}</h4>
-            </div>
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">{{ __('tran.notifiction') }}</h4>
+        </div>
+        <form id="notifi" wire:submit.prevent="sendnotifiction">
             <div class="card-body">
                 <div class="row">
                     <div class="d-flex flex-column">
@@ -69,14 +135,14 @@
                         </div>
                     </div>
                     @if ($selectactive == 0)
-                    <div wire:ignore class="col-md-6 mb-1">
-                        <label class="form-label" for="select2-multiple">Multiple</label>
-                        <select class="select2 form-select" id="select2-multiple" multiple>
-                               @foreach ($users as $item )
-                               <option value="{{$item->fsm}}">{{$item->client_name}}</option>
-                               @endforeach
-                        </select>
-                    </div>
+                        <div wire:ignore class="col-md-6 mb-1">
+                            <label class="form-label" for="select2-multiple">Multiple</label>
+                            <select class="select2 form-select" id="select2-multiple" multiple>
+                                @foreach ($users as $item)
+                                    <option value="{{ $item->fsm }}">{{ $item->client_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
                     @endif
                     {{-- <div   class="col-12 col-md-6 ">
@@ -114,8 +180,8 @@
                 </div>
 
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>
 @push('jslive')
     <script>
@@ -168,15 +234,15 @@
     </script>
     <script src={{ asset('asset/vendors/js/forms/select/select2.full.min.js') }}></script>
     <script src={{ asset('asset/vendors/js/forms/select/form-select2.js') }}></script>
-    <script >
-// (function (window, document, $) {
-//     // to remove sm control classes from datatables
-//     if ($.fn.dataTable) {
-//         $.extend($.fn.dataTable.ext.classes, {
-//             sFilterInput: 'form-control',
-//             sLengthSelect: 'form-select'
-//         });
-//     }
-// });
+    <script>
+        // (function (window, document, $) {
+        //     // to remove sm control classes from datatables
+        //     if ($.fn.dataTable) {
+        //         $.extend($.fn.dataTable.ext.classes, {
+        //             sFilterInput: 'form-control',
+        //             sLengthSelect: 'form-select'
+        //         });
+        //     }
+        // });
     </script>
 @endpush
