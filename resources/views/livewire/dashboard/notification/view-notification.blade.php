@@ -20,7 +20,7 @@
                                 </label>
                             </div>
                         </div>
-                        <x-label  class="mt-1" for="notif_change_text " label="نص الاشعار" />
+                        <x-label  class="mt-1" for="notif_change_text " label="نص الاشعار" info="(الحالة = {statu})" />
                         <input type="text" {{ $notif_change_statu == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_change_text' id="notif_change_text" class="form-control" />
                     </div>
@@ -71,7 +71,7 @@
                                 </label>
                             </div>
                         </div>
-                        <x-label class="mt-1"  for="notif_newoffer_text1" label="نص الاشعار " />
+                        <x-label class="mt-1"  for="notif_newoffer_text1" label="نص الاشعار "   info="( المنتج = {product_name}  - السعر قبل= {oldprice} - السعر بعد={newprice} - الانتهاء= {exp_date}  )"/>
                         <input type="text"  {{ $notif_newoffer == 0 ? 'disabled' : '' }}
                             wire:model.defer='notif_newoffer_text' id="notif_newoffer_text1" class="form-control" />
                     </div>
