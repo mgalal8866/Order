@@ -188,8 +188,3 @@ function replacetext($originalString, $user=null,$product=null,$cart=null)
 
     return $originalString;
 }
-
-
-
-$updatedString = replacePlaceholdersWithUserData($originalString, $user);
-echo $updatedString; // Output: Welcome John! Your email is john@example.com.

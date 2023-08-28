@@ -8,6 +8,7 @@ use App\Models\UserAdmin;
 use App\Http\Livewire\About;
 
 use Illuminate\Http\Request;
+use App\Models\ProductDetails;
 use App\Http\Livewire\Testchat;
 use App\Http\Livewire\Front\Otp;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Contactus;
 use App\Http\Livewire\Front\User\Login;
+use App\Http\Livewire\System\Dashboard;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Cart\Checkout;
@@ -39,10 +42,10 @@ use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Front\Product\Searchproduct;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
+
 use App\Http\Livewire\Front\Gallery as galleryfront;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
-
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 use App\Http\Controllers\Dashborad\UserAdminController;
@@ -50,9 +53,7 @@ use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
-use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Http\Livewire\System\Dashboard;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -148,13 +149,18 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/test', function (Request $request) {
-        $users = [
-            'username'  => 'admin',
-            'password'  => 'admin1234',
-        ];
+    Route::get('/test/{id}', function (Request $request) {
+        $p = ProductDetails::find($request->id);
+        $text = getsetting()->notif_neworder_text;
+        $updatedString =  replacetext($text, '', $p);
+      
+       return $updatedString;
+        // $users = [
+        //     'username'  => 'admin',
+        //     'password'  => 'admin1234',
+        // ];
 
-        $admin =  UserAdmin::firstOrCreate($users);
+        // $admin =  UserAdmin::firstOrCreate($users);
         //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
