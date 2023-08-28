@@ -13,9 +13,7 @@ class Product extends Component
     public $product ,$count,$qty;
     public function mount( $product){
         $this->product= $product;
-        $this->product->productheader->product_isscale == 1 ?
-        $this->qty = 0.125 :
-        $this->qty = 1;
+        $this->product->productheader->product_isscale == 1 ?$this->qty = 0.125 :$this->qty = 1;
     }
     public function qtyincrement($product_id){
         Cart::getroductid($product_id)->increment('qty', $this->qty);
