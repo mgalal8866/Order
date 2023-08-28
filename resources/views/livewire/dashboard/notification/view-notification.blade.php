@@ -71,8 +71,8 @@
                                 </label>
                             </div>
                         </div>
-                        <x-label for="notif_neworder_text1" label="نص الاشعار " />
-                        <input type="text" wire:model.defer='notif_neworder_text' id="notif_neworder_text1"
+                        <x-label for="notif_newoffer_text1" label="نص الاشعار " />
+                        <input type="text" wire:model.defer='notif_newoffer_text' id="notif_newoffer_text1"
                             class="form-control" />
                     </div>
 
