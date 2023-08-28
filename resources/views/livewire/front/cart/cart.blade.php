@@ -109,8 +109,8 @@
                                                                 <i class="fa fa-minus ms-0" aria-hidden="true"></i>
                                                             </button>
                                                             <input class="form-control input-number qty-input"
-                                                                type="text" name="quantity"
-                                                                value="{{ $c['cart']['qty'] }}">
+                                                                type="text" name="quantity" {{-- value="{{ $c['cart']['qty'] }}"> --}}
+                                                                value="{{ $c['productheader']['product_isscale'] == 1 ? $c['cart']['qty'] : number_format((float) $c['cart']['qty'], 0, '.', '') }} ">
                                                             {{-- wire:model="cartlist.{{ $index }}.cart.0.qty"> --}}
                                                             <button type="button" class="btn "
                                                                 wire:click.prevent="pluse('{{ $index }}')"
