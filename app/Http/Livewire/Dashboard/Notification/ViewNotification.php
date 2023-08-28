@@ -63,6 +63,7 @@ class ViewNotification extends Component
                 'notif_welcome_text'=>$this->notif_welcome_text,
                 'notif_newchat_text'=>$this->notif_newchat_text,
             ]);
+            setsetting();
     }
 
     public function sendnotifiction()
