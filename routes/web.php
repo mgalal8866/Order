@@ -149,12 +149,19 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
-        $users = [
-            'username'  => 'admin',
-            'password'  => 'admin1234',
-        ];
+        $originalString = "Hello {first_name}, your username is {username}";
+        $first_name = "Alice";
+        $username = "alice123";
 
-        $admin =  UserAdmin::firstOrCreate($users);
+        $updatedString = str_replace(['{first_name}', '{username}'], [$first_name, '23123'], $originalString);
+
+       return $updatedString;
+        // $users = [
+        //     'username'  => 'admin',
+        //     'password'  => 'admin1234',
+        // ];
+
+        // $admin =  UserAdmin::firstOrCreate($users);
         //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
