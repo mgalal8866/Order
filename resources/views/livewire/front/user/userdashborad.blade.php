@@ -52,7 +52,7 @@
                             </div>
                         </div>
 
-                        <ul class="nav nav-pills user-nav-pills" id="pills-tab" role="tablist">
+                        <ul wire:ignore.self class="nav nav-pills user-nav-pills" id="pills-tab" role="tablist">
                             <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-dashboard" type="button" role="tab"
