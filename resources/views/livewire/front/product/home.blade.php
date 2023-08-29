@@ -50,7 +50,7 @@
                             <div
                                 class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow
                                     section-b-space">
-                                @foreach ($data['products'] as $product)
+                                @foreach ($data['products']  as $index=> $product)
                                     @livewire('front.compon.product', ['product' => $product], key($index))
                                 @endforeach
                             </div>
