@@ -47,7 +47,7 @@ class DBUserRepository implements UserRepositoryinterface
         $data =  new UserResource($user);
 
         $text = getsetting()->notif_welcome_text;
-        Log::error($user);
+        // Log::error($user);
         $rep = replacetext($text, $user);
         notificationFCM('اهلا بك', $rep,[$user->fsm]);
         return Resp($data, 'Success', 200, true);

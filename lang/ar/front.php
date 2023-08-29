@@ -24,6 +24,7 @@ return [
     'myaccount'     => 'حسابى',
     'gellary'       => 'معرض الصور',
     'about'         => 'من نحن',
+    'notification'     => 'الاشعارات',
     'contactus'     => 'اتصل بنا',
     'payd'                => 'مدفوعاتى',
     'forgotpass'    => 'استرجاع الباسورد'

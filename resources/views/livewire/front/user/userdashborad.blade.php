@@ -1,14 +1,15 @@
 @push('csslive')
-<style>
-    .success{
-        background-color: rgba( 13, 164, 135, 0.1)!important;
-    color: #0da487 !important;
-    }
-    .danger {
-    background-color: rgba(255,114,114,0.1)!important;
-    color: #ff7272  !important;
-}
-</style>
+    <style>
+        .success {
+            background-color: rgba(13, 164, 135, 0.1) !important;
+            color: #0da487 !important;
+        }
+
+        .danger {
+            background-color: rgba(255, 114, 114, 0.1) !important;
+            color: #ff7272 !important;
+        }
+    </style>
 @endpush
 <div>
 
@@ -24,14 +25,15 @@
                         </div>
                         <div class="profile-box">
                             <div class="cover-image">
-                                <img src="{{asset('front/assets/images/inner-page/cover-img.jpg')}}" class="img-fluid blur-up lazyload"
-                                    alt="">
+                                <img src="{{ asset('front/assets/images/inner-page/cover-img.jpg') }}"
+                                    class="img-fluid blur-up lazyload" alt="">
                             </div>
 
                             <div class="profile-contain">
                                 <div class="profile-image">
                                     <div class="position-relative">
-                                        <img class="blur-up lazyload update_img" src="{{ Avatar::create($data['user']->client_name )->setFontFamily('Cairo')->toBase64() }}" />
+                                        <img class="blur-up lazyload update_img"
+                                            src="{{ Avatar::create($data['user']->client_name)->setFontFamily('Cairo')->toBase64() }}" />
                                         {{-- $data['user']->client_name --}}
                                         {{-- <img src="../assets/images/inner-page/user/1.jpg"
                                             class="blur-up lazyload update_img" alt=""> --}}
@@ -44,8 +46,8 @@
                                 </div>
 
                                 <div class="profile-name">
-                                    <h3>{{$data['user']->client_name}}</h3>
-                                    <h6 class="text-content">{{$data['user']->client_fhonewhats}}</h6>
+                                    <h3>{{ $data['user']->client_name }}</h3>
+                                    <h6 class="text-content">{{ $data['user']->client_fhonewhats }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -58,21 +60,29 @@
                                     حسابى</button>
                             </li>
 
-                            <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
-                                    aria-selected="false"><i data-feather="shopping-bag"></i>{{__('front.myorderstay')}}</button>
-                            </li>
 
                             <li class="nav-item" role="presentation">
-                                <button class="nav-link" id="payd-tab" data-bs-toggle="pill"
-                                    data-bs-target="#payd" type="button" role="tab" aria-controls="payd"
-                                    aria-selected="false"><i data-feather="shopping-bag"></i>{{__('front.payd')}}</button>
+                                <button class="nav-link" id="notification-tab" data-bs-toggle="pill"
+                                    data-bs-target="#notification" type="button" role="tab"
+                                    aria-controls="notification" aria-selected="false"><i
+                                        data-feather="shopping-bag"></i>{{ __('front.notification') }}</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="payd-tab" data-bs-toggle="pill" data-bs-target="#payd"
+                                    type="button" role="tab" aria-controls="payd" aria-selected="false"><i
+                                        data-feather="shopping-bag"></i>{{ __('front.payd') }}</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
-                                    data-bs-target="#pills-order-done" type="button" role="tab" aria-controls="pills-order-done"
-                                    aria-selected="false"><i data-feather="shopping-bag"></i>{{__('front.myorderdone')}}</button>
+                                    data-bs-target="#pills-order" type="button" role="tab"
+                                    aria-controls="pills-order" aria-selected="false"><i
+                                        data-feather="shopping-bag"></i>{{ __('front.myorderstay') }}</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-order-done" type="button" role="tab"
+                                    aria-controls="pills-order-done" aria-selected="false"><i
+                                        data-feather="shopping-bag"></i>{{ __('front.myorderdone') }}</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
@@ -97,7 +107,7 @@
                                         <h2>حسابى</h2>
                                         <span class="title-leaf">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
@@ -108,74 +118,78 @@
                                         <div class="row g-sm-4 g-3">
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/order.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}" class="blur-up lazyload"
-                                                        alt="">
+                                                    <img src="{{ asset('front/assets/images/svg/order.svg') }}"
+                                                        class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5  style="color: var(--theme-color);">نقاطى</h5>
-                                                        <h3 style="color: var(--theme-color);">{{$data['user']->client_points}}</h3>
+                                                        <h5 style="color: var(--theme-color);">نقاطى</h5>
+                                                        <h3 style="color: var(--theme-color);">
+                                                            {{ $data['user']->client_points }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/order.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/order.svg')}}" class="blur-up lazyload"
-                                                        alt="">
+                                                    <img src="{{ asset('front/assets/images/svg/order.svg') }}"
+                                                        class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
-                                                        <h5  style="color: var(--theme-color);">رصيدي</h5>
-                                                        <h3 style="color: var(--theme-color);">{{$data['user']->client_Balanc}}</h3>
+                                                        <h5 style="color: var(--theme-color);">رصيدي</h5>
+                                                        <h3 style="color: var(--theme-color);">
+                                                            {{ $data['user']->client_Balanc }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/wishlist.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}" class="blur-up lazyload"
-                                                        alt="">
+                                                    <img src="{{ asset('front/assets/images/svg/wishlist.svg') }}"
+                                                        class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>اجمالى الطلبات السابقة</h5>
-                                                        <h3>{{$data['saleheader']->sum('grandtotal')}}</h3>
+                                                        <h3>{{ $data['saleheader']->sum('grandtotal') }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/wishlist.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/wishlist.svg')}}" class="blur-up lazyload"
-                                                        alt="">
+                                                    <img src="{{ asset('front/assets/images/svg/wishlist.svg') }}"
+                                                        class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>اجمالى الطلبات الحالية</h5>
-                                                        <h3>  <h3>{{$data['deliveryheader']->sum('grandtotal')}}</h3></h3>
+                                                        <h3>
+                                                            <h3>{{ $data['deliveryheader']->sum('grandtotal') }}</h3>
+                                                        </h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/pending.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/pending.svg') }}"
                                                         class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>عدد منتجات المفضلة</h5>
-                                                        <h3>{{$data['wishlist']->count()}}</h3>
+                                                        <h3>{{ $data['wishlist']->count() }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-xxl-4 col-lg-6 col-md-4 col-sm-6">
                                                 <div class="totle-contain">
-                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/pending.svg') }}"
                                                         class="img-1 blur-up lazyload" alt="">
-                                                    <img src="{{asset('front/assets/images/svg/pending.svg')}}"
+                                                    <img src="{{ asset('front/assets/images/svg/pending.svg') }}"
                                                         class="blur-up lazyload" alt="">
                                                     <div class="totle-detail">
                                                         <h5>عدد منتجات العربة</h5>
-                                                        <h3>{{$data['cart']->count()}}</h3>
+                                                        <h3>{{ $data['cart']->count() }}</h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -184,54 +198,100 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="payd" role="tabpanel"
-                            aria-labelledby="payd-tab">
-                            <div class="dashboard-order">
-                                <div class="title">
-                                    <h2>مدفوعاتى</h2>
-                                    <span class="title-leaf title-leaf-gray">
-                                        <svg class="icon-width bg-gray">
-                                            <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
-                                        </svg>
-                                    </span>
-                                </div>
+                            <div class="tab-pane fade show" id="notification" role="tabpanel"
+                                aria-labelledby="notification-tab">
+                                <div class="dashboard-order">
+                                    <div class="title">
+                                        <h2>مدفوعاتى</h2>
+                                        <span class="title-leaf title-leaf-gray">
+                                            <svg class="icon-width bg-gray">
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
 
-                                <div  class="table-responsive dashboard-bg-box">
-                                    <div class="table-responsive">
-                                        <table class="table order-table">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col"> تاريخ</th>
-                                                    <th scope="col">رصيد قبل</th>
-                                                    <th scope="col">المدفوع</th>
-                                                    <th scope="col">الرصيد النهائي</th>
-                                                    <th scope="col">ملاحظات</th>
-                                                    <th scope="col">نوع العملية</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @forelse ( $data['clientpayment'] as $item )
-                                                <a href="">
-                                                <tr>
-                                                    <td >{{Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}</td>
-                                                    <td >{{$item->fromeamount}}</td>
-                                                    <td >{{$item->paidamount}}</td>
-                                                    <td >{{$item->newamount}}</td>
-                                                    <td >{{$item->pay_note}}</td>
-                                                    <td >{{$item->payment_method}}</td>
-                                                 </a>
-                                                @empty
-                                                <tr>
-                                                    <td colspan="5" >No Data</td>
-                                                </tr>
-                                                @endforelse
+                                    <div class="table-responsive dashboard-bg-box">
+                                        <div class="table-responsive">
+                                            <table class="table order-table">
+                                                <thead>
+                                                    <tr>
+                                                        {{-- <th scope="col">الصورة</th> --}}
+                                                        <th scope="col">العنوان</th>
+                                                        <th scope="col">اشعار</th>
+                                                        <th scope="col">التاريخ</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($data['notfiction'] as $item)
+                                                        <a href="">
+                                                            <tr>
+                                                                <td>{{ $item->title }}</td>
+                                                                <td>{{ $item->body }}</td>
+                                                                <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
+                                                                </td>
 
-                                            </tbody>
-                                        </table>
+                                                        </a>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="5">No Data</td>
+                                                        </tr>
+                                                    @endforelse
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="tab-pane fade show" id="payd" role="tabpanel"
+                                aria-labelledby="payd-tab">
+                                <div class="dashboard-order">
+                                    <div class="title">
+                                        <h2>مدفوعاتى</h2>
+                                        <span class="title-leaf title-leaf-gray">
+                                            <svg class="icon-width bg-gray">
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                    <div class="table-responsive dashboard-bg-box">
+                                        <div class="table-responsive">
+                                            <table class="table order-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col"> تاريخ</th>
+                                                        <th scope="col">رصيد قبل</th>
+                                                        <th scope="col">المدفوع</th>
+                                                        <th scope="col">الرصيد النهائي</th>
+                                                        <th scope="col">ملاحظات</th>
+                                                        <th scope="col">نوع العملية</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($data['clientpayment'] as $item)
+                                                        <a href="">
+                                                            <tr>
+                                                                <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
+                                                                </td>
+                                                                <td>{{ $item->fromeamount }}</td>
+                                                                <td>{{ $item->paidamount }}</td>
+                                                                <td>{{ $item->newamount }}</td>
+                                                                <td>{{ $item->pay_note }}</td>
+                                                                <td>{{ $item->payment_method }}</td>
+                                                        </a>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="5">No Data</td>
+                                                        </tr>
+                                                    @endforelse
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="tab-pane fade show" id="pills-order" role="tabpanel"
                                 aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
@@ -239,12 +299,12 @@
                                         <h2>طلباتى الحالية</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
 
-                                    <div  class="table-responsive dashboard-bg-box">
+                                    <div class="table-responsive dashboard-bg-box">
                                         <div class="table-responsive">
                                             <table class="table order-table">
                                                 <thead>
@@ -257,30 +317,32 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ( $data['deliveryheader'] as $item )
-                                                    <a href="#">
-                                                    <tr>
-                                                        <td class="product-image">#{{$item->invoicenumber}}</td>
-                                                        <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
-                                                        <td >#{{$item->paytayp}}</td>
-                                                        <td>
-                                                            @if ($item->type_order == 'تم التوصيل')
-
-                                                            <label class="success">{{$item->type_order}}</label>
-                                                            @else
-                                                            <label class="danger">{{$item->type_order}}</label>
-
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            <h6>{{  $item->grandtotal .  $Cu }}</h6>
-                                                        </td>
-                                                    </tr>
-                                                    </a>
+                                                    @forelse ($data['deliveryheader'] as $item)
+                                                        <a href="#">
+                                                            <tr>
+                                                                <td class="product-image">#{{ $item->invoicenumber }}
+                                                                </td>
+                                                                <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
+                                                                </td>
+                                                                <td>#{{ $item->paytayp }}</td>
+                                                                <td>
+                                                                    @if ($item->type_order == 'تم التوصيل')
+                                                                        <label
+                                                                            class="success">{{ $item->type_order }}</label>
+                                                                    @else
+                                                                        <label
+                                                                            class="danger">{{ $item->type_order }}</label>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <h6>{{ $item->grandtotal . $Cu }}</h6>
+                                                                </td>
+                                                            </tr>
+                                                        </a>
                                                     @empty
-                                                    <tr>
-                                                        <td colspan="5" >No Data</td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td colspan="5">No Data</td>
+                                                        </tr>
                                                     @endforelse
 
                                                 </tbody>
@@ -297,12 +359,12 @@
                                         <h2>طلباتى السابقة</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
 
-                                    <div  class="table-responsive dashboard-bg-box">
+                                    <div class="table-responsive dashboard-bg-box">
                                         <div class="table-responsive">
                                             <table class="table order-table">
                                                 <thead>
@@ -315,30 +377,32 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @forelse ( $data['saleheader'] as $item )
-                                                    <a href="">
-                                                    <tr>
-                                                        <td class="product-image">#{{$item->invoicenumber}}</td>
-                                                        <td >{{Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}</td>
-                                                        <td >#{{$item->paytayp}}</td>
-                                                        <td>
-                                                            @if ($item->type_order == 'تم التوصيل')
-
-                                                            <label class="success">{{$item->type_order}}</label>
-                                                            @else
-                                                            <label class="danger">{{$item->type_order}}</label>
-
-                                                            @endif
-                                                        </td>
-                                                        <td>
-                                                            <h6>{{  $item->grandtotal .  $Cu }}</h6>
-                                                        </td>
-                                                    </tr>
-                                                     </a>
+                                                    @forelse ($data['saleheader'] as $item)
+                                                        <a href="">
+                                                            <tr>
+                                                                <td class="product-image">#{{ $item->invoicenumber }}
+                                                                </td>
+                                                                <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
+                                                                </td>
+                                                                <td>#{{ $item->paytayp }}</td>
+                                                                <td>
+                                                                    @if ($item->type_order == 'تم التوصيل')
+                                                                        <label
+                                                                            class="success">{{ $item->type_order }}</label>
+                                                                    @else
+                                                                        <label
+                                                                            class="danger">{{ $item->type_order }}</label>
+                                                                    @endif
+                                                                </td>
+                                                                <td>
+                                                                    <h6>{{ $item->grandtotal . $Cu }}</h6>
+                                                                </td>
+                                                            </tr>
+                                                        </a>
                                                     @empty
-                                                    <tr>
-                                                        <td colspan="5" >No Data</td>
-                                                    </tr>
+                                                        <tr>
+                                                            <td colspan="5">No Data</td>
+                                                        </tr>
                                                     @endforelse
 
                                                 </tbody>
@@ -354,7 +418,7 @@
                                         <h2>بياناتى</h2>
                                         <span class="title-leaf">
                                             <svg class="icon-width bg-gray">
-                                                <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
+                                                <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
                                             </svg>
                                         </span>
                                     </div>
@@ -368,23 +432,24 @@
 
                                                             <tr>
                                                                 <td>اسم المحل :</td>
-                                                                <td>{{$data['user']->store_name}}</td>
+                                                                <td>{{ $data['user']->store_name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td>النشاط:</td>
-                                                                <td>{{$data['user']->cateorya->name}}</td>
+                                                                <td>{{ $data['user']->cateorya->name }}</td>
                                                             </tr>
                                                             <tr>
                                                                 <td> رقم اخر :</td>
-                                                                <td>{{$data['user']->client_fhoneLeter}}</td>
+                                                                <td>{{ $data['user']->client_fhoneLeter }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>المحافظة و المنطقة  :</td>
-                                                                <td>{{$data['user']->region->city->name . ' - ' . $data['user']->region->name}}</td>
+                                                                <td>المحافظة و المنطقة :</td>
+                                                                <td>{{ $data['user']->region->city->name . ' - ' . $data['user']->region->name }}
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>العنوان :</td>
-                                                                <td>{{$data['user']->client_state}}</td>
+                                                                <td>{{ $data['user']->client_state }}</td>
                                                             </tr>
 
                                                         </tbody>
