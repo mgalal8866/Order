@@ -20,9 +20,9 @@ use Illuminate\Support\Facades\Auth;
 class Cart extends Component
 {
     public $cul = [
-        'productdiscount'    => 0, 'finalsubtotal'    => 0, 'couponid'        => null, 'coupondisc'      => 0, 'coupontype'      => 0, 'total_profit'    => 0, 'subtotal'        => 0, 'totalfinal'      => 0, 'selectdeferreds' => 0, 'deferreds'       => 0, 'totaldiscount'   => 0, 'discount_g'      => 0
+            'productdiscount'    => 0, 'finalsubtotal'    => 0, 'couponid'        => null, 'coupondisc'      => 0, 'coupontype'      => 0, 'total_profit'    => 0, 'subtotal'        => 0, 'totalfinal'      => 0, 'selectdeferreds' => 0, 'deferreds'       => 0, 'totaldiscount'   => 0, 'discount_g'      => 0
         ],
-        $coupon, $currency = ' ج.م', $cartlist = [],$note=null, $setting;
+        $coupon, $currency = ' ج.م', $cartlist = [], $note = null, $setting;
     public function mount()
     {
         $this->setting = setting::find(1);
@@ -38,7 +38,7 @@ class Cart extends Component
         $this->cul['total_profit']  = 0;
         foreach ($this->cartlist as $i) {
             if ($i['isoffer'] == 1) {
-                $this->cul['productdiscount']+= ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
+                $this->cul['productdiscount'] += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
                 $this->cul['subtotal']       +=  $i['cart']['qty'] * $i['productd_Sele2'];
                 $this->cul['totaldiscount']  += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
                 $this->cul['total_profit']   += ($i['cart']['qty'] * $i['productd_Sele2']) - ($i['cart']['qty'] * $i['productd_bay']);
@@ -47,8 +47,8 @@ class Cart extends Component
                 $this->cul['total_profit']   += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_bay']);
             }
         }
-        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ? $this->cul['coupondisc'] : (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']))  : 0;
-        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ? $this->cul['coupondisc'] : $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100)) : $this->cul['subtotal'];
+        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ?  (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']) : $this->cul['coupondisc'])  : 0;
+        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ?  $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100) : $this->cul['coupondisc']) : $this->cul['subtotal'];
     }
     public function usecoupon()
     {
@@ -99,7 +99,7 @@ class Cart extends Component
             'remaining'         => 0,
             'totaldiscount'     => $this->cul['totaldiscount'] ?? 0,
             'discount_g'        => $this->cul['discount_g'] ?? 0,
-            'note'              => $this->note??'لا يوجد ملاحظات',
+            'note'              => $this->note ?? 'لا يوجد ملاحظات',
         ]);
         foreach ($this->cartlist as $i) {
             DeliveryDetails::create([
@@ -115,7 +115,7 @@ class Cart extends Component
             ]);
         }
 
-        redirect()->route('ordersuccess')->with( ['status' => true,'id' => $header->id] );
+        redirect()->route('ordersuccess')->with(['status' => true, 'id' => $header->id]);
         //    ModelsCart::where('user_id', Auth::guard('client')->user()->id)->delete();
     }
     public function saveforlater($idproduct)
