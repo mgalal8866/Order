@@ -27,7 +27,7 @@ class Product extends Component
     }
     public function qtyincrement($product_id)
     {
-        if ($this->product->maxqty === ($this->product->cart->qty ?? '')) {
+        if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
         }
         $this->checksmaxqty();
@@ -48,7 +48,7 @@ class Product extends Component
     }
     public function addtocart($product_id)
     {
-        if ($this->product->maxqty === ($this->product->cart->qty ?? '')) {
+        if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
         }
         if ($this->product->Qtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
