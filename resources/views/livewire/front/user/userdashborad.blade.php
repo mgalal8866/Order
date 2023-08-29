@@ -72,7 +72,7 @@
                                     type="button" role="tab" aria-controls="payd" aria-selected="false"><i
                                         data-feather="shopping-bag"></i>{{ __('front.payd') }}</button>
                             </li>
-                            <li wire:ignore.self  class="nav-item" role="presentation">
+                            <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-order" type="button" role="tab"
                                     aria-controls="pills-order" aria-selected="false"><i
@@ -202,7 +202,7 @@
                                 aria-labelledby="notification-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
-                                        <h2>مدفوعاتى</h2>
+                                        <h2>الاشعارات</h2>
                                         <span class="title-leaf title-leaf-gray">
                                             <svg class="icon-width bg-gray">
                                                 <use xlink:href="{{ asset('front/assets/svg/leaf.svg') }}#leaf"></use>
@@ -223,14 +223,12 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['notfiction'] as $item)
-                                                        <a href="">
-                                                            <tr>
-                                                                <td>{{ $item->title }}</td>
-                                                                <td>{{ $item->body }}</td>
-                                                                <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
-                                                                </td>
-
-                                                        </a>
+                                                        <tr>
+                                                            <td>{{ $item->title }}</td>
+                                                            <td>{{ $item->body }}</td>
+                                                            <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
+                                                            </td>
+                                                        </tr>
                                                     @empty
                                                         <tr>
                                                             <td colspan="5">No Data</td>
@@ -246,7 +244,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div  wire:ignore.self class="tab-pane fade show" id="payd" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show" id="payd" role="tabpanel"
                                 aria-labelledby="payd-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
@@ -273,16 +271,16 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['clientpayment'] as $item)
-                                                        <a href="">
-                                                            <tr>
-                                                                <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
-                                                                </td>
-                                                                <td>{{ $item->fromeamount }}</td>
-                                                                <td>{{ $item->paidamount }}</td>
-                                                                <td>{{ $item->newamount }}</td>
-                                                                <td>{{ $item->pay_note }}</td>
-                                                                <td>{{ $item->payment_method }}</td>
-                                                        </a>
+                                                        <tr>
+                                                            <td>{{ Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}
+                                                            </td>
+                                                            <td>{{ $item->fromeamount }}</td>
+                                                            <td>{{ $item->paidamount }}</td>
+                                                            <td>{{ $item->newamount }}</td>
+                                                            <td>{{ $item->pay_note }}</td>
+                                                            <td>{{ $item->payment_method }}</td>
+                                                        </tr>
+
                                                     @empty
                                                         <tr>
                                                             <td colspan="5">No Data</td>
@@ -307,7 +305,7 @@
                                         </span>
                                     </div>
 
-                                    <div class="table-responsive dashboard-bg-box" >
+                                    <div class="table-responsive dashboard-bg-box">
                                         <div class="table-responsive">
                                             <table class="table order-table">
                                                 <thead>
@@ -322,29 +320,29 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['deliveryheader'] as $item)
-
-                                                            <tr>
-                                                                <td class="product-image">#{{ $item->invoicenumber }}
-                                                                </td>
-                                                                <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
-                                                                </td>
-                                                                <td>#{{ $item->paytayp }}</td>
-                                                                <td>
-                                                                    @if ($item->type_order == 'تم التوصيل')
-                                                                        <label
-                                                                            class="success">{{ $item->type_order }}</label>
-                                                                    @else
-                                                                        <label
-                                                                            class="danger">{{ $item->type_order }}</label>
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    <h6>{{ $item->grandtotal . $Cu }}</h6>
-                                                                </td>
-                                                                <td>
-                                                                    <button   wire:click='getopeninvo({{$item->id}})' class="btn btn-success btn-sm">عرض</button>
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td class="product-image">#{{ $item->invoicenumber }}
+                                                            </td>
+                                                            <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
+                                                            </td>
+                                                            <td>#{{ $item->paytayp }}</td>
+                                                            <td>
+                                                                @if ($item->type_order == 'تم التوصيل')
+                                                                    <label
+                                                                        class="success">{{ $item->type_order }}</label>
+                                                                @else
+                                                                    <label
+                                                                        class="danger">{{ $item->type_order }}</label>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <h6>{{ $item->grandtotal . $Cu }}</h6>
+                                                            </td>
+                                                            <td>
+                                                                <button wire:click='getopeninvo({{ $item->id }})'
+                                                                    class="btn btn-success btn-sm">عرض</button>
+                                                            </td>
+                                                        </tr>
 
                                                     @empty
                                                         <tr>
@@ -386,29 +384,29 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['saleheader'] as $item)
-
-                                                            <tr>
-                                                                <td class="product-image">#{{ $item->invoicenumber }}
-                                                                </td>
-                                                                <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
-                                                                </td>
-                                                                <td>#{{ $item->paytayp }}</td>
-                                                                <td>
-                                                                    @if ($item->type_order == 'تم التوصيل')
-                                                                        <label
-                                                                            class="success">{{ $item->type_order }}</label>
-                                                                    @else
-                                                                        <label
-                                                                            class="danger">{{ $item->type_order }}</label>
-                                                                    @endif
-                                                                </td>
-                                                                <td>
-                                                                    <h6>{{ $item->grandtotal . $Cu }}</h6>
-                                                                </td>
-                                                                <td>
-                                                                    <button  wire:click='getcloseinvo({{$item->id}})'class="btn btn-success  btn-sm">عرض</button>
-                                                                </td>
-                                                            </tr>
+                                                        <tr>
+                                                            <td class="product-image">#{{ $item->invoicenumber }}
+                                                            </td>
+                                                            <td>{{ Carbon::parse($item->invoicedate)->translatedFormat('l j F Y') }}
+                                                            </td>
+                                                            <td>#{{ $item->paytayp }}</td>
+                                                            <td>
+                                                                @if ($item->type_order == 'تم التوصيل')
+                                                                    <label
+                                                                        class="success">{{ $item->type_order }}</label>
+                                                                @else
+                                                                    <label
+                                                                        class="danger">{{ $item->type_order }}</label>
+                                                                @endif
+                                                            </td>
+                                                            <td>
+                                                                <h6>{{ $item->grandtotal . $Cu }}</h6>
+                                                            </td>
+                                                            <td>
+                                                                <button
+                                                                    wire:click='getcloseinvo({{ $item->id }})'class="btn btn-success  btn-sm">عرض</button>
+                                                            </td>
+                                                        </tr>
 
                                                     @empty
                                                         <tr>

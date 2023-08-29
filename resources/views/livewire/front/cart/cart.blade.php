@@ -203,7 +203,7 @@
                                     <li>
                                         <h4>خصم الكوبون</h4>
                                         <h4 class="price">(-)
-                                            {{ $cul['coupondisc'] . '  ' . ($cul['coupontype'] == 0 ? $currency : ' % ') }}
+                                            {{ $cul['coupondisc'] . '  ' . ($cul['coupontype'] == 0 ? ' % ' : $currency ) }}
                                         </h4>
                                     </li>
 
