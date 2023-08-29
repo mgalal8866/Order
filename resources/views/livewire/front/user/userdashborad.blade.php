@@ -63,6 +63,12 @@
                                     data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
                                     aria-selected="false"><i data-feather="shopping-bag"></i>{{__('front.myorderstay')}}</button>
                             </li>
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="payd-tab" data-bs-toggle="pill"
+                                    data-bs-target="#payd" type="button" role="tab" aria-controls="payd"
+                                    aria-selected="false"><i data-feather="shopping-bag"></i>{{__('front.payd')}}</button>
+                            </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-order-done" type="button" role="tab" aria-controls="pills-order-done"
@@ -178,6 +184,54 @@
 
                                 </div>
                             </div>
+                            <div class="tab-pane fade show" id="payd" role="tabpanel"
+                            aria-labelledby="payd-tab">
+                            <div class="dashboard-order">
+                                <div class="title">
+                                    <h2>مدفوعاتى</h2>
+                                    <span class="title-leaf title-leaf-gray">
+                                        <svg class="icon-width bg-gray">
+                                            <use xlink:href="{{asset('front/assets/svg/leaf.svg')}}#leaf"></use>
+                                        </svg>
+                                    </span>
+                                </div>
+
+                                <div  class="table-responsive dashboard-bg-box">
+                                    <div class="table-responsive">
+                                        <table class="table order-table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"> تاريخ</th>
+                                                    <th scope="col">رصيد قبل</th>
+                                                    <th scope="col">المدفوع</th>
+                                                    <th scope="col">الرصيد النهائي</th>
+                                                    <th scope="col">ملاحظات</th>
+                                                    <th scope="col">نوع العملية</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @forelse ( $data['clientpayment'] as $item )
+                                                <a href="">
+                                                <tr>
+                                                    <td >{{Carbon::parse($item->created_at)->translatedFormat('l j F Y') }}</td>
+                                                    <td >{{$item->fromeamount}}</td>
+                                                    <td >{{$item->paidamount}}</td>
+                                                    <td >{{$item->newamount}}</td>
+                                                    <td >{{$item->pay_note}}</td>
+                                                    <td >{{$item->payment_method}}</td>
+                                                 </a>
+                                                @empty
+                                                <tr>
+                                                    <td colspan="5" >No Data</td>
+                                                </tr>
+                                                @endforelse
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                             <div class="tab-pane fade show" id="pills-order" role="tabpanel"
                                 aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
