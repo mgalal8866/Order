@@ -16,6 +16,14 @@ use Livewire\WithPagination;
 class Userdashborad extends Component
 {
     use WithPagination;
+
+        public function getopeninvo($id){
+            redirect()->route('ordersuccess')->with( ['status' => 'old','id' => $id] );
+        }
+        public function getcloseinvo($id){
+            redirect()->route('ordersuccess')->with( ['status' => 'closeold','id' => $id] );
+        }
+
     public function render()
     {
 

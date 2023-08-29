@@ -321,7 +321,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['deliveryheader'] as $item)
-                                                        <a href="#">
+                                                        <a href="" wire:click='getopeninvo({{$item->id}})'>
                                                             <tr>
                                                                 <td class="product-image">#{{ $item->invoicenumber }}
                                                                 </td>
@@ -381,7 +381,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['saleheader'] as $item)
-                                                        <a href="">
+                                                        <a href="" wire:click='getcloseinvo({{$item->id}})'>
                                                             <tr>
                                                                 <td class="product-image">#{{ $item->invoicenumber }}
                                                                 </td>
