@@ -172,7 +172,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
      $uu =null;
     if(count($users) == 1){
-        Log::error($uu->id);
+       
         $uu = User::where('fsm', $users[0])->first();
         Log::error($uu->id);
     }
