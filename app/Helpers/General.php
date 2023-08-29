@@ -172,7 +172,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
      $uu =null;
     if(count($users) == 1){
-        $uu = User::where('fsm', $users->fsm)->first();
+        $uu = User::where('fsm', $users[0]['fsm'])->first();
         Log::error($uu->id);
     }
     notifiction::create(['title' => $title, 'user_id' => $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
