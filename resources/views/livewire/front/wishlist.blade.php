@@ -1,10 +1,11 @@
 <div>
     <x-breadcrumb name="Wishlist" />
-    <section class="wishlist-section section-b-space">
+    {{-- <section class="wishlist-section section-b-space">
         <div class="container-fluid-lg">
-            <div class="row g-sm-3 g-2">
-                @forelse ($wish as $index=> $w)
-                    {{-- <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+            <div class="row g-sm-3 g-2"> --}}
+    <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow section-b-space">
+        @forelse ($wish as $index=> $w)
+            {{-- <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
                         <div class="product-box-3 h-100">
                             <div class="product-header">
                                 <div class="product-image">
@@ -56,13 +57,13 @@
                             </div>
                         </div>
                     </div> --}}
-                    @livewire('front.compon.product', ['product' => $w, 'wish' => true], key($index))
-                @empty
-                    <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
-                        المفضلة فارغه
-                    </div>
-                @endforelse
+            @livewire('front.compon.product', ['product' => $w, 'wish' => true], key($index))
+        @empty
+            <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+                المفضلة فارغه
             </div>
-        </div>
-    </section>
+        @endforelse
+    </div>
+    {{-- </div>
+    </section> --}}
 </div>
