@@ -15,25 +15,28 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Storage;
 
-function getsetting(){
+function getsetting()
+{
     $namedomain = Tenants::getdomain();
 
-    if (Cache::get($namedomain.'_settings',[]) == null){
-        Cache::forget($namedomain.'_settings');
-        Cache::rememberForever($namedomain.'_settings', function () {
+    if (Cache::get($namedomain . '_settings', []) == null) {
+        Cache::forget($namedomain . '_settings');
+        Cache::rememberForever($namedomain . '_settings', function () {
             return DB::table('settings')->find(1);
         });
     }
-    return Cache::get($namedomain.'_settings',[]) ;
+    return Cache::get($namedomain . '_settings', []);
 }
-function setsettingwithdomain($namedomain){
+function setsettingwithdomain($namedomain)
+{
     Cache::forget($namedomain . '_settings');
     Cache::rememberForever($namedomain . '_settings', function () {
         return setting::on('tenant')->find(1);
     });
     // return Cache::get($namedomain.'_settings',[]) ;
 }
-function setsetting(){
+function setsetting()
+{
     $namedomain = Tenants::getdomain();
     Cache::forget($namedomain . '_settings');
     Cache::rememberForever($namedomain . '_settings', function () {
@@ -59,7 +62,7 @@ function uploadimages($folder, $image)
 }
 function sendsms($phone)
 {
-    $settings  =  Cache::get('settings',[]);
+    $settings  =  Cache::get('settings', []);
 
     if (env('SMS_OTP', false) === false) {
         return 1;
@@ -74,9 +77,9 @@ function sendsms($phone)
             'lang'      => 'ar'
         ]);
         $res = $response->json();
-        Log::error( $phone);
-        Log::error( $res);
-        if ($res['type']??'error' == 'error') {
+        Log::error($phone);
+        Log::error($res);
+        if ($res['type'] ?? 'error' == 'error') {
             return 0;
         } else {
             return 1;
@@ -106,21 +109,21 @@ function otp_check($phone, $code)
 }
 function deleteimage($folder, $image)
 {
-    $file = public_path() . '/asset/images/' . $folder.'/'. $image;
-    $img=File::delete($file);
+    $file = public_path() . '/asset/images/' . $folder . '/' . $image;
+    $img = File::delete($file);
     // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
     $path = public_path() . '/asset/images/' . $folder;
-    if(!File::exists($path)) {
-            mkdir($path, 0777, true);
+    if (!File::exists($path)) {
+        mkdir($path, 0777, true);
     }
     $image = $image;  // your base64 encoded
     $image = str_replace('data:image/png;base64,', '', $image);
     $image = str_replace(' ', '+', $image);
     $imageName = Str::random(10) . '.' . 'png';
-    File::put( $path.'/' .$imageName, base64_decode($image));
+    File::put($path . '/' . $imageName, base64_decode($image));
 
 
     // $folderPath = public_path(). '/asset/images/' . $folder.'/';
@@ -133,10 +136,10 @@ function uploadbase64images($folder, $image)
     // file_put_contents($file, $image_base64);
     return  $imageName;
 }
-function notificationFCM( $title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
+function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
 {
 
-
+    Log::error(count($users));
 
     $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
@@ -172,15 +175,15 @@ function notificationFCM( $title = null, $body = null, $users = null, $icon = nu
     // return  curl_exec($ch);
 }
 
-function replacetext($originalString, $user=null,$product=null,$cart=null)
+function replacetext($originalString, $user = null, $product = null, $cart = null)
 {
     $replacements = [
-        '{name}'  => $user->client_name??'',
-        '{email}' => $user->email??'',
-        '{oldprice}' => $product->productd_Sele1??'',
-        '{newprice}' => $product->productd_Sele2??'',
-        '{exp_date}' => $product->EndOferDate??'',
-        '{product_name}' => $product->productheader->product_name??'',
+        '{name}'  => $user->client_name ?? '',
+        '{email}' => $user->email ?? '',
+        '{oldprice}' => $product->productd_Sele1 ?? '',
+        '{newprice}' => $product->productd_Sele2 ?? '',
+        '{exp_date}' => $product->EndOferDate ?? '',
+        '{product_name}' => $product->productheader->product_name ?? '',
     ];
 
     foreach ($replacements as $placeholder => $value) {
