@@ -16,6 +16,7 @@ use Livewire\WithPagination;
 class Userdashborad extends Component
 {
     use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
         public function getopeninvo($id){
             redirect()->route('ordersuccess')->with( ['status' => 'old','id' => $id] );
