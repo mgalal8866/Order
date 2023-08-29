@@ -17,20 +17,12 @@ class Product extends Component
         $this->product = $product;
         $this->product->productheader->product_isscale == 1 ? $this->qty = 0.125 : $this->qty = 1;
     }
-    public function checksmaxqty()
-    {
-
-    }
-    public function checkstock()
-    {
-
-    }
+ 
     public function qtyincrement($product_id)
     {
         if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
         }
-        $this->checksmaxqty();
         Cart::getroductid($product_id)->increment('qty', $this->qty);
     }
 
