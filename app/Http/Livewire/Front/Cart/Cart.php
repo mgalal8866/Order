@@ -115,7 +115,7 @@ class Cart extends Component
             ]);
         }
 
-        redirect()->route('ordersuccess')->with( ['status' => true,'id' => $header->id] );;
+        redirect()->route('ordersuccess')->with( ['status' => true,'id' => $header->id] );
         //    ModelsCart::where('user_id', Auth::guard('client')->user()->id)->delete();
     }
     public function saveforlater($idproduct)

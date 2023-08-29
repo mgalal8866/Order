@@ -19,7 +19,8 @@ class Userdashborad extends Component
     protected $paginationTheme = 'bootstrap';
 
         public function getopeninvo($id){
-            redirect()->route('ordersuccess')->with( ['status' => 'old','id' => $id] );
+            
+            redirect()->route('ordersuccess')->with( ['status' => 'old' ,'id' => $id] );
         }
         public function getcloseinvo($id){
             redirect()->route('ordersuccess')->with( ['status' => 'closeold','id' => $id] );
