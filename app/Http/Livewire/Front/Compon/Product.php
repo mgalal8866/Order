@@ -20,9 +20,6 @@ class Product extends Component
         // $this->qty +=  $this->qty;
 
     }
-    public function gotosearch(){
-
-    }
 
     public function qtydecrement($product_id){
       $data =  Cart::getroductid($product_id)->first();
@@ -35,6 +32,7 @@ class Product extends Component
        }
     }
    public function addtocart($product_id){
+        return  $this->dispatchBrowserEvent('notifi', ['message' =>$this->product->productheader->product_name, 'type' => 'success']);
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
    }
