@@ -23,8 +23,7 @@ class Userdashborad extends Component
         $data += ['wishlist'      => Wishlist::where('user_id',Auth::guard('client')->user()->id)->get()];
         $data += ['saleheader'    => SalesHeader::where('client_id',Auth::guard('client')->user()->id)->get()];
         $data += ['clientpayment'    => ClientPayments::where('clientpay_id',Auth::guard('client')->user()->id)->get()];
-        $data += ['notfiction'    => notifiction::wwhere('clientpay_id',Auth::guard('client')->user()->id)->get()];
-
+        $data += ['notfiction'    =>  notifiction::where('user_id', Auth::guard('client')->user()->id)->orwhere('user_id', null)->latest()->get()];
         return view('livewire.front.user.userdashborad', [ 'data'=>$data ])->layout('layouts.front-end.layout');
     }
 }
