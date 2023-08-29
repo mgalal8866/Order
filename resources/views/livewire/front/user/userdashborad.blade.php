@@ -239,6 +239,9 @@
 
                                                 </tbody>
                                             </table>
+                                            <div class="flex flex-row mt-2">
+                                                {{ $data['notfiction']->links() }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
