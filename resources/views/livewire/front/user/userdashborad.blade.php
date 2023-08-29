@@ -53,7 +53,7 @@
                         </div>
 
                         <ul class="nav nav-pills user-nav-pills" id="pills-tab" role="tablist">
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link active" id="pills-dashboard-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-dashboard" type="button" role="tab"
                                     aria-controls="pills-dashboard" aria-selected="true"><i data-feather="home"></i>
@@ -61,30 +61,30 @@
                             </li>
 
 
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link" id="notification-tab" data-bs-toggle="pill"
                                     data-bs-target="#notification" type="button" role="tab"
                                     aria-controls="notification" aria-selected="false"><i
                                         data-feather="shopping-bag"></i>{{ __('front.notification') }}</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore class="nav-item" role="presentation">
                                 <button class="nav-link" id="payd-tab" data-bs-toggle="pill" data-bs-target="#payd"
                                     type="button" role="tab" aria-controls="payd" aria-selected="false"><i
                                         data-feather="shopping-bag"></i>{{ __('front.payd') }}</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore.self  class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-order" type="button" role="tab"
                                     aria-controls="pills-order" aria-selected="false"><i
                                         data-feather="shopping-bag"></i>{{ __('front.myorderstay') }}</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-order-done" type="button" role="tab"
                                     aria-controls="pills-order-done" aria-selected="false"><i
                                         data-feather="shopping-bag"></i>{{ __('front.myorderdone') }}</button>
                             </li>
-                            <li class="nav-item" role="presentation">
+                            <li wire:ignore.self class="nav-item" role="presentation">
                                 <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
                                     data-bs-target="#pills-profile" type="button" role="tab"
                                     aria-controls="pills-profile" aria-selected="false"><i data-feather="user"></i>
@@ -100,7 +100,7 @@
                         Menu</button>
                     <div class="dashboard-right-sidebar">
                         <div class="tab-content" id="pills-tabContent">
-                            <div class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show active" id="pills-dashboard" role="tabpanel"
                                 aria-labelledby="pills-dashboard-tab">
                                 <div class="dashboard-home">
                                     <div class="title">
@@ -198,7 +198,7 @@
 
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="notification" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show" id="notification" role="tabpanel"
                                 aria-labelledby="notification-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
@@ -246,7 +246,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="payd" role="tabpanel"
+                            <div  wire:ignore.self class="tab-pane fade show" id="payd" role="tabpanel"
                                 aria-labelledby="payd-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
@@ -295,7 +295,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="pills-order" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show" id="pills-order" role="tabpanel"
                                 aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
@@ -307,7 +307,7 @@
                                         </span>
                                     </div>
 
-                                    <div class="table-responsive dashboard-bg-box">
+                                    <div class="table-responsive dashboard-bg-box" >
                                         <div class="table-responsive">
                                             <table class="table order-table">
                                                 <thead>
@@ -355,7 +355,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="pills-order-done" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show" id="pills-order-done" role="tabpanel"
                                 aria-labelledby="pills-order-tab">
                                 <div class="dashboard-order">
                                     <div class="title">
@@ -414,7 +414,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade show" id="pills-profile" role="tabpanel"
+                            <div wire:ignore.self class="tab-pane fade show" id="pills-profile" role="tabpanel"
                                 aria-labelledby="pills-profile-tab">
                                 <div class="dashboard-profile">
                                     <div class="title">
