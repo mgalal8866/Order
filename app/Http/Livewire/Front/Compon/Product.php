@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\Wishlist;
 use App\Models\ProductDetails;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class Product extends Component
 {
@@ -14,6 +15,8 @@ class Product extends Component
     public function mount( $product){
         $this->product= $product;
         $this->product->productheader->product_isscale == 1 ?$this->qty = 0.125 :$this->qty = 1;
+      $sss =  $product->scopeQtystockapi($product->productheader->stock->sum('quantity'));
+      Log::error($sss);
     }
     public function qtyincrement($product_id){
         Cart::getroductid($product_id)->increment('qty', $this->qty);
@@ -31,9 +34,10 @@ class Product extends Component
        }
     }
    public function addtocart($product_id){
-    if($this->product->scopeQtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر'){
-        return  $this->dispatchBrowserEvent('notifi', ['message' =>'منتج غير متوفر', 'type' => 'danger']);
-    }
+
+    // if($this->product->scopeQtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر'){
+    //     return  $this->dispatchBrowserEvent('notifi', ['message' =>'منتج غير متوفر', 'type' => 'danger']);
+    // }
     if ($this->product->maxqty === $this->product->cart->qty) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
     }
