@@ -322,7 +322,7 @@
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['deliveryheader'] as $item)
-                                                        <a href="" >
+
                                                             <tr>
                                                                 <td class="product-image">#{{ $item->invoicenumber }}
                                                                 </td>
@@ -342,10 +342,10 @@
                                                                     <h6>{{ $item->grandtotal . $Cu }}</h6>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="" wire:click='getopeninvo({{$item->id}})' class="btn btn-success">عرض</a>
+                                                                    <button   wire:click='getopeninvo({{$item->id}})' class="btn btn-success">عرض<button>
                                                                 </td>
                                                             </tr>
-                                                        </a>
+
                                                     @empty
                                                         <tr>
                                                             <td colspan="5">No Data</td>
@@ -381,11 +381,12 @@
                                                         <th scope="col">طريقة الدفع</th>
                                                         <th scope="col">الحالة</th>
                                                         <th scope="col">الاجمالى</th>
+                                                        <th scope="col">تفاصيل</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['saleheader'] as $item)
-                                                        <a href="" wire:click='getcloseinvo({{$item->id}})'>
+
                                                             <tr>
                                                                 <td class="product-image">#{{ $item->invoicenumber }}
                                                                 </td>
@@ -404,8 +405,11 @@
                                                                 <td>
                                                                     <h6>{{ $item->grandtotal . $Cu }}</h6>
                                                                 </td>
+                                                                <td>
+                                                                    <button  wire:click='getcloseinvo({{$item->id}})'class="btn btn-success">عرض<button>
+                                                                </td>
                                                             </tr>
-                                                        </a>
+
                                                     @empty
                                                         <tr>
                                                             <td colspan="5">No Data</td>
