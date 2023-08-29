@@ -47,7 +47,7 @@ class Cart extends Component
             }
         }
         $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 1 ? $this->cul['coupondisc'] : (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']))  : 0;
-        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 1 ? $this->cul['coupondisc'] : $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100)) : $this->cul['subtotal'];
+        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 1 ? $this->cul['subtotal'] - $this->cul['coupondisc'] : $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100)) : $this->cul['subtotal'];
     }
     public function usecoupon()
     {

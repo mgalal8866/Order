@@ -63,21 +63,21 @@
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
                                             <input id="namecust" type="text" class="form-control"
-                                                wire:model.defer="namecust">
+                                                wire:model.defer="namecust" required>
                                             <label for="namecust">{{ __('front.namecust') }}</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
                                             <input id="store_name" type="text" class="form-control"
-                                                wire:model.defer="store_name">
+                                                wire:model.defer="store_name" required>
                                             <label for="store_name">{{ __('front.store_name') }}</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
                                             <input id="client_state" type="text" class="form-control"
-                                                wire:model.defer="client_state">
+                                                wire:model.defer="client_state" required>
                                             <label for="client_state">{{ __('front.client_state') }}</label>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <input type="text" class="form-control" wire:model.defer="phone2">
+                                            <input type="text" class="form-control" wire:model.defer="phone2" >
                                             <label for="phone2">{{ __('front.phone2') }}</label>
                                         </div>
                                     </div>
@@ -102,7 +102,7 @@
                                     </div> --}}
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <select class="form-control" wire:model.lazy="selectcity">
+                                            <select class="form-control" wire:model.lazy="selectcity" required>
                                                 <option value="0">اختار المدينة</option>
                                                 @foreach ($citys as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <select class="form-control" wire:model="selectstate">
+                                            <select class="form-control" wire:model="selectstate" required>
                                                 <option value="0">اختار المنطقة</option>
                                                 @foreach ($states as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -125,7 +125,7 @@
 
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
-                                            <select id="nashat" class="form-control" wire:model="selectnashat">
+                                            <select id="nashat" class="form-control" wire:model="selectnashat" required>
                                                 <option value="0">اختار النشاط</option>
                                                 @foreach ($nashat as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
