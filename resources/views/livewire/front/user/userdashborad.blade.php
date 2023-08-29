@@ -342,7 +342,7 @@
                                                                     <h6>{{ $item->grandtotal . $Cu }}</h6>
                                                                 </td>
                                                                 <td>
-                                                                    <button   wire:click='getopeninvo({{$item->id}})' class="btn btn-success">عرض<button>
+                                                                    <button   wire:click='getopeninvo({{$item->id}})' class="btn btn-success btn-sm">عرض</button>
                                                                 </td>
                                                             </tr>
 
@@ -406,7 +406,7 @@
                                                                     <h6>{{ $item->grandtotal . $Cu }}</h6>
                                                                 </td>
                                                                 <td>
-                                                                    <button  wire:click='getcloseinvo({{$item->id}})'class="btn btn-success">عرض<button>
+                                                                    <button  wire:click='getcloseinvo({{$item->id}})'class="btn btn-success  btn-sm">عرض</button>
                                                                 </td>
                                                             </tr>
 
