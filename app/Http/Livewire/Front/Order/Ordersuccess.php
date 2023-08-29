@@ -15,6 +15,7 @@ class Ordersuccess extends Component
     public function mount()
     {
         $status = Session::get('status');
+        dd($status);
         $id = Session::get('id');
         if($status == 'closeold'){
             $this->order = SalesHeader::where('id',$id)->with('salesdetails')->first();
