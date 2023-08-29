@@ -17,11 +17,6 @@ class Product extends Component
         $this->product = $product;
         $this->product->productheader->product_isscale == 1 ? $this->qty = 0.125 : $this->qty = 1;
     }
-    public function qtyincrement($product_id)
-    {
-        $this->maxq();
-        Cart::getroductid($product_id)->increment('qty', $this->qty);
-    }
     public function checksmaxqty()
     {
         if ($this->product->maxqty === ($this->product->cart->qty ?? '')) {
@@ -34,6 +29,12 @@ class Product extends Component
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
         }
     }
+    public function qtyincrement($product_id)
+    {
+        $this->checksmaxqty();
+        Cart::getroductid($product_id)->increment('qty', $this->qty);
+    }
+
 
     public function qtydecrement($product_id)
     {
@@ -50,7 +51,7 @@ class Product extends Component
     {
 
         $this->checkstock();
-        $this->maxq();
+        $this->checksmaxqty();
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
         return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم الاضافة للعربة', 'type' => 'success']);

@@ -30,7 +30,7 @@ class Offer extends Component
     }
     public function qtyincrement($product_id)
     {
-        $this->maxq();
+        $this->checksmaxqty();
         Cart::getroductid($product_id)->increment('qty', $this->qty);
     }
     public function qtydecrement($product_id)
@@ -46,7 +46,7 @@ class Offer extends Component
     public function addtocart($product_id)
     {
         $this->checkstock();
-        $this->maxq();
+        $this->checksmaxqty();
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
         return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم الاضافة للعربة', 'type' => 'success']);
