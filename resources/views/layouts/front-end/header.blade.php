@@ -13,8 +13,9 @@
                         </button>
                         <a href="/" class="web-logo nav-logo">
                             <img src="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop??'' }}" class="img-fluid blur-up lazyload" alt="">
-                       {{ $setting->name_shop??'' }}
                         </a>
+                          <h6> {{ $setting->name_shop??'' }}</h6>
+
 
                         {{-- <div class="middle-box">
 
