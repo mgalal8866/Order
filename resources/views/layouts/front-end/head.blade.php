@@ -6,7 +6,7 @@
     <meta name="keywords" content="{{ $setting->name_shop }}">
     <meta name="author" content="{{ $setting->name_shop }}">
     {{-- <link rel="icon" href="{{ asset('asset/images/ico/favicon.ico') }}" type="image/x-icon"> --}}
-    <link rel="icon" href="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop??'' }}"
+    <link rel="icon" href="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop ?? '' }}"
         type="image/x-icon">
     <title>{{ $setting->name_shop }}</title>
 
@@ -55,11 +55,13 @@
 
             font-family: 'Cairo', 'sans-serif' !important;
         }
+
         @if ($setting->site_color_primary != null)
             .theme-color-6 {
                 --theme-color: {{ $setting->site_color_primary }} !important;
                 --theme-color-rgb: 221, 87, 30;
             }
+
             header .top-nav {
                 padding: 24px 0;
                 background-color: {{ $setting->site_color_primary }} !important;
@@ -73,8 +75,14 @@
         .product-box-3 {
             background: #ffffff !important;
         }
+
         header .top-nav .navbar-top .rightside-box .right-side-menu .right-side:first-child {
-                display: block;
+            display: block;
+        }
+
+        @media (max-width: 767px) [dir="rtl"] header .top-nav .navbar-top .rightside-box {
+            margin-left: unset;
+            margin-right: auto;
         }
     </style>
 
