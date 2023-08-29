@@ -16,21 +16,12 @@ class Offer extends Component
         $this->product = $product;
         $this->product->productheader->product_isscale == 1 ? $this->qty = 0.125 : $this->qty = 1;
     }
-    public function checksmaxqty()
-    {
-        if ($this->product->maxqty === ($this->product->cart->qty ?? '')) {
-            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
-        }
-    }
-    public function checkstock()
-    {
-        if ($this->product->Qtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
-            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
-        }
-    }
+
     public function qtyincrement($product_id)
     {
-        $this->checksmaxqty();
+        if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
+        }
         Cart::getroductid($product_id)->increment('qty', $this->qty);
     }
     public function qtydecrement($product_id)
@@ -45,9 +36,13 @@ class Offer extends Component
     }
     public function addtocart($product_id)
     {
-        $this->checkstock();
-        $this->checksmaxqty();
-        $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
+        if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
+        }
+        if ($this->product->Qtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
+        }
+        Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
         return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم الاضافة للعربة', 'type' => 'success']);
     }
