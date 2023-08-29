@@ -47,8 +47,8 @@ class Cart extends Component
                 $this->cul['total_profit']   += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_bay']);
             }
         }
-        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ?  (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']) : $this->cul['coupondisc'])  : 0;
-        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 0 ?  $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100) : $this->cul['coupondisc']) : $this->cul['subtotal'];
+        $this->cul['discount_g']    = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 1 ? $this->cul['coupondisc'] : (($this->cul['coupondisc'] / 100) * $this->cul['subtotal']))  : 0;
+        $this->cul['finalsubtotal'] = ($this->cul['coupondisc'] > 0) ? ($this->cul['coupontype'] == 1 ? $this->cul['coupondisc'] : $this->cul['subtotal'] * (1 - $this->cul['coupondisc'] / 100)) : $this->cul['subtotal'];
     }
     public function usecoupon()
     {
