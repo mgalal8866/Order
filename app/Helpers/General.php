@@ -136,7 +136,7 @@ function uploadbase64images($folder, $image)
 function notificationFCM( $title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
 {
 
-    dd(count($users));
+
 
     $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
