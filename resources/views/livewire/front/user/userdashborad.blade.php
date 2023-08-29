@@ -317,11 +317,12 @@
                                                         <th scope="col">طريقة الدفع</th>
                                                         <th scope="col">الحالة</th>
                                                         <th scope="col">الاجمالى</th>
+                                                        <th scope="col">تفاصيل</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     @forelse ($data['deliveryheader'] as $item)
-                                                        <a href="" wire:click='getopeninvo({{$item->id}})'>
+                                                        <a href="" >
                                                             <tr>
                                                                 <td class="product-image">#{{ $item->invoicenumber }}
                                                                 </td>
@@ -339,6 +340,9 @@
                                                                 </td>
                                                                 <td>
                                                                     <h6>{{ $item->grandtotal . $Cu }}</h6>
+                                                                </td>
+                                                                <td>
+                                                                    <a href="" wire:click='getopeninvo({{$item->id}})' class="btn btn-success">عرض</a>
                                                                 </td>
                                                             </tr>
                                                         </a>
