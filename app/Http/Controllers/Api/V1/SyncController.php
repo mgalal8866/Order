@@ -1181,7 +1181,7 @@ class SyncController extends Controller
     }
     function upload_user_payment(Request $request)
     {
-        Log::info('upload_supplier_payments', ['0' => $request->all()]);
+        Log::info('upload_user_payment', ['0' => $request->all()]);
 
         try {
             foreach ($request->all() as $index => $item) {
