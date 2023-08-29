@@ -139,7 +139,7 @@ function uploadbase64images($folder, $image)
 function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
 {
 
-    Log::error(count($users));
+
 
     $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
@@ -170,7 +170,10 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
+    if(count($users) == 1){
+        $uu = User::where('fsm', $users->fsm)->first();
+        Log::error($uu);
+    }
     notifiction::create(['title' => $title, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
     // return  curl_exec($ch);
 }
