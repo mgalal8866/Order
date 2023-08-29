@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Register extends Component
 {
-    public $client_fhonewhats, $user, $showotp = 1, $formsignup, $phone2, $namecust, $namestore, $selectcity, $selectnashat, $selectstate, $citys = [], $states = [], $nashat = [];
+    public $client_code,$store_name,$client_state,$client_fhonewhats, $user, $showotp = 1, $formsignup, $phone2, $namecust, $namestore, $selectcity, $selectnashat, $selectstate, $citys = [], $states = [], $nashat = [];
     public $success;
     protected $listeners = [
         'success' => 'success1'
@@ -62,6 +62,9 @@ class Register extends Component
         $user = User::create([
             'client_fhonewhats' =>  $this->client_fhonewhats,
             'client_name' =>  $this->namecust,
+            'client_code' =>  $this->client_code,
+            'store_name' =>  $this->store_name,
+            'client_state' =>  $this->client_state,
             'client_fhoneLeter' =>  $this->phone2,
             'region_id' =>  $this->selectstate,
             'categoryAPP' =>  $this->selectnashat,

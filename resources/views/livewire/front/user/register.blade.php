@@ -69,6 +69,27 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
+                                            <input id="store_name" type="text" class="form-control"
+                                                wire:model.defer="store_name">
+                                            <label for="store_name">{{ __('front.store_name') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating">
+                                            <input id="client_state" type="text" class="form-control"
+                                                wire:model.defer="client_state">
+                                            <label for="client_state">{{ __('front.client_state') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating">
+                                            <input id="client_code" type="text" class="form-control"
+                                                wire:model.defer="client_code">
+                                            <label for="client_code">{{ __('front.client_code') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating">
                                             <input type="text" class="form-control" wire:model.defer="phone2">
                                             <label for="phone2">{{ __('front.phone2') }}</label>
                                         </div>
