@@ -21,11 +21,11 @@ class Product extends Component
     public function qtyincrement($product_id){
         $this->maxq();
         Cart::getroductid($product_id)->increment('qty', $this->qty);
-     
+
     }
     public function checksmaxqty()
     {
-        if ($this->product->maxqty === ($this->product->cart->qty ?? 0)) {
+        if ($this->product->maxqty === ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
         }
     }
