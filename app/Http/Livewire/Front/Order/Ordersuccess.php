@@ -16,8 +16,6 @@ class Ordersuccess extends Component
     {
         $status = Session::get('status');
         $id = Session::get('id');
-        
-        dd($status, $id );
         if($status == 'closeold'){
             $this->order = SalesHeader::where('id',$id)->with('salesdetails')->first();
         }
