@@ -35,8 +35,16 @@ class Offer extends Component
        }
     }
    public function addtocart($product_id){
+        if ($this->product->scopeQtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
+        }
+        if ($this->product->maxqty === $this->product->cart->qty) {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
+        }
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
+        return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم الاضافة للعربة', 'type' => 'success']);
+     
    }
    public function addtowishlist($product_id){
         $wishlist = Wishlist::where(['product_id'=>$this->product->id,'user_id'=> Auth::guard('client')->user()->id])->first();
