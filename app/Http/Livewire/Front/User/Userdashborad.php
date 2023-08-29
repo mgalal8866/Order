@@ -11,9 +11,11 @@ use App\Models\User;
 use App\Models\Wishlist;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\WithPagination;
 
 class Userdashborad extends Component
 {
+    use WithPagination;
     public function render()
     {
 
@@ -22,8 +24,8 @@ class Userdashborad extends Component
         $data += ['cart'          => Cart::where('user_id',Auth::guard('client')->user()->id)->get()];
         $data += ['wishlist'      => Wishlist::where('user_id',Auth::guard('client')->user()->id)->get()];
         $data += ['saleheader'    => SalesHeader::where('client_id',Auth::guard('client')->user()->id)->get()];
-        $data += ['clientpayment'    => ClientPayments::where('clientpay_id',Auth::guard('client')->user()->id)->get()];
-        $data += ['notfiction'    =>  notifiction::where('user_id', Auth::guard('client')->user()->id)->orwhere('user_id', null)->latest()->get()];
+        $data += ['clientpayment'    => ClientPayments::where('clientpay_id',Auth::guard('client')->user()->id)->latest()->get()];
+        $data += ['notfiction'    =>  notifiction::where('user_id', Auth::guard('client')->user()->id)->orwhere('user_id', null)->latest()->paginate(20)];
         return view('livewire.front.user.userdashborad', [ 'data'=>$data ])->layout('layouts.front-end.layout');
     }
 }

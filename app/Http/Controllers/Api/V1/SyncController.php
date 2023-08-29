@@ -52,6 +52,7 @@ use App\Models\Move_Partners;
 use App\Models\MovementStock;
 use App\Models\ProductHeader;
 use App\Models\Supplier_Grup;
+use App\Models\ClientPayments;
 use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
 use App\Models\PurchaseHeader;
@@ -1168,6 +1169,32 @@ class SyncController extends Controller
                     'Payment_method'  => $item['Payment_method'],
                     'user_id'         => $item['user_id'],
                     'safe_id'         => $item['safe_id'],
+                ]);
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function upload_user_payment(Request $request)
+    {
+        Log::info('upload_supplier_payments', ['0' => $request->all()]);
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu = ClientPayments::updateOrCreate(['id' => $item['PaymentsCle_id']], [
+                    'id'                => $item['PaymentsCle_id'],
+                    'clientpay_id'      => $item['ClientPay_Id'],
+                    'fromeamount'       => $item['FromeAmount'],
+                    'paidamount'        => $item['PaidAmount'],
+                    'newamount'         => $item['NewAmount'],
+                    'pay_note'          => $item['Pay_note'],
+                    'payment_method'       => $item['Payment_method'],
+                    'user_id'           => $item['user_id'],
+                    'safe_id'           => $item['safe_id'],
                 ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
