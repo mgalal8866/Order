@@ -11,17 +11,29 @@ use Illuminate\Support\Facades\Log;
 
 class Product extends Component
 {
-    public $product ,$count,$qty,$instock;
+    public $product ,$count,$qty,$instock,$maxqty;
     public function mount( $product){
         $this->product= $product;
         $this->product->productheader->product_isscale == 1 ?$this->qty = 0.125 :$this->qty = 1;
-        $this->instock = $product->Qtystockapi($product->productheader->stock->sum('quantity'));
 
 
     }
     public function qtyincrement($product_id){
+        $this->maxq();
         Cart::getroductid($product_id)->increment('qty', $this->qty);
-        // $this->qty +=  $this->qty;
+     
+    }
+    public function checksmaxqty()
+    {
+        if ($this->product->maxqty === ($this->product->cart->qty ?? 0)) {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
+        }
+    }
+    public function checkstock()
+    {
+        if ($this->product->Qtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
+        }
     }
 
     public function qtydecrement($product_id){
@@ -36,12 +48,8 @@ class Product extends Component
     }
    public function addtocart($product_id){
 
-    if($this->instock === 'غير متوفر'){
-        return  $this->dispatchBrowserEvent('notifi', ['message' =>'منتج غير متوفر', 'type' => 'danger']);
-    }
-    if ($this->product->maxqty === $this->product->cart->qty) {
-            return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
-    }
+        $this->checkstock();
+        $this->maxq();
         $ss =  Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
         $this->emit('count');
         return  $this->dispatchBrowserEvent('notifi', ['message' => 'تم الاضافة للعربة', 'type' => 'success']);
