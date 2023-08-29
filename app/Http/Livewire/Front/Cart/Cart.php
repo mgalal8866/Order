@@ -14,7 +14,6 @@ use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
 use App\Models\DeliveryDetails;
 use App\Models\Cart as ModelsCart;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 class Cart extends Component
