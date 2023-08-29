@@ -11,13 +11,14 @@ use Illuminate\Support\Facades\Log;
 
 class Product extends Component
 {
-    public $product, $count, $qty, $instock, $maxqty;
-    public function mount($product)
+    public $product, $count, $qty, $instock, $maxqty,$wish =false;
+    public function mount($product,$wish =false)
     {
+        $this->wish = $wish;
         $this->product = $product;
         $this->product->productheader->product_isscale == 1 ? $this->qty = 0.125 : $this->qty = 1;
     }
- 
+
     public function qtyincrement($product_id)
     {
         if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {

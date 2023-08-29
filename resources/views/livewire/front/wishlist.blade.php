@@ -3,8 +3,8 @@
     <section class="wishlist-section section-b-space">
         <div class="container-fluid-lg">
             <div class="row g-sm-3 g-2">
-                @forelse ($wish as $w)
-                    <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+                @forelse ($wish as $index=> $w)
+                    {{-- <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
                         <div class="product-box-3 h-100">
                             <div class="product-header">
                                 <div class="product-image">
@@ -55,7 +55,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
+                    @livewire('front.compon.product', ['product' => $w, 'wish' => true], key($index))
                 @empty
                     <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
                         المفضلة فارغه

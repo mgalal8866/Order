@@ -1,19 +1,25 @@
 <div>
-    <div class="product-box product-box-bg wow fadeIn" >
+    <div class="product-box product-box-bg wow fadeIn">
         <div class="product-image">
             <a>
                 <img src="{{ $product->productd_image ?? '' }}" class="img-fluid lazyload"
                     alt=" {{ $product->productheader->product_name ?? '' }}">
             </a>
+            @if($wish == true)
+            <div class="product-header-top">
+                <a class="btn wishlist-button" wire:click='removewishlist({{ $product->id }})'>
+                    <div wire:ignore><i data-feather="x"></i></div>
+                </a>
+            </div>
+            @endif
             @auth('client')
                 <ul class="product-option">
                     <li data-bs-toggle="tooltip" data-bs-placement="top" title="المفضلة">
-                        <div > <a wire:click.prevent="addtowishlist({{ $product->id ?? '' }})" href=""
-                              >
+                        <div> <a wire:click.prevent="addtowishlist({{ $product->id ?? '' }})" href="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                @if(!empty($product->wishlist->count())) fill="red" style="color: red" @else   fill="none" @endif
-                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round" class="feather feather-heart">
+                                    @if (!empty($product->wishlist->count())) fill="red" style="color: red" @else   fill="none" @endif
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                    class="feather feather-heart">
                                     <path
                                         d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
                                     </path>
@@ -34,14 +40,22 @@
             </a>
             <h6 class="name theme-color">
                 {{ $product->Qtystockapi($product->productheader->stock->sum('quantity')) }}
-                </h6>
-            <h6 class="sold weight text-content fw-normal">@if($product->productheader->product_isscale == 0) {!! $product->Custunit($product->product_header_id) ?? '' !!} @else  بالوزن  @endif</h6>
+            </h6>
+            <h6 class="sold weight text-content fw-normal">
+                @if ($product->productheader->product_isscale == 0)
+                    {!! $product->Custunit($product->product_header_id) ?? '' !!}
+                @else
+                    بالوزن
+                @endif
+            </h6>
             @if ($product->isoffer == 0)
-            <h6 class="price theme-color">{{ $product->productd_Sele1 ?? '' }} جم</h6>
+                <h6 class="price theme-color">{{ $product->productd_Sele1 ?? '' }} جم</h6>
             @else
-
-            <h6 class="price theme-color">{{ $product->productd_Sele2 }} جم   <span style="color:green"> بدلا </span><del style="color: gray"> {{$product->productd_Sele1}} جم </del></h6>
-            @if ($product->isoffer != 0) <h6 style="color: red"> عرض :     {{ $product->EndOferDate}}</h6> @endif
+                <h6 class="price theme-color">{{ $product->productd_Sele2 }} جم <span style="color:green"> بدلا
+                    </span><del style="color: gray"> {{ $product->productd_Sele1 }} جم </del></h6>
+                @if ($product->isoffer != 0)
+                    <h6 style="color: red"> عرض : {{ $product->EndOferDate }}</h6>
+                @endif
 
             @endif
             @if ($product->productheader->stock->sum('quantity') > 0)
@@ -64,7 +78,7 @@
                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                     </button>
                                     <input class="form-control input-number qty-input" type="text" name="quantity"
-                                      value="{{ $product->productheader->product_isscale == 1 ? $product->cart->qty : number_format($product->cart->qty, 0, '.', '') }}">
+                                        value="{{ $product->productheader->product_isscale == 1 ? $product->cart->qty : number_format($product->cart->qty, 0, '.', '') }}">
                                     <button type="button" wire:click.prevent='qtyincrement({{ $product->id }})'
                                         class="qty-right-plus">
                                         <i class="fa fa-plus" aria-hidden="true"></i>
@@ -75,13 +89,13 @@
 
                     </div>
                 @endauth
-                @else
+            @else
                 @auth('client')
-                <div class="add-to-cart-box bg-white">
-                    <button class="btn btn-add-cart addcart-button" >
-                        غير متوفر
-                    </button>
-                </div>
+                    <div class="add-to-cart-box bg-white">
+                        <button class="btn btn-add-cart addcart-button">
+                            غير متوفر
+                        </button>
+                    </div>
                 @endauth
             @endif
         </div>
