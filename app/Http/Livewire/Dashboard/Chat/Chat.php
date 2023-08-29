@@ -15,13 +15,15 @@ class Chat extends Component
     public $messagesold=[], $messages=[],$conversions_id =null,$text ,$nameuser,$cc ;
     // protected $listeners = ['echo:chat.1,.message' => 'appendContent'];
     public function sentmessage(){
-        $messages = message::create(['seenmsg' =>  0, 'conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id]);;
+        $data = ['seenmsg' =>  0, 'conversions_id' =>  $this->conversions_id, 'message' => $this->text, 'admin_id' => Auth::guard('admin')->user()->id];
+
+        $messages = message::create($data);;
+        $msg = new ChatResource($messages);
+        event(new MessageSent($msg));
+
 
         $con = conversion::find($this->conversions_id);
-        $sett = setting::find(1);
         notificationFCM('رسالة جديده', $this->text,[$con->user->fsm]);
-        $msg = new ChatResource($messages);
-         event(new MessageSent($msg));
          $this->text ='';
     }
     public function loadmessage($id,$name){
