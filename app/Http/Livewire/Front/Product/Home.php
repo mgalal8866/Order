@@ -35,6 +35,7 @@ class Home extends Component
         })->orderBy('updated_at','DESC')->paginate($this->count);
         $this->data =[ 'products'=>$products,'offers'=>$offers ];
 
+        $this->dispatchBrowserEvent('notifi', ['message' => '  ', 'type' => 'danger']);
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
     }
 }
