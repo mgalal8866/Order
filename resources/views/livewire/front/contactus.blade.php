@@ -80,7 +80,9 @@
                                                     </div>
 
                                                     <div class="contact-detail-contain">
-                                                        <p>{{ $setting->facebook }}</p>
+                                                        <p><a class=" theme-color" href="{{ $setting->facebook }}">هن ا </a></p>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -96,7 +98,7 @@
                                                     </div>
 
                                                     <div class="contact-detail-contain">
-                                                        <p>{{ $setting->youtube }}</p>
+                                                      <p><a class=" theme-color" href="{{ $setting->youtube }}">هنا </a></p>
                                                     </div>
                                                 </div>
                                             </div>
