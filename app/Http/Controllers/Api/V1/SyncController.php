@@ -78,6 +78,11 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 
 class SyncController extends Controller
 {
+    function client_count(Request $request)
+    {
+        $count = user::count();
+        return    Resp($count, 'success', 200, true);
+    }
     function client(Request $request)
     {
         try {

@@ -114,6 +114,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::get('/delete/sales/header/{id}', [SyncController::class, 'delete_selseheader']);
     Route::get('/delete/delivery/header/{id}', [SyncController::class, 'delete_deliveryheader']);
     Route::get('/delete/gallery/{id?}', [SyncController::class, 'deletegallery']);
+    Route::get('/client/count',        [SyncController::class, 'client_count']);
     //Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
 
     Route::post('/client',        [SyncController::class, 'client']);
