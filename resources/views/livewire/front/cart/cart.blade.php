@@ -93,7 +93,7 @@
                                                 </h5>
                                                 @if ($c['isoffer'] == 1)
                                                     <h6 class="theme-color">{{ __('tran.yousave') }} :
-                                                        {{ $c['productd_Sele1'] - $c['productd_Sele2'] }}{{ $currency }}
+                                                        {{ ($c['productd_Sele1'] - $c['productd_Sele2']) * $c['productheader']['product_isscale'] == 1 ? $c['cart']['qty'] : number_format((float) $c['cart']['qty'], 0, '.', '')  }}{{ $currency }}
                                                     </h6>
                                                 @endif
                                             </td>
@@ -257,5 +257,5 @@
 </div>
 
 @push('jslive')
-  
+
 @endpush
