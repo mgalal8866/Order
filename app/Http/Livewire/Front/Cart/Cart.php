@@ -30,13 +30,15 @@ class Cart extends Component
             $this->cul['deferreds'] = $deferreds->statu;
         }
     }
-    public function culc()
+    public function culculter()
     {
+        $this->cul['productdiscount']  = 0;
         $this->cul['subtotal']      = 0;
         $this->cul['totaldiscount'] = 0;
         $this->cul['total_profit']  = 0;
         foreach ($this->cartlist as $i) {
             if ($i['isoffer'] == 1) {
+
                 $this->cul['productdiscount'] += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
                 $this->cul['subtotal']       +=  $i['cart']['qty'] * $i['productd_Sele2'];
                 $this->cul['totaldiscount']  += ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']);
@@ -79,7 +81,7 @@ class Cart extends Component
     {
         if ($this->cartlist[$index]['cart']['qty'] >= 1) {
             $this->cartlist[$index]['cart']['qty'] = $this->cartlist[$index]['cart']['qty'] + 1;
-            $this->culc();
+            $this->culculter();
             ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart']['qty']]);
         }
     }
@@ -125,7 +127,7 @@ class Cart extends Component
     {
         if ($this->cartlist[$index]['cart']['qty'] >= 2) {
             $this->cartlist[$index]['cart']['qty'] = $this->cartlist[$index]['cart']['qty'] - 1;
-            $this->culc();
+            $this->culculter();
             ModelsCart::where('product_id', $this->cartlist[$index]['id'])->select('qty')->update(['qty' => $this->cartlist[$index]['cart']['qty']]);
         }
     }
@@ -146,7 +148,7 @@ class Cart extends Component
             return  $q->where('user_id', Auth::guard('client')->user()->id);
         })->with('unit')->with('cart')->with('productheader')->get();
 
-        $this->culc();
+        $this->culculter();
         return view('livewire.front.cart.cart')->layout('layouts.front-end.layout');
     }
 }
