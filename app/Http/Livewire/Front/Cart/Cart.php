@@ -103,16 +103,20 @@ class Cart extends Component
             'note'              => $this->note ?? 'لا يوجد ملاحظات',
         ]);
         foreach ($this->cartlist as $i) {
-            DeliveryDetails::create([
+           $subtotal =  ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']);
+           $discount =  ($i->isoffer == 1 ? ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']) : 0);
+           $profit = ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1) -  $i->productd_bay *$i['cart']['qty'] - $discount ;
+           DeliveryDetails::create([
                 'sale_header_id'     =>  $header->id,
                 'product_details_id' =>  $i->id,
                 'buyprice'           =>  $i->productd_bay,
+                // 'sellprice'          => ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1),
                 'sellprice'          => ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1),
                 'quantity'           =>  $i['cart']['qty'],
-                'subtotal'           => ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']),
-                'discount'           => ($i->isoffer == 1 ? ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']) : 0),
-                'grandtotal'         => ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']),
-                'profit'             => ($i->isoffer == 1 ?  $i->productd_Sele2 : $i->productd_Sele1) - $i->productd_bay,
+                'subtotal'           =>  $subtotal,
+                'discount'           =>  $discount,
+                'grandtotal'         =>  $subtotal- $discount,
+                'profit'             =>  $profit,
             ]);
         }
 
