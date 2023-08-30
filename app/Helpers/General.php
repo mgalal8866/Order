@@ -178,9 +178,10 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     // return  curl_exec($ch);
 }
 
-function replacetext($originalString, $user = null, $product = null, $cart = null)
+function replacetext($originalString, $user = null, $product = null, $cart = null,$statu=null)
 {
     $replacements = [
+        '{statu}'  => $statu ?? '',
         '{name}'  => $user->client_name ?? '',
         '{email}' => $user->email ?? '',
         '{oldprice}' => $product->productd_Sele1 ?? '',

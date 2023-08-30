@@ -78,7 +78,7 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 
 class SyncController extends Controller
 {
-    function client_count(Request $request)
+    function client_count()
     {
         $count = user::count();
         return    Resp($count, 'success', 200, true);
@@ -377,9 +377,10 @@ class SyncController extends Controller
     function uploadsdelivery(Request $request)
     {
         Log::info('Delivery', ['0' => $request->all()]);
-
+        //تم الاستلام /جارى التجهيز /خرج للتوصيل / التوصيل
         try {
             foreach ($request->all() as $index => $item) {
+                $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
                 $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
                     "invoicenumber" =>  $item['InvoiceNumber'],
@@ -416,6 +417,15 @@ class SyncController extends Controller
                     "satus_delivery" =>  $item['Status_Delvery'],
                     "sales_online"   =>  $item['SalesOnlain']
                 ]);
+                if ($item['Type_Order']  != $oldtypeorder->type_order) {
+                    $set = getsetting();
+                    if ($set->notif_change_statu == 1) {
+                        $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
+                        $body = replacetext($set->notif_change_text, null, null, null, $item['Type_Order']);
+                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
+                    }
+                }
+
                 DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                 foreach ($item[1] as $index => $item2) {
                     Log::info('DeliveryHeader', $item2);
