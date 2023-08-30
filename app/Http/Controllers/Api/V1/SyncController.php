@@ -419,14 +419,13 @@ class SyncController extends Controller
                     "satus_delivery" =>  $item['Status_Delvery'],
                     "sales_online"   =>  $item['SalesOnlain']
                 ]);
-               
+
                 if ($item['Type_Order']  != $oldtypeorder->type_order) {
-                    $set = getsetting();
-                    Log::error( $set);
-                    if ($set->notif_change_statu == 1) {
+                    
+                    if (getsetting()->notif_change_statu == 1) {
                         $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
                         Log::error(   $user );
-                        $body = replacetext($set->notif_change_text, null, null, null, $item['Type_Order']);
+                        $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
                         Log::error(    $body );
                         notificationFCM('مرحبأ ', $body, [$user->fsm]);
                     }
