@@ -105,7 +105,7 @@ class Cart extends Component
         foreach ($this->cartlist as $i) {
         //    $subtotal =  ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']);
            $subtotal =  $i['cart']['qty'] * $i['productd_Sele1'];
-           $discount =  ($i->isoffer == 1 ? ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']) : 0);
+           $discount =  ($i->isoffer == 1 ? ($i['productd_Sele1'] - $i['productd_Sele2']) * $i['cart']['qty'] : 0);
            $profit   =  $i->productd_Sele1 -  $i->productd_bay * $i['cart']['qty'] - $discount ;
            DeliveryDetails::create([
                 'sale_header_id'     =>  $header->id,
