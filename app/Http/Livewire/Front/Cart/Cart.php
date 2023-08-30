@@ -103,7 +103,8 @@ class Cart extends Component
             'note'              => $this->note ?? 'لا يوجد ملاحظات',
         ]);
         foreach ($this->cartlist as $i) {
-           $subtotal =  ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']);
+        //    $subtotal =  ($i->isoffer == 1 ?  $i['cart']['qty'] * $i['productd_Sele2'] : $i['cart']['qty'] * $i['productd_Sele1']);
+           $subtotal =  $i['cart']['qty'] * $i['productd_Sele1'];
            $discount =  ($i->isoffer == 1 ? ($i['cart']['qty'] * $i['productd_Sele1']) - ($i['cart']['qty'] * $i['productd_Sele2']) : 0);
            $profit = ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1) -  $i->productd_bay *$i['cart']['qty'] - $discount ;
            DeliveryDetails::create([
