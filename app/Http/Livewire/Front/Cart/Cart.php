@@ -111,7 +111,7 @@ class Cart extends Component
                 'product_details_id' =>  $i->id,
                 'buyprice'           =>  $i->productd_bay,
                 // 'sellprice'          => ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1),
-                'sellprice'          => ($i->isoffer == 1 ? $i->productd_Sele2 : $i->productd_Sele1),
+                'sellprice'          =>  $i->productd_Sele1,
                 'quantity'           =>  $i['cart']['qty'],
                 'subtotal'           =>  $subtotal,
                 'discount'           =>  $discount,
