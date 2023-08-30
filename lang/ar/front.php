@@ -9,7 +9,7 @@ return [
     'phone'        => 'رقم الهاتف',
     'kosik'        => 'كشك',
     'home'         => 'الرئيسية',
-    'nashat'       => 'النشاط',
+    'nashat'       => 'نوع الحساب',
     'namecust'     => 'اسم العميل',
     'namestore'    => 'اسم المتجر',
     'address'      => 'العنوان',
@@ -28,8 +28,8 @@ return [
     'notification' => 'الاشعارات',
     'contactus'    => 'اتصل بنا',
     'client_state' => 'العنوان',
-    'client_code'  => 'الكود',
-    'store_name'   => 'اسم المتجر',
+    'client_code'  => '(اختيارى) الكود',
+    'store_name'   => 'الاسم الثانى او اسم المتجر',
     'payd'         => 'مدفوعاتى',
     'forgotpass'   => 'استرجاع الباسورد'
 ];

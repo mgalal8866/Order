@@ -1221,7 +1221,7 @@ $('.slider-7_1').slick({
     arrows: true,
     infinite: true,
     slidesToShow: 7,
-    slidesToScroll: 1,
+    slidesToScroll: 4,
     responsive: [{
             breakpoint: 1660,
             settings: {
