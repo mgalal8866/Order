@@ -382,6 +382,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
                 Log::error($oldtypeorder );
+                Log::error( $item['Type_Order']);
                 $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
                     "invoicenumber" =>  $item['InvoiceNumber'],
@@ -418,7 +419,7 @@ class SyncController extends Controller
                     "satus_delivery" =>  $item['Status_Delvery'],
                     "sales_online"   =>  $item['SalesOnlain']
                 ]);
-                Log::error($item['Type_Order'] , $oldtypeorder->type_order);
+               
                 if ($item['Type_Order']  != $oldtypeorder->type_order) {
                     $set = getsetting();
                     Log::error( $set);
