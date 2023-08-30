@@ -33,7 +33,6 @@
                             </div>
                         </div>
                         <div class="col-xxl-9 col-lg-8">
-
                             @if (count($data['offers']) >= 1)
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
@@ -47,8 +46,7 @@
                             <div class="title d-block">
                                 <h2 class="text-theme font-sm">{{ __('tran.products') }}</h2>
                             </div>
-                            <div
-                                class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow
+                            <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow
                                     section-b-space">
                                 @foreach ($data['products']  as $index=> $product)
                                     @livewire('front.compon.product', ['product' => $product], key($index))

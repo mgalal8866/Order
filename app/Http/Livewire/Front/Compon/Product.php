@@ -26,8 +26,6 @@ class Product extends Component
         }
         Cart::getroductid($product_id)->increment('qty', $this->qty);
     }
-
-
     public function qtydecrement($product_id)
     {
         $data =  Cart::getroductid($product_id)->first();
@@ -61,10 +59,18 @@ class Product extends Component
             Wishlist::create(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id]);
         }
     }
+    // public function removewishlist($id)
+    // {
+    //     Wishlist::where('product_id',$id)->delete();
+    // }
+
     public function render()
     {
-        $this->product = ProductDetails::where('id', $this->product->id)->online()->with('productheader')->with('unit')->with(
-            'cart',
+        $this->product = ProductDetails::where('id', $this->product->id)
+        ->online()
+        ->with('productheader')
+        ->with('unit')
+        ->with('cart',
             function ($q) {
                 if (!empty(Auth::guard('client')->user()->id)) {
                     $q->where('user_id', Auth::guard('client')->user()->id);
