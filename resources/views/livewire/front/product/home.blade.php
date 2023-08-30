@@ -37,7 +37,8 @@
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
-                                <div class="slider-6_1 product-wrapper">
+                                <div class="slider-7_1 arrow-slider img-slider">
+                                {{-- <div class="slider-6  slick-slider product-wrapper"> --}}
                                     @foreach ($data['offers'] as $index => $product)
                                         @livewire('front.compon.offer', ['product' => $product], key($index))
                                     @endforeach
