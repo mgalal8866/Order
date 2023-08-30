@@ -381,8 +381,18 @@ class SyncController extends Controller
         try {
             foreach ($request->all() as $index => $item) {
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
-                Log::error($oldtypeorder );
-                Log::error( $item['Type_Order']);
+                if ($item['Type_Order']  != $oldtypeorder->type_order) {
+                    if (getsetting()->notif_change_statu == 1) {
+                        $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
+                        $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
+                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
+                        if ($item['Type_Order'] == 'تم التوصيل') {
+                            DeliveryHeader::where("id", $item['SalesHeader_ID'])->delete();
+                            DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
+                            return Resp(null, 'Success', 200, true);
+                        }
+                    }
+                }
                 $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
                     "invoicenumber" =>  $item['InvoiceNumber'],
@@ -419,18 +429,6 @@ class SyncController extends Controller
                     "satus_delivery" =>  $item['Status_Delvery'],
                     "sales_online"   =>  $item['SalesOnlain']
                 ]);
-
-                if ($item['Type_Order']  != $oldtypeorder->type_order) {
-                    
-                    if (getsetting()->notif_change_statu == 1) {
-                        $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
-                        Log::error(   $user );
-                        $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
-                        Log::error(    $body );
-                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
-                    }
-                }
-
                 DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('DeliveryHeader', $item2);
