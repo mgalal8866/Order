@@ -418,6 +418,7 @@ class SyncController extends Controller
                     "satus_delivery" =>  $item['Status_Delvery'],
                     "sales_online"   =>  $item['SalesOnlain']
                 ]);
+                Log::error($item['Type_Order'] , $oldtypeorder->type_order);
                 if ($item['Type_Order']  != $oldtypeorder->type_order) {
                     $set = getsetting();
                     Log::error( $set);
