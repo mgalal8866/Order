@@ -380,6 +380,7 @@ class SyncController extends Controller
         //تم الاستلام /جارى التجهيز /خرج للتوصيل / التوصيل
         try {
             foreach ($request->all() as $index => $item) {
+                Log::error($item['Type_Order'] );
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
                 if ($item['Type_Order']  != $oldtypeorder->type_order) {
                     if (getsetting()->notif_change_statu == 1) {
