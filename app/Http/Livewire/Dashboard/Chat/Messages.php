@@ -27,7 +27,7 @@ class Messages extends Component
     {
         $domain = Tenants::getdomain();
         return [
-            "echo:chat.$domain.{$this->getid},.message" => 'appendContent',
+            "echo:chat.{$domain}.{$this->getid},.message" => 'appendContent',
             'getmessagesold' => 'getmessagesold'
         ];
     }

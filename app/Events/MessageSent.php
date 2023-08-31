@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Facade\Tenants;
 use App\Models\User;
 use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
@@ -37,9 +38,9 @@ class MessageSent implements ShouldBroadcast
      */
     public function broadcastOn(): array
     {
-
+        $domain = Tenants::getdomain();
         return [
-            new Channel('chat.'.$this->message->conversions_id),
+            new Channel('chat.'.$domain.'.'.$this->message->conversions_id),
         ];
     }
     public function broadcastAs()
