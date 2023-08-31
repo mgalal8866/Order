@@ -10,10 +10,12 @@ use Livewire\Component;
 class Messages extends Component
 {
 
-    public $messageso = [], $getid, $name;
+    public $messageso = [], $getid, $name,$gdomain;
 
     public function mount($id)
     {
+        $gdomain = Tenants::getdomain();
+        dd($gdomain);
         $this->getid = $id;
     }
     public function getmessagesold($id, $name)
@@ -25,9 +27,9 @@ class Messages extends Component
 
     public function getListeners()
     {
-        $domain = Tenants::getdomain();
+
         return [
-            "echo:chat.{$domain}.{$this->getid},.message" => 'appendContent',
+            "echo:chat.{$this->gdomain}.{$this->getid},.message" => 'appendContent',
             'getmessagesold' => 'getmessagesold'
         ];
     }
