@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Dashboard\Chat;
 
+use App\Facade\Tenants;
 use App\Models\Message;
+use App\Models\Tenant;
 use Livewire\Component;
 
 class Messages extends Component
@@ -23,8 +25,9 @@ class Messages extends Component
 
     public function getListeners()
     {
+        $domain = Tenants::getdomain();
         return [
-            "echo:chat.{$this->getid},.message" => 'appendContent',
+            "echo:chat.$domain.{$this->getid},.message" => 'appendContent',
             'getmessagesold' => 'getmessagesold'
         ];
     }
