@@ -15,7 +15,6 @@ class Messages extends Component
     public function mount($id)
     {
         $this->gdomain = Tenants::getdomain();
-
         $this->getid = $id;
     }
     public function getmessagesold($id, $name)
