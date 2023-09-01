@@ -149,18 +149,18 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/test/{id}', function (Request $request) {
-        $p = ProductDetails::find($request->id);
-        $text = getsetting()->notif_newoffer_text;
-        $updatedString =  replacetext($text, '', $p);
+    Route::get('/test', function (Request $request) {
+        // $p = ProductDetails::find($request->id);
+        // $text = getsetting()->notif_newoffer_text;
+        // $updatedString =  replacetext($text, '', $p);
 
-        return $updatedString;
-        // $users = [
-        //     'username'  => 'admin',
-        //     'password'  => 'admin1234',
-        // ];
+        // return $updatedString;
+        $users = [
+            'username'  => 'admin',
+            'password'  => 'admin1234',
+        ];
 
-        // $admin =  UserAdmin::firstOrCreate($users);
+        $admin =  UserAdmin::firstOrCreate($users);
         //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
