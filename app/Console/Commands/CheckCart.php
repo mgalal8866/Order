@@ -43,7 +43,7 @@ class CheckCart extends Command
                     $users = User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
                         $q->whereBetween('updated_at', [$from, $to]);
                     })->where('fsm','!=',null)->pluck('fsm');
-                    notificationFCM('مرحبا', $mgs, $users);
+                    notificationFCM('مرحبا', $mgs, $users,null,null,null,null,null,false);
                 }
             }
 
