@@ -17,6 +17,7 @@ class TenantService
 {
     private  $tenant;
     private  $domain;
+    private  $name;
     private  $database;
     private  $setting;
     public function switchToTanent(Tenant $tenant)
@@ -36,9 +37,8 @@ class TenantService
 
         if ($tenant->username != null) {
             Config::set('database.connections.tenant.username', $tenant->username);
-        }else{
+        } else {
             Config::set('database.connections.tenant.username', 'root');
-
         };
 
         if ($tenant->password != null) {
@@ -47,21 +47,22 @@ class TenantService
 
         DB::reconnect('tenant');
         DB::setDefaultconnection('tenant');
-       $this->tenant   = $tenant;
-       $this->domain   = $tenant->domin;
-       $this->database = $tenant->database;
-       $this->changepusher();
+        $this->tenant   = $tenant;
+        $this->domain   = $tenant->domin;
+        $this->database = $tenant->database;
+        $this->name     = $tenant->name;
+        $this->changepusher();
 
-       if (env('SHARE_VIEW', true) == true) {
-        // if( $tenant != null){
+        if (env('SHARE_VIEW', true) == true) {
+            // if( $tenant != null){
             $this->setting = Cache::get($tenant->domin . '_settings', []);
             View::share('setting',   $this->setting);
             View::share('categorys', Category::active(1)->parentonly()->get());
-        // }
-        //    View::composer('site.layout.layout', function ($view) use($tenant) {
-        //    });
-       // Config::set('database.connections.tenant.password', $tenant->password);
-       }
+            // }
+            //    View::composer('site.layout.layout', function ($view) use($tenant) {
+            //    });
+            // Config::set('database.connections.tenant.password', $tenant->password);
+        }
     }
 
     public  function switchToDefault()
@@ -90,6 +91,10 @@ class TenantService
     {
         return $this->domain;
     }
+    public function getname()
+    {
+        return $this->name;
+    }
 
     public function switchTanent($id)
     {
@@ -114,6 +119,5 @@ class TenantService
         $this->tenant   = $tenant;
         $this->domain   = $tenant->domin;
         $this->database = $tenant->database;
-
     }
 }

@@ -2,16 +2,22 @@
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\slider;
 use App\Facade\Tenants;
 use App\Imports\Client;
 use App\Models\setting;
-use App\Models\UserAdmin;
 
+use App\Models\UserAdmin;
 use App\Http\Livewire\About;
 use Illuminate\Http\Request;
+use App\Models\ProductHeader;
+use Illuminate\Http\Response;
+use App\Models\DeliveryHeader;
 use App\Models\ProductDetails;
 use App\Http\Livewire\Testchat;
+use App\Models\DeliveryDetails;
 use App\Http\Livewire\Front\Otp;
+use App\service\CheckimageService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -20,15 +26,14 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Livewire\Front\Wishlist;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
+
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Contactus;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\System\Dashboard;
 use Illuminate\Support\Facades\Artisan;
-
-use Illuminate\Http\Response;
-
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Dashboard\Chat\Chat;
@@ -39,12 +44,12 @@ use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Front\Order\Ordersuccess;
+
 use App\Http\Livewire\Front\Order\Ordertraking;
 use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
 use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Front\Product\Searchproduct;
-
 use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
 use App\Http\Livewire\Front\Gallery as galleryfront;
@@ -154,17 +159,10 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/test', function (Request $request)  {
+    Route::get('/test', function (Request $request) {
+        $tt = new CheckimageService();
 
-        $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
-        $to = Carbon::now(); // 2023-09-04 03:15:44
-
-        return User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
-            $q->whereBetween('updated_at', [$from, $to]);
-        })->where('fsm','!=',null)->pluck('fsm');
-        // $p = ProductDetails::find($request->id);
-        // $text = getsetting()->notif_newoffer_text;
-        // $updatedString =  replacetext($text, '', $p);
+        $tt->checkimg(slider::class,'image','sliders');
 
         // return $updatedString;
         // $users = [
