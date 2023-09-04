@@ -31,7 +31,7 @@ class CheckCart extends Command
      */
     public function handle()
     {
-        // Log::alert("Run Cron job",[]);
+        Log::alert("Run Cron job",['time'=> Carbon::now()]);
         $tenants = Tenant::get();
         $tenants->each(
             function ($tenant) use ($tenants) {
