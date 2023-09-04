@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Tenant;
 use App\Facade\Tenants;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Cache;
 
 class CheckCart extends Command
@@ -44,6 +45,7 @@ class CheckCart extends Command
                         $q->whereBetween('updated_at', [$from, $to]);
                     })->where('fsm','!=',null)->pluck('fsm');
                     notificationFCM('مرحبا', $mgs, $users,null,null,null,null,null,false);
+                    Log::alert("Run Cron job",[]);
                 }
             }
 
