@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckimageService
 {
-    public function checkimg( $model, $faild ,$folder)
+    public function checkimg($nametenant=null, $model, $faild ,$folder)
     {
         $tenantname  = Tenants::getname();
         $files = File::allFiles(public_path('asset/images/' . $folder));

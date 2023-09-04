@@ -162,7 +162,7 @@ Route::middleware('tenant')->group(function () {
     Route::get('/test', function (Request $request) {
         $tt = new CheckimageService();
 
-        $tt->checkimg(slider::class,'image','sliders');
+        $tt->checkimg(null,slider::class,'image','sliders');
 
         // return $updatedString;
         // $users = [
