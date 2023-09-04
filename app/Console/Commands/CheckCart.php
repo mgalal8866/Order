@@ -44,8 +44,7 @@ class CheckCart extends Command
                         $q->whereBetween('updated_at', [$from, $to]);
                     })->where('fsm', '!=', null)->pluck('fsm');
                     if (count($users) > 0) {
-
-                        Log::alert("done Cron job",[ notificationFCM('مرحبا', $set->notif_cart_text, $users, null, null, null, null, null, false)]);
+                        notificationFCM('مرحبا', $set->notif_cart_text, $users, null, null, null, null, null, false);
                     }
                 }
             }
