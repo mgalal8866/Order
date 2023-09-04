@@ -136,7 +136,7 @@ function uploadbase64images($folder, $image)
     // file_put_contents($file, $image_base64);
     return  $imageName;
 }
-function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null)
+function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null,$sav=true)
 {
 
 
@@ -174,7 +174,9 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     if(count($users) == 1){
         $uu = User::where('fsm', $users[0])->first();
     }
-    notifiction::create(['title' => $title, 'user_id' => $uu->id??$uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
+    if($sav == true){
+        notifiction::create(['title' => $title, 'user_id' => $uu->id??$uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
+    }
     // return  curl_exec($ch);
 }
 

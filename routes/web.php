@@ -161,7 +161,7 @@ Route::middleware('tenant')->group(function () {
 
         return User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
             $q->whereBetween('updated_at', [$from, $to]);
-        })->select('fsm')->get();
+        })->where('fsm','!=',null)->pluck('fsm');
         // $p = ProductDetails::find($request->id);
         // $text = getsetting()->notif_newoffer_text;
         // $updatedString =  replacetext($text, '', $p);

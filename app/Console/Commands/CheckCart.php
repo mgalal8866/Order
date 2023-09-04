@@ -40,9 +40,9 @@ class CheckCart extends Command
                     Tenants::switchToTanent($tenant);
                     $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
                     $to = Carbon::now(); // 2023-09-04 03:15:44
-                    $users = User::on('tenant')->wherehas('cart', function ($q) use ($from, $to) {
+                    $users = User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
                         $q->whereBetween('updated_at', [$from, $to]);
-                    })->select('fsm')->get();
+                    })->where('fsm','!=',null)->pluck('fsm');
                     notificationFCM('مرحبا', $mgs, $users);
                 }
             }
