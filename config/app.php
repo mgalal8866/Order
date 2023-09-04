@@ -73,6 +73,7 @@ return [
     |
     */
     'timezone' => env('APP_TIMEZONE', 'Africa/Cairo'),
+    // 'timezone' => env('APP_TIMEZONE', 'Africa/Cairo'),
 
 
     /*

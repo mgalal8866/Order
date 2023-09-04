@@ -26,6 +26,9 @@ use App\Http\Livewire\Front\Contactus;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\System\Dashboard;
 use Illuminate\Support\Facades\Artisan;
+
+use Illuminate\Http\Response;
+
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Dashboard\Chat\Chat;
@@ -41,8 +44,8 @@ use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
 use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Front\Product\Searchproduct;
-use App\Http\Livewire\Dashboard\Product\EditProduct;
 
+use App\Http\Livewire\Dashboard\Product\EditProduct;
 use App\Http\Livewire\Dashboard\Product\ViewProduct;
 use App\Http\Livewire\Front\Gallery as galleryfront;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
@@ -151,12 +154,13 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
-    Route::get('/test', function (Request $request) {
+    Route::get('/test', function (Request $request)  {
 
 
+        return  new Response(now()->timezone->getName());
         // Calculate the datetime 10 minutes ago
         $from = Carbon::now()->subMinutes(5); // 2023-09-04 01:30:44
-        
+
 
         date_default_timezone_set('Africa/Cairo'); // set your default timezone
         $to = Carbon::now()->addMinutes(5); // 2023-09-04 01:25:44
