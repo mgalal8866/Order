@@ -34,11 +34,12 @@ class CheckCart extends Command
         Log::alert("Run Cron job",['time'=> Carbon::now()]);
         $tenants = Tenant::get();
         $tenants->each(
-            function ($tenant) use ($tenants) {
+            function ($tenant) {
                 $set = Cache::get($tenant->domin . '_settings', []);
                 if ($set->notif_sent_cart == 1) {
                     Tenants::switchToTanent($tenant);
-                    $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
+                    $from = Carbon::now()->subDay(1); // 2023-09-04 03:05:44
+                    // $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
                     $to = Carbon::now(); // 2023-09-04 03:10:44
                     $users = User::on('tenant')->wherehas('cart', function ($q) use ($from, $to) {
                         $q->whereBetween('updated_at', [$from, $to]);
