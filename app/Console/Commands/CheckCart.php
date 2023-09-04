@@ -35,7 +35,6 @@ class CheckCart extends Command
         $tenants = Tenant::get();
         $tenants->each(
             function ($tenant) {
-
                 if (Cache::get($tenant->domain . '_settings', [])->notif_sent_cart == 1) {
                     $mgs = Cache::get($tenant->domain . '_settings', [])->notif_cart_text;
                     Tenants::switchToTanent($tenant);
