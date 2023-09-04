@@ -32,6 +32,7 @@ class CheckCart extends Command
     public function handle()
     {
 
+        Log::alert("Run Cron job",[]);
         $tenants = Tenant::get();
         $tenants->each(
             function ($tenant) {
@@ -44,7 +45,6 @@ class CheckCart extends Command
                         $q->whereBetween('updated_at', [$from, $to]);
                     })->where('fsm','!=',null)->pluck('fsm');
                     notificationFCM('مرحبا', $set['notif_cart_text'], $users,null,null,null,null,null,false);
-                    Log::alert("Run Cron job",[]);
                 }
             }
 
