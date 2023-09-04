@@ -35,8 +35,9 @@ class CheckCart extends Command
         Log::alert("Run Cron job",[]);
         $tenants = Tenant::get();
         $tenants->each(
-            function ($tenant) {
-                $set = Cache::get($tenant->domain . '_settings', []);
+            function ($tenant) use($tenants) {
+                $set = Cache::get($tenants->domain . '_settings', []);
+                Log::error($tenants->domain);
                 if ( $set['notif_sent_cart'] == 1) {
                     Tenants::switchToTanent($tenant);
                     $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
