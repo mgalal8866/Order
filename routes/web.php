@@ -156,27 +156,12 @@ Route::middleware('tenant')->group(function () {
 
     Route::get('/test', function (Request $request)  {
 
+        $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
+        $to = Carbon::now(); // 2023-09-04 03:15:44
 
-        // return  new Response(now()->timezone->getName());
-        // Calculate the datetime 10 minutes ago
-        // $from = Carbon::now()->subMinutes(5); // 2023-09-04 01:30:44
-
-
-        // date_default_timezone_set('Africa/Cairo'); // set your default timezone
-        // $to = Carbon::now()->addMinutes(5); // 2023-09-04 01:25:44
-        $to = Carbon::now(); // 2023-09-04 01:25:44
-        return $to;
-        // 2023-09-04 01:26:44
-        // 2023-09-04 01:30:44
-        // Update records where created_at is less than 10 minutes ago
-        // YourModel::where('created_at', '>', $tenMinutesAgo)
-        //     ->update([
-        //         'column_to_update' => 'new_value',
-        //         // Add more columns and values to update as needed
-        //     ]);
-        return User::wherehas('cart', function ($q) use($from,$to) {
+        return User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
             $q->whereBetween('updated_at', [$from, $to]);
-        })->get();
+        })->select('fsm')->get();
         // $p = ProductDetails::find($request->id);
         // $text = getsetting()->notif_newoffer_text;
         // $updatedString =  replacetext($text, '', $p);

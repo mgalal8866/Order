@@ -2,10 +2,12 @@
 
 namespace App\Console\Commands;
 
+use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Tenant;
 use App\Facade\Tenants;
-use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 
 class CheckCart extends Command
 {
@@ -28,10 +30,23 @@ class CheckCart extends Command
      */
     public function handle()
     {
+
         $tenants = Tenant::get();
-        $tenants->each(function ($tenant) {
-            Tenants::switchToTanent($tenant);
-            // User::has('cart')->
-        });
+        $tenants->each(
+            function ($tenant) {
+
+                if (Cache::get($tenant->domain . '_settings', [])->notif_sent_cart == 1) {
+                    $mgs = Cache::get($tenant->domain . '_settings', [])->notif_cart_text;
+                    Tenants::switchToTanent($tenant);
+                    $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
+                    $to = Carbon::now(); // 2023-09-04 03:15:44
+                    $users = User::on('tenant')->wherehas('cart', function ($q) use ($from, $to) {
+                        $q->whereBetween('updated_at', [$from, $to]);
+                    })->select('fsm')->get();
+                    notificationFCM('مرحبا', $mgs, $users);
+                }
+            }
+
+        );
     }
 }

@@ -72,7 +72,8 @@ return [
     | ahead and set this to a sensible default for you out of the box.
     |
     */
-    'timezone' => env('APP_TIMEZONE', 'Africa/Cairo'),
+    // 'timezone' => 'Asia/Kolkata',
+    'timezone' => 'Africa/Cairo',
     // 'timezone' => env('APP_TIMEZONE', 'Africa/Cairo'),
 
 
