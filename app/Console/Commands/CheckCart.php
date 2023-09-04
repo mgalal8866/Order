@@ -35,15 +35,15 @@ class CheckCart extends Command
         $tenants = Tenant::get();
         $tenants->each(
             function ($tenant) {
-                if (Cache::get($tenant->domain . '_settings', [])->notif_sent_cart == 1) {
-                    $mgs = Cache::get($tenant->domain . '_settings', [])->notif_cart_text;
+                $set = Cache::get($tenant->domain . '_settings', []);
+                if ( $set['notif_sent_cart'] == 1) {
                     Tenants::switchToTanent($tenant);
                     $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
                     $to = Carbon::now(); // 2023-09-04 03:15:44
                     $users = User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
                         $q->whereBetween('updated_at', [$from, $to]);
                     })->where('fsm','!=',null)->pluck('fsm');
-                    notificationFCM('مرحبا', $mgs, $users,null,null,null,null,null,false);
+                    notificationFCM('مرحبا', $set['notif_cart_text'], $users,null,null,null,null,null,false);
                     Log::alert("Run Cron job",[]);
                 }
             }
