@@ -157,13 +157,14 @@ Route::middleware('tenant')->group(function () {
     Route::get('/test', function (Request $request)  {
 
 
-        return  new Response(now()->timezone->getName());
+        // return  new Response(now()->timezone->getName());
         // Calculate the datetime 10 minutes ago
-        $from = Carbon::now()->subMinutes(5); // 2023-09-04 01:30:44
+        // $from = Carbon::now()->subMinutes(5); // 2023-09-04 01:30:44
 
 
-        date_default_timezone_set('Africa/Cairo'); // set your default timezone
-        $to = Carbon::now()->addMinutes(5); // 2023-09-04 01:25:44
+        // date_default_timezone_set('Africa/Cairo'); // set your default timezone
+        // $to = Carbon::now()->addMinutes(5); // 2023-09-04 01:25:44
+        $to = Carbon::now(); // 2023-09-04 01:25:44
         return $to;
         // 2023-09-04 01:26:44
         // 2023-09-04 01:30:44
