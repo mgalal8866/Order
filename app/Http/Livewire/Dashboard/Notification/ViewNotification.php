@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 class ViewNotification extends Component
 {
     use WithFileUploads;
-    public $setting, $selectactive = 1, $body, $title, $image, $users, $selectusers = [],
+    public $setting, $selectactive = 1, $body, $title, $image, $users, $selectusers = [], $selectmultiuser = [],
         $notif_sent_cart,
         $notif_change_statu,
         $notif_neworder,
@@ -26,9 +26,9 @@ class ViewNotification extends Component
         $notif_newoffer_text,
         $notif_welcome_text,
         $notif_newchat_text;
-
     public function mount()
     {
+
 
         $this->setting = setting::find(1);
 
@@ -71,14 +71,15 @@ class ViewNotification extends Component
 
     public function sendnotifiction()
     {
-
-        $this->users = DB::table('users')->where('fsm','!=',null)->pluck('fsm')->toArray();
-        if(count($this->users) != 0){
-            Log::error($this->users);
-            $results =  notificationFCM($this->title, $this->body,$this->users);
+        if ($this->selectactive == 0 && count($this->selectmultiuser) > 0) {
+            $send = DB::table('users')->where('fsm', '!=', null)->where('id', $this->selectmultiuser)->pluck('fsm')->toArray();
+        } elseif($this->selectactive == 1) {
+            $send =   DB::table('users')->where('fsm', '!=', null)->pluck('fsm')->toArray();
         }
-            // notifiction::create(['titel' => $this->title, 'body' => $this->body, 'user' => $this->users, 'image' => $this->image, 'results' => $results]);
-    }
+        if (count($send) != 0) {
+            $results =  notificationFCM($this->title, $this->body, $send );
+        }
+         }
     public function render()
     {
         return view('livewire.dashboard.notification.view-notification');
