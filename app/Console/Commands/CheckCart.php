@@ -31,24 +31,23 @@ class CheckCart extends Command
      */
     public function handle()
     {
-
-        Log::alert("Run Cron job",[]);
+        // Log::alert("Run Cron job",[]);
         $tenants = Tenant::get();
         $tenants->each(
-            function ($tenant) use($tenants) {
+            function ($tenant) use ($tenants) {
                 $set = Cache::get($tenant->domin . '_settings', []);
-                Log::error($tenant->domin);
-                Log::alert( '',[$set]);
-                if ( $set->notif_sent_cart == 1) {
+                if ($set->notif_sent_cart == 1) {
                     Tenants::switchToTanent($tenant);
                     $from = Carbon::now()->subMinutes(5); // 2023-09-04 03:05:44
                     $to = Carbon::now(); // 2023-09-04 03:10:44
-                    $users = User::on('tenant')->wherehas('cart', function ($q) use($from,$to) {
+                    $users = User::on('tenant')->wherehas('cart', function ($q) use ($from, $to) {
                         $q->whereBetween('updated_at', [$from, $to]);
-                    })->where('fsm','!=',null)->pluck('fsm');
-                    notificationFCM('مرحبا', $set->notif_cart_text, $users,null,null,null,null,null,false);
+                    })->where('fsm', '!=', null)->pluck('fsm');
+                    if (count($users) > 0) {
+                        notificationFCM('مرحبا', $set->notif_cart_text, $users, null, null, null, null, null, false);
+                    }
                 }
-                Log::alert("done Cron job",[]);
+                // Log::alert("done Cron job",[]);
             }
 
         );
