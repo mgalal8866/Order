@@ -4,20 +4,20 @@ namespace App\Http\Livewire\Dashboard\Users;
 
 use App\Repositoryinterface\UserRepositoryinterface;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
-    protected UserRepositoryinterface $usersRepository;
+    use WithPagination;
 
-    public function mount(UserRepositoryinterface $usersRepository)
+    public $pg = 30;
+    protected $paginationTheme = 'bootstrap';
+
+    public function render(UserRepositoryinterface $usersRepository)
     {
-        $this->usersRepository = $usersRepository;
-    }
+        // $this->usersRepository =  $usersRepository;
+        $users =   $usersRepository->getusers($this->pg);
 
-    public function render()
-    {
-        $users = $this->usersRepository->getusers();
-
-        return view('livewire.dashboard.users.index',compact('users'));
+        return view('livewire.dashboard.users.index', compact('users'));
     }
 }

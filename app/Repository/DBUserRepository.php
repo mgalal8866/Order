@@ -107,9 +107,9 @@ class DBUserRepository implements UserRepositoryinterface
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return $user;
     }
-    public function getusers()
+    public function getusers($pg = 30)
     {
-        return  User::paginate(10);
+        return  User::paginate($pg);
     }
 
     public function settings()

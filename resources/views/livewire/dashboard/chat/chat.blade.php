@@ -230,8 +230,8 @@
                             @if ($conversions_id != null)
                                 <div class="chat-app-form"  >
                                     <div class="input-group input-group-merge me-1 form-send-message">
-                                        <span class="speech-to-text input-group-text"><i data-feather="mic"
-                                                class="cursor-pointer"></i></span>
+                                        {{-- <span class="speech-to-text input-group-text"><i data-feather="mic"
+                                                class="cursor-pointer"></i></span> --}}
                                         <input wire:keydown.enter="sentmessage" wire:model='text' type="text" class="form-control message"
                                             placeholder=" اكتب رسالتك .... واضغط Enter" />
 

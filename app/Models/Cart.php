@@ -15,6 +15,10 @@ class Cart extends Model
     {
         return $this->belongsto(ProductDetails::class, 'product_id');
     }
+    public function client()
+    {
+        return $this->belongsto(user::class, 'user_id');
+    }
 
     public function scopeGetroductid($query,$id)
     {

@@ -1,12 +1,13 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use App\Facade\Tenants;
 use App\Imports\Client;
 use App\Models\setting;
 use App\Models\UserAdmin;
-use App\Http\Livewire\About;
 
+use App\Http\Livewire\About;
 use Illuminate\Http\Request;
 use App\Models\ProductDetails;
 use App\Http\Livewire\Testchat;
@@ -41,8 +42,8 @@ use App\Http\Livewire\Dashboard\Slider\EditSlider;
 use App\Http\Livewire\Dashboard\Slider\ViewSlider;
 use App\Http\Livewire\Front\Product\Searchproduct;
 use App\Http\Livewire\Dashboard\Product\EditProduct;
-use App\Http\Livewire\Dashboard\Product\ViewProduct;
 
+use App\Http\Livewire\Dashboard\Product\ViewProduct;
 use App\Http\Livewire\Front\Gallery as galleryfront;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
@@ -51,6 +52,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
 use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
+use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
@@ -150,17 +152,37 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
+
+
+        // Calculate the datetime 10 minutes ago
+        $from = Carbon::now()->subMinutes(5); // 2023-09-04 01:30:44
+        
+
+        date_default_timezone_set('Africa/Cairo'); // set your default timezone
+        $to = Carbon::now()->addMinutes(5); // 2023-09-04 01:25:44
+        return $to;
+        // 2023-09-04 01:26:44
+        // 2023-09-04 01:30:44
+        // Update records where created_at is less than 10 minutes ago
+        // YourModel::where('created_at', '>', $tenMinutesAgo)
+        //     ->update([
+        //         'column_to_update' => 'new_value',
+        //         // Add more columns and values to update as needed
+        //     ]);
+        return User::wherehas('cart', function ($q) use($from,$to) {
+            $q->whereBetween('updated_at', [$from, $to]);
+        })->get();
         // $p = ProductDetails::find($request->id);
         // $text = getsetting()->notif_newoffer_text;
         // $updatedString =  replacetext($text, '', $p);
 
         // return $updatedString;
-        $users = [
-            'username'  => 'admin',
-            'password'  => 'admin1234',
-        ];
+        // $users = [
+        //     'username'  => 'admin',
+        //     'password'  => 'admin1234',
+        // ];
 
-        $admin =  UserAdmin::firstOrCreate($users);
+        // $admin =  UserAdmin::firstOrCreate($users);
         //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
@@ -215,7 +237,7 @@ Route::middleware('tenant')->group(function () {
 
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
         // Route::get('product', CreateProduct::class)->name('product');
-        Route::get('/', ViewProduct::class)->name('dashboard');
+        Route::get('/', mainDashboard::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
         Route::get('/setting', Settings::class)->name('settings');

@@ -35,6 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        date_default_timezone_set('Africa/Cairo');
+
         // $namedomain = Tenants::getdomain();
         // $setting = Cache::get($namedomain.'_settings',[]);
         // Config::set('broadcasting.connections.pusher.key',  $setting->pusher_app_key??'');
