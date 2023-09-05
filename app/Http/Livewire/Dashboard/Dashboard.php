@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\Supplier;
 use App\Models\ProductDetails;
+use App\Models\ProductHeader;
 use App\Models\SalesHeader;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,7 @@ class Dashboard extends Component
     {
         // $User = user::all();
         $User = DB::table('users');
-        $this->data['count_product']  = ProductDetails::count();
+        $this->data['count_product']  = ProductHeader::count();
         $this->data['count_client']   =  $User->count();
         $this->data['client_Balanc']       =  $User->sum('client_Balanc');
         $this->data['count_client_agel']   =  $User->where('default_Sael', '=', 'اجل')->count();
