@@ -200,12 +200,12 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 }
 function getimage($imagename,$folder){
         $nametenant = Tenants::gettenantname();
-        $path = public_path('asset/images/'. $nametenant . '/'.$folder.'/' . $imagename);
+        $path = public_path('asset/images2/'. $nametenant . '/'.$folder.'/' . $imagename);
             if (File::exists($path)) {
-                return ($imagename !== null) ? asset('asset/images/'. $nametenant . '/'.$folder.'/' . $imagename) : asset('asset/images/'. $nametenant . '/'.getsetting()->logo_shop);
+                return ($imagename !== null) ? asset('asset/images2/'. $nametenant . '/'.$folder.'/' . $imagename) : asset('asset/images2/'. $nametenant . '/'.getsetting()->logo_shop);
             } else {
 
                 // return asset('asset/images/noimage.jpg');
-                return   asset('asset/images/'. $nametenant . '/'.getsetting()->logo_shop);
+                return   asset('asset/images2/'. $nametenant . '/'.getsetting()->logo_shop);
             }
 }
