@@ -26,6 +26,7 @@ class Home extends Component
     public function selectid($id)  {
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $this->data['offers'] = $offers ;
+        
         $products  = ProductDetails::online()->Getcategory($id)->with('productheader')->with('unit')->with('cart'
         ,function($q){
             if(!empty(Auth::guard('client')->user()->id)){
