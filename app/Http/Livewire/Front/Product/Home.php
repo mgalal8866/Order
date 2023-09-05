@@ -22,7 +22,7 @@ class Home extends Component
     }
     public function selectid($id)  {
         dd($id);
-        $this->idcategory=$id;
+        $this->idcategory = $id;
     }
     public function render()
     {

@@ -104,14 +104,14 @@ function otp_check($phone, $code)
 function deleteimage($folder, $image)
 {
     $nametenant = Tenants::gettenantname();
-    $file = public_path() . '/asset/images/'  . $nametenant .'/'. $folder . '/' . $image;
+    $file = public_path() . '/asset/images/'  . $nametenant . '/' . $folder . '/' . $image;
     $img = File::delete($file);
     // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
     $nametenant = Tenants::gettenantname();
-    $path = public_path() . '/asset/images/' . $nametenant .'/'. $folder;
+    $path = public_path() . '/asset/images/' . $nametenant . '/' . $folder;
     if (!File::exists($path)) {
         mkdir($path, 0777, true);
     }
@@ -189,15 +189,15 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 
     return $originalString;
 }
-function getimage($imagename,$folder){
-        $nametenant = Tenants::gettenantname();
-        $mainpath = 'asset/images2/';
-        $path = public_path($mainpath. $nametenant . '/'.$folder.'/' . $imagename);
-            if (File::exists($path)) {
-                return ($imagename !== null) ? asset($mainpath. $nametenant . '/'.$folder.'/' . $imagename) : asset($mainpath. $nametenant . '/'.getsetting()->logo_shop);
-            } else {
-
-                // return asset('asset/images/noimage.jpg');
-                return   asset($mainpath. $nametenant . '/'.getsetting()->logo_shop);
-            }
+function getimage($imagename, $folder)
+{
+    $nametenant = Tenants::gettenantname();
+    $mainpath = 'asset/images2/' . $nametenant . '/';
+    $unfiend =  asset($mainpath . 'logos/' . getsetting()->logo_shop);
+    $path = public_path($mainpath . $nametenant . '/' . $folder . '/' . $imagename);
+    if (File::exists($path)) {
+        return ($imagename !== null) ? asset($mainpath . $nametenant . '/' . $folder . '/' . $imagename) : $unfiend ;
+    } else {
+        return   $unfiend ;
+    }
 }
