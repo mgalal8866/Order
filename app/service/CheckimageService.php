@@ -20,7 +20,7 @@ class CheckimageService
                 $files = File::allFiles(public_path('asset/images/' . $folder));
                 $topath = public_path('asset/images2/' . $tenant->name . '/' . $folder . '/');
                 foreach ($files as $file) {
-                    $slider = $model::where($faild, $file->getFilename())->first();
+                    $slider = $model::on('tenant')->where($faild, $file->getFilename())->first();
                     if ($slider == true) {
                         if (!File::exists($topath)) {
                             File::makeDirectory($topath, 0777, true, true);

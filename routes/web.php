@@ -5,9 +5,12 @@ use App\Models\User;
 use App\Models\slider;
 use App\Facade\Tenants;
 use App\Imports\Client;
-use App\Models\setting;
+use App\Models\gallery;
 
+use App\Models\setting;
+use App\Models\Category;
 use App\Models\UserAdmin;
+use App\Models\CateoryApp;
 use App\Http\Livewire\About;
 use Illuminate\Http\Request;
 use App\Models\ProductHeader;
@@ -23,12 +26,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+
 use App\Http\Livewire\Front\Wishlist;
+
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
-
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Contactus;
 use App\Http\Livewire\Front\User\Login;
@@ -41,10 +44,10 @@ use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
 use App\Http\Livewire\Front\Product\Offers;
 use App\Http\Livewire\Dashboard\Units\Units;
+
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Front\Order\Ordersuccess;
-
 use App\Http\Livewire\Front\Order\Ordertraking;
 use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
@@ -64,6 +67,7 @@ use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
+use App\Models\notifiction;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -161,8 +165,14 @@ Route::middleware('tenant')->group(function () {
 
     Route::get('/test', function (Request $request) {
         $tt = new CheckimageService();
-
+        $tt->checkimg(null,CateoryApp::class,'image','categoryapp');
         $tt->checkimg(null,slider::class,'image','sliders');
+        $tt->checkimg(null,ProductDetails::class,'productd_image','products');
+        $tt->checkimg(null,setting::class,'logo_shop','logos');
+        $tt->checkimg(null,Category::class,'image','category');
+        $tt->checkimg(null,gallery::class,'img','gallery');
+        $tt->checkimg(null,notifiction::class,'image','notification');
+
 
         // return $updatedString;
         // $users = [
