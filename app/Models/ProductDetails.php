@@ -78,7 +78,7 @@ class ProductDetails extends Model
     {
         return $query->where('productd_online', 1);
     }
-    public function scopeGetcategory($query, $id)
+    public function scopeGetcategory($query, $id=null)
     {
         return $query->WhereHas('productheader', function ($q) use ($id) {
             if ($id != null) $q->where('product_category', $id)->with('stock');

@@ -19,6 +19,13 @@ class Home extends Component
     public function mount(){
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $this->data['offers'] = $offers ;
+        $products  = ProductDetails::online()->Getcategory()->with('productheader')->with('unit')->with('cart'
+        ,function($q){
+            if(!empty(Auth::guard('client')->user()->id)){
+                $q->where('user_id',Auth::guard('client')->user()->id);
+            }
+        })->orderBy('updated_at','DESC')->paginate($this->count);
+        $this->data['products'] = $products ;
     }
     public function loadmore()  {
         $this->count +=30;
@@ -34,19 +41,13 @@ class Home extends Component
             }
         })->orderBy('updated_at','DESC')->paginate($this->count);
         $this->data['products'] = $products ;
-        $this->idcategory =$idc;
+
 
     }
     public function render()
     {
         // $categorys = Category::Active(1)->parentonly()->get();
-        $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->with('cart'
-        ,function($q){
-            if(!empty(Auth::guard('client')->user()->id)){
-                $q->where('user_id',Auth::guard('client')->user()->id);
-            }
-        })->orderBy('updated_at','DESC')->paginate($this->count);
-        $this->data['products'] = $products ;
+
 
 
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
