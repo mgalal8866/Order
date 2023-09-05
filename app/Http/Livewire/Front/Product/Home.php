@@ -21,8 +21,8 @@ class Home extends Component
         $this->count +=30;
     }
     public function selectid($id)  {
-        dd($id);
         $this->idcategory = $id;
+        dd($id);
     }
     public function render()
     {

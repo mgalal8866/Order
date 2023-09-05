@@ -20,7 +20,7 @@
                                     </li>
                                     @foreach ($categorys as $category)
                                         <li>
-                                            <div class="category-list">
+                                            <div wire:ignore class="category-list">
                                                 {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
                                                 <h5>
                                                     <a wire:click.prevent="selectid({{ $category->id }})"
