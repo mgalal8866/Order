@@ -3,9 +3,35 @@
     <section class="section-b-space">
         <div class="container-fluid-lg">
             <div class="row">
+                <div class="col-xxl-3 col-lg-4 d-none d-lg-block">
+                    <div class="category-menu menu-xl">
+                        <ul>
+                            <li>
+                                <div class="category-list">
+                                    {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
+                                    <h5>
+                                        <a href="{{ route('categoryproduct', ['categoryid' => null]) }}" >الجميع</a>
+                                        {{-- <a wire:click.prevent="selectid(null)" href="">الجميع</a> --}}
+                                    </h5>
+                                </div>
+                            </li>
+                            @foreach ($categorys as $category)
+                                <li>
+                                    <div wire:ignore.self class="category-list">
+                                        {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
+                                        <h5>
+                                             <a href="{{ route('categoryproduct', ['categoryid' => $category->id]) }}" >{{ $category->category_name }}</a>
 
+                                            {{-- <a wire:click.prevent="selectid({{ $category->id }})" href="">{{ $category->category_name }}</a> --}}
+                                        </h5>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
                 @empty(!$data['products'])
-                    <div class="col-xxl-12 col-lg-12">
+                    <div class="col-xxl-9 col-lg-8">
                         <div class="title d-block">
                             <h2 class="text-theme font-sm">{{$cat->category_name?? ($categoryid == null?'الكل':'قسم غير موجود')}}</h2>
                         </div>
