@@ -24,7 +24,14 @@ class Home extends Component
         $this->count +=30;
     }
     public function selectid($id)  {
-        $this->idcategory = $id;
+        
+        $products  = ProductDetails::online()->Getcategory($id)->with('productheader')->with('unit')->with('cart'
+        ,function($q){
+            if(!empty(Auth::guard('client')->user()->id)){
+                $q->where('user_id',Auth::guard('client')->user()->id);
+            }
+        })->orderBy('updated_at','DESC')->paginate($this->count);
+        $this->data['products'] = $products ;
 
     }
     public function render()
