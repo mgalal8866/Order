@@ -40,7 +40,7 @@
                                 <div  wire:ignore class="slider-7_1 arrow-slider img-slider">
                                 {{-- <div class="slider-6  slick-slider product-wrapper"> --}}
                                     @foreach ($data['offers'] as $index => $product)
-                                        @livewire('front.compon.offer', ['product' => $product], key($index))
+                                        @livewire('front.compon.offer', ['product' => $product], key('o'.$index))
                                     @endforeach
                                 </div>
                             @endif
@@ -50,7 +50,7 @@
                             <div  wire:ignore.self  class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow
                                     section-b-space">
                                 @foreach ($data['products']  as $index=> $product)
-                                    @livewire('front.compon.product', ['product' => $product], key($index))
+                                    @livewire('front.compon.product', ['product' => $product], key('p'.$index))
                                 @endforeach
                             </div>
                             <button type="button" class="btn  mt-sm-4 btn-2 theme-bg-color text-white mend-auto "
