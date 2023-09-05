@@ -77,6 +77,10 @@ class TenantService
     {
         return $this->tenant;
     }
+    public function gettenantname()
+    {
+        return $this->name;
+    }
     public function changepusher()
     {
         // Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key??'',
@@ -91,10 +95,7 @@ class TenantService
     {
         return $this->domain;
     }
-    public function getname()
-    {
-        return $this->name;
-    }
+  
 
     public function switchTanent($id)
     {

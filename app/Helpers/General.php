@@ -198,3 +198,12 @@ function replacetext($originalString, $user = null, $product = null, $cart = nul
 
     return $originalString;
 }
+function getimage($imagename,$folder){
+        $nametenant = Tenants::gettenantname();
+        $path = public_path('asset/images/'. $nametenant . '/'.$folder.'/' . $imagename);
+            if (File::exists($path)) {
+                return ($imagename !== null) ? asset('asset/images/'. $nametenant . '/'.$folder.'/' . $imagename) : asset('asset/images/noimage.jpg');
+            } else {
+                return asset('asset/images/noimage.jpg');
+            }
+}

@@ -19,11 +19,12 @@ class slider extends Model
     }
     public function getImageAttribute($val)
     {
-        $path = public_path('asset/images/sliders/' . $val);
-        if (File::exists($path)) {
-            return ($val !== null) ? asset('asset/images/sliders/' . $val) : asset('asset/images/noimage.jpg');
-        } else {
-            return asset('asset/images/noimage.jpg');
-        }
+        return getimage($val,'sliders');
+        // $path = public_path('asset/images/sliders/' . $val);
+        // if (File::exists($path)) {
+        //     return ($val !== null) ? asset('asset/images/sliders/' . $val) : asset('asset/images/noimage.jpg');
+        // } else {
+        //     return asset('asset/images/noimage.jpg');
+        // }
     }
 }
