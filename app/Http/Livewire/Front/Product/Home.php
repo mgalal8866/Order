@@ -36,7 +36,7 @@ class Home extends Component
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
         })->orderBy('updated_at','DESC')->paginate($this->count);
-        $this->data =[ 'products'=>$products ];
+        $this->data +=[ 'products'=>$products ];
 
 
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
