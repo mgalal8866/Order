@@ -44,13 +44,13 @@ class ProductDetails extends Model
     }
     public function getProductdImageAttribute($val)
     {
-
-        $path = public_path('asset/images/products/' . $val);
-        if (File::exists($path)) {
-            return ($val !== null) ? asset('asset/images/products/' . $val) : asset('asset/images/noimage.jpg');
-        } else {
-            return asset('asset/images/noimage.jpg');
-        }
+         return getimage($val,'products');
+        // $path = public_path('asset/images/products/' . $val);
+        // if (File::exists($path)) {
+        //     return ($val !== null) ? asset('asset/images/products/' . $val) : asset('asset/images/noimage.jpg');
+        // } else {
+        //     return asset('asset/images/noimage.jpg');
+        // }
     }
     public function getIsofferAttribute($val)
     {

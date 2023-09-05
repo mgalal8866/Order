@@ -54,12 +54,6 @@ function Resp($data = null, $msg = null, $status = 200, $statusval = true)
         return response()->json(['data' => $data, 'msg' => $msg, 'status' => $status, 'statusval' => $statusval], $status);
     }
 }
-function uploadimages($folder, $image)
-{
-    $image->store('/', $folder);
-    $filename = $image->hashName();
-    return  $filename;
-}
 function sendsms($phone)
 {
     $settings  =  Cache::get('settings', []);
@@ -109,13 +103,15 @@ function otp_check($phone, $code)
 }
 function deleteimage($folder, $image)
 {
-    $file = public_path() . '/asset/images/' . $folder . '/' . $image;
+    $nametenant = Tenants::gettenantname();
+    $file = public_path() . '/asset/images/'  . $nametenant .'/'. $folder . '/' . $image;
     $img = File::delete($file);
     // Storage::disk($path)->delete($image);
 }
 function uploadbase64images($folder, $image)
 {
-    $path = public_path() . '/asset/images/' . $folder;
+    $nametenant = Tenants::gettenantname();
+    $path = public_path() . '/asset/images/' . $nametenant .'/'. $folder;
     if (!File::exists($path)) {
         mkdir($path, 0777, true);
     }
@@ -124,17 +120,13 @@ function uploadbase64images($folder, $image)
     $image = str_replace(' ', '+', $image);
     $imageName = Str::random(10) . '.' . 'png';
     File::put($path . '/' . $imageName, base64_decode($image));
-
-
-    // $folderPath = public_path(). '/asset/images/' . $folder.'/';
-    // $base64Image = explode(";base64,", $image);
-    // $explodeImage = explode("image/", $base64Image[0]);
-    // $imageType = $explodeImage[1];
-    // $image_base64 = base64_decode($base64Image[1]);
-    // $imageName =  uniqid() . '. '.$imageType;
-    // $file = $folderPath .$imageName ;
-    // file_put_contents($file, $image_base64);
     return  $imageName;
+}
+function uploadimages($folder, $image)
+{
+    $image->store('/', $folder);
+    $filename = $image->hashName();
+    return  $filename;
 }
 function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null, $sav = true)
 {
@@ -179,7 +171,6 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
     }
     return  curl_exec($ch);
 }
-
 function replacetext($originalString, $user = null, $product = null, $cart = null, $statu = null)
 {
     $replacements = [

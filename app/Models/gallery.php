@@ -20,11 +20,14 @@ class gallery extends Model
     }
     public function getImgAttribute($val)
     {
-        $path = public_path('asset/images/gallery/' . $val);
-        if (File::exists($path)) {
-            return ($val !== null) ? asset('asset/images/gallery/' . $val) : asset('asset/images/noimage.jpg');
-        } else {
-            return asset('asset/images/noimage.jpg');
-        }
+        return getimage($val,'gallery');
+
+
+        // $path = public_path('asset/images/gallery/' . $val);
+        // if (File::exists($path)) {
+        //     return ($val !== null) ? asset('asset/images/gallery/' . $val) : asset('asset/images/noimage.jpg');
+        // } else {
+        //     return asset('asset/images/noimage.jpg');
+        // }
     }
 }
