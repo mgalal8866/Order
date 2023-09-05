@@ -9,20 +9,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class CheckimageService
 {
-    public function checkimg($nametenant=null, $model, $faild ,$folder)
+    public function checkimg($nametenant = null, $model, $faild, $folder)
     {
-        $tenantname  = Tenants::getname();
-        $files = File::allFiles(public_path('asset/images/' . $folder));
-        $topath = public_path('asset/images/'.$tenantname.'/'.$folder.'/');
-        foreach ($files as $file) {
-            $slider = $model::where($faild, $file->getFilename())->first();
-            if ($slider == true) {
-                 if (!File::exists($topath)) {
-                    File::makeDirectory($topath, 0777, true, true);
+        // $tenantname  = Tenants::getname();
+        Tenants::switchToDefault();
+        $tenants = Tenant::get();
+        $tenants->each(
+            function ($tenant) use( $model,$faild, $folder) {
+                Tenants::switchToTanent($tenant);
+                $files = File::allFiles(public_path('asset/images/' . $folder));
+                $topath = public_path('asset/images2/' . $tenant->name . '/' . $folder . '/');
+                foreach ($files as $file) {
+                    $slider = $model::where($faild, $file->getFilename())->first();
+                    if ($slider == true) {
+                        if (!File::exists($topath)) {
+                            File::makeDirectory($topath, 0777, true, true);
+                        }
+                        // File::move(public_path('asset/images/' . $tenantfolder . '/' . $file->getFilename()),   $topath . $file->getFilename());
+                        File::copy(public_path('asset/images/' . $folder . '/' . $file->getFilename()),   $topath . $file->getFilename());
+                    }
                 }
-                // File::move(public_path('asset/images/' . $tenantfolder . '/' . $file->getFilename()),   $topath . $file->getFilename());
-                File::copy(public_path('asset/images/' . $folder . '/' . $file->getFilename()),   $topath . $file->getFilename());
             }
-        }
+        );
     }
 }
