@@ -30,7 +30,7 @@ class Home extends Component
     public function loadmore()  {
         $this->count +=30;
     }
-    public function selectid($idc)  {
+    public function selectid($idc =null)  {
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $this->data['offers'] = $offers ;
 
