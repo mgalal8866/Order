@@ -16,25 +16,27 @@ class Home extends Component
     use WithPagination;
      public $data =[] ,$idcategory ,$search ,$count = 30;
 
-
+    public function mount(){
+        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
+        $this->data =[ 'offers'=>$offers ];
+    }
     public function loadmore()  {
         $this->count +=30;
     }
     public function selectid($id)  {
         $this->idcategory = $id;
-        dd($id);
+
     }
     public function render()
     {
         // $categorys = Category::Active(1)->parentonly()->get();
-        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $products  = ProductDetails::online()->Getcategory($this->idcategory)->with('productheader')->with('unit')->with('cart'
         ,function($q){
             if(!empty(Auth::guard('client')->user()->id)){
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
         })->orderBy('updated_at','DESC')->paginate($this->count);
-        $this->data =[ 'products'=>$products,'offers'=>$offers ];
+        $this->data =[ 'products'=>$products ];
 
 
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
