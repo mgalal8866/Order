@@ -32,12 +32,12 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-xxl-9 col-lg-8">
+                        <div   wire:ignore.self  class="col-xxl-9 col-lg-8">
                             @if (count($data['offers']) >= 1)
                                 <div class="title d-block">
                                     <h2 class="text-theme font-sm">{{ __('tran.offer') }}</h2>
                                 </div>
-                                <div  wire:ignore class="slider-7_1 arrow-slider img-slider">
+                                <div  wire:ignore.self class="slider-7_1 arrow-slider img-slider">
                                 {{-- <div class="slider-6  slick-slider product-wrapper"> --}}
                                     @foreach ($data['offers'] as $index => $product)
                                         @livewire('front.compon.offer', ['product' => $product], key($index))
