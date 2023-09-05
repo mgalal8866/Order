@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Auth;
 class Home extends Component
 {
     use WithPagination;
-     public $data =[] ,$idcategory ,$search ,$count = 30;
+     public $data =['products'=>[],'offers'=>[]] ,$idcategory ,$search ,$count = 30;
 
     public function mount(){
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
-        $this->data =[ 'offers'=>$offers ];
+        $this->data['offers'] = $offers ;
     }
     public function loadmore()  {
         $this->count +=30;
@@ -36,7 +36,7 @@ class Home extends Component
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
         })->orderBy('updated_at','DESC')->paginate($this->count);
-        $this->data +=[ 'products'=>$products ];
+        $this->data['products'] = $products ;
 
 
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
