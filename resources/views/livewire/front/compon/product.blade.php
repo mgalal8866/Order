@@ -116,10 +116,10 @@
                     @endif
                 </h6>
                 @if ($product->isoffer == 0)
-                    <h6 class="price theme-color">{{ $product->productd_Sele1 ?? '' }} جم</h6>
+                    <h6 class="price theme-color">{{ number_format( $product->productd_Sele1 , 2, '.', '')  }} جم</h6>
                 @else
-                    <h6 class="price theme-color">{{ $product->productd_Sele2 }} جم <span style="color:green"> بدلا
-                        </span><del style="color: gray"> {{ $product->productd_Sele1 }} جم </del></h6>
+                    <h6 class="price theme-color">{{  number_format( $product->productd_Sele2 , 2, '.', '') }} جم <span style="color:green"> بدلا
+                        </span><del style="color: gray"> {{  number_format( $product->productd_Sele1 , 2, '.', '')  $product->productd_Sele1 }} جم </del></h6>
                     @if ($product->isoffer != 0)
                         <h6 style="color: red"> عرض : {{ $product->EndOferDate }}</h6>
                     @endif
