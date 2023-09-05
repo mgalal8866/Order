@@ -111,7 +111,7 @@ function deleteimage($folder, $image)
 function uploadbase64images($folder, $image)
 {
     $nametenant = Tenants::gettenantname();
-    $path = public_path() . '/asset/images/' . $nametenant . '/' . $folder;
+    $path = public_path() . '/asset/images2/' . $nametenant . '/' . $folder;
     if (!File::exists($path)) {
         mkdir($path, 0777, true);
     }
