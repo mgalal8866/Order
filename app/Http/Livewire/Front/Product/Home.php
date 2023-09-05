@@ -46,10 +46,7 @@ class Home extends Component
     }
     public function render()
     {
-        // $categorys = Category::Active(1)->parentonly()->get();
-
-
-
+    
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
     }
 }
