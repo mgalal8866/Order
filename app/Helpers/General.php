@@ -195,9 +195,9 @@ function getimage($imagename, $folder)
     $mainpath   = 'asset/images2/' . $nametenant . '/';
     $unfiend    = asset($mainpath . 'logos/' . getsetting()->logo_shop);
     $path       = public_path($mainpath . $folder . '/' . $imagename);
-    
+
     if (File::exists($path)) {
-        return ($imagename !== null) ? asset($mainpath . $nametenant . '/' . $folder . '/' . $imagename) : $unfiend;
+        return ($imagename !== null) ? asset($mainpath . '/' . $folder . '/' . $imagename) : $unfiend;
     } else {
         return   $unfiend;
     }
