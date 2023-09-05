@@ -34,8 +34,7 @@
                 @empty(!$data['products'])
                     <div class="col-xxl-9 col-lg-8">
                         <div class="title d-block">
-                            <h2 class="text-theme font-sm">
-                                {{ $cat->category_name ?? ($categoryid == null ? 'الكل' : 'قسم غير موجود') }}</h2>
+                            <h2 class="text-theme font-sm"> {{ $cat->category_name ?? ($categoryid == null ? 'الكل' : 'قسم غير موجود') }}</h2>
                         </div>
                         <div class="row row-cols-xxl-5 row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 no-arrow section-b-space">
                             @forelse ($data['products'] as $product)
