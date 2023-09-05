@@ -24,8 +24,7 @@
                                             <div wire:ignore.self class="category-list">
                                                 {{-- <img src="{{asset('front/assets/svg/1/vegetable.svg')}}" class="blur-up lazyload" alt=""> --}}
                                                 <h5>
-                                                    <a href="{{ route('categoryproduct', ['categoryid' => $category->id]) }}" >{{ $category->category_name }}</a>
-                                                    <a href="{{ route('categoryproduct', ['categoryid' => $category->id]) }}" >{{ $category->category_name }}</a>
+                                                     <a href="{{ route('categoryproduct', ['categoryid' => $category->id]) }}" >{{ $category->category_name }}</a>
 
                                                     {{-- <a wire:click.prevent="selectid({{ $category->id }})" href="">{{ $category->category_name }}</a> --}}
                                                 </h5>
