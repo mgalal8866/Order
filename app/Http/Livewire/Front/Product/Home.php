@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class Home extends Component
 {
     use WithPagination;
-     public $data =['products'=>[],'offers'=>[]] ,$idcategory ,$search ,$count = 30;
+     public $data =['products'=>[],'offers'=>[]] ,$idcategory = null,$search ,$count = 30;
 
     public function mount(){
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
@@ -23,17 +23,18 @@ class Home extends Component
     public function loadmore()  {
         $this->count +=30;
     }
-    public function selectid($id)  {
+    public function selectid($idc)  {
         $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
         $this->data['offers'] = $offers ;
-        
-        $products  = ProductDetails::online()->Getcategory($id)->with('productheader')->with('unit')->with('cart'
+
+        $products  = ProductDetails::online()->Getcategory($idc)->with('productheader')->with('unit')->with('cart'
         ,function($q){
             if(!empty(Auth::guard('client')->user()->id)){
                 $q->where('user_id',Auth::guard('client')->user()->id);
             }
         })->orderBy('updated_at','DESC')->paginate($this->count);
         $this->data['products'] = $products ;
+        $this->idcategory =$idc;
 
     }
     public function render()
