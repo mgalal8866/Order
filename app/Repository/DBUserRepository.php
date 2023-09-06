@@ -47,7 +47,7 @@ class DBUserRepository implements UserRepositoryinterface
         $data =  new UserResource($user);
 
         $text = getsetting()->notif_welcome_text;
-        // Log::error($user);
+
         $rep = replacetext($text, $user);
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return Resp($data, 'Success', 200, true);
@@ -119,11 +119,12 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function sendtoken($token)
     {
-        //    $uu =  Auth::guard('api')->user();
-
-        //      Auth::guard('api')->user();
+         
+        Log::alert('sendtoken',['user'=>auth('api')->user(),'token'=>$token]);
         $user = User::find(auth('api')->user()->id);
-        $user->update(['fsm' => $token]);
+        // if($user != null){
+            $user->update(['fsm' => $token]);
+        // }
         return response()->json(['Token successfully stored.']);
     }
     public function logout()
