@@ -71,6 +71,10 @@ class TenantService
     {
         return $this->domain;
     }
+    public function gettenantname()
+    {
+        return    $this->name ;
+    }
 
 
     public function switchTanent($id)
