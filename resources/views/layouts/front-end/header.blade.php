@@ -12,7 +12,7 @@
                             </span>
                         </button>
                         <a href="/" class="web-logo nav-logo">
-                            <img src="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop??'' }}" class="img-fluid blur-up lazyload" alt="">
+                            <img src="{{ getimage('logos',$setting->logo_shop)}}" class="img-fluid blur-up lazyload" alt="">
                         </a>
                           <h3> {{ $setting->name_shop??'' }}</h3>
 

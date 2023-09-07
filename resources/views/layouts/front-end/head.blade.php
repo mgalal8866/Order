@@ -6,7 +6,7 @@
     <meta name="keywords" content="{{ $setting->name_shop }}">
     <meta name="author" content="{{ $setting->name_shop }}">
     {{-- <link rel="icon" href="{{ asset('asset/images/ico/favicon.ico') }}" type="image/x-icon"> --}}
-    <link rel="icon" href="https://omardairy.order-bay.com/asset/images/logos/{{ $setting->logo_shop ?? '' }}"
+    <link rel="icon" href="{{ getimage('logos',$setting->logo_shop)}}"
         type="image/x-icon">
     <title>{{ $setting->name_shop }}</title>
 

@@ -38,6 +38,8 @@
             }
         </style>
     @endpush
+@if (count($sliders) > 0)
+
 
     <section>
         <div class="container-fluid-lg">
@@ -63,4 +65,5 @@
             </div>
         </div>
     </section>
+    @endif
 </div>
