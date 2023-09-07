@@ -17,9 +17,9 @@ class Home extends Component
      public $data =['products'=>[],'offers'=>[]] ,$idcategory = null,$search ,$count = 30;
 
     public function mount(){
-        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
+        $offers  = ProductDetails::on('tenant')->orderBy('updated_at','DESC')->online()->Getoffers()->with('productheader')->with('unit')->with('cart')->paginate($this->count);
         $this->data['offers'] = $offers ;
-        $products  = ProductDetails::online()->Getcategory()->with('productheader')->with('unit')->with('cart'
+        $products  = ProductDetails::on('tenant')->online()->Getcategory()->with('productheader')->with('unit')->with('cart'
         ,function($q){
             if(!empty(Auth::guard('client')->user()->id)){
                 $q->where('user_id',Auth::guard('client')->user()->id);
@@ -46,7 +46,7 @@ class Home extends Component
     }
     public function render()
     {
-    
+
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
     }
 }

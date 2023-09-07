@@ -120,9 +120,10 @@ class DBUserRepository implements UserRepositoryinterface
     public function sendtoken($token)
     {
 
-        Log::alert('sendtoken',['user'=>auth('api')->user(),'token'=>$token]);
-        $user = User::find(auth('api')->user()->id);
-        if($user != null){
+        Log::alert('sendtoken', ['user' => auth('api')->user(), 'token' => $token]);
+
+        if (auth('api')->user() != null) {
+            $user = User::find(auth('api')->user()->id);
             $user->update(['fsm' => $token]);
         }
         return response()->json(['Token successfully stored.']);
