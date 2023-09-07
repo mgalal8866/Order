@@ -81,7 +81,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function register($request)
     {
-        Log::warning($request);
+        // Log::warning($request);
         $user = User::create([
             'client_name' => $request['client_name'] ?? null,
             'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
@@ -102,7 +102,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user->token = $token;
         $user->setting = $this->settings();
         $text = getsetting()->notif_welcome_text;
-        Log::error($user);
+        // Log::error($user);
         $rep = replacetext($text,  $user);
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return $user;
@@ -120,7 +120,7 @@ class DBUserRepository implements UserRepositoryinterface
     public function sendtoken($token)
     {
 
-        Log::alert('sendtoken', ['user' => auth('api')->user(), 'token' => $token]);
+        // Log::alert('sendtoken', ['user' => auth('api')->user(), 'token' => $token]);
 
         if (auth('api')->user() != null) {
             $user = User::find(auth('api')->user()->id);

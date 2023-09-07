@@ -1,12 +1,22 @@
 <div>
-     {{$selecttenats}}
-       <select wire:model='selecttenats'>
-        <option value="" selected>Please Select Tenats</option>
-        @foreach ($tenant as $i)
-            <option value="{{ $i->id }}">{{ $i->name }}</option>
-        @endforeach
-    </select>
-    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
+    @livewire('system.switch-database')
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">اختيار الموقع </h4>
+        </div>
+        <div class="card-body">
+            <div class="col-12 col-md-6 mb-3">
+                <select class="form-select" wire:model='selecttenats'>
+                    <option value="" selected>اختار الموقع</option>
+                    @foreach ($tenant as $i)
+                        <option value="{{ $i->id }}">{{ $i->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
+    {{-- @if ($selecttenats != null) --}}
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">اعدادات الاشعارات</h4>
         </div>
@@ -35,7 +45,7 @@
                             <label class="form-check-label mb-50" for="fire_active">تفعيل اشعار العربة</label>
                             <div class="form-check form-switch form-check-success">
                                 <input type="checkbox" class="form-check-input" wire:model.defer='fire_active'
-                                id="fire_active" />
+                                    id="fire_active" />
                                 <label class="form-check-label" for="fire_active">
                                     <span class="switch-icon-left"><i data-feather="check"></i></span>
                                     <span class="switch-icon-right"><i data-feather="x"></i></span>
@@ -83,7 +93,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingfirebase') }}</h4>
         </div>
@@ -151,7 +161,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsite') }}</h4>
         </div>
@@ -178,7 +188,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsms') }}</h4>
         </div>
@@ -220,7 +230,7 @@
             </div>
         </form>
     </div>
-    <div  disabled="{{ $selecttenats == null ? true : false }}" class="card">
+    <div disabled="{{ $selecttenats == null ? true : false }}" class="card">
         <div class="card-header">
             <h4 class="card-title">{{ __('tran.settingsecurity') }}</h4>
         </div>
@@ -236,13 +246,13 @@
                             <div class="col-md-5 order-md-0 order-1">
                                 <div class="card-body">
                                     <!-- form -->
-                                    <form id="createApiForm" wire:submit.prevent="apicreate">
+                                    <form id="createApiForm" wire:submit.prevent='apicreate()'>
 
                                         <div class="mb-2">
                                             <label for="nameApiKey" class="form-label">اسم المصدر</label>
                                             <input class="form-control" type="text" name="apiKeyName"
                                                 placeholder="ادخل اسم المصدر" id="nameApiKey"
-                                                wire:model.defer='nametoken' data-msg="ادخل اسم المصدر" />
+                                                wire:model.lazy='nametoken' data-msg="ادخل اسم المصدر" />
                                         </div>
 
                                         <button type="submit" class="btn btn-primary w-100">انشاء</button>
@@ -259,36 +269,32 @@
                         </div>
                         <div class="card-body">
                             <div class="row gy-2">
-                                @foreach ($apitoken as $token)
-                                    <div class="col-12">
-                                        <div class="bg-light-secondary position-relative rounded p-2">
-                                            <div class="d-flex align-items-center flex-wrap">
-                                                <h4 class="mb-1 me-1">{{ $token->name }}</h4>
-                                                <span class="badge badge-light-primary mb-1">Full Access</span>
-                                            </div>
-                                            <h6 class="d-flex align-items-center fw-bolder">
-                                                <span class="me-50">{{ $token->token }}</span>
+                                @if (count($apitoken) > 0)
 
-                                            </h6>
-                                            <span>Created on {{ $token->created_at }}</span>
+                                    @foreach ($apitoken as $token)
+                                        <div class="col-12">
+                                            <div class="bg-light-secondary position-relative rounded p-2">
+                                                <div class="d-flex align-items-center flex-wrap">
+                                                    <h4 class="mb-1 me-1">{{ $token->name }}</h4>
+                                                    <span class="badge badge-light-primary mb-1">Full Access</span>
+                                                </div>
+                                                <h6 class="d-flex align-items-center fw-bolder">
+                                                    <span class="me-50">{{ $token->token }}</span>
+
+                                                </h6>
+                                                <span>Created on {{ $token->created_at }}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
                 </section>
-
-
-
             </div>
-            <div class="card-footer">
-                <button class="btn btn-success">{{ __('tran.send') }}</button>
-            </div>
-
         </div>
     </div>
-
+    {{-- @endif --}}
 </div>
 @push('jslive')
     <script>

@@ -35,30 +35,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-      
 
-        // $namedomain = Tenants::getdomain();
-        // $setting = Cache::get($namedomain.'_settings',[]);
-        // Config::set('broadcasting.connections.pusher.key',  $setting->pusher_app_key??'');
-        // Config::set('broadcasting.connections.pusher.secret',  $setting->pusher_app_SECRET??'');
-        // Config::set('broadcasting.connections.pusher.app_id',  $setting->pusher_app_id??'');
         View::share('Cu' ,'ج.م');
-        if (env('tenant') != false) {
-            // $host  = $request->getHost();
-            // $tenant = Tenant::where('domin', $host)->first();
-            // if ($tenant == null ||  $tenant->database == null) {
-            //     abort(404);
-            // };
 
-            // DB::getDefaultConnection() ;
-
-        }
-            // $general_setting = DB::table('general_settings')->latest()->first();
-            //...
-
-        // if(DB::getDefaultConnection() == 'tenant'){
-
-        // }
-        // Schema::defaultStringLength(191);
     }
 }
