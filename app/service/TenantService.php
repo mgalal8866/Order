@@ -30,10 +30,6 @@ class TenantService
         DB::purge('tenant');
 
         Config::set('database.connections.tenant.database', $tenant->database);
-        Config::set('queue.batching.database', 'tenant');
-        Config::set('queue.failed.database', 'tenant');
-        // Config::set('queue.default', 'tenant');
-
 
         if ($tenant->username != null) {
             Config::set('database.connections.tenant.username', $tenant->username);
@@ -51,17 +47,11 @@ class TenantService
         $this->domain   = $tenant->domin;
         $this->database = $tenant->database;
         $this->name     = $tenant->name;
-        $this->changepusher();
 
         if (env('SHARE_VIEW', true) == true) {
-            // if( $tenant != null){
             $this->setting = Cache::get($tenant->domin . '_settings', []);
             View::share('setting',   $this->setting);
             View::share('categorys', Category::active(1)->parentonly()->get());
-            // }
-            //    View::composer('site.layout.layout', function ($view) use($tenant) {
-            //    });
-            // Config::set('database.connections.tenant.password', $tenant->password);
         }
     }
 
@@ -76,16 +66,6 @@ class TenantService
     public function gettenant()
     {
         return $this->tenant;
-    }
-    public function changepusher()
-    {
-        // Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key??'',
-        // 'broadcasting.connections.pusher.secret'=> $this->setting->pusher_app_SECRET??'',
-        // 'broadcasting.connections.pusher.app_id'=> $this->setting->pusher_app_id??'']);
-        // Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key??'');
-        // Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET??'');
-        // Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id??'');
-
     }
     public function getdomain()
     {
@@ -102,11 +82,9 @@ class TenantService
         if (!$tenant instanceof Tenant) {
             throw ValidationException::withMessages(['field_name' => 'This value is incorrect']);
         }
+        DB::purge('mysql');
         DB::purge('tenant');
         Config::set('database.connections.tenant.database', $tenant->database);
-        // Config::set('queue.batching.database', 'tenant');
-        // Config::set('queue.failed.database', 'tenant');
-        // Config::set('queue.default', 'tenant');
         if ($tenant->username != null) {
             Config::set('database.connections.tenant.username', $tenant->username);
         } else {
@@ -116,6 +94,7 @@ class TenantService
             Config::set('database.connections.tenant.password', $tenant->password);
         };
         DB::reconnect('tenant');
+        DB::setDefaultconnection('tenant');
         $this->tenant   = $tenant;
         $this->domain   = $tenant->domin;
         $this->database = $tenant->database;

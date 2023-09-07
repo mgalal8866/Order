@@ -4,7 +4,7 @@ return [
 'dashboard'       => 'Dashboard',
 'name'            => 'الاسم',
 'code'            => 'الكود',
-'edit'           => 'تعديل',
+'edit'            => 'تعديل',
 'address'         => 'Address',
 'phone'           => 'Phone',
 'birthday'        => 'Birth Day',
@@ -107,10 +107,6 @@ return [
 'settingsecurity'     => 'اعدادات الامان',
 'active'              => 'تفعيل الخاصية',
 'save'                => 'حفظ',
-
 'limit_order'         => 'حد الطلب'
-
-
-
 
 ];
