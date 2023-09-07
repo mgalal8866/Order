@@ -67,23 +67,6 @@ class TenantService
     {
         return $this->tenant;
     }
-<<<<<<< HEAD
-=======
-    public function gettenantname()
-    {
-        return $this->name;
-    }
-    public function changepusher()
-    {
-        // Log::info('broadcasting',['broadcasting.connections.pusher.key'=> $this->setting->pusher_app_key??'',
-        // 'broadcasting.connections.pusher.secret'=> $this->setting->pusher_app_SECRET??'',
-        // 'broadcasting.connections.pusher.app_id'=> $this->setting->pusher_app_id??'']);
-        // Config::set('broadcasting.connections.pusher.key', $this->setting->pusher_app_key??'');
-        // Config::set('broadcasting.connections.pusher.secret', $this->setting->pusher_app_SECRET??'');
-        // Config::set('broadcasting.connections.pusher.app_id', $this->setting->pusher_app_id??'');
-
-    }
->>>>>>> 0f7cd4464f36c6f0258d154438a65fb9cc86291a
     public function getdomain()
     {
         return $this->domain;
