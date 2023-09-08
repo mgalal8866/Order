@@ -159,6 +159,7 @@ Route::post('/store-token', function (Request $request) {
 
 #####################################################
 #################### FRONT Client #####################
+// php artisan make:livewire Dashboard/Reports/supplier/supplier_balance
 
 Route::middleware('tenant')->group(function () {
 
