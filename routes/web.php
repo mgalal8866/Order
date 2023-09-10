@@ -66,6 +66,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 use App\Models\notifiction;
@@ -260,6 +261,7 @@ Route::middleware('tenant')->group(function () {
 
         Route::prefix('report')->name('report.')->group(function () {
             Route::get('/client', ClientReport::class)->name('client');
+            Route::get('/client/payed/{id?}', ClientPayed::class)->name('client_payed');
 
         });
     });
