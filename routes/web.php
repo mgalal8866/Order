@@ -167,24 +167,24 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
-        $tt = new CheckimageService();
-        $tt->checkimg(null,CateoryApp::class,'image','categoryapp');
-        $tt->checkimg(null,slider::class,'image','sliders');
-        $tt->checkimg(null,ProductDetails::class,'productd_image','products');
-        $tt->checkimg(null,setting::class,'logo_shop','logos');
-        $tt->checkimg(null,Category::class,'image','category');
-        $tt->checkimg(null,gallery::class,'img','gallery');
-        $tt->checkimg(null,notifiction::class,'image','notification');
+        // $tt = new CheckimageService();
+        // $tt->checkimg(null,CateoryApp::class,'image','categoryapp');
+        // $tt->checkimg(null,slider::class,'image','sliders');
+        // $tt->checkimg(null,ProductDetails::class,'productd_image','products');
+        // $tt->checkimg(null,setting::class,'logo_shop','logos');
+        // $tt->checkimg(null,Category::class,'image','category');
+        // $tt->checkimg(null,gallery::class,'img','gallery');
+        // $tt->checkimg(null,notifiction::class,'image','notification');
 
 
         // return $updatedString;
-        // $users = [
-        //     'username'  => 'admin',
-        //     'password'  => 'admin1234',
-        // ];
+        $users = [
+            'username'  => 'admin',
+            'password'  => 'admin1234',
+        ];
 
-        // $admin =  UserAdmin::firstOrCreate($users);
-        //    $admin->create($users);
+        $admin =  UserAdmin::firstOrCreate($users);
+           $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){

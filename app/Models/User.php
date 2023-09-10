@@ -5,6 +5,7 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Traits\UUID;
 use Illuminate\Support\Str;
+use App\Models\ClientPayments;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Log;
 use Spatie\Permission\Traits\HasRoles;
@@ -81,6 +82,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany(Cart::class, 'user_id');
     }
+    public function clientpay_source()
+    {
+        return $this->belongsto(ClientPayments::class, 'source_id');
+    }
+   
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *

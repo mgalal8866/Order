@@ -41,6 +41,7 @@
                                     <th>{{ __('tran.points') }}</th>
                                     <th>{{ __('tran.address') }}</th>
                                     <th>{{ __('tran.last_update') }}</th>
+                                    <th>{{ __('tran.paymenets') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,6 +55,7 @@
                                         <td>{{ $user->client_points ?? 'N/A' }}</td>
                                         <td>{{ $user->client_state ?? 'N/A' }}</td>
                                         <td>{{ $user->updated_at ?? 'N/A' }}</td>
+                                        <td><a class="btn btn-sm btn-outline-danger" href="{{route('report.client_payed',['id'=>1])}}">عرض</a></td>
                                     </tr>
                                 @empty
                                     <tr>

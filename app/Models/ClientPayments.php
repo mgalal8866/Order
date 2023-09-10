@@ -9,4 +9,11 @@ class ClientPayments extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function clientpay_source()
+    {
+
+        return $this->hasOne(User::class,'source_id');
+    }
+
+
 }

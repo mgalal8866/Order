@@ -114,8 +114,11 @@ return [
 'last_update'         => 'اخر تحديث',
 'report_users'        => 'تقرير بيانات العملاء',
 'reports'             => 'التقارير',
-'limit_order'         => 'حد الطلب',
-'limit_order'         => 'حد الطلب',
-'limit_order'         => 'حد الطلب',
+'fromeamount'         => 'رصيد سابق',
+'paidamount'         =>  'المدفوع',
+'paymenets'         =>  'المدفوعات',
+'newamount'          => 'رصيد حالى',
+'payment_method'     => 'طريقةالدفع',
+'report_paymenets_users'     => 'تقرير مدفوع ',
 
 ];

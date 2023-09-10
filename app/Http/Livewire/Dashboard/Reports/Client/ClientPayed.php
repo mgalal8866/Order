@@ -7,12 +7,17 @@ use Livewire\Component;
 
 class ClientPayed extends Component
 {
-    public $id;
+    public $clientpay_id, $clientpayments,$exportheader,$exportdata ,$fromdate ,$todate;
     public function mount($id){
-        ClientPayments::where('clientpay_id',$id)->get();
+        $this->clientpay_id = $id;
+        $this->todate = $id;
+        $this->fromdate = $id;
     }
+
     public function render()
     {
+        $this->clientpayments = ClientPayments::with('clientpay_source')->whereBetween('created_at',[$this->fromdate,$this->fromdate])-> where('clientpay_id', $this->clientpay_id )->get();
+
         return view('livewire.dashboard.reports.client.client-payed');
     }
 }
