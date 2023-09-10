@@ -5,7 +5,7 @@ return [
 'name'            => 'الاسم',
 'code'            => 'الكود',
 'edit'            => 'تعديل',
-'address'         => 'Address',
+'address'         => 'العنوان',
 'phone'           => 'Phone',
 'birthday'        => 'Birth Day',
 'email'           => 'Email',
@@ -107,6 +107,15 @@ return [
 'settingsecurity'     => 'اعدادات الامان',
 'active'              => 'تفعيل الخاصية',
 'save'                => 'حفظ',
-'limit_order'         => 'حد الطلب'
+'limit_order'         => 'حد الطلب',
+'client_code'         => 'كود العميل',
+'balance'             => 'الرصيد',
+'points'              => 'النقاط',
+'last_update'         => 'اخر تحديث',
+'report_users'        => 'تقرير بيانات العملاء',
+'reports'             => 'التقارير',
+'limit_order'         => 'حد الطلب',
+'limit_order'         => 'حد الطلب',
+'limit_order'         => 'حد الطلب',
 
 ];

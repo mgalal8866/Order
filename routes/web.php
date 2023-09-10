@@ -66,6 +66,7 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 use App\Models\notifiction;
 
@@ -256,6 +257,11 @@ Route::middleware('tenant')->group(function () {
         Route::get('unit/edit/{id}', EditUnit::class)->name('unit');
         Route::get('units', Units::class)->name('units');
         Route::post('/logout', [UserAdminController::class, 'adminlogout'])->name('adminlogout');
+
+        Route::prefix('report')->name('report.')->group(function () {
+            Route::get('/client', ClientReport::class)->name('client');
+
+        });
     });
     #################### Dashboard  #####################
     #####################################################

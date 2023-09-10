@@ -5,45 +5,47 @@
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.product') }}</h4>
                 </div>
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>{{ __('tran.name') }}</th>
-                                <th>{{ __('tran.image') }}</th>
-                                <th>{{ __('tran.unit') }}</th>
-                                <th>{{ __('tran.num_unit') }}</th>
-                                <th>{{ __('tran.category') }}</th>
-                                <th>{{ __('tran.barcode') }}</th>
-                                <th>{{ __('tran.price_bay') }}</th>
-                                <th>{{ __('tran.price1') }}</th>
-                                <th>{{ __('tran.offer') }}</th>
-                                <th>{{ __('tran.action') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($products  as $product)
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <span class="fw-bold">{{ $product->productheader->product_name ?? 'N/A' }}</span>
-                                    </td>
-                                    <td> <img src=" {{ $product->productd_image }}" class="me-75" height="40"
-                                            width="40" />
-                                    </td>
-                                    <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
-                                    <td>{{ $product->productd_size ?? 'N/A' }}</td>
-                                    <td>{{ $product->productheader->category->category_name ?? 'N/A' }}</td>
-                                    <td>{{ $product->productd_barcode ?? 'N/A' }}</td>
-                                    <td>{{ $product->productd_bay ?? 'N/A' }}</td>
-                                    <td>{{ $product->productd_Sele1 ?? 'N/A' }}</td>
-                                    <td><span
-                                            class="badge rounded-pill badge-glow bg-{{ $product->isoffer == 0 ? 'danger' : 'success' }}">{{ $product->isoffer == 0 ? 'غير متاح' : $product?->productd_Sele2 }}</span>
-                                    </td>
-                                    <td><a class="btn btn-flat-warning waves-effect"
-                                            href="{{ route('product', $product->productheader->id) }}">{{ __('tran.edit') }}</a>
-                                    </td>
-                                    {{-- <td>{!!  $product->description !!} </td> --}}
-                                    {{-- <td>
+                                    <th>{{ __('tran.name') }}</th>
+                                    <th>{{ __('tran.image') }}</th>
+                                    <th>{{ __('tran.unit') }}</th>
+                                    <th>{{ __('tran.num_unit') }}</th>
+                                    <th>{{ __('tran.category') }}</th>
+                                    <th>{{ __('tran.barcode') }}</th>
+                                    <th>{{ __('tran.price_bay') }}</th>
+                                    <th>{{ __('tran.price1') }}</th>
+                                    <th>{{ __('tran.offer') }}</th>
+                                    <th>{{ __('tran.action') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($products  as $product)
+                                    <tr>
+                                        <td>
+                                            <span
+                                                class="fw-bold">{{ $product->productheader->product_name ?? 'N/A' }}</span>
+                                        </td>
+                                        <td> <img src=" {{ $product->productd_image }}" class="me-75" height="40"
+                                                width="40" />
+                                        </td>
+                                        <td>{{ $product->unit->unit_name ?? 'N/A' }}</td>
+                                        <td>{{ $product->productd_size ?? 'N/A' }}</td>
+                                        <td>{{ $product->productheader->category->category_name ?? 'N/A' }}</td>
+                                        <td>{{ $product->productd_barcode ?? 'N/A' }}</td>
+                                        <td>{{ $product->productd_bay ?? 'N/A' }}</td>
+                                        <td>{{ $product->productd_Sele1 ?? 'N/A' }}</td>
+                                        <td><span
+                                                class="badge rounded-pill badge-glow bg-{{ $product->isoffer == 0 ? 'danger' : 'success' }}">{{ $product->isoffer == 0 ? 'غير متاح' : $product?->productd_Sele2 }}</span>
+                                        </td>
+                                        <td><a class="btn btn-flat-warning waves-effect"
+                                                href="{{ route('product', $product->productheader->id) }}">{{ __('tran.edit') }}</a>
+                                        </td>
+                                        {{-- <td>{!!  $product->description !!} </td> --}}
+                                        {{-- <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
                                                 data-bs-toggle="dropdown">
@@ -83,27 +85,27 @@
                                             </div>
                                         </div>
                                     </td> --}}
-                                </tr>
-                            @empty
-                                <tr>
+                                    </tr>
+                                @empty
+                                    <tr>
 
 
-                                    <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
+                                        <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
 
-                                </tr>
-                            @endforelse
+                                    </tr>
+                                @endforelse
 
 
-                        </tbody>
-                    </table>
-                </div>
-                <div class="card-footer  d-flex justify-content-center">
-                    {{ $products->links() }}
-                </div>
+                            </tbody>
+                        </table>
+                        <div class="card-footer  d-flex justify-content-center">
+                            {{ $products->links() }}
+                        </div>
+                    </div>
+          
             </div>
         </div>
     </div>
-
 
 </div>
 
