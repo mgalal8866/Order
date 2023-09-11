@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('cateory_apps', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->nullable();
+            $table->integer('parent_id')->nullable();
             $table->string('sync_id')->nullable();
             $table->string('name');
             $table->string('image')->nullable();

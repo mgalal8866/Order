@@ -3,15 +3,17 @@
 namespace App\Http\Livewire\Dashboard\Reports\Client;
 
 use App\Models\ClientPayments;
+use App\Models\User;
 use Carbon\Carbon;
 use Livewire\Component;
 
 class ClientPayed extends Component
 {
-    public $clientpay_id, $clientpayments, $exportdata, $fromdate, $todate;
+    public $username, $clientpay_id, $clientpayments, $exportdata, $fromdate, $todate;
     public function mount($id)
     {
         $this->clientpay_id = $id;
+        $this->username = User::where('source_id', $id)->first()->client_name;
         $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
         $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
     }

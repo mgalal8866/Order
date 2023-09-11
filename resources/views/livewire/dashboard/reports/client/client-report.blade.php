@@ -55,7 +55,7 @@
                                         <td>{{ $user->client_points ?? 'N/A' }}</td>
                                         <td>{{ $user->client_state ?? 'N/A' }}</td>
                                         <td>{{ $user->updated_at ?? 'N/A' }}</td>
-                                        <td><a class="btn btn-sm btn-outline-danger" href="{{route('report.client_payed',['id'=>1])}}">عرض</a></td>
+                                        <td>@if ($user->source_id != null)<a class="btn btn-sm btn-outline-danger" href="{{route('report.client_payed',['id'=>$user->source_id])}}">عرض</a> @endif</td>
                                     </tr>
                                 @empty
                                     <tr>

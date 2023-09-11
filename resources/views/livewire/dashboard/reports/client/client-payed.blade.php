@@ -4,8 +4,11 @@
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
                     <h4 class="card-title">{{ __('tran.report_paymenets_users') }} -
-                        {{ $clientpayments[0]->clientpay_source->client_name ?? '' }}</h4>
-                    <livewire:dashboard.exportbutton :routeprint='route("home")' :data='$exportdata' >
+                        {{ $username ?? '' }}</h4>
+                        @if (count($exportdata) > 0)
+                            
+                        <livewire:dashboard.exportbutton :routeprint='route("home")' :data='$exportdata' >
+                        @endif
                 </div>
                 <div class="card-body ">
                     <div class="">
@@ -37,10 +40,13 @@
                                 <option value="200">200</option>
                             </select>
                         </div> --}}
+                        <span class="alert alert-info text-center mt-2">
 
+                            <h4>تاريخ التقرير من  {{$fromdate}} الى  {{$todate}}</h4>
+                        </span>
 
                     </div>
-                    <div class="table-responsive mt-2">
+                    <div class="table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
