@@ -12,7 +12,7 @@ class ClientReport extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $pg = 30, $search = null;
-    public $exportview ='livewire.dashboard.reports.client.client-report',  $exportdata ;
+    public  $exportdata ;
     // public function export()
     // {
     //     $dd = $this->exportdata->map(function ($data) {
