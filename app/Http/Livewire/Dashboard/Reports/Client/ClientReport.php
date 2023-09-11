@@ -12,8 +12,7 @@ class ClientReport extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $pg = 30, $search = null;
-    public $exportview ='livewire.dashboard.reports.client.client-report',  $exportdata ,$exportheader = ['code_client','client_name','client_fhonewhats',
-    'client_fhoneLeter','client_Balanc','client_points','client_state','updated_at'] ;
+    public $exportview ='livewire.dashboard.reports.client.client-report',  $exportdata ;
     // public function export()
     // {
     //     $dd = $this->exportdata->map(function ($data) {
@@ -43,14 +42,14 @@ class ClientReport extends Component
 
          $this->exportdata =  $users->map(function ($data) {
             return  [
-                'code_client' =>$data->code_client,
-                'client_name'=>$data->client_name,
-                'client_fhonewhats'=>$data->client_fhonewhats,
-                'client_fhoneLeter'=>$data->client_fhoneLeter,
-                'client_Balanc'=>$data->client_Balanc,
-                'client_points'=>$data->client_points,
-                'client_state'=>$data->client_state,
-                'updated_at'=>  $data->updated_at->format('d M Y') ];
+                'كود العميل' =>$data->code_client,
+                'اسم العميل'=>$data->client_name,
+                'تليفون'=>$data->client_fhonewhats,
+                'تليفون اخر'=>$data->client_fhoneLeter,
+                'رصيد'=>$data->client_Balanc,
+                'نقاط'=>$data->client_points,
+                'العنوان'=>$data->client_state,
+                'اخر تحديث'=>  $data->updated_at->format('d M Y') ];
         });
         $this->emit('export_button', $this->exportdata );
 

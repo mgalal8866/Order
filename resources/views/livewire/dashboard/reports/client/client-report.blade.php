@@ -4,7 +4,7 @@
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
                     <h4 class="card-title">{{ __('tran.report_users') }}</h4>
-                    <livewire:dashboard.exportbutton :routeprint='route("home")' :data='$exportdata' :header='$exportheader'>
+                    <livewire:dashboard.exportbutton :routeprint='route("home")' :data='$exportdata'>
                 </div>
                 <div class="card-body ">
                     <div class="d-flex justify-content-between ">

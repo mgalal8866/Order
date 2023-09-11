@@ -119,6 +119,7 @@ return [
 'paymenets'         =>  'المدفوعات',
 'newamount'          => 'رصيد حالى',
 'payment_method'     => 'طريقةالدفع',
-'report_paymenets_users'     => 'تقرير مدفوع ',
+'report_paymenets_users'     => 'تقرير مدفوعات ',
+'date'              => 'تاريخ',
 
 ];

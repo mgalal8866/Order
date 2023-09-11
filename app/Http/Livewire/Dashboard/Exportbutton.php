@@ -10,13 +10,11 @@ class Exportbutton extends Component
 {
 
     protected $listeners = ['export_button' => 'change'];
-    public $exportdata =[] ,$data,$header,$routeprint;
-    public function mount($data,$header,$routeprint=null)
+    public $exportdata =[] ,$data,$routeprint;
+    public function mount($data,$routeprint=null)
     {
-
         $this->routeprint = $routeprint;
         $this->exportdata = $data ;
-        $this->header = $header ;
     }
     public function change($data)
     {
@@ -29,12 +27,12 @@ class Exportbutton extends Component
     public function exportexcel()
     {
 
-        return Excel::download(new DataExport($this->exportdata ,  $this->header ), 'users.xlsx');
+        return Excel::download(new DataExport($this->exportdata), 'users.xlsx');
     }
     public function exportpdf()
     {
 
-        return Excel::download(new DataExport($this->exportdata ,  $this->header ), 'invoices.pdf', \Maatwebsite\Excel\Excel::MPDF);
+        return Excel::download(new DataExport($this->exportdata), 'invoices.pdf', \Maatwebsite\Excel\Excel::MPDF);
     }
     public function render()
     {

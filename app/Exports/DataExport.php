@@ -7,10 +7,9 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class DataExport implements FromCollection ,WithHeadings
 {
-    private $data,$header;
-    public function __construct($data,array $header) {
+    private $data;
+    public function __construct($data) {
         $this->data = $data;
-        $this->header = $header;
     }
 
     public function collection( )
@@ -19,7 +18,8 @@ class DataExport implements FromCollection ,WithHeadings
     }
     public function headings(): array
     {
-        return  $this->header;
+        $headerkey = array_keys($this->data[0]);
+        return  $headerkey;
     }
 }
 
