@@ -60,6 +60,7 @@ class SupAccountStatement extends Component
                     'رصيد سابق'     => $data->FromeAmount,
                     'مدفوع'         => $data->PaidAmount,
                     'رصيد حالى'     => $data->NewAmount,
+                    'قيمه العملية'     => $data->Grand_Total,
                     'نوع العملية'   => $data->Payment_method == '0' ? "مبيعات" : ($data->Payment_method == '1' ? "مرتجع" :  $data->Payment_method),
                 ];
             });

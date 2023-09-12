@@ -58,7 +58,8 @@ class AccountStatement extends Component
                     'رصيد سابق'     => $data->fromeamount,
                     'مدفوع'         => $data->paidamount,
                     'رصيد حالى'     => $data->newamount,
-                    'طريقة الدفع'   => $data->payment_method == '0' ? "مبيعات" : ($data->payment_method == '1' ? "مرتجع" :  $data->payment_method),
+                    'قيمه العملية'     => $data->grandtotal,
+                    'نوع العملية'   => $data->payment_method == '0' ? "مبيعات" : ($data->payment_method == '1' ? "مرتجع" :  $data->payment_method),
                 ];
             });
             $this->emit('export_button', $this->exportdata);
