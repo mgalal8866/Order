@@ -45,7 +45,7 @@
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
                             @if (count($clientpayments) > 0)
-                                <h3> كشف حساب {{ $clientpayments[0]->clientpay_source->client_name }}</h3>
+                                {{-- <h3> كشف حساب {{ $clientpayments[0]->clientpay_source->client_name }}</h3> --}}
                             @endif
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
                         </span>
@@ -60,17 +60,19 @@
                                     <th>{{ __('tran.fromeamount') }}</th>
                                     <th>{{ __('tran.paidamount') }}</th>
                                     <th>{{ __('tran.newamount') }}</th>
+                                    <th>قيمه العملية</th>
                                     {{-- <th>{{ __('tran.last_update') }}</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($clientpayments as $clientpay)
                                     <tr>
-                                        <td>{{ $clientpay->created_at->format('Y/m/d') ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->payment_method ?? 'N/A' }}</td>
+                                        <td>{{ Carbon\Carbon::parse($clientpay->date)->format('Y/m/d')  ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->payment_method == '0'? "مبيعات" : ($clientpay->payment_method == '1' ? "مرتجع" :  $clientpay->payment_method ) ?? 'N/A' }}</td>
                                         <td>{{ $clientpay->fromeamount ?? 'N/A' }}</td>
                                         <td>{{ $clientpay->paidamount ?? 'N/A' }}</td>
                                         <td>{{ $clientpay->newamount ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->grandtotal ?? 'N/A' }}</td>
                                     </tr>
                                 @empty
                                     <tr>
