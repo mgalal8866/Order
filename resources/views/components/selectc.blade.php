@@ -16,8 +16,8 @@
         <option value="">{{ $selectnull ?? '' }}</option>
         @foreach ($items as $item)
             <option value="{{ $item->$value ?? '' }}">
-                {{ $lvl2 == '' ? $item->$display : $item->$display->$lvl2 ?? '' }}
-                {{ $display2 != '' ? ($displaylvl2  == '' ? $item->$display2 : $item->$display2->$displaylvl2): '' }}</option>
+                {{ $lvl2 == '' ? $item->$display??'' : $item->$display->$lvl2 ?? '' }}
+                {{ $display2 != '' ? ($displaylvl2  == '' ? $item->$display2??'' : $item->$display2->$displaylvl2??''): '' }}</option>
 
         @endforeach
     </select>
