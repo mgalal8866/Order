@@ -58,7 +58,7 @@
                             <tbody>
                                 @forelse ($products as $product)
                                     <tr>
-                                        <td>{{ $product->productheader->product_name . ' ' . $product->unit->unit_name ?? 'N/A'  }} </td>
+                                        <td>{{ $product->productheader->product_name . ' ' . ($product->unit->unit_name?? 'N/A')  }} </td>
                                         {{-- <td>{{ $product->salesdetails->sale_header->invoicetype == 0 ?'مبيعات':'مرتجع' }} </td> --}}
                                         <td>{{ $product->salesdetails->sum('quantity')?? 'N/A'  }} </td>
                                         {{-- <td>{{ $product->productheader()->Countpurchase()?? 'N/A' }}</td>
