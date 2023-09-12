@@ -34,7 +34,7 @@ class Moreandlesssale extends Component
         $this->exportdata =  $this->products->map(function ($data) {
             return  [
 
-                trans('tran.product')  => $data->productheader->product_name . ' ' . $data->unit->unit_name ?? 'N/A',
+                trans('tran.product')  => $data->productheader->product_name ?? 'N/A' . ' ' . $data->unit->unit_name ?? 'N/A',
                 trans('tran.qty')   => $data->salesdetails->sum('quantity') ?? 'N/A',
 
             ];
