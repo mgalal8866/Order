@@ -202,3 +202,14 @@ function getimage($imagename, $folder)
         return   $unfiend;
     }
 }
+function splititem($item)
+{
+    $on='';
+    foreach(explode('->',$item) as $index=> $fields){
+        $on =  $on .  $fields;
+        if( count(explode('->',$item))-1 >  $index){
+        $on =  $on . "->";
+        }
+    };
+    return $on;
+}

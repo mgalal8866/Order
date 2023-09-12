@@ -3,15 +3,22 @@
     'items' => '',
     'value' => '',
     'display' => '',
+    'display2' => '',
+    'displaylvl2' => '',
+    'lvl2' => '',
+    'lvl3' => '',
+    'lvl4' => '',
     'id' => '',
     'emit' => '',
 ])
 <div wire:ignore>
-
     <select id="{{ $id }}" {{ $attributes }} class="select2 form-select" id="select2-basic">
         <option value="">{{ $selectnull ?? '' }}</option>
         @foreach ($items as $item)
-        <option value="{{ $item->$value ?? '' }}">{{ $item->$display ?? '' }}</option>
+            <option value="{{ $item->$value ?? '' }}">
+                {{ $lvl2 == '' ? $item->$display : $item->$display->$lvl2 ?? '' }}
+                {{ $display2 != '' ? ($displaylvl2  == '' ? $item->$display2 : $item->$display2->$displaylvl2): '' }}</option>
+
         @endforeach
     </select>
 

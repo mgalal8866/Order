@@ -73,11 +73,12 @@ use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 
 use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
+use App\Http\Livewire\Dashboard\Reports\Product\Moreandlesssale;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
 use App\Http\Livewire\Dashboard\Reports\Client\MoreAndLessPayClient;
-use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
@@ -176,6 +177,8 @@ Route::middleware('tenant')->group(function () {
 
 
     Route::get('/test', function (Request $request) {
+
+
         // $tt = new CheckimageService();
         // $tt->checkimg(null,CateoryApp::class,'image','categoryapp');
         // $tt->checkimg(null,slider::class,'image','sliders');
@@ -187,13 +190,13 @@ Route::middleware('tenant')->group(function () {
 
 
         // return $updatedString;
-        $users = [
-            'username'  => 'admin',
-            'password'  => 'admin1234',
-        ];
+        // $users = [
+        //     'username'  => 'admin',
+        //     'password'  => 'admin1234',
+        // ];
 
-        $admin =  UserAdmin::firstOrCreate($users);
-           $admin->create($users);
+        // $admin =  UserAdmin::firstOrCreate($users);
+        //    $admin->create($users);
         // return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){
@@ -279,6 +282,7 @@ Route::middleware('tenant')->group(function () {
             Route::get('/supplier', SupplierReport::class)->name('supplier');
             Route::get('/client/moreandless', MoreAndLessPayClient::class)->name('client_moreandless');
             Route::get('/supplier/moreandless', MoreLessPaySupllier::class)->name('supplier_moreandless');
+            Route::get('/product/moreandless', Moreandlesssale::class)->name('product_moreandless');
 
         });
     });

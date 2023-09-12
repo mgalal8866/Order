@@ -127,6 +127,7 @@ return [
     'report_account_statement_supplier'     => 'كشف حساب مورد',
     'report_client_moreandless'     => 'اعلى واقل العملاء شراء',
     'report_supplier_moreandless'     => 'اعلى واقل الموردين شراء',
+    'report_product_moreandless'     => 'اعلى واقل الاصناف طلبا',
     'report_suppliers'     => 'تقرير بيانات الموردين',
     'date'              => 'تاريخ',
     'name_supplier'          => 'اسم المورد',

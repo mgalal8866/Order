@@ -111,6 +111,18 @@
                          </ul>
                      </li>
                  </ul>
+                 <ul class="menu-content">
+                     <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                 class="menu-item text-truncate">تقارير الاصناف</span></a>
+                         <ul class="menu-content">
+                             <li><a class="d-flex align-items-center"
+                                     href="{{ route('report.product_moreandless') }}"><span
+                                         class="menu-item text-truncate">{{ __('tran.report_product_moreandless') }}</span></a>
+                             </li>
+
+                         </ul>
+                     </li>
+                 </ul>
              </li>
 
              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i
