@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class AccountStatement extends Component
 {
-    public $clientpayments = [], $users, $userid, $fromdate, $todate, $exportdata = [], $selected = "";
+    public $username, $clientpayments = [], $users, $userid, $fromdate, $todate, $exportdata = [], $selected = "";
 
     protected $listeners = ['selectedItem'];
     public function selectedItem($item = null)
@@ -33,6 +33,7 @@ class AccountStatement extends Component
     public function render()
     {
         if (!empty($this->selected)) {
+            $this->username=User::where('source_id', $this->selected)->first();
             $a = SalesHeader::where('client_id', $this->selected)->whereBetween('created_at', [$this->fromdate, $this->todate])->select(
                 'invoicedate as date', //التاريخ
                 'invoicetype', // نوع_العملية
@@ -49,10 +50,10 @@ class AccountStatement extends Component
                 'newamount',
                 DB::raw("'_' as grandtotal")
             );
-            $this->clientpayments  = $b->union($a)->distinct()->orderBy('date')->get();
-           $this->exportdata =  $this->clientpayments->map(function ($data) {
+           $this->clientpayments  = $b->union($a)->distinct()->orderBy('date')->get();
+           $this->exportdata      = $this->clientpayments->map(function ($data) {
                 return  [
-                    'اسم العميل'    => '$data->clientpay_source->client_name',
+                    'اسم العميل'    => $this->username,
                     'التاريخ'       => Carbon::parse($data->date)->format('Y/m/d'),
                     'رصيد سابق'     => $data->fromeamount,
                     'مدفوع'         => $data->paidamount,
