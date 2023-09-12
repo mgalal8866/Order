@@ -26,7 +26,7 @@ class Exportbutton extends Component
     }
     public function exportexcel()
     {
-
+       
         return Excel::download(new DataExport($this->exportdata), $this->namereport.'.xlsx');
     }
     public function exportpdf()

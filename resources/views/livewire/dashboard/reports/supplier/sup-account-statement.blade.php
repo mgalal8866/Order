@@ -3,7 +3,7 @@
         <div class="col-12">
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
-                    <h4 class="card-title">{{ __('tran.report_account_statement_users') }} </h4>
+                    <h4 class="card-title">{{ __('tran.report_account_statement_supplier') }} </h4>
                     @if (count($exportdata) > 0)
                         <livewire:dashboard.exportbutton namereport="كشف حساب  - {{ $username }}" :data='$exportdata'>
                     @endif
@@ -13,8 +13,8 @@
                         <div class="row ">
                             <div class="col-md-4">
                                 <x-label for="formusers" label="اختار العميل" />
-                                <x-selectc id="formusers" emit='selectedItem' :items='$users'
-                                    selectnull='اختيار العميل' value='id' display='client_name' />
+                                <x-selectc id="formusers" emit='selectedItem' :items='$suppliers'
+                                    selectnull='اختيار العميل' value='id' display='Supplier_name' />
                             </div>
                             <div class="col-md-4">
                                 <x-label for="fromdate" label="من" />
@@ -44,7 +44,7 @@
                             </select>
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
-                            @if (count($clientpayments) > 0)
+                            @if (count($supplierspayments) > 0)
                                 <h3> كشف حساب  - {{ $username }}</h3>
                             @endif
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
@@ -65,14 +65,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($clientpayments as $clientpay)
+                                @forelse ($supplierspayments as $clientpay)
                                     <tr>
                                         <td>{{ Carbon\Carbon::parse($clientpay->date)->format('Y/m/d')  ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->payment_method == '0'? "مبيعات" : ($clientpay->payment_method == '1' ? "مرتجع" :  $clientpay->payment_method ) ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->fromeamount ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->paidamount ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->newamount ?? 'N/A' }}</td>
-                                        <td>{{ $clientpay->grandtotal ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->Payment_method == '0'? "مبيعات" : ($clientpay->Payment_method == '1' ? "مرتجع" :  $clientpay->Payment_method ) ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->FromeAmount ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->PaidAmount ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->NewAmount ?? 'N/A' }}</td>
+                                        <td>{{ $clientpay->Grand_Total ?? 'N/A' }}</td>
                                     </tr>
                                 @empty
                                     <tr>

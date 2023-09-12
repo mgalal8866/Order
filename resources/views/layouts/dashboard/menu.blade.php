@@ -93,6 +93,9 @@
                           <li><a class="d-flex align-items-center" href="{{ route('report.balance_supplier') }}"><span
                                         class="menu-item text-truncate">{{ __('tran.report_balance_supplier') }}</span></a>
                             </li>
+                          <li><a class="d-flex align-items-center" href="{{ route('report.supplier_statement') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_account_statement_supplier') }}</span></a>
+                            </li>
                               {{-- <li><a class="d-flex align-items-center"
                                     href="{{ route('report.client_statement') }}"><span
                                         class="menu-item text-truncate">{{ __('tran.report_account_statement_users') }}</span></a>

@@ -70,11 +70,12 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientBalance;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
-use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 
+use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
-use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
@@ -271,6 +272,7 @@ Route::middleware('tenant')->group(function () {
             Route::get('/client/balance', ClientBalance::class)->name('balance_client');
             Route::get('/client/payed/{id?}', ClientPayed::class)->name('client_payed');
             Route::get('/supplier/payed/{id?}', SupplierPayed::class)->name('supplier_payed');
+            Route::get('/supplier/statement', SupAccountStatement::class)->name('supplier_statement');
             Route::get('/supplier/balance', SupplierBalance::class)->name('balance_supplier');
             Route::get('/supplier', SupplierReport::class)->name('supplier');
 

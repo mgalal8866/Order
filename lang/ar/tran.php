@@ -124,6 +124,7 @@ return [
 'report_account_statement_users'     => 'كشف حساب عميل',
 'report_balance_users'     => 'ملخص ارصدة العملاء',
 'report_balance_supplier'     => 'ملخص ارصدة الموردين',
+'report_account_statement_supplier'     => 'كشف حساب مورد',
 'report_suppliers'     => 'تقرير بيانات الموردين',
 'date'              => 'تاريخ',
 'name_supplier'          => 'اسم المورد',
@@ -131,6 +132,7 @@ return [
 'code_supplier'          => 'كود المورد',
 'agent_name'          => 'اسم المندوب',
 'agent_fhone'          => 'تليفون المندوب',
+    'typeaction'          => 'نوع العملية',
 
 
 ];

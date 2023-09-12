@@ -42,7 +42,7 @@ class AccountStatement extends Component
                 'finalbalance', //الرصيد_النهائى
                 'grandtotal' // قيمة_العملية
             );
-            $b = ClientPayments::with('clientpay_source')->where('clientpay_id', $this->selected)->whereBetween('created_at', [$this->fromdate, $this->todate])->select(
+            $b = ClientPayments::where('clientpay_id', $this->selected)->whereBetween('created_at', [$this->fromdate, $this->todate])->select(
                 'created_at as date',
                 'payment_method',
                 'fromeamount',
@@ -50,7 +50,7 @@ class AccountStatement extends Component
                 'newamount',
                 DB::raw("'_' as grandtotal")
             );
-           $this->clientpayments  = $b->union($a)->distinct()->orderBy('date')->get();
+           $this->clientpayments  = $b->union($a)->orderBy('date', 'DESC')->get();
            $this->exportdata      = $this->clientpayments->map(function ($data) {
                 return  [
                     'اسم العميل'    => $this->username,
