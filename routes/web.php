@@ -11,6 +11,7 @@ use App\Models\setting;
 use App\Models\Category;
 use App\Models\UserAdmin;
 use App\Models\CateoryApp;
+use App\Models\notifiction;
 use App\Http\Livewire\About;
 use Illuminate\Http\Request;
 use App\Models\ProductHeader;
@@ -25,10 +26,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+
 use Maatwebsite\Excel\Facades\Excel;
 
 use App\Http\Livewire\Front\Wishlist;
-
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
@@ -43,8 +44,8 @@ use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
 use App\Http\Livewire\Front\Product\Offers;
-use App\Http\Livewire\Dashboard\Units\Units;
 
+use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Front\Order\Ordersuccess;
@@ -64,12 +65,17 @@ use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
-use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
-use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
+use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
+use App\Http\Livewire\Dashboard\Reports\Client\ClientBalance;
+use App\Http\Livewire\Dashboard\Notification\ViewNotification;
+use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
+
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Models\notifiction;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -261,7 +267,12 @@ Route::middleware('tenant')->group(function () {
 
         Route::prefix('report')->name('report.')->group(function () {
             Route::get('/client', ClientReport::class)->name('client');
+            Route::get('/client/statement', AccountStatement::class)->name('client_statement');
+            Route::get('/client/balance', ClientBalance::class)->name('balance_client');
             Route::get('/client/payed/{id?}', ClientPayed::class)->name('client_payed');
+            Route::get('/supplier/payed/{id?}', SupplierPayed::class)->name('supplier_payed');
+            Route::get('/supplier/balance', SupplierBalance::class)->name('balance_supplier');
+            Route::get('/supplier', SupplierReport::class)->name('supplier');
 
         });
     });

@@ -4,7 +4,7 @@
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
                     <h4 class="card-title">{{ __('tran.report_users') }}</h4>
-                    <livewire:dashboard.exportbutton :routeprint='route("home")' :data='$exportdata'>
+                    <livewire:dashboard.exportbutton namereport="report_users"  :data='$exportdata'>
                 </div>
                 <div class="card-body ">
                     <div class="d-flex justify-content-between ">
@@ -25,7 +25,7 @@
                         <div class="col-md-10">
                             <label class="form-label" for="search">بحث</label>
                             <input type="text" wire:model.lazy='search' id="search" name="search"
-                            class="form-control" />
+                                class="form-control" />
 
                         </div>
                     </div>
@@ -55,7 +55,12 @@
                                         <td>{{ $user->client_points ?? 'N/A' }}</td>
                                         <td>{{ $user->client_state ?? 'N/A' }}</td>
                                         <td>{{ $user->updated_at ?? 'N/A' }}</td>
-                                        <td>@if ($user->source_id != null)<a class="btn btn-sm btn-outline-danger" href="{{route('report.client_payed',['id'=>$user->source_id])}}">عرض</a> @endif</td>
+                                        <td>
+                                            @if ($user->source_id != null)
+                                                <a class="btn btn-sm btn-outline-danger"
+                                                    href="{{ route('report.client_payed', ['id' => $user->source_id]) }}">عرض</a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
                                     <tr>

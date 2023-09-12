@@ -113,6 +113,7 @@ return [
 'points'              => 'النقاط',
 'last_update'         => 'اخر تحديث',
 'report_users'        => 'تقرير بيانات العملاء',
+'supplier_name'        => 'اسم المورد',
 'reports'             => 'التقارير',
 'fromeamount'         => 'رصيد سابق',
 'paidamount'         =>  'المدفوع',
@@ -120,6 +121,16 @@ return [
 'newamount'          => 'رصيد حالى',
 'payment_method'     => 'طريقةالدفع',
 'report_paymenets_users'     => 'تقرير مدفوعات ',
+'report_account_statement_users'     => 'كشف حساب عميل',
+'report_balance_users'     => 'ملخص ارصدة العملاء',
+'report_balance_supplier'     => 'ملخص ارصدة الموردين',
+'report_suppliers'     => 'تقرير بيانات الموردين',
 'date'              => 'تاريخ',
+'name_supplier'          => 'اسم المورد',
+'phone_supplier'          => 'تليفون المورد',
+'code_supplier'          => 'كود المورد',
+'agent_name'          => 'اسم المندوب',
+'agent_fhone'          => 'تليفون المندوب',
+
 
 ];

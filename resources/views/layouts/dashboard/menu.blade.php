@@ -3,7 +3,8 @@
     <div class="navbar-header">
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                        <img src="https://order-bay.com/asset/images/logos/{{ $setting->logo_shop }}" width="50" />
+                        <img src="https://order-bay.com/asset/images2/{{ request()->getHttpHost() }}/logos/{{ $setting->logo_shop }}"
+                            width="50" />
                     </span>
                     <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }}
                     </h2>
@@ -63,21 +64,61 @@
                     </li> --}}
                 </ul>
             </li>
-            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
+            <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="menu"></i><span
+                        class="menu-title text-truncate">{{ __('tran.reports') }}</span></a>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate">تقارير العملاء</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.client') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_users') }}</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center" href="{{ route('report.balance_client') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_balance_users') }}</span></a>
+                            </li>
+                            <li><a class="d-flex align-items-center"
+                                    href="{{ route('report.client_statement') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_account_statement_users') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate">تقارير الموردين</span></a>
+                        <ul class="menu-content">
+                          <li><a class="d-flex align-items-center" href="{{ route('report.supplier') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_suppliers') }}</span></a>
+                            </li>
+                          <li><a class="d-flex align-items-center" href="{{ route('report.balance_supplier') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_balance_supplier') }}</span></a>
+                            </li>
+                              {{-- <li><a class="d-flex align-items-center"
+                                    href="{{ route('report.client_statement') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_account_statement_users') }}</span></a>
+                            </li> --}}
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            {{-- <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{ __('tran.reports') }}</span>
-                    {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}
+
                 </a>
                 <ul class="menu-content">
                     <li><a class="d-flex align-items-center" href="{{ route('report.client') }}"><i
                                 data-feather="circle"></i><span class="menu-item text-truncate">{{__('tran.report_users')}}</span>
-                            {{-- <div class="badge bg-danger rounded-pill ms-auto">{{ \App\Models\user::count() }}</div> --}}
+
                         </a>
                     </li>
-                    {{-- <li><a class="d-flex align-items-center" href=""><i data-feather="circle"></i><span
-                        class="menu-item text-truncate">Role & Permion User</span></a>
-            </li> --}}
+                    <li><a class="d-flex align-items-center" href="{{ route('report.client_statement') }}"><i
+                                data-feather="circle"></i><span class="menu-item text-truncate">{{__('tran.report_account_statement_users')}}</span>
+
+                        </a>
+                    </li>
+
                 </ul>
-            </li>
+            </li> --}}
             <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i data-feather="layout"></i><span
                         class="menu-title text-truncate">{{ __('tran.invoice') }}</span>
                     {{-- <span class="badge badge-light-danger rounded-pill ms-auto me-1">2</span> --}}
@@ -86,7 +127,8 @@
                     <li><a class="d-flex align-items-center" href="{{ route('invoices_open') }}"><i
                                 data-feather="circle"></i><span
                                 class="menu-item text-truncate">{{ __('tran.invoiceopen') }}</span>
-                            <div class="badge bg-danger rounded-pill ms-auto">{{ \App\Models\DeliveryHeader::count() }}
+                            <div class="badge bg-danger rounded-pill ms-auto">
+                                {{ \App\Models\DeliveryHeader::count() }}
                             </div>
                         </a>
                     </li>
