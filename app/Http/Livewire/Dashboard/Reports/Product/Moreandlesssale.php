@@ -19,11 +19,11 @@ class Moreandlesssale extends Component
     {
         $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
         $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
-        $this->productlist    = ProductDetails::with('productheader')->get();
+        $this->productlist    = ProductDetails::with('unit')->with('productheader')->get();
     }
     public function render()
     {
-        $this->products        = ProductDetails::when('salesdetails', function ($qq) {
+        $this->products        = ProductDetails::with('unit')->when('salesdetails', function ($qq) {
             $qq->whereBetween('created_at', [$this->fromdate, $this->todate]);
             // $qq->whereBetween('created_at', [$this->fromdate, $this->todate])->orderBy('sales_details.quantity', 'DESC');
         })->when($this->selected, function ($q) {
