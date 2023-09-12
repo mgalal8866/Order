@@ -35,7 +35,7 @@ class MoreAndLessPayClient extends Component
                 trans('tran.purchases') => $data->salesheader()->Countpurchase() ?? 'N/A',
                 trans('tran.valuepurchases') => $data->salesheader()->Sumpurchase() ?? 'N/A',
                 trans('tran.returned') => $data->salesheader()->Countreturned() ?? 'N/A',
-                trans('tran.valuereturned')    => $data->salesheader()->Sumreturned() ?? 'N/A', $data->clientpay_source->client_name,
+                trans('tran.valuereturned')    => $data->salesheader()->Sumreturned() ?? 'N/A',
 
             ];
         });
