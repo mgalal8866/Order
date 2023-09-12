@@ -5,7 +5,7 @@
                 <div class="card-header border-bottom p-1">
                     <h4 class="card-title">{{ __('tran.report_paymenets_users') }} - {{ $username ?? '' }}</h4>
                     @if (count($exportdata) > 0)
-                        <livewire:dashboard.exportbutton :routeprint="route('home')" :data='$exportdata'>
+                        <livewire:dashboard.exportbutton  namereport="report_paymenets_users" :data='$exportdata'>
                     @endif
                 </div>
                 <div class="card-body ">
