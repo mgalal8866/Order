@@ -64,7 +64,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function salesheader()
     {
-        return $this->belongsto(SalesHeader::class, 'client_id');
+        return $this->hasMany(SalesHeader::class, 'client_id');
     }
     public function conversion()
     {
@@ -86,7 +86,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsto(ClientPayments::class, 'source_id');
     }
-   
+
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *

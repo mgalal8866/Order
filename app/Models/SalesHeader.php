@@ -21,7 +21,7 @@ class SalesHeader extends Model
     }
     public function user()
     {
-        return $this->belongsto(User::class, 'client_id');
+        return $this->belongsto(User::class, 'source_id');
     }
     public function comment()
     {
@@ -34,5 +34,21 @@ class SalesHeader extends Model
     public function scopeDelivered($query)
     {
         return $query->where('type_order', '!=','تم التوصيل')->where('status','=','دليفرى');
+    }
+    public function scopeCountreturned($query)
+    {
+               return $query->where('invoicetype', 1)->count();
+    }
+    public function scopeCountpurchase($query)
+    {
+               return $query->where('invoicetype', 0)->count();
+    }
+    public function scopeSumreturned($query)
+    {
+               return $query->where('invoicetype', 1)->sum('grandtotal');
+    }
+    public function scopeSumpurchase($query)
+    {
+        return $query->where('invoicetype', 0)->sum('grandtotal');
     }
 }

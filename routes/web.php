@@ -75,7 +75,9 @@ use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
+use App\Http\Livewire\Dashboard\Reports\Client\MoreAndLessPayClient;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
+use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
@@ -275,6 +277,8 @@ Route::middleware('tenant')->group(function () {
             Route::get('/supplier/statement', SupAccountStatement::class)->name('supplier_statement');
             Route::get('/supplier/balance', SupplierBalance::class)->name('balance_supplier');
             Route::get('/supplier', SupplierReport::class)->name('supplier');
+            Route::get('/client/moreandless', MoreAndLessPayClient::class)->name('client_moreandless');
+            Route::get('/supplier/moreandless', MoreLessPaySupllier::class)->name('supplier_moreandless');
 
         });
     });

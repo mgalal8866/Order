@@ -18,18 +18,15 @@ class SupAccountStatement extends Component
     public function selectedItem($item = null)
     {
         $this->selected = $item;
+
     }
 
-    public function updateSelected()
-    {
-    }
-    public function getstatement()
-    {
-    }
+
     public function mount()
     {
         $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
         $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
+        $this->suppliers = Supplier::get();
     }
     public function render()
     {
@@ -65,11 +62,14 @@ class SupAccountStatement extends Component
                 ];
             });
             $this->emit('export_button', $this->exportdata);
+        }else{
+            $this->supplierspayments  = [];
+            $this->exportdata=[];
         }
 
 
 
-        $this->suppliers = Supplier::get();
+
         return view('livewire.dashboard.reports.supplier.sup-account-statement');
     }
 }

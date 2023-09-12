@@ -12,9 +12,9 @@
                     <div class="">
                         <div class="row ">
                             <div class="col-md-4">
-                                <x-label for="formusers" label="اختار العميل" />
+                                <x-label for="formusers" label="اختار المورد" />
                                 <x-selectc id="formusers" emit='selectedItem' :items='$suppliers'
-                                    selectnull='اختيار العميل' value='id' display='Supplier_name' />
+                                    selectnull='اختيار المورد' value='id' display='Supplier_name' />
                             </div>
                             <div class="col-md-4">
                                 <x-label for="fromdate" label="من" />

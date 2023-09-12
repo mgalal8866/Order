@@ -25,14 +25,11 @@ class ClientBalance extends Component
 
     public function render()
     {
-
-
         $this->usersbalance =   User::when($this->selected ,function($q){
             if(!empty($this->selected)){
                 $q->where('id', $this->selected);
             }
         })->get();
-
         $this->exportdata = $this->usersbalance->map(function ($data) {
             return  [
                 'اسم العميل' => $data->client_name,

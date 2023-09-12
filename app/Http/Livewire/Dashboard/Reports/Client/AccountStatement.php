@@ -18,17 +18,11 @@ class AccountStatement extends Component
     {
         $this->selected = $item;
     }
-
-    public function updateSelected()
-    {
-    }
-    public function getstatement()
-    {
-    }
     public function mount()
     {
         $this->fromdate     =  Carbon::now()->startOfMonth()->format('Y/m/d');
         $this->todate       =  Carbon::now()->endOfMonth()->format('Y/m/d');
+        $this->users = User::get();
     }
     public function render()
     {
@@ -58,16 +52,15 @@ class AccountStatement extends Component
                     'رصيد سابق'     => $data->fromeamount,
                     'مدفوع'         => $data->paidamount,
                     'رصيد حالى'     => $data->newamount,
-                    'قيمه العملية'     => $data->grandtotal,
+                    'قيمه العملية'  => $data->grandtotal,
                     'نوع العملية'   => $data->payment_method == '0' ? "مبيعات" : ($data->payment_method == '1' ? "مرتجع" :  $data->payment_method),
                 ];
             });
             $this->emit('export_button', $this->exportdata);
+        }else{
+            $this->clientpayments=[];
+            $this->exportdata =[];
         }
-
-
-
-        $this->users = User::get();
         return view('livewire.dashboard.reports.client.account-statement');
     }
 }

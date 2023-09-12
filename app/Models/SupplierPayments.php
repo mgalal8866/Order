@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SupplierPayments extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'PaymentsSup_id';
     protected $guarded = [];
 }
