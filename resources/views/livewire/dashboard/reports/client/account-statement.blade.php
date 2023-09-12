@@ -45,7 +45,7 @@
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
                             @if (count($clientpayments) > 0)
-                                {{-- <h3> كشف حساب {{ $clientpayments[0]->clientpay_source->client_name }}</h3> --}}
+                                <h3> كشف حساب  - {{ $username }}</h3>
                             @endif
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
                         </span>

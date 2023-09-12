@@ -33,7 +33,7 @@ class AccountStatement extends Component
     public function render()
     {
         if (!empty($this->selected)) {
-            $this->username=User::where('source_id', $this->selected)->first();
+            $this->username=User::where('source_id', $this->selected)->first()->client_name;
             $a = SalesHeader::where('client_id', $this->selected)->whereBetween('created_at', [$this->fromdate, $this->todate])->select(
                 'invoicedate as date', //التاريخ
                 'invoicetype', // نوع_العملية
