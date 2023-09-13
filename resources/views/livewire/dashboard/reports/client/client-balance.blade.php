@@ -23,6 +23,13 @@
                             @if (count($usersbalance) ==1 )
                                 <h3> رصيد {{ $usersbalance[0]->client_name }}</h3>
                             @endif
+                            <div class="spinner-border text-info" role="status" wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div   wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                                <h6>جارى تحميل التقرير</h6>
+                            </div>
                         </span>
 
                     </div>

@@ -23,6 +23,13 @@
                             @if (count($suppliersbalance) ==1 )
                                 <h3> رصيد {{ $suppliersbalance[0]->Supplier_name }}</h3>
                             @endif
+                            <div class="spinner-border text-info" role="status" wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div   wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                                <h6 class="text-danger"  >جارى تحميل التقرير</h6>
+                            </div>
                         </span>
 
                     </div>

@@ -14,7 +14,8 @@
                             <div class="col-md-4">
                                 <x-label for="formproducts" label="اختار الصنف" />
                                 <x-selectc id="formproducts" emit='selectedItem' :items='$productlist'
-                                    selectnull='جميع الاصناف' value='id' display="productheader"  lvl2="product_name" display2="unit"  displaylvl2="unit_name"/>
+                                    selectnull='جميع الاصناف' value='id' display="productheader" lvl2="product_name"
+                                    display2="unit" displaylvl2="unit_name" />
 
                             </div>
                             <div class="col-md-4">
@@ -40,9 +41,17 @@
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
                             @if (count($productspayments) > 0)
-                                <h3> كشف حساب  - {{ $username }}</h3>
+                                <h3> كشف حساب - {{ $username }}</h3>
                             @endif
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
+                            <div class="spinner-border text-info" role="status" wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div   wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                                <h6>جارى تحميل التقرير</h6>
+                            </div>
+
                         </span>
 
                     </div>
@@ -58,9 +67,10 @@
                             <tbody>
                                 @forelse ($products as $product)
                                     <tr>
-                                        <td>{{ $product->productheader->product_name . ' ' . ($product->unit->unit_name?? 'N/A')  }} </td>
+                                        <td>{{ $product->productheader->product_name . ' ' . ($product->unit->unit_name ?? 'N/A') }}
+                                        </td>
                                         {{-- <td>{{ $product->salesdetails->sale_header->invoicetype == 0 ?'مبيعات':'مرتجع' }} </td> --}}
-                                        <td>{{ $product->salesdetails->sum('quantity')?? 'N/A'  }} </td>
+                                        <td>{{ $product->salesdetails->sum('quantity') ?? 'N/A' }} </td>
                                         {{-- <td>{{ $product->productheader()->Countpurchase()?? 'N/A' }}</td>
                                         <td>{{ $product->productheader()->Sumpurchase()?? 'N/A' }}</td>
                                         <td>{{ $product->productheader()->Countreturned()?? 'N/A' }}</td>

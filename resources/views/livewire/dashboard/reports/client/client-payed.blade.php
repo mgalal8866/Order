@@ -21,11 +21,7 @@
                                 <x-label for="todate" label="الى" />
                                 <x-daterange id="todate" wire:model.lazy='todate' :date='$todate' />
                             </div>
-                            {{-- <div class="col-md-4 align-self-center mt-2">
-                                <div class="text-center">
-                                    <button class="btn btn-success " wire:click='filterdate'>بحث</button>
-                                </div>
-                            </div> --}}
+
 
                         </div>
                     </div>
@@ -43,6 +39,13 @@
                         <span class="alert alert-info text-center mt-2">
 
                             <h4>تاريخ التقرير من  {{$fromdate}} الى  {{$todate}}</h4>
+                            <div class="spinner-border text-info" role="status" wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div   wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                                <h6>جارى تحميل التقرير</h6>
+                            </div>
                         </span>
 
                     </div>

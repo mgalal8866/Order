@@ -48,6 +48,13 @@
                                 {{-- <h3> كشف اعلى واقل الموردين شراء </h3> --}}
                             @endif
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
+                            <div class="spinner-border text-info" role="status" wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <div   wire:loading>
+                                <span class="visually-hidden">Loading...</span>
+                                <h6 class="text-danger"  >جارى تحميل التقرير</h6>
+                            </div>
                         </span>
 
                     </div>
