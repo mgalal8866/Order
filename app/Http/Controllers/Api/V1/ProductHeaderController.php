@@ -23,7 +23,7 @@ class ProductHeaderController extends Controller
     // public function searchproduct($search=null)
     public function searchproduct($search=null)
     {
-       Log::error($search);
+
       return  $this->productRepositry->searchproduct($search);
     }
  }
