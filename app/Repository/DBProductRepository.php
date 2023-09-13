@@ -26,14 +26,19 @@ class DBProductRepository implements ProductRepositoryinterface
     }
     public function searchproduct($search = null)
     {
-      if(empty($search)){
-         $results = [];
-      }
+        if (empty($search)) {
+            $results = [];
+
+        }else{
+
+
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
-            ->orWhereHas('productheader', function ($query) use ($search) {
-                $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
-            })->online()
-            ->paginate($this->pg);
+        ->orWhereHas('productheader', function ($query) use ($search) {
+            $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
+        })->online()
+        ->paginate($this->pg);
+
+        }
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
     }
 }
