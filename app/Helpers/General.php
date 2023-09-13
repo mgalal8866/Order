@@ -200,7 +200,7 @@ function getimage($imagename, $folder)
     $path       = public_path($mainpath . $folder . '/' . $imagename);
 
     if (File::exists($path)) {
-        return ($imagename !== null) ? asset($mainpath . '/' . $folder . '/' . $imagename) : $unfiend;
+        return ($imagename !== null) ? asset($mainpath .  $folder . '/' . $imagename) : $unfiend;
     } else {
         return   $unfiend;
     }
