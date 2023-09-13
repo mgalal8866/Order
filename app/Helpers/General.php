@@ -56,17 +56,17 @@ function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 }
 function sendsms($phone)
 {
-    $settings  =  Cache::get('settings', []);
+    $setting  =  getsetting();
 
-    if (env('SMS_OTP', false) === false) {
+    if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
         return 1;
     } else {
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
         $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
-            'username'  => $settings->sms_username,
-            'password'  => $settings->sms_password,
-            'sender'    => $settings->sms_senderid,
+            'username'  => $setting->sms_username,
+            'password'  => $setting->sms_password,
+            'sender'    => $setting->sms_senderid,
             'mobile'    => '2' . $phone,
             'lang'      => 'ar'
         ]);
@@ -83,12 +83,13 @@ function sendsms($phone)
 
 function otp_check($phone, $code)
 {
-    if (env('SMS_OTP', false) === false) {
+    $setting = getsetting();
+    if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
         return 1;
     } else {
         $response = Http::accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-check', [
-            'username'  => env('SMS_USERNAME', 'hosamalden236@gmail.com'),
-            'password'  => env('SMS_PASSWORD', '0101196246'),
+            'username'  => $setting->sms_username,
+            'password'  => $setting->sms_password,
             'mobile'    => '2' . $phone,
             'otp'       => $code,
             'verify' => true
@@ -204,11 +205,11 @@ function getimage($imagename, $folder)
 }
 function splititem($item)
 {
-    $on='';
-    foreach(explode('->',$item) as $index=> $fields){
+    $on = '';
+    foreach (explode('->', $item) as $index => $fields) {
         $on =  $on .  $fields;
-        if( count(explode('->',$item))-1 >  $index){
-        $on =  $on . "->";
+        if (count(explode('->', $item)) - 1 >  $index) {
+            $on =  $on . "->";
         }
     };
     return $on;
