@@ -19,13 +19,7 @@ class Home extends Component
     public function mount(){
         $offers  = ProductDetails::on('tenant')->orderBy('updated_at','DESC')->online()->Getoffers()->with('productheader')->with('unit')->with('cart')->paginate($this->count);
         $this->data['offers'] = $offers ;
-        $products  = ProductDetails::on('tenant')->online()->Getcategory()->with('productheader')->with('unit')->with('cart'
-        ,function($q){
-            if(!empty(Auth::guard('client')->user()->id)){
-                $q->where('user_id',Auth::guard('client')->user()->id);
-            }
-        })->orderBy('updated_at','DESC')->paginate($this->count);
-        $this->data['products'] = $products ;
+
     }
     public function loadmore()  {
         $this->count +=30;
@@ -46,7 +40,15 @@ class Home extends Component
     }
     public function render()
     {
-
+        $products  = ProductDetails::on('tenant')->online()->Getcategory()->with('productheader')->with('unit')->with(
+            'cart',
+            function ($q) {
+                if (!empty(Auth::guard('client')->user()->id)) {
+                    $q->where('user_id', Auth::guard('client')->user()->id);
+                }
+            }
+        )->orderBy('updated_at', 'DESC')->paginate($this->count);
+        $this->data['products'] = $products;
         return view('livewire.front.product.home')->layout('layouts.front-end.layout');
     }
 }
