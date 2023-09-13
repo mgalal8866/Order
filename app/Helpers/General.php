@@ -59,7 +59,7 @@ function sendsms($phone)
     $setting  =  getsetting();
 
     if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
-        Log::error('SMS_OTP_off');
+        
 
         return 1;
     } else {
