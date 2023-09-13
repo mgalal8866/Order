@@ -26,7 +26,7 @@ class DBProductRepository implements ProductRepositoryinterface
     }
     public function searchproduct($search = null)
     {
-      if($search ==null){
+      if(empty($search)){
          $results = [];
       }
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
