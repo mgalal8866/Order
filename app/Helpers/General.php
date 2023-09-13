@@ -59,8 +59,11 @@ function sendsms($phone)
     $setting  =  getsetting();
 
     if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
+        Log::error('SMS_OTP_off');
+
         return 1;
     } else {
+        Log::error('SMS_OTP_on');
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
         $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
