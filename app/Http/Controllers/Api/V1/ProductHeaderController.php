@@ -1,8 +1,9 @@
 <?php
 namespace App\Http\Controllers\Api\V1;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Repositoryinterface\ProductRepositoryinterface;
-use Illuminate\Http\Request;
 
 class ProductHeaderController extends Controller
 {
