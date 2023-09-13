@@ -24,8 +24,9 @@ class DBProductRepository implements ProductRepositoryinterface
         return Resp( ProductDetailsResource::collection(ProductDetails::Getoffers()->get()), 'success', 200, true)->getData(true);
         // \DB::getQueryLog(); // Show results of log
     }
-    public function searchproduct($search)
+    public function searchproduct($search = null)
     {
+      
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
             ->orWhereHas('productheader', function ($query) use ($search) {
                 $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
