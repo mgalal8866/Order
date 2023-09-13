@@ -37,7 +37,7 @@ class DBProductRepository implements ProductRepositoryinterface
             $query->online();
         })
         ->orWhereHas('productheader', function ($query) use ($search) {
-            $query->where('product_name', 'LIKE', "%" . $search . "%");
+            $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
         })->paginate($this->pg);
 
 
