@@ -32,13 +32,13 @@ class DBProductRepository implements ProductRepositoryinterface
         }
 
 
-        $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
+        $results = ProductDetails::where('productd_barcode', 'LIKE', $search)->online()
+        ->WhereHas('productheader', function ($query) {
+            $query->online();
+        })
         ->orWhereHas('productheader', function ($query) use ($search) {
             $query->where('product_name', 'LIKE', "%" . $search . "%");
-        })->WhereHas('productheader', function ($query) {
-            $query->online();
-        })->online()
-        ->paginate($this->pg);
+        })->paginate($this->pg);
 
 
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
