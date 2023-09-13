@@ -57,10 +57,7 @@ function Resp($data = null, $msg = null, $status = 200, $statusval = true)
 function sendsms($phone)
 {
     $setting  =  getsetting();
-
     if (env('SMS_OTP', false) === false && $setting->sms_active == 0) {
-        
-
         return 1;
     } else {
 
@@ -76,7 +73,7 @@ function sendsms($phone)
         $res = $response->json();
         // Log::error($phone);
         // Log::error($res);
-        Log::error($res);
+
         if ($res['type'] ?? 'error' == 'error') {
             return 0;
         } else {
@@ -99,6 +96,7 @@ function otp_check($phone, $code)
             'verify' => true
         ]);
         $res = $response->json();
+        Log::error($res);
         if ($res['type'] == 'error') {
             return 0;
         } else {
