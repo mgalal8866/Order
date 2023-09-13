@@ -63,7 +63,7 @@ function sendsms($phone)
 
         return 1;
     } else {
-        Log::error('SMS_OTP_on');
+
         // $code = rand(123456, 999999);
         // $msg = 'كود التحقق ' . $code;
         $response = Http::contentType('application/json')->accept('application/json')->post('https://smssmartegypt.com/sms/api/otp-send', [
@@ -76,6 +76,7 @@ function sendsms($phone)
         $res = $response->json();
         // Log::error($phone);
         // Log::error($res);
+        Log::error($res);
         if ($res['type'] ?? 'error' == 'error') {
             return 0;
         } else {
