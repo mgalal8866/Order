@@ -17,16 +17,15 @@ class Home extends Component
      public $data =['products'=>[],'offers'=>[]] ,$idcategory = null,$search ,$count = 30;
 
     public function mount(){
-        $offers  = ProductDetails::on('tenant')->orderBy('updated_at','DESC')->online()->Getoffers()->with('productheader')->with('unit')->with('cart')->paginate($this->count);
-        $this->data['offers'] = $offers ;
+        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at', 'DESC')->get();
+        $this->data['offers'] = $offers;
 
     }
     public function loadmore()  {
         $this->count +=30;
     }
     public function selectid($idc =null)  {
-        $offers  = ProductDetails::online()->Getoffers()->with('productheader')->with('unit')->with('cart')->orderBy('updated_at','DESC')->paginate(20);
-        $this->data['offers'] = $offers ;
+
 
         $products  = ProductDetails::online()->Getcategory($idc)->with('productheader')->with('unit')->with('cart'
         ,function($q){
@@ -40,6 +39,7 @@ class Home extends Component
     }
     public function render()
     {
+
         $products  = ProductDetails::on('tenant')->online()->Getcategory()->with('productheader')->with('unit')->with(
             'cart',
             function ($q) {
