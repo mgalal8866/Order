@@ -27,9 +27,9 @@ class DBProductRepository implements ProductRepositoryinterface
     public function searchproduct($search = null)
     {
         if (empty($search)) {
-            $results = [];
+            $search = 'Notfountsearch';
 
-        }else{
+        }
 
 
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
@@ -38,7 +38,7 @@ class DBProductRepository implements ProductRepositoryinterface
         })->online()
         ->paginate($this->pg);
 
-        }
+
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
     }
 }
