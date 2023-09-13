@@ -26,7 +26,9 @@ class DBProductRepository implements ProductRepositoryinterface
     }
     public function searchproduct($search = null)
     {
-      
+      if($search ==null){
+         $results = [];
+      }
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
             ->orWhereHas('productheader', function ($query) use ($search) {
                 $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
