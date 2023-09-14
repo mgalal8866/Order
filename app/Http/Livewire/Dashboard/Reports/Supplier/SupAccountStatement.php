@@ -32,7 +32,9 @@ class SupAccountStatement extends Component
     {
 
         if (!empty($this->selected)) {
-            $this->username = Supplier::where('id', $this->selected)->first()->Supplier_name;
+            $use= Supplier::where('id', $this->selected)->first()->Supplier_name;
+           
+            if($use != null) {$this->username= $use->Supplier_name;};
             $a = PurchaseHeader::where('Suppliers_id', $this->selected)->whereBetween('created_at', [$this->fromdate, $this->todate])->select(
                 'created_at as date', //التاريخ
                 'InvoiceType', // نوع_العملية
