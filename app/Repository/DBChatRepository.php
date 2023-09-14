@@ -30,7 +30,7 @@ class DBChatRepository implements ChatRepositoryinterface
     public function getmessage()
     {
 
-        Tenants::changepusher();
+        // Tenants::changepusher();
          $messages= Message::WhereHas('conversion', function ($query) {
             return $query->where('client_id', Auth::guard('api')->user()->id);
         })->get();
