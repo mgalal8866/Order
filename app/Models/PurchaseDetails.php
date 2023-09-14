@@ -9,4 +9,9 @@ class PurchaseDetails extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function purchaseheader()
+    {
+        return $this->belongsto(PurchaseHeader::class, 'Purchase_h_id');
+    }
 }

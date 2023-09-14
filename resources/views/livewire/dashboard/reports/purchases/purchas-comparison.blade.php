@@ -3,9 +3,9 @@
         <div class="col-12">
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
-                    <h4 class="card-title">{{ __('tran.report_purchases') }} </h4>
+                    <h4 class="card-title">{{ __('tran.report_purchases_comparison') }} </h4>
                     @if (count($exportdata) > 0)
-                        <livewire:dashboard.exportbutton namereport="{{ __('tran.report_purchases') }} "
+                        <livewire:dashboard.exportbutton namereport="{{ __('tran.report_purchases_comparison') }} "
                             :data='$exportdata'>
                     @endif
                 </div>
@@ -13,9 +13,11 @@
                     <div class="">
                         <div class="row ">
                             <div class="col-md-4">
-                                <x-label for="formusers" label="اختار المورد" />
-                                <x-selectc id="formusers" emit='selectedItem' :items='$suppliers'
-                                    selectnull='اختيار المورد' value='id' display='Supplier_name' />
+                                <x-label for="formproducts" label="اختار الصنف" />
+                                <x-selectc id="formproducts" emit='selectedItem' :items='$productlist'
+                                    selectnull='جميع الاصناف' value='id' display="productheader" lvl2="product_name"
+                                    display2="unit" displaylvl2="unit_name" />
+
                             </div>
                             <div class="col-md-4">
                                 <x-label for="fromdate" label="من" />
@@ -55,33 +57,27 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>{{ __('tran.num_invo') }}</th>
                                     <th>{{ __('tran.name_supplier') }}</th>
+                                    <th>{{ __('tran.action_type') }}</th>
+                                    <th>{{ __('tran.lass_price') }}</th>
                                     <th>{{ __('tran.date_buy') }}</th>
-                                    <th>{{ __('tran.total') }}</th>
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($purchases as $purchased)
+                                @forelse ($purchasedetails as $purchased)
                                     <tr>
 
-                                        <td>{{ $purchased->invoice_Number ?? 'N/A'}} </td>
-                                        <td>{{ $purchased->supplier->Supplier_name?? 'N/A' }} </td>
-                                        <td>{{ $purchased->created_at ?? 'N/A'}} </td>
-                                       <td>{{ $purchased->Grand_Total ?? 'N/A'}} </td>
+                                        <td>{{ $purchased->purchaseheader->supplier->Supplier_name?? 'N/A' }} </td>
+                                        <td>{{ $purchased->purchaseheader->InvoiceType == 0 ? 'مشتريات' : 'مرتجع' ?? 'N/A'}} </td>
+                                        <td>{{ $purchased->BuyPrice?? 'N/A'}} </td>
+                                        <td>{{ $purchased->created_at?? 'N/A'}} </td>
                                     </tr>
                                 @empty
                                     <tr>
                                         <td colspan="5" class="alert alert-danger text-center"> No Data Here</td>
                                     </tr>
                                 @endforelse
-                                <tr class="text-danger">
-
-                                    <td  class="text-danger">اجمالى الفواتير :  {{ $purchases->sum('Grand_Total') ?? 'N/A'}} </td>
-
-
-                                </tr>
                             </tbody>
                         </table>
 

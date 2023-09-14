@@ -66,17 +66,21 @@ use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
+use App\Http\Livewire\Dashboard\Reports\Employee\EmpReport;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientBalance;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
-use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 
+use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
 use App\Http\Livewire\Dashboard\Reports\Product\Moreandlesssale;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
+use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasesReport;
 use App\Http\Livewire\Dashboard\Reports\Client\MoreAndLessPayClient;
+use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasComparison;
+use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasesReturned;
 use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
@@ -283,6 +287,10 @@ Route::middleware('tenant')->group(function () {
             Route::get('/client/moreandless', MoreAndLessPayClient::class)->name('client_moreandless');
             Route::get('/supplier/moreandless', MoreLessPaySupllier::class)->name('supplier_moreandless');
             Route::get('/product/moreandless', Moreandlesssale::class)->name('product_moreandless');
+            Route::get('/employee', EmpReport::class)->name('employee');
+            Route::get('/purchases/returned', PurchasesReturned::class)->name('purchases_returned');
+            Route::get('/purchases', PurchasesReport::class)->name('purchases');
+            Route::get('/purchases/comparison', PurchasComparison::class)->name('purchases_comparison');
 
         });
     });

@@ -18,6 +18,10 @@ class Employee extends Model
     {
         return $this->belongsto(region::class, 'region_id');
     }
+    public function job()
+    {
+        return $this->belongsto(jobs::class, 'job_id');
+    }
     public function useradmin()
     {
         return $this->hasMany(useradmin::class,'emp_id');

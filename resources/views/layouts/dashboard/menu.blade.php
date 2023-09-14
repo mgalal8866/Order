@@ -123,6 +123,36 @@
                          </ul>
                      </li>
                  </ul>
+                 <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate">تقارير الموظفين</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.employee') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_emp') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                 <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate">تقارير المشتريات</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_purchases') }}</span></a>
+                            </li>
+                        </ul>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases_returned') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_purchases_returned') }}</span></a>
+                            </li>
+                        </ul>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.purchases_comparison') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_purchases_comparison') }}</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
              </li>
 
              <li class=" nav-item"><a class="d-flex align-items-center" href="#"><i

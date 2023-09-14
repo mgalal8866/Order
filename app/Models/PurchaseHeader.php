@@ -9,6 +9,7 @@ class PurchaseHeader extends Model
 {
     use HasFactory;
     protected $guarded = [];
+      protected $primaryKey = 'PurchaseH_id';
     public function supplier()
     {
         return $this->belongsto(Supplier::class, 'Suppliers_id');

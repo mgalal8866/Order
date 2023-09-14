@@ -3,10 +3,9 @@
         <div class="col-12">
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
-                    <h4 class="card-title">{{ __('tran.report_purchases') }} </h4>
+                    <h4 class="card-title">{{ __('tran.report_purchases_returned') }} </h4>
                     @if (count($exportdata) > 0)
-                        <livewire:dashboard.exportbutton namereport="{{ __('tran.report_purchases') }} "
-                            :data='$exportdata'>
+                        <livewire:dashboard.exportbutton namereport="{{__('tran.report_purchases_returned')}}" :data='$exportdata'>
                     @endif
                 </div>
                 <div class="card-body ">
@@ -25,6 +24,12 @@
                                 <x-label for="todate" label="الى" />
                                 <x-daterange id="todate" wire:model.lazy='todate' :date='$todate' />
                             </div>
+                            {{-- <div class="col-md-4 align-self-center mt-2">
+                                <div class="text-center">
+                                    <button class="btn btn-success " wire:click='filterdate'>بحث</button>
+                                </div>
+                            </div> --}}
+
                         </div>
                     </div>
                     <div class="row">
@@ -39,15 +44,15 @@
                             </select>
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
+
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
                             <div class="spinner-border text-info" role="status" wire:loading>
                                 <span class="visually-hidden">Loading...</span>
                             </div>
-                            <div wire:loading>
+                            <div   wire:loading>
                                 <span class="visually-hidden">Loading...</span>
-                                <h6>جارى تحميل التقرير</h6>
+                                <h6 class="text-danger"  >جارى تحميل التقرير</h6>
                             </div>
-
                         </span>
 
                     </div>
@@ -57,31 +62,25 @@
                                 <tr>
                                     <th>{{ __('tran.num_invo') }}</th>
                                     <th>{{ __('tran.name_supplier') }}</th>
-                                    <th>{{ __('tran.date_buy') }}</th>
+                                    <th>{{ __('tran.date') }}</th>
                                     <th>{{ __('tran.total') }}</th>
+                                    {{-- <th>{{ __('tran.user') }}</th> --}}
 
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($purchases as $purchased)
+                                @forelse ($purchases as $purchas)
                                     <tr>
-
-                                        <td>{{ $purchased->invoice_Number ?? 'N/A'}} </td>
-                                        <td>{{ $purchased->supplier->Supplier_name?? 'N/A' }} </td>
-                                        <td>{{ $purchased->created_at ?? 'N/A'}} </td>
-                                       <td>{{ $purchased->Grand_Total ?? 'N/A'}} </td>
+                                        <td>{{ $purchas->invoice_Number ?? 'N/A' }}</td>
+                                        <td>{{ $purchas->supplier->Supplier_name ?? 'N/A' }}</td>
+                                        <td>{{Carbon::parse( $purchas->created_at)->format('Y/m/d') ?? 'N/A' }}</td>
+                                        <td>{{ $purchas->Grand_Total ?? 'N/A' }}</td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="alert alert-danger text-center"> No Data Here</td>
+                                        <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
                                     </tr>
                                 @endforelse
-                                <tr class="text-danger">
-
-                                    <td  class="text-danger">اجمالى الفواتير :  {{ $purchases->sum('Grand_Total') ?? 'N/A'}} </td>
-
-
-                                </tr>
                             </tbody>
                         </table>
 

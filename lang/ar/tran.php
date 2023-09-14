@@ -129,6 +129,9 @@ return [
     'report_supplier_moreandless'     => 'اعلى واقل الموردين شراء',
     'report_product_moreandless'     => 'اعلى واقل الاصناف طلبا',
     'report_suppliers'     => 'تقرير بيانات الموردين',
+    'report_purchases_returned'     => 'تقرير مرتجع المشتريات',
+    'report_purchases_comparison'     => 'مقارنة مشتريات الاصناف',
+    'report_emp'     => 'تقرير بيانات الموظفين',
     'date'              => 'تاريخ',
     'name_supplier'          => 'اسم المورد',
     'phone_supplier'          => 'تليفون المورد',
@@ -140,6 +143,17 @@ return [
     'purchases'          => 'مشتريات',
     'valuereturned'          => 'قيمة المرتجعات',
     'valuepurchases'          => 'قيمة المشتريات',
+    'emp_code'          => 'كود الموظف',
+    'emp_name'          => 'اسم الموظف',
+    'emp_phone'          => 'تليفون',
+    'emp_salery'          => 'قيمه الاجر',
+    'emp_position'          => 'الوظيفة',
+    'num_invo'          => 'رقم الفاتورة',
+    'action_type'          => 'نوع العملية',
+    'lass_price'          => 'اقل سعر',
+    'date_buy'          => 'تاريخ الشراء',
+    'report_purchases'          => 'تقرير المشتريات',
+
 
 
 ];
