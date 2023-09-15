@@ -3,24 +3,33 @@
         <div class="col-12">
             <div class="card outline-success">
                 <div class="card-header border-bottom p-1">
-                    <h4 class="card-title">{{ __('tran.pos_shift') }} </h4>
+                    <h4 class="card-title">{{ __('tran.report_user_sales') }} </h4>
                     @if (count($exportdata) > 0)
-                        <livewire:dashboard.exportbutton namereport="{{ __('tran.pos_shift') }}" :data='$exportdata'>
+                        <livewire:dashboard.exportbutton namereport="{{ __('tran.report_user_sales') }}" :data='$exportdata'>
                     @endif
                 </div>
                 <div class="card-body ">
                     <div class="">
                         <div class="row ">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <x-label for="formusers" label="اختار المستخدم" />
                                 <x-selectc id="formusers" emit='selectedItem' :items='$userdesck'
                                     selectnull='اختيار المستخدم' value='id' display='user_name' />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <x-label for="typeinvo" label="نوع الفاتورة" />
+                               <select class=" form-select" >
+                                <option value='1'>الكل</option>
+                                <option value='1'>مبيعات</option>
+                                <option value='1'>مشتريات</option>
+                                <option value='1'>مرتجعات</option>
+                               </select>
+                            </div>
+                            <div class="col-md-3">
                                 <x-label for="fromdate" label="من" />
                                 <x-daterange id="fromdate" wire:model.lazy='fromdate' :date='$fromdate' />
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <x-label for="todate" label="الى" />
                                 <x-daterange id="todate" wire:model.lazy='todate' :date='$todate' />
                             </div>
@@ -44,9 +53,9 @@
                             </select>
                         </div> --}}
                         <span class="alert alert-info text-center mt-2">
-                            @if (count($shifts) > 0)
+                            {{-- @if (count($shifts) > 0)
                                 <h3> تقرير شفت - {{ $username }}</h3>
-                            @endif
+                            @endif --}}
                             <h4>تاريخ التقرير من {{ $fromdate }} الى {{ $todate }}</h4>
                             <div class="spinner-border text-info" role="status" wire:loading>
                                 <span class="visually-hidden">Loading...</span>
@@ -77,7 +86,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($shifts as $shift)
+                                {{-- @forelse ($salesheader as $item)
                                     <tr>
                                         <td>{{ $shift->safe->safe_name ?? 'N/A' }}</td>
                                         <td>{{ $shift->StartDate ?? 'N/A' }}</td>
@@ -96,7 +105,7 @@
                                     <tr>
                                         <td colspan="12" class="alert alert-danger text-center"> No Data Here</td>
                                     </tr>
-                                @endforelse
+                                @endforelse --}}
                             </tbody>
                         </table>
 

@@ -127,8 +127,18 @@
                     <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
                                 class="menu-item text-truncate">تقارير الموظفين</span></a>
                         <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.employee_salery') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_salery') }}</span></a>
+                            </li>
+                        </ul>
+                        <ul class="menu-content">
                             <li><a class="d-flex align-items-center" href="{{ route('report.employee') }}"><span
                                         class="menu-item text-truncate">{{ __('tran.report_emp') }}</span></a>
+                            </li>
+                        </ul>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.employee_advance') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.employee_advance') }}</span></a>
                             </li>
                         </ul>
                     </li>
@@ -151,6 +161,22 @@
                                         class="menu-item text-truncate">{{ __('tran.report_purchases_comparison') }}</span></a>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+                 <ul class="menu-content">
+                    <li><a class="d-flex align-items-center" href="#"><i data-feather="circle"></i><span
+                                class="menu-item text-truncate">تقارير نقاط البيع</span></a>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.pos_shift') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.pos_shift') }}</span></a>
+                            </li>
+                        </ul>
+                        <ul class="menu-content">
+                            <li><a class="d-flex align-items-center" href="{{ route('report.user_sales') }}"><span
+                                        class="menu-item text-truncate">{{ __('tran.report_user_sales') }}</span></a>
+                            </li>
+                        </ul>
+
                     </li>
                 </ul>
              </li>

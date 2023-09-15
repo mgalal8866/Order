@@ -75,7 +75,6 @@ return [
     'invostate'       => 'حاله الفاتورة',
     'invopaytayp'     => 'الدفع',
     'paymentdetails'  => 'تفاصيل الدفع',
-    'username'        => 'اسم المستخدم ',
     'password'        => ' الباسورد',
     'subtotal'        => 'الاجمالى الفرعى',
     'deliverycost'    => 'قيمة التوصيل',
@@ -131,6 +130,7 @@ return [
     'report_suppliers'     => 'تقرير بيانات الموردين',
     'report_purchases_returned'     => 'تقرير مرتجع المشتريات',
     'report_purchases_comparison'     => 'مقارنة مشتريات الاصناف',
+    'report_shift'     => 'مقارنة الشفتات',
     'report_emp'     => 'تقرير بيانات الموظفين',
     'date'              => 'تاريخ',
     'name_supplier'          => 'اسم المورد',
@@ -153,6 +153,29 @@ return [
     'lass_price'          => 'اقل سعر',
     'date_buy'          => 'تاريخ الشراء',
     'report_purchases'          => 'تقرير المشتريات',
+    'employee_advance'          =>  'سلفيات الموظفين',
+
+    'pos_shift'          => 'تقرير الشفتات',
+    'namesafe'           => 'اسم الخزنة',
+    'start_shift'        => 'بداية الشفت',
+    'balance'            => 'الرصيد',
+    'sales'              => 'المبيعات',
+    'returns'            => 'المرتجعات',
+    'purchases'          => 'المشتريات',
+    'returns_purchases'  => 'مرتجع المشتريات',
+    'advance'            => 'السلفيات',
+    'revenues'           => 'الايردات',
+    'expenses'           => 'المصروفات',
+    'end_shift'          => 'نهائية الشفت',
+    'final_balance'      => 'الرصيد النهائي',
+
+    'type_advance'      => 'نوع السلفة ',
+    'amount'            => 'المبلغ',
+    'details'           => 'تفصيل',
+    'name_emp'          => 'اسم الموظف',
+    'report_salery'   => 'تقرير الرواتب',
+    'report_user_sales'   => 'تقرير مبيعات مستخدم',
+
 
 
 
