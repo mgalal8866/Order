@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Cart;
+use App\Models\Wishlist;
+use App\Models\SalesDetails;
 use App\Models\ProductHeader;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Eloquent\Model;

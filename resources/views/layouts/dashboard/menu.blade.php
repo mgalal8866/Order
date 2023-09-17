@@ -121,6 +121,13 @@
                              </li>
 
                          </ul>
+                         <ul class="menu-content">
+                             <li><a class="d-flex align-items-center"
+                                     href="{{ route('report.limit_product') }}"><span
+                                         class="menu-item text-truncate">{{ __('tran.report_limit_product') }}</span></a>
+                             </li>
+
+                         </ul>
                      </li>
                  </ul>
                  <ul class="menu-content">

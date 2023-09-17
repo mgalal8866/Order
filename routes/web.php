@@ -88,6 +88,7 @@ use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasesReturned;
 use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
+use App\Http\Livewire\Dashboard\Reports\Product\LimitProductPay;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -291,6 +292,7 @@ Route::middleware('tenant')->group(function () {
             Route::get('/client/moreandless', MoreAndLessPayClient::class)->name('client_moreandless');
             Route::get('/supplier/moreandless', MoreLessPaySupllier::class)->name('supplier_moreandless');
             Route::get('/product/moreandless', Moreandlesssale::class)->name('product_moreandless');
+            Route::get('/product/limit', LimitProductPay::class)->name('limit_product');
             Route::get('/employee', EmpReport::class)->name('employee');
             Route::get('/employee/salery', EmpSalery::class)->name('employee_salery');
             Route::get('/employee/advance', EmpAdvance::class)->name('employee_advance');

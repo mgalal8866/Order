@@ -175,6 +175,8 @@ return [
     'name_emp'          => 'اسم الموظف',
     'report_salery'   => 'تقرير الرواتب',
     'report_user_sales'   => 'تقرير مبيعات مستخدم',
+    'report_limit_product'   => 'تقرير حد الطلب للاصناف',
+    'qtystock'   => 'الكمية فى المخزن',
 
 
 

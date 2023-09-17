@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Models\Stock;
+use App\Models\Category;
+use App\Models\ProductDetails;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -16,7 +18,8 @@ class ProductHeader extends Model
     }
     public function stock()
     {
-        return $this->hasMany(Stock::class,'product_id');
+        return $this->hasone(Stock::class, 'product_id');
+        // return $this->hasMany(Stock::class,'product_id');
     }
     public function productdetails()
     {
