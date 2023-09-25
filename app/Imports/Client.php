@@ -45,6 +45,8 @@ class Client implements
             'client_name'       => $row['name'],
             'client_fhonewhats' => $row['phone'] = '0'. $row['phone'],
             'client_state'      => $row['address'],
+            'region_id'         => $row['region'],
+            'categoryAPP'       => 1,
             'default_Sael'      => $row['sale'] == 'Cash' ? 'كاش' : 'اجل',
             'store_name'        => $row['store'],
         ];

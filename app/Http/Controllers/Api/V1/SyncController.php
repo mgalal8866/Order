@@ -68,8 +68,10 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
+use App\Http\Resources\UserResource;
 use App\Models\MovementStockDetails;
 use Illuminate\Support\Facades\Cache;
+use App\Http\Resources\ClientResource;
 use App\Http\Resources\CommentResource;
 use App\Http\Resources\clientsyncResource;
 use App\Http\Livewire\Front\Compon\Product;
@@ -82,6 +84,11 @@ class SyncController extends Controller
     {
         $count = user::count();
         return    Resp($count, 'success', 200, true);
+    }
+    function getuser($id)
+    {
+        $user = user::find($id);
+        return    Resp(new ClientResource($user), 'success', 200, true);
     }
     function client(Request $request)
     {
