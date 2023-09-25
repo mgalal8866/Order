@@ -206,7 +206,7 @@ Route::middleware('tenant')->group(function () {
 
         // $admin =  UserAdmin::firstOrCreate($users);
         //    $admin->create($users);
-        // return view('importclient');
+        return view('importclient');
         // $yy = user::get();
         // foreach($yy as $i){
         //     $i->update(['code_client'=> 'On-' . $i->id]);
