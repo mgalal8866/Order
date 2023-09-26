@@ -113,7 +113,7 @@ class SyncController extends Controller
                     'client_Credit_Limit' => $item['Client_Credit_Limit'],
                     'default_Sael'        => $item['default_Sael'],
                     'client_note'         => $item['Client_note'],
-                    // 'client_code'         => $item['Client_code'],
+                    'code_client'         => $item['Client_code'],
                     'categoryAPP'         => $item['CategoryAPP'],
                     'client_Active'       => $item['Client_Active'],
                     'created_at'          => $item['caret_data']
