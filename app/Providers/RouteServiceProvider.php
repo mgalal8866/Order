@@ -43,7 +43,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api_v1.php'));
 
             Route::middleware(['tenant', 'api', 'ApiVersion:v2','ApiCheckKey'])
-                ->prefix('api/v1')
+                ->prefix('api/v2')
                 ->namespace("{$this->apiNamespace}\V2")
                 ->group(base_path('routes/api_v2.php'));
 
