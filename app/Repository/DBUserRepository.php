@@ -28,7 +28,7 @@ class DBUserRepository implements UserRepositoryinterface
     #############################################################
     public function checkphone_v2($phone)
     {
-        $user = $this->model->where('phone', $phone)->first();
+        $user = $this->model->where('client_fhonewhats', $phone)->first();
         if ($user != null) {
 
             $question = question::whereIn('id', [$user->question1_id, $user->question2_id])->get();
@@ -41,7 +41,7 @@ class DBUserRepository implements UserRepositoryinterface
     {
         $user = $this->model->where(
             [
-                'phone'   => $request->phone,
+                'client_fhonewhats'   => $request->client_fhonewhats,
                 'answer1' => $request->answer1,
                 'answer2' => $request->answer2,
             ]
