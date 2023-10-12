@@ -52,6 +52,7 @@ class DBUserRepository implements UserRepositoryinterface
 
     public function login_v2($request)
     {
+        $token =  Auth::guard('api')->attempt(['client_fhonewhats' => $request->get('client_fhonewhats'), 'password' => $request->get('password')]);
         $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
         if ($user == null) {
             return Resp(null, 'User Not found', 404, false);
