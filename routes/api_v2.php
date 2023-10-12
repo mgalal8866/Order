@@ -3,7 +3,7 @@
 use App\Models\logsync;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V2\UserController;
 
 ################# Start Login & Register #############
 // Route::post('/login',   [UserController::class, 'login'])->name('login');
