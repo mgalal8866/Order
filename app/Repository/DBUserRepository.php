@@ -145,8 +145,9 @@ class DBUserRepository implements UserRepositoryinterface
         if (!$token = auth('api')->login($user)) {
             return Resp(null, 'Unauthorized', 404, false);
         }
-        $user = $this->model->where('phone', $user->phone)->first();
+        $user = $this->model->where('client_fhonewhats', $user->client_fhonewhats)->first();
         $user->token = $token;
+        $user->setting = $this->settings();
         $data =  new LoginUserResource($user);
         return Resp($data, 'Success', 200, true);
     }
