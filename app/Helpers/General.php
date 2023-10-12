@@ -133,9 +133,6 @@ function uploadimages($folder, $image)
 }
 function notificationFCM($title = null, $body = null, $users = null, $icon = null, $image = null, $link = null, $click = null, $sav = true)
 {
-
-
-
     $SERVER_API_KEY = getsetting()->fire_servies;
     $data = [
         "registration_ids" => $users,

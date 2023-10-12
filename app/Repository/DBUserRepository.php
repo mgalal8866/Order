@@ -52,8 +52,8 @@ class DBUserRepository implements UserRepositoryinterface
 
     public function login_v2($request)
     {
-        user::query()->update(['password' => '123456']);
-         
+        User::query()->update(['password' => '123456']);
+
         $token =  Auth::guard('api')->attempt(['client_fhonewhats' => $request->get('client_fhonewhats'), 'password' => $request->get('password')]);
         $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
         if ($user == null) {
@@ -70,7 +70,7 @@ class DBUserRepository implements UserRepositoryinterface
         $text = getsetting()->notif_welcome_text;
 
         $rep = replacetext($text, $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm]);
+        notificationFCM('اهلا بك', $rep, [$user->fsm],null,null,null,null,false);
         return Resp($data, 'Success', 200, true);
     }
     public function edit_v2($request)
