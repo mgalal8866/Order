@@ -20,12 +20,12 @@ class UserController extends Controller
     }
     public function checkphone($phone)
     {
-        return $this->userRepositry->checkphone($phone);
+        return $this->userRepositry->checkphone_v2($phone);
     }
 
     public function checkanswer(Request $request)
     {
-        return $this->userRepositry->checkanswer($request);
+        return $this->userRepositry->checkanswer_v2($request);
     }
 
 
@@ -59,6 +59,4 @@ class UserController extends Controller
         $question = question::get();
         return Resp($question, 'success');
     }
-
-
 }

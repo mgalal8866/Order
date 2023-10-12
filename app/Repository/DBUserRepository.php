@@ -23,7 +23,7 @@ class DBUserRepository implements UserRepositoryinterface
         $this->model = $model;
     }
 
-    public function checkphone($phone)
+    public function checkphone_v2($phone)
     {
         $user = $this->model->where('phone', $phone)->first();
         if ($user != null) {
@@ -34,7 +34,7 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'هاتف غير مسجل', 302, false);
         }
     }
-    public function checkanswer($request)
+    public function checkanswer_v2($request)
     {
         $user = $this->model->where(
             [
@@ -50,7 +50,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
     }
 
-    public function loginv2($request)
+    public function login_v2($request)
     {
         $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
         if ($user == null) {
@@ -70,7 +70,63 @@ class DBUserRepository implements UserRepositoryinterface
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return Resp($data, 'Success', 200, true);
     }
+    public function edit_v2($request)
+    {
+        DB::beginTransaction();
+        try {
+            $user =  User::find(Auth::guard('api')->user()->id);
+            $user->client_name       = $request['client_name'] ?? $user->client_name;
+            $user->client_fhoneLeter = $request['client_fhoneLeter'] ?? $user->client_fhoneLeter;
+            $user->region_id         = $request['region_id'] ?? $user->region_id;
+            $user->store_name        = $request['store_name'] ?? $user->store_name;
+            $user->lat_mab           = $request['lat_mab'] ?? $user->lat_mab;
+            $user->long_mab          = $request['long_mab'] ?? $user->long_mab;
+            $user->client_state      = $request['client_state'] ?? $user->client_state;
+            $user->CategoryAPP       = $request['CategoryAPP'] ?? $user->CategoryAPP;
+            $user->client_code       = $request['client_code'] ?? $user->client_code;
+            $user->store_name        = $request['store_name'] ?? $user->store_name;
+            $user->save();
+            $data =  new UserResource($user);
+            return Resp($data, 'Success', 200, true);
+            DB::commit();
+            return true;
+        } catch (\Exception $e) {
+            Log::warning($e->getMessage());
+            DB::rollback();
+            return false;
+            // something went wrong
+        }
+    }
 
+    public function register_v2($request)
+    {
+        // Log::warning($request);
+        $user = User::create([
+            'client_name' => $request['client_name'] ?? null,
+            'password'     => $request['password'] ?? null,
+            'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
+            'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
+            'region_id' => $request['region_id'] ?? null,
+            'lat_mab' => $request['lat_mab'] ?? null,
+            'long_mab' => $request['long_mab'] ?? null,
+            'client_state' => $request['client_state'] ?? null,
+            'long_mab' => $request['long_mab'] ?? null,
+            'CategoryAPP' => $request['CategoryAPP'] ?? null,
+            'client_code' => $request['client_code'] ?? null,
+            'store_name' => $request['store_name'] ?? null
+        ]);
+
+        if (!$token = auth('api')->login($user)) {
+            return Resp(null, 'Unauthorized', 404, false);
+        }
+        $user->token = $token;
+        $user->setting = $this->settings();
+        $text = getsetting()->notif_welcome_text;
+        // Log::error($user);
+        $rep = replacetext($text,  $user);
+        notificationFCM('اهلا بك', $rep, [$user->fsm]);
+        return $user;
+    }
 
 
 
