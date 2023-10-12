@@ -34,6 +34,10 @@ class RegisterUser extends FormRequest
             'client_state'      => 'required',
             'CategoryAPP'       => 'required',
             'store_name'       => '',
+            'question1_id'       => '',
+            'question2_id'       => '',
+            'answer1'       => '',
+            'answer2'       => '',
 
         ];
 
