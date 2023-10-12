@@ -4,6 +4,7 @@ namespace App\Repositoryinterface;
 interface UserRepositoryinterface{
 
     public function login($request);
+    public function loginv2($request);
     public function edit($request);
     public function register($request);
     public function getusers($pg = 30);
