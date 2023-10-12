@@ -15,7 +15,7 @@ class ApiVersion
      */
     public function handle($request, Closure $next, $guard)
     {
-        if( config('app.api_latest') == $guard ){
+        if( config('app.api_latest') == $guard || 'v2' == $guard){
             return $next($request);
         }else{
             return response(['error' => 'Filed API V']);
