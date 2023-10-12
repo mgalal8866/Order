@@ -31,18 +31,18 @@ class UserController extends Controller
 
     public function register(RegisterUser $request)
     {
-        $data = new UserResource($this->userRepositry->register($request->validated()));
+        $data = new UserResource($this->userRepositry->register_v2($request->validated()));
         return Resp($data, 'Success', 200, true);
     }
 
     public function login(Request $request)
     {
-        return   $this->userRepositry->login($request);
+        return   $this->userRepositry->login_v2($request);
     }
 
     public function edit(Request $request)
     {
-        return   $this->userRepositry->edit($request->all());
+        return   $this->userRepositry->edit_v2($request->all());
     }
 
     protected function respondWithToken($token, $user = null)
