@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Resources\QuestionResource;
 use App\Http\Resources\LoginUserResource;
@@ -22,7 +23,9 @@ class DBUserRepository implements UserRepositoryinterface
     {
         $this->model = $model;
     }
-
+    #############################################################
+    ########################## API V2 ###########################
+    #############################################################
     public function checkphone_v2($phone)
     {
         $user = $this->model->where('phone', $phone)->first();
@@ -52,7 +55,7 @@ class DBUserRepository implements UserRepositoryinterface
 
     public function login_v2($request)
     {
-        User::query()->update(['password' => '123456']);
+        User::query()->update(['password' =>  Hash::make('123456')]);
 
         $token =  Auth::guard('api')->attempt(['client_fhonewhats' => $request->get('client_fhonewhats'), 'password' => $request->get('password')]);
         $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
@@ -70,7 +73,7 @@ class DBUserRepository implements UserRepositoryinterface
         $text = getsetting()->notif_welcome_text;
 
         $rep = replacetext($text, $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm],null,null,null,null,false);
+        notificationFCM('اهلا بك', $rep, [$user->fsm], null, null, null, null, false);
         return Resp($data, 'Success', 200, true);
     }
     public function edit_v2($request)
@@ -88,6 +91,10 @@ class DBUserRepository implements UserRepositoryinterface
             $user->CategoryAPP       = $request['CategoryAPP'] ?? $user->CategoryAPP;
             $user->client_code       = $request['client_code'] ?? $user->client_code;
             $user->store_name        = $request['store_name'] ?? $user->store_name;
+            $user->question1_id      = $request['question1_id'] ?? $user->question1_id;
+            $user->question2_id      = $request['question2_id'] ?? $user->question2_id;
+            $user->answer1           = $request['answer1'] ?? $user->answer1;
+            $user->answer2           = $request['answer2'] ?? $user->answer2;
             $user->save();
             $data =  new UserResource($user);
             return Resp($data, 'Success', 200, true);
@@ -106,7 +113,7 @@ class DBUserRepository implements UserRepositoryinterface
         // Log::warning($request);
         $user = User::create([
             'client_name' => $request['client_name'] ?? null,
-            'password'     => $request['password'] ?? null,
+            'password'     =>  Hash::make($request['password']) ?? null,
             'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
             'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
             'region_id' => $request['region_id'] ?? null,
@@ -116,7 +123,11 @@ class DBUserRepository implements UserRepositoryinterface
             'long_mab' => $request['long_mab'] ?? null,
             'CategoryAPP' => $request['CategoryAPP'] ?? null,
             'client_code' => $request['client_code'] ?? null,
-            'store_name' => $request['store_name'] ?? null
+            'store_name' => $request['store_name'] ?? null,
+            'question1_id' => $request['question1_id'] ?? null,
+            'question2_id' => $request['question2_id'] ?? null,
+            'answer1'      => $request['answer1'] ?? null,
+            'answer2'      => $request['answer2'] ?? null
         ]);
 
         if (!$token = auth('api')->login($user)) {
@@ -130,13 +141,19 @@ class DBUserRepository implements UserRepositoryinterface
         notificationFCM('اهلا بك', $rep, [$user->fsm]);
         return $user;
     }
-
-
-
-
-
-
-
+    public function credentials($user)
+    {
+        if (!$token = auth('api')->login($user)) {
+            return Resp(null, 'Unauthorized', 404, false);
+        }
+        $user = $this->model->where('phone', $user->phone)->first();
+        $user->token = $token;
+        $data =  new LoginUserResource($user);
+        return Resp($data, 'Success', 200, true);
+    }
+    #############################################################
+    ########################## API V2 ###########################
+    #############################################################
 
 
     public function sendotp($phone)
@@ -205,18 +222,6 @@ class DBUserRepository implements UserRepositoryinterface
             // something went wrong
         }
     }
-
-
-    public function credentials($user)
-    {
-        if (!$token = auth('api')->login($user)) {
-            return Resp(null, 'Unauthorized', 404, false);
-        }
-        $user = $this->model->where('phone', $user->phone)->first();
-        $user->token = $token;
-        $data =  new LoginUserResource($user);
-        return Resp($data, 'Success', 200, true);
-    }
     public function register($request)
     {
         // Log::warning($request);
@@ -250,7 +255,6 @@ class DBUserRepository implements UserRepositoryinterface
     {
         return  User::paginate($pg);
     }
-
     public function settings()
     {
         $dd = setting::find(1);
