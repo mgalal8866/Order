@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\V2\UserController;
 Route::get('/sendotp/{phone?}',   [UserController::class, 'sendotp'])->name('sendotp');
 Route::post('/verificationcode',   [UserController::class, 'verificationcode'])->name('verificationcode');
 Route::post('/login',   [UserController::class, 'login'])->name('login');
+Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');
 ################# End   Login & Register #############
