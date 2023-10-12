@@ -35,6 +35,12 @@ class UserResource extends JsonResource
             'client_state'      => $this->client_state ?? '',
             'client_Active'      => $this->client_Active ?? '',
             'categoryAPP'       => $this->categoryAPP ?? '',
+            'question1_id'  => $this->question1_id ?? '',
+            'question1'     => $this->question1->question ?? '',
+            'answer1'       => $this->answer1 ?? '',
+            'question2_id'  => $this->question2_id ?? '',
+            'question2'     => $this->question2->question ?? '',
+            'answer2'       => $this->answer2 ?? '',
             'access_token'      => $this->token ?? '',
             'token_type'        => 'bearer',
             'Setting'           => $this['setting']?[
