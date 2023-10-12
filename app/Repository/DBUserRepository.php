@@ -4,15 +4,63 @@ namespace App\Repository;
 
 use App\Models\User;
 use App\Models\setting;
-use Illuminate\Support\Facades\DB;
+use App\Models\question;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\QuestionResource;
+use App\Http\Resources\LoginUserResource;
 use App\Repositoryinterface\UserRepositoryinterface;
 
 class DBUserRepository implements UserRepositoryinterface
 {
+    protected Model $model;
+    public function __construct(User $model)
+    {
+        $this->model = $model;
+    }
+
+    public function checkphone($phone)
+    {
+        $user = $this->model->where('phone', $phone)->first();
+        if ($user != null) {
+
+            $question = question::whereIn('id', [$user->question1_id, $user->question2_id])->get();
+            return Resp(QuestionResource::collection($question), 'success', 200, true);
+        } else {
+            return Resp('', 'هاتف غير مسجل', 302, false);
+        }
+    }
+    public function checkanswer($request)
+    {
+        $user = $this->model->where(
+            [
+                'phone'   => $request->phone,
+                'answer1' => $request->answer1,
+                'answer2' => $request->answer2,
+            ]
+        )->first();
+        if ($user != null) {
+            return $this->credentials($user);
+        } else {
+            return Resp('', 'اجابة الاسئلة غير صحيحه او هاتفك غير مسجل', 302, false);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public function sendotp($phone)
     {
         $response = sendsms($phone);
@@ -79,11 +127,24 @@ class DBUserRepository implements UserRepositoryinterface
             // something went wrong
         }
     }
+
+
+    public function credentials($user)
+    {
+        if (!$token = auth('api')->login($user)) {
+            return Resp(null, 'Unauthorized', 404, false);
+        }
+        $user = $this->model->where('phone', $user->phone)->first();
+        $user->token = $token;
+        $data =  new LoginUserResource($user);
+        return Resp($data, 'Success', 200, true);
+    }
     public function register($request)
     {
         // Log::warning($request);
         $user = User::create([
             'client_name' => $request['client_name'] ?? null,
+            'password'     => $request['password'] ?? null,
             'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
             'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
             'region_id' => $request['region_id'] ?? null,

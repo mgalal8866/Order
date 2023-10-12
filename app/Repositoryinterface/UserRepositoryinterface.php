@@ -10,6 +10,8 @@ interface UserRepositoryinterface{
     public function logout();
     public function sendtoken($token);
     public function sendotp($request);
+    public function checkphone($phone);
+    public function checkanswer($request);
     public function verificationcode($request);
 
 }

@@ -28,7 +28,16 @@ Route::post('/verificationcode',   [UserController::class, 'verificationcode'])-
 Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');
+
 ################# End   Login & Register #############
+
+################################### Forgot Password ##########################
+################################### Forgot Password ##########################
+// Route::get('/check/phone/{phone?}',   [UserController::class, 'checkphone']);
+// Route::post('/check/answer',   [UserController::class, 'checkanswer']);
+Route::get('/question',   [UserController::class, 'question']);
+################################### Forgot Password ##########################
+################################### Forgot Password ##########################
 
 ################# Start Category App #############
 Route::get('/get_category_app', [CateoryAppController::class, 'getcategoryapp']);
