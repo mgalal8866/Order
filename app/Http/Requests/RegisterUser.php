@@ -25,6 +25,7 @@ class RegisterUser extends FormRequest
         return [
             'client_fhonewhats' => 'required|unique:users',
             'client_name'       => 'required|string|max:50',
+            'password'          => 'required',
             'client_fhoneLeter' => '',
             'client_code'       => '',
             'region_id'         => 'required',
