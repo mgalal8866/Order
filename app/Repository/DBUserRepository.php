@@ -55,23 +55,22 @@ class DBUserRepository implements UserRepositoryinterface
 
     public function login_v2($request)
     {
-        User::query()->update(['password' =>  Hash::make('123456')]);
+        // User::query()->update(['password' =>  Hash::make('123456')]);
+
 
         $token =  Auth::guard('api')->attempt(['client_fhonewhats' => $request->get('client_fhonewhats'), 'password' => $request->get('password')]);
-        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
-        if ($user == null) {
+       if ($token == null) {
             return Resp(null, 'User Not found', 404, false);
         }
-        if (!$token = auth('api')->login($user)) {
-            return Resp(null, 'Unauthorized', 404, false);
+        if (auth('api')->user()->active == 0) {
+            return Resp(null, 'تم ايقاف حسابك ', 404, false);
         }
+
+        $user =  auth('api')->user();
         $user->token = $token;
         $user->setting = $this->settings();
-
         $data =  new UserResource($user);
-
         $text = getsetting()->notif_welcome_text;
-
         $rep = replacetext($text, $user);
         notificationFCM('اهلا بك', $rep, [$user->fsm], null, null, null, null, false);
         return Resp($data, 'Success', 200, true);
