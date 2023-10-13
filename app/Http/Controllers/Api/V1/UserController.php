@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
 use App\Models\setting;
+use App\Models\question;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterUser;
 use App\Http\Controllers\Controller;
@@ -17,6 +18,10 @@ class UserController extends Controller
     {
         $this->userRepositry = $userRepositry;
     }
+    public function getuserdata()
+    {
+        return   $this->userRepositry->getuserdata();
+    }
     public function register(RegisterUser $request)
     {
         $data = new UserResource($this->userRepositry->register($request->validated()));
@@ -25,14 +30,7 @@ class UserController extends Controller
     public function verificationcode(Request $request)
     {
         return  $this->userRepositry->verificationcode($request);
-
     }
-    public function sendotp($phone)
-    {
-        return $this->userRepositry->sendotp($phone);
-
-    }
-
     public function login(Request $request)
     {
         return   $this->userRepositry->login($request);
@@ -41,11 +39,11 @@ class UserController extends Controller
     {
         return   $this->userRepositry->edit($request->all());
     }
-    public function logout()
+    public function question()
     {
-        return $this->userRepositry->logout();
+        $question = question::get();
+        return Resp($question, 'success');
     }
-
     protected function respondWithToken($token, $user = null)
     {
         return response()->json([
@@ -54,6 +52,14 @@ class UserController extends Controller
             'token_type' => 'bearer',
             // 'expires_in' => auth()->factory()->getTTL() * 60
         ]);
+    }
+    public function logout()
+    {
+        return $this->userRepositry->logout();
+    }
+    public function sendotp($phone)
+    {
+        return $this->userRepositry->sendotp($phone);
     }
 
     public function sendtoken($token)

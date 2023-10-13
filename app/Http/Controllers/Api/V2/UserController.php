@@ -20,18 +20,16 @@ class UserController extends Controller
     }
     public function checkphone($phone)
     {
-        return $this->userRepositry->checkphone_v2($phone);
+        return $this->userRepositry->checkphone($phone);
     }
 
     public function checkanswer(Request $request)
     {
-        return $this->userRepositry->checkanswer_v2($request);
+        return $this->userRepositry->checkanswer($request);
     }
-
-
     public function register(RegisterUser $request)
     {
-        $data = new UserResource($this->userRepositry->register_v2($request->validated()));
+        $data = new UserResource($this->userRepositry->register($request->validated()));
         return Resp($data, 'Success', 200, true);
     }
 
@@ -42,12 +40,12 @@ class UserController extends Controller
     }
     public function login(Request $request)
     {
-        return   $this->userRepositry->login_v2($request);
+        return   $this->userRepositry->login($request);
     }
 
     public function edit(Request $request)
     {
-        return   $this->userRepositry->edit_v2($request->all());
+        return   $this->userRepositry->edit($request->all());
     }
 
     protected function respondWithToken($token, $user = null)

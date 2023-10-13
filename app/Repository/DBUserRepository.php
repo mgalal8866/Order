@@ -26,7 +26,7 @@ class DBUserRepository implements UserRepositoryinterface
     #############################################################
     ########################## API V2 ###########################
     #############################################################
-    public function checkphone_v2($phone)
+    public function checkphone($phone)
     {
         $user = $this->model->where('client_fhonewhats', $phone)->first();
         if ($user != null) {
@@ -37,7 +37,7 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'هاتف غير مسجل', 302, false);
         }
     }
-    public function checkanswer_v2($request)
+    public function checkanswer($request)
     {
         $user = $this->model->where(
             [
@@ -52,8 +52,7 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'اجابة الاسئلة غير صحيحه او هاتفك غير مسجل', 302, false);
         }
     }
-
-    public function login_v2($request)
+    public function login($request)
     {
         // User::query()->update(['password' =>  Hash::make('123456')]);
 
@@ -82,7 +81,7 @@ class DBUserRepository implements UserRepositoryinterface
         $data =  new UserResource($user);
        return Resp($data, 'Success', 200, true);
     }
-    public function edit_v2($request)
+    public function edit($request)
     {
         DB::beginTransaction();
         try {
@@ -114,7 +113,7 @@ class DBUserRepository implements UserRepositoryinterface
         }
     }
 
-    public function register_v2($request)
+    public function register($request)
     {
         // Log::warning($request);
         $user = User::create([
@@ -182,82 +181,82 @@ class DBUserRepository implements UserRepositoryinterface
             return Resp('', 'كود التحقق خطاء', 302, false);
         }
     }
-    public function login($request)
-    {
-        $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
-        if ($user == null) {
-            return Resp(null, 'User Not found', 404, false);
-        }
-        if (!$token = auth('api')->login($user)) {
-            return Resp(null, 'Unauthorized', 404, false);
-        }
-        $user->token = $token;
-        $user->setting = $this->settings();
+    // public function login($request)
+    // {
+    //     $user = User::where('client_fhonewhats', $request->get('client_fhonewhats'))->first();
+    //     if ($user == null) {
+    //         return Resp(null, 'User Not found', 404, false);
+    //     }
+    //     if (!$token = auth('api')->login($user)) {
+    //         return Resp(null, 'Unauthorized', 404, false);
+    //     }
+    //     $user->token = $token;
+    //     $user->setting = $this->settings();
 
-        $data =  new UserResource($user);
+    //     $data =  new UserResource($user);
 
-        $text = getsetting()->notif_welcome_text;
+    //     $text = getsetting()->notif_welcome_text;
 
-        $rep = replacetext($text, $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm]);
-        return Resp($data, 'Success', 200, true);
-    }
-    public function edit($request)
-    {
-        DB::beginTransaction();
-        try {
-            $user =  User::find(Auth::guard('api')->user()->id);
-            $user->client_name       = $request['client_name'] ?? $user->client_name;
-            $user->client_fhoneLeter = $request['client_fhoneLeter'] ?? $user->client_fhoneLeter;
-            $user->region_id         = $request['region_id'] ?? $user->region_id;
-            $user->store_name        = $request['store_name'] ?? $user->store_name;
-            $user->lat_mab           = $request['lat_mab'] ?? $user->lat_mab;
-            $user->long_mab          = $request['long_mab'] ?? $user->long_mab;
-            $user->client_state      = $request['client_state'] ?? $user->client_state;
-            $user->CategoryAPP       = $request['CategoryAPP'] ?? $user->CategoryAPP;
-            $user->client_code       = $request['client_code'] ?? $user->client_code;
-            $user->store_name        = $request['store_name'] ?? $user->store_name;
-            $user->save();
-            $data =  new UserResource($user);
-            return Resp($data, 'Success', 200, true);
-            DB::commit();
-            return true;
-        } catch (\Exception $e) {
-            Log::warning($e->getMessage());
-            DB::rollback();
-            return false;
-            // something went wrong
-        }
-    }
-    public function register($request)
-    {
-        // Log::warning($request);
-        $user = User::create([
-            'client_name' => $request['client_name'] ?? null,
-            'password'     => $request['password'] ?? null,
-            'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
-            'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
-            'region_id' => $request['region_id'] ?? null,
-            'lat_mab' => $request['lat_mab'] ?? null,
-            'long_mab' => $request['long_mab'] ?? null,
-            'client_state' => $request['client_state'] ?? null,
-            'long_mab' => $request['long_mab'] ?? null,
-            'CategoryAPP' => $request['CategoryAPP'] ?? null,
-            'client_code' => $request['client_code'] ?? null,
-            'store_name' => $request['store_name'] ?? null
-        ]);
+    //     $rep = replacetext($text, $user);
+    //     notificationFCM('اهلا بك', $rep, [$user->fsm]);
+    //     return Resp($data, 'Success', 200, true);
+    // }
+    // public function edit($request)
+    // {
+    //     DB::beginTransaction();
+    //     try {
+    //         $user =  User::find(Auth::guard('api')->user()->id);
+    //         $user->client_name       = $request['client_name'] ?? $user->client_name;
+    //         $user->client_fhoneLeter = $request['client_fhoneLeter'] ?? $user->client_fhoneLeter;
+    //         $user->region_id         = $request['region_id'] ?? $user->region_id;
+    //         $user->store_name        = $request['store_name'] ?? $user->store_name;
+    //         $user->lat_mab           = $request['lat_mab'] ?? $user->lat_mab;
+    //         $user->long_mab          = $request['long_mab'] ?? $user->long_mab;
+    //         $user->client_state      = $request['client_state'] ?? $user->client_state;
+    //         $user->CategoryAPP       = $request['CategoryAPP'] ?? $user->CategoryAPP;
+    //         $user->client_code       = $request['client_code'] ?? $user->client_code;
+    //         $user->store_name        = $request['store_name'] ?? $user->store_name;
+    //         $user->save();
+    //         $data =  new UserResource($user);
+    //         return Resp($data, 'Success', 200, true);
+    //         DB::commit();
+    //         return true;
+    //     } catch (\Exception $e) {
+    //         Log::warning($e->getMessage());
+    //         DB::rollback();
+    //         return false;
+    //         // something went wrong
+    //     }
+    // }
+    // public function register($request)
+    // {
+    //     // Log::warning($request);
+    //     $user = User::create([
+    //         'client_name' => $request['client_name'] ?? null,
+    //         'password'     => $request['password'] ?? null,
+    //         'client_fhonewhats' => $request['client_fhonewhats'] ?? null,
+    //         'client_fhoneLeter' => $request['client_fhoneLeter'] ?? null,
+    //         'region_id' => $request['region_id'] ?? null,
+    //         'lat_mab' => $request['lat_mab'] ?? null,
+    //         'long_mab' => $request['long_mab'] ?? null,
+    //         'client_state' => $request['client_state'] ?? null,
+    //         'long_mab' => $request['long_mab'] ?? null,
+    //         'CategoryAPP' => $request['CategoryAPP'] ?? null,
+    //         'client_code' => $request['client_code'] ?? null,
+    //         'store_name' => $request['store_name'] ?? null
+    //     ]);
 
-        if (!$token = auth('api')->login($user)) {
-            return Resp(null, 'Unauthorized', 404, false);
-        }
-        $user->token = $token;
-        $user->setting = $this->settings();
-        $text = getsetting()->notif_welcome_text;
-        // Log::error($user);
-        $rep = replacetext($text,  $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm]);
-        return $user;
-    }
+    //     if (!$token = auth('api')->login($user)) {
+    //         return Resp(null, 'Unauthorized', 404, false);
+    //     }
+    //     $user->token = $token;
+    //     $user->setting = $this->settings();
+    //     $text = getsetting()->notif_welcome_text;
+    //     // Log::error($user);
+    //     $rep = replacetext($text,  $user);
+    //     notificationFCM('اهلا بك', $rep, [$user->fsm]);
+    //     return $user;
+    // }
     public function getusers($pg = 30)
     {
         return  User::paginate($pg);

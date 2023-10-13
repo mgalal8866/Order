@@ -28,14 +28,16 @@ Route::post('/verificationcode',   [UserController::class, 'verificationcode'])-
 Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');
-
+Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
 ################# End   Login & Register #############
 
 ################################### Forgot Password ##########################
 ################################### Forgot Password ##########################
-// Route::get('/check/phone/{phone?}',   [UserController::class, 'checkphone']);
-// Route::post('/check/answer',   [UserController::class, 'checkanswer']);
+Route::get('/get/user/data',   [UserController::class, 'getuserdata']);
+Route::get('/check/phone/{phone?}',   [UserController::class, 'checkphone']);
+Route::post('/check/answer',   [UserController::class, 'checkanswer']);
 Route::get('/question',   [UserController::class, 'question']);
+
 ################################### Forgot Password ##########################
 ################################### Forgot Password ##########################
 
