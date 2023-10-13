@@ -9,7 +9,8 @@
                     </div>
                 </div>
 
-                <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+                <div class="col-xxl-6 col-xl-8 col-lg-8 col-sm-8 mx-auto">
+                {{-- <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto"> --}}
 
                     <div class="log-in-box">
                         <div class="log-in-title">
@@ -160,7 +161,7 @@
                                         <button class="btn btn-animation w-100" type="submit">تسجيل</button>
                                     </div>
                                 </form>
-                          
+
                         </div>
                         <div class="other-log-in">
                             <h6></h6>
