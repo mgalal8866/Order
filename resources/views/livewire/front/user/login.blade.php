@@ -21,21 +21,7 @@
                                     <span dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
                                 </h5>
                             </div>
-                            {{-- <form  wire:submit.prevent="verify()"> --}}
-                            {{-- <div id="otp" class="inputs d-flex flex-row justify-content-center">
-                            <input class="text-center form-control rounded" type="text" id="first" maxlength="1"
-                                placeholder="0">
-                            <input class="text-center form-control rounded" type="text" id="second" maxlength="1"
-                                placeholder="0">
-                            <input class="text-center form-control rounded" type="text" id="third" maxlength="1"
-                                placeholder="0">
-                            <input class="text-center form-control rounded" type="text" id="fourth" maxlength="1"
-                                placeholder="0">
-                            <input class="text-center form-control rounded" type="text" id="fifth" maxlength="1"
-                                placeholder="0">
-                            <input class="text-center form-control rounded" type="text" id="sixth" maxlength="1"
-                                placeholder="0">
-                            </div> --}}
+
                             <input type="text" id="verification" wire:model='code' class="form-control"
                                 placeholder="Verification code">
                             <div class="send-box pt-4">
@@ -68,6 +54,17 @@
                                                 placeholder="{{ __('front.phone') }}">
                                             <label for="phone">{{ __('front.phone') }}</label>
                                             @error('client_fhonewhats')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                            <input style="border: groove" wire:model.lazy='password'
+                                                type="password" class="form-control" id="password"
+                                                placeholder="{{ __('front.password') }}">
+                                            <label for="password">{{ __('front.password') }}</label>
+                                            @error('password')
                                                 <span class="error text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

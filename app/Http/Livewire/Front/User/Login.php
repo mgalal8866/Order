@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $client_fhonewhats, $showotp = false, $user, $code;
+    public $client_fhonewhats, $showotp = false, $user, $code,$password;
     public $success;
 
     protected $listeners = [
@@ -31,15 +31,19 @@ class Login extends Component
     }
     public function login()
     {
-        $this->validate();
-        if (getsetting()->sms_active == 0) {
-            $this->verify();
-        } else {
-            $otp = sendsms($this->client_fhonewhats);
-            if ($otp === 1) {
-                $this->showotp = true;
-            }
+         Auth::guard('client')->attempt(['client_fhonewhats' => $this->client_fhonewhats, 'password' => $this->password ]);
+        if (Auth::guard('client')->check()) {
+            return redirect()->intended('/');
         }
+        // $this->validate();
+        // if (getsetting()->sms_active == 0) {
+        //     $this->verify();
+        // } else {
+        //     $otp = sendsms($this->client_fhonewhats);
+        //     if ($otp === 1) {
+        //         $this->showotp = true;
+        //     }
+        // }
         // $this->dispatchBrowserEvent('sendOTP', ['phone' => '+2' .  $this->user->client_fhonewhats]);
     }
     public function verify()
