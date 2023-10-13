@@ -17,7 +17,49 @@
                             <h4>تسجيل مستخدم جديد</h4>
                         </div>
                         <div class="input-box">
-                            <form class="row g-4" wire:submit.prevent="registerion">
+                            {{-- @if ($showotp == 1) --}}
+                                {{-- <form class="row g-4" wire:submit.prevent="checkphone">
+                                    @csrf
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                            <input style="border: groove" wire:model.lazy='client_fhonewhats'
+                                                type="client_fhonewhats" class="form-control" id="phone"
+                                                placeholder="{{ __('front.phone') }}">
+                                            <label for="phone">{{ __('front.phone') }}</label>
+                                            @error('client_fhonewhats')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div wire:ignore id="recaptcha-container"></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-animation w-100 justify-content-center"
+                                            type="submit">التحقق من الرقم </button>
+                                    </div>
+                                </form> --}}
+                            {{-- @elseif ($showotp == 2) --}}
+                                {{-- <div id="varr">
+                                    <div class="log-in-title">
+                                        <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
+                                        <h5 class="text-content">تم الارسال على رقم
+                                            <span
+                                                dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
+                                        </h5>
+                                    </div>
+                                    <input type="text" id="verification" class="form-control"
+                                        placeholder="Verification code">
+                                    <div class="send-box pt-4">
+                                        <h5>لم اتلقى كود حتى الان ؟<a href="javascript:void(0)"
+                                                class="theme-color fw-bold">اعاده
+                                                ارسال</a></h5>
+                                    </div>
+                                    <button onclick="verify()" class="btn btn-animation w-100 mt-3"
+                                        type="submit">تحقق</button>
+                                </div> --}}
+                            {{-- @elseif ($showotp == 3) --}}
+                                <form class="row g-4" wire:submit.prevent="registerion">
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
                                             <input style="border: groove" wire:model.lazy='client_fhonewhats'
@@ -160,7 +202,7 @@
                                         <button class="btn btn-animation w-100" type="submit">تسجيل</button>
                                     </div>
                                 </form>
-                          
+                            {{-- @endif --}}
                         </div>
                         <div class="other-log-in">
                             <h6></h6>
