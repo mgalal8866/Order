@@ -34,6 +34,8 @@ class Login extends Component
          Auth::guard('client')->attempt(['client_fhonewhats' => $this->client_fhonewhats, 'password' => $this->password ]);
         if (Auth::guard('client')->check()) {
             return redirect()->intended('/');
+        }else{
+
         }
         // $this->validate();
         // if (getsetting()->sms_active == 0) {
@@ -48,22 +50,22 @@ class Login extends Component
     }
     public function verify()
     {
-        if (getsetting()->sms_active == 0) {
-            $response = 1;
-        } else {
-            $response = otp_check($this->client_fhonewhats, $this->code);
-        }
+        // if (getsetting()->sms_active == 0) {
+        //     $response = 1;
+        // } else {
+        //     $response = otp_check($this->client_fhonewhats, $this->code);
+        // }
 
 
-        if ($response === 1) {
-            $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
-            Auth::guard('client')->login($this->user);
-            if (Auth::guard('client')->check()) {
-                return redirect()->intended('/');
-            }
-        } else {
-            return Resp('', 'كود التحقق خطاء', 302, false);
-        }
+        // if ($response === 1) {
+        //     $this->user = User::where('client_fhonewhats', $this->client_fhonewhats)->first();
+        //     Auth::guard('client')->login($this->user);
+        //     if (Auth::guard('client')->check()) {
+        //         return redirect()->intended('/');
+        //     }
+        // } else {
+        //     return Resp('', 'كود التحقق خطاء', 302, false);
+        // }
     }
     public function render()
     {

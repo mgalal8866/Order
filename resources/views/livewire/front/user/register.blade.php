@@ -17,8 +17,8 @@
                             <h4>تسجيل مستخدم جديد</h4>
                         </div>
                         <div class="input-box">
-                            @if ($showotp == 1)
-                                <form class="row g-4" wire:submit.prevent="checkphone">
+                            {{-- @if ($showotp == 1) --}}
+                                {{-- <form class="row g-4" wire:submit.prevent="checkphone">
                                     @csrf
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
@@ -38,9 +38,9 @@
                                         <button class="btn btn-animation w-100 justify-content-center"
                                             type="submit">التحقق من الرقم </button>
                                     </div>
-                                </form>
-                            @elseif ($showotp == 2)
-                                <div id="varr">
+                                </form> --}}
+                            {{-- @elseif ($showotp == 2) --}}
+                                {{-- <div id="varr">
                                     <div class="log-in-title">
                                         <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
                                         <h5 class="text-content">تم الارسال على رقم
@@ -57,9 +57,31 @@
                                     </div>
                                     <button onclick="verify()" class="btn btn-animation w-100 mt-3"
                                         type="submit">تحقق</button>
-                                </div>
-                            @elseif ($showotp == 3)
+                                </div> --}}
+                            {{-- @elseif ($showotp == 3) --}}
                                 <form class="row g-4" wire:submit.prevent="registerion">
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                            <input style="border: groove" wire:model.lazy='client_fhonewhats'
+                                                type="client_fhonewhats" class="form-control" id="phone"
+                                                placeholder="{{ __('front.phone') }}">
+                                            <label for="phone">{{ __('front.phone') }}</label>
+                                            @error('client_fhonewhats')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                            <input style="border: groove" wire:model.lazy='password'
+                                                type="password" class="form-control" id="password"
+                                                placeholder="{{ __('front.password') }}">
+                                            <label for="password">{{ __('front.password') }}</label>
+                                            @error('password')
+                                                <span class="error text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
                                             <input id="namecust" type="text" class="form-control"
@@ -94,12 +116,42 @@
                                             <label for="phone2">{{ __('front.phone2') }}</label>
                                         </div>
                                     </div>
-                                    {{-- <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-floating theme-form-floating">
-                                            <input type="text" class="form-control" wire:model.defer="namestore">
-                                            <label for="namestore">{{ __('front.namestore') }}</label>
+                                            <select class="form-control" wire:model.lazy="question1_id" required>
+                                                <option value="0">اختار السؤال الاول</option>
+                                                @foreach ($question as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->question }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="question1">{{ __('front.question1') }}</label>
                                         </div>
-                                    </div> --}}
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating theme-form-floating">
+                                            <input id="answer1" type="text" class="form-control"
+                                                wire:model.defer="answer1" required>
+                                            <label for="answer1">{{ __('front.answer1') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating theme-form-floating">
+                                            <select class="form-control" wire:model.lazy="question2_id" required>
+                                                <option value="0">اختار السؤال الثانى</option>
+                                                @foreach ($question as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->question }}</option>
+                                                @endforeach
+                                            </select>
+                                            <label for="question2">{{ __('front.question2') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-floating theme-form-floating">
+                                            <input id="answer2" type="text" class="form-control"
+                                                wire:model.defer="answer2" required>
+                                            <label for="answer2">{{ __('front.answer2') }}</label>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating">
                                             <select class="form-control" wire:model.lazy="selectcity" required>
