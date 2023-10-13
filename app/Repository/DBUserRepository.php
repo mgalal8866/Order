@@ -75,6 +75,13 @@ class DBUserRepository implements UserRepositoryinterface
         notificationFCM('اهلا بك', $rep, [$user->fsm], null, null, null, null, false);
         return Resp($data, 'Success', 200, true);
     }
+    public function getuserdata()
+    {
+        $user =  auth('api')->user();
+        $user->setting = $this->settings();
+        $data =  new UserResource($user);
+       return Resp($data, 'Success', 200, true);
+    }
     public function edit_v2($request)
     {
         DB::beginTransaction();

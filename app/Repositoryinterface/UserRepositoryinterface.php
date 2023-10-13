@@ -19,6 +19,7 @@ interface UserRepositoryinterface{
     public function register_v2($request);
     public function checkphone_v2($phone);
     public function checkanswer_v2($request);
+    public function getuserdata();
 
 }
 

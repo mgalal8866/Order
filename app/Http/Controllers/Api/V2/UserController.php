@@ -35,6 +35,11 @@ class UserController extends Controller
         return Resp($data, 'Success', 200, true);
     }
 
+    public function getuserdata()
+    {
+        return   $this->userRepositry->getuserdata();
+
+    }
     public function login(Request $request)
     {
         return   $this->userRepositry->login_v2($request);
