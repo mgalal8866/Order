@@ -58,7 +58,7 @@ class DBUserRepository implements UserRepositoryinterface
 
 
         $token =  Auth::guard('api')->attempt(['client_fhonewhats' => $request->get('client_fhonewhats'), 'password' => $request->get('password')]);
-       if ($token == null) {
+        if ($token == null) {
             return Resp(null, 'User Not found', 404, false);
         }
         if (auth('api')->user()->client_Active == 0) {
@@ -79,7 +79,7 @@ class DBUserRepository implements UserRepositoryinterface
         $user =  auth('api')->user();
         $user->setting = $this->settings();
         $data =  new UserResource($user);
-       return Resp($data, 'Success', 200, true);
+        return Resp($data, 'Success', 200, true);
     }
     public function edit($request)
     {
@@ -143,7 +143,7 @@ class DBUserRepository implements UserRepositoryinterface
         $text = getsetting()->notif_welcome_text;
         // Log::error($user);
         $rep = replacetext($text,  $user);
-        notificationFCM('اهلا بك', $rep, [$user->fsm]);
+        notificationFCM('اهلا بك', $rep, [$user->fsm], null, null, null,   null, false);
         return $user;
     }
     public function credentials($user)
