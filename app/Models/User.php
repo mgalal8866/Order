@@ -58,6 +58,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return mixed
      */
+    public function question1()
+    {
+        return $this->belongsTo(question::class,'question1_id');
+    }
+    public function question2()
+    {
+        return $this->belongsTo(question::class,'question2_id');
+    }
     public function getJWTIdentifier()
     {
         return $this->getKey();
