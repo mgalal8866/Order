@@ -89,6 +89,7 @@ use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 use App\Http\Livewire\Dashboard\Reports\Product\LimitProductPay;
+use App\Http\Livewire\Front\User\Resetpassword;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -233,6 +234,7 @@ Route::middleware('tenant')->group(function () {
 
     #################### guest Client #####################
     Route::middleware('guest:client')->group(function () {
+        Route::get('/resetpassword', Resetpassword::class)->name('resetpassword');
         Route::get('/login', Login::class)->name('frontlogin');
         Route::get('/sign-up', Register::class)->name('signup');
         Route::get('/otp', Otp::class)->name('otp');
