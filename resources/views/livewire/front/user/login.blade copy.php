@@ -9,7 +9,36 @@
                         <img src="{{ asset('asset/images/log-in.png') }}" class="img-fluid" alt="">
                     </div>
                 </div>
+
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
+
+                    @if ($showotp == true)
+                        <div id="varr" class="log-in-box">
+                            {{-- style="display:none;" --}}
+                            <div class="log-in-title">
+                                <h3 class="text-title">سوف تتلقى رسالة تحتوى على كود </h3>
+                                <h5 class="text-content">تم الارسال على رقم
+                                    <span dir="ltr">{{ Str::mask($this->client_fhonewhats, '*', -11, 8) }}</span>
+                                </h5>
+                            </div>
+
+                            <input type="text" id="verification" wire:model='code' class="form-control"
+                                placeholder="Verification code">
+                            <div class="send-box pt-4">
+                                <h5>لم اتلقى كود حتى الان ؟<a href="javascript:void(0)"
+                                        class="theme-color fw-bold">اعاده
+                                        ارسال</a></h5>
+                            </div>
+
+                            <button  class="btn btn-animation w-100 mt-3" wire:click='verify'>تحقق</button>
+                            {{-- </form> --}}
+                        </div>
+                        {{-- <form>
+                        <input type="text" id="verification" class="form-control" placeholder="Verification code">
+                        <button type="button" class="btn btn-danger mt-3" onclick="verify()">Verify
+                            code</button>
+                            </form> --}}
+                    @else
                         <div id="login11" class="log-in-box">
                             <div class="log-in-title">
                                 <h3>مرحبا بك</h3>
@@ -54,6 +83,8 @@
                                 <a href="/sign-up">{{ __('front.signup') }}</a>
                             </div>
                         </div>
+                    @endif
+
                 </div>
             </div>
         </div>
