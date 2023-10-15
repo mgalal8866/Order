@@ -100,7 +100,7 @@ class SyncController extends Controller
 
                 $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
-                    'password'            => Hash::make('123456'),
+                    'password'            => Hash::make($item['Client_fhoneWhats']),
                     'question1_id'        => 1,
                     'question2_id'        => 1,
                     'answer1'             => '123456',
