@@ -22,7 +22,7 @@ class UserResource extends JsonResource
             'client_fhonewhats' => $this->client_fhonewhats ?? '',
             'client_fhoneLeter' => $this->client_fhoneLeter ?? '',
             'client_balanc'     => number_format($this->client_Balanc,2) ?? '',
-            'client_points'     => number_format($this->client_points,2) ?? '',
+            'client_points'     => number_format($this->client_points,0) ?? '',
             'client_EntiteNumber' => $this->client_EntiteNumber ?? '',
             'default_Sael'      => $this->default_Sael ?? '',
             'client_Credit_Limit' => $this->client_Credit_Limit ?? '',
