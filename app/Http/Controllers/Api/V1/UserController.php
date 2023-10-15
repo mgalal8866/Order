@@ -18,6 +18,16 @@ class UserController extends Controller
     {
         $this->userRepositry = $userRepositry;
     }
+
+      public function checkphone($phone)
+    {
+        return $this->userRepositry->checkphone($phone);
+    }
+
+    public function checkanswer(Request $request)
+    {
+        return $this->userRepositry->checkanswer($request);
+    }
     public function getuserdata()
     {
         return   $this->userRepositry->getuserdata();
