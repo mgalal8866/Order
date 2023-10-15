@@ -15,7 +15,7 @@
                     <div class="log-in-box">
                         <div class="log-in-title">
                             <h3>مرحبا بك </h3>
-                            <h4>تسجيل مستخدم جديد</h4>
+                            <h4>تسجيل دخول عن طريق اسئلة الامان </h4>
                         </div>
                         <div class="input-box">
                             @if ($showqu == false)
