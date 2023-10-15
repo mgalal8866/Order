@@ -51,7 +51,7 @@ class UserController extends Controller
     }
     public function question()
     {
-        $question = question::get();
+        $question = question::skip(1)->get();
         return Resp($question, 'success');
     }
     protected function respondWithToken($token, $user = null)
