@@ -18,7 +18,7 @@ class Resetpassword extends Component
         if ($user != null) {
             $this->question1 = $user->question1->question;
             $this->question2 = $user->question2->question;
-            $showqu =true;
+            $this->showqu =true;
         }
 
     }
