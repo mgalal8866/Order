@@ -35,9 +35,10 @@ class Resetpassword extends Component
             auth('client')->login($user);
             if (Auth::guard('client')->check()) {
                 return redirect()->intended('/');
-            }else{
-                session()->flash('error', ' اجابة الاسئله غير صحيحة');
             }
+        }else{
+            session()->flash('error', ' اجابة الاسئله غير صحيحة');
+
         }
     }
     public function render()

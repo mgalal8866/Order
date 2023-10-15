@@ -19,7 +19,7 @@
                         </div>
                         <div class="input-box">
                             @if (session()->has('error'))
-                                <div class="text-danger mb-5">{{ session('error') }}</div>
+                                <div class="text-danger mb-3">{{ session('error') }}</div>
                             @endif
                             @if ($showqu == false)
                                 <form class="row g-4" wire:submit.prevent="checkphone">
