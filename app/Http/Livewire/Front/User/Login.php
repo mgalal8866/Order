@@ -31,6 +31,10 @@ class Login extends Component
     }
     public function login()
     {
+        $validated = $this->validate([
+            'client_fhonewhats' => 'required|min:3',
+            'password' => 'required|min:3',
+        ]);
          Auth::guard('client')->attempt(['client_fhonewhats' => $this->client_fhonewhats, 'password' => $this->password ]);
         if (Auth::guard('client')->check()) {
             return redirect()->intended('/');
