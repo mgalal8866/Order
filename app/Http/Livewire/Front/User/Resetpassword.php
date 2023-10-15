@@ -19,6 +19,9 @@ class Resetpassword extends Component
             $this->question1 = $user->question1->question;
             $this->question2 = $user->question2->question;
             $this->showqu =true;
+        }else{
+            session()->flash('error', 'هاتف غير موجود');
+
         }
 
     }
@@ -33,7 +36,7 @@ class Resetpassword extends Component
             if (Auth::guard('client')->check()) {
                 return redirect()->intended('/');
             }else{
-
+                session()->flash('error', ' اجابة الاسئله غير صحيحة');
             }
         }
     }

@@ -10,63 +10,63 @@
                     </div>
                 </div>
                 <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto">
-                        <div id="login11" class="log-in-box">
-                            <div class="log-in-title">
-                                <h3>مرحبا بك</h3>
-                                <h4>{{ __('front.login') }}</h4>
-                            </div>
-                            <div class="input-box">
-                                @if (session()->has('error'))
-                                <div class="text-danger">{{ session('error') }}</div>
-                            @endif
-                                <form class="row g-4" wire:submit.prevent="login">
-                                    @csrf
-                                    <div class="col-12">
-                                        <div class="form-floating theme-form-floating log-in-form">
-                                            <input style="border: groove" wire:model.lazy='client_fhonewhats'
-                                                type="client_fhonewhats" class="form-control" id="phone"
-                                                placeholder="{{ __('front.phone') }}">
-                                            <label for="phone">{{ __('front.phone') }}</label>
-                                            @error('client_fhonewhats')
-                                                <span class="error text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-floating theme-form-floating log-in-form">
-                                            <input style="border: groove" wire:model.lazy='password'
-                                                type="password" class="form-control" id="password"
-                                                placeholder="{{ __('front.password') }}">
-                                            <label for="password">{{ __('front.password') }}</label>
-                                            @error('password')
-                                                <span class="error text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                      <div class="col-12">
-                                        <div class="forgot-box">
-                                            <div class="form-check ps-0 m-0 remember-box">
-                                                <input class="checkbox_animated check-box" type="checkbox"  wire:model.lazy='remember'
-                                                    id="flexCheckDefault">
-                                                <label class="form-check-label" for="flexCheckDefault">تذكرنى</label>
-                                            </div>
-                                            <a href="/resetpassword" class="forgot-password">نسيت الرقم السرى ؟</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div wire:ignore id="recaptcha-container"></div>
-                                    </div>
-                                    <div class="col-12">
-                                        <button class="btn btn-animation w-100 justify-content-center"
-                                            type="submit">{{ __('front.login') }}</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="sign-up-box">
-                                <h4>Don't have an account?</h4>
-                                <a href="/sign-up">{{ __('front.signup') }}</a>
-                            </div>
+                    <div id="login11" class="log-in-box">
+                        <div class="log-in-title">
+                            <h3>مرحبا بك</h3>
+                            <h4>{{ __('front.login') }}</h4>
                         </div>
+                        <div class="input-box">
+                            @if (session()->has('error'))
+                                <div class="text-danger mb-5">{{ session('error') }}</div>
+                            @endif
+                            <form class="row g-4" wire:submit.prevent="login">
+                                @csrf
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input style="border: groove" wire:model.lazy='client_fhonewhats'
+                                            type="client_fhonewhats" class="form-control" id="phone"
+                                            placeholder="{{ __('front.phone') }}">
+                                        <label for="phone">{{ __('front.phone') }}</label>
+                                        @error('client_fhonewhats')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-floating theme-form-floating log-in-form">
+                                        <input style="border: groove" wire:model.lazy='password' type="password"
+                                            class="form-control" id="password"
+                                            placeholder="{{ __('front.password') }}">
+                                        <label for="password">{{ __('front.password') }}</label>
+                                        @error('password')
+                                            <span class="error text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="forgot-box">
+                                        <div class="form-check ps-0 m-0 remember-box">
+                                            <input class="checkbox_animated check-box" type="checkbox"
+                                                wire:model.lazy='remember' id="flexCheckDefault">
+                                            <label class="form-check-label" for="flexCheckDefault">تذكرنى</label>
+                                        </div>
+                                        <a href="/resetpassword" class="forgot-password">نسيت الرقم السرى ؟</a>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div wire:ignore id="recaptcha-container"></div>
+                                </div>
+                                <div class="col-12">
+                                    <button class="btn btn-animation w-100 justify-content-center"
+                                        type="submit">{{ __('front.login') }}</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="sign-up-box">
+                            <h4>Don't have an account?</h4>
+                            <a href="/sign-up">{{ __('front.signup') }}</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
