@@ -12,8 +12,7 @@ class Resetpassword extends Component
     public $nashat, $answer1, $answer2, $question1, $question2,  $client_fhonewhats;
     public function mount()
     {
-        $this->nashat = CateoryApp::get();
-
+        
     }
     public function checkphone()
     {
