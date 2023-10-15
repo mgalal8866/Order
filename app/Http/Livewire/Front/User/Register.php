@@ -28,7 +28,7 @@ class Register extends Component
     {
         $this->citys = cities::get();
         $this->nashat = CateoryApp::get();
-        $this->question = question::skip(1)->get();
+        $this->question = question::get()->skip(1);
     }
     public function updatedSelectcity($val)
     {
