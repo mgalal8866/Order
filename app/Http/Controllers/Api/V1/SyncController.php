@@ -70,6 +70,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CartResource;
 use App\Http\Resources\UserResource;
 use App\Models\MovementStockDetails;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Cache;
 use App\Http\Resources\ClientResource;
 use App\Http\Resources\CommentResource;
@@ -99,6 +100,11 @@ class SyncController extends Controller
 
                 $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
                     'client_fhonewhats'   => $item['Client_fhoneWhats'],
+                    'password'            => Hash::make('123456'),
+                    'question1_id'        => 1,
+                    'question2_id'        => 1,
+                    'answer1'             => '123456',
+                    'answer2'             => '123456',
                     'source_id'           => $item['Client_id'],
                     'client_name'         => $item['Client_name'],
                     'client_Balanc'       => $item['Client_Balanc'],
@@ -377,7 +383,7 @@ class SyncController extends Controller
         //تم الاستلام /جارى التجهيز /خرج للتوصيل / التوصيل
         try {
             foreach ($request->all() as $index => $item) {
-                Log::error($item['Type_Order'] );
+                Log::error($item['Type_Order']);
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
                 if ($item['Type_Order']  != $oldtypeorder->type_order) {
                     if (getsetting()->notif_change_statu == 1) {
@@ -586,7 +592,7 @@ class SyncController extends Controller
         $dd = json_decode($request[0], true);
 
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
-        $img=  getimage($image,'notification');
+        $img =  getimage($image, 'notification');
         $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
