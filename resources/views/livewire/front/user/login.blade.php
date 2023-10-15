@@ -16,6 +16,9 @@
                                 <h4>{{ __('front.login') }}</h4>
                             </div>
                             <div class="input-box">
+                                @if (session()->has('error'))
+                                <div class="text-danger">{{ session('error') }}</div>
+                            @endif
                                 <form class="row g-4" wire:submit.prevent="login">
                                     @csrf
                                     <div class="col-12">

@@ -33,13 +33,14 @@ class Login extends Component
     {
         $validated = $this->validate([
             'client_fhonewhats' => 'required|exists:users,client_fhonewhats',
-            'password' => 'required|min:3',
+            'password' => 'required|min:6',
         ]);
+
          Auth::guard('client')->attempt(['client_fhonewhats' => $this->client_fhonewhats, 'password' => $this->password ]);
         if (Auth::guard('client')->check()) {
             return redirect()->intended('/');
         }else{
-
+            session()->flash('error', 'اسم المستخدم أو كلمة المرور غير صحيحة.');
         }
         // $this->validate();
         // if (getsetting()->sms_active == 0) {
