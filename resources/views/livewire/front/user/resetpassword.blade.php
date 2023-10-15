@@ -30,15 +30,10 @@
                                             @enderror
                                         </div>
                                     </div>
-
                                     <div class="col-6">
                                         <div class="form-floating theme-form-floating">
-                                            <select class="form-control" wire:model.lazy="question1_id" required>
-                                                <option value="0">اختار السؤال الاول</option>
-                                                @foreach ($question as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->question }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input id="question1" type="text" class="form-control"
+                                                wire:model.defer="question1" disabled>
                                             <label for="question1">{{ __('front.question1') }}</label>
                                         </div>
                                     </div>
@@ -51,12 +46,8 @@
                                     </div>
                                     <div class="col-6">
                                         <div class="form-floating theme-form-floating">
-                                            <select class="form-control" wire:model.lazy="question2_id" required>
-                                                <option value="0">اختار السؤال الثانى</option>
-                                                @foreach ($question as $item)
-                                                    <option value="{{ $item->id }}">{{ $item->question }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input id="question2" type="text" class="form-control"
+                                                wire:model.defer="question2" disabled>
                                             <label for="question2">{{ __('front.question2') }}</label>
                                         </div>
                                     </div>
