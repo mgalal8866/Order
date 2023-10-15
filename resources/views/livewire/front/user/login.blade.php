@@ -40,6 +40,16 @@
                                             @enderror
                                         </div>
                                     </div>
+                                      <div class="col-12">
+                                        <div class="forgot-box">
+                                            <div class="form-check ps-0 m-0 remember-box">
+                                                <input class="checkbox_animated check-box" type="checkbox"  wire:model.lazy='remember'
+                                                    id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">تذكرنى</label>
+                                            </div>
+                                            <a href="/resetpassword" class="forgot-password">نسيت الرقم السرى ؟</a>
+                                        </div>
+                                    </div>
                                     <div class="col-12">
                                         <div wire:ignore id="recaptcha-container"></div>
                                     </div>
