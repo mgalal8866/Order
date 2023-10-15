@@ -2,17 +2,18 @@
 
 namespace App\Http\Livewire\Front\User;
 
+use App\Models\User;
 use Livewire\Component;
 use App\Models\question;
 use App\Models\CateoryApp;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class Resetpassword extends Component
 {
-    public $nashat, $answer1, $answer2, $question1, $question2,  $client_fhonewhats;
+    public $showqu, $answer1, $answer2, $question1, $question2,  $client_fhonewhats;
     public function mount()
     {
-        
+
     }
     public function checkphone()
     {
@@ -20,6 +21,21 @@ class Resetpassword extends Component
         if ($user != null) {
             $this->question1 = $user->question1->question;
             $this->question2 = $user->question2->question;
+        }
+    }
+    public function checkanswer()
+    {
+        $user = User::where([
+                'client_fhonewhats'   => $this->client_fhonewhats,
+                'answer1' => $this->answer1,
+                'answer2' => $this->answer2])->first();
+        if ($user != null) {
+            auth('client')->login($user);
+            if (Auth::guard('client')->check()) {
+                return redirect()->intended('/');
+            }else{
+
+            }
         }
     }
     public function render()

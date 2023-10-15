@@ -10,7 +10,7 @@
                 </div>
 
                 <div class="col-xxl-6 col-xl-8 col-lg-8 col-sm-8 mx-auto">
-                {{-- <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto"> --}}
+                    {{-- <div class="col-xxl-4 col-xl-5 col-lg-6 col-sm-8 mx-auto"> --}}
 
                     <div class="log-in-box">
                         <div class="log-in-title">
@@ -18,7 +18,8 @@
                             <h4>تسجيل مستخدم جديد</h4>
                         </div>
                         <div class="input-box">
-                            <form class="row g-4" wire:submit.prevent="registerion">
+                            @if ($showqu == false)
+                                <form class="row g-4" wire:submit.prevent="checkphone">
                                     <div class="col-12">
                                         <div class="form-floating theme-form-floating log-in-form">
                                             <input style="border: groove" wire:model.lazy='client_fhonewhats'
@@ -30,6 +31,12 @@
                                             @enderror
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <button class="btn btn-animation w-100" type="submit">التحقق من الرقم</button>
+                                    </div>
+                                </form>
+                            @else
+                                <form class="row g-4" wire:submit.prevent="checkanswer">
                                     <div class="col-6">
                                         <div class="form-floating theme-form-floating">
                                             <input id="question1" type="text" class="form-control"
@@ -59,9 +66,10 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
-                                        <button class="btn btn-animation w-100" type="submit">تسجيل</button>
+                                        <button class="btn btn-animation w-100" type="submit">الدخول</button>
                                     </div>
                                 </form>
+                            @endif
 
                         </div>
                         <div class="other-log-in">
