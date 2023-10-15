@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class Login extends Component
 {
-    public $client_fhonewhats, $showotp = false, $user, $code,$password;
+    public $client_fhonewhats, $showotp = false, $user, $code,$password,$remember;
     public $success;
 
     protected $listeners = [

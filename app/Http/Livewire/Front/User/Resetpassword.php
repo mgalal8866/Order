@@ -16,6 +16,6 @@ class Resetpassword extends Component
     }
     public function render()
     {
-        return view('livewire.front.user.resetpassword');
+        return view('livewire.front.user.resetpassword')->layout('layouts.front-end.layout');
     }
 }
