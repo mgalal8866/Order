@@ -10,18 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class Resetpassword extends Component
 {
-    public $showqu, $answer1, $answer2, $question1, $question2,  $client_fhonewhats;
-    public function mount()
-    {
+    public $showqu=false, $answer1, $answer2, $question1, $question2,  $client_fhonewhats;
 
-    }
     public function checkphone()
     {
         $user = User::where('client_fhonewhats', $this->client_fhonewhats)->with(['question1','question2'])->first();
         if ($user != null) {
             $this->question1 = $user->question1->question;
             $this->question2 = $user->question2->question;
+            $showqu =true;
         }
+
     }
     public function checkanswer()
     {
