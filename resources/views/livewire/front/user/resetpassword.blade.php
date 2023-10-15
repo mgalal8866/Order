@@ -1,5 +1,5 @@
 <div>
-    <x-breadcrumb name="نسيان" />
+    <x-breadcrumb name="نسيت الباسورد" />
     <section class="log-in-section section-b-space">
         <div class="container-fluid-lg w-100">
             <div class="row">
