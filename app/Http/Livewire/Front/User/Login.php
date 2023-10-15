@@ -23,6 +23,7 @@ class Login extends Component
     protected $messages = [
         'client_fhonewhats.exists' => 'رقم الهاتف غير مسجل يمكنك تسجيل مستخدم جديد',
         'client_fhonewhats.required' => 'رقم الهاتف مطوب',
+        'password.required' => 'الباسورد مطوب',
     ];
     public function success1($value)
     {

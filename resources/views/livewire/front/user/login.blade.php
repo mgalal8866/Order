@@ -17,7 +17,7 @@
                         </div>
                         <div class="input-box">
                             @if (session()->has('error'))
-                                <div class="alert alert-danger mb-2">{{ session('error') }}</div>
+                                <div class="alert alert-danger mb-3">{{ session('error') }}</div>
                             @endif
                             <form class="row g-4" wire:submit.prevent="login">
                                 @csrf
