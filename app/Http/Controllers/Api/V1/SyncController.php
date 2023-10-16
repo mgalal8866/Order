@@ -97,33 +97,57 @@ class SyncController extends Controller
             Log::warning($request->all());
             $results = [];
             foreach ($request->all() as $index => $item) {
+                $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']])->first();
+                if( $user != null){
+                    $user->update([
+                        'client_fhonewhats'   => $item['Client_fhoneWhats'],
+                        'source_id'           => $item['Client_id'],
+                        'client_name'         => $item['Client_name'],
+                        'client_Balanc'       => $item['Client_Balanc'],
+                        'client_points'       => $item['Client_points'],
+                        'client_fhoneLeter'   => $item['Client_fhoneLeter'],
+                        'client_EntiteNumber' => $item['Client_EntiteNumber'],
+                        'region_id'           => $item['Region_id'],
+                        'store_name'          => $item['stor_name'],
+                        'lat_mab'             => $item['Lat_mab'],
+                        'long_mab'            => $item['Long_mab'],
+                        'client_state'        => $item['Client_state'],
+                        'client_Credit_Limit' => $item['Client_Credit_Limit'],
+                        'default_Sael'        => $item['default_Sael'],
+                        'client_note'         => $item['Client_note'],
+                        'code_client'         => $item['Client_code'],
+                        'categoryAPP'         => $item['CategoryAPP'],
+                        'client_Active'       => $item['Client_Active'],
+                        'created_at'          => $item['caret_data']]);
+                }else{
+                    $user = User::create([
+                        'client_fhonewhats'   => $item['Client_fhoneWhats'],
+                        'password'            => Hash::make($item['Client_fhoneWhats']),
+                        'question1_id'        => 1,
+                        'question2_id'        => 1,
+                        'answer1'             => '123456',
+                        'answer2'             => '123456',
+                        'source_id'           => $item['Client_id'],
+                        'client_name'         => $item['Client_name'],
+                        'client_Balanc'       => $item['Client_Balanc'],
+                        'client_points'       => $item['Client_points'],
+                        'client_fhoneLeter'   => $item['Client_fhoneLeter'],
+                        'client_EntiteNumber' => $item['Client_EntiteNumber'],
+                        'region_id'           => $item['Region_id'],
+                        'store_name'          => $item['stor_name'],
+                        'lat_mab'             => $item['Lat_mab'],
+                        'long_mab'            => $item['Long_mab'],
+                        'client_state'        => $item['Client_state'],
+                        'client_Credit_Limit' => $item['Client_Credit_Limit'],
+                        'default_Sael'        => $item['default_Sael'],
+                        'client_note'         => $item['Client_note'],
+                        'code_client'         => $item['Client_code'],
+                        'categoryAPP'         => $item['CategoryAPP'],
+                        'client_Active'       => $item['Client_Active'],
+                        'created_at'          => $item['caret_data']
+                    ]);
+                }
 
-                $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
-                    'client_fhonewhats'   => $item['Client_fhoneWhats'],
-                    'password'            => Hash::make($item['Client_fhoneWhats']),
-                    'question1_id'        => 1,
-                    'question2_id'        => 1,
-                    'answer1'             => '123456',
-                    'answer2'             => '123456',
-                    'source_id'           => $item['Client_id'],
-                    'client_name'         => $item['Client_name'],
-                    'client_Balanc'       => $item['Client_Balanc'],
-                    'client_points'       => $item['Client_points'],
-                    'client_fhoneLeter'   => $item['Client_fhoneLeter'],
-                    'client_EntiteNumber' => $item['Client_EntiteNumber'],
-                    'region_id'           => $item['Region_id'],
-                    'store_name'          => $item['stor_name'],
-                    'lat_mab'             => $item['Lat_mab'],
-                    'long_mab'            => $item['Long_mab'],
-                    'client_state'        => $item['Client_state'],
-                    'client_Credit_Limit' => $item['Client_Credit_Limit'],
-                    'default_Sael'        => $item['default_Sael'],
-                    'client_note'         => $item['Client_note'],
-                    'code_client'         => $item['Client_code'],
-                    'categoryAPP'         => $item['CategoryAPP'],
-                    'client_Active'       => $item['Client_Active'],
-                    'created_at'          => $item['caret_data']
-                ]);
                 // Log::warning($request->all());
 
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
