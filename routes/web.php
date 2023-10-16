@@ -238,7 +238,10 @@ Route::middleware('tenant')->group(function () {
     Route::get('/', Home::class)->name('home');
     Route::get('/gallery', galleryfront::class)->name('gallery');
     Route::get('/about', About::class)->name('about');
-    Route::get('/privacy', About::class)->name('privacy');
+    // Route::get('/privacy', About::class)->name('privacy');
+    Route::get('/privacy', function () {
+        return view('pp');
+    })->name('privacy');
     Route::get('/contactus', Contactus::class)->name('contactus');
     Route::get('/product/search/{search?}', Searchproduct::class)->name('searchproduct');
     Route::get('/products/offers', Offers::class)->name('offerproduct');
