@@ -100,7 +100,6 @@ class SyncController extends Controller
                 $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']])->first();
                 if( $user != null){
                     $user->update([
-                        'client_fhonewhats'   => $item['Client_fhoneWhats'],
                         'source_id'           => $item['Client_id'],
                         'client_name'         => $item['Client_name'],
                         'client_Balanc'       => $item['Client_Balanc'],

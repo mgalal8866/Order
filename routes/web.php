@@ -223,6 +223,10 @@ Route::middleware('tenant')->group(function () {
         }
         return back()->withStatus('Done');
     })->name('import_user');
+    Route::get('/uuuu', function (Request $request) {
+        $ss = User::get();
+        
+    })->name('import_user');
 
     Route::get('/', Home::class)->name('home');
     Route::get('/gallery', galleryfront::class)->name('gallery');
