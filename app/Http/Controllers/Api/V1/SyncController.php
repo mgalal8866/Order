@@ -120,7 +120,7 @@ class SyncController extends Controller
                         'client_Active'       => $item['Client_Active'],
                         'created_at'          => $item['caret_data']]);
                 }else{
-                    Log::info('create',[$user]);
+                    Log::info('create'.$item['Client_fhoneWhats'],[$user]);
                     $user = User::create([
                         'client_fhonewhats'   => $item['Client_fhoneWhats'],
                         'password'            => Hash::make($item['Client_fhoneWhats']),
