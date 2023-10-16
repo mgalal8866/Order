@@ -225,7 +225,14 @@ Route::middleware('tenant')->group(function () {
     })->name('import_user');
     Route::get('/uuuu', function (Request $request) {
         $ss = User::get();
-
+        foreach(  $ss as $i){
+            $i->question1_id = 1;
+            $i->question2_id = 1;
+            $i->answer1='123456';
+            $i->answer2='123456';
+            $i->password = Hash::make( $i->client_fhonewhats);
+            $i->save();
+        }
     })->name('import_user');
 
     Route::get('/', Home::class)->name('home');
