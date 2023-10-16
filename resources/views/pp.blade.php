@@ -14,7 +14,7 @@
     <p> <b>Cookies and Web Beacons</b><br />elshrouk uses cookies to store information about visitors' preferences, to record user-specific information on which pages the site visitor accesses or visits, and to personalize or customize our web page content based upon visitors' browser type or other information that the visitor sends via their browser. </p>
     <p><b>DoubleClick DART Cookie</b><br /> </p>
     <p>
-    → Google, as a third party vendor, uses cookies to serve ads on [YOUR SITE URL].<br /><br />
+    → Google, as a third party vendor, uses cookies to serve ads on elshrouk .<br /><br />
     → Google's use of the DART cookie enables it to serve ads to our site's visitors based upon their visit to elshrouk and other sites on the Internet. <br /><br />
     → Users may opt out of the use of the DART cookie by visiting the Google ad and content network privacy policy at the following URL – <a href="http://www.google.com/privacy_ads.html">http://www.google.com/privacy_ads.html</a> </p>
     <p><b>Our Advertising Partners</b><br /> </p>
@@ -30,12 +30,12 @@
     <li>Kontera</li>
     </ul>
     <p><em>While each of these advertising partners has their own Privacy Policy for their site, an updated and hyperlinked resource is maintained here: <a href="https://www.privacypolicyonline.com/privacy-policy-links/">Privacy Policy Links</a>.<br /> <br />
-    You may consult this listing to find the privacy policy for each of the advertising partners of [YOUR SITE URL].</em></p>
+    You may consult this listing to find the privacy policy for each of the advertising partners of elshrouk .</em></p>
     <p> These third-party ad servers or ad networks use technology in their respective advertisements and links that appear on elshrouk and which are sent directly to your browser. They automatically receive your IP address when this occurs. Other technologies (such as cookies, JavaScript, or Web Beacons) may also be used by our site's third-party ad networks to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on the site. </p>
     <p> elshrouk has no access to or control over these cookies that are used by third-party advertisers. </p>
     </p>
     <p><b>Third Party Privacy Policies</b><br />
-    You should consult the respective privacy policies of these third-party ad servers for more detailed information on their practices as well as for instructions about how to opt-out of certain practices. [YOUR SITE URL]'s privacy policy does not apply to, and we cannot control the activities of, such other advertisers or web sites. You may find a comprehensive listing of these privacy policies and their links here: <a href="https://www.privacypolicyonline.com/privacy-policy-links/" title="Privacy Policy Links">Privacy Policy Links</a>.</p>
+    You should consult the respective privacy policies of these third-party ad servers for more detailed information on their practices as well as for instructions about how to opt-out of certain practices. elshrouk 's privacy policy does not apply to, and we cannot control the activities of, such other advertisers or web sites. You may find a comprehensive listing of these privacy policies and their links here: <a href="https://www.privacypolicyonline.com/privacy-policy-links/" title="Privacy Policy Links">Privacy Policy Links</a>.</p>
     <p> If you wish to disable cookies, you may do so through your individual browser options. More detailed information about cookie management with specific web browsers can be found at the browsers' respective websites. <a href="https://www.privacypolicyonline.com/what-are-cookies/" >What Are Cookies?</a></p>
     <p><strong>Children's Information</strong><br />We believe it is important to provide added protection for children online. We encourage parents and guardians to spend time online with their children to observe, participate in and/or monitor and guide their online activity.<br />
     elshrouk does not knowingly collect any personally identifiable information from children under the age of 13.  If a parent or guardian believes that elshrouk has in its database the personally-identifiable information of a child under the age of 13, please contact us immediately (using the contact in the first paragraph) and we will use our best efforts to promptly remove such information from our records.</p>
