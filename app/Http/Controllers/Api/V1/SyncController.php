@@ -99,6 +99,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']])->first();
                 if( $user != null){
+                    Log::info('update',[$user]);
                     $user->update([
                         'source_id'           => $item['Client_id'],
                         'client_name'         => $item['Client_name'],
@@ -119,6 +120,7 @@ class SyncController extends Controller
                         'client_Active'       => $item['Client_Active'],
                         'created_at'          => $item['caret_data']]);
                 }else{
+                    Log::info('create',[$user]);
                     $user = User::create([
                         'client_fhonewhats'   => $item['Client_fhoneWhats'],
                         'password'            => Hash::make($item['Client_fhoneWhats']),
