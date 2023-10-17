@@ -4,6 +4,7 @@ return [
     'dashboard'       => 'Dashboard',
     'name'            => 'الاسم',
     'code'            => 'الكود',
+    'storename'      => 'المتجر',
     'edit'            => 'تعديل',
     'address'         => 'العنوان',
     'phone'           => 'Phone',

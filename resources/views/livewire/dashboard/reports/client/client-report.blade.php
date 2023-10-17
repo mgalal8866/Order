@@ -35,6 +35,7 @@
                                 <tr>
                                     <th>{{ __('tran.client_code') }}</th>
                                     <th>{{ __('tran.namecustom') }}</th>
+                                    <th>{{ __('tran.storename') }}</th>
                                     <th>{{ __('tran.phonecustom') }}</th>
                                     <th>{{ __('tran.phonecustom') }}</th>
                                     <th>{{ __('tran.balance') }}</th>
@@ -49,6 +50,7 @@
                                     <tr>
                                         <td> <span class="fw-bold">{{ $user->code_client ?? 'N/A' }}</span> </td>
                                         <td>{{ $user->client_name ?? 'N/A' }}</td>
+                                        <td>{{ $user->store_name ?? 'N/A' }}</td>
                                         <td>{{ $user->client_fhonewhats ?? 'N/A' }}</td>
                                         <td>{{ $user->client_fhoneLeter ?? 'N/A' }}</td>
                                         <td>{{ $user->client_Balanc ?? 'N/A' }}</td>
