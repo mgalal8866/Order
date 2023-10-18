@@ -128,7 +128,6 @@ class SyncController extends Controller
                             'source_id'           => $item['Client_id']
                         ]);
                     } else {
-                        // Log::info('create' . $item['Client_fhoneWhats'], [$user]);
                         $user = User::create([
                             'client_fhonewhats'   => $item['Client_fhoneWhats'],
                             'password'            => Hash::make($item['Client_fhoneWhats']),
@@ -166,8 +165,8 @@ class SyncController extends Controller
 
             return  $data;
         } catch (\Exception $e) {
-            // logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
-            Log::error($e->getMessage());
+            logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
+            // Log::error($e->getMessage());
         }
     }
     // function client(Request $request)
