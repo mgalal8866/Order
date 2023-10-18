@@ -157,7 +157,7 @@ class SyncController extends Controller
 
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
-          Log::error($data['users_online']);
+
             return  $data;
         } catch (\Exception $e) {
             // logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
@@ -405,7 +405,7 @@ class SyncController extends Controller
     function uploadsdelivery(Request $request)
     {
         Log::info('Delivery', ['0' => $request->all()]);
-        //تم الاستلام /جارى التجهيز /خرج للتوصيل / التوصيل
+        //ØªÙ… Ø§Ù„Ø§Ø³ØªÙ„Ø§Ù… /Ø¬Ø§Ø±Ù‰ Ø§Ù„ØªØ¬Ù‡ÙŠØ² /Ø®Ø±Ø¬ Ù„Ù„ØªÙˆØµÙŠÙ„ / Ø§Ù„ØªÙˆØµÙŠÙ„
         try {
             foreach ($request->all() as $index => $item) {
                 Log::error($item['Type_Order']);
@@ -414,8 +414,8 @@ class SyncController extends Controller
                     if (getsetting()->notif_change_statu == 1) {
                         $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
                         $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
-                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
-                        if ($item['Type_Order'] == 'تم التوصيل') {
+                        notificationFCM('Ù…Ø±Ø­Ø¨Ø£ ', $body, [$user->fsm]);
+                        if ($item['Type_Order'] == 'ØªÙ… Ø§Ù„ØªÙˆØµÙŠÙ„') {
                             DeliveryHeader::where("id", $item['SalesHeader_ID'])->delete();
                             DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                             return Resp(null, 'Success', 200, true);
