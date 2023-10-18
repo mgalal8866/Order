@@ -63,7 +63,7 @@ use App\Models\StockSettlement;
 use App\Models\PermissionScrene;
 use App\Models\SupplierPayments;
 use App\Models\Permissions_Saels;
-use App\Models\tenants\userdesck;
+use App\Models\userdesck;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -97,9 +97,11 @@ class SyncController extends Controller
             Log::warning($request->all());
             $results = [];
             foreach ($request->all() as $index => $item) {
-                $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']])->first();
-                if( $user != null){
-                    Log::info('update',[$user]);
+
+                $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
+                if ($user != null) {
+                     
+                    Log::info('update ', [$user]);
                     $user->update([
                         'source_id'           => $item['Client_id'],
                         'client_name'         => $item['Client_name'],
@@ -118,9 +120,11 @@ class SyncController extends Controller
                         'code_client'         => $item['Client_code'],
                         'categoryAPP'         => $item['CategoryAPP'],
                         'client_Active'       => $item['Client_Active'],
-                        'created_at'          => $item['caret_data']]);
-                }else{
-                    Log::info('create'.$item['Client_fhoneWhats'],[$user]);
+                        'created_at'          => $item['caret_data']
+                    ]);
+
+                } else {
+                    Log::info('create' . $item['Client_fhoneWhats'], [$user]);
                     $user = User::create([
                         'client_fhonewhats'   => $item['Client_fhoneWhats'],
                         'password'            => Hash::make($item['Client_fhoneWhats']),
@@ -152,6 +156,7 @@ class SyncController extends Controller
                 // Log::warning($request->all());
 
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
+
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
 
@@ -164,6 +169,49 @@ class SyncController extends Controller
             Log::error($e->getMessage());
         }
     }
+    // function client(Request $request)
+    // {
+    //     try {
+    //         Log::warning($request->all());
+    //         $results = [];
+    //         foreach ($request->all() as $index => $item) {
+
+    //             $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
+    //                 'client_fhonewhats'   => $item['Client_fhoneWhats'],
+    //                 'source_id'           => $item['Client_id'],
+    //                 'client_name'         => $item['Client_name'],
+    //                 'client_Balanc'       => $item['Client_Balanc'],
+    //                 'client_points'       => $item['Client_points'],
+    //                 'client_fhoneLeter'   => $item['Client_fhoneLeter'],
+    //                 'client_EntiteNumber' => $item['Client_EntiteNumber'],
+    //                 'region_id'           => $item['Region_id'],
+    //                 'store_name'          => $item['stor_name'],
+    //                 'lat_mab'             => $item['Lat_mab'],
+    //                 'long_mab'            => $item['Long_mab'],
+    //                 'client_state'        => $item['Client_state'],
+    //                 'client_Credit_Limit' => $item['Client_Credit_Limit'],
+    //                 'default_Sael'        => $item['default_Sael'],
+    //                 'client_note'         => $item['Client_note'],
+    //                 'code_client'         => $item['Client_code'],
+    //                 'categoryAPP'         => $item['CategoryAPP'],
+    //                 'client_Active'       => $item['Client_Active'],
+    //                 'created_at'          => $item['caret_data']
+    //             ]);
+    //             // Log::warning($request->all());
+
+    //             $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
+    //             // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+    //         }
+
+    //         // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
+    //         $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
+
+    //         return  $data;
+    //     } catch (\Exception $e) {
+    //         // logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
+    //         Log::error($e->getMessage());
+    //     }
+    // }
     function updateclient(Request $request)
     {
         try {
@@ -405,7 +453,7 @@ class SyncController extends Controller
     function uploadsdelivery(Request $request)
     {
         Log::info('Delivery', ['0' => $request->all()]);
-        //ØªÙ… Ø§Ù„Ø§Ø³ØªÙ„Ø§Ù… /Ø¬Ø§Ø±Ù‰ Ø§Ù„ØªØ¬Ù‡ÙŠØ² /Ø®Ø±Ø¬ Ù„Ù„ØªÙˆØµÙŠÙ„ / Ø§Ù„ØªÙˆØµÙŠÙ„
+        //تم الاستلام /جارى التجهيز /خرج للتوصيل / التوصيل
         try {
             foreach ($request->all() as $index => $item) {
                 Log::error($item['Type_Order']);
@@ -414,8 +462,8 @@ class SyncController extends Controller
                     if (getsetting()->notif_change_statu == 1) {
                         $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
                         $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
-                        notificationFCM('Ù…Ø±Ø­Ø¨Ø£ ', $body, [$user->fsm]);
-                        if ($item['Type_Order'] == 'ØªÙ… Ø§Ù„ØªÙˆØµÙŠÙ„') {
+                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
+                        if ($item['Type_Order'] == 'تم التوصيل') {
                             DeliveryHeader::where("id", $item['SalesHeader_ID'])->delete();
                             DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                             return Resp(null, 'Success', 200, true);
