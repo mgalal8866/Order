@@ -123,6 +123,7 @@ class SyncController extends Controller
                 } else {
                     $usercheck = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
                     if ($usercheck != null) {
+                         Log::Error('update' . $item['Client_id']);
                         $usercheck->update([
                             'source_id'           => $item['Client_id']
                         ]);
