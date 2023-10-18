@@ -93,6 +93,8 @@ class SyncController extends Controller
     }
     function client(Request $request)
     {
+        Log::error('tttt');
+
         try {
             Log::warning($request->all());
             $results = [];
@@ -100,7 +102,7 @@ class SyncController extends Controller
 
                 $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
                 if ($user != null) {
-                     
+
                     Log::info('update ', [$user]);
                     $user->update([
                         'source_id'           => $item['Client_id'],
@@ -152,14 +154,10 @@ class SyncController extends Controller
                         'created_at'          => $item['caret_data']
                     ]);
                 }
-
                 // Log::warning($request->all());
-
                 $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
-
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
             }
-
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
 
