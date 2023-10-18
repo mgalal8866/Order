@@ -17,8 +17,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function addtocart($product_id, $qty)
     {
-        Log::alert("cart",['product_id' => $product_id, 'user_id' => Auth::guard('api')->user()->id,'qty'=>$qty]);
-        $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::guard('api')->user()->id], ['user_id' => Auth::guard('api')->user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+       $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::guard('api')->user()->id], ['user_id' => Auth::guard('api')->user()->id, 'product_id' => $product_id, 'qty' => $qty]);
         if ($qty == 0) {
             $this->deletecart($w->id);
         }
@@ -31,7 +30,7 @@ class DBCartRepository implements CartRepositoryinterface
     }
     public function deletecart($cart_id)
     {
-        Log::error($cart_id);
+
         $w =   Cart::where('id', $cart_id)->where('user_id', Auth::guard('api')->user()->id)->first();
         if ($w->delete() != null) {
             return   $this->getcart();
