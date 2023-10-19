@@ -156,10 +156,10 @@ class SyncController extends Controller
                             'created_at'          => $item['caret_data']
                         ]);
                     }
-                    $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
+                $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
             }
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
