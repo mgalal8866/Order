@@ -122,10 +122,10 @@ class SyncController extends Controller
                         'created_at'          => $item['caret_data']
                     ]);
                 } else {
-                    $usercheck = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
-                    if ($usercheck != null) {
+                    $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
+                    if ($user != null) {
                          Log::Error('update client id' . $item['Client_id']);
-                        $usercheck->update([
+                        $user->update([
                             'source_id'           => $item['Client_id']
                         ]);
                     } else {
