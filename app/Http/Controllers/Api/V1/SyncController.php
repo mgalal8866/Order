@@ -122,14 +122,14 @@ class SyncController extends Controller
                         'created_at'          => $item['caret_data']
                     ]);
                 } else {
-                    $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
-                    if ($user != null) {
+                    $user2 = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
+                    if ($user2 != null) {
                          Log::Error('update client id' . $item['Client_id']);
-                        $user->update([
-                            'source_id'           => $item['Client_id']
+                        $user2->update([
+                            'source_id'    => $item['Client_id']
                         ]);
                     } else {
-                        $user = User::create([
+                        $user2 = User::create([
                             'client_fhonewhats'   => $item['Client_fhoneWhats'],
                             'password'            => Hash::make($item['Client_fhoneWhats']),
                             'question1_id'        => 1,
@@ -156,10 +156,10 @@ class SyncController extends Controller
                             'created_at'          => $item['caret_data']
                         ]);
                     }
+                    $results[$index] = ['id' => $user2->id, 'source_id' => $user2->source_id];
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
-                $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
             }
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
