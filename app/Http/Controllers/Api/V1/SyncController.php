@@ -122,17 +122,17 @@ class SyncController extends Controller
                         'created_at'          => $item['caret_data']
                     ]);
                 } else {
-                    $user1 = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
-                    if ($user1 != null) {
+                    $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
+                    if ($user != null) {
                         Log::Error('update client id' . $item['Client_id']);
-                        $user1->update([
+                        $user->update([
                             'source_id'    => $item['Client_id']
                         ]);
-                        // $results[$index] += ['id' => $user1->id, 'source_id' => $user1->source_id];
-                        $temp = array("id"=> $user1->id, "source_id" => $user1->source_id);
-                        array_push($results, $temp);
+                        // $results[$index] += ['id' => $user->id, 'source_id' => $user->source_id];
+                        // $temp = array("id"=> $user->id, "source_id" => $user->source_id);
+                        // array_push($results, $temp);
                     } else {
-                        $user2 = User::create([
+                        $user = User::create([
                             'client_fhonewhats'   => $item['Client_fhoneWhats'],
                             'password'            => Hash::make($item['Client_fhoneWhats']),
                             'question1_id'        => 1,
@@ -159,7 +159,7 @@ class SyncController extends Controller
                             'created_at'          => $item['caret_data']
                         ]);
                         // $results[$index] += ['id' => $user2->id, 'source_id' => $user2->source_id];
-                        $temp = array("id"=> $user2->id, "source_id" => $user2->source_id);
+                        $temp = array("id"=> $user->id, "source_id" => $user->source_id);
                         array_push($results, $temp);
                     }
                 }
