@@ -156,7 +156,7 @@ class SyncController extends Controller
                             'created_at'          => $item['caret_data']
                         ]);
                     }
-                    $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
+                    $results[$index] = ['index'=>$index,'id' => $user->id, 'source_id' => $user->source_id];
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
