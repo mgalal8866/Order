@@ -106,7 +106,9 @@
                     </h6>
                 </a>
                 <h6 class="name theme-color">
+                    @if($product->productheader->stock->sum('quantity') > 1)
                     {{ $product->Qtystockapi($product->productheader->stock->sum('quantity')) }}
+                    @endif
                 </h6>
                 <h6 class="sold weight text-content fw-normal">
                     @if ($product->productheader->product_isscale == 0)
