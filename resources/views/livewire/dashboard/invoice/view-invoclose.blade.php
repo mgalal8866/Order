@@ -27,6 +27,7 @@
                                         <span class="fw-bold">{{ $invo->user->client_name ?? 'N/A' }}</span>
                                     </td>
                                     <td>
+
                                         <span class="fw-bold">{{ $invo->user->store_name ?? 'N/A' }}</span>
                                     </td>
                                     <td>
@@ -48,7 +49,7 @@
                                         {{ $invo->paytayp    ?? 'N/A' }}
                                     </td>
                                     <td><a class="btn btn-flat-warning waves-effect"
-                                            href="{{ route('invodetails-close', [$invo->id]) }}">{{ __('tran.invodetails') }}</a>
+                                            href="{{ route('invodetails-open', [$invo->id]) }}">{{ __('tran.invodetails') }}</a>
                                     </td>
                                 </tr>
                             @empty
