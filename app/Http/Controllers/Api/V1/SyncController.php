@@ -97,6 +97,7 @@ class SyncController extends Controller
             // Log::warning($request->all());
             $results = [];
             foreach ($request->all() as $index => $item) {
+                // $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
                 $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
                 if ($user != null) {
                     // Log::info('update ', [$user]);
@@ -123,7 +124,7 @@ class SyncController extends Controller
                 } else {
                     $usercheck = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
                     if ($usercheck != null) {
-                         Log::Error('update' . $item['Client_id']);
+                         Log::Error('update client id' . $item['Client_id']);
                         $usercheck->update([
                             'source_id'           => $item['Client_id']
                         ]);
@@ -154,8 +155,8 @@ class SyncController extends Controller
                             'client_Active'       => $item['Client_Active'],
                             'created_at'          => $item['caret_data']
                         ]);
-                        $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
                     }
+                    $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
