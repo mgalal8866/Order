@@ -122,12 +122,13 @@ class SyncController extends Controller
                         'created_at'          => $item['caret_data']
                     ]);
                 } else {
-                    $user2 = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
-                    if ($user2 != null) {
+                    $user1 = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats']])->first();
+                    if ($user1 != null) {
                          Log::Error('update client id' . $item['Client_id']);
-                        $user2->update([
+                        $user1->update([
                             'source_id'    => $item['Client_id']
                         ]);
+                        $results[$index] = ['id' => $user1->id, 'source_id' => $user1->source_id];
                     } else {
                         $user2 = User::create([
                             'client_fhonewhats'   => $item['Client_fhoneWhats'],
@@ -155,8 +156,8 @@ class SyncController extends Controller
                             'client_Active'       => $item['Client_Active'],
                             'created_at'          => $item['caret_data']
                         ]);
+                        $results[$index] = ['id' => $user2->id, 'source_id' => $user2->source_id];
                     }
-                    $results[$index] = ['id' => $user2->id, 'source_id' => $user2->source_id];
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
