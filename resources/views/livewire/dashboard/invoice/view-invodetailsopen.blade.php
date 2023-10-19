@@ -21,19 +21,19 @@
                             <div class="mt-md-0 mt-2">
                                 <h4 class="invoice-title">
                                     {{__('tran.invoicenumber')}}
-                                    <span class="invoice-number"># {{$invo->invoicenumber}}</span>
+                                    <span class="invoice-number"># {{$invo->invoicenumber??''}}</span>
                                 </h4>
                                 <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">{{__('tran.invodate')}}:</p>
-                                    <p class="invoice-date">{{$invo->invoicedate}}</p>
+                                    <p class="invoice-date">{{$invo->invoicedate??''}}</p>
                                 </div>
                                 <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">{{__('tran.derivername')}}:</p>
-                                    <p class="invoice-date">{{$invo->employee->name}}</p>
+                                    <p class="invoice-date">{{$invo->employee->name??''}}</p>
                                 </div>
                                 <div class="invoice-date-wrapper">
                                 <p class="invoice-date-title">{{__('tran.username')}}:</p>
-                                    <p class="invoice-date">{{$invo->useradmin->employee->name}}</p>
+                                    <p class="invoice-date">{{$invo->useradmin->employee->name??''}}</p>
                                 </div>
                             </div>
                         </div>
@@ -47,9 +47,9 @@
                         <div class="row invoice-spacing">
                             <div class="col-xl-8 p-0">
                                 <h6 class="mb-2"> {{__('tran.customerdata')}} :</h6>
-                                <h6 class="mb-25">{{$invo->user->client_name}}</h6>
-                                <p class="card-text mb-25">{{$invo->user->region->city->name .' , '. $invo->user->region->name .' , '. $invo->user->client_state}}</p>
-                                <p class="card-text mb-25">{{$invo->user->client_fhonewhats}}</p>
+                                <h6 class="mb-25">{{$invo->user->client_name??''}}</h6>
+                                <p class="card-text mb-25">{{$invo->user->region->city->name??'' .' , '. $invo->user->region->name??'' .' , '. $invo->user->client_state??''}}</p>
+                                <p class="card-text mb-25">{{$invo->user->client_fhonewhats??''}}</p>
                             </div>
                             <div class="col-xl-4 p-0 mt-xl-0 mt-2">
                                 <h6 class="mb-2">{{__('tran.paymentdetails')}} :</h6>
@@ -61,7 +61,7 @@
                                         </tr> --}}
                                         <tr>
                                             <td class="pe-1">{{__('tran.invopaytayp')}} : </td>
-                                            <td><span class="fw-bold">{{$invo->paytayp}}</span></td>
+                                            <td><span class="fw-bold">{{$invo->paytayp??''}}</span></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -88,16 +88,16 @@
 
                                 <tr>
                                     <td class="py-1">
-                                        <p class="card-text fw-bold mb-25">{{$invod->productdetails->productheader->product_name}}</p>
+                                        <p class="card-text fw-bold mb-25">{{$invod->productdetails->productheader->product_name??''}}</p>
                                     </td>
                                     <td class="py-1">
-                                        <span class="fw-bold">{{$invod->sellprice}}</span>
+                                        <span class="fw-bold">{{$invod->sellprice??''}}</span>
                                     </td>
                                     <td class="py-1">
-                                        <span class="fw-bold">{{$invod->quantity}}</span>
+                                        <span class="fw-bold">{{$invod->quantity??''}}</span>
                                     </td>
                                     <td class="py-1">
-                                        <span class="fw-bold">{{$invod->subtotal}}</span>
+                                        <span class="fw-bold">{{$invod->subtotal??''}}</span>
                                     </td>
                                     <td class="py-1">
                                         <span class="fw-bold">{{$invod->discount}}</span>
