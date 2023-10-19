@@ -164,7 +164,7 @@ class SyncController extends Controller
             // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
             $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
 
-            Log::error($data);
+            // Log::error($data);
             return  $data;
         } catch (\Exception $e) {
             logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
