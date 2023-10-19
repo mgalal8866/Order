@@ -10,6 +10,7 @@
                         <thead>
                             <tr>
                                 <th>{{ __('tran.namecustom') }}</th>
+                                <th>{{ __('tran.storename') }}</th>
                                 <th>{{ __('tran.phonecustom') }}</th>
                                 <th>{{ __('tran.invoicenumber') }}</th>
                                 <th>{{ __('tran.invodate') }}</th>
@@ -24,6 +25,9 @@
                                 <tr>
                                     <td>
                                         <span class="fw-bold">{{ $invo->user->client_name ?? 'N/A' }}</span>
+                                    </td>
+                                    <td>
+                                        <span class="fw-bold">{{ $invo->user->store_name ?? 'N/A' }}</span>
                                     </td>
                                     <td>
                                         <span class="fw-bold">{{ $invo->user->client_fhonewhats ?? 'N/A' }}</span>
