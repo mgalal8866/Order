@@ -9,7 +9,7 @@ class ViewInvoclose extends Component
 {
     public function render()
     {
-        $invoices = SalesHeader::Status(0)->get();
+        $invoices = SalesHeader::with('user')->Status(0)->get();
         return view('livewire.dashboard.invoice.view-invoclose',['invoices' => $invoices]);
     }
 }

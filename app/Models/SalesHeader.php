@@ -21,7 +21,7 @@ class SalesHeader extends Model
     }
     public function user()
     {
-        return $this->belongsto(User::class, 'source_id');
+        return $this->belongsto(User::class, 'client_id','source_id');
     }
     public function comment()
     {
