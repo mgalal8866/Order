@@ -106,7 +106,7 @@
                     </h6>
                 </a>
                 <h6 class="name theme-color">
-                    @if($product->productheader->stock->count() != null)
+                    @if($product->productheader->stock != null)
                     {{ $product->Qtystockapi($product->productheader->stock->sum('quantity')) }}
                     @else
                     غير متوفر
