@@ -159,9 +159,9 @@ class SyncController extends Controller
                             'created_at'          => $item['caret_data']
                         ]);
                         // $results[$index] += ['id' => $user2->id, 'source_id' => $user2->source_id];
-                        $temp = array("id"=> $user->id, "source_id" => $user->source_id);
-                        array_push($results, $temp);
                     }
+                    $temp = array("id"=> $user->id, "source_id" => $user->source_id);
+                    array_push($results, $temp);
                 }
                 // Log::warning($request->all());
                 // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
