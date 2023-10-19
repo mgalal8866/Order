@@ -98,7 +98,7 @@ class SyncController extends Controller
             $results = [];
             foreach ($request->all() as $index => $item) {
                 // $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
-                $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
+                $user = User::where(['id'=>$item['onlainID'],'client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
                 if ($user != null) {
                     // Log::info('update ', [$user]);
                     $user->update([
