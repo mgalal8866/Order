@@ -12,7 +12,7 @@
                         <div class="d-flex justify-content-between flex-md-row flex-column invoice-spacing mt-0">
                             <div>
                                 <div class="logo-wrapper">
-                                    <img src="{{asset('asset/images/logo.png')}}" width="50"  />
+                                    <img src="{{ getimage('logos',$setting->logo_shop)}}" width="50"  />
 
                                 </div>
                                 <p class="card-text mb-25">{{$setting->address_shop}}</p>

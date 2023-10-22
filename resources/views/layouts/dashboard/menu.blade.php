@@ -2,7 +2,7 @@
      <div class="navbar-header">
          <ul class="nav navbar-nav flex-row">
              <li class="nav-item me-auto"><a class="navbar-brand" href="/"><span class="brand-logo">
-                         <img src="https://order-bay.com/asset/images2/{{ request()->getHttpHost() }}/logos/{{ $setting->logo_shop }}"
+                         <img src="{{ getimage('logos',$setting->logo_shop)}}"
                              width="50" />
                      </span>
                      <h2 class="brand-text" style="color: {{ $setting->site_color_primary }}">{{ $setting->name_shop }}
