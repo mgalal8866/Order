@@ -21,7 +21,6 @@ use App\Models\Damage;
 use App\Models\income;
 use App\Models\region;
 use App\Models\slider;
-use App\Facade\Tenants;
 use App\Models\comment;
 use App\Models\gallery;
 use App\Models\logsync;
@@ -81,16 +80,19 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 
 class SyncController extends Controller
 {
+    //عدد المستخدمين
     function client_count()
     {
         $count = user::count();
         return    Resp($count, 'success', 200, true);
     }
+    // احضار جميع المستخدمين
     function getuser($id)
     {
         $user = user::find($id);
         return    Resp(new ClientResource($user), 'success', 200, true);
     }
+    //مزامنه المستخدمين ( حفظ جميع المستخدمين من الدسك توب الى الموقع وارسال المستخدمين الجدد من الموقع الى الديسك توب)
     function client(Request $request)
     {
         try {
@@ -98,7 +100,7 @@ class SyncController extends Controller
             $results = [];
             foreach ($request->all() as $index => $item) {
                 // $user = User::where(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
-                $user = User::where(['id'=>$item['onlainID'],'client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
+                $user = User::where(['id' => $item['onlainID'], 'client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id' => $item['Client_id']])->first();
                 if ($user != null) {
                     // Log::info('update ', [$user]);
                     $user->update([
@@ -160,7 +162,7 @@ class SyncController extends Controller
                         ]);
                         // $results[$index] += ['id' => $user2->id, 'source_id' => $user2->source_id];
                     }
-                    $temp = array("id"=> $user->id, "source_id" => $user->source_id);
+                    $temp = array("id" => $user->id, "source_id" => $user->source_id);
                     array_push($results, $temp);
                 }
                 // Log::warning($request->all());
@@ -176,49 +178,7 @@ class SyncController extends Controller
             // Log::error($e->getMessage());
         }
     }
-    // function client(Request $request)
-    // {
-    //     try {
-    //         Log::warning($request->all());
-    //         $results = [];
-    //         foreach ($request->all() as $index => $item) {
-
-    //             $user = User::updateOrCreate(['client_fhonewhats'   => $item['Client_fhoneWhats'], 'source_id'   => $item['Client_id']], [
-    //                 'client_fhonewhats'   => $item['Client_fhoneWhats'],
-    //                 'source_id'           => $item['Client_id'],
-    //                 'client_name'         => $item['Client_name'],
-    //                 'client_Balanc'       => $item['Client_Balanc'],
-    //                 'client_points'       => $item['Client_points'],
-    //                 'client_fhoneLeter'   => $item['Client_fhoneLeter'],
-    //                 'client_EntiteNumber' => $item['Client_EntiteNumber'],
-    //                 'region_id'           => $item['Region_id'],
-    //                 'store_name'          => $item['stor_name'],
-    //                 'lat_mab'             => $item['Lat_mab'],
-    //                 'long_mab'            => $item['Long_mab'],
-    //                 'client_state'        => $item['Client_state'],
-    //                 'client_Credit_Limit' => $item['Client_Credit_Limit'],
-    //                 'default_Sael'        => $item['default_Sael'],
-    //                 'client_note'         => $item['Client_note'],
-    //                 'code_client'         => $item['Client_code'],
-    //                 'categoryAPP'         => $item['CategoryAPP'],
-    //                 'client_Active'       => $item['Client_Active'],
-    //                 'created_at'          => $item['caret_data']
-    //             ]);
-    //             // Log::warning($request->all());
-
-    //             $results[$index] = ['id' => $user->id, 'source_id' => $user->source_id];
-    //             // logsync::create(['type' => 'success', 'data' => json_encode($item), 'massage' => null]);
-    //         }
-
-    //         // $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' => $errors ?? []];
-    //         $data = ['users_online' =>   clientsyncResource::collection(User::where('source_id', null)->get()) ?? [], 'results' => $results ?? [], 'errors' =>  []];
-
-    //         return  $data;
-    //     } catch (\Exception $e) {
-    //         // logsync::create(['type' => "Error", 'data' => null,  'massage' =>  json_encode($e->getMessage())]);
-    //         Log::error($e->getMessage());
-    //     }
-    // }
+    //تحديث المستخدمين ب اى دى الخاص بالدسك توب
     function updateclient(Request $request)
     {
         try {
@@ -233,34 +193,7 @@ class SyncController extends Controller
             return  Resp(null, 'Error', 400, true);
         }
     }
-    // function uploadproductsheader(Request $request)
-    // {
-    //     Log::info('uploadproductsheader ', $request->all());
-
-    //     try {
-    //         foreach ($request->all() as $index => $item) {
-    //             $uu =   ProductHeader::updateOrCreate(['id' => $item['Products_ID']], [
-    //                 'id'                => $item['Products_ID'],
-    //                 'product_name'      => $item['Products_name'],
-    //                 'product_category'  => $item['Products_Sup_id'],
-    //                 'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
-    //                 'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
-    //                 'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
-    //                 'product_tax'       => $item['Products_Tax'],
-    //                 'product_limit'     => $item['Products_Lemt'],
-    //                 'user_id'           => $item['user_id'],
-    //                 'product_limit_day' => $item['Products_lemt_day'],
-    //                 'product_note'      => $item['Products_note'],
-    //             ]);
-    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-    //         }
-    //         return Resp(null, 'Success', 200, true);
-    //     } catch (\Illuminate\Database\QueryException  $exception) {
-    //         $e = $exception->errorInfo;
-    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-    //         return    Resp(null, 'Error', 400, true);
-    //     }
-    // }
+    //حفظ المنتجات من الدسك توب الى الموقع
     function uploadproducts(Request $request)
     {
         Log::info('uploadproducts ', $request->all());
@@ -310,40 +243,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-    // function uploadproductsdetails(Request $request)
-    // {
-    //     Log::info('uploadproductsdetails ', $request->all());
-
-    //     try {
-    //         foreach ($request->all() as $index => $item) {
-
-    //             $image = $item['ProductsD_image'] != null ? uploadbase64images('products', $item['ProductsD_image']) : null;
-    //             $uu =   ProductDetails::updateOrCreate(['id' => $item['ProductD_id']], [
-    //                 'id'                 => $item['ProductD_id'],
-    //                 'product_header_id'  => $item['Product_id'],
-    //                 'productd_unit_id'   => $item['ProductsD_unit_id'],
-    //                 'productd_barcode'   => $item['ProductsD_Barcode'],
-    //                 'productd_size'      => $item['ProductsD_Size'],
-    //                 'productd_bay'       => $item['ProductsD_Bay'],
-    //                 'productd_Sele1'     => $item['ProductsD_Sele1'],
-    //                 'productd_Sele2'     => $item['ProductsD_Sele2'],
-    //                 'productd_fast_Sele' => ($item['ProductsD_fast_Sele'] == true) ? 1 : ($item['ProductsD_fast_Sele'] == false ? 0 : $item['ProductsD_fast_Sele']),
-    //                 'productd_UnitType'  => $item['ProductsD_UnitType'],
-    //                 'productd_image'     => $image,
-    //                 'isoffer'            => ($item['IsOffer'] == true) ? 1 : ($item['IsOffer'] == false ? 0 : $item['IsOffer']),
-    //                 'productd_online'    => ($item['Product_Onlein'] == true) ? 1 : ($item['Product_Onlein'] == false ? 0 : $item['Product_Onlein']),
-    //                 'maxqty'             => $item['MaxQuntte'],
-    //                 'EndOferDate'        => Carbon::parse($item['EndOferDate'])->format('Y-m-d H:i:s'),
-    //             ]);
-    //             logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
-    //         }
-    //         return Resp(null, 'Success', 200, true);
-    //     } catch (\Illuminate\Database\QueryException  $exception) {
-    //         $e = $exception->errorInfo;
-    //         logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
-    //         return    Resp(null, 'Error', 400, true);
-    //     }
-    // }
+  
     function uploadunits(Request $request)
     {
         Log::info('upload UNIT client SyncController', $request->all());
