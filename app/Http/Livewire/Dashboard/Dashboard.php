@@ -18,8 +18,8 @@ class Dashboard extends Component
     {
         // $User = user::all();
         $User = DB::table('users');
-        $this->data['count_product']  = ProductHeader::count();
-        $this->data['count_client']   =  $User->where('client_Active','1')->count();
+        $this->data['count_product']  = ProductHeader::where('product_acteve', '1')->count();
+        $this->data['count_client']   =  $User->count();
         $this->data['client_Balanc']       =  $User->sum('client_Balanc');
         $this->data['count_client_agel']   =  $User->where('default_Sael', '=', 'اجل')->count();
         $this->data['count_suppluer'] = Supplier::count();
