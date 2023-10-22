@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="my-auto">
-                                <h4 class="fw-bolder mb-0">{{$data['product_acteve']??''}}</h4>
+                                <h4 class="fw-bolder mb-0  text-success">{{$data['count_product_active']??''}}</h4>
                                 <p class="card-text font-small-3 mb-0"> عدد المنتجات المفعله</p>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                             <div class="my-auto">
-                                <h4 class="fw-bolder mb-0">{{$data['count_product_uncative']??''}}</h4>
+                                <h4 class="fw-bolder mb-0 text-danger" >{{$data['count_product_uncative']??''}}</h4>
                                 <p class="card-text font-small-3 mb-0"> عدد المنتجات الغير مفعله</p>
                             </div>
                         </div>
