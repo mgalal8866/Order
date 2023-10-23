@@ -102,9 +102,9 @@ class DBUserRepository implements UserRepositoryinterface
             $user->answer2           = $request['answer2'] ?? $user->answer2;
             $user->save();
             $data =  new UserResource($user);
+               DB::commit();
             return Resp($data, 'Success', 200, true);
-            DB::commit();
-            return true;
+         
         } catch (\Exception $e) {
             Log::warning($e->getMessage());
             DB::rollback();
