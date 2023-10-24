@@ -31,8 +31,18 @@ class DBUserRepository implements UserRepositoryinterface
         $user = $this->model->where('client_fhonewhats', $phone)->first();
         if ($user != null) {
 
-            $question = question::whereIn('id', [$user->question1_id, $user->question2_id])->get();
-            return Resp(QuestionResource::collection($question), 'success', 200, true);
+            $question1 = question::where('id', $user->question1_id)->first();
+            $question2 = question::whereIn('id',  $user->question2_id)->first();
+            $d = [
+                [
+                    "id" =>  $question1->id,
+                    "question" =>  $question1->question
+                ], [
+                    "id" => $question2->question,
+                    "question" =>  $question2->question
+                ]
+            ];
+            return Resp($d , 'success', 200, true);
         } else {
             return Resp('', 'هاتف غير مسجل', 302, false);
         }
@@ -87,6 +97,7 @@ class DBUserRepository implements UserRepositoryinterface
         try {
             $user =  User::find(Auth::guard('api')->user()->id);
             $user->client_name       = $request['client_name'] ?? $user->client_name;
+            $user->password          = $request['password'] ?? $user->password;
             $user->client_fhoneLeter = $request['client_fhoneLeter'] ?? $user->client_fhoneLeter;
             $user->region_id         = $request['region_id'] ?? $user->region_id;
             $user->store_name        = $request['store_name'] ?? $user->store_name;
@@ -102,9 +113,8 @@ class DBUserRepository implements UserRepositoryinterface
             $user->answer2           = $request['answer2'] ?? $user->answer2;
             $user->save();
             $data =  new UserResource($user);
-               DB::commit();
+            DB::commit();
             return Resp($data, 'Success', 200, true);
-         
         } catch (\Exception $e) {
             Log::warning($e->getMessage());
             DB::rollback();
