@@ -366,7 +366,7 @@ class SyncController extends Controller
                 Log::error($item['Type_Order']);
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
                 if($oldtypeorder != null){
-                if ($item['Type_Order']  != $oldtypeorder->type_order??'') {
+                if ($item['Type_Order']  != $oldtypeorder->type_order) {
                     if (getsetting()->notif_change_statu == 1) {
                         $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
                         $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
@@ -377,8 +377,7 @@ class SyncController extends Controller
                             return Resp(null, 'Success', 200, true);
                         }
                     }
-                }
-            }
+                }}
                 $user =  user::where('source_id', $item['Client_ID'])->select('id')->first();
                 $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
@@ -419,7 +418,7 @@ class SyncController extends Controller
                 DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('DeliveryHeader', $item2);
-                    $uu2 =   DeliveryDetails::updateOrCreate(["sale_header_id"  =>  $item['SalesHeader_ID'],'product_details_id' => $item2['ProductDetails_ID']],[
+                    $uu2 =   DeliveryDetails::create([
                         'sale_header_id'     => $item['SalesHeader_ID'],
                         'product_details_id' => $item2['ProductDetails_ID'],
                         'buyprice'           => $item2['BuyPrice'],
@@ -432,22 +431,6 @@ class SyncController extends Controller
                     ]);
                     logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
                 }
-                // DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
-                // foreach ($item['Details'] as $index => $item2) {
-                //     Log::info('DeliveryHeader', $item2);
-                //     $uu2 =   DeliveryDetails::create([
-                //         'sale_header_id'     => $item['SalesHeader_ID'],
-                //         'product_details_id' => $item2['ProductDetails_ID'],
-                //         'buyprice'           => $item2['BuyPrice'],
-                //         'sellprice'          => $item2['SellPrice'],
-                //         'quantity'           => $item2['Quantity'],
-                //         'subtotal'           => $item2['SubTotalD'],
-                //         'discount'           => $item2['Discount'],
-                //         'grandtotal'         => $item2['GrandTotalD'],
-                //         'profit'             => $item2['Profit']
-                //     ]);
-                //     logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
-                // }
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
