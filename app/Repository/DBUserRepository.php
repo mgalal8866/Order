@@ -33,16 +33,10 @@ class DBUserRepository implements UserRepositoryinterface
 
             $question1 = question::where('id', $user->question1_id)->first();
             $question2 = question::whereIn('id',  $user->question2_id)->first();
-            $d = [
-                [
-                    "id" =>  $question1->id,
-                    "question" =>  $question1->question
-                ], [
-                    "id" => $question2->question,
-                    "question" =>  $question2->question
-                ]
-            ];
-            return Resp($d , 'success', 200, true);
+            $d = [];
+            $d[0]=   [  "id" =>  $question1->id, "question" =>  $question1->question  ];
+            $d[1]=   [  "id" =>  $question2->id, "question" =>  $question2->question  ];
+            return Resp($d, 'success', 200, true);
         } else {
             return Resp('', 'هاتف غير مسجل', 302, false);
         }
