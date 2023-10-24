@@ -85,7 +85,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function edit($request)
     {
-        Log::error($request);
+
         DB::beginTransaction();
         try {
             $user =  User::find(Auth::guard('api')->user()->id);
