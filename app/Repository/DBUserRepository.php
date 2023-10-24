@@ -33,7 +33,7 @@ class DBUserRepository implements UserRepositoryinterface
             $d = [];
             $d[0]=   [  "id" =>  $user->question1->id, "question" => $user->question1->question];
             $d[1]=   [  "id" =>  $user->question2->id, "question" => $user->question2->question ];
-            
+
             return Resp($d, 'success', 200, true);
         } else {
             return Resp('', 'هاتف غير مسجل', 302, false);
@@ -85,6 +85,7 @@ class DBUserRepository implements UserRepositoryinterface
     }
     public function edit($request)
     {
+        Log::error($request);
         DB::beginTransaction();
         try {
             $user =  User::find(Auth::guard('api')->user()->id);
