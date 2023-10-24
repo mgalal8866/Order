@@ -365,7 +365,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 Log::error($item['Type_Order']);
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
-                if ($item['Type_Order']  != $oldtypeorder->type_order) {
+                if ($item['Type_Order']  != $oldtypeorder->type_order??'') {
                     if (getsetting()->notif_change_statu == 1) {
                         $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
                         $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
