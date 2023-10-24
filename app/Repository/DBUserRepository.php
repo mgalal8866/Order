@@ -30,12 +30,10 @@ class DBUserRepository implements UserRepositoryinterface
     {
         $user = $this->model->where('client_fhonewhats', $phone)->first();
         if ($user != null) {
-
-            $question1 = question::where('id', $user->question1_id)->first();
-            $question2 = question::whereIn('id',  $user->question2_id)->first();
             $d = [];
-            $d[0]=   [  "id" =>  $question1->id, "question" =>  $question1->question  ];
-            $d[1]=   [  "id" =>  $question2->id, "question" =>  $question2->question  ];
+            $d[0]=   [  "id" =>  $user->question1->id, "question" => $user->question1->question];
+            $d[1]=   [  "id" =>  $user->question2->id, "question" => $user->question2->question ];
+            dd($d);
             return Resp($d, 'success', 200, true);
         } else {
             return Resp('', 'هاتف غير مسجل', 302, false);
