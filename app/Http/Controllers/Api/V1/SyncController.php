@@ -378,7 +378,7 @@ class SyncController extends Controller
                     }
                 }
                 $user =  user::where('source_id', $item['Client_ID'])->select('id')->first();
-                $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID']], [
+                $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
                     "invoicenumber" =>  $item['InvoiceNumber'],
                     "coupon_id"     =>  $item['coupon_id'],
