@@ -243,7 +243,7 @@ class SyncController extends Controller
             return    Resp(null, 'Error', 400, true);
         }
     }
-  
+
     function uploadunits(Request $request)
     {
         Log::info('upload UNIT client SyncController', $request->all());
@@ -378,7 +378,7 @@ class SyncController extends Controller
                     }
                 }
                 $user =  user::where('source_id', $item['Client_ID'])->select('id')->first();
-                $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
+                $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID']], [
                     "id"            =>  $item['SalesHeader_ID'],
                     "invoicenumber" =>  $item['InvoiceNumber'],
                     "coupon_id"     =>  $item['coupon_id'],
@@ -417,7 +417,7 @@ class SyncController extends Controller
                 DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
                 foreach ($item['Details'] as $index => $item2) {
                     Log::info('DeliveryHeader', $item2);
-                    $uu2 =   DeliveryDetails::create([
+                    $uu2 =   DeliveryDetails::updateOrCreate(["sale_header_id"  =>  $item['SalesHeader_ID'],'product_details_id' => $item2['ProductDetails_ID']],[
                         'sale_header_id'     => $item['SalesHeader_ID'],
                         'product_details_id' => $item2['ProductDetails_ID'],
                         'buyprice'           => $item2['BuyPrice'],
@@ -430,6 +430,22 @@ class SyncController extends Controller
                     ]);
                     logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
                 }
+                // DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
+                // foreach ($item['Details'] as $index => $item2) {
+                //     Log::info('DeliveryHeader', $item2);
+                //     $uu2 =   DeliveryDetails::create([
+                //         'sale_header_id'     => $item['SalesHeader_ID'],
+                //         'product_details_id' => $item2['ProductDetails_ID'],
+                //         'buyprice'           => $item2['BuyPrice'],
+                //         'sellprice'          => $item2['SellPrice'],
+                //         'quantity'           => $item2['Quantity'],
+                //         'subtotal'           => $item2['SubTotalD'],
+                //         'discount'           => $item2['Discount'],
+                //         'grandtotal'         => $item2['GrandTotalD'],
+                //         'profit'             => $item2['Profit']
+                //     ]);
+                //     logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
+                // }
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
