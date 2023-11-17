@@ -14,6 +14,10 @@ class PurchaseHeader extends Model
     {
         return $this->belongsto(Supplier::class, 'Suppliers_id');
     }
+    public function brand()
+    {
+        return $this->belongsTo(brands::class, 'brand_id');
+    }
     public function scopeCountreturned($query)
     {
                return $query->where('InvoiceType', 1)->count();
