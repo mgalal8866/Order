@@ -10,7 +10,7 @@ class ProductCollectionResource extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'brands'  =>  $this->collection->pluck('productheader.brand'),
+            'brands'  =>  $this->collection->pluck('productheader.brand')->unique(),
             'product' => ProductDetailsResource::collection($this->collection),
             'pagination' => [
                 'total'        => $this->total(),
