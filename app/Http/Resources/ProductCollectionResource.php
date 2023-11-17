@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Resources;
+
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
 
@@ -9,8 +10,14 @@ class ProductCollectionResource extends ResourceCollection
 
     public function toArray($request)
     {
+        $uniqueBrands = $this->collection
+            ->filter(function ($item) {
+                // Use the filter to exclude null values
+                return !is_null(data_get($item, 'productheader.brand'));
+            })->pluck('productheader.brand')->unique();
+            // $this->collection->pluck('productheader.brand')->unique()
         return [
-            'brands'  =>   BrandResource::collection($this->collection->pluck('productheader.brand')->unique()),
+            'brands'  => BrandResource::collection($uniqueBrands),
             'product' => ProductDetailsResource::collection($this->collection),
             'pagination' => [
                 'total'        => $this->total(),
@@ -19,7 +26,7 @@ class ProductCollectionResource extends ResourceCollection
                 'current_page' => $this->currentPage(),
                 'total_pages'  => $this->lastPage(),
                 'path'         => $this->path(),
-                'current_path' => $this->path().'?page='.$this->currentPage(),
+                'current_path' => $this->path() . '?page=' . $this->currentPage(),
             ],
 
         ];
