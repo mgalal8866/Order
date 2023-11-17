@@ -30,6 +30,7 @@ class ProductDetailsResource extends JsonResource
             "productd_bay"      =>$this->productd_bay??0.00,
             "productd_Sele1"    =>$this->productd_Sele1??0.00,
             "productd_Sele2"    =>$this->productd_Sele2??0.00,
+            "brand_id"          =>$this->productheader->brand_id??'',
             "isoffer"           =>$this->isoffer,
             "maxqty"            =>$this->maxqty??0,
             "EndOferDate"       =>$this->EndOferDate??''
