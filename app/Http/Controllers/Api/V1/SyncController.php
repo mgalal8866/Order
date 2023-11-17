@@ -84,8 +84,8 @@ class SyncController extends Controller
     //عدد المستخدمين
     function test($id)
     {
-       
-        return   $id;
+        $pro = ProductDetails::find($id);
+        return    $pro->Qtystockapi(1);
     }
     //عدد المستخدمين
     function client_count()
