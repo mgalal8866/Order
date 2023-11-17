@@ -15,9 +15,13 @@ class ProductCollectionResource extends ResourceCollection
         //         // Use the filter to exclude null values
         //         return !is_null(data_get($item, 'productheader.brand'));
         //     })->pluck('productheader.brand')->unique();
-            $uniqueBrands = $this->collection->pluck('productheader.brand')->unique();
+        $uniqueBrands = $this->collection
+    ->pluck('productheader.brand')
+    ->filter()
+    ->unique();
+            // $uniqueBrands = $this->collection->pluck('productheader.brand')->unique();
         return [
-            'brands'  => BrandResource::collection($uniqueBrands),
+            'brands'  => BrandResource::collection($this->collection->pluck('productheader.brand')->unique()),
             'product' => ProductDetailsResource::collection($this->collection),
             'pagination' => [
                 'total'        => $this->total(),
