@@ -30,5 +30,8 @@ class ProductHeader extends Model
         return $query->where('product_online', 1);
     }
 
-
+    public function brand()
+    {
+        return $this->belongsTo(brands::class, 'brand_id');
+    }
 }
