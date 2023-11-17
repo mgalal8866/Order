@@ -129,6 +129,7 @@ Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
     Route::get('/client/count',        [SyncController::class, 'client_count']);
     //Route::get('/get/user/delivery',[SyncController::class, 'getuser_deliveries']);
 
+    Route::post('/upload/brands',        [SyncController::class, 'uploadbrands']);
     Route::post('/client',        [SyncController::class, 'client']);
     Route::post('/update/user/descktop', [SyncController::class, 'upload_userdesck']);
     Route::post('/update/client', [SyncController::class, 'updateclient']);

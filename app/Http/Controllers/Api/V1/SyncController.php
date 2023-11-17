@@ -15,6 +15,7 @@ use App\Models\Shift;
 use App\Models\Stock;
 use App\Models\Store;
 use App\Models\Branch;
+use App\Models\brands;
 use App\Models\cities;
 use App\Models\Coupon;
 use App\Models\Damage;
@@ -34,6 +35,7 @@ use App\Models\Partners;
 use App\Models\Supplier;
 use App\Models\Offer_Bay;
 use App\Models\UserAdmin;
+use App\Models\userdesck;
 use App\Models\Attendance;
 use App\Models\CateoryApp;
 use App\Models\Statements;
@@ -62,7 +64,6 @@ use App\Models\StockSettlement;
 use App\Models\PermissionScrene;
 use App\Models\SupplierPayments;
 use App\Models\Permissions_Saels;
-use App\Models\userdesck;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -119,6 +120,7 @@ class SyncController extends Controller
                         'default_Sael'        => $item['default_Sael'],
                         'client_note'         => $item['Client_note'],
                         'code_client'         => $item['Client_code'],
+                        'client_code'         => $item['user_codeOnlain'],
                         'categoryAPP'         => $item['CategoryAPP'],
                         'client_Active'       => $item['Client_Active'],
                         'created_at'          => $item['caret_data']
@@ -347,6 +349,27 @@ class SyncController extends Controller
                     ]);
                     logsync::create(['type' => 'success', 'data' => json_encode($uu2), 'massage' => null]);
                 }
+                logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
+            }
+            return Resp(null, 'Success', 200, true);
+        } catch (\Illuminate\Database\QueryException  $exception) {
+            $e = $exception->errorInfo;
+            logsync::create(['type' => "Error", 'data' => json_encode($item),  'massage' =>  json_encode($e)]);
+            return    Resp(null, 'Error', 400, true);
+        }
+    }
+    function uploadbrands(Request $request)
+    {
+        Log::info('uploadbrands ', $request->all());
+
+        try {
+            foreach ($request->all() as $index => $item) {
+                $uu =   brands::updateOrCreate(["id"  => $item['prandid'],], [
+                    "id"            => $item['prandid'],
+                    "name"          => $item['name'],
+                    "user_id"       => $item['userid'],
+
+                ]);
                 logsync::create(['type' => 'success', 'data' => json_encode($uu), 'massage' => null]);
             }
             return Resp(null, 'Success', 200, true);
