@@ -115,6 +115,7 @@ Route::middleware(['jwt.verify'])->group(function () {
 #################   Start SYNC  #############
 Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
 
+    Route::get('/test/{id?}', [SyncController::class, 'test']);
     Route::get('/get/user/{id?}', [SyncController::class, 'getuser']);
     Route::get('/down/cart', [SyncController::class, 'getcart']);
     Route::get('/down/delivery/header', [SyncController::class, 'downsdeliveryheader']);

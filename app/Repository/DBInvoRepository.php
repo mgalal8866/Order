@@ -27,7 +27,7 @@ class DBInvoRepository implements InvoRepositoryinterface
     public function placeorder($request)
     {
 
-       
+
         $head = DeliveryHeader::create([
             'paytayp'           => $request['data']['paytype'],
             'total_profit'      => $request['data']['total_profit']??0,
@@ -43,6 +43,7 @@ class DBInvoRepository implements InvoRepositoryinterface
             'note'              => $request['data']['note']??'لايوجد ملاحظات'
         ]);
         if ($head) {
+            
             foreach ($request->invo as $in) {
                 $head->salesdetails()->create([
                     'product_details_id'    => $in['product_id'],

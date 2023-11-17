@@ -82,6 +82,12 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 class SyncController extends Controller
 {
     //عدد المستخدمين
+    function test($id)
+    {
+       
+        return   $id;
+    }
+    //عدد المستخدمين
     function client_count()
     {
         $count = user::count();
@@ -360,8 +366,8 @@ class SyncController extends Controller
     }
     function uploadbrands(Request $request)
     {
-        Log::info('uploadbrands ', $request->all());
 
+        Log::info('uploadbrands ', $request->all());
         try {
             foreach ($request->all() as $index => $item) {
                 $uu =   brands::updateOrCreate(["id"  => $item['prandid'],], [
