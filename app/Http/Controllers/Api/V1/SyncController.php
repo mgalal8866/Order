@@ -214,6 +214,7 @@ class SyncController extends Controller
                     'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
                     'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
                     'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
+                    'brand_id'       => $item['prandid'],
                     'product_tax'       => $item['Products_Tax'],
                     'product_limit'     => $item['Products_Lemt'],
                     'user_id'           => $item['user_id'],
