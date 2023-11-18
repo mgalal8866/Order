@@ -18,14 +18,14 @@ class ProductCollectionResource extends ResourceCollection
         $uniqueBrands = $this->collection
             ->pluck('productheader.brand')
             ->filter(function ($brand) {
-                return !is_null($brand);
+                return !is_null($brand->id);
             })
             ->unique();
 
         // $uniqueBrands = $this->collection->pluck('productheader.brand')->unique();
 
         return [
-            'brands1'  =>  $this->collection->pluck('productheader.brand'),
+            'brands1'  =>  $this->collection->pluck('productheader.brand')->unique(),
             'brands'  =>   BrandResource::collection($uniqueBrands),
             'product' => ProductDetailsResource::collection($this->collection),
             'pagination' => [
