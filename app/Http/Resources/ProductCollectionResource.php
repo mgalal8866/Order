@@ -25,6 +25,7 @@ class ProductCollectionResource extends ResourceCollection
         // $uniqueBrands = $this->collection->pluck('productheader.brand')->unique();
 
         return [
+            'brands1'  =>  $this->collection->pluck('productheader.brand'),
             'brands'  =>   BrandResource::collection($uniqueBrands),
             'product' => ProductDetailsResource::collection($this->collection),
             'pagination' => [
