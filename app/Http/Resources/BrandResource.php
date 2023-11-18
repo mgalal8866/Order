@@ -2,12 +2,13 @@
 
 namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-
-class BrandResource extends ResourceCollection
+use Illuminate\Http\Request;
+class BrandResource extends JsonResource
 {
 
-    public function toArray($request)
+    public function toArray(Request $request)
     {
         return [
             'id'              => $this->id??'',
