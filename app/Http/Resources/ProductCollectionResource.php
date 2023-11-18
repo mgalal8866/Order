@@ -10,19 +10,13 @@ class ProductCollectionResource extends ResourceCollection
 
     public function toArray($request)
     {
-        // $uniqueBrands = $this->collection
-        //     ->filter(function ($item) {
-        //         // Use the filter to exclude null values
-        //         return !is_null(data_get($item, 'productheader.brand'));
-        //     })->pluck('productheader.brand')->unique();
+
         $uniqueBrands = $this->collection
             ->pluck('productheader.brand')
             ->filter(function ($brand) {
                 return !is_null($brand);
             })
             ->unique();
-
-        // $uniqueBrands = $this->collection->pluck('productheader.brand')->unique();
 
         return [
             'brands'  =>   BrandResource::collection($uniqueBrands),
