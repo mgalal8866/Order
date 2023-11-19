@@ -18,10 +18,7 @@ class ProductDetailsResource extends JsonResource
         return [
             "product_id"        =>$this->id,
             "productd_name"     =>$this->productheader->product_name??'',
-            // "productd_stock"    =>$this->productheader->stock->sum('quantity') != null ?'متوفر':'غير متوفر',
-            // "productd_stock"    =>'متوفر',
-            // "productd_stock1"   =>$this->productheader->stock->sum('quantity')??'',
-            "productd_stock"   => $this->Qtystockapi($this->productheader->stock->sum('quantity')),
+            "productd_stock"    =>$this->Qtystockapi($this->productheader->stock->sum('quantity')),
             "productd_wishlist" =>$this->wishlist->count()?true:false,
             "product_isscale"   =>$this->productheader->product_isscale,
             "productd_barcode"  =>$this->productd_barcode??'',
@@ -31,6 +28,7 @@ class ProductDetailsResource extends JsonResource
             "productd_Sele1"    =>$this->productd_Sele1??0.00,
             "productd_Sele2"    =>$this->productd_Sele2??0.00,
             "brand_id"          =>$this->productheader->brand_id??'',
+            "urlyoutube"        =>$this->productheader->urlyoutube??'',
             "isoffer"           =>$this->isoffer,
             "maxqty"            =>$this->maxqty??0,
             "EndOferDate"       =>$this->EndOferDate??''
