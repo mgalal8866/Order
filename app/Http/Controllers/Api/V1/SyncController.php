@@ -82,6 +82,19 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 class SyncController extends Controller
 {
     //عدد المستخدمين
+    function get_version()
+    {
+        $jsonFile = public_path('asset/update_desk/data.json') ;
+        if (file_exists($jsonFile)) {
+            $jsonData = file_get_contents($jsonFile);
+            $data = json_decode($jsonData, true);
+            return    Resp($data, 'success', 200, true);
+        } else {
+            return "not exist.";
+        }
+
+    }
+    //عدد المستخدمين
     function test($id)
     {
         $pro = ProductDetails::find($id);

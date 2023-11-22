@@ -95,20 +95,30 @@ use Symfony\Component\Process\Process;
 // php artisan migrate --path=database/migrations/system --database=mysql
 
 Route::get('version',  function () {
+  $jsonFile = public_path('asset/update_desk/data.json') ;;
+  $newData = [
+    'url' => 'John Doe',
+    'last_version' =>'1.0.0',
+    'new_version' => 'New York',
+];
+// Encode the data as JSON
+$jsonData = json_encode($newData, JSON_PRETTY_PRINT);
+// Write the JSON data to the file
+file_put_contents($jsonFile, $jsonData);
+// echo "Data has been written to the JSON file.";
+    // Check if the file exists
+    if (file_exists($jsonFile)) {
+        // Read the contents of the JSON file
+        $jsonData = file_get_contents($jsonFile);
 
-    $exePath = public_path('asset/update_desk/Order.exe') ;
-    $command2 = 'wmic datafile where name="' . $exePath . '" get Version /value';
-    $process = new Process($command2);
-    $process->run();
+        // Decode the JSON data
+        $data = json_decode($jsonData, true);
 
-    if (!$process->isSuccessful()) {
-        throw new \RuntimeException($process->getErrorOutput());
+        // Now $data contains the associative array from the JSON file
+        print_r($data['last_version']);
+    } else {
+        echo "JSON file does not exist.";
     }
-
-    // Extract version from the output
-    $version = explode("=", trim($process->getOutput()))[1];
-
-    return "Version: " . $version;
 });
 
 Route::get('sql',  function () {
