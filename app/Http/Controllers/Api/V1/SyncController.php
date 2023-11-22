@@ -103,7 +103,7 @@ class SyncController extends Controller
         $jsonFile = public_path('asset/update_desk/data.json');;
         $newData = [
             'url' => 'order.exe',
-            'last_version' =>'1.0.0.0',
+            'last_version' => $jsonData->data->new_version,
             'new_version' => '1.0.0.1',
         ];
         $jsonData = json_encode($newData, JSON_PRETTY_PRINT);
