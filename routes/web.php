@@ -97,9 +97,9 @@ use Symfony\Component\Process\Process;
 Route::get('version',  function () {
   $jsonFile = public_path('asset/update_desk/data.json') ;;
   $newData = [
-    'url' => 'John Doe',
-    'last_version' =>'1.0.0',
-    'new_version' => 'New York',
+    'url' => 'order.exe',
+    'last_version' =>'1.0.0.0',
+    'new_version' => '1.0.0.1',
 ];
 // Encode the data as JSON
 $jsonData = json_encode($newData, JSON_PRETTY_PRINT);

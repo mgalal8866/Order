@@ -81,10 +81,10 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 
 class SyncController extends Controller
 {
-    //عدد المستخدمين
+    //  التحقق من اصدار تطبيق الدسك توب
     function get_version()
     {
-        $jsonFile = public_path('asset/update_desk/data.json') ;
+        $jsonFile = public_path('asset/update_desk/data.json');
         if (file_exists($jsonFile)) {
             $jsonData = file_get_contents($jsonFile);
             $data = json_decode($jsonData, true);
@@ -92,7 +92,19 @@ class SyncController extends Controller
         } else {
             return "not exist.";
         }
-
+    }
+    function upload_deskapp()
+    {
+        $jsonFile = public_path('asset/update_desk/data.json');;
+        $newData = [
+            'url' => 'John Doe',
+            'last_version' => '1.0.0',
+            'new_version' => 'New York',
+        ];
+        // Encode the data as JSON
+        $jsonData = json_encode($newData, JSON_PRETTY_PRINT);
+        // Write the JSON data to the file
+        file_put_contents($jsonFile, $jsonData);
     }
     //عدد المستخدمين
     function test($id)
@@ -409,19 +421,20 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
                 Log::error($item['Type_Order']);
                 $oldtypeorder = DeliveryHeader::where("id", $item['SalesHeader_ID'])->select('type_order', 'client_id')->first();
-                if($oldtypeorder != null){
-                if ($item['Type_Order']  != $oldtypeorder->type_order) {
-                    if (getsetting()->notif_change_statu == 1) {
-                        $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
-                        $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
-                        notificationFCM('مرحبأ ', $body, [$user->fsm]);
-                        if ($item['Type_Order'] == 'تم التوصيل') {
-                            DeliveryHeader::where("id", $item['SalesHeader_ID'])->delete();
-                            DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
-                            return Resp(null, 'Success', 200, true);
+                if ($oldtypeorder != null) {
+                    if ($item['Type_Order']  != $oldtypeorder->type_order) {
+                        if (getsetting()->notif_change_statu == 1) {
+                            $user =  user::where('source_id', $item['Client_ID'])->select('fsm')->first();
+                            $body = replacetext(getsetting()->notif_change_text, null, null, null, $item['Type_Order']);
+                            notificationFCM('مرحبأ ', $body, [$user->fsm]);
+                            if ($item['Type_Order'] == 'تم التوصيل') {
+                                DeliveryHeader::where("id", $item['SalesHeader_ID'])->delete();
+                                DeliveryDetails::where('sale_header_id',  $item['SalesHeader_ID'])->delete();
+                                return Resp(null, 'Success', 200, true);
+                            }
                         }
                     }
-                }}
+                }
                 $user =  user::where('source_id', $item['Client_ID'])->select('id')->first();
                 $uu =   DeliveryHeader::updateOrCreate(["id"  =>  $item['SalesHeader_ID'],], [
                     "id"            =>  $item['SalesHeader_ID'],
