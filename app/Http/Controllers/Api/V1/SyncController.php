@@ -97,9 +97,8 @@ class SyncController extends Controller
     {
         $re = $this->get_version();
         $jsonData = json_decode($re, true);
+       return $jsonData['data'];
 
-        // Access the value associated with the "url" key
-       return $jsonData['data']['url'];
         $jsonFile = public_path('asset/update_desk/data.json');;
         $newData = [
             'url' => 'order.exe',
