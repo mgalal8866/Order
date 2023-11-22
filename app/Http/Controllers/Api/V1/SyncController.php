@@ -98,7 +98,7 @@ class SyncController extends Controller
         $jsonData = $this->get_version();
         $data = json_decode($jsonData, true);
 
-       return $data['data'];
+       return $data;
 
         $jsonFile = public_path('asset/update_desk/data.json');;
         $newData = [
