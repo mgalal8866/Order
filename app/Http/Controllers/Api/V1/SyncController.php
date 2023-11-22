@@ -96,9 +96,10 @@ class SyncController extends Controller
     function upload_deskapp()
     {
         $re = $this->get_version();
-        $jsonResponse = response()->json($re);
+        $jsonData = json_decode($re, true);
 
-        return $jsonResponse->original['url'];
+        // Access the value associated with the "url" key
+       return $jsonData['data']['url'];
         $jsonFile = public_path('asset/update_desk/data.json');;
         $newData = [
             'url' => 'order.exe',
