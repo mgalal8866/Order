@@ -101,7 +101,7 @@ class SyncController extends Controller
         $newData = [
             'url' => 'order.exe',
             'last_version' => $jsonData->data->new_version,
-            'new_version' => '1.0.0.1',
+            'new_version' => '1.0.0.2',
         ];
         $jsonData = json_encode($newData, JSON_PRETTY_PRINT);
         file_put_contents($jsonFile, $jsonData);
