@@ -18,6 +18,7 @@
         "opcodesio/log-viewer": "^2.4",
         "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-permission": "^5.10",
+        "symfony/process": "^6.3",
         "tymon/jwt-auth": "^2.0"
     },
     "require-dev": {

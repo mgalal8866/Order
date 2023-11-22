@@ -90,8 +90,26 @@ use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
 use App\Http\Livewire\Dashboard\Reports\Product\LimitProductPay;
 use App\Http\Livewire\Front\User\Resetpassword;
+use Symfony\Component\Process\Process;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
+
+Route::get('vvv',  function () {
+
+    $exePath = public_path('asset/update_desk/Order.exe') ;
+    $command2 = 'wmic datafile where name="' . $exePath . '" get Version /value';
+    $process = new Process($command2);
+    $process->run();
+
+    if (!$process->isSuccessful()) {
+        throw new \RuntimeException($process->getErrorOutput());
+    }
+
+    // Extract version from the output
+    $version = explode("=", trim($process->getOutput()))[1];
+
+    return "Version: " . $version;
+});
 
 Route::get('sql',  function () {
     // $now = Carbon::now();
@@ -225,12 +243,12 @@ Route::middleware('tenant')->group(function () {
     })->name('import_user');
     Route::get('/uuuu', function (Request $request) {
         $ss = User::get();
-        foreach(  $ss as $i){
+        foreach ($ss as $i) {
             $i->question1_id = 1;
             $i->question2_id = 1;
-            $i->answer1='123456';
-            $i->answer2='123456';
-            $i->password = Hash::make( $i->client_fhonewhats);
+            $i->answer1 = '123456';
+            $i->answer2 = '123456';
+            $i->password = Hash::make($i->client_fhonewhats);
             $i->save();
         }
     })->name('import_user');
