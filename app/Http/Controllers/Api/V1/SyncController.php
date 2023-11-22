@@ -96,8 +96,8 @@ class SyncController extends Controller
     function upload_deskapp()
     {
         $data = $this->get_version();
-        
-       return $data;
+
+       return $data['data'];
 
         $jsonFile = public_path('asset/update_desk/data.json');;
         $newData = [
