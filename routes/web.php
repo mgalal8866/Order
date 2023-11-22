@@ -94,7 +94,7 @@ use Symfony\Component\Process\Process;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
-Route::get('vvv',  function () {
+Route::get('version',  function () {
 
     $exePath = public_path('asset/update_desk/Order.exe') ;
     $command2 = 'wmic datafile where name="' . $exePath . '" get Version /value';
