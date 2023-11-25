@@ -84,7 +84,7 @@ class SyncController extends Controller
     //  التحقق من اصدار تطبيق الدسك توب
     function get_version()
     {
-        $jsonFile = public_path('asset/update_desk/data.json');
+        $jsonFile = public_path('update/data.json');
         if (file_exists($jsonFile)) {
             $jsonData = file_get_contents($jsonFile);
             $data = json_decode($jsonData, true);
@@ -97,7 +97,7 @@ class SyncController extends Controller
     {
         $jsonResponse = $this->get_version();
         $jsonData = $jsonResponse->getData();
-        $jsonFile = public_path('asset/update_desk/data.json');;
+        $jsonFile = public_path('update/data.json');;
         $newData = [
             'url' => 'order.exe',
             'last_version' => $jsonData->data->new_version,

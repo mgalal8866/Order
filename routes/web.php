@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Front\Cart\Cart;
 use App\Http\Livewire\Front\Contactus;
+use Symfony\Component\Process\Process;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\System\Dashboard;
 use Illuminate\Support\Facades\Artisan;
@@ -43,13 +44,15 @@ use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Cart\Checkout;
 use App\Http\Livewire\Front\User\Register;
-use App\Http\Livewire\Front\Product\Offers;
 
+use App\Http\Livewire\System\UploadUpdate;
+use App\Http\Livewire\Front\Product\Offers;
 use App\Http\Livewire\Dashboard\Units\Units;
 use App\Http\Livewire\Dashboard\Users\Users;
 use App\Http\Livewire\Dashboard\Units\EditUnit;
 use App\Http\Livewire\Front\Order\Ordersuccess;
 use App\Http\Livewire\Front\Order\Ordertraking;
+use App\Http\Livewire\Front\User\Resetpassword;
 use App\Http\Livewire\Front\User\Userdashborad;
 use App\Http\Livewire\Dashboard\Slider\EditSlider;
 use App\Http\Livewire\Dashboard\Slider\ViewSlider;
@@ -61,36 +64,34 @@ use App\Http\Livewire\Dashboard\Invoice\ViewInvoopen;
 use App\Http\Livewire\Dashboard\Category\EditCategory;
 use App\Http\Livewire\Dashboard\Category\ViewCategory;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvoclose;
+use App\Http\Livewire\Dashboard\Reports\Pos\UserSales;
 use App\Http\Controllers\Dashborad\UserAdminController;
 use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Reports\Pos\ShiftReport;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
+
 use App\Http\Livewire\Dashboard\Reports\Employee\EmpReport;
 use App\Http\Livewire\Dashboard\Reports\Employee\EmpSalery;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientReport;
-
 use App\Http\Livewire\Dashboard\Reports\Employee\EmpAdvance;
 use App\Http\Livewire\Dashboard\Reports\Client\ClientBalance;
 use App\Http\Livewire\Dashboard\Notification\ViewNotification;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierPayed;
 use App\Http\Livewire\Dashboard\Reports\Client\AccountStatement;
+use App\Http\Livewire\Dashboard\Reports\Product\LimitProductPay;
 use App\Http\Livewire\Dashboard\Reports\Product\Moreandlesssale;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierReport;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupplierBalance;
 use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasesReport;
 use App\Http\Livewire\Dashboard\Reports\Client\MoreAndLessPayClient;
-use App\Http\Livewire\Dashboard\Reports\Pos\UserSales;
 use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasComparison;
 use App\Http\Livewire\Dashboard\Reports\Purchases\PurchasesReturned;
 use App\Http\Livewire\Dashboard\Reports\Supplier\MoreLessPaySupllier;
 use App\Http\Livewire\Dashboard\Reports\Supplier\SupAccountStatement;
 use App\Http\Livewire\Front\Category\Viewcategory as CategoryViewcategory;
-use App\Http\Livewire\Dashboard\Reports\Product\LimitProductPay;
-use App\Http\Livewire\Front\User\Resetpassword;
-use Symfony\Component\Process\Process;
 
 // php artisan migrate --path=database/migrations/system --database=mysql
 
@@ -141,8 +142,14 @@ Route::get('sss',  function () {
     return getsetting();
 });
 
+
+
+
+
+
 Route::domain(env('CENTERAL_DOMAIN', 'order-bay.com'))->group(
     function () {
+        Route::get('/upload/update', UploadUpdate::class);
         Route::prefix('system/dashboard')->group(function () {
             Route::get('/', Dashboard::class)->name('dashboard1');
         });

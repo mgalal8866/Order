@@ -43,6 +43,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'update' => [
+            'driver' => 'local',
+            'root' => public_path('update'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
         'product' => [
             'driver' => 'local',
             'root' => public_path('asset/images/products'),
