@@ -18,7 +18,7 @@ class DBCartRepository implements CartRepositoryinterface
         // return  Cart::where('user_id', Auth::guard('api')->user()->id)->when('productdetails',function($q){
         //     $q->Qtystockapi;
         // })->with('productdetails')->get();
-        return  Cart::where('user_id', Auth::guard('api')->user()->id)->when('productdetails')->with('productdetails')->get();
+        return  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
     }
     public function addtocart($product_id, $qty)
     {
