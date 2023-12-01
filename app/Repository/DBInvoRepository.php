@@ -55,7 +55,7 @@ class DBInvoRepository implements InvoRepositoryinterface
                         'quantity'      => $in['quantity'] ?? 0,
                         'discount'      => $in['discount'] ?? 0,
                         'grandtotal'    => $in['grandtotal'] ?? 0,
-                        'profit'        => $in['profit'] ?? 0
+                        'profit'        => $in['profit']     ?? 0
                     ]);
                 // }
             }
