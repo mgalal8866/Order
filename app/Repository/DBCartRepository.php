@@ -5,6 +5,7 @@ namespace App\Repository;
 use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\deferred;
+use App\Models\ProductDetails;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\CartRepositoryinterface;
@@ -13,16 +14,18 @@ class DBCartRepository implements CartRepositoryinterface
 {
     public function getcart()
     {
-        // $pro = ProductDetails::find($in['product_id']);
-        //         if ($pro->Qtystockapi($in['quantity'] ?? 0) == 'متوفر' ) {}
-        // return  Cart::where('user_id', Auth::guard('api')->user()->id)->when('productdetails',function($q){
-        //     $q->Qtystockapi;
-        // })->with('productdetails')->get();
+        $c =  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
+        foreach ($c as $item) {
+            $pro = ProductDetails::find($item->product_id);
+            if ($pro->Qtystockapi($item->qty ?? 0) != 'متوفر') {
+                Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
+            }
+        }
         return  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
     }
     public function addtocart($product_id, $qty)
     {
-       $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::guard('api')->user()->id], ['user_id' => Auth::guard('api')->user()->id, 'product_id' => $product_id, 'qty' => $qty]);
+        $w =   Cart::updateOrCreate(['product_id' => $product_id, 'user_id' => Auth::guard('api')->user()->id], ['user_id' => Auth::guard('api')->user()->id, 'product_id' => $product_id, 'qty' => $qty]);
         if ($qty == 0) {
             $this->deletecart($w->id);
         }
