@@ -13,7 +13,12 @@ class DBCartRepository implements CartRepositoryinterface
 {
     public function getcart()
     {
-        return  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
+        // $pro = ProductDetails::find($in['product_id']);
+        //         if ($pro->Qtystockapi($in['quantity'] ?? 0) == 'متوفر' ) {}
+        // return  Cart::where('user_id', Auth::guard('api')->user()->id)->when('productdetails',function($q){
+        //     $q->Qtystockapi;
+        // })->with('productdetails')->get();
+        return  Cart::where('user_id', Auth::guard('api')->user()->id)->when('productdetails')->with('productdetails')->get();
     }
     public function addtocart($product_id, $qty)
     {

@@ -8,10 +8,10 @@ use Livewire\WithPagination;
 
 class Users extends Component
 {
-    use WithPagination;
+        use WithPagination;
 
-    public $pg = 30;
-    protected $paginationTheme = 'bootstrap';
+        public $pg = 30;
+        protected $paginationTheme = 'bootstrap';
 
     public function render(UserRepositoryinterface $usersRepository)
     {

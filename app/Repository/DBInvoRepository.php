@@ -45,9 +45,8 @@ class DBInvoRepository implements InvoRepositoryinterface
         ]);
         if ($head) {
             foreach ($request->invo as $in) {
-                $pro = ProductDetails::find($in['product_id']);
-                if ($pro->Qtystockapi($in['quantity'] ?? 0) == 'متوفر' ) {
-
+                // $pro = ProductDetails::find($in['product_id']);
+                // if ($pro->Qtystockapi($in['quantity'] ?? 0) == 'متوفر' ) {
                     $head->salesdetails()->create([
                         'product_details_id'    => $in['product_id'],
                         'buyprice'      => $in['buyprice'] ?? 0,
@@ -58,7 +57,7 @@ class DBInvoRepository implements InvoRepositoryinterface
                         'grandtotal'    => $in['grandtotal'] ?? 0,
                         'profit'        => $in['profit'] ?? 0
                     ]);
-                }
+                // }
             }
         }
         Cart::where('user_id', Auth::guard('api')->user()->id)->delete();
