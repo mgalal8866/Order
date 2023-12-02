@@ -18,6 +18,7 @@ class DBCartRepository implements CartRepositoryinterface
         foreach ($c as $item) {
             $pro = ProductDetails::find($item->product_id);
             if ($pro->Qtystockapi($item->qty ?? 0) != 'متوفر') {
+                Log::error('غير متوفر');
                 Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
             }
         }
