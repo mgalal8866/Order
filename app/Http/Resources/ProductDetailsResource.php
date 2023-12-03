@@ -15,8 +15,8 @@ class ProductDetailsResource extends JsonResource
         return [
             "product_id"        =>$this->id,
             "productd_name"     =>$this->productheader->product_name??'',
-            // "productd_stock"    =>$this->Qtystockapi($this->productheader->stock->sum('quantity')),
-            "productd_stock"    =>$this->Qtystockapi($this->productheader->stockmany->sum('quantity')),
+            "productd_stock"    =>$this->Qtystockapi($this->productheader->stock->quantity),
+            "productd_stockm"    =>$this->Qtystockapi($this->productheader->stockmany->sum('quantity')),
             "productd_wishlist" =>$this->wishlist->count()?true:false,
             "product_isscale"   =>$this->productheader->product_isscale,
             "productd_barcode"  =>$this->productd_barcode??'',
