@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Cart;
 use App\Models\deferred;
 use App\Models\ProductDetails;
+use App\Models\ProductHeader;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use App\Repositoryinterface\CartRepositoryinterface;
@@ -16,9 +17,13 @@ class DBCartRepository implements CartRepositoryinterface
     {
         $c =  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
         foreach ($c as $item) {
-            $pro = ProductDetails::find($item->product_id);
+           $ph =  ProductHeader::when('productdetails',function($q)use($item){
+                $q->where('id',$item->product_id);
+            })->stock->sum('quantity');
+            // $pro = ProductDetails::find($item->product_id);
 
-            Log::error($pro->productheader->stock->sum('quantity'));
+            Log::error( $ph);
+            // Log::error($pro->productheader->stock->sum('quantity'));
             // if ($pro->Qtystockapi($item->qty ?? 0) != 'متوفر') {
             //     Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
             // }
