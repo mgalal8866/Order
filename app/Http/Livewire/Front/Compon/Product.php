@@ -39,11 +39,11 @@ class Product extends Component
     }
     public function addtocart($product_id)
     {
+        if ($this->product->Qtystockapi($this->product->productheader->stockmany->sum('quantity')) === 'غير متوفر') {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
+        }
         if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
-        }
-        if ($this->product->Qtystockapi($this->product->productheader->stock->sum('quantity')) === 'غير متوفر') {
-            return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
         }
 
         Cart::updateOrCreate(['product_id' => $this->product->id, 'user_id' => Auth::guard('client')->user()->id], ['user_id' => Auth::guard('client')->user()->id, 'product_id' => $product_id, 'qty' =>   $this->qty]);
