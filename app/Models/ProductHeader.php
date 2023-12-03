@@ -21,6 +21,11 @@ class ProductHeader extends Model
         return $this->hasone(Stock::class, 'product_id');
         // return $this->hasMany(Stock::class,'product_id');
     }
+    public function stockmany()
+    {
+        // return $this->hasone(Stock::class, 'product_id');
+        return $this->hasMany(Stock::class,'product_id');
+    }
     public function productdetails()
     {
         return $this->hasMany(ProductDetails::class,'product_header_id');
