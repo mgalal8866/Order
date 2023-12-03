@@ -21,6 +21,9 @@ class Product extends Component
 
     public function qtyincrement($product_id)
     {
+        if ($this->product->Qtystockapi($this->product->productheader->stockmany->sum('quantity')) <= $this->product->cart->qty) {
+            return  $this->dispatchBrowserEvent('notifi', ['message' => 'لايمكن طلب كمية اكبر من المخزون', 'type' => 'danger']);
+        }
         if ($this->product->maxqty == ($this->product->cart->qty ?? '')) {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'هذة اقصي حد للكمية المتاحة ', 'type' => 'danger']);
         }
@@ -39,6 +42,7 @@ class Product extends Component
     }
     public function addtocart($product_id)
     {
+
         if ($this->product->Qtystockapi($this->product->productheader->stockmany->sum('quantity')) === 'غير متوفر') {
             return  $this->dispatchBrowserEvent('notifi', ['message' => 'منتج غير متوفر', 'type' => 'danger']);
         }
