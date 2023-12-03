@@ -53,6 +53,7 @@
                     @endif
 
                 @endif
+                @if ($product->productheader->stock != null)
                 @if ($product->productheader->stockmany->sum('quantity') > 0)
                     @auth('client')
                         <div class="add-to-cart-box bg-white">
@@ -93,6 +94,13 @@
                             </button>
                         </div>
                     @endauth
+                @endif
+                @else
+                    <div class="add-to-cart-box bg-white">
+                        <button class="btn btn-add-cart addcart-button">
+                            غير متوفر
+                        </button>
+                    </div>
                 @endif
             </div>
         </div>
