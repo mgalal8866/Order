@@ -34,7 +34,7 @@
                     </h6>
                 </a>
                 <h6 class="name theme-color">
-                    {{ $product->Qtystockapi($product->productheader->stock->sum('quantity')) }}
+                    {{ $product->Qtystockapi($product->productheader->stockmany->sum('quantity')) }}
                 </h6>
                 <h6 class="sold weight text-content fw-normal">
                     @if ($product->productheader->product_isscale == 0)
@@ -53,7 +53,7 @@
                     @endif
 
                 @endif
-                @if ($product->productheader->stock->sum('quantity') > 0)
+                @if ($product->productheader->stockmany->sum('quantity') > 0)
                     @auth('client')
                         <div class="add-to-cart-box bg-white">
                             <button class="btn btn-add-cart addcart-button"

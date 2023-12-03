@@ -26,7 +26,7 @@
                             <del>{{ $product->productd_Sele2 }}</del>
                         </h5>
 
-                        @if ($product->productheader->stock->sum('quantity') > 0)
+                        @if ($product->productheader->stockmany->sum('quantity') > 0)
                             @auth('client')
                                 <div class="add-to-cart-box bg-white">
                                     <button class="btn btn-add-cart addcart-button"
@@ -109,7 +109,7 @@
                 </a>
                 <h6 class="name theme-color">
                     @if ($product->productheader->stock != null)
-                        {{ $product->Qtystockapi($product->productheader->stock->sum('quantity')) }}
+                        {{ $product->Qtystockapi($product->productheader->stockmany->sum('quantity')) }}
                     @else
                         غير متوفر
                     @endif
@@ -134,7 +134,7 @@
 
                 @endif
                 @if ($product->productheader->stock != null)
-                    @if ($product->productheader->stock->sum('quantity') > 0)
+                    @if ($product->productheader->stockmany->sum('quantity') > 0)
                         @auth('client')
                             <div class="add-to-cart-box bg-white">
                                 <button class="btn btn-add-cart addcart-button"
