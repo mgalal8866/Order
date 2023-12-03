@@ -134,6 +134,7 @@
 
                 @endif
                 @if ($product->productheader->stock != null)
+                {{$product->productheader->stockmany->sum('quantity')}}
                     @if ($product->productheader->stockmany->sum('quantity') > 0)
                         @auth('client')
                             <div class="add-to-cart-box bg-white">
