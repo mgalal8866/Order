@@ -26,8 +26,8 @@ class DBCartRepository implements CartRepositoryinterface
             // Log::error($pro->productheader->stock->sum('quantity'));
             // Log::error($pro->productheader->stockmany->sum('quantity'));
             if ($pro->Qtystockapi($pro->productheader->stockmany->sum('quantity') ?? 0) != 'متوفر' || $pro->productd_online != 1) {
-                Log::error('غير متوفر');
-                //     Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
+                // Log::error('غير متوفر');
+                    Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
             }
         }
         return  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
