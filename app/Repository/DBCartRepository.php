@@ -17,12 +17,12 @@ class DBCartRepository implements CartRepositoryinterface
     {
         $c =  Cart::where('user_id', Auth::guard('api')->user()->id)->with('productdetails')->get();
         foreach ($c as $item) {
-           $ph =  ProductHeader::when('productdetails',function($q)use($item){
-                $q->where('id',$item->product_id);
-            })->stock->sum('quantity');
-            // $pro = ProductDetails::find($item->product_id);
+        //    $ph =  ProductHeader::when('productdetails',function($q)use($item){
+        //         $q->where('id',$item->product_id);
+        //     })->stock->sum('quantity');
+            $pro = ProductDetails::find($item->product_id);
 
-            Log::error( $ph);
+            Log::error( $pro->productheader->stock);
             // Log::error($pro->productheader->stock->sum('quantity'));
             // if ($pro->Qtystockapi($item->qty ?? 0) != 'متوفر') {
             //     Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
