@@ -22,10 +22,10 @@ class DBCartRepository implements CartRepositoryinterface
         //     })->stock->sum('quantity');
             $pro = ProductDetails::find($item->product_id);
 
-            Log::error( $pro->productheader->stock);
-            Log::error($pro->productheader->stock->sum('quantity'));
-            Log::error($pro->productheader->stockmany->sum('quantity'));
-            if ($pro->Qtystockapi($pro->productheader->stockmany->sum('quantity') ?? 0) != 'متوفر') {
+            // Log::error( $pro->productheader->stock);
+            // Log::error($pro->productheader->stock->sum('quantity'));
+            // Log::error($pro->productheader->stockmany->sum('quantity'));
+            if ($pro->Qtystockapi($pro->productheader->stockmany->sum('quantity') ?? 0) != 'متوفر' || $pro->productd_online != 1) {
                 Log::error('غير متوفر');
                 //     Cart::where(['user_id' => Auth::guard('api')->user()->id, 'product_id' => $item->product_id])->delete();
             }
