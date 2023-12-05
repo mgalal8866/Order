@@ -21,6 +21,7 @@ class Coupon extends Model
 
         return $query->where('start_date', '<=', $today)->where('end_date', '>=', $today);
     }
+
     public function salesheader()
     {
         return $this->hasMany(salesheader::class, 'coupon_id');
@@ -28,23 +29,11 @@ class Coupon extends Model
     public function scopeCheckused($query)
     {
 
-        // if ($this->getAttribute('used') != 0) {
-        //     $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->wherehas('coupon')->count();
-        //     $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->wherehas('coupon')->count();
-        //     $query->Where('used', '>', ($saleheader+$deliveryheader));
-        // }
         if ($this->getAttribute('used') != 0) {
             $deliveryheader = DeliveryHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
             $saleheader = SalesHeader::select('client_id', 'coupon_id')->where('client_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
-            $query->Where('used', '>', ($saleheader+$deliveryheader));
+            $query->Where('used', '>', ($saleheader + $deliveryheader));
         }
         return $query;
-        // return $query;
-
-        // dd( $query->get()->salesheader->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id')));
-
-        // // $saleheader = SalesHeader::select('user_id', 'coupon_id')->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id'))->count();
-        // dd($this->salesheader->where('user_id', Auth::user()->id)->where('coupon_id', $this->getAttribute('id')));
-        // return $query->where('used', '>', $this->salesheader->count());
     }
 }

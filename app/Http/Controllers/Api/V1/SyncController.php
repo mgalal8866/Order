@@ -807,6 +807,7 @@ class SyncController extends Controller
             foreach ($request->all() as $index => $item) {
 
                 $image = $item['Logo_Shope'] != null ? uploadbase64images('logos', $item['Logo_Shope']) : null;
+                $image2 = $item['PhotoMain'] != '' ? uploadbase64images('logos', $item['PhotoMain']) : null;
                 $uu    = setting::find(1);
                 if ($uu) {
                     deleteimage('logos', $uu->logo_shop);
@@ -817,6 +818,7 @@ class SyncController extends Controller
                     'phone_shop'        => $item['Shope_Fhone'],
                     'address_shop'      => $item['Shope_Adresse'],
                     'logo_shop'         => $image,
+                    'photo_main'        => $image2,
                     'message_report'    => $item['Messge_Report'],
                     'delivery_amount'   => $item['Delivery_Amount'],
                     'delivery_message'  => $item['Delivery_Messge'],
