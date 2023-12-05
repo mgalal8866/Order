@@ -30,7 +30,7 @@ Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');
 Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
-Route::get('setting', [SettingController::class, 'getsetting']);
+Route::get('photo/main', [SettingController::class, 'getsetting']);
 ################# End   Login & Register #############
 
 ################################### Forgot Password ##########################
