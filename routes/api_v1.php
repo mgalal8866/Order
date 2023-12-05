@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\V1\RegionController;
 use App\Http\Controllers\Api\V1\SliderController;
 use App\Http\Controllers\Api\V1\CommentController;
 use App\Http\Controllers\Api\V1\InvoiceController;
+use App\Http\Controllers\Api\V1\SettingController;
 use App\Http\Controllers\Api\V1\CategoryController;
 use App\Http\Controllers\Api\V1\WishlistController;
 use App\Http\Controllers\Api\V1\CateoryAppController;
@@ -29,6 +30,7 @@ Route::post('/login',   [UserController::class, 'login'])->name('login');
 Route::post('/register', [UserController::class, 'register'])->name('register');
 Route::get('/sendtoken/{token}', [UserController::class, 'sendtoken'])->name('sendtoken');
 Route::post('/user/edit',    [UserController::class, 'edit'])->name('edit');
+Route::get('setting', [SettingController::class, 'getsetting']);
 ################# End   Login & Register #############
 
 ################################### Forgot Password ##########################

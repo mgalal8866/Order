@@ -8,4 +8,8 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+
+    function getsetting() {
+        return Resp(setting::find(1),'success',200);
+    }
  }
