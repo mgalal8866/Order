@@ -11,6 +11,6 @@ class SettingController extends Controller
 
     function getsetting() {
         $setting = setting::find(1);
-        return Resp($setting->photo_main,'success',200);
+        return Resp(['photo_main'=>$setting->photo_main??''],'success',200);
     }
  }
