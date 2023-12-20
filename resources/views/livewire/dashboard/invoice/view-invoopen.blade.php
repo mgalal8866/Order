@@ -5,6 +5,22 @@
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.invoiceopen') }}</h4>
                 </div>
+                <div class="card-body ">
+                    <div class="row mb-3">
+                        <div class="col-3 col-md-3">
+                            <label class="form-label" for="name">بحث (باسم العميل او رقم التليفون )</label>
+                            <input type="text" wire:model='search' id="search" name="search"
+                                class="form-control" required />
+                        </div>
+                        <div class="col-md-2">
+                            <x-label for="fromdate" label="من" />
+                            <x-daterange id="fromdate" wire:model.lazy='fromdate' :date='$fromdate' />
+                        </div>
+                        <div class="col-md-2">
+                            <x-label for="todate" label="الى" />
+                            <x-daterange id="todate" wire:model.lazy='todate' :date='$todate' />
+                        </div>
+                    </div>
                 <div class="table-responsive">
                     <table class="table">
                         <thead>
@@ -53,13 +69,17 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="8" class="alert alert-danger text-center"> No Data Here</td>
+                                    <td colspan="18" class="alert alert-danger text-center"> No Data Here</td>
                                 </tr>
                             @endforelse
 
 
                         </tbody>
                     </table>
+                </div>
+            </div>
+                <div class="card-footer  d-flex justify-content-center">
+                    {{ $invoices->links() }}
                 </div>
             </div>
         </div>

@@ -4,23 +4,32 @@
             <h4 class="card-title">{{ __('tran.users') }}</h4>
             {{-- <button class="btn btn-success ">اضافه مستخدم</button> --}}
         </div>
-        <x-table.table-responsive>
-            <x-slot name="thead">
-                <x-table.th>#</x-table.th>
-                <x-table.th>{{__('name')}}</x-table.th>
-                <x-table.th>{{__('phone')}}</x-table.th>
-                <x-table.th>{{__('status')}}</x-table.th>
-                {{-- <x-table.th>Actions</x-table.th> --}}
-            </x-slot>
-            <x-table.tbody>
-                @foreach ($users as $index=>$user )
-                <x-table.tr>
-                    <x-table.td> <span class="fw-bold">{{($users->currentpage()-1) * $users->perpage() + $index + 1 }}</span></x-table.td>
-                    <x-table.td> <span class="fw-bold">{{ $user->client_name}}</span></x-table.td>
-                    <x-table.td><span class="fw-bold">{{ $user->store_name}}</span></x-table.td>
-                    <x-table.td>{{ $user->client_fhonewhats}}</x-table.td>
-                    {{-- <x-table.td><span class="badge rounded-pill badge-light-primary me-1">Active</span></x-table.td> --}}
-                    {{-- <x-table.td>
+        <div class="card-body ">
+            <div class="row mb-3">
+                <div class="col-6 col-md-6">
+                    <label class="form-label" for="name">بحث (بالاسم )</label>
+                    <input type="text" wire:model='search' id="search" name="search" class="form-control"
+                        required />
+                </div>
+            </div>
+            <x-table.table-responsive>
+                <x-slot name="thead">
+                    <x-table.th>#</x-table.th>
+                    <x-table.th>{{ __('name') }}</x-table.th>
+                    <x-table.th>{{ __('phone') }}</x-table.th>
+                    <x-table.th>{{ __('status') }}</x-table.th>
+                    {{-- <x-table.th>Actions</x-table.th> --}}
+                </x-slot>
+                <x-table.tbody>
+                    @foreach ($users as $index => $user)
+                        <x-table.tr>
+                            <x-table.td> <span
+                                    class="fw-bold">{{ ($users->currentpage() - 1) * $users->perpage() + $index + 1 }}</span></x-table.td>
+                            <x-table.td> <span class="fw-bold">{{ $user->client_name }}</span></x-table.td>
+                            <x-table.td><span class="fw-bold">{{ $user->store_name }}</span></x-table.td>
+                            <x-table.td>{{ $user->client_fhonewhats }}</x-table.td>
+                            {{-- <x-table.td><span class="badge rounded-pill badge-light-primary me-1">Active</span></x-table.td> --}}
+                            {{-- <x-table.td>
                         <div class="dropdown">
                             <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0"
                                 data-bs-toggle="dropdown">
@@ -38,13 +47,13 @@
                             </div>
                         </div>
                     </x-table.td> --}}
-                </x-table.tr>
-                @endforeach
-            </x-table.tbody>
+                        </x-table.tr>
+                    @endforeach
+                </x-table.tbody>
 
 
-        </x-table.table-responsive>
-
+            </x-table.table-responsive>
+        </div>
     </div>
     <div class="card-footer  d-flex justify-content-center">
         {{ $users->links() }}

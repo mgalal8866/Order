@@ -6,7 +6,7 @@ interface UserRepositoryinterface{
     public function login($request);
     public function edit($request);
     public function register($request);
-    public function getusers($pg = 30);
+    public function getusers($pg = 30,$search=null);
     public function logout();
     public function sendtoken($token);
     public function sendotp($request);

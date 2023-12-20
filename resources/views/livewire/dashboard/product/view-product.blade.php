@@ -5,7 +5,14 @@
                 <div class="card-header">
                     <h4 class="card-title">{{ __('tran.product') }}</h4>
                 </div>
-
+                <div class="card-body ">
+                    <div class="row mb-3">
+                        <div class="col-3 col-md-3">
+                            <label class="form-label" for="name">بحث (بالاسم او الباركود )</label>
+                            <input type="text" wire:model='search' id="search" name="search"
+                                class="form-control" required />
+                        </div>
+                    </div>
                     <div class="table-responsive">
                         <table class="table">
                             <thead>
@@ -90,7 +97,7 @@
                                     <tr>
 
 
-                                        <td colspan="7" class="alert alert-danger text-center"> No Data Here</td>
+                                        <td colspan="17" class="alert alert-danger text-center"> No Data Here</td>
 
                                     </tr>
                                 @endforelse
@@ -102,7 +109,7 @@
                             {{ $products->links() }}
                         </div>
                     </div>
-          
+                </div>
             </div>
         </div>
     </div>

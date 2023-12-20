@@ -13,16 +13,28 @@ class ViewProduct extends Component
     use WithPagination;
     protected $listeners = ['view-product' => '$refresh'];
     protected $paginationTheme = 'bootstrap';
-
+    public $pg = 30, $search;
+    public function updatedSearch()
+    {
+        $this->resetPage();
+    }
 
     public function demo()
     {
-        $this->dispatchBrowserEvent('swal',['message'=>'DEMO  version   ' ]);
+        $this->dispatchBrowserEvent('swal', ['message' => 'DEMO  version   ']);
     }
 
     public function render()
     {
-        $products = ProductDetails::latest()->paginate(4);
-        return view('livewire.dashboard.product.view-product',['products' => $products]);
-      }
+        if ($this->search == '') {
+            $products = ProductDetails::latest()->paginate($this->pg);
+        } else {
+            $rr = $this->search;
+            $products = ProductDetails::where('productd_barcode', 'LIKE',  $this->search)
+            ->orWhereHas('productheader', function ($query) use ($rr ) {
+                $query->where('product_name', 'LIKE', "%" . $rr . "%");
+            })->latest()->paginate($this->pg);
+        }
+        return view('livewire.dashboard.product.view-product', ['products' => $products]);
+    }
 }

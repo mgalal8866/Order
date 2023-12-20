@@ -260,8 +260,11 @@ class DBUserRepository implements UserRepositoryinterface
     //     notificationFCM('اهلا بك', $rep, [$user->fsm]);
     //     return $user;
     // }
-    public function getusers($pg = 30)
+    public function getusers($pg = 30,$search=null)
     {
+        if($search != null){
+            return  User::where('client_name', 'LIKE', "%" . $search  . "%")->orwhere('client_fhonewhats', 'LIKE', "%" . $search  . "%")->paginate($pg);
+        }
         return  User::paginate($pg);
     }
     public function settings()

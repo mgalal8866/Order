@@ -10,13 +10,16 @@ class Users extends Component
 {
         use WithPagination;
 
-        public $pg = 30;
+        public $pg = 30,$search;
         protected $paginationTheme = 'bootstrap';
-
+        public function updatedSearch()
+        {
+            $this->resetPage();
+        }
     public function render(UserRepositoryinterface $usersRepository)
     {
         // $this->usersRepository =  $usersRepository;
-        $users =   $usersRepository->getusers($this->pg);
+        $users =   $usersRepository->getusers($this->pg,$this->search);
 
         return view('livewire.dashboard.users.index', compact('users'));
     }
