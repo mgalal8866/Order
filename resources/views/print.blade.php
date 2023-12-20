@@ -46,36 +46,19 @@
 
                     <div class="row pb-2">
                         <div class="col-sm-6">
-                            <h6 class="mb-1">Invoice To:</h6>
-                            <p class="mb-25">Thomas shelby</p>
-                            <p class="mb-25">Shelby Company Limited</p>
-                            <p class="mb-25">Small Heath, B10 0HF, UK</p>
-                            <p class="mb-25">718-986-6062</p>
-                            <p class="mb-0">peakyFBlinders@gmail.com</p>
+                            <h6 class="mb-2"> {{__('tran.customerdata')}} :</h6>
+                                <h6 class="mb-25">{{$invo->user->client_name??''}}</h6>
+                                <p class="mb-25">{{$invo->user->region->city->name??'' .' , '. $invo->user->region->name??'' .' , '. $invo->user->client_state??''}}</p>
+                                <p class="mb-25">{{$invo->user->client_fhonewhats??''}}</p>
+
                         </div>
                         <div class="col-sm-6 mt-sm-0 mt-2">
-                            <h6 class="mb-1">Payment Details:</h6>
+                            <h6 class="mb-1">{{__('tran.paymentdetails')}} :</h6>
                             <table>
                                 <tbody>
                                     <tr>
-                                        <td class="pe-1">Total Due:</td>
-                                        <td><strong>$12,110.55</strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">Bank name:</td>
-                                        <td>American Bank</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">Country:</td>
-                                        <td>United States</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">IBAN:</td>
-                                        <td>ETD95476213874685</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="pe-1">SWIFT code:</td>
-                                        <td>BR91905</td>
+                                        <td class="pe-1">{{__('tran.invopaytayp')}} : </td>
+                                        <td><span class="fw-bold">{{$invo->paytayp??''}}</span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -132,13 +115,12 @@
                     </div>
 
                     <div class="row invoice-sales-total-wrapper mt-3">
-                        {{-- <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3"> --}}
-                            {{-- <p class="card-text mb-0"> --}}
-                                {{-- <span class="fw-bold">{{ __('tran.note') }}:</span>
-                                <span  >{{ $invo->note ?? '' }}</span> --}}
-
-                            {{-- </p> --}}
-                        {{-- </div> --}}
+                        <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
+                            <p class="card-text mb-0">
+                                <span class="fw-bold">{{ __('tran.note') }}:</span>
+                                <span  >{{ $invo->note ?? '' }}</span>
+                            </p>
+                        </div>
                         <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                             <div class="invoice-total-wrapper">
                                 <div class="invoice-total-item">
@@ -147,7 +129,7 @@
                                 </div>
                                 <div class="invoice-total-item">
                                     <p class="invoice-total-title">{{ __('tran.totaldiscount') }} : </p>
-                                    {{-- <p class="invoice-total-amount">{{ $invo->salesdetails ? $invo->salesdetails->sum('discount') :''}}</p> --}}
+                                    <p class="invoice-total-amount">{{ $invo->salesdetails ? $invo->salesdetails->sum('discount') :''}}</p>
                                 </div>
                                 <div class="invoice-total-item">
                                     <p class="invoice-total-title">{{ __('tran.total_add_amount') }} : </p>
@@ -189,26 +171,13 @@
             </div>
         </div>
     </div>
-    <!-- END: Content-->
 
-
-    <!-- BEGIN: Vendor JS-->
     <script src="{{ asset('asset/vendors/js/vendors.min.js') }}"></script>
 
-    <!-- BEGIN Vendor JS-->
-
-    <!-- BEGIN: Page Vendor JS-->
-    <!-- END: Page Vendor JS-->
-
-    <!-- BEGIN: Theme JS-->
     <script src="{{ asset('asset/js/core/app-menu.js') }}"></script>
     <script src="{{ asset('asset/js/core/app.js') }}"></script>
 
-    <!-- END: Theme JS-->
-
-    <!-- BEGIN: Page JS-->
     <script src="{{ asset('app-assets/js/scripts/pages/app-invoice-print.min.js') }}"></script>
-    <!-- END: Page JS-->
 
     <script>
         $(window).on('load', function() {
@@ -221,6 +190,5 @@
         })
     </script>
 </body>
-<!-- END: Body-->
 
 </html>
