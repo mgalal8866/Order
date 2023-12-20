@@ -1,9 +1,37 @@
 <!DOCTYPE html>
 <html class="loading bordered-layout" lang="en" data-layout="bordered-layout" data-textdirection="rtl">
 <!-- BEGIN: Head-->
-@include('layouts.dashboard.head')
+{{-- @include('layouts.dashboard.head') --}}
 
 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimal-ui">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/vendors/css/vendors-rtl.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/bootstrap-extended.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/colors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/components.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/themes/dark-layout.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/themes/semi-dark-layout.min.css')}}">
+
+
+    <!-- BEGIN: Page CSS-->
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('asset/css-rtl/pages/app-invoice-print.min.css')}}">
+    <!-- END: Page CSS-->
+
+    <!-- BEGIN: Custom CSS-->
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/custom-rtl.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('app-assets/css/style.css')}}">
+    <!-- END: Custom CSS-->
+</head>
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click"
     data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
@@ -114,14 +142,14 @@
                         </table>
                     </div>
 
-                    <div class="row invoice-sales-total-wrapper mt-3">
+                    <div class="row invoice-sales-total-wrapper mt-3 pb-2">
                         <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
                             <p class="card-text mb-0">
                                 <span class="fw-bold">{{ __('tran.note') }}:</span>
                                 <span  >{{ $invo->note ?? '' }}</span>
                             </p>
                         </div>
-                        <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
+                        <div class="col-md-8 d-flex justify-content-end order-md-2 order-1 ">
                             <div class="invoice-total-wrapper">
                                 <div class="invoice-total-item">
                                     <p class="invoice-total-title">{{ __('tran.subtotal') }}:</p>
@@ -156,16 +184,16 @@
                         </div>
                     </div>
 
-                    <hr class="my-2" />
+                    {{-- <hr class="my-2" /> --}}
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-12">
                             <span class="fw-bold">{{ __('tran.note') }}:</span>
 
                             <span>{{ $invo->note ?? '' }}</span>
 
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
             </div>

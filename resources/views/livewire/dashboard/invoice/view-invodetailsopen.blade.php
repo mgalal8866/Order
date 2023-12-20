@@ -182,18 +182,8 @@
             <div class="col-xl-3 col-md-4 col-12 invoice-actions mt-md-0 mt-2">
                 <div class="card">
                     <div class="card-body">
-                        <button class="btn btn-primary w-100 mb-75" data-bs-toggle="modal"
-                            data-bs-target="#send-invoice-sidebar">
-                            Send Invoice
-                        </button>
-                        <button class="btn btn-outline-secondary w-100 btn-download-invoice mb-75">Download</button>
-                        <a class="btn btn-outline-secondary w-100 mb-75" href="./app-invoice-print.html"
-                            target="_blank"> Print </a>
-                        <a class="btn btn-outline-secondary w-100 mb-75" href="./app-invoice-edit.html"> Edit </a>
-                        <button class="btn btn-success w-100" data-bs-toggle="modal"
-                            data-bs-target="#add-payment-sidebar">
-                            Add Payment
-                        </button>
+                        <a class="btn btn-outline-secondary w-100 mb-75" href="{{route('print',['type'=>'open','id'=>$invo->id])}}"
+                            target="_blank"> طباعة </a>
                     </div>
                 </div>
             </div>
