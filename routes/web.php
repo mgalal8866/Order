@@ -221,6 +221,7 @@ Route::post('/store-token', function (Request $request) {
 Route::middleware('tenant')->group(function () {
 
 
+
     Route::get('/test', function (Request $request) {
 
 
@@ -311,6 +312,9 @@ Route::middleware('tenant')->group(function () {
 
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
         // Route::get('product', CreateProduct::class)->name('product');
+        Route::get('/print', function (Request $request) {
+            return view('print');
+          })->name('print');
         Route::get('/', mainDashboard::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');
