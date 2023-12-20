@@ -39,12 +39,13 @@ use Symfony\Component\Process\Process;
 use App\Http\Livewire\Front\User\Login;
 use App\Http\Livewire\System\Dashboard;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\PrintController;
 use App\Http\Livewire\Dashboard\Settings;
 use App\Http\Livewire\Front\Product\Home;
 use App\Http\Livewire\Dashboard\Chat\Chat;
 use App\Http\Livewire\Front\Cart\Checkout;
-use App\Http\Livewire\Front\User\Register;
 
+use App\Http\Livewire\Front\User\Register;
 use App\Http\Livewire\System\UploadUpdate;
 use App\Http\Livewire\Front\Product\Offers;
 use App\Http\Livewire\Dashboard\Units\Units;
@@ -70,8 +71,8 @@ use App\Http\Livewire\Dashboard\Gallery as galleryback;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetails;
 use App\Http\Livewire\Dashboard\Reports\Pos\ShiftReport;
 use App\Http\Livewire\Dashboard\Dashboard as mainDashboard;
-use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
 
+use App\Http\Livewire\Dashboard\Reports\Client\ClientPayed;
 use App\Http\Livewire\Dashboard\Reports\Employee\EmpReport;
 use App\Http\Livewire\Dashboard\Reports\Employee\EmpSalery;
 use App\Http\Livewire\Dashboard\Invoice\ViewInvodetailsopen;
@@ -312,9 +313,7 @@ Route::middleware('tenant')->group(function () {
 
     Route::prefix('admin/dashborad')->middleware('auth:admin')->group(function () {
         // Route::get('product', CreateProduct::class)->name('product');
-        Route::get('/print', function (Request $request) {
-            return view('print');
-          })->name('print');
+        Route::get('/print/{type}/{id}', [PrintController::class, 'index'])->name('print');
         Route::get('/', mainDashboard::class)->name('dashboard');
         Route::get('/chatlive', Testchat::class)->name('chatlive');
         Route::get('/gallery', galleryback::class)->name('gallerydashboard');

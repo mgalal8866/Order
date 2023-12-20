@@ -98,13 +98,12 @@
                                 @isset($invo)
                                     @forelse ($invo->salesdetails as $invod)
                                         <tr>
-                                            <td class="py-1 ps-4">
-                                                <p class="fw-semibold mb-25">
-                                                    {{ $invod->productdetails->productheader->product_name ?? '' }}</p>
+                                            <td class="py-1 ">
+                                                {{-- <p class="fw-semibold mb-25 text-nowrap">
+                                                    {{ $invod->productdetails->productheader->product_name ?? '' }}</p> --}}
 
-                                                {{-- <p class="text-muted text-nowrap">
-                                                Developed a full stack native app using React Native, Bootstrap & Python
-                                            </p> --}}
+                                                <p class="text-muted text-nowrap">
+                                                    {{ $invod->productdetails->productheader->product_name ?? '' }}                                            </p>
                                             </td>
                                             <td class="py-1">
                                                 <strong>{{ $invod->sellprice ?? '' }}</strong>
@@ -133,13 +132,13 @@
                     </div>
 
                     <div class="row invoice-sales-total-wrapper mt-3">
-                        <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-                            <p class="card-text mb-0">
-                                <span class="fw-bold">{{ __('tran.note') }}:</span> <span
-                                    class="ms-75">{{ $invo->note ?? '' }}</span>
+                        {{-- <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3"> --}}
+                            {{-- <p class="card-text mb-0"> --}}
+                                {{-- <span class="fw-bold">{{ __('tran.note') }}:</span>
+                                <span  >{{ $invo->note ?? '' }}</span> --}}
 
-                            </p>
-                        </div>
+                            {{-- </p> --}}
+                        {{-- </div> --}}
                         <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                             <div class="invoice-total-wrapper">
                                 <div class="invoice-total-item">
@@ -179,10 +178,10 @@
 
                     <div class="row">
                         <div class="col-12">
-                            <span class="fw-bold">Note:</span>
-                            <span>It was a pleasure working with you and your team. We hope you will keep us in mind for
-                                future freelance
-                                projects. Thank You!</span>
+                            <span class="fw-bold">{{ __('tran.note') }}:</span>
+
+                            <span>{{ $invo->note ?? '' }}</span>
+
                         </div>
                     </div>
                 </div>
