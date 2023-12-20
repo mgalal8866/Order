@@ -18,26 +18,26 @@
                     <div class="invoice-header d-flex justify-content-between flex-md-row flex-column pb-2">
                         <div>
                             <div class="d-flex mb-1">
-                                <img src="{{ getimage('logos',$setting->logo_shop)}}" width="50"  />
+                                <img src="{{ getimage('logos', $setting->logo_shop) }}" width="50" />
 
-                                <h3 class="text-primary fw-bold ms-1">{{$setting->name_shop}}</h3>
+                                <h3 class="text-primary fw-bold ms-1">{{ $setting->name_shop }}</h3>
                             </div>
-                            <p class="mb-25">{{$setting->address_shop}}</p>
-                            <p class=" mb-0">{{$setting->phone_shop}}</p>
+                            <p class="mb-25">{{ $setting->address_shop }}</p>
+                            <p class=" mb-0">{{ $setting->phone_shop }}</p>
                         </div>
                         <div class="mt-md-0 mt-2">
-                            <h4 class="fw-bold text-end mb-1"># {{$invo->invoicenumber??''}}</h4>
+                            <h4 class="fw-bold text-end mb-1"># {{ $invo->invoicenumber ?? '' }}</h4>
                             <div class="invoice-date-wrapper mb-50">
-                                <span class="invoice-date-title">{{__('tran.invodate')}}:</span>
-                                <span class="fw-bold">{{$invo->invoicedate??''}}</span>
+                                <span class="invoice-date-title">{{ __('tran.invodate') }}:</span>
+                                <span class="fw-bold">{{ $invo->invoicedate ?? '' }}</span>
                             </div>
                             <div class="invoice-date-wrapper">
-                                <span class="invoice-date-title">{{__('tran.derivername')}}:</span>
-                                <span class="fw-bold">{{$invo->employee->name??''}}</span>
+                                <span class="invoice-date-title">{{ __('tran.derivername') }}:</span>
+                                <span class="fw-bold">{{ $invo->employee->name ?? '' }}</span>
                             </div>
                             <div class="invoice-date-wrapper">
-                                <span class="invoice-date-title">{{__('tran.username')}}:</span>
-                                <span class="fw-bold">{{$invo->useradmin->employee->name??''}}</span>
+                                <span class="invoice-date-title">{{ __('tran.username') }}:</span>
+                                <span class="fw-bold">{{ $invo->useradmin->employee->name ?? '' }}</span>
                             </div>
                         </div>
                     </div>
@@ -86,75 +86,90 @@
                         <table class="table m-0">
                             <thead>
                                 <tr>
-                                    <th class="py-1">{{__('tran.product')}}</th>
-                                    <th class="py-1">{{__('tran.price')}}</th>
-                                    <th class="py-1">{{__('tran.qty')}}</th>
-                                    <th class="py-1">{{__('tran.subtotal')}}</th>
-                                    <th class="py-1">{{__('tran.discount')}}</th>
-                                    <th class="py-1">{{__('tran.total')}}</th>
+                                    <th class="py-1">{{ __('tran.product') }}</th>
+                                    <th class="py-1">{{ __('tran.price') }}</th>
+                                    <th class="py-1">{{ __('tran.qty') }}</th>
+                                    <th class="py-1">{{ __('tran.subtotal') }}</th>
+                                    <th class="py-1">{{ __('tran.discount') }}</th>
+                                    <th class="py-1">{{ __('tran.total') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td class="py-1 ps-4">
-                                        <p class="fw-semibold mb-25">Native App Development</p>
-                                        <p class="text-muted text-nowrap">
-                                            Developed a full stack native app using React Native, Bootstrap & Python
-                                        </p>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>$60.00</strong>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>30</strong>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>$1,800.00</strong>
-                                    </td>
-                                </tr>
-                                <tr class="border-bottom">
-                                    <td class="py-1 ps-4">
-                                        <p class="fw-semibold mb-25">Ui Kit Design</p>
-                                        <p class="text-muted text-nowrap">Designed a UI kit for native app using
-                                            Sketch, Figma & Adobe XD</p>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>$60.00</strong>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>20</strong>
-                                    </td>
-                                    <td class="py-1">
-                                        <strong>$1200.00</strong>
-                                    </td>
-                                </tr>
+                                @isset($invo)
+                                    @forelse ($invo->salesdetails as $invod)
+                                        <tr>
+                                            <td class="py-1 ps-4">
+                                                <p class="fw-semibold mb-25">
+                                                    {{ $invod->productdetails->productheader->product_name ?? '' }}</p>
+
+                                                {{-- <p class="text-muted text-nowrap">
+                                                Developed a full stack native app using React Native, Bootstrap & Python
+                                            </p> --}}
+                                            </td>
+                                            <td class="py-1">
+                                                <strong>{{ $invod->sellprice ?? '' }}</strong>
+                                            </td>
+                                            <td class="py-1">
+                                                <strong>{{ $invod->quantity ?? '' }}</strong>
+                                            </td>
+                                            <td class="py-1">
+                                                <strong>{{ $invod->subtotal ?? '' }}</strong>
+                                            </td>
+                                            <td class="py-1">
+                                                <strong>{{ $invod->discount ?? '' }}</strong>
+                                            </td>
+                                            <td class="py-1">
+                                                <strong>{{ $invod->grandtotal ?? '' }}</strong>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="18" class="py-1 ps-4"> No Data Here</td>
+                                        </tr>
+                                    @endforelse
+                                @endisset
                             </tbody>
                         </table>
                     </div>
 
                     <div class="row invoice-sales-total-wrapper mt-3">
                         <div class="col-md-6 order-md-1 order-2 mt-md-0 mt-3">
-                            <p class="card-text mb-0"><span class="fw-bold">Salesperson:</span> <span
-                                    class="ms-75">Alfie Solomons</span></p>
+                            <p class="card-text mb-0">
+                                <span class="fw-bold">{{ __('tran.note') }}:</span> <span
+                                    class="ms-75">{{ $invo->note ?? '' }}</span>
+
+                            </p>
                         </div>
                         <div class="col-md-6 d-flex justify-content-end order-md-2 order-1">
                             <div class="invoice-total-wrapper">
                                 <div class="invoice-total-item">
-                                    <p class="invoice-total-title">Subtotal:</p>
-                                    <p class="invoice-total-amount">$1800</p>
+                                    <p class="invoice-total-title">{{ __('tran.subtotal') }}:</p>
+                                    <p class="invoice-total-amount">{{ $invo->subtotal ?? '' }}</p>
                                 </div>
                                 <div class="invoice-total-item">
-                                    <p class="invoice-total-title">Discount:</p>
-                                    <p class="invoice-total-amount">$28</p>
+                                    <p class="invoice-total-title">{{ __('tran.totaldiscount') }} : </p>
+                                    {{-- <p class="invoice-total-amount">{{ $invo->salesdetails ? $invo->salesdetails->sum('discount') :''}}</p> --}}
                                 </div>
                                 <div class="invoice-total-item">
-                                    <p class="invoice-total-title">Tax:</p>
-                                    <p class="invoice-total-amount">21%</p>
+                                    <p class="invoice-total-title">{{ __('tran.total_add_amount') }} : </p>
+                                    <p class="invoice-total-amount">{{ $invo->total_add_amount ?? '' }}</p>
+                                </div>
+                                <div class="invoice-total-item">
+                                    <p class="invoice-total-title">{{ __('tran.deliverycost') }}:</p>
+                                    <p class="invoice-total-amount">{{ $invo->deliverycost ?? '' }}</p>
                                 </div>
                                 <hr class="my-50" />
                                 <div class="invoice-total-item">
-                                    <p class="invoice-total-title">Total:</p>
-                                    <p class="invoice-total-amount">$1690</p>
+                                    <p class="invoice-total-title">{{ __('tran.invototal') }}:</p>
+                                    <p class="invoice-total-amount">{{ $invo->grandtotal ?? '' }}</p>
+                                </div>
+                                <div class="invoice-total-item">
+                                    <p class="invoice-total-title">{{ __('tran.paymentval') }}:</p>
+                                    <p class="invoice-total-amount">{{ $invo->paid ?? '' }}</p>
+                                </div>
+                                <div class="invoice-total-item">
+                                    <p class="invoice-total-title">{{ __('tran.remaining') }}:</p>
+                                    <p class="invoice-total-amount">{{ $invo->remaining ?? '' }}</p>
                                 </div>
                             </div>
                         </div>
