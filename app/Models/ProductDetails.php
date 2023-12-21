@@ -86,7 +86,7 @@ class ProductDetails extends Model
 
         return $query->WhereHas('productheader',function ($q) {
              $q->WhereHas('stock',function ($qq) {
-                $qq->where('quantity', '>', $this->productd_size);
+                $qq->where('quantity', '>', 0);
 
            });
         });

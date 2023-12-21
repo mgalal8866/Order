@@ -13,7 +13,6 @@
                             <div>
                                 <div class="logo-wrapper">
                                     <img src="{{ getimage('logos',$setting->logo_shop)}}" width="50"  />
-
                                 </div>
                                 <p class="card-text mb-25">{{$setting->address_shop}}</p>
                                 <p class="card-text mb-0">{{$setting->phone_shop}}</p>
