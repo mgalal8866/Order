@@ -81,6 +81,18 @@ class ProductDetails extends Model
     {
         return $query->where('productd_online', 1);
     }
+    public function scopeInstock($query)
+    {
+    //     dd(    $this->productd_size
+    // );
+    //     return $query->WhereHas('productheader',function ($q) {
+    //          $q->WhereHas('stock',function ($qq) {
+    //             // $qq->where('quantity','>', 0);
+    //             $qq->where('quantity', '>', $this->productd_size);
+
+    //        });
+    //     });
+    }
     public function scopeGetcategory($query, $id=null)
     {
         return $query->WhereHas('productheader', function ($q) use ($id) {
