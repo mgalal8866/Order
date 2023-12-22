@@ -86,12 +86,28 @@ class ProductDetails extends Model
     public function scopeInstock($query)
     {
 
-        return $query->WhereHas('productheader',function ($q) {
-             $q->WhereHas('stock',function ($qq) {
-                $qq->where('quantity', '>', $this->productd_size);
+       // $type1 = $this->with(['productheader','productheader.productdetails'])->first();
+        // $type =  $type1->productheader->productdetails()->pluck('productd_size', 'productd_UnitType');
 
-           });
-        });
+        // Log::error($type1);
+        // switch ($type1->productd_UnitType) {
+
+        //     case (1):
+        //         $qty = $type['1'];
+        //         break;
+        //     case (2):
+        //         dd('');
+        //         $qty = $type['1'] * $type['2'];
+        //         break;
+        //     case (3):
+        //         $qty = $type['1'] * $type['2'] * $type['3'];
+        //         break;
+        // }
+        // return  $query->WhereHas('productheader', function ($q) use( $qty) {
+        //     $q->WhereHas('stock', function ($qq) use( $qty){
+        //         $qq->where('quantity', '>', $qty);
+        //     });
+        // });
     }
     public function scopeGetcategory($query, $id = null)
     {
