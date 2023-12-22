@@ -27,23 +27,23 @@ class DBProductRepository implements ProductRepositoryinterface
     public function searchproduct($search = null)
     {
         if (empty($search)) {
-            $search = 'Notfountsearch';
+            $search = 'Notfoundsearch';
 
         }
 
 
-        // $results = ProductDetails::where('productd_barcode', 'LIKE', $search)->online()
-        // ->WhereHas('productheader', function ($query) {
-        //     $query->online();
-        // })
-        // ->orWhereHas('productheader', function ($query) use ($search) {
-        //     $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
-        // })->paginate($this->pg);
+        $results = ProductDetails::where('productd_barcode', 'LIKE', $search)->online()
+        ->WhereHas('productheader', function ($query) {
+            $query->online();
+
+        })
+        ->orWhereHas('productheader', function ($query) use ($search) {
+            $query->where('product_name', 'LIKE', "%" . $search . "%")->online();
+        })->paginate($this->pg);
         $results = ProductDetails::where('productd_barcode', 'LIKE', $search)
         ->orWhereHas('productheader', function ($query) use ($search) {
             $query->where('product_name', 'LIKE', "%" . $search . "%");
-        })->instock()->online()->paginate($this->pg);
-
+        })->online()->paginate($this->pg);
 
         return Resp(new ProductCollectionResource($results), 'success', 200, true)->getData(true);
     }

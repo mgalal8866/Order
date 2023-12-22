@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Middleware\TenantMiddleware;
-
+use Illuminate\Support\Collection;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +24,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+        Collection::macro('pick', function (...$columns) {
+
+            return $this->map(function ($item, $key) use ($columns) {
+                $data = [];
+                foreach ($columns as $column) {
+                    $data[$column] = $item[$column] ?? null;
+                }
+
+                return $data;
+            });
+        });
         $this->app->bind('Tenants',function(){
             return new TenantService();
         });
