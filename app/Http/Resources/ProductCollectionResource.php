@@ -18,9 +18,15 @@ class ProductCollectionResource extends ResourceCollection
             })
             ->unique();
 
+            $product = $this->collection->filter(function ($p) {
+               if( $p->Qtystockapi($p->productheader->stockmany->sum('quantity')) == 'متوفر'){
+                return $p;
+                }
+            });
+
         return [
             'brands'  =>   BrandResource::collection($uniqueBrands),
-            'product' => ProductDetailsResource::collection($this->collection),
+            'product' => ProductDetailsResource::collection($product),
             'pagination' => [
                 'total'        => $this->total(),
                 'count'        => $this->count(),

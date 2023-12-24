@@ -11,17 +11,17 @@ use App\Repositoryinterface\ProductRepositoryinterface;
 
 class DBProductRepository implements ProductRepositoryinterface
 {
-    public $pg=30;
+    public $pg = 30;
     public function getprobycat($id)
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->with(['productheader','productheader.brand'])->orderBy('updated_at','DESC')->online()->paginate($this->pg)), 'success', 200, true)->getData(true);
+        return Resp(new ProductCollectionResource(ProductDetails::Getcategory($id)->with(['productheader', 'productheader.brand'])->orderBy('updated_at', 'DESC')->online()->paginate($this->pg)), 'success', 200, true)->getData(true);
         // dd(\DB::getQueryLog()); // Show results of log
     }
     public function getoffers()
     {
         // \DB::enableQueryLog(); // Enable query log
-        return Resp( ProductDetailsResource::collection(ProductDetails::Getoffers()->get()), 'success', 200, true)->getData(true);
+        return Resp(ProductDetailsResource::collection(ProductDetails::Getoffers()->get()), 'success', 200, true)->getData(true);
         // \DB::getQueryLog(); // Show results of log
     }
     public function searchproduct($search = null)

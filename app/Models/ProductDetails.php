@@ -85,7 +85,7 @@ class ProductDetails extends Model
     }
     public function scopeInstock($query)
     {
-
+        // $this->Qtystockapi($p->productheader->stockmany->sum('quantity')) == 'متوفر';
        // $type1 = $this->with(['productheader','productheader.productdetails'])->first();
         // $type =  $type1->productheader->productdetails()->pluck('productd_size', 'productd_UnitType');
 
