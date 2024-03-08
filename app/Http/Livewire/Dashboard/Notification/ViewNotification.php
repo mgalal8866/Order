@@ -71,16 +71,14 @@ class ViewNotification extends Component
 
     public function sendnotifiction()
     {
-        // dd($this->selectmultiuser);
         if ($this->selectactive == 0 && count($this->selectmultiuser) > 0) {
             $send = DB::table('users')->whereIn('id', $this->selectmultiuser)->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
-            if($this->image != null){
-            $im = $this->image->temporaryUrl();
-            }else{
+            if ($this->image != null) {
+                $im = $this->image->temporaryUrl();
+            } else {
                 $im = null;
             }
-            dd($this->image->temporaryUrl());
-            $results =  notificationFCM($this->title, $this->body, $send ,null,$im,null,null,false);
+            $results =  notificationFCM($this->title, $this->body, $send, null, $im, null, null, false);
         } elseif ($this->selectactive == 1) {
             // $send =   DB::table('users')->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
 
@@ -90,12 +88,9 @@ class ViewNotification extends Component
             });
 
             foreach ($send22 as $it) {
-                // dd($it);
-                // if (count($send) != 0) {
-                    $results =  notificationFCM($this->title, $this->body, $it,null,null,null,null,false);
-                    // }
-                }
+                $results =  notificationFCM($this->title, $this->body, $it, null, null, null, null, false);
             }
+        }
 
 
         // User::chunk(999, function ($users) {
@@ -112,8 +107,7 @@ class ViewNotification extends Component
         //         }
         //     }
         // });
-        $this->dispatchBrowserEvent('swal',['message'=>'تم الارسال بنجاح' ]);
-
+        $this->dispatchBrowserEvent('swal', ['message' => 'تم الارسال بنجاح']);
     }
     public function render()
     {
