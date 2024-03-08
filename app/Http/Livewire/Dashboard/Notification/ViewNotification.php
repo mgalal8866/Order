@@ -78,7 +78,7 @@ class ViewNotification extends Component
             } else {
                 $im = null;
             }
-            $results =  notificationFCM($this->title, $this->body, $send, null, $im, null, null, false);
+            $results =  notificationFCM($this->title, $this->body, $send, null, $im, null, null, true);
         } elseif ($this->selectactive == 1) {
             // $send =   DB::table('users')->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
 
@@ -88,7 +88,7 @@ class ViewNotification extends Component
             });
 
             foreach ($send22 as $it) {
-                $results =  notificationFCM($this->title, $this->body, $it, null, null, null, null, false);
+                $results =  notificationFCM($this->title, $this->body, $it, null, null, null, null, true);
             }
         }
 
