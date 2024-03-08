@@ -74,13 +74,23 @@ class ViewNotification extends Component
         // dd($this->selectmultiuser);
         if ($this->selectactive == 0 && count($this->selectmultiuser) > 0) {
             $send = DB::table('users')->whereIn('id', $this->selectmultiuser)->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
-        } elseif ($this->selectactive == 1) {
-            $send =   DB::table('users')->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
-        }
-        dd($send );
-        if (count($send) != 0) {
             $results =  notificationFCM($this->title, $this->body, $send);
-        }
+        } elseif ($this->selectactive == 1) {
+            // $send =   DB::table('users')->where('fsm', '!=', null)->select('fsm')->pluck('fsm')->toArray();
+
+            $send22 = [];
+            DB::table('users')->whereNotNull('fsm')->orderBy('fsm')->chunk(999, function ($users) use (&$send22) {
+                $send22[] = $users->pluck('fsm')->toArray();
+            });
+
+            foreach ($send22 as $it) {
+                // dd($it);
+                // if (count($send) != 0) {
+                    $results =  notificationFCM($this->title, $this->body, $it);
+                    // }
+                }
+            }
+
 
         // User::chunk(999, function ($users) {
         //     if ($users->isNotEmpty()) {
