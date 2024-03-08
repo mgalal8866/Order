@@ -638,7 +638,7 @@ class SyncController extends Controller
             });
 
             foreach ($send22 as $it) {
-                $results =  notificationFCM($dd['title'], $dd['body'], $it, null, null, null, null, true);
+                $results =  notificationFCM($dd['title'], $dd['body'], $it, null, $img, null, null, true);
             }
         
        // $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
