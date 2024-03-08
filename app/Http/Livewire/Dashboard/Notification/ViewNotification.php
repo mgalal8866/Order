@@ -106,6 +106,8 @@ class ViewNotification extends Component
         //         }
         //     }
         // });
+        $this->dispatchBrowserEvent('swal',['message'=>'تم الارسال بنجاح' ]);
+
     }
     public function render()
     {
