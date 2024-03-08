@@ -167,7 +167,7 @@ function notificationFCM($title = null, $body = null, $users = null, $icon = nul
         $uu = User::where('fsm', $users[0])->first();
     }
     if ($sav == true) {
-        notifiction::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch)]);
+        notifiction::create(['title' => $title, 'user_id' => $uu->id ?? $uu, 'body' => $body, 'image' => $image, 'results' =>   curl_exec($ch) .$users->count()]);
     }
     return  curl_exec($ch);
 }
