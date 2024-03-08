@@ -71,19 +71,30 @@ class ViewNotification extends Component
 
     public function sendnotifiction()
     {
+        // dd($this->selectmultiuser);
         if ($this->selectactive == 0 && count($this->selectmultiuser) > 0) {
-            $send = DB::table('users')->where('fsm', '!=', null)->where('id', $this->selectmultiuser)->pluck('fsm')->toArray();
+            $send = DB::table('users')->whereIn('id', $this->selectmultiuser)->where('fsm', '!=', null)->pluck('fsm')->toArray();
         } elseif ($this->selectactive == 1) {
             $send =   DB::table('users')->where('fsm', '!=', null)->pluck('fsm')->toArray();
         }
         if (count($send) != 0) {
-            $send::chunk(999, function ($users) use ($send) {
-                // Send notifications to each batch of users
-                foreach ($users as $user) {
-                    $results =  notificationFCM($this->title, $this->body, $send);
-                }
-            });
+            $results =  notificationFCM($this->title, $this->body, $send);
         }
+
+        // User::chunk(999, function ($users) {
+        //     if ($users->isNotEmpty()) {
+        //         foreach ($users as $user) {
+        //             if ($this->selectactive == 0 && count($this->selectmultiuser) > 0) {
+        //                 $send = $user->where('fsm', '!=', null)->where('id', $this->selectmultiuser)->pluck('fsm')->toArray();
+        //                 // dd( $send);
+        //             } elseif ($this->selectactive == 1) {
+        //                 $send =   $user->where('fsm', '!=', null)->pluck('fsm')->toArray();
+        //                 // dd( $send);
+        //             }
+        //             $results =  notificationFCM($this->title, $this->body, $send);
+        //         }
+        //     }
+        // });
     }
     public function render()
     {
