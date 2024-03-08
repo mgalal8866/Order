@@ -77,6 +77,7 @@ class ViewNotification extends Component
         } elseif ($this->selectactive == 1) {
             $send =   DB::table('users')->where('fsm', '!=', null)->pluck('fsm')->toArray();
         }
+        dd($send );
         if (count($send) != 0) {
             $results =  notificationFCM($this->title, $this->body, $send);
         }
