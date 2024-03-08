@@ -632,7 +632,16 @@ class SyncController extends Controller
 
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
         $img =  getimage($image, 'notification');
-        $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
+      $send22 = [];
+            DB::table('users')->whereNotNull('fsm')->orderBy('fsm')->chunk(999, function ($users) use (&$send22) {
+                $send22[] = $users->pluck('fsm')->toArray();
+            });
+
+            foreach ($send22 as $it) {
+                $results =  notificationFCM($dd['title'], $dd['body'], $it, null, null, null, null, true);
+            }
+        
+       // $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
     }
