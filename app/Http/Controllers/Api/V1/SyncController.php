@@ -82,6 +82,19 @@ use App\Http\Resources\sync\DeliveryHeaderResource;
 class SyncController extends Controller
 {
     //  التحقق من اصدار تطبيق الدسك توب
+    function set_ip($ip)
+    {
+        $d =  setting::find(1);
+        $d->public_ip = $ip;
+        $d->save();
+        return    Resp($d->public_ip, 'success', 200, true);
+    }
+    function get_ip()
+    {
+        $d =  setting::find(1);
+
+        return    Resp($d->public_ip, 'success', 200, true);
+    }
     function get_version()
     {
         $jsonFile = public_path('update/data.json');
@@ -239,8 +252,8 @@ class SyncController extends Controller
                     'product_acteve'    => ($item['Products_Acteve'] == true) ? 1 : ($item['Products_Acteve'] == false ? 0 : $item['Products_Acteve']),
                     'product_isscale'   => ($item['Products_IsScale'] == true) ? 1 : ($item['Products_IsScale'] == false ? 0 : $item['Products_IsScale']),
                     'product_online'    => ($item['Products_Onlein'] == true) ? 1 : ($item['Products_Onlein'] == false ? 0 : $item['Products_Onlein']),
-                    'brand_id'          => $item['prandid']??1,
-                    'urlyoutube'        => $item['urlyoutube']??null,
+                    'brand_id'          => $item['prandid'] ?? 1,
+                    'urlyoutube'        => $item['urlyoutube'] ?? null,
                     'product_tax'       => $item['Products_Tax'],
                     'product_limit'     => $item['Products_Lemt'],
                     'user_id'           => $item['user_id'],
@@ -632,16 +645,16 @@ class SyncController extends Controller
 
         $image = $dd['image'] != null ? uploadbase64images('notification', $dd['image']) : null;
         $img =  getimage($image, 'notification');
-      $send22 = [];
-            DB::table('users')->whereNotNull('fsm')->orderBy('fsm')->chunk(999, function ($users) use (&$send22) {
-                $send22[] = $users->pluck('fsm')->toArray();
-            });
+        $send22 = [];
+        DB::table('users')->whereNotNull('fsm')->orderBy('fsm')->chunk(999, function ($users) use (&$send22) {
+            $send22[] = $users->pluck('fsm')->toArray();
+        });
 
-            foreach ($send22 as $it) {
-                $results =  notificationFCM($dd['title'], $dd['body'], $it, null, $img, null, null, true);
-            }
-        
-       // $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
+        foreach ($send22 as $it) {
+            $results =  notificationFCM($dd['title'], $dd['body'], $it, null, $img, null, null, true);
+        }
+
+        // $result = notificationFCM($dd['title'], $dd['body'], $dd['users'], null, $img);
         // $notifi =   // return    Resp($notifi , 'success', 200, true);
 
     }

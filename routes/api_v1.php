@@ -116,6 +116,8 @@ Route::middleware(['jwt.verify'])->group(function () {
 
 #################   Start SYNC  #############
 Route::prefix('sync')->middleware(['MeasureResponseTime'])->group(function () {
+    Route::get('/update/ip/{ip?}',   [SyncController::class, 'set_ip'])->name('set_ip');
+    Route::get('/get/ip',   [SyncController::class, 'get_ip'])->name('get_ip');
     Route::get('/update/get/version',   [SyncController::class, 'get_version'])->name('get_version');
     Route::get('/update/new/version',   [SyncController::class, 'upload_deskapp'])->name('upload_deskapp');
 
