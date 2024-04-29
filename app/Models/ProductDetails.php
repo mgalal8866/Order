@@ -124,11 +124,11 @@ class ProductDetails extends Model
     {
         $units = $query->units($this->product_header_id)->get();
         // return $this->productd_UnitType == 2 ?   $this->productd_size  . ' X ' .  $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name  : ($this->productd_UnitType == 3 ?''. $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X"  . $this->unit->unit_name   . ' = ' .$units[$this->productd_UnitType - 2]->unit->unit_name  : $this->unit->unit_name);
-
+        // [{"productd_unit_id":"10","productd_size":"1","unit":{"id":10,"unit_name":"\u0643\u064a\u0644\u0648","unit_note":null,"unit_active":"1","user_id":"1","created_at":"2024-04-13T21:50:12.000000Z","updated_at":"2024-04-13T21:50:12.000000Z"}},{"productd_unit_id":"11","productd_size":"2","unit":{"id":11,"unit_name":"\u0646\u0635\u0641","unit_note":null,"unit_active":"1","user_id":"1","created_at":"2024-04-13T21:50:12.000000Z","updated_at":"2024-04-13T21:50:12.000000Z"}},{"productd_unit_id":"12","productd_size":"2","unit":{"id":12,"unit_name":"\u0631\u0628\u0639","unit_note":null,"unit_active":"1","user_id":"1","created_at":"2024-04-13T21:50:12.000000Z","updated_at":"2024-04-13T21:50:12.000000Z"}}]
         // return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 1]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
         //     : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>") : "<strong>   {$this->unit->unit_name} </strong>");
-        return$units;
-        return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[0]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
+        // return$units;
+        return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[2]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
             : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
             : "<strong>   {$this->unit->unit_name} </strong>");
     }
