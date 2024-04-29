@@ -86,7 +86,7 @@ class ProductDetails extends Model
     public function scopeInstock($query)
     {
         // $this->Qtystockapi($p->productheader->stockmany->sum('quantity')) == 'متوفر';
-       // $type1 = $this->with(['productheader','productheader.productdetails'])->first();
+        // $type1 = $this->with(['productheader','productheader.productdetails'])->first();
         // $type =  $type1->productheader->productdetails()->pluck('productd_size', 'productd_UnitType');
 
         // Log::error($type1);
@@ -137,23 +137,23 @@ class ProductDetails extends Model
 
     //////////##########TESSSSSSSSSSt///////////////////////
 
-//   public function scopeCustunit($query)
-//     {
-//         $units = $query->units($this->product_header_id)->get();
+    //   public function scopeCustunit($query)
+    //     {
+    //         $units = $query->units($this->product_header_id)->get();
 
-//         return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
-//             : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 1]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
-//             : "<strong>   {$this->unit->unit_name} </strong>");
-//     }
+    //         return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
+    //             : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 1]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
+    //             : "<strong>   {$this->unit->unit_name} </strong>");
+    //     }
 
-//     public function scopeCustunitapi($query)
-//     {
+    //     public function scopeCustunitapi($query)
+    //     {
 
-//         $units = $query->units($this->product_header_id)->get();
-//         return $this->productd_UnitType == 2 ? $units[$this->productd_UnitType]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size
-//             : ($this->productd_UnitType == 1 ? $units[$this->productd_UnitType +1 ]->productd_size . "X" . $this->productd_size . "X" .$units[$this->productd_UnitType]->unit->unit_name . ' = ' . $this->unit->unit_name
-//             :  $this->unit->unit_name);
-//     }
+    //         $units = $query->units($this->product_header_id)->get();
+    //         return $this->productd_UnitType == 2 ? $units[$this->productd_UnitType]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size
+    //             : ($this->productd_UnitType == 1 ? $units[$this->productd_UnitType +1 ]->productd_size . "X" . $this->productd_size . "X" .$units[$this->productd_UnitType]->unit->unit_name . ' = ' . $this->unit->unit_name
+    //             :  $this->unit->unit_name);
+    //     }
 
 
     //////////##########TESSSSSSSSSSt///////////////////////
