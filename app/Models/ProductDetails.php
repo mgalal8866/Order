@@ -127,7 +127,6 @@ class ProductDetails extends Model
         return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 1]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
             : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>") : "<strong>   {$this->unit->unit_name} </strong>");
     }
-
     public function scopeCustunitapi($query)
     {
         $units = $query->units($this->product_header_id)->get();
