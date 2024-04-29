@@ -145,7 +145,7 @@ class ProductDetails extends Model
             $units = $query->units($this->product_header_id)->get();
 
             return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
-                : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 2]->productd_size} X{$units[$this->productd_UnitType +2 ]->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
+                : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 1]->productd_size} X{$units[$this->productd_UnitType +2 ]->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
                 : "<strong>   {$this->unit->unit_name} </strong>");
         }
 
