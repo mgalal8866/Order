@@ -120,39 +120,43 @@ class ProductDetails extends Model
         $today = Carbon::now()->toDateString();
         return $query->where('isoffer', '1')->where('productd_online', 1)->where('EndOferDate', '>=', $today)->with('productheader')->with('unit')->with('wishlist');
     }
-    public function scopeCustunit($query)
-    {
-        $units = $query->units($this->product_header_id)->get();
-        // return $this->productd_UnitType == 2 ?   $this->productd_size  . ' X ' .  $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name  : ($this->productd_UnitType == 3 ?''. $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X"  . $this->unit->unit_name   . ' = ' .$units[$this->productd_UnitType - 2]->unit->unit_name  : $this->unit->unit_name);
-        return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 1]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
-            : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>") : "<strong>   {$this->unit->unit_name} </strong>");
-    }
-    public function scopeCustunitapi($query)
-    {
-        $units = $query->units($this->product_header_id)->get();
-        return $this->productd_UnitType == 2 ?
-            $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name);
-    }
+
+        //////////##########PRODUCTN///////////////////////
+
+    //     public function scopeCustunit($query)
+    //     {
+    //         $units = $query->units($this->product_header_id)->get();
+    //         // return $this->productd_UnitType == 2 ?   $this->productd_size  . ' X ' .  $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name  : ($this->productd_UnitType == 3 ?''. $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X"  . $this->unit->unit_name   . ' = ' .$units[$this->productd_UnitType - 2]->unit->unit_name  : $this->unit->unit_name);
+    //     return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType - 1]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
+    //         : ($this->productd_UnitType == 3 ? (" {$units[$this->productd_UnitType - 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType - 2]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>") : "<strong>   {$this->unit->unit_name} </strong>");
+    // }
+    // public function scopeCustunitapi($query)
+    // {
+    //     $units = $query->units($this->product_header_id)->get();
+    //     return $this->productd_UnitType == 2 ?
+    //     $units[$this->productd_UnitType - 2]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size : ($this->productd_UnitType == 3 ? $units[$this->productd_UnitType - 2]->productd_size . "X" . $this->productd_size . "X" . $this->unit->unit_name . ' = ' . $units[$this->productd_UnitType - 2]->unit->unit_name :  $this->unit->unit_name);
+    // }
+    //////////##########PRODUCTN///////////////////////
 
     //////////##########TESSSSSSSSSSt///////////////////////
 
-    //   public function scopeCustunit($query)
-    //     {
-    //         $units = $query->units($this->product_header_id)->get();
+      public function scopeCustunit($query)
+        {
+            $units = $query->units($this->product_header_id)->get();
 
-    //         return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
-    //             : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 1]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
-    //             : "<strong>   {$this->unit->unit_name} </strong>");
-    //     }
+            return $this->productd_UnitType == 2 ?   (" $this->productd_size X  {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>  {$this->unit->unit_name}  </strong>")
+                : ($this->productd_UnitType == 1 ? (" {$units[$this->productd_UnitType + 2]->productd_size} X{$this->productd_size} X {$units[$this->productd_UnitType]->unit->unit_name}  = <strong>   {$this->unit->unit_name} </strong>")
+                : "<strong>   {$this->unit->unit_name} </strong>");
+        }
 
-    //     public function scopeCustunitapi($query)
-    //     {
+        public function scopeCustunitapi($query)
+        {
 
-    //         $units = $query->units($this->product_header_id)->get();
-    //         return $this->productd_UnitType == 2 ? $units[$this->productd_UnitType]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size
-    //             : ($this->productd_UnitType == 1 ? $units[$this->productd_UnitType +1 ]->productd_size . "X" . $this->productd_size . "X" .$units[$this->productd_UnitType]->unit->unit_name . ' = ' . $this->unit->unit_name
-    //             :  $this->unit->unit_name);
-    //     }
+            $units = $query->units($this->product_header_id)->get();
+            return $this->productd_UnitType == 2 ? $units[$this->productd_UnitType]->unit->unit_name . ' X ' . $this->unit->unit_name . ' = ' . $this->productd_size
+                : ($this->productd_UnitType == 1 ? $units[$this->productd_UnitType +2 ]->productd_size . "X" . $this->productd_size . "X" .$units[$this->productd_UnitType]->unit->unit_name . ' = ' . $this->unit->unit_name
+                :  $this->unit->unit_name);
+        }
 
 
     //////////##########TESSSSSSSSSSt///////////////////////
